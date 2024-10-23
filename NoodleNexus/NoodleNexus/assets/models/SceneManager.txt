@@ -1,0 +1,39 @@
+# Scene Description File for 3D Models
+
+# Model 1
+ModelPath: models/cube.ply
+RGB: 255, 0, 0
+Translation: 0.0, 0.0, 0.0
+Rotation: 0.0, 0.0, 0.0
+Scale: 1.0, 1.0, 1.0
+
+# Model 2
+ModelPath: models/sphere.ply
+RGB: 0, 255, 0
+Translation: 2.0, 0.0, 0.0
+Rotation: 0.0, 0.0, 0.0
+Scale: 0.5, 0.5, 0.5
+
+# Model 3
+ModelPath: models/cube.ply
+RGB: 0, 0, 255
+Translation: -1.0, 1.0, 0.0
+Rotation: 0.0, 90.0, 0.0
+Scale: 1.5, 1.5, 1.5
+
+# Model 4
+ModelPath: models/cylinder.ply
+RGB: 255, 255, 0
+Translation: 1.0, -1.0, 1.0
+Rotation: 45.0, 0.0, 45.0
+Scale: 1.0, 2.0, 1.0
+
+# Model 5
+ModelPath: models/cone.ply
+RGB: 255, 0, 255
+Translation: 0.0, 1.5, 0.0
+Rotation: 0.0, 0.0, 90.0
+Scale: 0.75, 0.75, 0.75
+
+
+END_LINE

@@ -262,7 +262,7 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 //    std::cout << "mouse x,y: " << xpos << ", " << ypos << std::endl;
     
     g_MouseState.currentPositionXY.x = (int)xpos;
-    g_MouseState.currentPositionXY.y = (int)ypos;
+    g_MouseState.currentPositionXY.y = (int)-ypos;
 
     if ( g_MouseState.bIsLeftMouseButtonDown )
     {
