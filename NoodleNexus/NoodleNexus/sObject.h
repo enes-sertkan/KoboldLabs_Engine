@@ -8,5 +8,5 @@
 
 struct sObject
 {
-	sMesh;
+	sMesh* mesh;
 };
