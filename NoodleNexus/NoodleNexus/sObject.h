@@ -8,5 +8,6 @@
 
 struct sObject
 {
+public:
 	sMesh* mesh;
 };
