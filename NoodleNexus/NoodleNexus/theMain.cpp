@@ -35,24 +35,17 @@
 #include <windows.h>    // Includes ALL of windows... MessageBox
 #include "cLightHelper/cLightHelper.h"
 
-//
-//const unsigned int MAX_NUMBER_OF_MESHES = 1000;
-//unsigned int g_NumberOfMeshesToDraw;
-//sMesh* g_myMeshes[MAX_NUMBER_OF_MESHES] = { 0 };    // All zeros
-
 std::vector<sMesh*> g_vecMeshesToDraw;
 
 cPhysics* g_pPhysicEngine = NULL;
 // This loads the 3D models for drawing, etc.
 cVAOManager* g_pMeshManager = NULL;
 
-//cLightManager* g_pLightManager = NULL;
 
 void AddModelsToScene(void);
 
 void DrawMesh(sMesh* pCurMesh, GLuint program);
 
-//glm::vec3 cameraEye = glm::vec3(0.0, 0.0, 4.0f);
 
 
 static void error_callback(int error, const char* description)
@@ -61,14 +54,7 @@ static void error_callback(int error, const char* description)
 }
 
 bool isControlDown(GLFWwindow* window);
-//{
-//    if ((glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) ||
-//        (glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS))
-//    {
-//        return true;
-//    }
-//    return false;
-//}
+
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -111,11 +97,6 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
                 ::g_selectedLightIndex--;
             }
-            //// 0 to 10
-            //if (::g_selectedLightIndex < 0)
-            //{
-            //    ::g_selectedLightIndex = 0;
-            //}
 
         }
         if (key == GLFW_KEY_6 && action == GLFW_PRESS)
@@ -135,39 +116,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
         {
             ::g_bShowDebugSpheres = false;
         }
-    }//if (mods == GLFW_KEY_LEFT_CONTROL)
-
-//    if (key == GLFW_KEY_A)
-//    {
-//        cameraEye.x -= CAMERA_MOVE_SPEED;
-////        g_myMeshes[::g_SelectedObjectIndex]->positionXYZ.x += CAMERA_MOVE_SPEED;
-//    }
-//
-//    if (key == GLFW_KEY_D)
-//    {
-//        cameraEye.x += CAMERA_MOVE_SPEED;
-////        g_myMeshes[0]->positionXYZ.x -= CAMERA_MOVE_SPEED;
-//    }
-//
-//    if (key == GLFW_KEY_W)
-//    {
-//        cameraEye.z += CAMERA_MOVE_SPEED;
-//    }
-//
-//    if (key == GLFW_KEY_S)
-//    {
-//        cameraEye.z -= CAMERA_MOVE_SPEED;
-//    }
-//
-//    if (key == GLFW_KEY_Q)
-//    {
-//        cameraEye.y -= CAMERA_MOVE_SPEED;
-//    }
-//    if (key == GLFW_KEY_E)
-//    {
-//        cameraEye.y += CAMERA_MOVE_SPEED;
-//    }
-
+    }
 
     return;
 }
@@ -200,141 +149,6 @@ sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
 int main(void)
 {
 
-    //    ConsoleStuff();
-    //
-        // On the stack, at compile time.
-        // Limited by the size of the stack.
-        // Also: Can't change the size.
-    //    sVertex vertices[3] =
-    //    {
-    //        { { -0.6f, -0.4f }, { 1.0f, 0.0f, 0.0f } },
-    //        { {  0.6f, -0.4f }, { 0.0f, 1.0f, 0.0f } },
-    //       { {  0.0f,  0.6f }, { 0.0f, 0.0f, 1.0f } }
-    //  };
-    //
-    //    sizeof(sVertex) * 3;
-    ////    std::cout << "vertices: " << vertices << '\n';
-    //    std::cout << (*(vertices + 1)).
-    //
-        // On the HEAP, so dynamically allocated at run time
-    //    sVertex* pVertices = new sVertex[3];
-    //
-    //    pVertices[0] = { { -0.6f, -0.4f }, { 1.0f, 0.0f, 0.0f } };
-    //    pVertices[1] = { {  0.6f, -0.4f }, { 0.0f, 1.0f, 0.0f } };
-    //    pVertices[2] = { {  0.0f,  0.6f }, { 0.0f, 0.0f, 1.0f } };
-    //
-        //s3DFileData plyFileInfoBunny;
-        //plyFileInfoBunny.fileName = "assets/models/bun_zipper_res3.ply";
-        //ReadPlyModelFromFile_xyz_ci(plyFileInfoBunny);
-    //
-        //s3DFileData plyFileInfo;
-        //plyFileInfo.fileName = "assets/models/VintageRacingCar_xyz_only.ply";
-        //ReadPlyModelFromFile_xyz(plyFileInfo);
-    //
-        //s3DFileData plyFileInfo;
-        //plyFileInfo.fileName = "assets/models/Dragon 2.5Edited_xyz_only.ply";
-        //ReadPlyModelFromFile_xyz(plyFileInfo);
-    //
-    // ******************************************************
-    //
-    //    // This is the array we are giving the GPU 
-    ////    unsigned int numberOfVertices_TO_DRAW = numberOfTriangles * 3;
-    //    unsigned int numberOfVertices_TO_DRAW = plyFileInfo.numberOfTriangles * 3;
-    //    // Each triangle has 3 vertices
-    //
-    //    sVertex* pVertices = new sVertex[numberOfVertices_TO_DRAW];
-    //
-    //    // Copy the data form the "ply" (i.e. file) arrays
-    //    // to the format that the GPU expects
-    ////     struct sPlyVertex
-    ////    {
-    ////        float x, y, z, confidence, intensity;
-    ////    };
-    ////
-    ////    struct sTriangle
-    ////    {
-    ////        unsigned int vertIndex_0;
-    ////        unsigned int vertIndex_1;
-    ////        unsigned int vertIndex_2;
-    ////    };
-    ////
-    ////  to... 
-    //// 
-    ////    struct sVertex
-    ////    {
-    ////        glm::vec2 pos;      // position   or "float x, y"
-    ////        glm::vec3 col;      //
-    //
-    //    unsigned int vertexIndex = 0;
-    //
-    ////    for (unsigned int triIndex = 0; triIndex != numberOfTriangles; triIndex++)
-    //    for (unsigned int triIndex = 0; triIndex != plyFileInfo.numberOfTriangles; triIndex++)
-    //    {
-    ////        { { -0.6f, -0.4f }, { 1.0f, 0.0f, 0.0f } },
-    ////        { {  0.6f, -0.4f }, { 0.0f, 1.0f, 0.0f } },
-    ////        { {  0.0f,  0.6f }, { 0.0f, 0.0f, 1.0f } }
-    //
-    ////        pVertices[vertexIndex + 0].pos.x = pPlyVertices[ pPlyTriangles[triIndex].vertIndex_0 ].x;
-    //        pVertices[vertexIndex + 0].pos.x = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_0 ].x;
-    //        pVertices[vertexIndex + 0].pos.y = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_0 ].y;
-    //        pVertices[vertexIndex + 0].pos.z = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_0 ].z;
-    //        pVertices[vertexIndex + 0].col.r = 1.0f;
-    //        pVertices[vertexIndex + 0].col.g = 1.0f;
-    //        pVertices[vertexIndex + 0].col.b = 1.0f;
-    //
-    //        pVertices[vertexIndex + 1].pos.x = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_1 ].x;
-    //        pVertices[vertexIndex + 1].pos.y = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_1 ].y;
-    //        pVertices[vertexIndex + 1].pos.z = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_1 ].z;
-    //        pVertices[vertexIndex + 1].col.r = 1.0f;
-    //        pVertices[vertexIndex + 1].col.g = 1.0f;
-    //        pVertices[vertexIndex + 1].col.b = 1.0f;
-    //
-    //        pVertices[vertexIndex + 2].pos.x = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_2 ].x;
-    //        pVertices[vertexIndex + 2].pos.y = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_2 ].y;
-    //        pVertices[vertexIndex + 2].pos.z = plyFileInfo.pPlyVertices[plyFileInfo.pPlyTriangles[triIndex].vertIndex_2 ].z;
-    //        pVertices[vertexIndex + 2].col.r = 1.0f;
-    //        pVertices[vertexIndex + 2].col.g = 1.0f;
-    //        pVertices[vertexIndex + 2].col.b = 1.0f;
-    //
-    //        vertexIndex += 3;
-    //    }
-    //
-    //
-    //    // Scale the dragon
-    ////    for (unsigned int index = 0; index != numberOfVertices_TO_DRAW; index++)
-    ////    {
-    ////        pVertices[index].pos.x *= 0.01f;
-    ////        pVertices[index].pos.y *= 0.01f;
-    ////        pVertices[index].pos.z *= 0.01f;
-    ////    }
-    //
-    ////    for (unsigned int index = 0; index != numberOfVertices_TO_DRAW; index++)
-    ////    {
-    ////        pVertices[index].pos.x += 1.0f;
-    ////    }
-    //
-//
-//    cPhysics testPhys;
-//
-//    cPhysics::sLine theLine;
-//    // Line goes left to right on x axis
-//    theLine.startXYZ = glm::vec3(+5.0f, 0.0f, -20.0f);
-//    theLine.endXYZ = glm::vec3(+5.0f, 0.0f, -20.0f);
-//
-//    cPhysics::sTriangle theTriangle;
-//    // Triangle intersects x axis
-//    theTriangle.vertices[0] = glm::vec3(0.0f, 10.0f, 0.0f);
-//    theTriangle.vertices[1] = glm::vec3(0.0f, -10.0f, -10.0f);
-//    theTriangle.vertices[2] = glm::vec3(0.0f, -10.0f, 10.0f);
-//
-//    if (testPhys.bLineSegment_TriangleCollision(theLine, theTriangle))
-//    {
-//        std::cout << "itersected" << std::endl;
-//    }
-//    else
-//    {
-//        std::cout << "missed" << std::endl;
-//    }
 
     glfwSetErrorCallback(error_callback);
 
@@ -371,19 +185,6 @@ int main(void)
     // NOTE: OpenGL error checks have been omitted for brevity
 
 
-
-//    GLuint vertex_buffer;
-//    glGenBuffers(1, &vertex_buffer);
-//    glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-//
-////    int size_in_bytes_of_vertex_array = sizeof(sVertex) * 3;
-//    int size_in_bytes_of_vertex_array = sizeof(sVertex) * numberOfVertices_TO_DRAW;
-//
-//    glBufferData(GL_ARRAY_BUFFER,
-//                 size_in_bytes_of_vertex_array,     // sizeof(vertices),
-//                 pVertices,                         // vertices,
-//                 GL_STATIC_DRAW);
-
     cShaderManager* pShaderManager = new cShaderManager();
 
     cShaderManager::cShader vertexShader;
@@ -406,73 +207,10 @@ int main(void)
 
     glUseProgram(program);
 
-//    const GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-//    glShaderSource(vertex_shader, 1, &vertex_shader_text, NULL);
-//    glCompileShader(vertex_shader);
-//
-//    const GLuint fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-//    glShaderSource(fragment_shader, 1, &fragment_shader_text, NULL);
-//    glCompileShader(fragment_shader);
-//
-//    const GLuint program = glCreateProgram();
-//    glAttachShader(program, vertex_shader);
-//    glAttachShader(program, fragment_shader);
-//    glLinkProgram(program);
-//
-//    const GLint mvp_location = glGetUniformLocation(program, "MVP");
-//
-//    const GLint vpos_location = glGetAttribLocation(program, "vPos");   
-//    const GLint vcol_location = glGetAttribLocation(program, "vCol");
-//
-//    GLuint vertex_array;
-//    glGenVertexArrays(1, &vertex_array);
-//    glBindVertexArray(vertex_array);
-//
-//
-//
-//    // Where the data specifically is.
-//    // Called the "vertex layout"
-//
-//    //glm::vec3 pos;       
-//    //glm::vec3 col;    
-////    { { -0.6f, -0.4f, 0.0f }, { 1.0f, 0.0f, 0.0f } },
-////    { {  0.6f, -0.4f, 0.0f }, { 0.0f, 1.0f, 0.0f } },
-////    { {  0.0f,  0.6f, 0.0f }, { 0.0f, 0.0f, 1.0f } }
-//
-//
-//    glEnableVertexAttribArray(vpos_location);
-//    glVertexAttribPointer(
-//        vpos_location, 
-//        3, 
-//        GL_FLOAT, 
-//        GL_FALSE,
-//        sizeof(sVertex),                        // 6 floats or 24 bytes
-//        (void*)offsetof(sVertex, pos));         // 0 bytes into the sVertex structure
-//
-//    glEnableVertexAttribArray(vcol_location);
-//    glVertexAttribPointer(
-//        vcol_location, 
-//        3, 
-//        GL_FLOAT, 
-//        GL_FALSE,
-//        sizeof(sVertex), 
-//        (void*)offsetof(sVertex, col));     // 3 floats or 12 bytes into the sVertex structure
-
-
-    // Loading the TYPES of models I can draw...
+// Loading the TYPES of models I can draw...
 
 //    cVAOManager* pMeshManager = new cVAOManager();
     ::g_pMeshManager = new cVAOManager();
-
-    //sModelDrawInfo carModelInfo;
-    //pMeshManager->LoadModelIntoVAO("assets/models/VintageRacingCar_xyz_only.ply", 
-    //                               carModelInfo, program);
-    //std::cout << carModelInfo.numberOfVertices << " vertices loaded" << std::endl;
-
-    //sModelDrawInfo dragonModel;
-    //pMeshManager->LoadModelIntoVAO("assets/models/Dragon 2.5Edited_xyz_only.ply", 
-    //    dragonModel, program);
-    //std::cout << dragonModel.numberOfVertices << " vertices loaded" << std::endl;
 
     sModelDrawInfo terrainModel;
 //    pMeshManager->LoadModelIntoVAO("assets/models/Simple_MeshLab_terrain_xyz_only.ply", 
@@ -512,14 +250,6 @@ int main(void)
     ::g_pMeshManager->LoadModelIntoVAO("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply",
         hangarMesh, program);
     std::cout << hangarMesh.numberOfVertices << " vertices loaded" << std::endl;
-
-    //sModelDrawInfo backroomLevelMesh;
-    //::g_pMeshManager->LoadModelIntoVAO("assets/models/Backrooms_Level_0/tinker_adjusted_xyz_N.ply",
-    //    backroomLevelMesh, program);
-    //std::cout << backroomLevelMesh.numberOfVertices << " vertices loaded" << std::endl;
-
-    //    pMeshManager->LoadTheListOfModelsIWantFromASexyFile("MyModels.sexy");
-
 
     ::g_pPhysicEngine = new cPhysics();
 
@@ -605,9 +335,6 @@ int main(void)
         matView = glm::lookAt(::g_pFlyCamera->getEyeLocation(),
             ::g_pFlyCamera->getTargetLocation(),
             upVector);
-        //        matView = glm::lookAt( cameraEye,
-        //                               cameraTarget,
-        //                               upVector);
 
 
         const GLint matView_UL = glGetUniformLocation(program, "matView");
@@ -617,11 +344,7 @@ int main(void)
         glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
 
 //        // *******************************************************************
-//        // Place light #0 where the little yellow "light sphere" is
-//        // Find the Light_Sphere
-//        sMesh* pLightSphere = pFindMeshByFriendlyName("Light_Sphere");
-//        // 
-//        pLightSphere->positionXYZ = ::g_pLightManager->theLights[::g_selectedLightIndex].position;
+
 
         // Update the light info in the shader
         // (Called every frame)
@@ -653,8 +376,6 @@ int main(void)
 
         if (::g_bShowLASERBeam)
         {
-            // Draw a bunch of little balls along a line from the camera
-            //  to some place in the distance
 
             // The fly camera is always "looking at" something 1.0 unit away
             glm::vec3 cameraDirection = ::g_pFlyCamera->getTargetRelativeToCamera();     //0,0.1,0.9
@@ -696,9 +417,6 @@ int main(void)
             for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles.begin();
                 itTri != itTriList->vecTriangles.end(); itTri++)
             {
-                // Draw a sphere at the centre of the triangle
-//                glm::vec3 triCentre = (itTri->vertices[0] + itTri->vertices[1] + itTri->vertices[2]) / 3.0f;
-//                DrawDebugSphere(triCentre, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 0.5f, program);
 
 //                DrawDebugSphere(itTri->intersectionPoint, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.25f, program);
                 DrawDebugSphere(itTri->intersectionPoint, triColour, triangleSize, program);
@@ -771,19 +489,6 @@ int main(void)
         }
         // **********************************************************************************
 
-        //for (float x = -50.0f; x < 50.0f; x += 5.0f)
-        //{
-        //    for (float y = 0.0f; y < 50.0f; y += 5.0f)
-        //    {
-        //        for (float z = -50.0f; z < 50.0f; z += 5.0f)
-        //        {
-        //            DrawDebugSphere(glm::vec3(x, y, z),
-        //                glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-        //                1.0f, program);
-
-        //        }
-        //    }
-        //}
 
 
 
@@ -793,11 +498,6 @@ int main(void)
         double deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
 
-        //sMesh* pBall = pFindMeshByFriendlyName("Ball");
-        //if (pBall)
-        //{
-        //    pBall->positionXYZ.y -= 1.0f * deltaTime;
-        //}
 
         // HACK: Update "shadow" of ball to be where the ball hits the large block ground
         sMesh* pBallShadow = pFindMeshByFriendlyName("Ball_Shadow");
@@ -890,12 +590,21 @@ int main(void)
     exit(EXIT_SUCCESS);
 }
 
-
+void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
+{
+    sMesh* Meshes = new sMesh();
+    Meshes->modelFileName = filePath;
+    Meshes->positionXYZ = posXYZ;
+    Meshes->rotationEulerXYZ = rotXYZ;
+    Meshes->bOverrideObjectColour = bOverrideColor;
+    Meshes->objectColourRGBA = objectColor;
+    Meshes->bDoNotLight = true;
+}
 void AddModelsToScene(void)
 {
 
     // Load some models to draw
-
+    
     {
         sMesh* pHangar = new sMesh();
         pHangar->modelFileName = "assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply";
@@ -906,30 +615,7 @@ void AddModelsToScene(void)
         pHangar->rotationEulerXYZ.z = 180.0f;
         ::g_vecMeshesToDraw.push_back(pHangar);
     }
-//    {
-//        sMesh* pSphereMesh = new sMesh();
-////        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz.ply";
-//        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz_N.ply";
-//        pSphereMesh->positionXYZ = glm::vec3(0.0f, 30.0f, 0.0f);
-//        pSphereMesh->bIsWireframe = true;
-//        pSphereMesh->objectColourRGBA = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-//        pSphereMesh->uniformScale = 0.1f;
-//        pSphereMesh->uniqueFriendlyName = "Light_Sphere";
-//
-//        ::g_vecMeshesToDraw.push_back(pSphereMesh);
-//    }
 
-    //{
-    //    sMesh* pDebugSphere = new sMesh();
-    //    pDebugSphere->modelFileName = "assets/models/Sphere_radius_1_xyz_N.ply";
-    //    pDebugSphere->positionXYZ = glm::vec3(0.0f, 5.0f, 0.0f);
-    //    pDebugSphere->bIsWireframe = true;
-    //    pDebugSphere->objectColourRGBA = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-    //    pDebugSphere->uniqueFriendlyName = "Debug_Sphere";
-    //    pDebugSphere->uniformScale = 10.0f;
-    //    pDebugSphere->bDoNotLight = true;
-    //    ::g_vecMeshesToDraw.push_back(pDebugSphere);
-    //}
 
     // Add a bunch of bunny rabbits
     float boxLimit = 50.0f;
@@ -952,16 +638,6 @@ void AddModelsToScene(void)
     }//for (float x = -boxLimit...
 
 
-    //{
-    //    sMesh* pBackrooms = new sMesh();
-    //    pBackrooms->modelFileName = "assets/models/Backrooms_Level_0/tinker_adjusted_xyz_N.ply";
-    //    pBackrooms->objectColourRGBA = glm::vec4(::g_rgb_from_HTML(240, 230, 140), 1.0f);
-    //    pBackrooms->bIsWireframe = true;
-    //    pBackrooms->bDoNotLight = true;
-    //    pBackrooms->bOverrideObjectColour = true;
-    //    pBackrooms->uniqueFriendlyName = "Backrooms";
-    //     ::g_vecMeshesToDraw.push_back(pBackrooms);
-    //}
 
     {
 //    ____                _            __                   _     
@@ -999,14 +675,7 @@ void AddModelsToScene(void)
     //    //   | |_) / _ \ '_ \ / _` |/ _ \ '__/ / '_ ` _ \ / _ \/ __| '_ \ 
     //    //   |  _ <  __/ | | | (_| |  __/ | / /| | | | | |  __/\__ \ | | |
     //    //   |_| \_\___|_| |_|\__,_|\___|_|/_/ |_| |_| |_|\___||___/_| |_|
-    //    //                                                                
-    //    sMesh* pWarehouse = new sMesh();
-    //    pWarehouse->modelFileName = "assets/models/Warehouse_xyz_n.ply";
-    //    pWarehouse->positionXYZ = glm::vec3(100.0f, -5.0f, 0.0f);
-    //    pWarehouse->rotationEulerXYZ.y = -90.0f;
-    //    pWarehouse->objectColourRGBA = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
-    //    pWarehouse->uniqueFriendlyName = "Warehouse";
-    //    ::g_vecMeshesToDraw.push_back(pWarehouse);
+
 
     //    //    ____  _               _                  _     _           _   
     //    //   |  _ \| |__  _   _ ___(_) ___ ___    ___ | |__ (_) ___  ___| |_ 
@@ -1014,13 +683,7 @@ void AddModelsToScene(void)
     //    //   |  __/| | | | |_| \__ \ | (__\__ \ | (_) | |_) | |  __/ (__| |_ 
     //    //   |_|   |_| |_|\__, |___/_|\___|___/  \___/|_.__// |\___|\___|\__|
     //    //                |___/                           |__/               
-    //    ::g_pPhysicEngine->addTriangleMesh(
-    //        "assets/models/Warehouse_xyz_n.ply",
-    //        pWarehouse->positionXYZ,
-    //        pWarehouse->rotationEulerXYZ,
-    //        pWarehouse->uniformScale);
 
-    //}
 
 
     {
@@ -1196,66 +859,6 @@ void AddModelsToScene(void)
         pSphereInfo->pPhysicInfo->pAssociatedDrawingMeshInstance = pSphereMesh;
         ::g_pPhysicEngine->vecSpheres.push_back(pSphereInfo);
     }//for ( unsigned int ballCount
-
-    //    sMesh* pDragon = new sMesh();
-    //    pDragon->modelFileName = "assets/models/Dragon 2.5Edited_xyz_only.ply";
-    //    pDragon->positionXYZ = glm::vec3(20.0f, 0.0f, 0.0f);
-    //    pDragon->rotationEulerXYZ.x = -90.0f;
-    //    pDragon->uniformScale = 0.1f;
-    //    pDragon->objectColourRGBA = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f); 
-    //
-    //    ::g_myMeshes[0] = pDragon;
-    //
-    //
-    //    sMesh* pDragon2 = new sMesh();
-    //    pDragon2->modelFileName = "assets/models/Dragon 2.5Edited_xyz_only.ply";
-    //    pDragon2->positionXYZ = glm::vec3(-20.0f, 0.0f, 0.0f);
-    //    pDragon2->rotationEulerXYZ.x = 90.0f;
-    //    pDragon2->objectColourRGBA = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-    //    pDragon2->uniformScale = 0.2f;
-    //
-    //
-    //    ::g_myMeshes[1] = pDragon2;
-    //
-    //    ::g_NumberOfMeshesToDraw = 2;
-    //
-    //
-    //    sMesh* pTerrainMesh = new sMesh();
-    //    pTerrainMesh->modelFileName = "assets/models/Simple_MeshLab_terrain_xyz_only.ply";
-    //    pTerrainMesh->positionXYZ = glm::vec3(0.0f, -25.0f, 0.0f);
-    //    //pTerrainMesh->rotationEulerXYZ.x = 90.0f;
-    //    pTerrainMesh->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    //    pTerrainMesh->bOverrideObjectColour = true;
-    ////    pTerrainMesh->bIsWireframe = true;
-    //    ::g_myMeshes[::g_NumberOfMeshesToDraw] = pTerrainMesh;
-    //    ::g_NumberOfMeshesToDraw++;
-    //
-    //
-    //    for (int count = 0; count != 100; count++)
-    //    {
-    //        sMesh* pDragon = new sMesh();
-    //        pDragon->modelFileName = "assets/models/VintageRacingCar_xyz_only.ply";
-    //        pDragon->positionXYZ = glm::vec3(getRandomFloat(-5.0f, 5.0f),
-    //                                         getRandomFloat(-5.0f, 5.0f),
-    //                                         getRandomFloat(-5.0f, 5.0f));
-    //        pDragon->rotationEulerXYZ.x = 90.0f;
-    //        pDragon->objectColourRGBA
-    //            = glm::vec4(getRandomFloat(0.0f, 1.0f),
-    //                        getRandomFloat(0.0f, 1.0f),
-    //                        getRandomFloat(0.0f, 1.0f),
-    //                        1.0f);
-    //
-    //
-    //        pDragon->uniformScale = 0.2f;
-    //
-    //        // This is evil, nasty code. 
-    //        // Do this if you hate humanity...
-    ////        pDragon->bIsWireframe = rand() % 2;
-    //
-    //        ::g_myMeshes[::g_NumberOfMeshesToDraw] = pDragon;
-    //
-    //        ::g_NumberOfMeshesToDraw++;
-    //    }
 
 
 
