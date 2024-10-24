@@ -131,6 +131,7 @@ float getRandomFloat(float a, float b) {
     return a + r;
 }
 
+
 // Returns NULL if NOT found
 sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
 {
@@ -146,20 +147,13 @@ sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
 }
 
 
-int main(void)
+
+
+GLuint PrepareOpenGL(GLFWwindow* const &window)
 {
 
 
-    glfwSetErrorCallback(error_callback);
 
-    if (!glfwInit())
-        exit(EXIT_FAILURE);
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-    GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -193,7 +187,7 @@ int main(void)
     cShaderManager::cShader fragmentShader;
     fragmentShader.fileName = "assets/shaders/fragment01.glsl";
 
-    if ( ! pShaderManager->createProgramFromFile("shader01",
+    if (!pShaderManager->createProgramFromFile("shader01",
                                                  vertexShader, fragmentShader))
     {
         std::cout << "Error: " << pShaderManager->getLastError() << std::endl;
@@ -206,64 +200,303 @@ int main(void)
     const GLuint program = pShaderManager->getIDFromFriendlyName("shader01");
 
     glUseProgram(program);
+    
+    return program;
+}
 
+sModelDrawInfo LoadPlyModel(std::string modelPath,GLuint program)
+{
+    sModelDrawInfo modelInfo;
+    ::g_pMeshManager->LoadModelIntoVAO(modelPath,
+        modelInfo, program);
+    std::cout <<modelInfo.meshName<< "-Loaded"<< std::endl << modelInfo.numberOfVertices << " vertices loaded" << std::endl;
+    return modelInfo;
+}
+
+//TODO: Right now we should not touch physics. But later we will efactor and implement it correctly.
+void PreparePhysics()
+{
+    ::g_pPhysicEngine = new cPhysics();
+
+// For triangle meshes, let the physics object "know" about the VAO manager
+::g_pPhysicEngine->setVAOManager(::g_pMeshManager);
+}
+void PrepareFlyCamera()
+{
+
+    ::g_pFlyCamera = new cBasicFlyCamera();
+    ::g_pFlyCamera->setEyeLocation(glm::vec3(0.0f, 10.0f, 50.0f));
+    // Rotate the camera 180 degrees
+    ::g_pFlyCamera->rotateLeftRight_Yaw_NoScaling(glm::radians(180.0f));
+
+}
+
+
+
+//TODO: Pick Better Name
+void UpdateMatricies(float ratio, GLuint program)
+{
+//        glm::mat4 m, p, v, mvp;
+glm::mat4 matProjection = glm::mat4(1.0f);
+
+matProjection = glm::perspective(0.6f,           // FOV
+    ratio,          // Aspect ratio of screen
+    0.1f,           // Near plane
+    1000.0f);       // Far plane
+
+// View or "camera"
+glm::mat4 matView = glm::mat4(1.0f);
+
+//        glm::vec3 cameraEye = glm::vec3(0.0, 0.0, 4.0f);
+glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
+matView = glm::lookAt(::g_pFlyCamera->getEyeLocation(),
+    ::g_pFlyCamera->getTargetLocation(),
+    upVector);
+
+
+const GLint matView_UL = glGetUniformLocation(program, "matView");
+glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
+
+const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
+glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+
+}
+
+void DrawLazer(GLuint program)
+{
+
+    // Draw the LASER beam
+    cPhysics::sLine LASERbeam;
+    glm::vec3 LASERbeam_Offset = glm::vec3(0.0f, -2.0f, 0.0f);
+
+    if (::g_bShowLASERBeam)
+    {
+
+        // The fly camera is always "looking at" something 1.0 unit away
+        glm::vec3 cameraDirection = ::g_pFlyCamera->getTargetRelativeToCamera();     //0,0.1,0.9
+
+
+        LASERbeam.startXYZ = ::g_pFlyCamera->getEyeLocation();
+
+        // Move the LASER below the camera
+        LASERbeam.startXYZ += LASERbeam_Offset;
+        glm::vec3 LASER_ball_location = LASERbeam.startXYZ;
+
+        // Is the LASER less than 500 units long?
+        // (is the last LAZER ball we drew beyond 500 units form the camera?)
+        while (glm::distance(::g_pFlyCamera->getEyeLocation(), LASER_ball_location) < 150.0f)
+        {
+            // Move the next ball 0.1 times the normalized camera direction
+            LASER_ball_location += (cameraDirection * 0.10f);
+            DrawDebugSphere(LASER_ball_location, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
+        }
+
+        // Set the end of the LASER to the last location of the beam
+        LASERbeam.endXYZ = LASER_ball_location;
+
+    }//if (::g_bShowLASERBeam)
+
+    // Draw the end of this LASER beam
+    DrawDebugSphere(LASERbeam.endXYZ, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
+
+    // Now draw a different coloured ball wherever we get a collision with a triangle
+    std::vector<cPhysics::sCollision_RayTriangleInMesh> vec_RayTriangle_Collisions;
+    ::g_pPhysicEngine->rayCast(LASERbeam.startXYZ, LASERbeam.endXYZ, vec_RayTriangle_Collisions, false);
+
+    glm::vec4 triColour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
+    float triangleSize = 0.25f;
+
+    for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions.begin();
+        itTriList != vec_RayTriangle_Collisions.end(); itTriList++)
+    {
+        for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles.begin();
+            itTri != itTriList->vecTriangles.end(); itTri++)
+        {
+
+            //                DrawDebugSphere(itTri->intersectionPoint, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.25f, program);
+            DrawDebugSphere(itTri->intersectionPoint, triColour, triangleSize, program);
+            triColour.r -= 0.1f;
+            triColour.g -= 0.1f;
+            triColour.b += 0.2f;
+            triangleSize *= 1.25f;
+
+
+        }//for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles
+
+    }//for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions
+
+
+}
+
+
+void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program)
+{
+
+
+    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
+
+    const float DEBUG_LIGHT_BRIGHTNESS = 0.3f;
+
+    const float ACCURACY = 0.1f;       // How many units distance
+    float distance_75_percent =
+        TheLightHelper.calcApproxDistFromAtten(0.75f, ACCURACY, FLT_MAX,
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+
+    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+        glm::vec4(DEBUG_LIGHT_BRIGHTNESS, 0.0f, 0.0f, 1.0f),
+        distance_75_percent,
+        program);
+
+
+    float distance_50_percent =
+        TheLightHelper.calcApproxDistFromAtten(0.5f, ACCURACY, FLT_MAX,
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+
+    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+        glm::vec4(0.0f, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
+        distance_50_percent,
+        program);
+
+    float distance_25_percent =
+        TheLightHelper.calcApproxDistFromAtten(0.25f, ACCURACY, FLT_MAX,
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+
+    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+        glm::vec4(0.0f, 0.0f, DEBUG_LIGHT_BRIGHTNESS, 1.0f),
+        distance_25_percent,
+        program);
+
+    float distance_05_percent =
+        TheLightHelper.calcApproxDistFromAtten(0.05f, ACCURACY, FLT_MAX,
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+
+    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+        glm::vec4(DEBUG_LIGHT_BRIGHTNESS, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
+        distance_05_percent,
+        program);
+}
+
+void UpdateBallShadow()
+{
+    // HACK: Update "shadow" of ball to be where the ball hits the large block ground
+    sMesh* pBallShadow = pFindMeshByFriendlyName("Ball_Shadow");
+    sMesh* pBall = pFindMeshByFriendlyName("Ball");
+    pBallShadow->positionXYZ.x = pBall->positionXYZ.x;
+    pBallShadow->positionXYZ.z = pBall->positionXYZ.z;
+    // Don't update the y - keep the shadow near the plane
+
+}
+
+void HandleCollisions()
+{
+
+    // Handle any collisions
+    if (::g_pPhysicEngine->vec_SphereAABB_Collisions.size() > 0)
+    {
+        // Yes, there were collisions
+
+        for (unsigned int index = 0; index != ::g_pPhysicEngine->vec_SphereAABB_Collisions.size(); index++)
+        {
+            cPhysics::sCollision_SphereAABB thisCollisionEvent = ::g_pPhysicEngine->vec_SphereAABB_Collisions[index];
+
+            if (thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y < 0.0f)
+            {
+                // Yes, it's heading down
+                // So reverse the direction of velocity
+                thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y = fabs(thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y);
+            }
+
+        }//for (unsigned int index
+
+    }//if (::g_pPhysicEngine->vec_SphereAABB_Collisions
+
+}
+
+void UpdateWindowTitle(GLFWwindow* window)
+{
+
+    //std::cout << "Camera: "
+    std::stringstream ssTitle;
+    ssTitle << "Camera: "
+        << ::g_pFlyCamera->getEyeLocation().x << ", "
+        << ::g_pFlyCamera->getEyeLocation().y << ", "
+        << ::g_pFlyCamera->getEyeLocation().z
+        << "   ";
+    ssTitle << "light[" << g_selectedLightIndex << "] "
+        << ::g_pLightManager->theLights[g_selectedLightIndex].position.x << ", "
+        << ::g_pLightManager->theLights[g_selectedLightIndex].position.y << ", "
+        << ::g_pLightManager->theLights[g_selectedLightIndex].position.z
+        << "   "
+        << "linear: " << ::g_pLightManager->theLights[0].atten.y
+        << "   "
+        << "quad: " << ::g_pLightManager->theLights[0].atten.z;
+
+    //        glfwSetWindowTitle(window, "Hey!");
+    glfwSetWindowTitle(window, ssTitle.str().c_str());
+}
+
+int main(void)
+{
+    glfwSetErrorCallback(error_callback);
+
+    if (!glfwInit())
+        exit(EXIT_FAILURE);
+
+
+    ///I really want to put this into a function, vut IDK how
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    //
+
+    GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
+    
+    GLuint program = PrepareOpenGL(window);
+   
+
+   
+  
+    
 // Loading the TYPES of models I can draw...
 
 //    cVAOManager* pMeshManager = new cVAOManager();
     ::g_pMeshManager = new cVAOManager();
 
-    sModelDrawInfo terrainModel;
-//    pMeshManager->LoadModelIntoVAO("assets/models/Simple_MeshLab_terrain_xyz_only.ply", 
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Simple_MeshLab_terrain_xyz_N.ply",
-        terrainModel, program);
-    std::cout << terrainModel.numberOfVertices << " vertices loaded" << std::endl;
 
-    sModelDrawInfo warehouseModel;
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Warehouse_xyz_n.ply",
-        warehouseModel, program);
-    std::cout << warehouseModel.numberOfVertices << " vertices loaded" << std::endl;
+    LoadPlyModel("assets/models/Simple_MeshLab_terrain_xyz_N.ply", program);
+   
+    LoadPlyModel("assets/models/Warehouse_xyz_n.ply", program);
 
-    sModelDrawInfo bunnyModel;
-//    ::g_pMeshManager->LoadModelIntoVAO("assets/models/bun_zipper_res2_10x_size_xyz_only.ply",
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply",
-        bunnyModel, program);
-    std::cout << bunnyModel.numberOfVertices << " vertices loaded" << std::endl;
+    LoadPlyModel("assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply", program);
+   
+    LoadPlyModel("assets/models/Flat_Plane_xyz_N.ply", program);
+  
+    LoadPlyModel("assets/models/Sphere_radius_1_xyz_N.ply", program);
 
-    sModelDrawInfo platPlaneDrawInfo;
-//    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Flat_Plane_xyz.ply", 
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Flat_Plane_xyz_N.ply", 
-        platPlaneDrawInfo, program);
-    std::cout << platPlaneDrawInfo.numberOfVertices << " vertices loaded" << std::endl;
+    LoadPlyModel("assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply", program);
+
+    LoadPlyModel("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply", program);
+
     
-    sModelDrawInfo sphereMesh;
-//    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Sphere_radius_1_xyz.ply",
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Sphere_radius_1_xyz_N.ply",
-        sphereMesh, program);
-    std::cout << sphereMesh.numberOfVertices << " vertices loaded" << std::endl;
+    
 
-    sModelDrawInfo sphereShadowMesh;
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply",
-        sphereShadowMesh, program);
-    std::cout << sphereShadowMesh.numberOfVertices << " vertices loaded" << std::endl;
 
-    sModelDrawInfo hangarMesh;
-    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply",
-        hangarMesh, program);
-    std::cout << hangarMesh.numberOfVertices << " vertices loaded" << std::endl;
+    PreparePhysics();
 
-    ::g_pPhysicEngine = new cPhysics();
-
-    // For triangle meshes, let the physics object "know" about the VAO manager
-    ::g_pPhysicEngine->setVAOManager(::g_pMeshManager);
-
+    PrepareFlyCamera();
 
     AddModelsToScene();
-
-   
-    ::g_pFlyCamera = new cBasicFlyCamera();
-    ::g_pFlyCamera->setEyeLocation(glm::vec3(0.0f, 10.0f, 50.0f));
-    // Rotate the camera 180 degrees
-    ::g_pFlyCamera->rotateLeftRight_Yaw_NoScaling(glm::radians(180.0f));
 
 
 
@@ -281,6 +514,11 @@ int main(void)
     ::g_pLightManager = new cLightManager();
     // Called only once
     ::g_pLightManager->loadUniformLocations(program);
+
+
+
+
+    //TODO: Enes, pls put these lights code into function how you did it last time
 
     // Set up one of the lights in the scene
     ::g_pLightManager->theLights[0].position = glm::vec4(-15.0f, 30.0f, 0.0f, 1.0f);
@@ -317,31 +555,8 @@ int main(void)
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        //        glm::mat4 m, p, v, mvp;
-        glm::mat4 matProjection = glm::mat4(1.0f);
 
-        matProjection = glm::perspective(0.6f,           // FOV
-            ratio,          // Aspect ratio of screen
-            0.1f,           // Near plane
-            1000.0f);       // Far plane
-
-        // View or "camera"
-        glm::mat4 matView = glm::mat4(1.0f);
-
-        //        glm::vec3 cameraEye = glm::vec3(0.0, 0.0, 4.0f);
-        glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-        glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
-
-        matView = glm::lookAt(::g_pFlyCamera->getEyeLocation(),
-            ::g_pFlyCamera->getTargetLocation(),
-            upVector);
-
-
-        const GLint matView_UL = glGetUniformLocation(program, "matView");
-        glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
-
-        const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
-        glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+        UpdateMatricies(ratio, program);
 
 //        // *******************************************************************
 
@@ -369,123 +584,13 @@ int main(void)
 
         }//for (unsigned int meshIndex..
 
-
-        // Draw the LASER beam
-        cPhysics::sLine LASERbeam;
-        glm::vec3 LASERbeam_Offset = glm::vec3(0.0f, -2.0f, 0.0f);
-
-        if (::g_bShowLASERBeam)
-        {
-
-            // The fly camera is always "looking at" something 1.0 unit away
-            glm::vec3 cameraDirection = ::g_pFlyCamera->getTargetRelativeToCamera();     //0,0.1,0.9
-
-
-            LASERbeam.startXYZ = ::g_pFlyCamera->getEyeLocation();
-
-            // Move the LASER below the camera
-            LASERbeam.startXYZ += LASERbeam_Offset;
-            glm::vec3 LASER_ball_location = LASERbeam.startXYZ;
-
-            // Is the LASER less than 500 units long?
-            // (is the last LAZER ball we drew beyond 500 units form the camera?)
-            while ( glm::distance(::g_pFlyCamera->getEyeLocation(), LASER_ball_location) < 150.0f )
-            {
-                // Move the next ball 0.1 times the normalized camera direction
-                LASER_ball_location += (cameraDirection * 0.10f);  
-                DrawDebugSphere(LASER_ball_location, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
-            }
-
-            // Set the end of the LASER to the last location of the beam
-            LASERbeam.endXYZ = LASER_ball_location;
-
-        }//if (::g_bShowLASERBeam)
-
-        // Draw the end of this LASER beam
-        DrawDebugSphere(LASERbeam.endXYZ, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
-
-        // Now draw a different coloured ball wherever we get a collision with a triangle
-        std::vector<cPhysics::sCollision_RayTriangleInMesh> vec_RayTriangle_Collisions;
-        ::g_pPhysicEngine->rayCast(LASERbeam.startXYZ, LASERbeam.endXYZ, vec_RayTriangle_Collisions, false);
-
-        glm::vec4 triColour = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-        float triangleSize = 0.25f;
-
-        for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions.begin();
-            itTriList != vec_RayTriangle_Collisions.end(); itTriList++)
-        {
-            for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles.begin();
-                itTri != itTriList->vecTriangles.end(); itTri++)
-            {
-
-//                DrawDebugSphere(itTri->intersectionPoint, glm::vec4(1.0f, 1.0f, 0.0f, 1.0f), 0.25f, program);
-                DrawDebugSphere(itTri->intersectionPoint, triColour, triangleSize, program);
-                triColour.r -= 0.1f;
-                triColour.g -= 0.1f;
-                triColour.b += 0.2f;
-                triangleSize *= 1.25f;
-
-
-            }//for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles
-
-        }//for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions
+        DrawLazer(program);
 
 
         // **********************************************************************************
         if (::g_bShowDebugSpheres)
         {
-
-            DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
-                glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
-
-            const float DEBUG_LIGHT_BRIGHTNESS = 0.3f;
-
-            const float ACCURACY = 0.1f;       // How many units distance
-            float distance_75_percent =
-                TheLightHelper.calcApproxDistFromAtten(0.75f, ACCURACY, FLT_MAX,
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
-
-            DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
-                glm::vec4(DEBUG_LIGHT_BRIGHTNESS, 0.0f, 0.0f, 1.0f),
-                distance_75_percent,
-                program);
-
-
-            float distance_50_percent =
-                TheLightHelper.calcApproxDistFromAtten(0.5f, ACCURACY, FLT_MAX,
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
-
-            DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
-                glm::vec4(0.0f, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
-                distance_50_percent,
-                program);
-
-            float distance_25_percent =
-                TheLightHelper.calcApproxDistFromAtten(0.25f, ACCURACY, FLT_MAX,
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
-
-            DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
-                glm::vec4(0.0f, 0.0f, DEBUG_LIGHT_BRIGHTNESS, 1.0f),
-                distance_25_percent,
-                program);
-
-            float distance_05_percent =
-                TheLightHelper.calcApproxDistFromAtten(0.05f, ACCURACY, FLT_MAX,
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                    ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
-
-            DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
-                glm::vec4(DEBUG_LIGHT_BRIGHTNESS, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
-                distance_05_percent,
-                program);
-
+            DrawDebugObjects(TheLightHelper,program);
         }
         // **********************************************************************************
 
@@ -499,37 +604,14 @@ int main(void)
         lastFrameTime = currentFrameTime;
 
 
-        // HACK: Update "shadow" of ball to be where the ball hits the large block ground
-        sMesh* pBallShadow = pFindMeshByFriendlyName("Ball_Shadow");
-        sMesh* pBall = pFindMeshByFriendlyName("Ball");
-        pBallShadow->positionXYZ.x = pBall->positionXYZ.x;
-        pBallShadow->positionXYZ.z = pBall->positionXYZ.z;
-        // Don't update the y - keep the shadow near the plane
-
+        UpdateBallShadow();
 
         // Physic update and test 
         ::g_pPhysicEngine->StepTick(deltaTime);
 
+        HandleCollisions();
 
-        // Handle any collisions
-        if (::g_pPhysicEngine->vec_SphereAABB_Collisions.size() > 0 )
-        {
-            // Yes, there were collisions
 
-            for (unsigned int index = 0; index != ::g_pPhysicEngine->vec_SphereAABB_Collisions.size(); index++)
-            {
-                cPhysics::sCollision_SphereAABB thisCollisionEvent = ::g_pPhysicEngine->vec_SphereAABB_Collisions[index];
-
-                if (thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y  < 0.0f)
-                {
-                    // Yes, it's heading down
-                    // So reverse the direction of velocity
-                    thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y = fabs(thisCollisionEvent.pTheSphere->pPhysicInfo->velocity.y);
-                }
-
-            }//for (unsigned int index
- 
-        }//if (::g_pPhysicEngine->vec_SphereAABB_Collisions
 
 
         // Point the spot light to the ball
@@ -548,6 +630,9 @@ int main(void)
 
 
 
+
+
+
         // Handle async IO stuff
         handleKeyboardAsync(window);
         handleMouseAsync(window);
@@ -555,26 +640,8 @@ int main(void)
         glfwSwapBuffers(window);
         glfwPollEvents();
 
+        UpdateWindowTitle(window);
 
-        //std::cout << "Camera: "
-        std::stringstream ssTitle;
-        ssTitle << "Camera: "
-            << ::g_pFlyCamera->getEyeLocation().x << ", "
-            << ::g_pFlyCamera->getEyeLocation().y << ", "
-            << ::g_pFlyCamera->getEyeLocation().z 
-            << "   ";
-        ssTitle << "light[" << g_selectedLightIndex << "] "
-            << ::g_pLightManager->theLights[g_selectedLightIndex].position.x << ", "
-            << ::g_pLightManager->theLights[g_selectedLightIndex].position.y << ", "
-            << ::g_pLightManager->theLights[g_selectedLightIndex].position.z
-            << "   "
-            << "linear: " << ::g_pLightManager->theLights[0].atten.y
-            << "   "
-            << "quad: " << ::g_pLightManager->theLights[0].atten.z;
-
-
-//        glfwSetWindowTitle(window, "Hey!");
-        glfwSetWindowTitle(window, ssTitle.str().c_str());
 
 
     }// End of the draw loop
@@ -590,6 +657,7 @@ int main(void)
     exit(EXIT_SUCCESS);
 }
 
+//TODO: Add this mesh to vector with all meshes on the screen + return this sMesh*
 void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
 {
     sMesh* Meshes = new sMesh();
@@ -599,7 +667,12 @@ void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXY
     Meshes->bOverrideObjectColour = bOverrideColor;
     Meshes->objectColourRGBA = objectColor;
     Meshes->bDoNotLight = true;
+    
+    
 }
+
+
+//WE SHOULD WIPE IT CLEAN BEFORE THE EXAM
 void AddModelsToScene(void)
 {
 
