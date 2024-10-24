@@ -1,0 +1,25 @@
+<KoboldLabs>
+<SceneFile>
+<ObjectLoad-->
+Car.txt
+
+<--ObjectLoad>
+<Scene-->
+
+<Object-->
+<Name-> name
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 1 1 1
+<Visibility> true
+<--Object>
+
+<Object-->
+<Name-> name2
+<Position-> 10 10 10
+<Rotation-> 0 0 0
+<Scale-> 1 1 1
+<Visibility> true
+<--Object>
+
+<--Scene>
