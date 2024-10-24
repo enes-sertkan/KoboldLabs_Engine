@@ -162,6 +162,7 @@
     <ClInclude Include="sMesh.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />
+    <ClInclude Include="sObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

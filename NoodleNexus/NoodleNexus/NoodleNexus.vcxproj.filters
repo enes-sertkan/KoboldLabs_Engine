@@ -106,6 +106,9 @@
     <ClInclude Include="cLightHelper\cLightHelper.h">
       <Filter>LIghts</Filter>
     </ClInclude>
+    <ClInclude Include="sObject.h">
+      <Filter>Meshes, etc.</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

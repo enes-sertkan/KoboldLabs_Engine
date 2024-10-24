@@ -209,7 +209,7 @@ sModelDrawInfo LoadPlyModel(std::string modelPath,GLuint program)
     sModelDrawInfo modelInfo;
     ::g_pMeshManager->LoadModelIntoVAO(modelPath,
         modelInfo, program);
-    std::cout <<modelInfo.meshName<< "-Loaded"<< std::endl << modelInfo.numberOfVertices << " vertices loaded" << std::endl;
+    std::cout <<modelInfo.meshPath<< "-Loaded"<< std::endl << modelInfo.numberOfVertices << " vertices loaded" << std::endl;
     return modelInfo;
 }
 
@@ -326,8 +326,26 @@ void DrawLazer(GLuint program)
         }//for (std::vector<cPhysics::sTriangle>::iterator itTri = itTriList->vecTriangles
 
     }//for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions
+}
 
+void SetLight(int index,
+    const glm::vec4& position,
+    const glm::vec4& diffuse,
+    const glm::vec3& attenuation,
+    const glm::vec4& direction,
+    const glm::vec3& param1,
+    float param2x)
+{
+    // Set the properties of the light
+    ::g_pLightManager->theLights[index].position = position;
+    ::g_pLightManager->theLights[index].diffuse = diffuse;
+    ::g_pLightManager->theLights[index].atten.y = attenuation.y;
+    ::g_pLightManager->theLights[index].atten.z = attenuation.z;
 
+    // If it's a spotlight, set the direction and angles
+    ::g_pLightManager->theLights[index].direction = direction;
+    ::g_pLightManager->theLights[index].param1 = glm::vec4(param1, 0.0f);
+    ::g_pLightManager->theLights[index].param2.x = param2x;  // Turn on/off
 }
 
 
@@ -488,10 +506,6 @@ int main(void)
 
     LoadPlyModel("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply", program);
 
-    
-    
-
-
     PreparePhysics();
 
     PrepareFlyCamera();
@@ -516,32 +530,23 @@ int main(void)
     ::g_pLightManager->loadUniformLocations(program);
 
 
+    // light 01
+    SetLight(0,
+        glm::vec4(-15.0f, 30.0f, 0.0f, 1.0f),
+        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+        glm::vec3(NULL, 0.01f, 0.001f),
+        glm::vec4(0.001f),
+        glm::vec3(0.0f),
+        1.0f);
 
-
-    //TODO: Enes, pls put these lights code into function how you did it last time
-
-    // Set up one of the lights in the scene
-    ::g_pLightManager->theLights[0].position = glm::vec4(-15.0f, 30.0f, 0.0f, 1.0f);
-    ::g_pLightManager->theLights[0].diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    ::g_pLightManager->theLights[0].atten.y = 0.01f;
-    ::g_pLightManager->theLights[0].atten.z = 0.001f;
-
-    ::g_pLightManager->theLights[0].param1.x = 0.0f;    // Point light (see shader)
-    ::g_pLightManager->theLights[0].param2.x = 1.0f;    // Turn on (see shader)
-
-
-    // Set up one of the lights in the scene
-    ::g_pLightManager->theLights[1].position = glm::vec4(0.0f, 20.0f, 0.0f, 1.0f);
-    ::g_pLightManager->theLights[1].diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    ::g_pLightManager->theLights[1].atten.y = 0.01f;
-    ::g_pLightManager->theLights[1].atten.z = 0.001f;
-
-    ::g_pLightManager->theLights[1].param1.x = 1.0f;    // Spot light (see shader)
-    ::g_pLightManager->theLights[1].direction = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-    ::g_pLightManager->theLights[1].param1.y = 5.0f;   //  y = inner angle
-    ::g_pLightManager->theLights[1].param1.z = 10.0f;  //  z = outer angle
-
-    ::g_pLightManager->theLights[1].param2.x = 1.0f;    // Turn on (see shader)
+    ////light 02
+    SetLight(1,
+        glm::vec4(0.0f, 20.0f, 0.0f, 1.0f),
+        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+        glm::vec3(NULL, 0.01f, 0.001f),
+        glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
+        glm::vec3(NULL, 5.0f, 10.0f),
+        1.0f);
 
 
     cLightHelper TheLightHelper;
@@ -659,7 +664,7 @@ int main(void)
 
 //TODO: Add this mesh to vector with all meshes on the screen + return this sMesh*
 //return and push_back
-void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
+sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
 {
     sMesh* Meshes = new sMesh();
     Meshes->modelFileName = filePath;
@@ -669,6 +674,9 @@ void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXY
     Meshes->objectColourRGBA = objectColor;
     Meshes->bDoNotLight = true;
 
+    ::g_vecMeshesToDraw.push_back(Meshes);
+
+    return Meshes;
     
     
 }

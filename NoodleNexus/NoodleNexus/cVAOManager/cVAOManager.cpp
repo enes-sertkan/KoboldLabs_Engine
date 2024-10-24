@@ -50,7 +50,7 @@ bool readPlyFile_XYZ(sModelDrawInfo& modelDrawInfo)
 
 		// Read all the text until I get to the word "vertex"
 //    std::ifstream plyFile("assets/models/bun_zipper_res3.ply");
-	std::ifstream plyFile(modelDrawInfo.meshName);     // May also see .c_str() "c style string, char*"
+	std::ifstream plyFile(modelDrawInfo.meshPath);     // May also see .c_str() "c style string, char*"
 
 	if ( ! plyFile.is_open()) 
 	{
@@ -188,7 +188,7 @@ bool readPlyFile_XYZ_Normal(sModelDrawInfo& modelDrawInfo)
 
 		// Read all the text until I get to the word "vertex"
 //    std::ifstream plyFile("assets/models/bun_zipper_res3.ply");
-	std::ifstream plyFile(modelDrawInfo.meshName);     // May also see .c_str() "c style string, char*"
+	std::ifstream plyFile(modelDrawInfo.meshPath);     // May also see .c_str() "c style string, char*"
 
 	if (!plyFile.is_open())
 	{
@@ -305,7 +305,7 @@ bool cVAOManager::LoadModelIntoVAO(
 	// (We do this here, since if we can't load it, there's 
 	//	no point in doing anything else, right?)
 
-	drawInfo.meshName = fileName;
+	drawInfo.meshPath = fileName;
 
 	// TODO: Load the model from file
 //	if (!readPlyFile_XYZ(drawInfo))
@@ -424,7 +424,7 @@ bool cVAOManager::LoadModelIntoVAO(
 
 
 	// Store the draw information into the map
-	this->m_map_ModelName_to_VAOID[ drawInfo.meshName ] = drawInfo;
+	this->m_map_ModelName_to_VAOID[ drawInfo.meshPath ] = drawInfo;
 
 
 	return true;
