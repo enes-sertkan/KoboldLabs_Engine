@@ -145,6 +145,8 @@
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cVAOManager\cVAOManager.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="KLObjectReaderWriter.cpp" />
+    <ClCompile Include="KLSceneReaderWriter.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
@@ -158,6 +160,8 @@
     <ClInclude Include="cLightManager.h" />
     <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
+    <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="Scene.hpp" />
     <ClInclude Include="sharedThings.h" />
     <ClInclude Include="sMesh.h" />
     <ClInclude Include="GLCommon.h" />
