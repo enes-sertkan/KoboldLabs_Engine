@@ -4,65 +4,70 @@
 #include <iostream>
 #include "KLFileManager.hpp" 
 
-void PrintSceneFileError(int errorCode, bool isRead)
+void PrintModelFileError(int errorCode, bool isRead)
 {
     if (isRead)
-        std::cout << "SceneFile reading ERROR #" << errorCode << std::endl;
+        std::cout << "ModelFile reading ERROR #" << errorCode << std::endl;
     else
-        std::cout << "SceneFile writing ERROR #" << errorCode << std::endl;
+        std::cout << "ModelFile writing ERROR #" << errorCode << std::endl;
 }
 
-sModelDrawInfo ReadObjectFile(const std::string& filePath)
+sModelDrawInfo ReadModelFile(const std::string& filePath)
 {
-    std::ifstream objectFile(filePath);
+    std::ifstream modelFile(filePath);
     std::string token = "";
 
     sModelDrawInfo modelInfo;
 
-    if (!objectFile.is_open())
+    if (!modelFile.is_open())
     {
-        PrintSceneFileError(1, true);
+        PrintModelFileError(1, true);
         return modelInfo; 
     }
 
-    objectFile >> token;
+    modelFile >> token;
 
     if (token != "<KoboldLabs>")
     {
-        PrintSceneFileError(2, true);
+        PrintModelFileError(2, true);
         return modelInfo;
     }
 
-    // Read until we find the <ObjectFile> tag
-    while (token != "<ObjectFile>" && !objectFile.eof())
+    // Read until we find the <ModelFile> tag
+    while (token != "<ModelFile>" && !modelFile.eof())
     {
-        objectFile >> token;
+        modelFile >> token;
     };
 
     // Read until we find the <name> tag
-    while (token != "<name>" && !objectFile.eof())
+    while (token != "<name>" && !modelFile.eof())
     {
-        objectFile >> token;
+        modelFile >> token;
     };
 
-    if (objectFile.eof())
+    if (modelFile.eof())
     {
-        PrintSceneFileError(3, true);
+        PrintModelFileError(3, true);
         return modelInfo;
     }
 
-    objectFile >> modelInfo.modelName;
+    modelFile >> modelInfo.modelName;
 
     // Read until we find the <filePath> tag
-    while (token != "<filePath>" && !objectFile.eof())
+    while (token != "<filePath>" && !modelFile.eof())
     {
-        objectFile >> token;
+        modelFile >> token;
     };
 
-    if (!objectFile.eof())
+    if (!modelFile.eof())
     {
-        objectFile >> modelInfo.meshPath;
+        modelFile >> modelInfo.meshPath;
     }
 
     return modelInfo;
 }
+
+//void WriteModelFile(sModelDrawInfo* model)
+//{
+//
+//}

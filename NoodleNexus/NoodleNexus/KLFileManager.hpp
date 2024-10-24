@@ -4,8 +4,8 @@
 
 class KLFileManager
 {
-	sModelDrawInfo ReadObjectFile(std::string filePath);
-	void WriteObjectFile(sObject* object);
+	sModelDrawInfo ReadModelFile(std::string filePath);
+	void WriteModelFile(sModelDrawInfo* model);
 
 	Scene* ReadSceneFile(std::string filePath);
 	void WriteScene(Scene* scnee);
