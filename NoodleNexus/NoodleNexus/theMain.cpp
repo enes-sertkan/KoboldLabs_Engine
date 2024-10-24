@@ -658,6 +658,7 @@ int main(void)
 }
 
 //TODO: Add this mesh to vector with all meshes on the screen + return this sMesh*
+//return and push_back
 void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
 {
     sMesh* Meshes = new sMesh();
@@ -667,6 +668,7 @@ void GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXY
     Meshes->bOverrideObjectColour = bOverrideColor;
     Meshes->objectColourRGBA = objectColor;
     Meshes->bDoNotLight = true;
+
     
     
 }
@@ -677,6 +679,7 @@ void AddModelsToScene(void)
 {
 
     // Load some models to draw
+    //TODO: ENES refactor
     
     {
         sMesh* pHangar = new sMesh();
