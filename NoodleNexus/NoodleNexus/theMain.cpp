@@ -494,6 +494,13 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
 
+    modelInfo.modelName = "Select_Box";
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager.WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
+
+
+
 
     // Read the model from the file (assuming the file exists)
    // Read the model from the file (assuming the file exists)
@@ -601,7 +608,7 @@ int main(void)
 
     SceneEditor* sceneEditor = new SceneEditor();
 
-    sceneEditor->Start("cube.txt",fileManager, program, window, g_pMeshManager, scene);
+    sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
 
 

@@ -4,6 +4,7 @@
 assets/models/Old_vip_Res2_xyz_n_uv.ply
 assets/models/Old_vip_Res2_xyz_n_uv.ply
 assets/models/Old_vip_Res2_xyz_n_uv.ply
+assets/models/Cube_xyz_n_uv.ply
 <--ObjectLoad>
 
 <Scene-->

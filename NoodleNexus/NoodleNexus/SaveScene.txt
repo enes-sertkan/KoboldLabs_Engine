@@ -4,6 +4,7 @@
 bunny.txt
 cube.txt
 Battleship_Big.txt
+selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
