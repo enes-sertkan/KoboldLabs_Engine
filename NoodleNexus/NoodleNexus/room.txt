@@ -1,15 +1,15 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
-assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
-assets/models/Sphere_radius_1_xyz_N.ply
-assets/models/BS_Ship1_Res0_xyz_n.ply
+assets/models/Old_vip_Res2_xyz_n_uv.ply
+assets/models/Viper_MkVII_xyz_n_uv.ply
+assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 <--ObjectLoad>
 
 <Scene-->
 <Object-->
 <Name-> BunnyCool
-<Model-> assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
+<Model-> assets/models/Old_vip_Res2_xyz_n_uv.ply
 <Position-> 1 2 4
 <Rotation-> 4 5 6
 <Scale-> 0.2
@@ -20,7 +20,7 @@ assets/models/BS_Ship1_Res0_xyz_n.ply
 
 <Object-->
 <Name-> BunnyCool
-<Model-> assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
+<Model-> assets/models/Old_vip_Res2_xyz_n_uv.ply
 <Position-> 0 0 0
 <Rotation-> 4 5 6
 <Scale-> 0.1
@@ -31,7 +31,7 @@ assets/models/BS_Ship1_Res0_xyz_n.ply
 
 <Object-->
 <Name-> Cube1
-<Model-> assets/models/Sphere_radius_1_xyz_N.ply
+<Model-> assets/models/Viper_MkVII_xyz_n_uv.ply
 <Position-> 2 2 2
 <Rotation-> 0 0 0
 <Scale-> 1
@@ -42,7 +42,7 @@ assets/models/BS_Ship1_Res0_xyz_n.ply
 
 <Object-->
 <Name-> Cube2
-<Model-> assets/models/Sphere_radius_1_xyz_N.ply
+<Model-> assets/models/Viper_MkVII_xyz_n_uv.ply
 <Position-> -2 -5 0
 <Rotation-> 0 0 0
 <Scale-> 1
@@ -53,7 +53,7 @@ assets/models/BS_Ship1_Res0_xyz_n.ply
 
 <Object-->
 <Name-> Battleship
-<Model-> assets/models/BS_Ship1_Res0_xyz_n.ply
+<Model-> assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 <Position-> 0 0 0
 <Rotation-> 4 5 6
 <Scale-> 0.001

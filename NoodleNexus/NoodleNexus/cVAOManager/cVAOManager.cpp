@@ -295,6 +295,99 @@ bool readPlyFile_XYZ_Normal(sModelDrawInfo& modelDrawInfo)
 }
 
 
+// Takes:
+// * 
+// Returns: true if the file is loaded
+bool readPlyFile_XYZ_Normal_NoUV(sModelDrawInfo& modelDrawInfo) {
+	std::ifstream plyFile(modelDrawInfo.meshPath);
+	std::string token = "";
+
+	if (!plyFile.is_open()) {
+		return false;
+	}
+
+	// Read until we find "vertex"
+	while (token != "vertex") {
+		plyFile >> token;
+	}
+
+	// Read the number of vertices
+	plyFile >> modelDrawInfo.numberOfVertices;
+
+	// Read until we find "face"
+	while (token != "face") {
+		plyFile >> token;
+	}
+
+	// Read the number of triangles
+	plyFile >> modelDrawInfo.numberOfTriangles;
+
+	// Read until we find "end_header"
+	while (token != "end_header") {
+		plyFile >> token;
+	}
+
+	// Allocate memory for vertex data
+	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N[modelDrawInfo.numberOfVertices];
+
+	// Read vertex data
+	for (unsigned index = 0; index != modelDrawInfo.numberOfVertices; index++) {
+		plyFile >> modelDrawInfo.pVertices[index].x;
+		plyFile >> modelDrawInfo.pVertices[index].y;
+		plyFile >> modelDrawInfo.pVertices[index].z;
+
+		// Read normals
+		plyFile >> modelDrawInfo.pVertices[index].nx;
+		plyFile >> modelDrawInfo.pVertices[index].ny;
+		plyFile >> modelDrawInfo.pVertices[index].nz;
+
+		// Set all the vertices to white (1,1,1)
+		modelDrawInfo.pVertices[index].r = 1.0f;
+		modelDrawInfo.pVertices[index].g = 1.0f;
+		modelDrawInfo.pVertices[index].b = 1.0f;
+
+		// Skip UV coordinates (if they are present)
+		float u, v; // Temporary variables for UVs
+		plyFile >> u; // Read and discard the s coordinate
+		plyFile >> v; // Read and discard the t coordinate
+	}
+
+	// Load triangle info from the file
+	struct sPlyFileTriangle {
+		unsigned int vertIndex_0;
+		unsigned int vertIndex_1;
+		unsigned int vertIndex_2;
+	};
+
+	sPlyFileTriangle* pPlyFileTriangles = new sPlyFileTriangle[modelDrawInfo.numberOfTriangles];
+	for (unsigned int index = 0; index != modelDrawInfo.numberOfTriangles; index++) {
+		int discard = 0;
+		plyFile >> discard; // Read the number of vertices in the face (usually 3 for triangles)
+		plyFile >> pPlyFileTriangles[index].vertIndex_0;
+		plyFile >> pPlyFileTriangles[index].vertIndex_1;
+		plyFile >> pPlyFileTriangles[index].vertIndex_2;
+	}
+
+	// Copy the triangle data to a 1D array...
+	modelDrawInfo.numberOfIndices = modelDrawInfo.numberOfTriangles * 3;
+
+	modelDrawInfo.pIndices = new unsigned int[modelDrawInfo.numberOfIndices];
+
+	unsigned int index = 0;
+	for (unsigned int triIndex = 0; triIndex != modelDrawInfo.numberOfTriangles; triIndex++) {
+		modelDrawInfo.pIndices[index + 0] = pPlyFileTriangles[triIndex].vertIndex_0;
+		modelDrawInfo.pIndices[index + 1] = pPlyFileTriangles[triIndex].vertIndex_1;
+		modelDrawInfo.pIndices[index + 2] = pPlyFileTriangles[triIndex].vertIndex_2;
+		index += 3;
+	}
+
+	// Clean up
+	delete[] pPlyFileTriangles; // Don't forget to free allocated memory
+
+	return true;
+}
+
+
 bool cVAOManager::LoadModelIntoVAO(
 		std::string fileName, 
 		sModelDrawInfo &drawInfo,
@@ -312,7 +405,7 @@ bool cVAOManager::LoadModelIntoVAO(
 //	{
 //		return false;
 //	}
-	if (!readPlyFile_XYZ_Normal(drawInfo))
+	if (!readPlyFile_XYZ_Normal_NoUV(drawInfo))
 	{
 		return false;
 	}

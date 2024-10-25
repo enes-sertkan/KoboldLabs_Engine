@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
 <name> bunny
-<filePath> assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
+<filePath> assets/models/Old_vip_Res2_xyz_n_uv.ply
 </ModelFile>
 </KoboldLabs>

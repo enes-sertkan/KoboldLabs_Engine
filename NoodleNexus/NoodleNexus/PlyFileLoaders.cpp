@@ -214,3 +214,53 @@ bool ReadPlyModelFromFile_xyz(s3DFileData& allFileInfo)
 
     return true;
 }
+
+bool ReadPlyModelFromFile_xyz_uv(s3DFileData& allFileInfo) {
+    std::ifstream plyFile(allFileInfo.fileName);
+    std::string token = "";
+
+    if (!plyFile.is_open()) {
+        return false;
+    }
+
+    while (token != "vertex") {
+        plyFile >> token;
+    }
+    plyFile >> allFileInfo.numberOfVertices;
+
+    while (token != "face") {
+        plyFile >> token;
+    }
+    plyFile >> allFileInfo.numberOfTriangles;
+
+    while (token != "end_header") {
+        plyFile >> token;
+    }
+
+    allFileInfo.pPlyVertices = new sPlyVertex[allFileInfo.numberOfVertices];
+
+    for (unsigned index = 0; index != allFileInfo.numberOfVertices; index++) {
+        plyFile >> allFileInfo.pPlyVertices[index].x;
+        plyFile >> allFileInfo.pPlyVertices[index].y;
+        plyFile >> allFileInfo.pPlyVertices[index].z;
+
+        // Skip UV coordinates
+        float u, v;
+        plyFile >> u; // Read and discard the s coordinate
+        plyFile >> v; // Read and discard the t coordinate
+
+        allFileInfo.pPlyVertices[index].confidence = 0;
+        allFileInfo.pPlyVertices[index].intensity = 0;
+    }
+
+    allFileInfo.pPlyTriangles = new sTriangle[allFileInfo.numberOfTriangles];
+    for (unsigned int index = 0; index != allFileInfo.numberOfTriangles; index++) {
+        int discard = 0;
+        plyFile >> discard; // Read the number of vertices in the face (usually 3 for triangles)
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_0;
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_1;
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_2;
+    }
+
+    return true;
+}

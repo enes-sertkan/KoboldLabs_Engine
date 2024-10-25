@@ -477,18 +477,18 @@ int main(void)
 
 
     modelInfo.modelName = "cube";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N.ply";
+    modelInfo.meshPath = "assets/models/Viper_MkVII_xyz_n_uv.ply";
         // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "cube.txt");
 
 
     modelInfo.modelName = "bunny";
-    modelInfo.meshPath = "assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "bunny.txt");
 
     modelInfo.modelName = "Battleship_Big";
-    modelInfo.meshPath = "assets/models/BS_Ship1_Res0_xyz_n.ply";
+    modelInfo.meshPath = "assets/models/BS_Ship1_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt");
 

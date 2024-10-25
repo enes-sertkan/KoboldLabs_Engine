@@ -4,10 +4,17 @@ in vec3 fColour;			// Actual 3D model colour (from vertex buffer)
 in vec4 fvertexWorldLocation;
 in vec4 fvertexNormal;
 
+// we are not using it now, we are just adding to test
+in vec2 fUV;   
+
 uniform vec4 objectColour;			// Override colour 
 uniform bool bUseObjectColour;
 uniform vec4 eyeLocation;			// Where the camera is
 uniform bool bDoNotLight;			// if true, skips lighting
+
+// we are not using it now, we are just adding to test
+
+uniform sampler2D textureSampler; // Texture sampler
 
 out vec4 finalPixelColour;
 
@@ -48,6 +55,14 @@ void main()
 	{
 		vertexColour = objectColour.rgb;
 	}
+
+	// we are not using it now, we are just adding to test
+
+	// Sample the texture color using UV coordinates
+    vec3 textureColor = texture(textureSampler, fUV).rgb;
+
+    // Blend texture color with vertex color
+    vertexColour *= textureColor;
 	
 	// Use lighting?
 	if ( bDoNotLight )

@@ -35,6 +35,8 @@ bool ReadPlyModelFromFile_xyz_ci(s3DFileData& allFileInfo);
 
 bool ReadPlyModelFromFile_xyz(s3DFileData& allFileInfo);
 
+bool ReadPlyModelFromFile_xyz_uv(s3DFileData& allFileInfo);
+
 bool ReadPlyModelFromFile_FANCY(s3DFileData& allFileInfo);
 
 #endif

@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
 <name> Battleship_Big
-<filePath> assets/models/BS_Ship1_Res0_xyz_n.ply
+<filePath> assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 </ModelFile>
 </KoboldLabs>

@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
 <name> cube
-<filePath> assets/models/Sphere_radius_1_xyz_N.ply
+<filePath> assets/models/Viper_MkVII_xyz_n_uv.ply
 </ModelFile>
 </KoboldLabs>
