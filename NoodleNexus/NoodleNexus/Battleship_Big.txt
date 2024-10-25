@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
 <name> Battleship_Big
-<filePath> assets/models/Battlestar_Galactica_Res_0_(444,087 faces)_xyz_n_uv.ply
+<filePath> assets/models/BS_Ship1_Res0_xyz_n.ply
 </ModelFile>
 </KoboldLabs>

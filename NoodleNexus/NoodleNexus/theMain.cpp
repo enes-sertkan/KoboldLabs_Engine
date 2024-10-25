@@ -488,7 +488,7 @@ int main(void)
     fileManager.WriteModelFile(&modelInfo, "bunny.txt");
 
     modelInfo.modelName = "Battleship_Big";
-    modelInfo.meshPath = "assets/models/Battlestar_Galactica_Res_3_(31,820 faces)_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/BS_Ship1_Res0_xyz_n.ply";
     // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt");
 

@@ -3,7 +3,7 @@
 <ObjectLoad-->
 assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
 assets/models/Sphere_radius_1_xyz_N.ply
-assets/models/Battlestar_Galactica_Res_0_(444,087
+assets/models/BS_Ship1_Res0_xyz_n.ply
 <--ObjectLoad>
 
 <Scene-->
@@ -53,10 +53,10 @@ assets/models/Battlestar_Galactica_Res_0_(444,087
 
 <Object-->
 <Name-> Battleship
-<Model-> assets/models/Battlestar_Galactica_Res_0_(444,087
+<Model-> assets/models/BS_Ship1_Res0_xyz_n.ply
 <Position-> 0 0 0
 <Rotation-> 4 5 6
-<Scale-> 1
+<Scale-> 0.001
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
