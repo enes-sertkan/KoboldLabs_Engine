@@ -214,6 +214,7 @@ sModelDrawInfo LoadPlyModel(std::string modelPath,GLuint program)
     return modelInfo;
 }
 
+
 //TODO: Right now we should not touch physics. But later we will efactor and implement it correctly.
 void PreparePhysics()
 {
@@ -473,37 +474,26 @@ int main(void)
     // Create an sModelDrawInfo object for testing
     sModelDrawInfo modelInfo;
 
-    modelInfo.modelName = "BlockModel";
-    modelInfo.meshPath = "/assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
-
-    // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "bunny.txt");
+    modelInfo.modelName = "cube";
+    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N.ply";
+        // Call WriteModelFile to save the model info
+    
     fileManager.WriteModelFile(&modelInfo, "cube.txt");
+    modelInfo.modelName = "bunny";
+    modelInfo.meshPath = "assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
 
+  
+    fileManager.WriteModelFile(&modelInfo, "bunny.txt");
     // Read the model from the file (assuming the file exists)
-    sModelDrawInfo readModel = fileManager.ReadModelFile("bunny.txt");
+    sModelDrawInfo readModel = fileManager.ReadModelFile("SaveModels.txt");
 
     // Output the result to verify the correct reading
     std::cout << "Model Name: " << readModel.modelName << std::endl;
     std::cout << "Mesh Path: " << readModel.meshPath << std::endl;
 
-    // Read the scene from the file (assuming the file exists)
-    Scene* scene = fileManager.ReadSceneFile("SaveScene.txt");
-
-    fileManager.WriteSceneFile(scene, "room.txt");
 
 
-    if (scene)
-    {
-        for (sObject* object : scene->sceneObjects)
-        {
-            std::cout << object->name << std::endl;
-        }
-    }
-    else
-    {
-        std::cout << "Failed to load scene." << std::endl;
-    }
+    Scene* scene = fileManager.ReadSceneFile("SaveModels.txt");
 
     for (sObject* object : scene->sceneObjects)
     {
@@ -533,29 +523,38 @@ int main(void)
     
 // Loading the TYPES of models I can draw...
 
+
+
+
+
 //    cVAOManager* pMeshManager = new cVAOManager();
     ::g_pMeshManager = new cVAOManager();
 
 
-    LoadPlyModel("assets/models/Simple_MeshLab_terrain_xyz_N.ply", program);
+   // LoadPlyModel("assets/models/Simple_MeshLab_terrain_xyz_N.ply", program);
    
-    LoadPlyModel("assets/models/Warehouse_xyz_n.ply", program);
+    //LoadPlyModel("assets/models/Warehouse_xyz_n.ply", program);
 
-    LoadPlyModel("assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply", program);
+    //LoadPlyModel("assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply", program);
    
-    LoadPlyModel("assets/models/Flat_Plane_xyz_N.ply", program);
+    //LoadPlyModel("assets/models/Flat_Plane_xyz_N.ply", program);
   
-    LoadPlyModel("assets/models/Sphere_radius_1_xyz_N.ply", program);
+    //LoadPlyModel("assets/models/Sphere_radius_1_xyz_N.ply", program);
 
-    LoadPlyModel("assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply", program);
+    //LoadPlyModel("assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply", program);
 
-    LoadPlyModel("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply", program);
+    //LoadPlyModel("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply", program);
+
+    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
+
+
+
 
     PreparePhysics();
 
     PrepareFlyCamera();
 
-    AddModelsToScene();
+   // AddModelsToScene();
 
 
 
@@ -625,6 +624,7 @@ int main(void)
         //                                               |_|    
         // Draw all the objects
         //for (unsigned int meshIndex = 0; meshIndex != ::g_NumberOfMeshesToDraw; meshIndex++)
+
         for (unsigned int meshIndex = 0; meshIndex != ::g_vecMeshesToDraw.size(); meshIndex++)
         {
             //            sMesh* pCurMesh = ::g_myMeshes[meshIndex];
@@ -634,7 +634,7 @@ int main(void)
 
         }//for (unsigned int meshIndex..
 
-        DrawLazer(program);
+      //  DrawLazer(program);
 
 
         // **********************************************************************************
@@ -654,12 +654,12 @@ int main(void)
         lastFrameTime = currentFrameTime;
 
 
-        UpdateBallShadow();
+      //  UpdateBallShadow();
 
         // Physic update and test 
-        ::g_pPhysicEngine->StepTick(deltaTime);
+      //  ::g_pPhysicEngine->StepTick(deltaTime);
 
-        HandleCollisions();
+       // HandleCollisions();
 
 
 

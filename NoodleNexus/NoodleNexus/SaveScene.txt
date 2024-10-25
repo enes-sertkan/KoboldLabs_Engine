@@ -10,28 +10,46 @@ cube.txt
 <Object-->
 <Name-> BunnyCool
 <Model-> bunny
-<Position-> 1 2 3
+<Position-> 1 2 4
 <Rotation-> 4 5 6
-<Scale-> 1 1 1
+<Scale-> 0.2 1 1
 <Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
 <--Object>
 
 <Object-->
+<Name-> BunnyCool
+<Model-> bunny
+<Position->5 0 0
+<Rotation-> 4 5 6
+<Scale-> 0.1 1 1
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
+<--Object>
+
+
+<Object-->
 <Name-> Cube1
-<Mesh-> cube
-<Position-> 10 10 10
+<Model-> cube
+<Position-> 2 2 2
 <Rotation-> 0 0 0
 <Scale-> 1 1 1
 <Visibility> true
+<Shading-> false
+<Color-> 0 1 0
 <--Object>
 
 <Object-->
 <Name-> Cube2
-<Mesh-> cube
-<Position-> 11 11 11
+<Model-> cube
+<Position-> -2 -5 0
 <Rotation-> 0 0 0
 <Scale-> 1 1 1
 <Visibility> true
+<Shading-> false
+<Color-> 0 0 1
 <--Object>
 
 

@@ -155,12 +155,40 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
                 sceneFile >> token;
 
-                if (token == "<Name->")  object->name =  SumTokensUntil(sceneFile, '\n'); //Object Name     //Not ssure if this will work
-                if (token == "<Model->") object->mesh->modelFileName = SumTokensUntil(sceneFile, '\n'); //Model Name
+                if (token == "<Name->")
+                {
+                    object->name = SumTokensUntil(sceneFile, '\n'); //Object Name     //Not ssure if this will work
+                    object->mesh->uniqueFriendlyName = object->name; //TODO: THis is so bad. Object should have on;y one name. Mesh Should not probably.
+                }
+                if (token == "<Model->")
+                {
+                   std::string modelName = SumTokensUntil(sceneFile, '\n'); //Model Name
+
+                   for (sModelDrawInfo info : scene->modelInfos)
+                   {
+                       if (modelName == info.modelName)
+                       {
+                           object->mesh->modelFileName = info.meshPath;
+                       }
+                   }
+
+
+                }
                 if (token == "<Position->")   object->mesh->positionXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Scale->")   object->mesh->uniformScale = LoadVector3Data(sceneFile).x;//For now only first float is scale
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
+                if (token == "<Shading->")   object->mesh->bDoNotLight = LoadBoolData(sceneFile);
+                if (token == "<Color->")
+                {
+                    object->mesh->bOverrideObjectColour = true;
+                    glm::vec3 v = LoadVector3Data(sceneFile);
+          
+                    object->mesh->objectColourRGBA = glm::vec4(v, 1);
+
+
+                }
+
              }       
 
             object->mesh->uniqueFriendlyName = object->name;

@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
-<name> BlockModel
-<filePath> /assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
+<name> cube
+<filePath> assets/models/Sphere_radius_1_xyz_N.ply
 </ModelFile>
 </KoboldLabs>

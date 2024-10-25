@@ -7,6 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp> 
 #include "sMesh.h"
 #include "cVAOManager/cVAOManager.h"
+#include <iostream>
 
 extern cVAOManager* g_pMeshManager;
 
@@ -19,6 +20,8 @@ sMesh* pDebugSphere = NULL;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program)
 {
+    std::cout << "Drawing " << pCurMesh->uniqueFriendlyName << ". Position: " << pCurMesh->positionXYZ.x << " " << pCurMesh->positionXYZ.y << " " << pCurMesh->positionXYZ.z << " " << std::endl;
+
     // Is it visible? 
     if (!pCurMesh->bIsVisible)
     {
