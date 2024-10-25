@@ -100,7 +100,7 @@ void handleKeyboardAsync(GLFWwindow* window)
         // Keys move the target
     }
 
-    if (isControlDown(window) )
+    if (isControlDown(window) ) 
     {
         // Find the Light_Sphere
 //        sMesh* pLightSphere = pFindMeshByFriendlyName("Light_Sphere");
