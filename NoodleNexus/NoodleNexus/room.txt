@@ -4,6 +4,7 @@
 assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
 assets/models/Sphere_radius_1_xyz_N.ply
 <--ObjectLoad>
+
 <Scene-->
 <Object-->
 <Name-> BunnyCool
@@ -12,7 +13,10 @@ assets/models/Sphere_radius_1_xyz_N.ply
 <Rotation-> 4 5 6
 <Scale-> 0.2
 <Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
 <--Object>
+
 <Object-->
 <Name-> BunnyCool
 <Model-> assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
@@ -20,7 +24,10 @@ assets/models/Sphere_radius_1_xyz_N.ply
 <Rotation-> 4 5 6
 <Scale-> 0.1
 <Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
 <--Object>
+
 <Object-->
 <Name-> Cube1
 <Model-> assets/models/Sphere_radius_1_xyz_N.ply
@@ -28,7 +35,10 @@ assets/models/Sphere_radius_1_xyz_N.ply
 <Rotation-> 0 0 0
 <Scale-> 1
 <Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
 <--Object>
+
 <Object-->
 <Name-> Cube2
 <Model-> assets/models/Sphere_radius_1_xyz_N.ply
@@ -36,7 +46,30 @@ assets/models/Sphere_radius_1_xyz_N.ply
 <Rotation-> 0 0 0
 <Scale-> 1
 <Visibility-> true
+<Shading-> false
+<Color-> 0 0 1
 <--Object>
+
+<Light-->
+<Position-> -15 30 0 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.01 0.001 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 2 2 2 1
+<Diffuse-> 0.8 0.8 0.8 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.07 0.017 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
 <--Scene>
 </SceneFile>
 </KoboldLabs>

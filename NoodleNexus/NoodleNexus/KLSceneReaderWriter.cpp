@@ -139,7 +139,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
     }
 
 
-    while (token != "<--Scene>")
+    while (token != "<--Scene>" && token != "</SceneFile>" && token != "</KoboldLabs>")
     {
 
         if (sceneFile.peek() == EOF)
@@ -264,30 +264,25 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 }
 
 
-
-void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName)
-{
-    // Open the file in truncation mode to overwrite the previous content
+void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
     std::ofstream myfile(fileName, std::ios::trunc);
 
-    if (myfile.is_open())
-    {
+    if (myfile.is_open()) {
         myfile << "<KoboldLabs>\n";
         myfile << "<SceneFile>\n";
         myfile << "<ObjectLoad-->\n";
 
         // Write model files
-        for (size_t i = 0; i < scene->modelInfos.size(); ++i)
-        {
+        for (size_t i = 0; i < scene->modelInfos.size(); ++i) {
             const sModelDrawInfo& modelInfo = scene->modelInfos[i];
             myfile << modelInfo.meshPath << "\n";
         }
-        myfile << "<--ObjectLoad>\n";
+        myfile << "<--ObjectLoad>\n\n";
 
         myfile << "<Scene-->\n";
 
-        for (size_t j = 0; j < scene->sceneObjects.size(); ++j)
-        {
+        // Write objects
+        for (size_t j = 0; j < scene->sceneObjects.size(); ++j) {
             sObject* object = scene->sceneObjects[j];
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
@@ -300,7 +295,62 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName)
                 << object->mesh->rotationEulerXYZ.z << "\n";
             myfile << "<Scale-> " << object->mesh->uniformScale << "\n";
             myfile << "<Visibility-> " << (object->mesh->bIsVisible ? "true" : "false") << "\n";
-            myfile << "<--Object>\n";
+            myfile << "<Shading-> " << (object->mesh->bDoNotLight ? "true" : "false") << "\n";
+            if (object->mesh->bOverrideObjectColour) {
+                myfile << "<Color-> "
+                    << object->mesh->objectColourRGBA.r << " "
+                    << object->mesh->objectColourRGBA.g << " "
+                    << object->mesh->objectColourRGBA.b << "\n";
+            }
+            myfile << "<--Object>\n\n";
+        }
+
+        // Write lights
+        for (int j = 0; j <= scene->lightManager->lastLightIndex; ++j) {
+            const cLightManager::sLight& light = scene->lightManager->theLights[j];
+            myfile << "<Light-->\n";
+
+            // Write Position
+            myfile << "<Position-> " << light.position.x << " "
+                << light.position.y << " "
+                << light.position.z << " "
+                << light.position.w << "\n";
+
+            // Write Diffuse
+            myfile << "<Diffuse-> " << light.diffuse.r << " "
+                << light.diffuse.g << " "
+                << light.diffuse.b << " "
+                << light.diffuse.a << "\n";
+
+            // Write Specular
+            myfile << "<Specular-> " << light.specular.r << " "
+                << light.specular.g << " "
+                << light.specular.b << " "
+                << light.specular.a << "\n";
+
+            // Write Attenuation
+            myfile << "<Atten-> " << light.atten.x << " "
+                << light.atten.y << " "
+                << light.atten.z << " "
+                << light.atten.w << "\n";
+
+            // Write Direction
+            myfile << "<Direction-> " << light.direction.x << " "
+                << light.direction.y << " "
+                << light.direction.z << " "
+                << light.direction.w << "\n";
+
+            // Write Param1 and Param2
+            myfile << "<Param1-> " << light.param1.x << " "
+                << light.param1.y << " "
+                << light.param1.z << " "
+                << light.param1.w << "\n";
+            myfile << "<Param2-> " << light.param2.x << " "
+                << light.param2.y << " "
+                << light.param2.z << " "
+                << light.param2.w << "\n";
+
+            myfile << "<--Light>\n\n";
         }
 
         myfile << "<--Scene>\n";
@@ -309,9 +359,9 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName)
 
         myfile.close();
     }
-    else
-    {
+    else {
         std::cout << "Unable to open file" << std::endl;
     }
 }
+
 

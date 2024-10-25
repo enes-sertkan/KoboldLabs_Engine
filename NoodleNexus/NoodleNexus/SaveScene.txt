@@ -76,3 +76,5 @@ cube.txt
 
 
 <--Scene>
+</SceneFile>
+</KoboldLabs>
