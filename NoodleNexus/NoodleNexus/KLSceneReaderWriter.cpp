@@ -8,7 +8,7 @@
 
 void PrintSceneFileError(int errorCode, bool isRead)
 {
-    if (isRead) std::cout << "SceneFile reading ERROR #" + errorCode<<std::endl;
+    if (isRead) printf("SceneFile reading ERROR #" + errorCode+'\n');
     else std::cout << "SceneFile writing ERROR #" + errorCode<< std::endl;
 }
 
@@ -64,7 +64,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
     if (!sceneFile.is_open())
     {
-        PrintSceneFileError(4, true);
+        PrintSceneFileError(0, true);
         return nullptr;
     }
 
@@ -104,7 +104,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         if (sceneFile.peek() == EOF)
         {
             PrintSceneFileError(4, true);
-            return nullptr;
+          return nullptr;
         }
            
         //LOAD OBJECT FILE
@@ -127,7 +127,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         if (sceneFile.peek() == EOF)
         {
             PrintSceneFileError(6, true);
-            return nullptr;
+            //return nullptr;
         }
 
 
@@ -154,6 +154,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 if (token == "<Name->")  object->name =  SumTokensUntil(sceneFile, '\n'); //Object Name     //Not ssure if this will work
                 if (token == "<Model->") object->mesh->modelFileName = SumTokensUntil(sceneFile, '\n'); //Model Name
                 if (token == "<Position->")   object->mesh->positionXYZ = LoadVector3Data(sceneFile);
+                if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Scale->")   object->mesh->uniformScale = LoadVector3Data(sceneFile).x;//For now only first float is scale
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
              }       
@@ -168,15 +169,12 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
         }
 
-
-
-
      
         //LOAD OBJECT FILE
 
-        sceneFile >> token;
+     
 
-        return scene;
+       
 
     }
 
@@ -188,6 +186,6 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
 
 
-	return nullptr;
+    return scene;
 }
 
