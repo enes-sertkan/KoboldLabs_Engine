@@ -1,3 +1,5 @@
+#pragma once
+
 #include "sObject.h";
 #include <vector>
 #include "sObject.h";

@@ -1,3 +1,6 @@
+#pragma once
+
+
 #include "cVAOManager/cVAOManager.h"
 #include <string>;
 #include "Scene.hpp";

@@ -36,6 +36,8 @@
 #include "cLightHelper/cLightHelper.h"
 #include "KLFileManager.hpp"
 
+#include "SceneEditor.h"
+
 std::vector<sMesh*> g_vecMeshesToDraw;
 
 cPhysics* g_pPhysicEngine = NULL;
@@ -477,9 +479,9 @@ int main(void)
 
 
     modelInfo.modelName = "cube";
-    modelInfo.meshPath = "assets/models/Viper_MkVII_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
         // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "cube.txt", "XYZNUV");
+    fileManager.WriteModelFile(&modelInfo, "cube2.txt", "XYZNUV");
 
 
     modelInfo.modelName = "bunny";
@@ -488,9 +490,9 @@ int main(void)
     fileManager.WriteModelFile(&modelInfo, "bunny.txt", "XYZNUV");
 
     modelInfo.modelName = "Battleship_Big";
-    modelInfo.meshPath = "assets/models/BS_Ship1_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");s
+    fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
 
 
     // Read the model from the file (assuming the file exists)
@@ -595,6 +597,14 @@ int main(void)
 
     cLightHelper TheLightHelper;
 
+
+
+    SceneEditor* sceneEditor = new SceneEditor();
+
+    sceneEditor->Start("cube.txt",fileManager, program, window, g_pMeshManager, scene);
+
+
+
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -624,6 +634,9 @@ int main(void)
         //                                               |_|    
         // Draw all the objects
         //for (unsigned int meshIndex = 0; meshIndex != ::g_NumberOfMeshesToDraw; meshIndex++)
+
+        sceneEditor->Update();
+
 
         for (unsigned int meshIndex = 0; meshIndex != ::g_vecMeshesToDraw.size(); meshIndex++)
         {

@@ -2,8 +2,8 @@
 <SceneFile>
 <ObjectLoad-->
 assets/models/Old_vip_Res2_xyz_n_uv.ply
-assets/models/Viper_MkVII_xyz_n_uv.ply
-assets/models/BS_Ship1_Res2_xyz_n_uv.ply
+assets/models/Old_vip_Res2_xyz_n_uv.ply
+assets/models/Old_vip_Res2_xyz_n_uv.ply
 <--ObjectLoad>
 
 <Scene-->
@@ -31,7 +31,7 @@ assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 
 <Object-->
 <Name-> Cube1
-<Model-> assets/models/Viper_MkVII_xyz_n_uv.ply
+<Model-> assets/models/Old_vip_Res2_xyz_n_uv.ply
 <Position-> 2 2 2
 <Rotation-> 0 0 0
 <Scale-> 1
@@ -42,7 +42,7 @@ assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 
 <Object-->
 <Name-> Cube2
-<Model-> assets/models/Viper_MkVII_xyz_n_uv.ply
+<Model-> assets/models/Old_vip_Res2_xyz_n_uv.ply
 <Position-> -2 -5 0
 <Rotation-> 0 0 0
 <Scale-> 1
@@ -53,7 +53,7 @@ assets/models/BS_Ship1_Res2_xyz_n_uv.ply
 
 <Object-->
 <Name-> Battleship
-<Model-> assets/models/BS_Ship1_Res2_xyz_n_uv.ply
+<Model-> assets/models/Old_vip_Res2_xyz_n_uv.ply
 <Position-> 0 0 0
 <Rotation-> 4 5 6
 <Scale-> 0.001
