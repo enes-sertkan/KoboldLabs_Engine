@@ -53,4 +53,26 @@ cube.txt
 <--Object>
 
 
+<Light-->
+<Position-> -15 30 0 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 50
+<Atten-> 0 0.01 0.001 10000
+<Direction-> 0 -1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+
+<Light-->
+<Position-> 2 2 2 1
+<Diffuse-> 0.8 0.8 0.8 1
+<Specular-> 1 1 1 50
+<Atten-> 1 0.07 0.017 50
+<Direction-> 0 -1 0 0
+<Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
+
 <--Scene>

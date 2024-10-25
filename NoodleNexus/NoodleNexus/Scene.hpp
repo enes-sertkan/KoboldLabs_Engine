@@ -5,6 +5,7 @@
 #include "cVAOManager/cVAOManager.h"
 #include "GLCommon.h"
 #include <iostream>
+#include "sharedThings.h"
 //This is a class bc we gonna have functions in it later
 class Scene
 {
@@ -13,6 +14,8 @@ public:
 	std::vector<sModelDrawInfo> modelInfos;
 
 	std::vector<sObject*> sceneObjects;
+
+	cLightManager* lightManager;
 
 	void Update();
 

@@ -1,7 +1,8 @@
 #include "cLightManager.h"
 #include <float.h>
 #include <sstream>	// String stream
-
+#include "sharedThings.h"
+#include <iostream>
 
 
 cLightManager::cLightManager()
@@ -129,6 +130,8 @@ void cLightManager::updateShaderWithLightInfo(void)
 	return;
 }
 
+
+
 std::string cLightManager::sLight::getState(void)
 {
 	std::stringstream ssLightState;
@@ -142,6 +145,61 @@ std::string cLightManager::sLight::getState(void)
 
 	// return as a string
 	return ssLightState.str();
+}
+
+cLightManager::sLight cLightManager::SetLight(int index,
+	const glm::vec4& position,
+	const glm::vec4& diffuse,
+	const glm::vec3& attenuation,
+	const glm::vec4& direction,
+	const glm::vec3& param1,
+	float param2x)
+{
+	
+	// Set the properties of the light
+	theLights[index].position = position;
+	theLights[index].diffuse = diffuse;
+	theLights[index].atten.y = attenuation.y;
+	theLights[index].atten.z = attenuation.z;
+
+	// If it's a spotlight, set the direction and angles
+	theLights[index].direction = direction;
+	theLights[index].param1 = glm::vec4(param1, 0.0f);
+	theLights[index].param2.x = param2x;  // Turn on/off
+
+	return theLights[index];
+}
+
+cLightManager::sLight cLightManager::CreateNewLight(const glm::vec4& position,
+	const glm::vec4& diffuse,
+	const glm::vec3& attenuation,
+	const glm::vec4& direction,
+	const glm::vec3& param1,
+	float param2x)
+{
+	if (lastLightIndex >= NUMBEROFLIGHTS)
+	{
+		std::cout << "You reached the max ammount of lights. Please increase the ammount in code or change your code completly, you stupid." << std::endl;
+		return sLight();
+
+	}
+
+
+	lastLightIndex++;
+
+	SetLight(lastLightIndex,
+		position,
+		diffuse,
+		attenuation,
+		direction,
+		param1,
+		param2x);
+}
+
+
+cLightManager::sLight cLightManager::CreateNewLight(sLight light)
+{
+	return CreateNewLight(light.position, light.diffuse, light.atten, light.direction, light.param1, light.param2.x);
 }
 
 bool cLightManager::sLight::loadState(std::string stateString)
@@ -160,3 +218,5 @@ bool cLightManager::sLight::loadState(std::string stateString)
 	// If it worked
 	return true;
 }
+
+

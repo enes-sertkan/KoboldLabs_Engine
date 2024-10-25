@@ -13,23 +13,9 @@
 class cLightManager
 {
 public:
-    // This is inside our shader
-    //struct sLight
-    //{
-    //    vec4 position;
-    //    vec4 diffuse;
-    //    vec4 specular;	// rgb = highlight colour, w = power
-    //    vec4 atten;		// x = constant, y = linear, z = quadratic, w = DistanceCutOff
-    //    vec4 direction;	// Spot, directional lights
-    //    vec4 param1;	// x = lightType, y = inner angle, z = outer angle, w = TBD
-    //    // 0 = pointlight
-    //    // 1 = spot light
-    //    // 2 = directional light
-    //    vec4 param2;	// x = 0 for off, 1 for on
-    //    // yzw are TBD
-    //};
-    //const int NUMBEROFLIGHTS = 10;
-    //uniform sLight theLights[NUMBEROFLIGHTS];
+  
+    int lastLightIndex=-1; //-1 bc we start with 0. So, we do +1 before creating new Light, so we start with 0
+
 
     cLightManager();
 
@@ -84,7 +70,47 @@ public:
     static const int NUMBEROFLIGHTS = 10;
     sLight theLights[NUMBEROFLIGHTS];
 
+    sLight SetLight(int index,
+        const glm::vec4& position,
+        const glm::vec4& diffuse,
+        const glm::vec3& attenuation,
+        const glm::vec4& direction,
+        const glm::vec3& param1,
+        float param2x); 
+    
+    sLight CreateNewLight(
+        const glm::vec4& position,
+        const glm::vec4& diffuse,
+        const glm::vec3& attenuation,
+        const glm::vec4& direction,
+        const glm::vec3& param1,
+        float param2x);
+
+    sLight CreateNewLight(sLight light);
+
+        
+    void RemoveLight(); //TODO: Add remove light
+
 
     //std::vector<sLight> vecLights;
 };
 
+
+
+// This is inside our shader
+  //struct sLight
+  //{
+  //    vec4 position;
+  //    vec4 diffuse;
+  //    vec4 specular;	// rgb = highlight colour, w = power
+  //    vec4 atten;		// x = constant, y = linear, z = quadratic, w = DistanceCutOff
+  //    vec4 direction;	// Spot, directional lights
+  //    vec4 param1;	// x = lightType, y = inner angle, z = outer angle, w = TBD
+  //    // 0 = pointlight
+  //    // 1 = spot light
+  //    // 2 = directional light
+  //    vec4 param2;	// x = 0 for off, 1 for on
+  //    // yzw are TBD
+  //};
+  //const int NUMBEROFLIGHTS = 10;
+  //uniform sLight theLights[NUMBEROFLIGHTS];

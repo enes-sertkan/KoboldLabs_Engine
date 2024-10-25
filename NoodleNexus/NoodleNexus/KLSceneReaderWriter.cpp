@@ -1,7 +1,7 @@
 #include "KLFileManager.hpp";
 #include <fstream>;
 #include <iostream>;
-
+#include "sharedThings.h"
 
 
 
@@ -41,6 +41,20 @@ glm::vec3 LoadVector3Data(std::ifstream& file)
 
 }
 
+glm::vec4 LoadVector4Data(std::ifstream& file)
+{
+    std::string token = "";
+    glm::vec4 finalVector;
+
+
+    file >> finalVector.x;
+    file >> finalVector.y;
+    file >> finalVector.z;
+    file >> finalVector.w;
+
+    return finalVector;
+}
+
 bool LoadBoolData(std::ifstream& file)
 {
     std::string token = "";
@@ -61,6 +75,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
     std::string token = "";
 
     Scene* scene = new Scene;
+    scene->lightManager = new cLightManager();
 
     if (!sceneFile.is_open())
     {
@@ -191,15 +206,41 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
              }       
 
+
             object->mesh->uniqueFriendlyName = object->name;
             scene->sceneObjects.push_back(object);
+
+            std::cout << "Object " + object->name + " loaded." << std::endl;
 
         }
 
         //LOAD LIGHT
+     // Read Scene File, including Lights
         if (token == "<Light-->")
         {
+           cLightManager::sLight light;
 
+            while (token != "<--Light>")
+            {
+                if (sceneFile.peek() == EOF)
+                {
+                    PrintSceneFileError(8, true);
+                    return nullptr;
+                }
+
+                sceneFile >> token;
+
+                if (token == "<Position->")    light.position = LoadVector4Data(sceneFile);
+                if (token == "<Diffuse->")     light.diffuse = LoadVector4Data(sceneFile);
+                if (token == "<Specular->")    light.specular = LoadVector4Data(sceneFile);
+                if (token == "<Atten->")       light.atten = LoadVector4Data(sceneFile);
+                if (token == "<Direction->")   light.direction = LoadVector4Data(sceneFile);
+                if (token == "<Param1->")      light.param1 = LoadVector4Data(sceneFile);
+                if (token == "<Param2->")      light.param2 = LoadVector4Data(sceneFile);
+            }
+
+            scene->lightManager->CreateNewLight(light);
+            std::cout << "Light " << light.position.x <<" " << light.position.y<<" "<< light.position.z<< " loaded." << std::endl;
         }
 
      

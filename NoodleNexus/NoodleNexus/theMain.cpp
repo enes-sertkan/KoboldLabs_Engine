@@ -499,6 +499,8 @@ int main(void)
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager.ReadSceneFile("SaveScene.txt");
 
+
+
     fileManager.WriteSceneFile(scene, "room.txt");
 
 
@@ -532,29 +534,11 @@ int main(void)
     
 // Loading the TYPES of models I can draw...
 
-
-
-
-
-//    cVAOManager* pMeshManager = new cVAOManager();
     ::g_pMeshManager = new cVAOManager();
 
 
-   // LoadPlyModel("assets/models/Simple_MeshLab_terrain_xyz_N.ply", program);
-   
-    //LoadPlyModel("assets/models/Warehouse_xyz_n.ply", program);
-
-    //LoadPlyModel("assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply", program);
-   
-    //LoadPlyModel("assets/models/Flat_Plane_xyz_N.ply", program);
-  
-    //LoadPlyModel("assets/models/Sphere_radius_1_xyz_N.ply", program);
-
-    //LoadPlyModel("assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply", program);
-
-    //LoadPlyModel("assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply", program);
-
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
+
 
 
 
@@ -578,28 +562,30 @@ int main(void)
 
 
     // Set up the lights
-    ::g_pLightManager = new cLightManager();
+    //I'll do this for now, but we better remove g_pLightManager and just use scene.lightManager.
+    //TODO: Do that
+    ::g_pLightManager = scene->lightManager;
     // Called only once
     ::g_pLightManager->loadUniformLocations(program);
 
 
     // light 01
-    SetLight(0,
+  /*  SetLight(0,
         glm::vec4(-15.0f, 30.0f, 0.0f, 1.0f),
         glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
         glm::vec3(NULL, 0.01f, 0.001f),
         glm::vec4(0.001f),
         glm::vec3(0.0f),
-        1.0f);
+        1.0f);*/
 
-    ////light 02
-    SetLight(1,
-        glm::vec4(0.0f, 20.0f, 0.0f, 1.0f),
-        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-        glm::vec3(NULL, 0.01f, 0.001f),
-        glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
-        glm::vec3(NULL, 5.0f, 10.0f),
-        1.0f);
+    //////light 02
+    //SetLight(1,
+    //    glm::vec4(0.0f, 20.0f, 0.0f, 1.0f),
+    //    glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
+    //    glm::vec3(NULL, 0.01f, 0.001f),
+    //    glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
+    //    glm::vec3(NULL, 5.0f, 10.0f),
+    //    1.0f);
 
 
     cLightHelper TheLightHelper;
