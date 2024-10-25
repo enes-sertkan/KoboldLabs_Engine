@@ -3,7 +3,7 @@
 <ObjectLoad-->
 bunny.txt
 cube.txt
-
+Battleship_Big.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -29,7 +29,6 @@ cube.txt
 <Color-> 1 0 0
 <--Object>
 
-
 <Object-->
 <Name-> Cube1
 <Model-> cube
@@ -52,6 +51,16 @@ cube.txt
 <Color-> 0 0 1
 <--Object>
 
+<Object-->
+<Name-> Battleship
+<Model-> Battleship_Big
+<Position-> 0 0 0
+<Rotation-> 4 5 6
+<Scale-> 1 1 1
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
+<--Object>
 
 <Light-->
 <Position-> -15 30 0 1

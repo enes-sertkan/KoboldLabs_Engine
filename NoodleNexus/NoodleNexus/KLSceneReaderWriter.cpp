@@ -193,7 +193,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Scale->")   object->mesh->uniformScale = LoadVector3Data(sceneFile).x;//For now only first float is scale
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
-                if (token == "<Shading->")   object->mesh->bDoNotLight = LoadBoolData(sceneFile);
+                if (token == "<Shading->")   object->mesh->bDoNotLight = !LoadBoolData(sceneFile);
                 if (token == "<Color->")
                 {
                     object->mesh->bOverrideObjectColour = true;
