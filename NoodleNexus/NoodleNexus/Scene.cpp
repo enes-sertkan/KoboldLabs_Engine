@@ -33,7 +33,7 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
     }
 
 
-    for (sObject* object : sceneObjects)
+    for (Object* object : sceneObjects)
     {
         CreateMeshObjects(meshes, object->mesh);
     }

@@ -151,6 +151,7 @@
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneEditor.cpp" />
     <ClCompile Include="sharedThings.cpp" />
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
@@ -163,11 +164,13 @@
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
     <ClInclude Include="sMesh.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />
     <ClInclude Include="sObject.h" />
+    <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

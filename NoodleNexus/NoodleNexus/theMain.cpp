@@ -511,7 +511,7 @@ int main(void)
 
 
 
-    for (sObject* object : scene->sceneObjects)
+    for (Object* object : scene->sceneObjects)
     {
         std::cout<<object->name<<std::endl;
     }

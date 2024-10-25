@@ -13,7 +13,7 @@ public:
 
 	std::vector<sModelDrawInfo> modelInfos;
 
-	std::vector<sObject*> sceneObjects;
+	std::vector<Object*> sceneObjects;
 
 	cLightManager* lightManager;
 

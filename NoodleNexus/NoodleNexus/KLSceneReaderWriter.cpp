@@ -2,6 +2,7 @@
 #include <fstream>;
 #include <iostream>;
 #include "sharedThings.h"
+#include "Transform.h"
 
 
 
@@ -154,7 +155,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         //LOAD OBJECT
         if (token == "<Object-->")
         {
-            sObject* object = new sObject();
+            Object* object = new Object();
             object->mesh = new sMesh();
             while (token != "<--Object>")
             {
@@ -200,8 +201,6 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                     glm::vec3 v = LoadVector3Data(sceneFile);
           
                     object->mesh->objectColourRGBA = glm::vec4(v, 1);
-
-
                 }
 
              }       
@@ -209,6 +208,12 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
             object->mesh->uniqueFriendlyName = object->name;
             scene->sceneObjects.push_back(object);
+
+            //TODO: I think we should originally give value to start transform and THEN give it to mesh. SO shoueld fix it later.
+           
+            object->startTranform->position = object->mesh->positionXYZ;
+            object->startTranform->rotation = object->mesh->rotationEulerXYZ;
+            object->startTranform->scale.x =    object->mesh->uniformScale; //TODO: if you need proper scale - fix this.
 
             std::cout << "Object " + object->name + " loaded." << std::endl;
 
@@ -283,7 +288,7 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
 
         // Write objects
         for (size_t j = 0; j < scene->sceneObjects.size(); ++j) {
-            sObject* object = scene->sceneObjects[j];
+            Object* object = scene->sceneObjects[j];
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
             myfile << "<Model-> " << object->mesh->modelFileName << "\n";
