@@ -474,26 +474,35 @@ int main(void)
     // Create an sModelDrawInfo object for testing
     sModelDrawInfo modelInfo;
 
+
+
     modelInfo.modelName = "cube";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N.ply";
         // Call WriteModelFile to save the model info
-    
     fileManager.WriteModelFile(&modelInfo, "cube.txt");
+
+
     modelInfo.modelName = "bunny";
     modelInfo.meshPath = "assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
-
-  
+    // Call WriteModelFile to save the model info
     fileManager.WriteModelFile(&modelInfo, "bunny.txt");
+
+
     // Read the model from the file (assuming the file exists)
-    sModelDrawInfo readModel = fileManager.ReadModelFile("SaveModels.txt");
+   // Read the model from the file (assuming the file exists)
+    sModelDrawInfo readModel = fileManager.ReadModelFile("bunny.txt");
 
     // Output the result to verify the correct reading
     std::cout << "Model Name: " << readModel.modelName << std::endl;
     std::cout << "Mesh Path: " << readModel.meshPath << std::endl;
 
+    // Read the scene from the file (assuming the file exists)
+    Scene* scene = fileManager.ReadSceneFile("SaveScene.txt");
+
+    fileManager.WriteSceneFile(scene, "room.txt");
 
 
-    Scene* scene = fileManager.ReadSceneFile("SaveModels.txt");
+
 
     for (sObject* object : scene->sceneObjects)
     {
