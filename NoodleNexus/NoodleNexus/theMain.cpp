@@ -481,14 +481,29 @@ int main(void)
     fileManager.WriteModelFile(&modelInfo, "cube.txt");
 
     // Read the model from the file (assuming the file exists)
-    sModelDrawInfo readModel = fileManager.ReadModelFile("SaveModels.txt");
+    sModelDrawInfo readModel = fileManager.ReadModelFile("bunny.txt");
 
     // Output the result to verify the correct reading
     std::cout << "Model Name: " << readModel.modelName << std::endl;
     std::cout << "Mesh Path: " << readModel.meshPath << std::endl;
 
+    // Read the scene from the file (assuming the file exists)
+    Scene* scene = fileManager.ReadSceneFile("SaveScene.txt");
 
-    Scene* scene = fileManager.ReadSceneFile("SaveModels.txt");
+    fileManager.WriteSceneFile(scene, "room.txt");
+
+
+    if (scene)
+    {
+        for (sObject* object : scene->sceneObjects)
+        {
+            std::cout << object->name << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Failed to load scene." << std::endl;
+    }
 
     for (sObject* object : scene->sceneObjects)
     {

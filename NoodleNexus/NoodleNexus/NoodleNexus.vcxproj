@@ -150,6 +150,7 @@
     <ClCompile Include="mouse_keyboard_async.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
+    <ClCompile Include="SceneReadFile.cpp" />
     <ClCompile Include="sharedThings.cpp" />
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>

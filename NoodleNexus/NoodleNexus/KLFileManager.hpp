@@ -9,5 +9,5 @@ public:
 	void WriteModelFile(const sModelDrawInfo* model, std::string fileName);
 
 	Scene* ReadSceneFile(std::string filePath);
-	void WriteScene(Scene* scnee);
+	void WriteSceneFile(const Scene* scene, std::string fileName);
 };
