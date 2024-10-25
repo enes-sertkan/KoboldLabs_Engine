@@ -76,10 +76,10 @@ void AddLineToModelFile(std::ofstream& myfile, const std::string& line)
     }
 }
 
-void KLFileManager::WriteModelFile(const sModelDrawInfo* model)
+void KLFileManager::WriteModelFile(const sModelDrawInfo* model, std::string fileName)
 {
     // Open the file in truncation mode to overwrite the previous content
-    std::ofstream myfile("SaveModels.txt", std::ios::trunc);
+    std::ofstream myfile(fileName, std::ios::trunc);
 
     if (myfile.is_open())
     {

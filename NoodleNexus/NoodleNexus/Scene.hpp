@@ -7,10 +7,17 @@ class Scene
 {
 public:
 
+	std::vector<sModelDrawInfo> modelInfos;
+
 	std::vector<sObject*> sceneObjects;
 
 	void Update();
+
+	void Prepare();
+
 	
 	
+
+
 	
 };

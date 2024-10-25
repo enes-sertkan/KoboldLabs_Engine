@@ -107,7 +107,10 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
           return nullptr;
         }
            
-        //LOAD OBJECT FILE
+         //filepath to objfile
+        scene->modelInfos.push_back(ReadModelFile(token)); //we load the file(pls DO  OT USE SPACES IN THE PATH FOR NOW
+        //TODO: FIX THE THING WITH SPACES
+        
 
         sceneFile >> token;
     }
@@ -137,6 +140,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         if (token == "<Object-->")
         {
             sObject* object = new sObject();
+            object->mesh = new sMesh();
             while (token != "<--Object>")
             {
                 if (sceneFile.peek() == EOF)
@@ -146,8 +150,8 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 }
 
                 
-                sMesh* mesh = new sMesh();
-                object->mesh = mesh;
+               
+               
 
                 sceneFile >> token;
 
@@ -159,6 +163,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
              }       
 
+            object->mesh->uniqueFriendlyName = object->name;
             scene->sceneObjects.push_back(object);
 
         }

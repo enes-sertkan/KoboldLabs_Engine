@@ -1,6 +1,7 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
+cat.txt
 <--ObjectLoad>
 <Scene-->
 

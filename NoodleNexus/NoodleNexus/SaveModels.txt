@@ -1,25 +1,37 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
+bunny.txt
+cube.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> name
-<Model-> model Name Mega
-<Position-> 0 0 0
-<Rotation-> 0 0 0
+<Name-> BunnyCool
+<Model-> bunny
+<Position-> 1 2 3
+<Rotation-> 4 5 6
 <Scale-> 1 1 1
 <Visibility-> true
 <--Object>
 
 <Object-->
-<Name-> name2
-<Mesh-> meshName
+<Name-> Cube1
+<Mesh-> cube
 <Position-> 10 10 10
 <Rotation-> 0 0 0
 <Scale-> 1 1 1
 <Visibility> true
 <--Object>
+
+<Object-->
+<Name-> Cube2
+<Mesh-> cube
+<Position-> 11 11 11
+<Rotation-> 0 0 0
+<Scale-> 1 1 1
+<Visibility> true
+<--Object>
+
 
 <--Scene>

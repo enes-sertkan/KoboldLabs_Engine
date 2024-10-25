@@ -477,7 +477,8 @@ int main(void)
     modelInfo.meshPath = "/assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
 
     // Call WriteModelFile to save the model info
-//    fileManager.WriteModelFile(&modelInfo);
+    fileManager.WriteModelFile(&modelInfo, "bunny.txt");
+    fileManager.WriteModelFile(&modelInfo, "cube.txt");
 
     // Read the model from the file (assuming the file exists)
     sModelDrawInfo readModel = fileManager.ReadModelFile("SaveModels.txt");
@@ -489,6 +490,10 @@ int main(void)
 
     Scene* scene = fileManager.ReadSceneFile("SaveModels.txt");
 
+    for (sObject* object : scene->sceneObjects)
+    {
+        std::cout<<object->name<<std::endl;
+    }
 
 
     glfwSetErrorCallback(error_callback);
