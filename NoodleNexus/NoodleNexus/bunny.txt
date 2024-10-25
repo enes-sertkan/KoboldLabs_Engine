@@ -2,5 +2,6 @@
 <ModelFile>
 <name> bunny
 <filePath> assets/models/Old_vip_Res2_xyz_n_uv.ply
+<fileType> XYZNUV
 </ModelFile>
 </KoboldLabs>

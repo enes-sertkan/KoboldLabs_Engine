@@ -60,6 +60,17 @@ sModelDrawInfo KLFileManager::ReadModelFile(const std::string& filePath)
         modelFile >> modelInfo.meshPath;  // Read the file path
     }
 
+    // Read until we find the <fileType> tag
+    while (token != "<fileType>" && !modelFile.eof())
+    {
+        modelFile >> token;
+    }
+
+    if (!modelFile.eof())
+    {
+        modelFile >> modelInfo.fileType;  // Read the file type
+    }
+
     modelFile.close();  // Always good practice to close files
     return modelInfo;
 }
@@ -76,7 +87,8 @@ void AddLineToModelFile(std::ofstream& myfile, const std::string& line)
     }
 }
 
-void KLFileManager::WriteModelFile(const sModelDrawInfo* model, std::string fileName)
+
+void KLFileManager::WriteModelFile(const sModelDrawInfo* model, std::string fileName, std::string type)
 {
     // Open the file in truncation mode to overwrite the previous content
     std::ofstream myfile(fileName, std::ios::trunc);
@@ -89,6 +101,9 @@ void KLFileManager::WriteModelFile(const sModelDrawInfo* model, std::string file
         // Add spaces or newlines to make it more readable
         myfile << "<name> " << model->modelName << "\n";     // Added space after tag
         myfile << "<filePath> " << model->meshPath << "\n";  // Added space after tag
+
+        // Directly write the fileType as a string
+        myfile << "<fileType> " << type << "\n"; // Use the string directly
 
         myfile << "</ModelFile>\n";
         myfile << "</KoboldLabs>\n";

@@ -32,6 +32,7 @@ struct sModelDrawInfo
 
 	std::string meshPath; //path to mesh
 	std::string modelName;
+	std::string fileType;
 
 	unsigned int VAO_ID;
 

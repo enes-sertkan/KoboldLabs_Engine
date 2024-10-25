@@ -2,5 +2,6 @@
 <ModelFile>
 <name> cube
 <filePath> assets/models/Viper_MkVII_xyz_n_uv.ply
+<fileType> XYZNUV
 </ModelFile>
 </KoboldLabs>

@@ -405,10 +405,24 @@ bool cVAOManager::LoadModelIntoVAO(
 //	{
 //		return false;
 //	}
-	if (!readPlyFile_XYZ_Normal_NoUV(drawInfo))
+
+	if (drawInfo.fileType == "XYZN")
 	{
-		return false;
+		if (!readPlyFile_XYZ_Normal(drawInfo))
+		{
+			return false;
+		}
+
 	}
+	else if (drawInfo.fileType == "XYZNUV") 
+	{
+		if (!readPlyFile_XYZ_Normal_NoUV(drawInfo))
+		{
+			return false;
+		}
+	}
+
+
 
 	// Calculate extents
 	drawInfo.calculateExtents();
