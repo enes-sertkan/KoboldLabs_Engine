@@ -9,5 +9,6 @@
 struct sObject
 {
 public:
+	std::string name;
 	sMesh* mesh;
 };

@@ -7,6 +7,9 @@
 #include <vector>
 #include <string>  
 
+
+
+//TODO: WE should move setLight from main to here;
 class cLightManager
 {
 public:

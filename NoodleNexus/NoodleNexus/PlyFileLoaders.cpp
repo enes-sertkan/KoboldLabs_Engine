@@ -49,10 +49,6 @@ bool ReadPlyModelFromFile_xyz_ci(s3DFileData& allFileInfo)
     };
 
 
-    // 
-//    std::cout << numberOfVertices << std::endl;
-//    std::cout << numberOfTriangles << std::endl;
-
     //property float x
     //property float y
     //property float z
@@ -74,7 +70,10 @@ bool ReadPlyModelFromFile_xyz_ci(s3DFileData& allFileInfo)
     //};
 
     // Load the data from the file
-//    sPlyVertex* pPlyVertices = new sPlyVertex[numberOfVertices];
+    // 
+    // 
+    // 
+
     allFileInfo.pPlyVertices = new sPlyVertex[allFileInfo.numberOfVertices];
 
     // end_header
