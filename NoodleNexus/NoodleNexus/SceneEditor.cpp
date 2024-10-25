@@ -19,13 +19,16 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
     object->mesh->bDoNotLight = true;
     object->mesh->bOverrideObjectColour = true;
     object->mesh->objectColourRGBA = glm::vec4(0, 1.f, 0, 1.f);
-    object->mesh->uniformScale = 1.f;
+    object->mesh->uniformScale = 5.f;
     object->mesh->modelFileName = modelInfo.meshPath;
+    object->mesh->bIsWireframe = true;
 
     selectBox = object;
     scene->sceneObjects.push_back(selectBox);
 
     window = currentWindow;
+
+    PickFirstObject();
 
  
 
@@ -42,7 +45,6 @@ void SceneEditor::Update()
 void SceneEditor::UpdateSelectBox()
 {
     selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
-    selectBox->mesh->uniformScale = selectedObject->startTranform->scale.x;
     selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
 
 }

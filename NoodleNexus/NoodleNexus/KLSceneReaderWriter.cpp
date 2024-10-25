@@ -292,13 +292,13 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
             myfile << "<Model-> " << object->mesh->modelFileName << "\n";
-            myfile << "<Position-> " << object->mesh->positionXYZ.x << " "
-                << object->mesh->positionXYZ.y << " "
-                << object->mesh->positionXYZ.z << "\n";
-            myfile << "<Rotation-> " << object->mesh->rotationEulerXYZ.x << " "
-                << object->mesh->rotationEulerXYZ.y << " "
-                << object->mesh->rotationEulerXYZ.z << "\n";
-            myfile << "<Scale-> " << object->mesh->uniformScale << "\n";
+            myfile << "<Position-> " << object->startTranform->position.x << " "
+                << object->startTranform->position.y << " "
+                << object->startTranform->position.z << "\n";
+            myfile << "<Rotation-> " << object->startTranform->rotation.x << " "
+                << object->startTranform->rotation.y << " "
+                << object->startTranform->rotation.z << "\n";
+            myfile << "<Scale-> " << object->startTranform->scale.x << "\n";
             myfile << "<Visibility-> " << (object->mesh->bIsVisible ? "true" : "false") << "\n";
             myfile << "<Shading-> " << (object->mesh->bDoNotLight ? "true" : "false") << "\n";
             if (object->mesh->bOverrideObjectColour) {

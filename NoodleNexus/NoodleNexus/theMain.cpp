@@ -478,16 +478,16 @@ int main(void)
 
 
 
-    modelInfo.modelName = "cube";
+    modelInfo.modelName = "Ship1";
     modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
         // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "cube2.txt", "XYZNUV");
+    fileManager.WriteModelFile(&modelInfo, "Ship1.txt", "XYZNUV");
 
 
-    modelInfo.modelName = "bunny";
+    modelInfo.modelName = "Ship2";
     modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "bunny.txt", "XYZNUV");
+    fileManager.WriteModelFile(&modelInfo, "Ship2.txt", "XYZNUV");
 
     modelInfo.modelName = "Battleship_Big";
     modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
@@ -645,10 +645,10 @@ int main(void)
         sceneEditor->Update();
 
 
-        for (unsigned int meshIndex = 0; meshIndex != ::g_vecMeshesToDraw.size(); meshIndex++)
+        for (Object* object:scene->sceneObjects)
         {
             //            sMesh* pCurMesh = ::g_myMeshes[meshIndex];
-            sMesh* pCurMesh = ::g_vecMeshesToDraw[meshIndex];
+            sMesh* pCurMesh = object->mesh;
 
             DrawMesh(pCurMesh, program);
 
