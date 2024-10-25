@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <iostream>
-#include "KLFileManager.hpp" 
+#include "KLFileManager.hpp"
 
 void PrintModelFileError(int errorCode, bool isRead)
 {
@@ -12,21 +12,20 @@ void PrintModelFileError(int errorCode, bool isRead)
         std::cout << "ModelFile writing ERROR #" << errorCode << std::endl;
 }
 
-sModelDrawInfo ReadModelFile(const std::string& filePath)
+sModelDrawInfo KLFileManager::ReadModelFile(const std::string& filePath)
 {
     std::ifstream modelFile(filePath);
-    std::string token = "";
+    std::string token;
 
     sModelDrawInfo modelInfo;
 
     if (!modelFile.is_open())
     {
         PrintModelFileError(1, true);
-        return modelInfo; 
+        return modelInfo;
     }
 
     modelFile >> token;
-
     if (token != "<KoboldLabs>")
     {
         PrintModelFileError(2, true);
@@ -37,37 +36,67 @@ sModelDrawInfo ReadModelFile(const std::string& filePath)
     while (token != "<ModelFile>" && !modelFile.eof())
     {
         modelFile >> token;
-    };
+    }
 
     // Read until we find the <name> tag
     while (token != "<name>" && !modelFile.eof())
     {
         modelFile >> token;
-    };
-
-    if (modelFile.eof())
-    {
-        PrintModelFileError(3, true);
-        return modelInfo;
     }
 
-    modelFile >> modelInfo.modelName;
+    if (!modelFile.eof())
+    {
+        modelFile >> modelInfo.modelName;  // Read the model name
+    }
 
     // Read until we find the <filePath> tag
     while (token != "<filePath>" && !modelFile.eof())
     {
         modelFile >> token;
-    };
+    }
 
     if (!modelFile.eof())
     {
-        modelFile >> modelInfo.meshPath;
+        modelFile >> modelInfo.meshPath;  // Read the file path
     }
 
+    modelFile.close();  // Always good practice to close files
     return modelInfo;
 }
 
-//void WriteModelFile(sModelDrawInfo* model)
-//{
-//
-//}
+void AddLineToModelFile(std::ofstream& myfile, const std::string& line)
+{
+    if (myfile.is_open())
+    {
+        myfile << line << "\n";
+    }
+    else
+    {
+        std::cout << "Unable to open file" << std::endl;
+    }
+}
+
+void KLFileManager::WriteModelFile(const sModelDrawInfo* model)
+{
+    // Open the file in truncation mode to overwrite the previous content
+    std::ofstream myfile("SaveModels.txt", std::ios::trunc);
+
+    if (myfile.is_open())
+    {
+        myfile << "<KoboldLabs>\n";
+        myfile << "<ModelFile>\n";
+
+        // Add spaces or newlines to make it more readable
+        myfile << "<name> " << model->modelName << "\n";     // Added space after tag
+        myfile << "<filePath> " << model->meshPath << "\n";  // Added space after tag
+
+        myfile << "</ModelFile>\n";
+        myfile << "</KoboldLabs>\n";
+
+        myfile.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file" << std::endl;
+    }
+}

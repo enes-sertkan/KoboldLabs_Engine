@@ -1,0 +1,6 @@
+<KoboldLabs>
+<ModelFile>
+<name> BlockModel
+<filePath> /assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply
+</ModelFile>
+</KoboldLabs>

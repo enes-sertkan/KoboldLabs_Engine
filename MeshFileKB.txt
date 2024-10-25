@@ -1,4 +1,4 @@
 <KoboldLabs>
-<MeshFile>
+<ModelFile>
 <name> name
 <filePath> /assets/models/block.ply
