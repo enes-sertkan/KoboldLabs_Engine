@@ -8,6 +8,7 @@
 #include "GLCommon.h"
 #include <iostream>
 #include "sharedThings.h"
+#include "Action.h"
 //This is a class bc we gonna have functions in it later
 class Scene
 {
@@ -17,14 +18,18 @@ public:
 
 	std::vector<Object*> sceneObjects;
 
+	std::vector<Action*> actions;
+
 	cLightManager* lightManager;
+
+	
 
 	void Update();
 
 	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes);
 
 	
-
+	void AddActionToObj(Action* action, Object* object);
 
 	
 };

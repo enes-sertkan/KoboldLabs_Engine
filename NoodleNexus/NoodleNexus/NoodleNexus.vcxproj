@@ -157,6 +157,7 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />
     <ClInclude Include="cLightHelper\cLightHelper.h" />

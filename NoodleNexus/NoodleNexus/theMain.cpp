@@ -3,6 +3,7 @@
 //
 //#define GLFW_INCLUDE_NONE
 //#include <GLFW/glfw3.h>
+#include "Action.h"
 #include "GLCommon.h"
 
 //#include "linmath.h"
@@ -553,8 +554,12 @@ int main(void)
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
 
+    MoveForward* action = new MoveForward();
 
+    scene->AddActionToObj(action, scene->sceneObjects[0]);
 
+    MoveForward* action2 = new MoveForward();
+    scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
 
     PreparePhysics();
@@ -643,7 +648,7 @@ int main(void)
         //for (unsigned int meshIndex = 0; meshIndex != ::g_NumberOfMeshesToDraw; meshIndex++)
 
         sceneEditor->Update();
-
+        scene->Update();
 
         for (Object* object:scene->sceneObjects)
         {

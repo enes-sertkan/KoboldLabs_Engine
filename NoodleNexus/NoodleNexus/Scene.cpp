@@ -40,5 +40,24 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
 
 }
 
+void Scene::Update()
+{
+    //for (Object* obj : sceneObjects)
+    //{
+    //    obj->Update();
+    //}
+
+    for (Action* action : actions)
+    {
+        action->Update();
+    }
+
+}
+
+void Scene::AddActionToObj(Action* action, Object* object)
+{
+    action->object = object;
+    actions.push_back(action);
+}
 
 

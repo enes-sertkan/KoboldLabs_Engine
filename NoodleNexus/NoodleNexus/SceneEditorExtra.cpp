@@ -55,7 +55,7 @@ bool isShftDown(GLFWwindow* window)
 void SceneEditor::HandleInputAsync(GLFWwindow* window)
 {
 
-    float speed = 0.5;
+    float speed = 1;
 
     //is shift, triple the speed, if not make it 0.5
 
