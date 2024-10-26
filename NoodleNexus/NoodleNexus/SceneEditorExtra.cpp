@@ -18,13 +18,34 @@ enum TransformMode
     ScaleX
 };
 
+enum LightModes
+{
+    LightPosition,
+    Diffuse,
+    Specular,
+    Atten,
+    Param1,
+    Param2
+};
+
 // Current mode initialized to Position
 TransformMode currentTransform = Position;
+LightModes currentLightMode = LightPosition;
 
 bool isControlD(GLFWwindow* window)
 {
     if ((glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) ||
         (glfwGetKey(window, GLFW_KEY_RIGHT_CONTROL) == GLFW_PRESS))
+    {
+        return true;
+    }
+    return false;
+}
+
+bool isShftDown(GLFWwindow* window)
+{
+    if ((glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) ||
+        (glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS))
     {
         return true;
     }
@@ -95,13 +116,13 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
                 selectedObject->startTranform->position.x += speed;
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                selectedObject->startTranform->position.x -= 0.5f;
+                selectedObject->startTranform->position.x -= speed;
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                    selectedObject->startTranform->position.y += 0.5f;
+                    selectedObject->startTranform->position.y += speed;
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                    selectedObject->startTranform->position.y -= 0.5f;
+                    selectedObject->startTranform->position.y -= speed;
             }
         }
         else if (currentTransform == Rotation)
@@ -141,40 +162,122 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
     if (editMode == "Lights")
     {
-
         if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         {
             currentFrameTime = glfwGetTime();
             double deltaTime = currentFrameTime - lastFrameTime;
             lastFrameTime = currentFrameTime;
 
-            // std::cout<< deltaTime<<std::endl;
             if (deltaTime > 0.36f)
             {
                 PickNextLight();
             }
-
         }
 
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-            selectedLight->position.z += 0.5f;
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-            selectedLight->position.z -= 0.5f;
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            selectedLight->position.x += 0.5f;
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-            selectedLight->position.x -= 0.5f;
-        if (isControlD(window))
+        // Toggle light editing mode with keys 1-7
+        if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) currentLightMode = LightPosition;
+        if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) currentLightMode = Diffuse;
+        if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) currentLightMode = Specular;
+        if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS) currentLightMode = Atten;
+        if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) currentLightMode = Param1;
+        if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) currentLightMode = Param2;
+
+        // Based on the currentLightMode, adjust the corresponding property
+        switch (currentLightMode)
         {
+        case Position:
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->position.y += 0.5f;
+                selectedLight->position.z += 0.5f;
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->position.y -= 0.5f;
+                selectedLight->position.z -= 0.5f;
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                selectedLight->position.x += 0.5f;
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                selectedLight->position.x -= 0.5f;
+
+            // Y-axis controls with Control key
+            if (isControlD(window))
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->position.y += 0.5f;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->position.y -= 0.5f;
+            }
+            break;
+
+        case Diffuse:
+            // Increase or decrease diffuse color values
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                selectedLight->diffuse.y += 0.01f; // Adjusting the Y channel
+            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                selectedLight->diffuse.y -= 0.01f;
+
+            if (isControlD(window))
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->diffuse.z += 0.01f; // Adjusting the Z channel
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->diffuse.z -= 0.01f;
+            }
+            break;
+
+        case Specular:
+            // Adjust specular color and power
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                selectedLight->specular.w += 0.1f; // Power
+            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                selectedLight->specular.w -= 0.1f;
+
+            if (isControlD(window))
+            {
+                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                    selectedLight->specular.x -= 0.01f; // Adjusting the X channel
+                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                    selectedLight->specular.x += 0.01f;
+            }
+            break;
+
+        case Atten:
+            // Adjust attenuation
+            if (isShftDown(window)) {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->atten.y *= 0.99f; // Linear
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->atten.y *= 1.01f;
+
+                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                    selectedLight->atten.z *= 0.99f; // Quadratic
+                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                    selectedLight->atten.z *= 1.01f;
+            }
+            break;
+
+        case Param1:
+            // Adjust param1 values
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                selectedLight->param1.y += 0.1f; // Inner angle
+            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                selectedLight->param1.y -= 0.1f;
+
+            if (isControlD(window))
+            {
+                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                    selectedLight->param1.z -= 0.1f; // Outer angle
+                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                    selectedLight->param1.z += 0.1f;
+            }
+            break;
+
+        case Param2:
+            // Toggle on/off for the light
+            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                selectedLight->param2.x = 1.0f; // Turn on
+            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                selectedLight->param2.x = 0.0f; // Turn off
+            break;
         }
-
-
-
     }
+
 
 }
 

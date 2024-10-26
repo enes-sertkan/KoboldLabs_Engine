@@ -72,3 +72,89 @@ An example of how scene information might appear in the save file:
     <!-- Additional objects here -->
 </Scene>
 ```
+
+# Light Editing in Scene Editor
+
+This document provides instructions on how to use the light editing functionality within the scene editor. The controls allow users to modify various properties of the lights in the scene dynamically.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Controls](#controls)
+- [Light Properties](#light-properties)
+- [Tips and Tricks](#tips-and-tricks)
+
+## Overview
+
+In the scene editor, users can edit different light properties such as position, diffuse color, specular color, attenuation, direction, and other parameters. The editing mode can be toggled and adjusted using keyboard shortcuts.
+
+## Controls
+
+1. **Toggle Light Editing Mode:**
+
+   - Press **`P`** to pick the next light in the scene.
+
+2. **Select Light Property to Edit:**
+
+   - Press **`Z`** to edit **Position**.
+   - Press **`X`** to edit **Diffuse Color**.
+   - Press **`C`** to edit **Specular Color**.
+   - Press **`V`** to edit **Attenuation**.
+   - Press **`B`** to edit **Param1** (Inner and Outer angles).
+   - Press **`N`** to edit **Param2** (Toggle on/off).
+
+3. **Edit Light Properties:**
+
+   - **Position**: Use the arrow keys to move the light.
+
+     - Up/Down: Move along the Z-axis.
+     - Left/Right: Move along the X-axis.
+     - Hold **Control** to move along the Y-axis.
+
+   - **Diffuse Color**: Adjust the Y and Z channels using the Up/Down arrow keys.
+
+     - Hold **Control** to adjust the Z channel (color component).
+
+   - **Specular Color**: Adjust the power (W channel) using Up/Down keys.
+
+     - Use Left/Right to adjust the X channel (color component) while holding **Control**.
+
+   - **Attenuation**:
+
+     - Hold **Shift** while pressing:
+       - **UP**: Decrease linear attenuation (Y).
+       - **DOWN**: Increase linear attenuation (Y).
+       - **RIGHT**: Decrease quadratic attenuation (Z).
+       - **LEFT**: Increase quadratic attenuation (Z).
+
+   - **Param1**:
+
+     - Adjust the inner angle (Y) using Up/Down keys.
+     - Use Left/Right to adjust the outer angle (Z) while holding **Control**.
+
+   - **Param2**:
+     - Up arrow key to turn on the light.
+     - Down arrow key to turn off the light.
+
+## Light Properties
+
+- **Position**: The position of the light in 3D space defined by `glm::vec4 position`.
+- **Diffuse Color**: The diffuse color of the light, which affects the color seen on surfaces, defined by `glm::vec4 diffuse`.
+- **Specular Color**: The color and power of highlights on surfaces defined by `glm::vec4 specular`.
+- **Attenuation**: Controls how the light intensity diminishes over distance, defined by `glm::vec4 atten`.
+  - X: Constant attenuation
+  - Y: Linear attenuation
+  - Z: Quadratic attenuation
+- **Direction**: The direction of the light for spot and directional lights, defined by `glm::vec4 direction`.
+- **Param1**: Contains parameters such as light type and angles for spotlights, defined by `glm::vec4 param1`.
+- **Param2**: Used for toggling the light on or off, defined by `glm::vec4 param2`.
+
+## Tips and Tricks
+
+- Ensure the selected light is visible in the scene to see the effects of your changes.
+- Use control and shift modifiers for more precise adjustments.
+- Experiment with different combinations of adjustments to get the desired lighting effect in your scene.
+
+## Conclusion
+
+This functionality allows for a rich and interactive light editing experience in your scene editor, enabling fine-tuning of light properties on the fly. Happy editing!
