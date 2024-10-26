@@ -33,10 +33,17 @@ bool isControlD(GLFWwindow* window)
 
 void SceneEditor::HandleInputAsync(GLFWwindow* window)
 {
-
     if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
     {
-        PickNextObject();
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        // std::cout<< deltaTime<<std::endl;
+        if (deltaTime > 0.36f)
+        {
+            PickNextObject();
+        }
 
     }
     // Toggle transformation mode based on key press

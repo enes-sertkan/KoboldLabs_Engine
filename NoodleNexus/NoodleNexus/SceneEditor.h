@@ -25,15 +25,30 @@ public:
 
 	int objIndex=0;
 
+	double currentFrameTime, lastFrameTime;
+
 	Object* selectBox;
+
+	cLightManager::sLight* PickFirstLight();
+
+
+		cLightManager::sLight* PickNextLight();
+
 
 	bool isEditing;
 
 	GLFWwindow* window = nullptr;
 
 
+	std::string editMode;
+
+
 	void Update();
 
+	cLightManager::sLight* selectedLight;
+	int lightIndex=0;
+
+	cLightManager lightManager;
 	
 	void HandleInputAsync(GLFWwindow* window);
 
@@ -42,6 +57,8 @@ public:
 
 	Object* PickFirstObject();
 	Object* PickNextObject();
+
+	void ChangeMode(std::string mode);
 
 private:
 	void UpdateSelectBox();
