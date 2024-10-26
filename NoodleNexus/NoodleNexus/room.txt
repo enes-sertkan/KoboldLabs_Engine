@@ -15,7 +15,7 @@ assets/models/Cube_xyz_n_uv.ply
 <Rotation-> 4 5 6
 <Scale-> 0.1
 <Visibility-> true
-<Shading-> true
+<Shading-> false
 <Color-> 1 0 0
 <--Object>
 
@@ -26,7 +26,7 @@ assets/models/Cube_xyz_n_uv.ply
 <Rotation-> 0 0 0
 <Scale-> 0.1
 <Visibility-> true
-<Shading-> true
+<Shading-> false
 <Color-> 0 1 0
 <--Object>
 

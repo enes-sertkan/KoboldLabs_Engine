@@ -17,7 +17,7 @@ selectBox.txt
 <Rotation-> 4 5 6
 <Scale-> 0.1 1 1
 <Visibility-> true
-<Shading-> false
+<Shading-> true
 <Color-> 1 0 0
 <--Object>
 
@@ -28,7 +28,7 @@ selectBox.txt
 <Rotation-> 0 0 0
 <Scale-> 0.1 1 1
 <Visibility> true
-<Shading-> false
+<Shading-> true
 <Color-> 0 1 0
 <--Object>
 

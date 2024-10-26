@@ -31,7 +31,7 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
     editMode = "Objects";
 
     PickFirstObject();
-
+    PickFirstLight();
  
 
 }
@@ -39,6 +39,9 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
 void SceneEditor::ChangeMode(std::string mode)
 {
     editMode = mode;
+
+    if (mode == "Lights")
+        PickFirstLight();
 }
 
 void SceneEditor::Update()
@@ -51,8 +54,16 @@ void SceneEditor::Update()
 
 void SceneEditor::UpdateSelectBox()
 {
-    selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
-    selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+    if (editMode == "Objects")
+    {
+        selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
+        selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+    }
+    if (editMode == "Lights")
+    {
+        selectBox->mesh->positionXYZ = selectedLight->position;
+        selectBox->mesh->rotationEulerXYZ = glm::vec3(0, 0, 0);
+    }
 
 }
 
@@ -74,6 +85,7 @@ cLightManager::sLight* SceneEditor::PickNextLight()
 
         return selectedLight;
 }
+
 
 
 Object* SceneEditor::PickFirstObject()
