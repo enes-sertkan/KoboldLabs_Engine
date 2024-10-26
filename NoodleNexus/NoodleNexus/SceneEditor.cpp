@@ -7,7 +7,7 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
 {
     scene = currentScene;
 	sModelDrawInfo modelInfo = klFileManger.ReadModelFile(selectBoxPath);
-   
+
     Object* object = new Object();
     object->mesh = new sMesh();
 
@@ -25,13 +25,20 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
 
     selectBox = object;
     scene->sceneObjects.push_back(selectBox);
-
+    lastFrameTime = glfwGetTime();
     window = currentWindow;
+
+    editMode = "Objects";
 
     PickFirstObject();
 
  
 
+}
+
+void SceneEditor::ChangeMode(std::string mode)
+{
+    editMode = mode;
 }
 
 void SceneEditor::Update()
@@ -47,6 +54,25 @@ void SceneEditor::UpdateSelectBox()
     selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
     selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
 
+}
+
+
+cLightManager::sLight* SceneEditor::PickFirstLight()
+{
+    
+    lightIndex = 0;
+    selectedLight = &scene->lightManager->theLights[0];
+    return selectedLight;
+}
+
+cLightManager::sLight* SceneEditor::PickNextLight()
+{
+    if (lightIndex >= 19) lightIndex = -1; //THIS MIGHT NEED CHANGING OR MIGHT EXPLODE
+    
+    lightIndex++;
+        selectedLight = &scene->lightManager->theLights[lightIndex];  
+
+        return selectedLight;
 }
 
 
@@ -66,6 +92,10 @@ Object* SceneEditor::PickNextObject()
 
 
     objIndex++;
+    if (selectBox == scene->sceneObjects[objIndex])
+    {
+        return PickNextObject();
+    }
     selectedObject = scene->sceneObjects[objIndex];
 
 
