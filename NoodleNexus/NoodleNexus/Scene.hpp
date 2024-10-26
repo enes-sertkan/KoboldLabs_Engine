@@ -9,6 +9,8 @@
 #include <iostream>
 #include "sharedThings.h"
 #include "Action.h"
+#include "Transform.h"
+#include "cBasicFlyCamera/cBasicFlyCamera.h"
 //This is a class bc we gonna have functions in it later
 class Scene
 {
@@ -23,8 +25,14 @@ public:
 	cLightManager* lightManager;
 
 	std::vector<std::string> modelPaths;
-
+	std::vector<Transform*> cameraPositions;
+	void MoveCameraToPoint();
+	void SetCameraToNextPoint();
+	void SetCameraToFirstPoint();
+	void NextCameraPoint();
 	
+	int currentCameraIndex=0;
+
 
 	void Update();
 

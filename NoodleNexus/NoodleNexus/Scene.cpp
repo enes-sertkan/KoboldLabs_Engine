@@ -38,6 +38,8 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
         CreateMeshObjects(meshes, object->mesh);
     }
 
+    
+
 }
 
 void Scene::Update()
@@ -46,6 +48,7 @@ void Scene::Update()
     //{
     //    obj->Update();
     //}
+    MoveCameraToPoint();
 
     for (Action* action : actions)
     {
@@ -60,4 +63,33 @@ void Scene::AddActionToObj(Action* action, Object* object)
     actions.push_back(action);
 }
 
+void Scene::MoveCameraToPoint()
+{
+    if (cameraPositions.size() == 0) return;
+   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPositions[currentCameraIndex]->position, 10.f);
+   g_pFlyCamera->setEyeLocation(newPos);
+}
 
+void Scene::SetCameraToNextPoint()
+{
+    if (cameraPositions.size() == 0) return;
+
+    if (currentCameraIndex >= cameraPositions.size() - 1) currentCameraIndex = -1;
+    currentCameraIndex++;
+
+    g_pFlyCamera->setEyeLocation(cameraPositions[currentCameraIndex]->position);
+}
+
+void Scene::SetCameraToFirstPoint()
+{
+    if (cameraPositions.size() == 0) return;
+    g_pFlyCamera->setEyeLocation(cameraPositions[1]->position);
+}
+
+void Scene::NextCameraPoint()
+{
+      if (cameraPositions.size() == 0) return;
+
+    if (currentCameraIndex >= cameraPositions.size() - 1) currentCameraIndex = -1;
+    currentCameraIndex++;
+}

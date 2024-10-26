@@ -249,13 +249,22 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
             std::cout << "Light " << light.position.x <<" " << light.position.y<<" "<< light.position.z<< " loaded." << std::endl;
         }
 
-     
+        if (token == "<Camera-->")
         //LOAD OBJECT FILE
+        {
 
-     
+            Transform* cameraTransform = new Transform();
+            while (token != "<--Camera>")
+            {
+                sceneFile >> token;
 
-       
+                if (token == "<Position->")   cameraTransform->position = LoadVector3Data(sceneFile);
+                if (token == "<Rotation->")  cameraTransform->rotation = LoadVector3Data(sceneFile);
+            }
 
+            scene->cameraPositions.push_back(cameraTransform);
+
+        }
     }
 
 

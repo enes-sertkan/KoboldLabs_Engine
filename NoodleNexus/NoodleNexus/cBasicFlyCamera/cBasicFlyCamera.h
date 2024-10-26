@@ -11,6 +11,7 @@ public:
 
 	void setEyeLocation(glm::vec3 newEyeLocation);
 	void setEyeLocation(float newX, float newY, float newZ);
+	void setEyeTarget(glm::vec3 newEyeTarget);
 
 	glm::vec3 getEyeLocation(void);
 	glm::vec3 getTargetLocation(void);

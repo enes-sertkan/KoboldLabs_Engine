@@ -78,6 +78,33 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         std::cout << "Light Mode." << std::endl;
     }
 
+    if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            scene->SetCameraToNextPoint();
+        }
+     
+    }
+    if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            scene->NextCameraPoint();
+        }
+
+    }
+
+
+
     if (editMode == "Objects")
     {
         if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
@@ -178,6 +205,8 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                 PickNextLight();
             }
         }
+
+  
 
         // Toggle light editing mode with keys 1-7
         if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) currentLightMode = LightPosition;

@@ -33,6 +33,16 @@ void cBasicFlyCamera::setEyeLocation(glm::vec3 newEyeLocation)
 	return;
 }
 
+void cBasicFlyCamera::setEyeTarget(glm::vec3 newEyeTarget)
+{
+	this->m_target= newEyeTarget;
+
+	// When we update the eye (location), we will also need to update the "target"
+	// But we are going to do this when we call getTargetLocation()
+	return;
+}
+
+
 void cBasicFlyCamera::setEyeLocation(float newX, float newY, float newZ)
 {
 	this->setEyeLocation(glm::vec3(newX, newY, newZ));
