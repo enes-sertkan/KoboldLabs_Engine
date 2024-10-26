@@ -22,6 +22,8 @@ public:
 
 	cLightManager* lightManager;
 
+	std::vector<std::string> modelPaths;
+
 	
 
 	void Update();

@@ -3,10 +3,10 @@
 #include "cVAOManager/cVAOManager.h"
 
 
-void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene)
+void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene)
 {
     scene = currentScene;
-	sModelDrawInfo modelInfo = klFileManger.ReadModelFile(selectBoxPath);
+	sModelDrawInfo modelInfo = klFileManger->ReadModelFile(selectBoxPath);
 
     Object* object = new Object();
     object->mesh = new sMesh();
@@ -32,6 +32,8 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager klFileManger, G
 
     PickFirstObject();
     PickFirstLight();
+
+    fileManger = klFileManger;
  
 
 }

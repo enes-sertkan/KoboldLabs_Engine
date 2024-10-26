@@ -247,7 +247,7 @@ glm::mat4 matProjection = glm::mat4(1.0f);
 matProjection = glm::perspective(0.6f,           // FOV
     ratio,          // Aspect ratio of screen
     0.1f,           // Near plane
-    1000.0f);       // Far plane
+    1000000.0f);       // Far plane
 
 // View or "camera"
 glm::mat4 matView = glm::mat4(1.0f);
@@ -472,7 +472,7 @@ void UpdateWindowTitle(GLFWwindow* window)
 int main(void)
 {
     // Instantiate KLFileManager
-    KLFileManager fileManager;
+    KLFileManager* fileManager = new KLFileManager();
 
     // Create an sModelDrawInfo object for testing
     sModelDrawInfo modelInfo;
@@ -480,43 +480,82 @@ int main(void)
 
 
     modelInfo.modelName = "Ship1";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
         // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "Ship1.txt", "XYZNUV");
-
+    fileManager->WriteModelFile(&modelInfo, "Ship1.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship2";
     modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "Ship2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "Ship2.txt", "XYZNUV");
 
-    modelInfo.modelName = "Battleship_Big";
+    modelInfo.modelName = "Ship3";
     modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "Ship3.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship4";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship4.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship5";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship5.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship6";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship6.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship7";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship7.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship8";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship8.txt", "XYZNUV");
+
+    modelInfo.modelName = "Ship9";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Ship9.txt", "XYZNUV");
+
+    modelInfo.modelName = "enemyShip";
+    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "enemyShip.txt", "XYZNUV");
+
+    modelInfo.modelName = "Battleship_Big";
+    modelInfo.meshPath = "assets/models/BS_Ship1_Res2_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager.WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
 
 
 
 
     // Read the model from the file (assuming the file exists)
    // Read the model from the file (assuming the file exists)
-    sModelDrawInfo readModel = fileManager.ReadModelFile("bunny.txt");
+    sModelDrawInfo readModel = fileManager->ReadModelFile("bunny.txt");
 
     // Output the result to verify the correct reading
     std::cout << "Model Name: " << readModel.modelName << std::endl;
     std::cout << "Mesh Path: " << readModel.meshPath << std::endl;
 
     // Read the scene from the file (assuming the file exists)
-    Scene* scene = fileManager.ReadSceneFile("SaveScene.txt");
+    Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
 
 
 
-    fileManager.WriteSceneFile(scene, "room.txt");
+   
 
 
 
@@ -554,12 +593,12 @@ int main(void)
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
 
-    MoveForward* action = new MoveForward();
+    //MoveForward* action = new MoveForward();
 
-    scene->AddActionToObj(action, scene->sceneObjects[0]);
+    //scene->AddActionToObj(action, scene->sceneObjects[0]);
 
-    MoveForward* action2 = new MoveForward();
-    scene->AddActionToObj(action2, scene->sceneObjects[1]);
+    //MoveForward* action2 = new MoveForward();
+    //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
 
     PreparePhysics();

@@ -1,0 +1,66 @@
+<KoboldLabs>
+<SceneFile>
+<ObjectLoad-->
+Ship1.txt
+Ship2.txt
+Battleship_Big.txt
+selectBox.txt
+<--ObjectLoad>
+
+<Scene-->
+<Object-->
+<Name-> Ship1
+<Model-> Ship1
+<Position-> 0 0 0
+<Rotation-> 4 5 6
+<Scale-> 0.1
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Ship2
+<Model-> Ship2
+<Position-> -25 0 0
+<Rotation-> 0 0 0
+<Scale-> 0.1
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> SelectBox
+<Model-> SelectBox
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Light-->
+<Position-> -15 30 -2.56 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.01 0.001 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 2 2 2 1
+<Diffuse-> 0.8 0.8 0.8 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.07 0.017 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<--Scene>
+</SceneFile>
+</KoboldLabs>

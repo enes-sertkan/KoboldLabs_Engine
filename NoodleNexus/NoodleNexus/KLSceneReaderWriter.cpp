@@ -122,7 +122,8 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
             PrintSceneFileError(4, true);
           return nullptr;
         }
-           
+        std::string path = token;
+        scene->modelPaths.push_back(path);
          //filepath to objfile
         scene->modelInfos.push_back(ReadModelFile(token)); //we load the file(pls DO  OT USE SPACES IN THE PATH FOR NOW
         //TODO: FIX THE THING WITH SPACES
@@ -278,9 +279,9 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
         myfile << "<ObjectLoad-->\n";
 
         // Write model files
-        for (size_t i = 0; i < scene->modelInfos.size(); ++i) {
-            const sModelDrawInfo& modelInfo = scene->modelInfos[i];
-            myfile << modelInfo.meshPath << "\n";
+        for (std::string path : scene->modelPaths)
+        {
+            myfile << path << "\n";
         }
         myfile << "<--ObjectLoad>\n\n";
 
@@ -291,16 +292,19 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
             Object* object = scene->sceneObjects[j];
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
-            myfile << "<Model-> " << object->mesh->modelFileName << "\n";
+            myfile << "<Model-> " << object->mesh->uniqueFriendlyName << "\n";
             myfile << "<Position-> " << object->startTranform->position.x << " "
                 << object->startTranform->position.y << " "
                 << object->startTranform->position.z << "\n";
             myfile << "<Rotation-> " << object->startTranform->rotation.x << " "
                 << object->startTranform->rotation.y << " "
                 << object->startTranform->rotation.z << "\n";
-            myfile << "<Scale-> " << object->startTranform->scale.x << "\n";
+            myfile << "<Scale-> " << 
+                object->startTranform->scale.x << " " << 
+                object->startTranform->scale.y << " " <<
+                object->startTranform->scale.z << "\n";
             myfile << "<Visibility-> " << (object->mesh->bIsVisible ? "true" : "false") << "\n";
-            myfile << "<Shading-> " << (object->mesh->bDoNotLight ? "true" : "false") << "\n";
+            myfile << "<Shading-> " << (!object->mesh->bDoNotLight ? "true" : "false") << "\n";
             if (object->mesh->bOverrideObjectColour) {
                 myfile << "<Color-> "
                     << object->mesh->objectColourRGBA.r << " "

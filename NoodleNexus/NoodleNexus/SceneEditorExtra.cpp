@@ -4,11 +4,14 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <iostream>
+#include <fstream>
+#include <vector>
 
 #include "sharedThings.h"   // The camera, etc.
 #include "sMesh.h"
 
 #include "cLightManager.h"
+#include "KLFileManager.hpp";
 
 // Possible transformation parameters
 enum TransformMode
@@ -31,6 +34,8 @@ enum LightModes
 // Current mode initialized to Position
 TransformMode currentTransform = Position;
 LightModes currentLightMode = LightPosition;
+
+
 
 bool isControlD(GLFWwindow* window)
 {
@@ -277,11 +282,18 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             break;
         }
     }
+    if (isControlD)
+    {
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+            SaveScene("SaveScene.txt");
+    }
 
 
 }
 
-void SaveScene(std::string name)
+void SceneEditor::SaveScene(std::string name)
 {
-    // Implementation for saving the scene (if needed)
+    fileManger->WriteSceneFile(scene, name);
+        
 }
+

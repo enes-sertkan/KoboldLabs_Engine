@@ -16,9 +16,9 @@
 class SceneEditor
 {
 public:
-	void Start(std::string selectBoxPath, KLFileManager klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene);
+	void Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene);
 
-
+	KLFileManager* fileManger = nullptr;
 	Scene* scene = nullptr; //Current scene
 
 	Object* selectedObject = nullptr;
