@@ -1,6 +1,10 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
+EngineLight1.txt
+EngineLight2.txt
+EngineLight3.txt
+EngineLight4.txt
 Ship1.txt
 Ship2.txt
 Ship3.txt
@@ -10,6 +14,12 @@ Ship6.txt
 Ship7.txt
 Ship8.txt
 Ship9.txt
+OldViper.txt
+NewViper.txt
+EnemyShip.txt
+EnemyShip2.txt
+EnemyShip3.txt
+EnemyShip4.txt
 Battleship_Big.txt
 selectBox.txt
 <--ObjectLoad>
@@ -20,7 +30,7 @@ selectBox.txt
 <Model-> Ship1
 <Position-> -1583 692 -5247
 <Rotation-> 163 84 -164
-<Scale-> 0.44 8.76831e-39 9.64289e-39
+<Scale-> 0.44 6.33677e-39 8.72449e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -29,9 +39,9 @@ selectBox.txt
 <Object-->
 <Name-> Ship2
 <Model-> Ship2
-<Position-> -1447 921 -5344
-<Rotation-> 163 84 -164
-<Scale-> 0.44 1.0653e-38 1.06531e-38
+<Position-> -3194 1286 -4570
+<Rotation-> -20 -46 -395
+<Scale-> 7.27007 1.01362e-38 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -40,9 +50,9 @@ selectBox.txt
 <Object-->
 <Name-> Ship3
 <Model-> Ship3
-<Position-> -1360 795 -5306
+<Position-> -1366 795 -5306
 <Rotation-> 163 84 -164
-<Scale-> 0.44 8.76831e-39 1.06531e-38
+<Scale-> 0.45 1.01362e-38 6.15309e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -51,9 +61,9 @@ selectBox.txt
 <Object-->
 <Name-> Ship4
 <Model-> Ship4
-<Position-> -1647 942 -5168
-<Rotation-> 163 84 -164
-<Scale-> 0.44 1.05612e-38 9.2755e-39
+<Position-> -1631 942 -5168
+<Rotation-> 141 84 -137
+<Scale-> 0.51 7.62235e-39 1.05612e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -62,9 +72,9 @@ selectBox.txt
 <Object-->
 <Name-> Ship5
 <Model-> Ship5
-<Position-> -1206 939 -5063
-<Rotation-> 163 84 -164
-<Scale-> 0.44 7.34697e-39 1.01939e-38
+<Position-> -3033 1285 -4455
+<Rotation-> 152 62 -182
+<Scale-> 0.57 1.0653e-38 1.06531e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -75,7 +85,7 @@ selectBox.txt
 <Model-> Ship6
 <Position-> -1260 673 -5109
 <Rotation-> 163 84 -164
-<Scale-> 0.44 8.76831e-39 5.32655e-39
+<Scale-> 0.62 8.40779e-43 9.27539e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -86,7 +96,7 @@ selectBox.txt
 <Model-> Ship7
 <Position-> -1022 793 -4982
 <Rotation-> 163 84 -164
-<Scale-> 0.44 6.97961e-39 6.15311e-39
+<Scale-> 0.55 1.1151e-38 6.15306e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -97,7 +107,7 @@ selectBox.txt
 <Model-> Ship8
 <Position-> -1634 828 -5072
 <Rotation-> 163 84 -164
-<Scale-> 0.44 1.1151e-38 9.91837e-39
+<Scale-> 0.6 1.1151e-38 1.06529e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -108,7 +118,73 @@ selectBox.txt
 <Model-> Ship9
 <Position-> -1021 664 -5459
 <Rotation-> 163 84 -164
-<Scale-> 0.44 7.25512e-39 6.33674e-39
+<Scale-> 0.61 1.1151e-38 1.00102e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> OldViper
+<Model-> OldViper
+<Position-> -1040 664 -5459
+<Rotation-> 163 84 -164
+<Scale-> 0.61 8.76831e-39 1.01021e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> NewViper
+<Model-> NewViper
+<Position-> -1387 664 -5622
+<Rotation-> 348 269 -357
+<Scale-> 10.5602 1.1151e-38 1.01021e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> EnemyShip
+<Model-> EnemyShip
+<Position-> -4618 1826 -4292
+<Rotation-> 163 84 -164
+<Scale-> 200 1.1151e-38 5.96942e-39
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> EnemyShip2
+<Model-> EnemyShip2
+<Position-> -4934 1569 -4864
+<Rotation-> 163 84 -164
+<Scale-> 200 1.1151e-38 7.80613e-39
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> EnemyShip3
+<Model-> EnemyShip3
+<Position-> -4346 1694 -4408
+<Rotation-> 163 84 -164
+<Scale-> 200 1.1151e-38 5.96931e-39
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> EnemyShip4
+<Model-> EnemyShip4
+<Position-> -5080 1662 -4025
+<Rotation-> 163 84 -164
+<Scale-> 200 1.1151e-38 7.07144e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0 1 0
@@ -119,25 +195,79 @@ selectBox.txt
 <Model-> Battleship_Big
 <Position-> -25 0 -9388
 <Rotation-> 90 0 87
-<Scale-> 0.1 1.1151e-38 7.7143e-39
+<Scale-> 0.1 1.1151e-38 2.00822
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0.45 0
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> EngineLight1
+<Model-> EngineLight1
+<Position-> 1000 0 -9388
+<Rotation-> 90 0 87
+<Scale-> 0.1 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
 <--Object>
 
 <Object-->
 <Name-> SelectBox
 <Model-> SelectBox
-<Position-> -8.03381e+08 7.79122e-43 1.4013e-45
-<Rotation-> 5.60519e-44 0 0
-<Scale-> 2.66578e+07 4.59135e-41 0
+<Position-> 5.85657e-15 6.89439e-43 1.4013e-45
+<Rotation-> 8.40779e-45 0 0
+<Scale-> 6.30747e-10 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> SelectBox
+<Model-> SelectBox
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> SelectBox
+<Model-> SelectBox
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> SelectBox
+<Model-> SelectBox
+<Position-> 9.27555e-39 9.27554e-39 1.06531e-38
+<Rotation-> 1.01938e-38 4.2246e-39 1.10204e-38
+<Scale-> 1.62551e-43 8.40779e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
 <--Object>
 
 <Light-->
-<Position-> -948.5 2717 -8573.52 1
+<Position-> 2 2 2 1
+<Diffuse-> 1000 0 -9388 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.045127 0.00791047 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> -948.5 2717 -8577.56 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 7.6419e-10 9.27593e-08 3.40282e+38

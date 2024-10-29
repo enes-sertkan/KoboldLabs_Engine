@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
-<name> Ship6
+<name> OldViper
 <filePath> assets/models/Old_vip_Res0_xyz_n_uv.ply
 <fileType> XYZNUV
 </ModelFile>

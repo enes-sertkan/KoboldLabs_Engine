@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> enemyShip
-<filePath> assets/models/Old_vip_Res2_xyz_n_uv.ply
+<name> EnemyShip
+<filePath> assets/models/CylonRaider_xyz_n_uv.ply
 <fileType> XYZNUV
 </ModelFile>
 </KoboldLabs>

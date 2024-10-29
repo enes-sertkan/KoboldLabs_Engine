@@ -511,37 +511,37 @@ int main(void)
     fileManager->WriteModelFile(&modelInfo, "Ship2.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship3";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship3.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship4";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship4.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship5";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship5.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship6";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship6.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship7";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship7.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship8";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship8.txt", "XYZNUV");
 
     modelInfo.modelName = "Ship9";
-    modelInfo.meshPath = "assets/models/Old_vip_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Ship9.txt", "XYZNUV");
 
@@ -557,7 +557,7 @@ int main(void)
 
 
     modelInfo.modelName = "Battleship_Big";
-    modelInfo.meshPath = "assets/models/BS_Ship1_Res2_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/BS_Ship1_Res0_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
 
