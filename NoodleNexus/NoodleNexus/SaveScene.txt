@@ -2,7 +2,6 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-MainShip.txt
 selectBox.txt
 <--ObjectLoad>
 
@@ -10,20 +9,20 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Position-> 5276 0 0
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 7.16327e-39 6.06123e-39
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0.6 0.3 0.4
+<Color-> 1 0 0
 <--Object>
 
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Position-> -2190 7100 7338
+<Position-> 10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.01939e-38 1.00102e-38
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -32,30 +31,19 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Position-> -6086 2100 2172
+<Position-> -10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 7.07142e-39 5.60206e-39
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> MainShip
-<Model-> MainShip
-<Position-> 0 0 -40000
-<Rotation-> 0 0 0
-<Scale-> 1 6.15311e-39 1.00102e-38
-<Visibility-> true
-<Shading-> false
+<Scale-> 1 1.1151e-38 0
+<Visibility-> false
+<Shading-> true
 <Color-> 0 1 0
 <--Object>
 
 <Light-->
-<Position-> 100000 45 -40002.4 1
-<Diffuse-> 1 11.5102 1 1
+<Position-> 0 10 0 1
+<Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
-<Atten-> 0 9.43282e-19 1.41253e-15 3.40282e+38
+<Atten-> 0 0.045127 0.00791047 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
 <Param2-> 1 0 0 0

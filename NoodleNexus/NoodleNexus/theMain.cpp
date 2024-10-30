@@ -156,6 +156,19 @@ sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
     return NULL;
 }
 
+void DrawRay(glm::vec3 pos, glm::vec3 posEnd, GLuint program)
+{
+    float distance = glm::distance(pos, posEnd);
+    glm::vec3 direction = glm::normalize(posEnd - pos);
+    glm::vec3 movingPoint=pos;
+    while (glm::distance(pos, movingPoint) < distance)
+    {
+        // Move the next ball 0.1 times the normalized camera direction
+        movingPoint += (direction * 0.10f);
+        DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
+    }
+
+}
 
 
 
@@ -651,6 +664,11 @@ int main(void)
             printf("HIT!\n");
         }
 
+        posEnd = pos;
+        posEnd.x -= 2;
+
+        DrawRay(pos, posEnd, program);
+
         for (Object* object:scene->sceneObjects)
         {
             //            sMesh* pCurMesh = ::g_myMeshes[meshIndex];
@@ -661,14 +679,8 @@ int main(void)
         }//for (unsigned int meshIndex..
 
 
-        glm::vec3 direction = glm::normalize(posEnd - pos);
-        while (glm::distance(pos, posEnd) < 150.0f)
-        {
-            // Move the next ball 0.1 times the normalized camera direction
-            pos += (direction * 0.10f);
-            DrawDebugSphere(pos, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
-        }
 
+      
         //DrawLazer(program);
 
 
