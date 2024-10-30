@@ -29,6 +29,8 @@
 #include <sstream>      // "string" stream ("string builder" in Java c#, etc.)
 #include <string>
 #include <vector>
+#include <cstdlib> // for rand()
+#include <ctime>   // for time()
 
 //void ReadPlyModelFromFile(std::string plyFileName);
 #include "PlyFileLoaders.h"
@@ -43,7 +45,7 @@
 #include "KLFileManager.hpp"
 #include "PhysicsManager.h"
 #include "SceneEditor.h"
-
+#include "scene.hpp"
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -56,7 +58,9 @@ void AddModelsToScene(void);
 
 void DrawMesh(sMesh* pCurMesh, GLuint program);
 
+void CalculateDeltaTime();
 
+double currentTime = 0.0, lastTime = glfwGetTime(), deltaTime = 0.0;
 
 static void error_callback(int error, const char* description)
 {
@@ -488,6 +492,75 @@ void UpdateWindowTitle(GLFWwindow* window)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
+// Function to spawn asteroids
+void SpawnAsteroid(Scene* scene) {
+    // Random seed for better randomness
+    static bool seedInitialized = false;
+    if (!seedInitialized) {
+        std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed random number generator
+        seedInitialized = true;
+    }
+
+    // Randomly pick asteroid type and scale
+    int asteroidType = rand() % 6; // 0 to 5 for the six types
+    std::string modelFileName;
+    float scale = 1.0f;
+
+    switch (asteroidType) {
+    case 0:
+        modelFileName = "Asteroid_011_x10_flatshaded_xyz_n_uv";
+        scale = 1.0f;
+        break;
+    case 1:
+        modelFileName = "Asteroid_011_x10_flatshaded_xyz_n_uv";
+        scale = 0.5f; // 50%
+        break;
+    case 2:
+        modelFileName = "Asteroid_011_x10_flatshaded_xyz_n_uv";
+        scale = 1.5f; // 150%
+        break;
+    case 3:
+        modelFileName = "Asteroid_015_x10_flatshaded_xyz_n_uv";
+        scale = 1.0f;
+        break;
+    case 4:
+        modelFileName = "Asteroid_015_x10_flatshaded_xyz_n_uv";
+        scale = 0.5f; // 50%
+        break;
+    case 5:
+        modelFileName = "Asteroid_015_x10_flatshaded_xyz_n_uv";
+        scale = 1.5f; // 150%
+        break;
+    }
+
+    // Spawn position (far off-screen)
+    glm::vec3 position = glm::vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), -40000);
+
+    // Asteroid color
+    glm::vec4 color = glm::vec4(1, 0, 0, 1);
+
+    // Create the asteroid object
+    Object* aSteroid = scene->CreateObject(position, glm::vec3(0, 0, 0), scale, color, modelFileName, "assets/models/" + modelFileName + ".ply");
+
+    // Create a KLFileManager instance for saving the model info
+    KLFileManager* fileManager = new KLFileManager();
+
+    // Create an sModelDrawInfo object for the asteroid
+    sModelDrawInfo modelInfo;
+    modelInfo.modelName = modelFileName;
+    modelInfo.meshPath = "assets/models/" + modelFileName + ".ply";
+
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, modelFileName + ".txt", "XYZNUV");
+
+    // Add movement action
+    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    scene->AddActionToObj(xyzSpeed, aSteroid);
+
+    // Set random speed for the asteroid
+    float speedValue = getRandomFloat(7000, 23000); // Random speed between 1000 and 3000 units per second
+    xyzSpeed->speed = glm::vec3(-speedValue, 0, 0);
+}
 
 
 int main(void)
@@ -510,6 +583,7 @@ int main(void)
     modelInfo.meshPath = "assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "MainShip.txt", "XYZNUV");
+
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
@@ -622,6 +696,8 @@ int main(void)
 
     while (!glfwWindowShouldClose(window))
     {
+       
+
         float ratio;
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
@@ -659,11 +735,17 @@ int main(void)
         std::vector<sCollision_RayTriangleInMesh> collisions;
         posEnd.x = -2;
         if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
+
         for (auto col : collisions)
         {
             printf("HIT!\n");
         }
 
+        static double lastSpawnTime = glfwGetTime();
+        if (glfwGetTime() - lastSpawnTime >= 0.1) {
+            SpawnAsteroid(scene);
+            lastSpawnTime = glfwGetTime();
+        }
         posEnd = pos;
         posEnd.x -= 2;
 

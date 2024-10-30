@@ -3,6 +3,8 @@
 <ObjectLoad-->
 Cube.txt
 MainShip.txt
+Asteroid_011_x10_flatshaded_xyz_n_uv.txt
+Asteroid_015_x10_flatshaded_xyz_n_uv.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -12,7 +14,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 7.7484e-39 1.00102e-38
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 1 0 0
@@ -23,7 +25,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.86636e-44
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -34,7 +36,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> -10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.01939e-38 1.04694e-38
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -45,10 +47,1495 @@ selectBox.txt
 <Model-> MainShip
 <Position-> 0 0 -40000
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.01938e-38
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0.5
+<--Object>
+
+<Object-->
+<Name-> MainShip
+<Model-> MainShip
+<Position-> 0 0 -40000
+<Rotation-> 0 0 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0.5
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 1.65478e+20
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 5.96689e-07 1.35632e-19 4.37125e+24
+<Scale-> 7.94242e+17 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 1.0102e-38 4.22457e-39 1.10204e-38
+<Scale-> 1.62551e-43 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 1.0102e-38 4.22457e-39 1.10204e-38
+<Scale-> 1.62551e-43 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 1.0102e-38 4.22457e-39 1.10204e-38
+<Scale-> 1.62551e-43 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 4.26528e-08 6.44379e-10 1.69705e-07
+<Scale-> 9.32328e-09 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Position-> 0 0 0
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.12475e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 9.32712e-09
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 3.64478e-42
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 4.54389e+30
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.00622e+22 1.57871e-19 2.33082e-09
+<Rotation-> 5.96689e-07 1.35632e-19 4.37125e+24
+<Scale-> 7.94242e+17 1.45849e-19 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 1.4013e-44
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 5.2487e-14
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 3.64478e-42
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 3.67e-42
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 1.51066e+21
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 1.85217e+28
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 1.80081e-41
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.00622e+22 1.57871e-19 2.33082e-09
+<Rotation-> 5.96689e-07 1.35632e-19 4.37125e+24
+<Scale-> 7.94242e+17 1.45849e-19 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.00622e+22 1.57871e-19 2.33082e-09
+<Rotation-> 5.96689e-07 1.35632e-19 4.37125e+24
+<Scale-> 7.94242e+17 1.45849e-19 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 4.74204e+30
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_015_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid_011_x10_flatshaded_xyz_n_uv
+<Model-> 
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0 0
 <--Object>
 
 <Light-->

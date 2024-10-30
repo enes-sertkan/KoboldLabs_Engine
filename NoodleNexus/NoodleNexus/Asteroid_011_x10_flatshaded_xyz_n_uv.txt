@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Asteroid_011_x10_flatshaded_xyz_n_uv
+<filePath> assets/models/Asteroid_011_x10_flatshaded_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

@@ -55,7 +55,9 @@ void Scene::Update()
     for (Action* action : actions)
     {
         action->Update();
+        action->deltaTime = deltaTime;
     }
+    CalculateDeltaTime();
 
 }
 
