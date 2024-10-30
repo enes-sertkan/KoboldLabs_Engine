@@ -299,6 +299,12 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
         // Write objects
         for (size_t j = 0; j < scene->sceneObjects.size(); ++j) {
             Object* object = scene->sceneObjects[j];
+
+            // Skip temporary objects like the select box
+            if (object->isTemporary) {
+                continue;
+            }
+
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
             myfile << "<Model-> " << object->mesh->uniqueFriendlyName << "\n";

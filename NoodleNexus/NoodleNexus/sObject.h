@@ -17,6 +17,9 @@ public:
 	std::string name;
 	sMesh* mesh;
 	Transform* startTranform = new Transform;
+	bool isTemporary = false;
+
+
 
 	//std::vector<Action*> actions;
 

@@ -10,6 +10,8 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, 
 
     Object* object = new Object();
     object->mesh = new sMesh();
+    object->isTemporary = true;  // Mark select box as temporary
+
 
     managerVAO->LoadModelIntoVAO(modelInfo.meshPath, modelInfo, program);
 
@@ -22,6 +24,7 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, 
     object->mesh->uniformScale = 5.f;
     object->mesh->modelFileName = modelInfo.meshPath;
     object->mesh->bIsWireframe = true;
+    object->isTemporary = true;
 
     selectBox = object;
     scene->sceneObjects.push_back(selectBox);
@@ -140,10 +143,10 @@ Object* SceneEditor::PickNextObject()
     // Ensure we don't select the selectBox again
     if (selectedObject == selectBox)
     {
-        return PickNextObject(); // Keep going until we find a valid selection
+        return PickNextObject();
     }
 
-    return selectedObject; // Return the selected object
+    return selectedObject;
 }
 
 
