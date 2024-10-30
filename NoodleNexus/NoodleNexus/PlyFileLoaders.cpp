@@ -264,3 +264,68 @@ bool ReadPlyModelFromFile_xyz_uv(s3DFileData& allFileInfo) {
 
     return true;
 }
+
+
+bool ReadPlyModelFromFile_xyz_uv_rgba(s3DFileData& allFileInfo) {
+    std::ifstream plyFile(allFileInfo.fileName);
+    std::string token = "";
+
+    if (!plyFile.is_open()) {
+        return false;
+    }
+
+    // Read until the "vertex" keyword, then get the vertex count
+    while (token != "vertex") {
+        plyFile >> token;
+    }
+    plyFile >> allFileInfo.numberOfVertices;
+
+    // Read until the "face" keyword, then get the face count
+    while (token != "face") {
+        plyFile >> token;
+    }
+    plyFile >> allFileInfo.numberOfTriangles;
+
+    // Continue until end of header is reached
+    while (token != "end_header") {
+        plyFile >> token;
+    }
+
+    // Allocate memory for vertices based on count
+    allFileInfo.pPlyVertices = new sPlyVertex[allFileInfo.numberOfVertices];
+
+    // Read vertex data including position, UV, and RGBA color
+    for (unsigned index = 0; index != allFileInfo.numberOfVertices; index++) {
+        plyFile >> allFileInfo.pPlyVertices[index].x;
+        plyFile >> allFileInfo.pPlyVertices[index].y;
+        plyFile >> allFileInfo.pPlyVertices[index].z;
+
+        // Read UV coordinates
+        plyFile >> allFileInfo.pPlyVertices[index].u;
+        plyFile >> allFileInfo.pPlyVertices[index].v;
+
+        // Read RGBA values (assuming values are given as 0-255 integers)
+        int r, g, b, a;
+        plyFile >> r >> g >> b >> a;
+        allFileInfo.pPlyVertices[index].r = r / 255.0f; // Normalize to 0.0-1.0
+        allFileInfo.pPlyVertices[index].g = g / 255.0f;
+        allFileInfo.pPlyVertices[index].b = b / 255.0f;
+        allFileInfo.pPlyVertices[index].a = a / 255.0f;
+
+        // Optional: Set default values for confidence and intensity if needed
+        allFileInfo.pPlyVertices[index].confidence = 0;
+        allFileInfo.pPlyVertices[index].intensity = 0;
+    }
+
+    // Allocate memory for triangles based on count
+    allFileInfo.pPlyTriangles = new sTriangle[allFileInfo.numberOfTriangles];
+    for (unsigned int index = 0; index != allFileInfo.numberOfTriangles; index++) {
+        int discard = 0;
+        plyFile >> discard; // Read the number of vertices in the face (usually 3 for triangles)
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_0;
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_1;
+        plyFile >> allFileInfo.pPlyTriangles[index].vertIndex_2;
+    }
+
+    return true;
+}

@@ -12,7 +12,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.07449e-38 1.61149e-43
+<Scale-> 1 7.7484e-39 1.00102e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 1 0 0
@@ -23,7 +23,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.04693e-38 1.08367e-38
+<Scale-> 1 1.1151e-38 6.86636e-44
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -34,7 +34,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> -10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.70411e-39
+<Scale-> 1 1.01939e-38 1.04694e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -45,17 +45,17 @@ selectBox.txt
 <Model-> MainShip
 <Position-> 0 0 -40000
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.64287e-39
+<Scale-> 1 1.1151e-38 1.01938e-38
 <Visibility-> true
-<Shading-> false
+<Shading-> true
 <Color-> 1 0 0.5
 <--Object>
 
 <Light-->
-<Position-> 0 10 -3.02 1
+<Position-> 0 70000 -40000.4 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.045127 0.00791047 3.40282e+38
+<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
 <Param2-> 1 0 0 0
@@ -82,7 +82,7 @@ selectBox.txt
 <--Light>
 
 <Camera-->
-<Position-> -3575 1455 -4352
+<Position-> 6683 1288 -5451
 <Rotation-> 163 84 -164
 <--Camera>
 

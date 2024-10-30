@@ -5,9 +5,12 @@
 
 // We'll make a struct that has ALL the things we need.
 
-struct sPlyVertex
-{
-    float x, y, z, confidence, intensity;
+struct sPlyVertex {
+    float x, y, z;    // Position
+    float u, v;       // UV coordinates
+    float r, g, b, a; // Color (0-1 range after normalization)
+    float confidence; // Optional, if needed
+    float intensity;  // Optional, if needed
 };
 //
 // and 

@@ -121,7 +121,7 @@ In the scene editor, users can edit different light properties such as position,
 
    - **Attenuation**:
 
-     - Hold **Shift** while pressing:
+     - Hold **Alt** while pressing:
        - **UP**: Decrease linear attenuation (Y).
        - **DOWN**: Increase linear attenuation (Y).
        - **RIGHT**: Decrease quadratic attenuation (Z).
