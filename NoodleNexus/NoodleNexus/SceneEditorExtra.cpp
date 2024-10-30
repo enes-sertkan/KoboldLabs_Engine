@@ -84,6 +84,18 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         }
 
     }
+    if (isShftDown(window))
+    {
+        if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+        {
+            scene->flyCamera = true;
+        }
+
+        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+        {
+            scene->flyCamera = false;
+        }
+    }
 
 
     if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)

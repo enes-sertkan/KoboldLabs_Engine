@@ -15,7 +15,7 @@
 class Scene
 {
 public:
-
+	bool flyCamera = true;
 	std::vector<sModelDrawInfo> modelInfos;
 
 	std::vector<Object*> sceneObjects;
