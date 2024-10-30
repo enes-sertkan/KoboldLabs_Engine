@@ -15,6 +15,6 @@ public:
 		object->mesh->positionXYZ.y += speed.y;
 		object->mesh->positionXYZ.z += speed.z;
 
-		printf("WOW, you are UPDATING\n");
+		//printf("WOW, you are UPDATING\n");
 	}
 };

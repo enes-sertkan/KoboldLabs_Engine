@@ -11,7 +11,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 7.16327e-39 7.62246e-39
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.6 0.3 0.4
@@ -22,7 +22,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 9.27555e-39 9.00003e-39
+<Scale-> 1 5.42559e+20 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -33,7 +33,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> -10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 6.15306e-39 8.44895e-39
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0

@@ -3,6 +3,8 @@
 //
 //#define GLFW_INCLUDE_NONE
 //#include <GLFW/glfw3.h>
+
+#define GLM_ENABLE_EXPERIMENTAL 
 #include "Action.h"
 #include "aMoveInDirection.h"
 #include "GLCommon.h"
@@ -15,6 +17,8 @@
 #include <glm/gtc/matrix_transform.hpp> 
 // glm::translate, glm::rotate, glm::scale, glm::perspective
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+//#include <glm/gtc/magnitude.hpp> // Magnitude calculations
+#include <glm/gtx/norm.hpp>  // Normalize, length
 
 #include <stdlib.h>
 #include <stddef.h>
@@ -37,8 +41,9 @@
 #include <windows.h>    // Includes ALL of windows... MessageBox
 #include "cLightHelper/cLightHelper.h"
 #include "KLFileManager.hpp"
-
+#include "PhysicsManager.h"
 #include "SceneEditor.h"
+
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -554,7 +559,7 @@ int main(void)
 
     aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
     scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(0, 0.05, 0);
+    xyzSpeed->speed = glm::vec3(-0.1, 0, 0);
     
 
 
@@ -591,6 +596,10 @@ int main(void)
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
+    PhysicsManager* physicsMan = new PhysicsManager();
+    physicsMan->VAOMan = g_pMeshManager;
+    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[1]->startTranform->scale.x);
+
 
 
     while (!glfwWindowShouldClose(window))
@@ -626,6 +635,16 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
+        glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
+        glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
+
+        std::vector<sCollision_RayTriangleInMesh> collisions;
+        posEnd.x = -2;
+        if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
+        for (auto col : collisions)
+        {
+            printf("HIT!\n");
+        }
 
         for (Object* object:scene->sceneObjects)
         {
@@ -636,7 +655,16 @@ int main(void)
 
         }//for (unsigned int meshIndex..
 
-      //  DrawLazer(program);
+
+        glm::vec3 direction = glm::normalize(posEnd - pos);
+        while (glm::distance(pos, posEnd) < 150.0f)
+        {
+            // Move the next ball 0.1 times the normalized camera direction
+            pos += (direction * 0.10f);
+            DrawDebugSphere(pos, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
+        }
+
+        //DrawLazer(program);
 
 
         // **********************************************************************************

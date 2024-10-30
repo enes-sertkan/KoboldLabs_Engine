@@ -4,7 +4,7 @@ cBasicFlyCamera* g_pFlyCamera = NULL;
 
 cLightManager* g_pLightManager = NULL;
 unsigned int g_selectedLightIndex = 0;
-bool g_bShowDebugSpheres = false;
+bool g_bShowDebugSpheres = true;
 
 glm::vec3 g_rgb_from_HTML(unsigned int red, unsigned int green, unsigned int blue)
 {

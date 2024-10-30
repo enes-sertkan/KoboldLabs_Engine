@@ -171,7 +171,7 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     if (!pDebugSphere)           // Same as if ( pDebugSphere == NULL )
     {
         pDebugSphere = new sMesh();
-        pDebugSphere->modelFileName = "assets/models/Sphere_radius_1_xyz_N.ply";
+        pDebugSphere->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
         pDebugSphere->positionXYZ = glm::vec3(0.0f, 5.0f, 0.0f);
         pDebugSphere->bIsWireframe = true;
         pDebugSphere->objectColourRGBA = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);

@@ -49,6 +49,7 @@ void cPhysics::StepTick(double deltaTime)
 	}
 
 
+	//PHYSICS MOVEMENT
 
 	// Now ALL the physical properties we are integrating are in one step
 	for (unsigned int index = 0; index != vec_Temp_pPhysInfos.size(); index++)

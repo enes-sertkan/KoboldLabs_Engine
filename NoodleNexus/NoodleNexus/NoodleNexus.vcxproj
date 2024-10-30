@@ -148,6 +148,7 @@
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
+    <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
