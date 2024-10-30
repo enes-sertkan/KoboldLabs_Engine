@@ -56,14 +56,34 @@ bool isShftDown(GLFWwindow* window)
     }
     return false;
 }
+bool isAltD(GLFWwindow* window)
+{
+    if ((glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS) ||
+        (glfwGetKey(window, GLFW_KEY_RIGHT_ALT) == GLFW_PRESS))
+    {
+        return true;
+    }
+    return false;
+}
 
 void SceneEditor::HandleInputAsync(GLFWwindow* window)
 {
 
     float speed = 1;
 
-    //is shift, triple the speed, if not make it 0.5
 
+    //is shift, triple the speed, if not make it 0.5
+    if (isShftDown(window))
+    {
+
+        speed = 10;
+        if (isControlD(window))
+        {
+            speed = 100;
+
+        }
+
+    }
 
 
     if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
@@ -290,7 +310,7 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
         case Atten:
             // Adjust attenuation
-            if (isShftDown(window)) {
+            if (isAltD(window)) {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
                     selectedLight->atten.y *= 0.99f; // Linear
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)

@@ -493,6 +493,11 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
+    modelInfo.modelName = "MainShip";
+    modelInfo.meshPath = "assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "MainShip.txt", "XYZNUV");
+
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
