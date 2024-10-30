@@ -184,6 +184,23 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
                 selectedObject->startTranform->scale.x -= 0.01f;
         }
+        
+        if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+        {
+            if (selectedObject) // Check if an object is selected
+            {
+                scene->RemoveObject(selectedObject);
+               // selectedObject = nullptr; // Clear the pointer after deletion
+                std::cout << "Selected object deleted." << std::endl;
+                PickNextLight();
+               
+            }
+            else
+            {
+                std::cout << "No object selected for deletion." << std::endl; // Prevent access violation
+            }
+        }
+
 
         // Update mesh properties
         selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;

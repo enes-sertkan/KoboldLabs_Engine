@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> Ship7
-<filePath> assets/models/Old_vip_Res0_xyz_n_uv.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

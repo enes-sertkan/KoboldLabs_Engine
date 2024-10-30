@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> New_Viper
-<filePath> assets/models/Viper_MkVII_xyz_n_uv.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

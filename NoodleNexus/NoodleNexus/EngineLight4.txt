@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> EngineLight4
-<filePath> assets/models/TearDropBullet_inverted_normals_xyz_n_uv.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

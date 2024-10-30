@@ -30,6 +30,8 @@ public:
 	void SetCameraToNextPoint();
 	void SetCameraToFirstPoint();
 	void NextCameraPoint();
+
+	void RemoveObject(Object* object);
 	
 	int currentCameraIndex=0;
 

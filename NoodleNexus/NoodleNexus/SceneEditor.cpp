@@ -90,29 +90,60 @@ cLightManager::sLight* SceneEditor::PickNextLight()
 
 
 
+//Object* SceneEditor::PickFirstObject()
+//{
+//    if (scene->sceneObjects.size() < 1) return nullptr;
+//
+//    selectedObject = scene->sceneObjects[0];
+//
+//
+//}
+
+//Object* SceneEditor::PickNextObject()
+//{
+//
+//    if (objIndex >= scene->sceneObjects.size()-1) objIndex = -1;
+//
+//
+//    objIndex++;
+//    if (selectBox == scene->sceneObjects[objIndex])
+//    {
+//        return PickNextObject();
+//    }
+//    selectedObject = scene->sceneObjects[objIndex];
+//
+//
+//	return nullptr;
+//}
+
 Object* SceneEditor::PickFirstObject()
 {
-    if (scene->sceneObjects.size() < 1) return nullptr;
+    if (scene->sceneObjects.empty())
+    {
+        selectedObject = nullptr; // Clear the pointer if no objects
+        return nullptr;
+    }
 
     selectedObject = scene->sceneObjects[0];
-
-
+    return selectedObject;
 }
+
 
 Object* SceneEditor::PickNextObject()
 {
+    if (scene->sceneObjects.empty())
+        return nullptr;
 
-    if (objIndex >= scene->sceneObjects.size()-1) objIndex = -1;
-
-
-    objIndex++;
-    if (selectBox == scene->sceneObjects[objIndex])
-    {
-        return PickNextObject();
-    }
+    objIndex = (objIndex + 1) % scene->sceneObjects.size(); // Wrap around
     selectedObject = scene->sceneObjects[objIndex];
 
+    // Ensure we don't select the selectBox again
+    if (selectedObject == selectBox)
+    {
+        return PickNextObject(); // Keep going until we find a valid selection
+    }
 
-	return nullptr;
+    return selectedObject; // Return the selected object
 }
+
 

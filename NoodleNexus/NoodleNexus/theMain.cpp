@@ -469,6 +469,8 @@ void UpdateWindowTitle(GLFWwindow* window)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
+
+
 int main(void)
 {
     // Instantiate KLFileManager
@@ -480,107 +482,10 @@ int main(void)
 
     // question 1 creating models
 
-    modelInfo.modelName = "EnemyShip";
-    modelInfo.meshPath = "assets/models/CylonRaider_xyz_n_uv.ply";
+    modelInfo.modelName = "Cube";
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EnemyShip.txt", "XYZNUV");
-
-    modelInfo.modelName = "EnemyShip2";
-    modelInfo.meshPath = "assets/models/CylonRaider_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EnemyShip2.txt", "XYZNUV");
-
-    modelInfo.modelName = "EnemyShip3";
-    modelInfo.meshPath = "assets/models/CylonRaider_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EnemyShip3.txt", "XYZNUV");
-
-    modelInfo.modelName = "EnemyShip4";
-    modelInfo.meshPath = "assets/models/CylonRaider_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EnemyShip4.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship1";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship1.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship2";
-    modelInfo.meshPath = "assets/models/Viper_MkVII_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship2.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship3";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship3.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship4";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship4.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship5";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship5.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship6";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship6.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship7";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship7.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship8";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship8.txt", "XYZNUV");
-
-    modelInfo.modelName = "Ship9";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Ship9.txt", "XYZNUV");
-
-    modelInfo.modelName = "OldViper";
-    modelInfo.meshPath = "assets/models/Old_vip_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "OldViper.txt", "XYZNUV");
-
-    modelInfo.modelName = "NewViper";
-    modelInfo.meshPath = "assets/models/Viper_MkVII_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "NewViper.txt", "XYZNUV");
-
-
-    modelInfo.modelName = "Battleship_Big";
-    modelInfo.meshPath = "assets/models/BS_Ship1_Res0_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Battleship_Big.txt", "XYZNUV");
-
-    modelInfo.modelName = "EngineLight1";
-    modelInfo.meshPath = "assets/models/TearDropBullet_inverted_normals_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EngineLight1.txt", "XYZNUV");
-
-    modelInfo.modelName = "EngineLight2";
-    modelInfo.meshPath = "assets/models/TearDropBullet_inverted_normals_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EngineLight2.txt", "XYZNUV");
-
-    modelInfo.modelName = "EngineLight3";
-    modelInfo.meshPath = "assets/models/TearDropBullet_inverted_normals_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EngineLight3.txt", "XYZNUV");
-
-    modelInfo.modelName = "EngineLight4";
-    modelInfo.meshPath = "assets/models/TearDropBullet_inverted_normals_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "EngineLight4.txt", "XYZNUV");
-
+    fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
@@ -600,12 +505,6 @@ int main(void)
 
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
-
-
-
-   
-
-
 
 
     for (Object* object : scene->sceneObjects)
@@ -647,6 +546,10 @@ int main(void)
 
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
+
+    ExplosionLogic* action = new ExplosionLogic();
+
+    scene->AddActionToObj(action, scene->sceneObjects[0]);
 
 
     PreparePhysics();

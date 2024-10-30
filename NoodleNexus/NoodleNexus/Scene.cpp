@@ -93,3 +93,14 @@ void Scene::NextCameraPoint()
     if (currentCameraIndex >= cameraPositions.size() - 1) currentCameraIndex = -1;
     currentCameraIndex++;
 }
+
+void Scene::RemoveObject(Object* obj)
+{
+    auto it = std::find(sceneObjects.begin(), sceneObjects.end(), obj);
+    if (it != sceneObjects.end())
+    {
+        delete* it; // Free the memory if dynamically allocated
+        sceneObjects.erase(it); // Remove from vector
+    }
+    
+}
