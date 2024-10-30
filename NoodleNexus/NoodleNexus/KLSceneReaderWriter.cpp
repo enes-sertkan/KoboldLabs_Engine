@@ -292,9 +292,9 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
         {
             myfile << path << "\n";
         }
-        myfile << "<--ObjectLoad>\n\n";
+        myfile << "<--ObjectLoad>\n";
 
-        myfile << "<Scene-->\n";
+        myfile << "<Scene-->\n\n";
 
         // Write objects
         for (size_t j = 0; j < scene->sceneObjects.size(); ++j) {
@@ -375,6 +375,19 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
                 << light.param2.w << "\n";
 
             myfile << "<--Light>\n\n";
+        }
+
+        // Write camera data
+        for (size_t i = 0; i < scene->cameraPositions.size(); ++i) {
+            Transform* cameraTransform = scene->cameraPositions[i];
+            myfile << "<Camera-->\n";
+            myfile << "<Position-> " << cameraTransform->position.x << " "
+                << cameraTransform->position.y << " "
+                << cameraTransform->position.z << "\n";
+            myfile << "<Rotation-> " << cameraTransform->rotation.x << " "
+                << cameraTransform->rotation.y << " "
+                << cameraTransform->rotation.z << "\n";
+            myfile << "<--Camera>\n\n";
         }
 
         myfile << "<--Scene>\n";

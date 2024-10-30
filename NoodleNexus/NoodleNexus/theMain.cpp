@@ -577,7 +577,7 @@ int main(void)
 
     aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
     scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(-0.1, 0, 0);
+    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
     
 
 
