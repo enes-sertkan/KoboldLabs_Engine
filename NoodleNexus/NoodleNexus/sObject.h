@@ -8,6 +8,8 @@
 #include "Transform.h"
 #include <vector>
 
+class Scene;
+
 
 //TODO: Change File Name, bc now it's a class.
 class Object
@@ -16,10 +18,11 @@ class Object
 public:
 	std::string name;
 	sMesh* mesh;
+	Scene* scene;
 	Transform* startTranform = new Transform;
 	bool isTemporary = false;
 
-
+	void Destroy();
 
 	//std::vector<Action*> actions;
 

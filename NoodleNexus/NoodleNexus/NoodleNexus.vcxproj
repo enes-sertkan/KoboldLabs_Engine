@@ -142,6 +142,7 @@
     <ClCompile Include="cBasicFlyCamera\cBasicFlyCamera.cpp" />
     <ClCompile Include="cLightHelper\cLightHelper.cpp" />
     <ClCompile Include="cLightManager.cpp" />
+    <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cVAOManager\cVAOManager.cpp" />
     <ClCompile Include="glad.c" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
+    <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />

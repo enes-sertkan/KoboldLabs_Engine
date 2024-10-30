@@ -95,6 +95,9 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -150,6 +153,9 @@
     </ClInclude>
     <ClInclude Include="PhysicsManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aDestroyOnPos.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
