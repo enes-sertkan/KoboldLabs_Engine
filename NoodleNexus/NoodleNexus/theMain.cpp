@@ -46,6 +46,7 @@
 #include "PhysicsManager.h"
 #include "SceneEditor.h"
 #include "scene.hpp"
+#include "aAsteroidRotation.hpp"
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -497,12 +498,12 @@ void SpawnAsteroid(Scene* scene) {
     // Random seed for better randomness
     static bool seedInitialized = false;
     if (!seedInitialized) {
-        std::srand(static_cast<unsigned int>(std::time(nullptr))); // Seed random number generator
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));
         seedInitialized = true;
     }
 
     // Randomly pick asteroid type and scale
-    int asteroidType = rand() % 6; // 0 to 5 for the six types
+    int asteroidType = rand() % 6;
     std::string modelFileName;
     float scale = 1.0f;
 
@@ -558,8 +559,12 @@ void SpawnAsteroid(Scene* scene) {
     scene->AddActionToObj(xyzSpeed, aSteroid);
 
     // Set random speed for the asteroid
-    float speedValue = getRandomFloat(7000, 23000); // Random speed between 1000 and 3000 units per second
+    float speedValue = getRandomFloat(7000, 23000);
     xyzSpeed->speed = glm::vec3(-speedValue, 0, 0);
+
+    // **Add random rotation action**
+    aAsteroidRotation* rotationAction = new aAsteroidRotation();
+    scene->AddActionToObj(rotationAction, aSteroid);
 }
 
 
@@ -645,14 +650,14 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
+    //ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[1]);
+    //scene->AddActionToObj(action, scene->sceneObjects[0]);
 
-    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
-    
+    //aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    //scene->AddActionToObj(xyzSpeed, scene->sceneObjects[0]);
+    //xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+    //
 
 
     PreparePhysics();
@@ -746,6 +751,8 @@ int main(void)
             SpawnAsteroid(scene);
             lastSpawnTime = glfwGetTime();
         }
+
+
         posEnd = pos;
         posEnd.x -= 2;
 

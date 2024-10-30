@@ -68,6 +68,7 @@ public:
 		newObject->mesh->uniformScale = scale;
 		newObject->mesh->objectColourRGBA = color;
 		newObject->mesh->bOverrideObjectColour = true;
+		newObject->isTemporary = true;
 
 		// Add the new object to the scene
 		sceneObjects.push_back(newObject);
