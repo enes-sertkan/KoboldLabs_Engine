@@ -1,4 +1,4 @@
-//#define GLAD_GL_IMPLEMENTATION
+﻿//#define GLAD_GL_IMPLEMENTATION
 //#include <glad/glad.h>
 //
 //#define GLFW_INCLUDE_NONE
@@ -43,6 +43,11 @@
 #include "KLFileManager.hpp"
 #include "PhysicsManager.h"
 #include "SceneEditor.h"
+
+#include "aDestroyOnPos.h"
+#include "aRandomRotation.h"
+
+#include <random>
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -439,7 +444,15 @@ void UpdateBallShadow()
     // Don't update the y - keep the shadow near the plane
 
 }
+glm::vec3 Vec3(float x, float y, float z)
+{
+    glm::vec3 vector;
+    vector.x = x;
+    vector.y = y;
+    vector.z = z;
+    return  vector;
 
+}
 void HandleCollisions()
 {
 
@@ -487,8 +500,62 @@ void UpdateWindowTitle(GLFWwindow* window)
     //        glfwSetWindowTitle(window, "Hey!");
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
+// Generates a random integer between min and max (inclusive)
+int RandomInt(int min, int max) {
+    static std::random_device rd;  // Seed for random number engine
+    static std::mt19937 gen(rd()); // Mersenne Twister engine
+
+    std::uniform_int_distribution<> dist(min, max);
+    return dist(gen);
+}
+
+void CreateAsteroid(Scene* scene)
+{
 
 
+    glm::vec4 color = glm::vec4(1, 0, 0, 1);
+
+    std::string path;
+
+    if (getRandomFloat(0, 2) > 1)
+    path = "assets/models/Asteroid_015_x10_flatshaded_xyz_n_uv.ply";
+    else
+    path = "assets/models/Asteroid_011_x10_flatshaded_xyz_n_uv.ply";
+
+    float scale = 1;;
+    switch (RandomInt(0,2))
+    {
+    case 1: scale = 1.5f; break;
+    case 2: scale = 0.5f; break;
+
+      }
+
+    
+
+    Object* aster = scene->CreateObject(Vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), getRandomFloat(-25000, -50000)), Vec3(0, 0, 0), scale, color, "Asteroid", "assets/models/Asteroid_015_x10_flatshaded_xyz_n_uv.ply");
+
+    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    scene->AddActionToObj(xyzSpeed, aster);
+    xyzSpeed->speed = glm::vec3(getRandomFloat(-500, -1500), 0, 0);
+
+    aDEstroyOnPos* destrPos  = new aDEstroyOnPos();
+    scene->AddActionToObj(destrPos, aster);
+
+
+    aRandomRotation* randomRot = new aRandomRotation();
+    randomRot->rotationSpeed.x = getRandomFloat(-10, 10);
+    randomRot->rotationSpeed.y = getRandomFloat(-10, 10);
+    randomRot->rotationSpeed.z = getRandomFloat(-10, 10);
+    scene->AddActionToObj(randomRot, aster);
+
+}
+//Asteroid_011_x10 at regular size(not scaled)
+//Asteroid_011_x10 at ½(50 %) its regular size
+//Asteroid_011_x10 at 1.5x(150 %) its regular size
+//
+//Asteroid_015_x10 at regular size(not scaled)
+//Asteroid_015_x10 at ½(50 %) its regular size
+//Asteroid_015_x10 at 1.5x(150 %) its regular size
 
 int main(void)
 {
@@ -510,6 +577,17 @@ int main(void)
     modelInfo.meshPath = "assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "MainShip.txt", "XYZNUV");
+
+    modelInfo.modelName = "Asteroid1";
+    modelInfo.meshPath = "assets/models/Asteroid_015_x10_flatshaded_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Asteroid1.txt", "XYZNUV");
+
+
+    modelInfo.modelName = "Asteroid2";
+    modelInfo.meshPath = "assets/models/Asteroid_011_x10_flatshaded_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Asteroid2.txt", "XYZNUV");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
@@ -575,9 +653,7 @@ int main(void)
 
     scene->AddActionToObj(action, scene->sceneObjects[1]);
 
-    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+   
     
 
 
@@ -618,8 +694,7 @@ int main(void)
     physicsMan->VAOMan = g_pMeshManager;
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[1]->startTranform->scale.x);
 
-
-
+   
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -629,7 +704,7 @@ int main(void)
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
+        CreateAsteroid(scene);
         UpdateMatricies(ratio, program);
 
 //        // *******************************************************************
@@ -658,10 +733,10 @@ int main(void)
 
         std::vector<sCollision_RayTriangleInMesh> collisions;
         posEnd.x = -2;
-        if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
+        if (physicsMan->RayCast(pos, posEnd, collisions, false)) {} //printf("HIT!\n");
         for (auto col : collisions)
         {
-            printf("HIT!\n");
+        //    printf("HIT!\n");
         }
 
         posEnd = pos;

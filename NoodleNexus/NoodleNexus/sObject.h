@@ -8,6 +8,8 @@
 #include "Transform.h"
 #include <vector>
 
+class Action;
+
 class Scene;
 
 
@@ -21,8 +23,10 @@ public:
 	Scene* scene;
 	Transform* startTranform = new Transform;
 	bool isTemporary = false;
-
+	bool enabled = true;
 	void Destroy();
+	
+	std::vector<Action*> actions;
 
 	//std::vector<Action*> actions;
 

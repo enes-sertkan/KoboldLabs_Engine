@@ -42,6 +42,7 @@ public:
 
 	
 	void AddActionToObj(Action* action, Object* object);
+	Object* CreateObject(glm::vec3 pos, glm::vec3 rotation, float scale, glm::vec4 color, std::string name, std::string modelName);
 
 	
 };

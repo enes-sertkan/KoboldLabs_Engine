@@ -82,6 +82,11 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             speed = 100;
 
         }
+        if (isAltD(window))
+        {
+            speed = 100;
+
+        }
 
     }
     if (isShftDown(window))
@@ -270,21 +275,21 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         {
         case Position:
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->position.z += 0.5f;
+                selectedLight->position.z += speed;
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->position.z -= 0.5f;
+                selectedLight->position.z -= speed;
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                selectedLight->position.x += 0.5f;
+                selectedLight->position.x += speed;
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                selectedLight->position.x -= 0.5f;
+                selectedLight->position.x -= speed;
 
             // Y-axis controls with Control key
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                    selectedLight->position.y += 0.5f;
+                    selectedLight->position.y += speed;
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                    selectedLight->position.y -= 0.5f;
+                    selectedLight->position.y -= speed;
             }
             break;
 

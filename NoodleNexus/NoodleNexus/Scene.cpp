@@ -39,7 +39,17 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
         object->scene = this;
     }
 
-    
+
+
+    for (Object* object : sceneObjects)
+    {
+        for (Action* action : object->actions)
+        {
+            if (object->enabled)
+                action->Start();
+        }
+    }
+
 
 }
 
@@ -52,19 +62,55 @@ void Scene::Update()
     if(!flyCamera)
     MoveCameraToPoint();
 
-    for (Action* action : actions)
-    {
-        action->Update();
-    }
 
+    for (Object* object : sceneObjects)
+    {
+
+        for (Action* action : object->actions)
+        {
+            if (object->enabled)
+            action->Update();
+        }
+    }
 }
 
 void Scene::AddActionToObj(Action* action, Object* object)
 {
     action->object = object;
     actions.push_back(action);
+    object->actions.push_back(action);
 }
 
+Object* Scene::CreateObject(glm::vec3 pos, glm::vec3 rotation, float scale, glm::vec4 color, std::string name, std::string modelName)
+{
+    Object* obj = new Object();
+    obj->startTranform->position = pos;
+    obj->startTranform->rotation = rotation;
+    obj->startTranform->scale.x = scale;
+
+    obj->mesh = new sMesh();
+    obj->mesh->positionXYZ = obj->startTranform->position;
+    obj->mesh->rotationEulerXYZ = obj->startTranform->rotation;
+    obj->mesh->uniformScale = obj->startTranform->scale.x;
+
+    obj->name = name;
+    obj->mesh->uniqueFriendlyName = name;
+    obj->mesh->modelFileName = modelName;
+    
+
+    obj->scene = this;
+    obj->isTemporary = true;
+
+    obj->mesh->bIsVisible = true;
+    obj->mesh->bOverrideObjectColour = true;
+    obj->mesh->objectColourRGBA = color;
+    obj->mesh->bDoNotLight = false;
+
+    sceneObjects.push_back(obj);
+    
+    return obj;
+
+}
 void Scene::MoveCameraToPoint()
 {
    if (cameraPositions.size() == 0) return;
@@ -98,7 +144,7 @@ void Scene::NextCameraPoint()
 
 void Scene::RemoveObject(Object* obj)
 {
-    auto it = std::find(sceneObjects.begin(), sceneObjects.end(), obj);
+    std::vector<Object*>::iterator it = std::find(sceneObjects.begin(), sceneObjects.end(), obj);
     if (it != sceneObjects.end())
     {
         delete* it; // Free the memory if dynamically allocated

@@ -4,6 +4,8 @@
 Cube.txt
 MainShip.txt
 selectBox.txt
+Asteroid1.txt
+Asteroid2.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -12,7 +14,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.07449e-38 1.61149e-43
+<Scale-> 1 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> false
 <Color-> 1 0 0
@@ -23,7 +25,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> 10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.04693e-38 1.08367e-38
+<Scale-> 1 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -34,7 +36,7 @@ selectBox.txt
 <Model-> Cube
 <Position-> -10 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.70411e-39
+<Scale-> 1 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -45,19 +47,29 @@ selectBox.txt
 <Model-> MainShip
 <Position-> 0 0 -40000
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.64287e-39
+<Scale-> 1 -4.31602e+08 -4.31602e+08
 <Visibility-> true
-<Shading-> false
+<Shading-> true
 <Color-> 1 0 0.5
 <--Object>
 
 <Light-->
-<Position-> 0 10 -3.02 1
+<Position-> 300 50000 -19487 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.045127 0.00791047 3.40282e+38
+<Atten-> 0 3.12197e-10 3.71539e-10 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 58052.5 -283 -73526.6 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 1.05478e-10 3.71539e-10 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
@@ -71,18 +83,18 @@ selectBox.txt
 <Param2-> 1 0 0 0
 <--Light>
 
-<Light-->
-<Position-> 2 2 2 1
-<Diffuse-> 0.8 0.8 0.8 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.07 0.017 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
-<Param2-> 1 0 0 0
-<--Light>
+<Camera-->
+<Position-> 11500 2500 1500
+<Rotation-> 163 84 -164
+<--Camera>
 
 <Camera-->
 <Position-> -3575 1455 -4352
+<Rotation-> 163 84 -164
+<--Camera>
+
+<Camera-->
+<Position-> 23350 1755 -25500
 <Rotation-> 163 84 -164
 <--Camera>
 
