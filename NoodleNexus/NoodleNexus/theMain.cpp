@@ -4,6 +4,7 @@
 //#define GLFW_INCLUDE_NONE
 //#include <GLFW/glfw3.h>
 #include "Action.h"
+#include "aMoveInDirection.h"
 #include "GLCommon.h"
 
 //#include "linmath.h"
@@ -549,7 +550,12 @@ int main(void)
 
     ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[0]);
+    scene->AddActionToObj(action, scene->sceneObjects[1]);
+
+    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
+    xyzSpeed->speed = glm::vec3(0, 0.05, 0);
+    
 
 
     PreparePhysics();
@@ -576,26 +582,6 @@ int main(void)
     ::g_pLightManager = scene->lightManager;
     // Called only once
     ::g_pLightManager->loadUniformLocations(program);
-
-
-    // light 01
-  /*  SetLight(0,
-        glm::vec4(-15.0f, 30.0f, 0.0f, 1.0f),
-        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-        glm::vec3(NULL, 0.01f, 0.001f),
-        glm::vec4(0.001f),
-        glm::vec3(0.0f),
-        1.0f);*/
-
-    //////light 02
-    //SetLight(1,
-    //    glm::vec4(0.0f, 20.0f, 0.0f, 1.0f),
-    //    glm::vec4(1.0f, 1.0f, 1.0f, 1.0f),
-    //    glm::vec3(NULL, 0.01f, 0.001f),
-    //    glm::vec4(0.0f, 1.0f, 0.0f, 1.0f),
-    //    glm::vec3(NULL, 5.0f, 10.0f),
-    //    1.0f);
-
 
     cLightHelper TheLightHelper;
 
@@ -639,6 +625,7 @@ int main(void)
 
         sceneEditor->Update();
         scene->Update();
+
 
         for (Object* object:scene->sceneObjects)
         {

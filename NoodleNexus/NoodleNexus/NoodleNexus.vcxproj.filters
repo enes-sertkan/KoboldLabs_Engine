@@ -33,6 +33,9 @@
     <Filter Include="RenderStuff">
       <UniqueIdentifier>{9cdea607-512f-4c0a-9b61-159d8362c1d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Actions">
+      <UniqueIdentifier>{1ffac4ef-8f2c-48ff-b228-9622c4000b43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -137,7 +140,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Action.h">
-      <Filter>Source Files</Filter>
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aMoveInDirection.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

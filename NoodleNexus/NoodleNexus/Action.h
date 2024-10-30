@@ -33,7 +33,7 @@ class ExplosionLogic : public Action
 		 
 		if (object->mesh->uniformScale >= 5) return; 
 
-		object->mesh->uniformScale+=0.1;
+		object->mesh->uniformScale+=0.005;
 
 
 

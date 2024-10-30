@@ -131,7 +131,6 @@ Object* SceneEditor::PickFirstObject()
     return selectedObject;
 }
 
-
 Object* SceneEditor::PickNextObject()
 {
     if (scene->sceneObjects.empty())
@@ -148,5 +147,3 @@ Object* SceneEditor::PickNextObject()
 
     return selectedObject;
 }
-
-
