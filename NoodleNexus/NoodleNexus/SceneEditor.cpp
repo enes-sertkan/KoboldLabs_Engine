@@ -83,7 +83,7 @@ cLightManager::sLight* SceneEditor::PickFirstLight()
 
 cLightManager::sLight* SceneEditor::PickNextLight()
 {
-    if (lightIndex >= 19) lightIndex = -1; //THIS MIGHT NEED CHANGING OR MIGHT EXPLODE
+    if (lightIndex >= 19) lightIndex = -1; //TODO: THIS MIGHT NEED CHANGING OR MIGHT EXPLODE
     
     lightIndex++;
         selectedLight = &scene->lightManager->theLights[lightIndex];  
@@ -138,12 +138,13 @@ Object* SceneEditor::PickNextObject()
 
     objIndex = (objIndex + 1) % scene->sceneObjects.size(); // Wrap around
     selectedObject = scene->sceneObjects[objIndex];
-
+   
     // Ensure we don't select the selectBox again
     if (selectedObject == selectBox)
     {
         return PickNextObject();
     }
 
+    std::cout << "Object Selected:" << selectedObject->name << std::endl;
     return selectedObject;
 }

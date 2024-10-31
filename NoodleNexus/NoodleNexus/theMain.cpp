@@ -46,6 +46,7 @@
 
 #include "aDestroyOnPos.h"
 #include "aRandomRotation.h"
+#include "aAsteroidCollision.h"
 
 #include <random>
 
@@ -509,9 +510,9 @@ int RandomInt(int min, int max) {
     return dist(gen);
 }
 
-void CreateAsteroid(Scene* scene)
+void CreateAsteroid(Scene* scene, GLuint program, std::vector<Object*> shipGuns)
 {
-
+   
 
     glm::vec4 color = glm::vec4(1, 0, 0, 1);
 
@@ -532,11 +533,11 @@ void CreateAsteroid(Scene* scene)
 
     
 
-    Object* aster = scene->CreateObject(Vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), getRandomFloat(-25000, -50000)), Vec3(0, 0, 0), scale, color, "Asteroid", "assets/models/Asteroid_015_x10_flatshaded_xyz_n_uv.ply");
+    Object* aster = scene->CreateObject(Vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), getRandomFloat(-25000, -50000)), Vec3(0, 0, 0), scale, color, "Asteroid", path);
 
     aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
     scene->AddActionToObj(xyzSpeed, aster);
-    xyzSpeed->speed = glm::vec3(getRandomFloat(-500, -1500), 0, 0);
+    xyzSpeed->speed = glm::vec3(getRandomFloat(-5000, -15000), 0, 0);
 
     aDEstroyOnPos* destrPos  = new aDEstroyOnPos();
     scene->AddActionToObj(destrPos, aster);
@@ -547,6 +548,16 @@ void CreateAsteroid(Scene* scene)
     randomRot->rotationSpeed.y = getRandomFloat(-10, 10);
     randomRot->rotationSpeed.z = getRandomFloat(-10, 10);
     scene->AddActionToObj(randomRot, aster);
+
+    aAsteroidCollision* asterColision = new aAsteroidCollision();
+    asterColision->program = program;
+    asterColision->shipGuns = shipGuns;
+    scene->AddActionToObj(asterColision, aster);
+
+
+
+  
+    
 
 }
 //Asteroid_011_x10 at regular size(not scaled)
@@ -588,6 +599,10 @@ int main(void)
     modelInfo.meshPath = "assets/models/Asteroid_011_x10_flatshaded_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Asteroid2.txt", "XYZNUV");
+    modelInfo.modelName = "Sphere";
+    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "sphere.txt", "XYZNUV");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
@@ -596,6 +611,7 @@ int main(void)
 
     // end of question 1 creating models
 
+    
 
     // Read the model from the file (assuming the file exists)
    // Read the model from the file (assuming the file exists)
@@ -640,7 +656,7 @@ int main(void)
     ::g_pMeshManager = new cVAOManager();
 
 
-    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
+    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, g_pMeshManager);
 
     //MoveForward* action = new MoveForward();
 
@@ -649,15 +665,13 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[1]);
 
    
-    
+   
 
 
-    PreparePhysics();
+//    PreparePhysics();
 
     PrepareFlyCamera();
 
@@ -690,10 +704,29 @@ int main(void)
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
-    PhysicsManager* physicsMan = new PhysicsManager();
-    physicsMan->VAOMan = g_pMeshManager;
-    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[1]->startTranform->scale.x);
+    
+    scene->physicsMan->VAOMan = g_pMeshManager;
+    scene->physicsMan->AddTriangleMesh("assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
+    float asterSpawnTimer = 0;
+    float asterSpawnTime = 0.1;
+
+
+    //SHIPGUNS
+  //I'm gonna create a vector for shipguns and look for every SHIPGUN in sceneObjects and add them.
+  // Then I'm gonna give this vector to Action Asteroid Collision
+  //Should work.
+
+     
+
+    std::vector<Object*> shipGuns;
+
+    for (Object* object : scene->sceneObjects)
+    {
+        if (object->name == "ShipGun")
+            shipGuns.push_back(object);
+    }
+    std::cout << "SHIPGUNS LOADED: " << shipGuns.size() << "\n";
    
     while (!glfwWindowShouldClose(window))
     {
@@ -704,8 +737,9 @@ int main(void)
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        CreateAsteroid(scene);
+       
         UpdateMatricies(ratio, program);
+
 
 //        // *******************************************************************
 
@@ -728,21 +762,7 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-        glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
-        glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
-
-        std::vector<sCollision_RayTriangleInMesh> collisions;
-        posEnd.x = -2;
-        if (physicsMan->RayCast(pos, posEnd, collisions, false)) {} //printf("HIT!\n");
-        for (auto col : collisions)
-        {
-        //    printf("HIT!\n");
-        }
-
-        posEnd = pos;
-        posEnd.x -= 2;
-
-        DrawRay(pos, posEnd, program);
+       
 
         for (Object* object:scene->sceneObjects)
         {
@@ -776,6 +796,14 @@ int main(void)
         lastFrameTime = currentFrameTime;
 
 
+        asterSpawnTimer += deltaTime;
+        if (asterSpawnTimer > asterSpawnTime)
+        {
+            CreateAsteroid(scene, program, shipGuns);
+            asterSpawnTimer = 0;
+
+        }
+
       //  UpdateBallShadow();
 
         // Physic update and test 
@@ -806,7 +834,7 @@ int main(void)
 
 
         // Handle async IO stuff
-        handleKeyboardAsync(window);
+        handleKeyboardAsync(window, scene);
         handleMouseAsync(window);
 
         glfwSwapBuffers(window);

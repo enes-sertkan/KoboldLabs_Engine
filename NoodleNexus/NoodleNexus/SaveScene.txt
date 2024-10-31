@@ -6,55 +6,56 @@ MainShip.txt
 selectBox.txt
 Asteroid1.txt
 Asteroid2.txt
+sphere.txt
 <--ObjectLoad>
 <Scene-->
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> false
-<Color-> 1 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> 10 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> -10 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
 
 <Object-->
 <Name-> MainShip
 <Model-> MainShip
 <Position-> 0 0 -40000
 <Rotation-> 0 0 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0.5
 <--Object>
 
+<Object-->
+<Name-> ShipGun
+<Model-> ShipGun
+<Position-> 1949 2845 -28028
+<Rotation-> 0 0 0
+<Scale-> 0.5 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0.5
+<--Object>
+
+<Object-->
+<Name-> ShipGun
+<Model-> ShipGun
+<Position-> 1694 2845 -36295
+<Rotation-> 0 0 0
+<Scale-> 0.5 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0.5
+<--Object>
+
+<Object-->
+<Name-> ShipGun
+<Model-> ShipGun
+<Position-> 1849 2845 -40128
+<Rotation-> 0 0 0
+<Scale-> 0.5 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0.5
+<--Object>
+
 <Light-->
-<Position-> 300 50000 -19487 1
+<Position-> 300 50000 -19488.3 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.12197e-10 3.71539e-10 3.40282e+38
@@ -100,6 +101,11 @@ Asteroid2.txt
 
 <Camera-->
 <Position-> 0 0 50
+<Rotation-> 163 84 -164
+<--Camera>
+
+<Camera-->
+<Position-> 2903 2943 -24528
 <Rotation-> 163 84 -164
 <--Camera>
 

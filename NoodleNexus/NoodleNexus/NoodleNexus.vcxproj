@@ -162,6 +162,7 @@
     <ClInclude Include="aAsteroidCollision.h" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
+    <ClInclude Include="aExplosion.h" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="aRandomRotation.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="cLightManager.h" />
     <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
+    <ClInclude Include="aHoldLaser.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scene.hpp" />

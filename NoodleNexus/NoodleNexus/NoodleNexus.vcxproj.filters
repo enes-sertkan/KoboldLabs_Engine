@@ -157,6 +157,18 @@
     <ClInclude Include="aDestroyOnPos.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="aAsteroidCollision.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aRandomRotation.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aExplosion.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aHoldLaser.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

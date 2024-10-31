@@ -2,6 +2,7 @@
 
 #include "Action.h";
 #include <glm/vec3.hpp> 
+#include "Scene.hpp"
 
 class aMoveXYZSpeed : public Action
 {
@@ -11,9 +12,10 @@ public:
 
 	void Update() override
 	{
-		object->mesh->positionXYZ.x += speed.x;
-		object->mesh->positionXYZ.y += speed.y;
-		object->mesh->positionXYZ.z += speed.z;
+		double deltaTime = object->scene->deltaTime;
+		object->mesh->positionXYZ.x += speed.x* deltaTime;
+		object->mesh->positionXYZ.y += speed.y * deltaTime;
+		object->mesh->positionXYZ.z += speed.z * deltaTime;
 
 		//printf("WOW, you are UPDATING\n");
 	}

@@ -9,6 +9,7 @@
 #include "sMesh.h"
 
 #include "cLightManager.h"
+#include "Scene.hpp"
 
 //extern cLightManager* g_pLightManager;
 
@@ -90,7 +91,7 @@ void handleMouseAsync(GLFWwindow* window)
     return;
 }
 
-void handleKeyboardAsync(GLFWwindow* window)
+void handleKeyboardAsync(GLFWwindow* window, Scene* scene)
 {
     const float CAMERA_MOVE_SPEED = 1.0f;
     const float CAMERA_TURN_SPEED = 1.0f;
@@ -98,6 +99,19 @@ void handleKeyboardAsync(GLFWwindow* window)
     if ( isShiftDown(window) )
     {
         // Keys move the target
+    }
+
+
+    if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+    {
+        scene->laserMode = true;
+        std::cout << "LASER MODE ON! YAY!\n";
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+    {
+        scene->laserMode = false;
+        std::cout << "LASER MODE OFF! OH NO!\n";
     }
 
     if (isControlDown(window) ) 

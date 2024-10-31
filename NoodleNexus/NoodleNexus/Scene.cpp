@@ -25,7 +25,7 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 }
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes)
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, cVAOManager* vaoMan)
 {
     for (sModelDrawInfo info : modelInfos)
     {
@@ -50,6 +50,9 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
         }
     }
 
+    physicsMan = new PhysicsManager();
+    physicsMan->VAOMan = vaoMan;
+    //TODO: PHYSICS SHOULD BE ASSIGNED AUTOMATIACLLY NOT IN MAIN
 
 }
 
@@ -59,13 +62,14 @@ void Scene::Update()
     //{
     //    obj->Update();
     //}
+    CalculateDeltaTime();
     if(!flyCamera)
     MoveCameraToPoint();
 
 
     for (Object* object : sceneObjects)
     {
-
+        if (object)
         for (Action* action : object->actions)
         {
             if (object->enabled)
@@ -81,6 +85,7 @@ void Scene::AddActionToObj(Action* action, Object* object)
     object->actions.push_back(action);
 }
 
+//CREATE SHADED OBJECT WITH THIS COLOR
 Object* Scene::CreateObject(glm::vec3 pos, glm::vec3 rotation, float scale, glm::vec4 color, std::string name, std::string modelName)
 {
     Object* obj = new Object();
@@ -108,6 +113,16 @@ Object* Scene::CreateObject(glm::vec3 pos, glm::vec3 rotation, float scale, glm:
 
     sceneObjects.push_back(obj);
     
+    return obj;
+
+}
+
+//A POSSIBILITY TO CREATE NON SHADED OBJECT
+Object* Scene::CreateObject(glm::vec3 pos, glm::vec3 rotation, float scale, glm::vec4 color, std::string name, std::string modelName, bool isShaded)
+{
+    Object* obj = CreateObject(pos, rotation, scale, color, name, modelName);
+    obj->mesh->bDoNotLight = !isShaded;
+   
     return obj;
 
 }
@@ -151,4 +166,16 @@ void Scene::RemoveObject(Object* obj)
         sceneObjects.erase(it); // Remove from vector
     }
     
+}
+
+void Scene::CalculateDeltaTime()
+{
+    // Get the current time using glfwGetTime
+    currentTime = glfwGetTime();
+
+    // Calculate deltaTime
+    deltaTime = currentTime - lastTime;
+
+    // Update lastTime for the next frame
+    lastTime = currentTime;
 }

@@ -21,9 +21,7 @@ public:
 
 	void Start() override
 	{
-		rotationSpeed.x = getRandomFloat(-1, 1);
-		rotationSpeed.y = getRandomFloat(-1, 1);
-		rotationSpeed.z = getRandomFloat(-1, 1);
+	
 
 	}
 
