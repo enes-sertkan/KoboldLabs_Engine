@@ -160,6 +160,9 @@
     <ClInclude Include="aAsteroidRotation.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ScarEffect.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

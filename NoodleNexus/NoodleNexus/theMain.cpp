@@ -541,7 +541,8 @@ void SpawnAsteroid(Scene* scene) {
     glm::vec4 color = glm::vec4(1, 0, 0, 1);
 
     // Create the asteroid object
-    Object* aSteroid = scene->CreateObject(position, glm::vec3(0, 0, 0), scale, color, modelFileName, "assets/models/" + modelFileName + ".ply");
+    Object* aSteroid = scene->CreateObject(position, glm::vec3(0, 0, 0), scale, color, modelFileName, "assets/models/" + modelFileName + ".ply", "asteroid");
+
 
     // Create a KLFileManager instance for saving the model info
     KLFileManager* fileManager = new KLFileManager();
@@ -566,6 +567,7 @@ void SpawnAsteroid(Scene* scene) {
     aAsteroidRotation* rotationAction = new aAsteroidRotation();
     scene->AddActionToObj(rotationAction, aSteroid);
 }
+
 
 
 int main(void)
@@ -650,14 +652,14 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    //ExplosionLogic* action = new ExplosionLogic();
+    ExplosionLogic* action = new ExplosionLogic();
 
-    //scene->AddActionToObj(action, scene->sceneObjects[0]);
+    scene->AddActionToObj(action, scene->sceneObjects[0]);
 
-    //aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    //scene->AddActionToObj(xyzSpeed, scene->sceneObjects[0]);
-    //xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
-    //
+    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[0]);
+    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+    
 
 
     PreparePhysics();
@@ -734,6 +736,18 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
+        // Call CheckForCollisions
+        scene->CheckForCollisions();
+
+        for (Object* object : scene->sceneObjects) {
+            if (object) { // Ensure object is valid
+                DrawMesh(object->mesh, program);
+            }
+            else {
+                std::cerr << "Warning: Encountered a null object in the scene!" << std::endl;
+            }
+        }
+
         glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
         glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
 
@@ -741,7 +755,7 @@ int main(void)
         posEnd.x = -2;
         if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
 
-        for (auto col : collisions)
+        for (sCollision_RayTriangleInMesh col : collisions)
         {
             printf("HIT!\n");
         }

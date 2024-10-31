@@ -12,16 +12,22 @@
 #include "Action.h"
 #include "Transform.h"
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
+#include "PhysicsManager.h"
 //This is a class bc we gonna have functions in it later
 class Scene
 {
 public:
 	bool flyCamera = true;
+
+	PhysicsManager* physicsThings;	
+
 	std::vector<sModelDrawInfo> modelInfos;
 
 	std::vector<Object*> sceneObjects;
 
 	std::vector<Action*> actions;
+
+	std::vector<Object*> GetAsteroids();
 
 	cLightManager* lightManager;
 
@@ -41,7 +47,8 @@ public:
 
 	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes);
 
-	
+	void CheckForCollisions();
+
 	void AddActionToObj(Action* action, Object* object);
 
 	double currentTime, lastTime, deltaTime;
@@ -58,7 +65,7 @@ public:
 		lastTime = currentTime;
 	}
 
-	Object* CreateObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, const std::string& name, const std::string& modelPath) {
+	Object* CreateObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, const std::string& name, const std::string& modelPath, const std::string& objectType) {
 		Object* newObject = new Object();
 		newObject->name = name;
 		newObject->mesh = new sMesh();
@@ -69,6 +76,7 @@ public:
 		newObject->mesh->objectColourRGBA = color;
 		newObject->mesh->bOverrideObjectColour = true;
 		newObject->isTemporary = true;
+		newObject->type = objectType; // Set the object type
 
 		// Add the new object to the scene
 		sceneObjects.push_back(newObject);

@@ -30,11 +30,14 @@ class MoveForward : public Action
     }
 };
 
-class ExplosionLogic : public Action
-{
-    void Update() override
-    {
-        if (object->mesh->uniformScale >= 5) return;
-        object->mesh->uniformScale += 0.005f; // No change needed here for deltaTime
+
+class ExplosionLogic : public Action {
+public:
+    void Update() override {
+        if (object->mesh->uniformScale >= 5) {
+            return;
+        }
+        object->mesh->uniformScale += 0.5f * deltaTime;
     }
 };
+

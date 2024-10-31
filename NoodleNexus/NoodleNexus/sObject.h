@@ -10,8 +10,6 @@
 
 class Scene;
 
-
-//TODO: Change File Name, bc now it's a class.
 class Object
 {
 
@@ -21,6 +19,10 @@ public:
 	Scene* scene;
 	Transform* startTranform = new Transform;
 	bool isTemporary = false;
+
+	std::string type;
+
+	Object() : isTemporary(false), mesh(nullptr) {}
 
 	void Destroy();
 

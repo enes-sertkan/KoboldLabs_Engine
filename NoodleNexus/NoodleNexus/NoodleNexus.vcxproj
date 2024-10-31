@@ -171,6 +171,7 @@
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="ScarEffect.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
