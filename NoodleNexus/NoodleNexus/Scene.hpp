@@ -30,7 +30,7 @@ public:
 	std::vector<Object*> GetAsteroids();
 
 	cLightManager* lightManager;
-
+	
 	std::vector<std::string> modelPaths;
 	std::vector<Transform*> cameraPositions;
 	void MoveCameraToPoint();

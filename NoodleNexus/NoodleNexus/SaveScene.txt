@@ -10,17 +10,6 @@ selectBox.txt
 <Scene-->
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> 10 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
 <Name-> MainShip
 <Model-> MainShip
 <Position-> 0 0 -40000

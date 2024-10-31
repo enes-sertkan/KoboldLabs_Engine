@@ -47,6 +47,7 @@
 #include "SceneEditor.h"
 #include "scene.hpp"
 #include "aAsteroidRotation.hpp"
+#include "AsteroidTimer.h"
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -493,7 +494,6 @@ void UpdateWindowTitle(GLFWwindow* window)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
-// Function to spawn asteroids
 void SpawnAsteroid(Scene* scene) {
     // Random seed for better randomness
     static bool seedInitialized = false;
@@ -543,7 +543,6 @@ void SpawnAsteroid(Scene* scene) {
     // Create the asteroid object
     Object* aSteroid = scene->CreateObject(position, glm::vec3(0, 0, 0), scale, color, modelFileName, "assets/models/" + modelFileName + ".ply", "asteroid");
 
-
     // Create a KLFileManager instance for saving the model info
     KLFileManager* fileManager = new KLFileManager();
 
@@ -563,12 +562,16 @@ void SpawnAsteroid(Scene* scene) {
     float speedValue = getRandomFloat(7000, 23000);
     xyzSpeed->speed = glm::vec3(-speedValue, 0, 0);
 
-    // **Add random rotation action**
+    // Add random rotation action
     aAsteroidRotation* rotationAction = new aAsteroidRotation();
     scene->AddActionToObj(rotationAction, aSteroid);
+
+    AsteroidTimer* timerAction = new AsteroidTimer(scene);
+    scene->AddActionToObj(timerAction, aSteroid);  // Attach timer to the asteroid
+
+    std::cout << "Spawned asteroid with self-destruct timer." << std::endl;
+
 }
-
-
 
 int main(void)
 {
@@ -582,7 +585,7 @@ int main(void)
     // question 1 creating models
 
     modelInfo.modelName = "Cube";
-    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
@@ -652,13 +655,13 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
+    //ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[0]);
+    //scene->AddActionToObj(action, scene->sceneObjects[0]);
 
-    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[0]);
-    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+    //aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    //scene->AddActionToObj(xyzSpeed, scene->sceneObjects[0]);
+    //xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
     
 
 
