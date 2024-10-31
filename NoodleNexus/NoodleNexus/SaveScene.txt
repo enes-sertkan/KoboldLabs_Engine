@@ -14,7 +14,7 @@ selectBox.txt
 <Model-> MainShip
 <Position-> 0 0 -40000
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 8.74166e-39 0
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0.5

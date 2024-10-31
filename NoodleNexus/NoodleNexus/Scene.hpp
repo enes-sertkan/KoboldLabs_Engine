@@ -1,9 +1,7 @@
 #pragma once
 
-#include "sObject.h";
+#include "sObject.h"
 #include <vector>
-#include "sObject.h";
-
 #include "cVAOManager/cVAOManager.h"
 #include "GLCommon.h"
 #include <iostream>
@@ -13,75 +11,64 @@
 #include "Transform.h"
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "PhysicsManager.h"
-//This is a class bc we gonna have functions in it later
-class Scene
-{
+#include <thread>
+#include <chrono>
+
+class Scene {
 public:
-	bool flyCamera = true;
+    bool flyCamera = true;
+    bool laserEnabled = false;
+    float stationLength = 1000.0f; // Defined station length
 
-	PhysicsManager* physicsThings;	
+    std::vector<Object*> temporaryObjects;
+    PhysicsManager* physicsThings;
+    std::vector<sModelDrawInfo> modelInfos;
+    std::vector<Object*> sceneObjects;
+    std::vector<Action*> actions;
+    std::vector<Object*> GetAsteroids();
 
-	std::vector<sModelDrawInfo> modelInfos;
+    cLightManager* lightManager;
 
-	std::vector<Object*> sceneObjects;
+    std::vector<std::string> modelPaths;
+    std::vector<Transform*> cameraPositions;
+    int currentCameraIndex = 0;
 
-	std::vector<Action*> actions;
+    void MoveCameraToPoint();
+    void SetCameraToNextPoint();
+    void SetCameraToFirstPoint();
+    void NextCameraPoint();
 
-	std::vector<Object*> GetAsteroids();
+    void RemoveObject(Object* object);
+    void CheckLaserHit();
+    void FireLaser(Object* asteroid, const glm::vec3& stationPos);
+    void TriggerExplosionEffect(Object* asteroid);
+    void ScheduleLaserCleanup();
+    void Update();
+    void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes);
+    void CheckForCollisions();
+    void AddActionToObj(Action* action, Object* object);
 
-	cLightManager* lightManager;
-	
-	std::vector<std::string> modelPaths;
-	std::vector<Transform*> cameraPositions;
-	void MoveCameraToPoint();
-	void SetCameraToNextPoint();
-	void SetCameraToFirstPoint();
-	void NextCameraPoint();
+    double currentTime, lastTime, deltaTime;
 
-	void RemoveObject(Object* object);
-	
-	int currentCameraIndex=0;
+    void CalculateDeltaTime() {
+        currentTime = glfwGetTime();
+        deltaTime = currentTime - lastTime;
+        lastTime = currentTime;
+    }
 
-
-	void Update();
-
-	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes);
-
-	void CheckForCollisions();
-
-	void AddActionToObj(Action* action, Object* object);
-
-	double currentTime, lastTime, deltaTime;
-
-	void CalculateDeltaTime()
-	{
-		// Get the current time using glfwGetTime
-		currentTime = glfwGetTime();
-
-		// Calculate deltaTime
-		deltaTime = currentTime - lastTime;
-
-		// Update lastTime for the next frame
-		lastTime = currentTime;
-	}
-
-	Object* CreateObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, const std::string& name, const std::string& modelPath, const std::string& objectType) {
-		Object* newObject = new Object();
-		newObject->name = name;
-		newObject->mesh = new sMesh();
-		newObject->mesh->modelFileName = modelPath;
-		newObject->mesh->positionXYZ = position;
-		newObject->mesh->rotationEulerXYZ = rotation;
-		newObject->mesh->uniformScale = scale;
-		newObject->mesh->objectColourRGBA = color;
-		newObject->mesh->bOverrideObjectColour = true;
-		newObject->isTemporary = true;
-		newObject->type = objectType; // Set the object type
-
-		// Add the new object to the scene
-		sceneObjects.push_back(newObject);
-		return newObject; // Return the created object
-	}
-
-	
+    Object* CreateObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, const std::string& name, const std::string& modelPath, const std::string& objectType) {
+        Object* newObject = new Object();
+        newObject->name = name;
+        newObject->mesh = new sMesh();
+        newObject->mesh->modelFileName = modelPath;
+        newObject->mesh->positionXYZ = position;
+        newObject->mesh->rotationEulerXYZ = rotation;
+        newObject->mesh->uniformScale = scale;
+        newObject->mesh->objectColourRGBA = color;
+        newObject->mesh->bOverrideObjectColour = true;
+        newObject->isTemporary = true;
+        newObject->type = objectType;
+        sceneObjects.push_back(newObject);
+        return newObject;
+    }
 };

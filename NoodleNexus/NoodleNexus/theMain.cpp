@@ -535,7 +535,7 @@ void SpawnAsteroid(Scene* scene) {
     }
 
     // Spawn position (far off-screen)
-    glm::vec3 position = glm::vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), -40000);
+    glm::vec3 position = glm::vec3(getRandomFloat(40000, 60000), getRandomFloat(-10000, 10000), getRandomFloat(-50000, 30000));
 
     // Asteroid color
     glm::vec4 color = glm::vec4(1, 0, 0, 1);

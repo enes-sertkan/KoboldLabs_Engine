@@ -5,8 +5,10 @@
 #include "ScarEffect.hpp"
 #include <string>
 #include <glm/glm.hpp>
+#include <chrono>
 
 ScarEffect* scarAction = new ScarEffect();
+float stationLength = 1000.0f;
 //const float COLLISION_THRESHOLD = 4000.0f;
 
 
@@ -15,46 +17,31 @@ std::string vec3ToString(const glm::vec3& vec) {
     return "{" + std::to_string(vec.x) + ", " + std::to_string(vec.y) + ", " + std::to_string(vec.z) + "}";
 }
 
-sModelDrawInfo LoadDrawInfo(cVAOManager* meshManager, sModelDrawInfo drawInfo, GLuint program)
-{
-    meshManager->LoadModelIntoVAO(drawInfo.meshPath,
-        drawInfo, program);
-
-    std::cout << drawInfo.meshPath << "-Loaded" << std::endl << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
-
+// Helper function to load models
+sModelDrawInfo LoadDrawInfo(cVAOManager* meshManager, sModelDrawInfo drawInfo, GLuint program) {
+    meshManager->LoadModelIntoVAO(drawInfo.meshPath, drawInfo, program);
+    std::cout << drawInfo.meshPath << " - Loaded" << std::endl;
+    std::cout << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
     return drawInfo;
 }
 
-
-sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
-{
-
+// Helper function to create meshes and add to vector
+sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh) {
     meshes.push_back(mesh);
-
     return mesh;
-
 }
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes)
-{
-    for (sModelDrawInfo info : modelInfos)
-    {
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes) {
+    for (sModelDrawInfo info : modelInfos) {
         LoadDrawInfo(meshManager, info, program);
     }
-
-
-    for (Object* object : sceneObjects)
-    {
+    for (Object* object : sceneObjects) {
         CreateMeshObjects(meshes, object->mesh);
         object->scene = this;
     }
-
-    
-
 }
 
-// Question_2 collision detection
-
+// Question 2 collision detection
 std::vector<Object*> Scene::GetAsteroids() {
     std::vector<Object*> asteroids;
     for (Object* obj : sceneObjects) {
@@ -65,85 +52,121 @@ std::vector<Object*> Scene::GetAsteroids() {
     return asteroids;
 }
 
-
-// Question 2 collisoin detection
-const glm::vec3 COLLISION_THRESHOLD = glm::vec3(4000.0f, 4000.0f, 7000.0f);
-
+// Collision threshold
+const glm::vec3 COLLISION_THRESHOLD = glm::vec3(3500.0f, 4200.0f, 20000.0f);
 void Scene::CheckForCollisions() {
-    glm::vec3 spaceStationPos = sceneObjects[1]->mesh->positionXYZ; 
-
-    // Log the space station position
-    std::cout << "Space Station Position: " << vec3ToString(spaceStationPos) << std::endl;
+    glm::vec3 spaceStationPos = sceneObjects[1]->mesh->positionXYZ;
 
     for (Object* obj : GetAsteroids()) {
-        if (obj->type == "asteroid") {
+        glm::vec3 delta = obj->mesh->positionXYZ - spaceStationPos;
 
-            glm::vec3 delta = obj->mesh->positionXYZ - spaceStationPos;
+        if (std::abs(delta.x) < COLLISION_THRESHOLD.x &&
+            std::abs(delta.y) < COLLISION_THRESHOLD.y &&
+            std::abs(delta.z) < COLLISION_THRESHOLD.z) {
 
-            // Log the asteroid position and each axis difference
-            std::cout << "Asteroid Position: " << vec3ToString(obj->mesh->positionXYZ) << std::endl;
-            std::cout << "Delta X: " << std::abs(delta.x) << " (Threshold X: " << COLLISION_THRESHOLD.x << ")" << std::endl;
-            std::cout << "Delta Y: " << std::abs(delta.y) << " (Threshold Y: " << COLLISION_THRESHOLD.y << ")" << std::endl;
-            std::cout << "Delta Z: " << std::abs(delta.z) << " (Threshold Z: " << COLLISION_THRESHOLD.z << ")" << std::endl;
+            Object* explosion = CreateObject(
+                obj->mesh->positionXYZ,
+                glm::vec3(0),
+                500.f,
+                glm::vec4(1, 0, 0, 1),
+                "ExplosionSphereModel",
+                "assets/models/Sphere_radius_1_xyz_N_uv.ply",
+                "Explosion"
+            );
 
-            if (std::abs(delta.x) < COLLISION_THRESHOLD.x &&
-                std::abs(delta.y) < COLLISION_THRESHOLD.y &&
-                std::abs(delta.z) < COLLISION_THRESHOLD.z) {
+            ExplosionLogic* explosionAction = new ExplosionLogic();
+            explosionAction->deltaTime = deltaTime;
+            AddActionToObj(explosionAction, explosion);
 
-                // Create explosion effect
-                Object* explosion = CreateObject(
-                    obj->mesh->positionXYZ,
-                    glm::vec3(0),
-                    500.f,
-                    glm::vec4(1, 0, 0, 1),
-                    "ExplosionSphereModel",
-                    "assets/models/Sphere_radius_1_xyz_N_uv.ply",
-                    "Explosion"
-                );
-                explosion->mesh->bDoNotLight = true;
+            explosion->mesh->bDoNotLight = true;
 
-                std::cout << "Collision detected! Creating explosion effect." << std::endl;
+            Object* scar = CreateObject(
+                obj->mesh->positionXYZ,
+                glm::vec3(0),
+                250.f,
+                glm::vec4(0.2f, 0.2f, 0.2f, 1),
+                "ScarModel",
+                "assets/models/Sphere_radius_1_xyz_N_uv.ply",
+                "Scar"
+            );
 
-                ExplosionLogic* explosionAction = new ExplosionLogic();
-                explosionAction->deltaTime = deltaTime;
-                AddActionToObj(explosionAction, explosion);
+            ScarEffect* scarAction = new ScarEffect();
+            AddActionToObj(scarAction, scar);
+            RemoveObject(obj);
+        }
+    }
+}
 
-                // Create scar effect
-                Object* scar = CreateObject(
-                    obj->mesh->positionXYZ,
-                    glm::vec3(0),
-                    250.f,
-                    glm::vec4(0.2f, 0.2f, 0.2f, 1),
-                    "ScarModel",
-                    "assets/models/Sphere_radius_1_xyz_N_uv.ply",
-                    "Scar" 
-                );
-                ScarEffect* scarAction = new ScarEffect();
-                AddActionToObj(scarAction, scar);
+const glm::vec3 laserOffset = glm::vec3(0.0f, 0.0f, 10.0f);
 
-                // Remove asteroid from scene
-                RemoveObject(obj);
-                std::cout << "Asteroid removed from scene." << std::endl;
+void Scene::CheckLaserHit() {
+    if (!laserEnabled) return;
+
+    glm::vec3 stationPos = sceneObjects[1]->mesh->positionXYZ;  // Assuming the station is at index 1
+    float laserRange = stationLength / 2.0f;  // Half the length of the space station
+
+    for (Object* asteroid : GetAsteroids()) {
+        if (asteroid->type == "asteroid") {
+            float distance = glm::distance(stationPos, asteroid->mesh->positionXYZ);
+            if (distance < laserRange) {
+                FireLaser(asteroid, stationPos);  // Trigger the laser
+                ScheduleLaserCleanup();  // Schedule the cleanup of temporary objects
+                break;  // Stop after hitting one asteroid at a time
             }
         }
     }
 }
 
+void Scene::FireLaser(Object* asteroid, const glm::vec3& stationPos) {
+    glm::vec3 laserStart = stationPos + laserOffset;  // Start position of the laser
+    glm::vec3 direction = glm::normalize(asteroid->mesh->positionXYZ - laserStart);
 
+    float step = 50.0f;  // Step size for creating laser segments
+    for (float t = 0.0f; t < glm::distance(laserStart, asteroid->mesh->positionXYZ); t += step) {
+        glm::vec3 spherePos = laserStart + direction * t;
+        Object* laserPart = CreateObject(spherePos, glm::vec3(0), 5.0f, glm::vec4(0, 1, 0, 1), "LaserSphere", "", "laser");
+        temporaryObjects.push_back(laserPart);  // Keep track of temporary objects
+    }
 
+    TriggerExplosionEffect(asteroid);  // Trigger explosion effect for the asteroid
+}
+
+void Scene::TriggerExplosionEffect(Object* asteroid) {
+    Object* explosion = CreateObject(
+        asteroid->mesh->positionXYZ,
+        glm::vec3(0),
+        10.0f,
+        glm::vec4(1, 0, 0, 1),
+        "ExplosionSphere",
+        "",
+        "explosion"
+    );
+
+    ExplosionLogic* explosionAction = new ExplosionLogic();
+    AddActionToObj(explosionAction, explosion);
+    RemoveObject(asteroid);
+}
+
+void Scene::ScheduleLaserCleanup() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    for (Object* obj : temporaryObjects) {
+        RemoveObject(obj);
+    }
+    temporaryObjects.clear();
+}
 
 void Scene::Update() {
-    CalculateDeltaTime(); 
-
-    // Update all actions
+    CalculateDeltaTime();
     for (Action* action : actions) {
         if (action->object) {
             action->deltaTime = deltaTime;
             action->Update();
         }
     }
-}
 
+    // Check for laser hits during each update
+    CheckLaserHit();
+}
 
 void Scene::AddActionToObj(Action* action, Object* obj) {
     if (action && obj) {
@@ -154,6 +177,7 @@ void Scene::AddActionToObj(Action* action, Object* obj) {
         std::cerr << "Failed to add action. Invalid action or object!" << std::endl;
     }
 }
+
 
 
 void Scene::MoveCameraToPoint()
