@@ -72,7 +72,7 @@ void Scene::Update()
         if (object)
         for (Action* action : object->actions)
         {
-            if (object->enabled)
+            if (object->enabled)    
             action->Update();
         }
     }
