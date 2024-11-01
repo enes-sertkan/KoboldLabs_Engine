@@ -1,5 +1,7 @@
 # 3D Scene Editor Controls
 
+Press **N** for different camera locations
+
 This scene editor provides a keyboard-controlled interface to adjust the **Position**, **Rotation**, and **Scale** of objects in a 3D scene. Toggle between different transformation modes, use the arrow keys for adjustments, and save your scene state.
 
 ## Controls Overview
