@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Head
+<filePath> assets/models/Head_uv_N.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

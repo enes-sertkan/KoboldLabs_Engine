@@ -19,7 +19,7 @@ struct sMesh
 
 	glm::vec4 objectColourRGBA;
 	// If true, it uses the colour above
-	bool bOverrideObjectColour = true;
+	bool bOverrideObjectColour = false;
 
 	bool bIsWireframe = false;
 	bool bIsVisible = true;

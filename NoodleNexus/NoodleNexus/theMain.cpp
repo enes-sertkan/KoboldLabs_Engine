@@ -223,7 +223,9 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     const GLuint program = pShaderManager->getIDFromFriendlyName("shader01");
 
     glUseProgram(program);
-    
+
+    glClearColor(0.53f, 0.81f, 0.92f, 1.0f); // Set the background color to sky blue
+
     return program;
 }
 
@@ -516,7 +518,19 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
 
-    // end of question 1 creating models
+
+
+    modelInfo.modelName = "Backrooms";
+    modelInfo.meshPath = "assets/models/Temple.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Backrooms.txt", "XYZNUV");
+
+    modelInfo.modelName = "Head";
+    modelInfo.meshPath = "assets/models/Head_uv_N.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "head.txt", "XYZNUV");
+
+
 
 
     // Read the model from the file (assuming the file exists)
@@ -554,7 +568,7 @@ int main(void)
     GLuint program = PrepareOpenGL(window);
    
 
-   
+
   
     
 // Loading the TYPES of models I can draw...
@@ -564,21 +578,21 @@ int main(void)
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
 
-    //MoveForward* action = new MoveForward();
+    ////MoveForward* action = new MoveForward();
 
-    //scene->AddActionToObj(action, scene->sceneObjects[0]);
+    ////scene->AddActionToObj(action, scene->sceneObjects[0]);
 
-    //MoveForward* action2 = new MoveForward();
-    //scene->AddActionToObj(action2, scene->sceneObjects[1]);
+    ////MoveForward* action2 = new MoveForward();
+    ////scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
+    //ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[1]);
+    //scene->AddActionToObj(action, scene->sceneObjects[1]);
 
-    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
-    
+    //aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    //scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
+    //xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+    //
 
 
     PreparePhysics();
@@ -594,6 +608,7 @@ int main(void)
     // Enable depth buffering (z buffering)
     // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glEnable.xhtml
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_COLOR_MATERIAL);
 
     double currentFrameTime = glfwGetTime();
     double lastFrameTime = glfwGetTime();

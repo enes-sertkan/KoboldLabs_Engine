@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Backrooms
+<filePath> assets/models/Temple.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

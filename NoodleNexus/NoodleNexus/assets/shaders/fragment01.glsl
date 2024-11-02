@@ -4,17 +4,10 @@ in vec3 fColour;			// Actual 3D model colour (from vertex buffer)
 in vec4 fvertexWorldLocation;
 in vec4 fvertexNormal;
 
-// we are not using it now, we are just adding to test
-in vec2 fUV;   
-
 uniform vec4 objectColour;			// Override colour 
 uniform bool bUseObjectColour;
 uniform vec4 eyeLocation;			// Where the camera is
 uniform bool bDoNotLight;			// if true, skips lighting
-
-// we are not using it now, we are just adding to test
-
-uniform sampler2D textureSampler; // Texture sampler
 
 out vec4 finalPixelColour;
 
@@ -51,18 +44,11 @@ vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal,
 void main()
 {
 	vec3 vertexColour = fColour;
+
 	if ( bUseObjectColour )
 	{
 		vertexColour = objectColour.rgb;
 	}
-
-	// we are not using it now, we are just adding to test
-
-	// Sample the texture color using UV coordinates
-    vec3 textureColor = texture(textureSampler, fUV).rgb;
-
-    // Blend texture color with vertex color
-    vertexColour *= textureColor;
 	
 	// Use lighting?
 	if ( bDoNotLight )
@@ -84,7 +70,7 @@ void main()
 	                                          fvertexWorldLocation.xyz, 
 											  vertexSpecular );
 
-											
+	
 	finalPixelColour = pixelColour;
 	finalPixelColour.a = 1.0f;		
 
@@ -183,7 +169,13 @@ vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal,
 		float attenuation = 1.0f / 
 				( theLights[index].atten.x + 										
 				  theLights[index].atten.y * distanceToLight +						
-				  theLights[index].atten.z * distanceToLight*distanceToLight );  	
+		  theLights[index].atten.z * distanceToLight*distanceToLight );  
+	
+
+	//float attenuation = 1.0f / 
+	//			( theLights[index].atten.x * distanceToLight + 										
+	//			  theLights[index].atten.y * distanceToLight +						
+	//			  theLights[index].atten.z * distanceToLight );  
 				  
 		// total light contribution is Diffuse + Specular
 		lightDiffuseContrib *= attenuation;
@@ -238,8 +230,8 @@ vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal,
 		
 		
 					
-		finalObjectColour.rgb += (vertexMaterialColour.rgb * lightDiffuseContrib.rgb)
-								  + (vertexSpecular.rgb  * lightSpecularContrib.rgb );
+		finalObjectColour.rgb += (vertexMaterialColour.rgb * lightDiffuseContrib.rgb);
+								//  + (vertexSpecular.rgb  * lightSpecularContrib.rgb );
 
 	}//for(intindex=0...
 	
