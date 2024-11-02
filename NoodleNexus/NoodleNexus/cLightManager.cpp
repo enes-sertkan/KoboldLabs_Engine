@@ -59,6 +59,14 @@ void cLightManager::loadUniformLocations(GLuint shaderProgram)
 	this->theLights[1].param1_UL = glGetUniformLocation(shaderProgram, "theLights[1].param1");
 	this->theLights[1].param2_UL = glGetUniformLocation(shaderProgram, "theLights[1].param2");
 
+	this->theLights[2].position_UL = glGetUniformLocation(shaderProgram, "theLights[2].position");
+	this->theLights[2].diffuse_UL = glGetUniformLocation(shaderProgram, "theLights[2].diffuse");
+	this->theLights[2].specular_UL = glGetUniformLocation(shaderProgram, "theLights[2].specular");
+	this->theLights[2].atten_UL = glGetUniformLocation(shaderProgram, "theLights[2].atten");
+	this->theLights[2].direction_UL = glGetUniformLocation(shaderProgram, "theLights[2].direction");
+	this->theLights[2].param1_UL = glGetUniformLocation(shaderProgram, "theLights[2].param1");
+	this->theLights[2].param2_UL = glGetUniformLocation(shaderProgram, "theLights[2].param2");
+
 	// TODO: the rest of the lights... (2, 3, etc.)
 
 	return;
@@ -140,7 +148,17 @@ std::string cLightManager::sLight::getState(void)
 	ssLightState << "position "
 		<< this->position.x << " "
 		<< this->position.y << " "
-		<< this->position.z << std::endl;
+		<< this->position.z << " "
+		<< this->atten.x << " "
+		<< this->atten.y << " "
+		<< this->atten.z << " "
+		<< this->direction.x << " "
+		<< this->direction.y << " "
+		<< this->direction.x << " "
+		<< this->param1.a << " "
+		<< this->param1.b << " "
+		<< this->param1.g << " "
+		<< this->param2.x << std::endl;
 	// And so on...
 
 	// return as a string
@@ -212,6 +230,17 @@ bool cLightManager::sLight::loadState(std::string stateString)
 	ssLightState >> this->position.x;
 	ssLightState >> this->position.y;
 	ssLightState >> this->position.z;
+	ssLightState >> this->atten.x;
+	ssLightState >> this->atten.y;
+	ssLightState >> this->atten.z;
+	ssLightState >> this->direction.x;
+	ssLightState >> this->direction.y;
+	ssLightState >> this->direction.x;
+	ssLightState >> this->param1.a;
+	ssLightState >> this->param1.b;
+	ssLightState >> this->param1.g;
+	ssLightState >> this->param2.x;
+
 
 	// And so on...
 

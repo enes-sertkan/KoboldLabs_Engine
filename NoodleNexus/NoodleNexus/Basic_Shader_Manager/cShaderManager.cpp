@@ -194,6 +194,7 @@ std::string cShaderManager::getLastError(void)
 
 #include <iostream>
 
+
 bool cShaderManager::m_compileShaderFromSource( cShaderManager::cShader &shader, std::string &error )
 {
 	error = "";

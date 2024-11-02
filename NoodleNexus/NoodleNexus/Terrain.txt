@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Terrain
+<filePath> assets/models/Terrain.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

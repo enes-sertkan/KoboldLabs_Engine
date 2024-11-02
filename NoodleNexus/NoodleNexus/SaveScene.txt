@@ -1,83 +1,233 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
-Cube.txt
-MainShip.txt
+Terrain.txt
+Tree.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> 0 0 0
+<Name-> Terrain
+<Model-> Terrain
+<Position-> -214 -1956 -4497
 <Rotation-> 0 0 0
-<Scale-> 1 7.7484e-39 1.00102e-38
-<Visibility-> true
-<Shading-> false
-<Color-> 1 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> 10 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.86636e-44
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Position-> -10 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 1.01939e-38 1.04694e-38
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> MainShip
-<Model-> MainShip
-<Position-> 0 0 -40000
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.01938e-38
+<Scale-> 5 0 0
 <Visibility-> true
 <Shading-> true
-<Color-> 1 0 0.5
+<Color-> 0.54 0.26 0.07
+<--Object>
+
+<Object-->
+<Name-> Terrain
+<Model-> Terrain
+<Position-> -269 -1971 -4532
+<Rotation-> 0 0 0
+<Scale-> 5 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.2 0.2 0.2
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -1692 -1954 -3678
+<Rotation-> 0 0 0
+<Scale-> 30 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.23 0.7 0.4
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -2292 -1954 -3699
+<Rotation-> 0 0 0
+<Scale-> 31 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.23 0.7 0.4
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -2038 -1917 -4215
+<Rotation-> 0 0 0
+<Scale-> 30 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.23 0.7 0.4
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -2038 -1917 -4215
+<Rotation-> 0 0 0
+<Scale-> 31 6.1517e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.23 0.7 0.4
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -2000 -1954 -4000
+<Rotation-> 0 0 0
+<Scale-> 32 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.25 0.7 0.35
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -2200 -1902 -4448
+<Rotation-> 0 0 0
+<Scale-> 28 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.68 0.38
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1500 -1884 -4930
+<Rotation-> 0 0 0
+<Scale-> 30 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.27 0.75 0.41
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1000 -1945 -3491
+<Rotation-> 0 0 0
+<Scale-> 29 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.22 0.68 0.42
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 500 -1744 -3890
+<Rotation-> 0 0 0
+<Scale-> 31 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.26 0.73 0.4
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -1500 -1862 -4808
+<Rotation-> 0 0 0
+<Scale-> 34 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.23 0.7 0.43
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -500 -1846 -3692
+<Rotation-> 0 0 0
+<Scale-> 33 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.25 0.72 0.37
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1800 -1954 -5200
+<Rotation-> 0 0 0
+<Scale-> 29 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
 <--Object>
 
 <Light-->
-<Position-> 0 70000 -40000.4 1
-<Diffuse-> 1000 0 -9388 1
+<Position-> -2038 5096.5 -4224.8 1
+<Diffuse-> -194 -51 -9492 1
 <Specular-> 1 1 1 1
-<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
+<Atten-> 0 2.27488e-08 4.31349e-07 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> -948.5 2717 -8577.56 1
-<Diffuse-> 1 1 1 1
+<Position-> -1686.5 -1347.5 -3684.5 1
+<Diffuse-> 4362 135 -9696 1
 <Specular-> 1 1 1 1
-<Atten-> 0 7.6419e-10 9.27593e-08 3.40282e+38
+<Atten-> 0 0.274742 1.40558e-07 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 0 0 0 0
+<Param1-> 1 20 35 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 2 2 2 1
-<Diffuse-> 0.8 0.8 0.8 1
+<Position-> -2030 -1347.5 -4213.5 1
+<Diffuse-> 1373 139 -9696 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.07 0.017 3.40282e+38
+<Atten-> 0 0.274742 1.40558e-07 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> -2205 -1350 -4505 1
+<Diffuse-> 4500 150 -9500 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.3 1.5e-07 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 18 33 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 995 -1347 -3505 1
+<Diffuse-> 4400 130 -9400 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.28 1.4e-07 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 21 36 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> -1505 -1347 -4905 1
+<Diffuse-> 4300 145 -9600 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.27 1.3e-07 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 19 34 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 1795 -1347 -5205 1
+<Diffuse-> 4550 140 -9550 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.29 1.45e-07 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 22 37 0
 <Param2-> 1 0 0 0
 <--Light>
 

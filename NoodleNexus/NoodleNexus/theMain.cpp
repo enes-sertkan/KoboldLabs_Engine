@@ -201,6 +201,8 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
 
     // NOTE: OpenGL error checks have been omitted for brevity
 
+    glClearColor(0.85f, 0.65f, 0.35f, 1.0f); // Darker golden hour color
+
 
     cShaderManager* pShaderManager = new cShaderManager();
 
@@ -501,22 +503,27 @@ int main(void)
 
     // question 1 creating models
 
-    modelInfo.modelName = "Cube";
-    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    modelInfo.modelName = "Terrain";
+    modelInfo.meshPath = "assets/models/Terrain.ply";
     // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "Terrain.txt", "XYZNUV");
 
-    modelInfo.modelName = "MainShip";
-    modelInfo.meshPath = "assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply";
+    //modelInfo.modelName = "Ship";
+    //modelInfo.meshPath = "assets/models/Ship_xyz_n_rgba_uv.ply";
+    //// Call WriteModelFile to save the model info
+    //fileManager->WriteModelFile(&modelInfo, "Ship.txt", "XYZNUV");
+
+    modelInfo.modelName = "Tree";
+    modelInfo.meshPath = "assets/models/Tree_n_uv_c.ply";
     // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "MainShip.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "Tree.txt", "XYZNUV");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
 
-    // end of question 1 creating models
+    // end of question 1 creating model
 
 
     // Read the model from the file (assuming the file exists)
@@ -571,13 +578,13 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
+    //ExplosionLogic* action = new ExplosionLogic();
 
-    scene->AddActionToObj(action, scene->sceneObjects[1]);
+    //scene->AddActionToObj(action, scene->sceneObjects[1]);
 
-    aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
-    scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
-    xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
+    //aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
+    //scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
+    //xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
     
 
 
@@ -594,6 +601,8 @@ int main(void)
     // Enable depth buffering (z buffering)
     // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glEnable.xhtml
     glEnable(GL_DEPTH_TEST);
+    // TEST for colors in scene
+    glEnable(GL_COLOR_MATERIAL);
 
     double currentFrameTime = glfwGetTime();
     double lastFrameTime = glfwGetTime();
@@ -653,21 +662,21 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-        glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
-        glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
+        //glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
+        //glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
 
-        std::vector<sCollision_RayTriangleInMesh> collisions;
-        posEnd.x = -2;
-        if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
-        for (auto col : collisions)
-        {
-            printf("HIT!\n");
-        }
+        //std::vector<sCollision_RayTriangleInMesh> collisions;
+        //posEnd.x = -2;
+        //if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
+        //for (auto col : collisions)
+        //{
+        //    printf("HIT!\n");
+        //}
 
-        posEnd = pos;
-        posEnd.x -= 2;
+        //posEnd = pos;
+        //posEnd.x -= 2;
 
-        DrawRay(pos, posEnd, program);
+        //DrawRay(pos, posEnd, program);
 
         for (Object* object:scene->sceneObjects)
         {

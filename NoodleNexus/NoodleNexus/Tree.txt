@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Tree
+<filePath> assets/models/Tree_n_uv_c.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

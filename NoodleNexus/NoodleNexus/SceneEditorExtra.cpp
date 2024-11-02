@@ -291,32 +291,36 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         case Diffuse:
             // Increase or decrease diffuse color values
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->diffuse.y += 0.01f; // Adjusting the Y channel
+                selectedLight->diffuse.y += 1.0f; // Adjusting the Y channel
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->diffuse.y -= 0.01f;
+                selectedLight->diffuse.y -= 1.0f;
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                selectedLight->diffuse.x += 1.0f; // Adjusting the X channel
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                selectedLight->diffuse.x -= 1.0f;
 
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                    selectedLight->diffuse.z += 0.01f; // Adjusting the Z channel
+                    selectedLight->diffuse.z += 1.0f; // Adjusting the Z channel
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                    selectedLight->diffuse.z -= 0.01f;
+                    selectedLight->diffuse.z -= 1.0f;
             }
             break;
 
         case Specular:
             // Adjust specular color and power
             if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->specular.w += 0.1f; // Power
+                selectedLight->specular.w += 1.0f; // Power
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->specular.w -= 0.1f;
+                selectedLight->specular.w -= 1.0f;
 
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                    selectedLight->specular.x -= 0.01f; // Adjusting the X channel
+                    selectedLight->specular.x -= 1.0f; // Adjusting the X channel
                 if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                    selectedLight->specular.x += 0.01f;
+                    selectedLight->specular.x += 1.0f;
             }
             break;
 

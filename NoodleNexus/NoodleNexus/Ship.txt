@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Ship
+<filePath> assets/models/Ship_xyz_n_rgba_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

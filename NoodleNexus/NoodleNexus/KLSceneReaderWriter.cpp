@@ -201,7 +201,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                     object->mesh->bOverrideObjectColour = true;
                     glm::vec3 v = LoadVector3Data(sceneFile);
           
-                    object->mesh->objectColourRGBA = glm::vec4(v, 1);
+                    object->mesh->objectColourRGBA = glm::vec4(v, 1.0f);
                 }
 
              }       
