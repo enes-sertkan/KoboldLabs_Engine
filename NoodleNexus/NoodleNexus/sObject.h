@@ -7,6 +7,7 @@
 #include "sMesh.h"
 #include "Transform.h"
 #include <vector>
+#include "Action.h"
 
 class Scene;
 
@@ -24,7 +25,7 @@ public:
 
 	void Destroy();
 
-	//std::vector<Action*> actions;
+	std::vector<Action*> actions;
 
 	//void Start()
 	//{

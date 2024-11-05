@@ -571,14 +571,14 @@ int main(void)
     //MoveForward* action2 = new MoveForward();
     //scene->AddActionToObj(action2, scene->sceneObjects[1]);
 
-    ExplosionLogic* action = new ExplosionLogic();
+   /* ExplosionLogic* action = new ExplosionLogic();
 
     scene->AddActionToObj(action, scene->sceneObjects[1]);
 
     aMoveXYZSpeed* xyzSpeed = new aMoveXYZSpeed();
     scene->AddActionToObj(xyzSpeed, scene->sceneObjects[1]);
     xyzSpeed->speed = glm::vec3(-0.05, 0, 0);
-    
+    */
 
 
     PreparePhysics();
@@ -659,10 +659,10 @@ int main(void)
 
         std::vector<sCollision_RayTriangleInMesh> collisions;
         posEnd.x = -2;
-        if (physicsMan->RayCast(pos, posEnd, collisions, false))  printf("HIT!\n");
+        if (physicsMan->RayCast(pos, posEnd, collisions, false)) {}//printf("HIT!\n");
         for (auto col : collisions)
         {
-            printf("HIT!\n");
+           // printf("HIT!\n");
         }
 
         posEnd = pos;

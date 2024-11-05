@@ -1,5 +1,6 @@
 #include "sObject.h"
-#include"Scene.hpp"
+#include "Scene.hpp"
+
 
 
 void Object::Destroy()
