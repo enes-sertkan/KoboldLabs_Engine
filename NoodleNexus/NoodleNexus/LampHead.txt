@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> LampHead
+<filePath> assets/models/lamp_head.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

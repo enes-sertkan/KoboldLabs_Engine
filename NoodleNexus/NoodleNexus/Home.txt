@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Home
+<filePath> assets/models/medieval_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

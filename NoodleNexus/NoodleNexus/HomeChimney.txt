@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> HomeChimney
+<filePath> assets/models/medieval_xyz_n_uv_chimney.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

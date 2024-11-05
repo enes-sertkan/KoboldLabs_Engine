@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> MonsterRest
+<filePath> assets/models/monster_rest.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

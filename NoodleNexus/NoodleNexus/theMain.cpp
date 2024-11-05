@@ -378,6 +378,7 @@ void SetLight(int index,
 void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program)
 {
 
+    return;
 
     DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
@@ -508,10 +509,86 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Terrain.txt", "XYZNUV");
 
-    //modelInfo.modelName = "Ship";
-    //modelInfo.meshPath = "assets/models/Ship_xyz_n_rgba_uv.ply";
-    //// Call WriteModelFile to save the model info
-    //fileManager->WriteModelFile(&modelInfo, "Ship.txt", "XYZNUV");
+    modelInfo.modelName = "Home";
+    modelInfo.meshPath = "assets/models/medieval_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Home.txt", "XYZNUV");
+
+    modelInfo.modelName = "HomeOuter";
+    modelInfo.meshPath = "assets/models/medieval_xyz_n_uv_outer.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "HomeOuter.txt", "XYZNUV");
+
+    modelInfo.modelName = "HomeChimney";
+    modelInfo.meshPath = "assets/models/medieval_xyz_n_uv_chimney.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "HomeChimney.txt", "XYZNUV");
+
+    modelInfo.modelName = "fence";
+    modelInfo.meshPath = "assets/models/fence.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "fence.txt", "XYZNUV");
+
+    modelInfo.modelName = "LampBase";
+    modelInfo.meshPath = "assets/models/lamp_base.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "LampBase.txt", "XYZNUV");
+
+    modelInfo.modelName = "LampHead";
+    modelInfo.meshPath = "assets/models/lamp_head.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "LampHead.txt", "XYZNUV");
+
+    modelInfo.modelName = "LampLight";
+    modelInfo.meshPath = "assets/models/lamp_light.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "LampLight.txt", "XYZNUV");
+
+    modelInfo.modelName = "HayRope";
+    modelInfo.meshPath = "assets/models/hay_rope.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "HayRope.txt", "XYZNUV");
+
+    modelInfo.modelName = "Hay";
+    modelInfo.meshPath = "assets/models/hay.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Hay.txt", "XYZNUV");
+
+    modelInfo.modelName = "Bench";
+    modelInfo.meshPath = "assets/models/bench_seat.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Bench.txt", "XYZNUV");
+
+    modelInfo.modelName = "BenchArm";
+    modelInfo.meshPath = "assets/models/bench_arm.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "BenchArm.txt", "XYZNUV");
+
+    modelInfo.modelName = "BossPlace";
+    modelInfo.meshPath = "assets/models/Stones_uv_N.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "BossPlace.txt", "XYZNUV");
+
+    modelInfo.modelName = "MonsterHead";
+    modelInfo.meshPath = "assets/models/monster_head.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "MonsterHead.txt", "XYZNUV");
+
+    modelInfo.modelName = "MonsterEyes";
+    modelInfo.meshPath = "assets/models/monster_eyes.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "MonsterEyes.txt", "XYZNUV");
+
+    modelInfo.modelName = "MonsterRest";
+    modelInfo.meshPath = "assets/models/monster_rest.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "MonsterRest.txt", "XYZNUV");
+    
+
+    modelInfo.modelName = "Rock";
+    modelInfo.meshPath = "assets/models/rock_xyz_n_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "Rock.txt", "XYZNUV");
 
     modelInfo.modelName = "Tree";
     modelInfo.meshPath = "assets/models/Tree_n_uv_c.ply";

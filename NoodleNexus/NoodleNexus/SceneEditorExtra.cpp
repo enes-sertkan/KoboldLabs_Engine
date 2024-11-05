@@ -172,21 +172,23 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         // Check which mode is active and apply arrow key transformations
         if (currentTransform == Position)
         {
-            // Arrow key controls for position
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedObject->startTranform->position.z += speed;
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedObject->startTranform->position.z -= speed;
-            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                selectedObject->startTranform->position.x += speed;
-            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                selectedObject->startTranform->position.x -= speed;
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
                     selectedObject->startTranform->position.y += speed;
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                     selectedObject->startTranform->position.y -= speed;
+            }
+            else
+            { // Arrow key controls for position
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedObject->startTranform->position.z += speed;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedObject->startTranform->position.z -= speed;
+                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                    selectedObject->startTranform->position.x += speed;
+                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                    selectedObject->startTranform->position.x -= speed;
             }
         }
         else if (currentTransform == Rotation)

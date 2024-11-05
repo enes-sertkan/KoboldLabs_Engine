@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> BossPlace
+<filePath> assets/models/Stones_uv_N.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

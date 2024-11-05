@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Rock
+<filePath> assets/models/rock_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

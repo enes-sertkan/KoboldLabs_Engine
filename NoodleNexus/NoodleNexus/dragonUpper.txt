@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> dragonUpper
+<filePath> assets/models/dragon_upper.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

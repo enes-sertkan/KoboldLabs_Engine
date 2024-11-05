@@ -101,6 +101,7 @@ vec4 calculateLightContrib(vec3 vertexMaterialColour, vec3 vertexNormal,
     vec3 norm = normalize(vertexNormal);
     
     vec4 finalObjectColour = vec4(0.23f, 0.5f, 0.4f, 1.0f);
+    //vec4 finalObjectColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
     int activeLightCount = 0; // Initialize count of active lights
 
     for (int index = 0; index < NUMBEROFLIGHTS; index++)

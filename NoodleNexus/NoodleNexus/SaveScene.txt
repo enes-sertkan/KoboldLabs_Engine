@@ -1,18 +1,232 @@
 <KoboldLabs>
 <SceneFile>
 <ObjectLoad-->
+Rock.txt
 Terrain.txt
 Tree.txt
+Home.txt
+HomeOuter.txt
+HomeChimney.txt
+LampBase.txt
+LampHead.txt
+LampLight.txt
+fence.txt
+HayRope.txt
+Hay.txt
+Bench.txt
+BenchArm.txt
+BossPlace.txt
+MonsterHead.txt
+MonsterEyes.txt
+MonsterRest.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
+<Name-> MonsterHead
+<Model-> MonsterHead
+<Position-> -1091 -1775 -4508
+<Rotation-> 0 0 0
+<Scale-> 0.1 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 1 0 0
+<--Object>
+
+<Object-->
+<Name-> MonsterEyes
+<Model-> MonsterEyes
+<Position-> -1091 -1775 -4508
+<Rotation-> 0 0 0
+<Scale-> 0.1 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 1
+<--Object>
+
+<Object-->
+<Name-> MonsterRest
+<Model-> MonsterRest
+<Position-> -1091 -1775 -4508
+<Rotation-> 0 0 0
+<Scale-> 0.1 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 1 1 0
+<--Object>
+
+<Object-->
+<Name-> BossPlace
+<Model-> BossPlace
+<Position-> -1145 -1640 -4397
+<Rotation-> 534 349 6
+<Scale-> 4 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.2 0.22 0.22
+<--Object>
+
+<Object-->
+<Name-> Bench
+<Model-> Bench
+<Position-> 834 -1819 -4047
+<Rotation-> -91 -64 -92
+<Scale-> 0.15 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.4 0.2 0.07
+<--Object>
+
+<Object-->
+<Name-> BenchArm
+<Model-> BenchArm
+<Position-> 834 -1819 -4047
+<Rotation-> -91 -64 -92
+<Scale-> 0.15 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> HayRope
+<Model-> HayRope
+<Position-> 1263 -1879 -3826
+<Rotation-> -68 7 4
+<Scale-> 0.55 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Hay
+<Model-> Hay
+<Position-> 1263 -1879 -3826
+<Rotation-> -68 7 4
+<Scale-> 0.5 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.760784 0.698039 0.502
+<--Object>
+
+<Object-->
+<Name-> HayRope
+<Model-> HayRope
+<Position-> 1269 -1890 -3759
+<Rotation-> 0 0 0
+<Scale-> 0.55 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.15 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> Hay
+<Model-> Hay
+<Position-> 1269 -1890 -3759
+<Rotation-> 0 0 0
+<Scale-> 0.5 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.760784 0.698039 0.502
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1231 -1890 -4024
+<Rotation-> -175 358 -890
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1105 -1863 -4019
+<Rotation-> -175 358 -890
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1055 -1863 -3828
+<Rotation-> -541 217 -914
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1145 -1884 -3752
+<Rotation-> -541 217 -914
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1246 -1915 -3706
+<Rotation-> -541 197 -905
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1301 -1901 -3750
+<Rotation-> -982 264 -988
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1301 -1901 -3864
+<Rotation-> -982 264 -988
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
+<Name-> fence
+<Model-> fence
+<Position-> 1301 -1901 -3973
+<Rotation-> -982 264 -988
+<Scale-> 0.58 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.378906 0.183594 0.0625
+<--Object>
+
+<Object-->
 <Name-> Terrain
 <Model-> Terrain
-<Position-> -214 -1956 -4497
+<Position-> -214 -1962 -4509
 <Rotation-> 0 0 0
-<Scale-> 5 0 0
+<Scale-> 5 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.54 0.26 0.07
@@ -21,20 +235,394 @@ selectBox.txt
 <Object-->
 <Name-> Terrain
 <Model-> Terrain
-<Position-> -269 -1971 -4532
+<Position-> -273 -1971 -4525
 <Rotation-> 0 0 0
-<Scale-> 5 0 0
+<Scale-> 5 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> false
-<Color-> 0.2 0.2 0.2
+<Color-> 0.54 0.26 0.07
+<--Object>
+
+<Object-->
+<Name-> LampBase
+<Model-> LampBase
+<Position-> 817 -1816 -4056
+<Rotation-> -175 358 -890
+<Scale-> 2.35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.11 0.11 0.11
+<--Object>
+
+<Object-->
+<Name-> LampHead
+<Model-> LampHead
+<Position-> 817 -1816 -4056
+<Rotation-> -175 358 -890
+<Scale-> 2.35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> LampLight
+<Model-> LampLight
+<Position-> 817 -1816 -4056
+<Rotation-> -175 358 -890
+<Scale-> 2.35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.9 0.9 0.9
+<--Object>
+
+<Object-->
+<Name-> HomeChimney
+<Model-> HomeChimney
+<Position-> 968 -1863 -3933
+<Rotation-> -314 76 -408
+<Scale-> 17.9702 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.195312 0.269531 0.234375
+<--Object>
+
+<Object-->
+<Name-> HomeOuter
+<Model-> HomeOuter
+<Position-> 968 -1863 -3933
+<Rotation-> -314 76 -408
+<Scale-> 17.9702 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.394531 0.261719 0.128906
+<--Object>
+
+<Object-->
+<Name-> Home
+<Model-> Home
+<Position-> 968 -1863 -3933
+<Rotation-> -314 76 -408
+<Scale-> 17.9702 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.996094 0.988281 0.8125
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1216 -1873 -3797
+<Rotation-> -172 0 -374
+<Scale-> 0.3 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 1 1 1
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1216 -1873 -3798
+<Rotation-> -172 0 -374
+<Scale-> 0.3 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1500 -1873 -4000
+<Rotation-> -120 0 -350
+<Scale-> 0.35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.9 0.9
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1500 -1873 -4001
+<Rotation-> -120 0 -350
+<Scale-> 0.35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1800 -1810 -5000
+<Rotation-> -130 5 -360
+<Scale-> 0.4 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 1 1 1
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1800 -1808 -5001
+<Rotation-> -130 5 -360
+<Scale-> 0.4 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 200 -1851 -3500
+<Rotation-> -150 -10 -345
+<Scale-> 0.32 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.95 0.95 0.95
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 200 -1850 -3501
+<Rotation-> -150 -10 -345
+<Scale-> 0.32 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -500 -1715 -4200
+<Rotation-> -160 15 -370
+<Scale-> 0.38 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.92 0.92 0.92
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -500 -1707 -4202
+<Rotation-> -160 15 -370
+<Scale-> 0.38 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 1000 -1819 -4800
+<Rotation-> -170 20 -340
+<Scale-> 0.29 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 1 1 1
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 1001 -1819 -4802
+<Rotation-> -170 20 -340
+<Scale-> 0.29 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -250 -1792 -4400
+<Rotation-> -155 -5 -330
+<Scale-> 0.31 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.88 0.88 0.88
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -249 -1792 -4401
+<Rotation-> -155 -5 -330
+<Scale-> 0.31 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 1500 -1827 -5200
+<Rotation-> -145 12 -310
+<Scale-> 0.33 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.97 0.97 0.97
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 1500 -1829 -5201
+<Rotation-> -145 12 -310
+<Scale-> 0.33 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1000 -1873 -3800
+<Rotation-> -180 25 -320
+<Scale-> 0.36 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.9 0.9
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> -1000 -1873 -3801
+<Rotation-> -180 25 -320
+<Scale-> 0.36 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 500 -1828 -5300
+<Rotation-> -170 -15 -374
+<Scale-> 0.34 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.85 0.85 0.85
+<--Object>
+
+<Object-->
+<Name-> Rock
+<Model-> Rock
+<Position-> 483 -1849 -5276
+<Rotation-> 415 352 -494
+<Scale-> 0.3 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0.3 0.3 0.3
 <--Object>
 
 <Object-->
 <Name-> Tree
 <Model-> Tree
-<Position-> -1692 -1954 -3678
+<Position-> 920 -1862 -4860
 <Rotation-> 0 0 0
-<Scale-> 30 1.69557e-43 0
+<Scale-> 29 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1077 -1862 -4663
+<Rotation-> 0 0 0
+<Scale-> 20 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1087 -1862 -4651
+<Rotation-> 0 0 0
+<Scale-> 20 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 690 -1840 -4964
+<Rotation-> 0 0 0
+<Scale-> 35 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 765 -1829 -4927
+<Rotation-> 0 0 0
+<Scale-> 15 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1093 -1862 -4652
+<Rotation-> 0 0 0
+<Scale-> 10 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1096 -1862 -4865
+<Rotation-> 0 0 0
+<Scale-> 23 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> 1045 -1862 -4742
+<Rotation-> 0 0 0
+<Scale-> 19 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0.24 0.69 0.39
+<--Object>
+
+<Object-->
+<Name-> Tree
+<Model-> Tree
+<Position-> -1705 -1954 -3619
+<Rotation-> 0 0 0
+<Scale-> 30 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.23 0.7 0.4
@@ -43,9 +631,9 @@ selectBox.txt
 <Object-->
 <Name-> Tree
 <Model-> Tree
-<Position-> -2292 -1954 -3699
+<Position-> -2313 -1954 -3706
 <Rotation-> 0 0 0
-<Scale-> 31 1.1151e-38 0
+<Scale-> 31 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.23 0.7 0.4
@@ -56,7 +644,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -2038 -1917 -4215
 <Rotation-> 0 0 0
-<Scale-> 30 1.1151e-38 0
+<Scale-> 30 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.23 0.7 0.4
@@ -67,7 +655,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -2038 -1917 -4215
 <Rotation-> 0 0 0
-<Scale-> 31 6.1517e-43 0
+<Scale-> 31 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.23 0.7 0.4
@@ -78,7 +666,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -2000 -1954 -4000
 <Rotation-> 0 0 0
-<Scale-> 32 1.1151e-38 0
+<Scale-> 32 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.25 0.7 0.35
@@ -89,7 +677,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -2200 -1902 -4448
 <Rotation-> 0 0 0
-<Scale-> 28 1.1151e-38 0
+<Scale-> 28 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.24 0.68 0.38
@@ -100,7 +688,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> 1500 -1884 -4930
 <Rotation-> 0 0 0
-<Scale-> 30 1.1151e-38 0
+<Scale-> 30 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.27 0.75 0.41
@@ -111,7 +699,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> 1000 -1945 -3491
 <Rotation-> 0 0 0
-<Scale-> 29 0 0
+<Scale-> 29 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.22 0.68 0.42
@@ -122,7 +710,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> 500 -1744 -3890
 <Rotation-> 0 0 0
-<Scale-> 31 0 0
+<Scale-> 31 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.26 0.73 0.4
@@ -133,7 +721,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -1500 -1862 -4808
 <Rotation-> 0 0 0
-<Scale-> 34 0 0
+<Scale-> 34 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.23 0.7 0.43
@@ -144,7 +732,7 @@ selectBox.txt
 <Model-> Tree
 <Position-> -500 -1846 -3692
 <Rotation-> 0 0 0
-<Scale-> 33 1.69557e-43 0
+<Scale-> 33 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.25 0.72 0.37
@@ -155,89 +743,59 @@ selectBox.txt
 <Model-> Tree
 <Position-> 1800 -1954 -5200
 <Rotation-> 0 0 0
-<Scale-> 29 0 0
+<Scale-> 29 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0.24 0.69 0.39
 <--Object>
 
 <Light-->
-<Position-> -2038 5096.5 -4224.8 1
-<Diffuse-> -194 -51 -9492 1
+<Position-> -2076 5094 -4230.76 1
+<Diffuse-> -93 -35 -9492 1
 <Specular-> 1 1 1 1
-<Atten-> 0 2.27488e-08 4.31349e-07 3.40282e+38
+<Atten-> 0 3.70059e-08 4.25246e-07 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 20 35 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> -1686.5 -1347.5 -3684.5 1
-<Diffuse-> 4362 135 -9696 1
+<Position-> -892 -1533.5 -4515 1
+<Diffuse-> 736 -923 -777 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.274742 1.40558e-07 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
+<Atten-> 0 0.433023 5.62085e-07 3.40282e+38
+<Direction-> -1 -1 0 0
+<Param1-> 1 27.2 54.7997 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> -2030 -1347.5 -4213.5 1
-<Diffuse-> 1373 139 -9696 1
+<Position-> 678.5 -1586 -4566.5 1
+<Diffuse-> 193 -411 41 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.274742 1.40558e-07 3.40282e+38
+<Atten-> 0 1.88887e-05 1.10607e-10 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
+<Param1-> 1 26.4001 55.3997 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> -2205 -1350 -4505 1
-<Diffuse-> 4500 150 -9500 1
+<Position-> 844.5 -1723 -4049.5 1
+<Diffuse-> 320 119 -7 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.3 1.5e-07 3.40282e+38
+<Atten-> 0 0.245531 1.05193e-07 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 1 18 33 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 995 -1347 -3505 1
-<Diffuse-> 4400 130 -9400 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.28 1.4e-07 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 21 36 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -1505 -1347 -4905 1
-<Diffuse-> 4300 145 -9600 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.27 1.3e-07 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 19 34 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 1795 -1347 -5205 1
-<Diffuse-> 4550 140 -9550 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.29 1.45e-07 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 22 37 0
+<Param1-> 0.4 -73.4995 -110.999 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Camera-->
-<Position-> 6683 1288 -5451
+<Position-> 1230 -1752 -3077
 <Rotation-> 163 84 -164
 <--Camera>
 
 <Camera-->
-<Position-> 0 0 50
+<Position-> -1400 -1752 -3217
 <Rotation-> 163 84 -164
 <--Camera>
 

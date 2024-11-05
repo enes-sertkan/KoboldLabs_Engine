@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Bench
+<filePath> assets/models/bench_seat.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

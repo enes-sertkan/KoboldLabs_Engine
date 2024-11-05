@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> LampLight
+<filePath> assets/models/lamp_light.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

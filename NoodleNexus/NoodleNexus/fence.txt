@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> fence
+<filePath> assets/models/fence.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

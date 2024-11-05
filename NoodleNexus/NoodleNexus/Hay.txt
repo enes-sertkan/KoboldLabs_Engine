@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Hay
+<filePath> assets/models/hay.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>
