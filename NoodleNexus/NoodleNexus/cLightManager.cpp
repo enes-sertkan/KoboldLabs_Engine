@@ -39,30 +39,23 @@ cLightManager::cLightManager()
 
 void cLightManager::loadUniformLocations(GLuint shaderProgram)
 {
-//	GLint light_00_position_UL = glGetUniformLocation(shaderProgram, "theLights[0].position");
-	// and so on...
+	// Assuming 'MAX_LIGHTS' is the maximum number of lights
+	for (int i = 0; i < NUMBEROFLIGHTS; ++i)
+	{
+		std::string baseName = "theLights[" + std::to_string(i) + "].";
 
-	this->theLights[0].position_UL = glGetUniformLocation(shaderProgram, "theLights[0].position");
-	this->theLights[0].diffuse_UL = glGetUniformLocation(shaderProgram, "theLights[0].diffuse");
-	this->theLights[0].specular_UL = glGetUniformLocation(shaderProgram, "theLights[0].specular");
-	this->theLights[0].atten_UL = glGetUniformLocation(shaderProgram, "theLights[0].atten");
-	this->theLights[0].direction_UL = glGetUniformLocation(shaderProgram, "theLights[0].direction");
-	this->theLights[0].param1_UL = glGetUniformLocation(shaderProgram, "theLights[0].param1");
-	this->theLights[0].param2_UL = glGetUniformLocation(shaderProgram, "theLights[0].param2");
-
-
-	this->theLights[1].position_UL = glGetUniformLocation(shaderProgram, "theLights[1].position");
-	this->theLights[1].diffuse_UL = glGetUniformLocation(shaderProgram, "theLights[1].diffuse");
-	this->theLights[1].specular_UL = glGetUniformLocation(shaderProgram, "theLights[1].specular");
-	this->theLights[1].atten_UL = glGetUniformLocation(shaderProgram, "theLights[1].atten");
-	this->theLights[1].direction_UL = glGetUniformLocation(shaderProgram, "theLights[1].direction");
-	this->theLights[1].param1_UL = glGetUniformLocation(shaderProgram, "theLights[1].param1");
-	this->theLights[1].param2_UL = glGetUniformLocation(shaderProgram, "theLights[1].param2");
-
-	// TODO: the rest of the lights... (2, 3, etc.)
+		this->theLights[i].position_UL = glGetUniformLocation(shaderProgram, (baseName + "position").c_str());
+		this->theLights[i].diffuse_UL = glGetUniformLocation(shaderProgram, (baseName + "diffuse").c_str());
+		this->theLights[i].specular_UL = glGetUniformLocation(shaderProgram, (baseName + "specular").c_str());
+		this->theLights[i].atten_UL = glGetUniformLocation(shaderProgram, (baseName + "atten").c_str());
+		this->theLights[i].direction_UL = glGetUniformLocation(shaderProgram, (baseName + "direction").c_str());
+		this->theLights[i].param1_UL = glGetUniformLocation(shaderProgram, (baseName + "param1").c_str());
+		this->theLights[i].param2_UL = glGetUniformLocation(shaderProgram, (baseName + "param2").c_str());
+	}
 
 	return;
 }
+
 
 
 void cLightManager::updateShaderWithLightInfo(void)
@@ -140,7 +133,17 @@ std::string cLightManager::sLight::getState(void)
 	ssLightState << "position "
 		<< this->position.x << " "
 		<< this->position.y << " "
-		<< this->position.z << std::endl;
+		<< this->position.z << " "
+		<< this->atten.x << " "
+		<< this->atten.y << " "
+		<< this->atten.z << " "
+		<< this->direction.x << " "
+		<< this->direction.y << " "
+		<< this->direction.x << " "
+		<< this->param1.a << " "
+		<< this->param1.b << " "
+		<< this->param1.g << " "
+		<< this->param2.x << std::endl;
 	// And so on...
 
 	// return as a string
@@ -155,7 +158,7 @@ cLightManager::sLight cLightManager::SetLight(int index,
 	const glm::vec3& param1,
 	float param2x)
 {
-	
+
 	// Set the properties of the light
 	theLights[index].position = position;
 	theLights[index].diffuse = diffuse;
@@ -202,6 +205,26 @@ cLightManager::sLight cLightManager::CreateNewLight(sLight light)
 	return CreateNewLight(light.position, light.diffuse, light.atten, light.direction, light.param1, light.param2.x);
 }
 
+void cLightManager::RemoveLight(int index)
+{
+	if (index < 0 || index > lastLightIndex) {
+		// Invalid index; do nothing
+		return;
+	}
+
+	// Disable the light by turning it off
+	theLights[index].TurnOff();
+
+	// Shift remaining lights down if needed
+	for (int i = index; i < lastLightIndex; ++i) {
+		theLights[i] = theLights[i + 1];
+	}
+
+	// Clear the last light (now unused) to reset it
+	theLights[lastLightIndex] = sLight();
+	lastLightIndex--;
+}
+
 bool cLightManager::sLight::loadState(std::string stateString)
 {
 	std::stringstream ssLightState;
@@ -212,11 +235,21 @@ bool cLightManager::sLight::loadState(std::string stateString)
 	ssLightState >> this->position.x;
 	ssLightState >> this->position.y;
 	ssLightState >> this->position.z;
+	ssLightState >> this->atten.x;
+	ssLightState >> this->atten.y;
+	ssLightState >> this->atten.z;
+	ssLightState >> this->direction.x;
+	ssLightState >> this->direction.y;
+	ssLightState >> this->direction.x;
+	ssLightState >> this->param1.a;
+	ssLightState >> this->param1.b;
+	ssLightState >> this->param1.g;
+	ssLightState >> this->param2.x;
+
 
 	// And so on...
 
 	// If it worked
 	return true;
 }
-
 

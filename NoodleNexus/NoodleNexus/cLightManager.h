@@ -86,10 +86,12 @@ public:
         const glm::vec3& param1,
         float param2x);
 
+
+
     sLight CreateNewLight(sLight light);
 
         
-    void RemoveLight(); //TODO: Add remove light
+    void RemoveLight(int index); //DONE: Add remove light
 
 
     //std::vector<sLight> vecLights;

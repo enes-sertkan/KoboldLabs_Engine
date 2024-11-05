@@ -52,8 +52,6 @@ cPhysics* g_pPhysicEngine = NULL;
 cVAOManager* g_pMeshManager = NULL;
 
 
-void AddModelsToScene(void);
-
 void DrawMesh(sMesh* pCurMesh, GLuint program);
 
 
@@ -257,8 +255,8 @@ void PrepareFlyCamera()
 
 
 
-//TODO: Pick Better Name
-void UpdateMatricies(float ratio, GLuint program)
+//DONE: Pick Better Name
+void SetCameraAndProjectionMatrices(float ratio, GLuint program)
 {
 //        glm::mat4 m, p, v, mvp;
 glm::mat4 matProjection = glm::mat4(1.0f);
@@ -352,7 +350,7 @@ void DrawLazer(GLuint program)
     }//for (std::vector<cPhysics::sCollision_RayTriangleInMesh>::iterator itTriList = vec_RayTriangle_Collisions
 }
 
-void SetLight(int index,
+void SetLight(cLightManager* lightManager, int index,
     const glm::vec4& position,
     const glm::vec4& diffuse,
     const glm::vec3& attenuation,
@@ -360,24 +358,26 @@ void SetLight(int index,
     const glm::vec3& param1,
     float param2x)
 {
-    // Set the properties of the light
-    ::g_pLightManager->theLights[index].position = position;
-    ::g_pLightManager->theLights[index].diffuse = diffuse;
-    ::g_pLightManager->theLights[index].atten.y = attenuation.y;
-    ::g_pLightManager->theLights[index].atten.z = attenuation.z;
+    // Set the properties of the light using lightManager instead of g_pLightManager
+    lightManager->theLights[index].position = position;
+    lightManager->theLights[index].diffuse = diffuse;
+    lightManager->theLights[index].atten.y = attenuation.y;
+    lightManager->theLights[index].atten.z = attenuation.z;
 
     // If it's a spotlight, set the direction and angles
-    ::g_pLightManager->theLights[index].direction = direction;
-    ::g_pLightManager->theLights[index].param1 = glm::vec4(param1, 0.0f);
-    ::g_pLightManager->theLights[index].param2.x = param2x;  // Turn on/off
+    lightManager->theLights[index].direction = direction;
+    lightManager->theLights[index].param1 = glm::vec4(param1, 0.0f);
+    lightManager->theLights[index].param2.x = param2x;  // Turn on/off
 }
 
 
-void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program)
+
+
+void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager* lightManager)
 {
 
 
-    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+    DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program);
 
     const float DEBUG_LIGHT_BRIGHTNESS = 0.3f;
@@ -385,11 +385,11 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program)
     const float ACCURACY = 0.1f;       // How many units distance
     float distance_75_percent =
         TheLightHelper.calcApproxDistFromAtten(0.75f, ACCURACY, FLT_MAX,
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+    DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(DEBUG_LIGHT_BRIGHTNESS, 0.0f, 0.0f, 1.0f),
         distance_75_percent,
         program);
@@ -397,33 +397,33 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program)
 
     float distance_50_percent =
         TheLightHelper.calcApproxDistFromAtten(0.5f, ACCURACY, FLT_MAX,
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+    DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(0.0f, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
         distance_50_percent,
         program);
 
     float distance_25_percent =
         TheLightHelper.calcApproxDistFromAtten(0.25f, ACCURACY, FLT_MAX,
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+    DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(0.0f, 0.0f, DEBUG_LIGHT_BRIGHTNESS, 1.0f),
         distance_25_percent,
         program);
 
     float distance_05_percent =
         TheLightHelper.calcApproxDistFromAtten(0.05f, ACCURACY, FLT_MAX,
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-            ::g_pLightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+            lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+            lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-    DrawDebugSphere(::g_pLightManager->theLights[::g_selectedLightIndex].position,
+    DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(DEBUG_LIGHT_BRIGHTNESS, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
         distance_05_percent,
         program);
@@ -465,7 +465,7 @@ void HandleCollisions()
 
 }
 
-void UpdateWindowTitle(GLFWwindow* window)
+void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 {
 
     //std::cout << "Camera: "
@@ -476,13 +476,13 @@ void UpdateWindowTitle(GLFWwindow* window)
         << ::g_pFlyCamera->getEyeLocation().z
         << "   ";
     ssTitle << "light[" << g_selectedLightIndex << "] "
-        << ::g_pLightManager->theLights[g_selectedLightIndex].position.x << ", "
-        << ::g_pLightManager->theLights[g_selectedLightIndex].position.y << ", "
-        << ::g_pLightManager->theLights[g_selectedLightIndex].position.z
+        << lightManager->theLights[g_selectedLightIndex].position.x << ", "
+        << lightManager->theLights[g_selectedLightIndex].position.y << ", "
+        << lightManager->theLights[g_selectedLightIndex].position.z
         << "   "
-        << "linear: " << ::g_pLightManager->theLights[0].atten.y
+        << "linear: " << lightManager->theLights[0].atten.y
         << "   "
-        << "quad: " << ::g_pLightManager->theLights[0].atten.z;
+        << "quad: " << lightManager->theLights[0].atten.z;
 
     //        glfwSetWindowTitle(window, "Hey!");
     glfwSetWindowTitle(window, ssTitle.str().c_str());
@@ -601,10 +601,11 @@ int main(void)
 
     // Set up the lights
     //I'll do this for now, but we better remove g_pLightManager and just use scene.lightManager.
-    //TODO: Do that
+    //DONE: Do that
+    //scene->lightManager;
     ::g_pLightManager = scene->lightManager;
     // Called only once
-    ::g_pLightManager->loadUniformLocations(program);
+    scene->lightManager->loadUniformLocations(program);
 
     cLightHelper TheLightHelper;
 
@@ -630,14 +631,14 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 
-        UpdateMatricies(ratio, program);
+        SetCameraAndProjectionMatrices(ratio, program);
 
 //        // *******************************************************************
 
 
         // Update the light info in the shader
         // (Called every frame)
-        ::g_pLightManager->updateShaderWithLightInfo();
+        scene->lightManager->updateShaderWithLightInfo();
         // *******************************************************************
 
 
@@ -687,7 +688,7 @@ int main(void)
         // **********************************************************************************
         if (::g_bShowDebugSpheres)
         {
-            DrawDebugObjects(TheLightHelper,program);
+            DrawDebugObjects(TheLightHelper,program, g_pLightManager);
         }
         // **********************************************************************************
 
@@ -716,13 +717,13 @@ int main(void)
         if (pBouncy_5_Ball)
         {
             glm::vec3 directionToBal
-                = pBouncy_5_Ball->positionXYZ - glm::vec3(::g_pLightManager->theLights[1].position);
+                = pBouncy_5_Ball->positionXYZ - glm::vec3(scene->lightManager->theLights[1].position);
     
             // Normalize to get the direction only
             directionToBal = glm::normalize(directionToBal);
 
             // Point the spot light at the bouncy ball
-            ::g_pLightManager->theLights[1].direction = glm::vec4(directionToBal, 1.0f);
+            scene->lightManager->theLights[1].direction = glm::vec4(directionToBal, 1.0f);
         }
 
 
@@ -737,7 +738,7 @@ int main(void)
         glfwSwapBuffers(window);
         glfwPollEvents();
 
-        UpdateWindowTitle(window);
+        UpdateWindowTitle(window, g_pLightManager);
 
 
 
@@ -754,9 +755,10 @@ int main(void)
     exit(EXIT_SUCCESS);
 }
 
-//TODO: Add this mesh to vector with all meshes on the screen + return this sMesh*
+//DONE: Add this mesh to vector with all meshes on the screen + return this sMesh*
 //return and push_back
-sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
+sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,
+                           bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
 {
     sMesh* Meshes = new sMesh();
     Meshes->modelFileName = filePath;
@@ -764,306 +766,15 @@ sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rot
     Meshes->rotationEulerXYZ = rotXYZ;
     Meshes->bOverrideObjectColour = bOverrideColor;
     Meshes->objectColourRGBA = objectColor;
-    Meshes->bDoNotLight = true;
+    
+    // Set lighting based on the parameter
+    Meshes->bDoNotLight = !bDoLightingExist;
 
+    // Add this mesh to the global vector of meshes to draw
     ::g_vecMeshesToDraw.push_back(Meshes);
 
     return Meshes;
-    
-    
 }
-
-
-//WE SHOULD WIPE IT CLEAN BEFORE THE EXAM
-void AddModelsToScene(void)
-{
-
-    // Load some models to draw
-    //TODO: ENES refactor
-    
-    {
-        sMesh* pHangar = new sMesh();
-        pHangar->modelFileName = "assets/models/Demonstration_Interior - DO NOT USE THIS xyz_N.ply";
-        pHangar->positionXYZ = glm::vec3(0.0f, 30.0f, 0.0f);
-        pHangar->bOverrideObjectColour = true;
-        pHangar->objectColourRGBA = glm::vec4(1.0f, 1.0f, 0.0f, 1.0f);
-        pHangar->rotationEulerXYZ.x = -90.0f;
-        pHangar->rotationEulerXYZ.z = 180.0f;
-        ::g_vecMeshesToDraw.push_back(pHangar);
-    }
-
-
-    // Add a bunch of bunny rabbits
-    float boxLimit = 50.0f;
-    float boxStep = 10.0f;
-    for (float x = -boxLimit; x <= boxLimit; x += boxStep)
-    {
-        for (float z = -boxLimit; z <= boxLimit; z += boxStep)
-        {
-            sMesh* pBunny = new sMesh();
-//            pBunny->modelFileName = "assets/models/bun_zipper_res2_10x_size_xyz_only.ply";
-            pBunny->modelFileName = "assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
-            pBunny->positionXYZ = glm::vec3(x, -3.0f, z);
-            pBunny->objectColourRGBA 
-                = glm::vec4(getRandomFloat(0.0f, 1.0f),
-                            getRandomFloat(0.0f, 1.0f),
-                            getRandomFloat(0.0f, 1.0f), 
-                            1.0f );
-            ::g_vecMeshesToDraw.push_back(pBunny);
-        }
-    }//for (float x = -boxLimit...
-
-
-
-    {
-//    ____                _            __                   _     
-//   |  _ \ ___ _ __   __| | ___ _ __ / / __ ___   ___  ___| |__  
-//   | |_) / _ \ '_ \ / _` |/ _ \ '__/ / '_ ` _ \ / _ \/ __| '_ \ 
-//   |  _ <  __/ | | | (_| |  __/ | / /| | | | | |  __/\__ \ | | |
-//   |_| \_\___|_| |_|\__,_|\___|_|/_/ |_| |_| |_|\___||___/_| |_|
-//                                                                
-        sMesh* pWarehouse = new sMesh();
-        pWarehouse->modelFileName = "assets/models/Warehouse_xyz_n.ply";
-        pWarehouse->positionXYZ = glm::vec3(-10.0f, 5.0f, 0.0f);
-        pWarehouse->rotationEulerXYZ.y = -90.0f;
-        pWarehouse->objectColourRGBA = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
-        //pWarehouse->bIsWireframe = true;
-        pWarehouse->bOverrideObjectColour = true;
-        pWarehouse->uniqueFriendlyName = "Warehouse";
-         ::g_vecMeshesToDraw.push_back(pWarehouse);
-
-//    ____  _               _                  _     _           _   
-//   |  _ \| |__  _   _ ___(_) ___ ___    ___ | |__ (_) ___  ___| |_ 
-//   | |_) | '_ \| | | / __| |/ __/ __|  / _ \| '_ \| |/ _ \/ __| __|
-//   |  __/| | | | |_| \__ \ | (__\__ \ | (_) | |_) | |  __/ (__| |_ 
-//   |_|   |_| |_|\__, |___/_|\___|___/  \___/|_.__// |\___|\___|\__|
-//                |___/                           |__/               
-         ::g_pPhysicEngine->addTriangleMesh(
-             "assets/models/Warehouse_xyz_n.ply",
-             pWarehouse->positionXYZ,
-             pWarehouse->rotationEulerXYZ,
-             pWarehouse->uniformScale);
-
-    }
-    //{
-    //    //    ____                _            __                   _     
-    //    //   |  _ \ ___ _ __   __| | ___ _ __ / / __ ___   ___  ___| |__  
-    //    //   | |_) / _ \ '_ \ / _` |/ _ \ '__/ / '_ ` _ \ / _ \/ __| '_ \ 
-    //    //   |  _ <  __/ | | | (_| |  __/ | / /| | | | | |  __/\__ \ | | |
-    //    //   |_| \_\___|_| |_|\__,_|\___|_|/_/ |_| |_| |_|\___||___/_| |_|
-
-
-    //    //    ____  _               _                  _     _           _   
-    //    //   |  _ \| |__  _   _ ___(_) ___ ___    ___ | |__ (_) ___  ___| |_ 
-    //    //   | |_) | '_ \| | | / __| |/ __/ __|  / _ \| '_ \| |/ _ \/ __| __|
-    //    //   |  __/| | | | |_| \__ \ | (__\__ \ | (_) | |_) | |  __/ (__| |_ 
-    //    //   |_|   |_| |_|\__, |___/_|\___|___/  \___/|_.__// |\___|\___|\__|
-    //    //                |___/                           |__/               
-
-
-
-    {
-        sMesh* pFlatPlane = new sMesh();
-        pFlatPlane->modelFileName = "assets/models/Flat_Plane_xyz_N.ply";
-        pFlatPlane->positionXYZ = glm::vec3(0.0f, -5.0f, 0.0f);
-        pFlatPlane->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        pFlatPlane->uniqueFriendlyName = "Ground";
-        //        pFlatPlane->bIsWireframe = true;
-        //        ::g_myMeshes[::g_NumberOfMeshesToDraw] = pFlatPlane;
-        //        ::g_NumberOfMeshesToDraw++;
-        ::g_vecMeshesToDraw.push_back(pFlatPlane);
-
-
-        // Add the "ground" to the physcs
-        cPhysics::sAABB* pAABBGround = new cPhysics::sAABB();
-        pAABBGround->centreXYZ = pFlatPlane->positionXYZ;
-        sModelDrawInfo planeMeshInfo;
-        ::g_pMeshManager->FindDrawInfoByModelName(pFlatPlane->modelFileName, planeMeshInfo);
-
-       // Manually enter the AABB info:
-        pAABBGround->centreXYZ = glm::vec3(0.0f, 0.0f, 0.0f);   // From the mesh model
-        // How far from the centre the XYZ min and max are
-        // This information is from the mesh we loaded
-        // WARNING: We need to be careful about the scale
-        pAABBGround->minXYZ.x = -100.0f;
-        pAABBGround->maxXYZ.x = 100.0f;
-
-        pAABBGround->minXYZ.z = -100.0f;
-        pAABBGround->maxXYZ.z = 100.0f;
-
-        pAABBGround->minXYZ.y = -1.0f;
-        pAABBGround->maxXYZ.y = 1.0f;
-
-        // Copy the physics object position from the initial mesh position
-        pAABBGround->pPhysicInfo->position = pFlatPlane->positionXYZ;
-
-        // Don't move this ground (skip integration step)
-        pAABBGround->pPhysicInfo->bDoesntMove = true;
-
-        pAABBGround->pPhysicInfo->pAssociatedDrawingMeshInstance = pFlatPlane;
-
-        ::g_pPhysicEngine->vecAABBs.push_back(pAABBGround);
-    }
-    {
-        sMesh* pFlatPlane = new sMesh();
-//        pFlatPlane->modelFileName = "assets/models/Flat_Plane_xyz.ply";
-        pFlatPlane->modelFileName = "assets/models/Flat_Plane_xyz_N.ply";
-        pFlatPlane->positionXYZ = glm::vec3(0.0f, -5.0f, 0.0f);
-        pFlatPlane->bIsWireframe = true;
-        pFlatPlane->uniformScale = 1.01f;
-        pFlatPlane->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-
-        ::g_vecMeshesToDraw.push_back(pFlatPlane);
-    }
-
-    sMesh* pBunny = new sMesh();
-    //            pBunny->modelFileName = "assets/models/bun_zipper_res2_10x_size_xyz_only.ply";
-    pBunny->modelFileName = "assets/models/bun_zipper_res2_10x_size_xyz_N_only.ply";
-    pBunny->positionXYZ = glm::vec3(10.0f, 10.0f, 0.0f);
-    pBunny->objectColourRGBA
-        = glm::vec4(getRandomFloat(0.0f, 1.0f),
-            getRandomFloat(0.0f, 1.0f),
-            getRandomFloat(0.0f, 1.0f),
-            1.0f);
-    pBunny->uniqueFriendlyName = "Ground";
-    ::g_vecMeshesToDraw.push_back(pBunny);
-
-
-
-    {
-
-        //    ____                _            __                   _     
-        //   |  _ \ ___ _ __   __| | ___ _ __ / / __ ___   ___  ___| |__  
-        //   | |_) / _ \ '_ \ / _` |/ _ \ '__/ / '_ ` _ \ / _ \/ __| '_ \ 
-        //   |  _ <  __/ | | | (_| |  __/ | / /| | | | | |  __/\__ \ | | |
-        //   |_| \_\___|_| |_|\__,_|\___|_|/_/ |_| |_| |_|\___||___/_| |_|
-        //                                                                
-        sMesh* pSphereMesh = new sMesh();
-//        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz.ply";
-        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz_N.ply";
-        pSphereMesh->positionXYZ = glm::vec3(-15.0f, -3.0f, -20.0f);
-        //pSphereMesh->bIsWireframe = true;
-        pSphereMesh->objectColourRGBA = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-        pSphereMesh->uniqueFriendlyName = "Ball";
-
-        //::g_myMeshes[::g_NumberOfMeshesToDraw] = pSphere;
-        //::g_NumberOfMeshesToDraw++;
-        ::g_vecMeshesToDraw.push_back(pSphereMesh);
-
-        {
-            sMesh* pSphereShadowMesh = new sMesh();
-            pSphereShadowMesh->modelFileName = "assets/models/Sphere_radius_1_Flat_Shadow_xyz_N.ply";
-            pSphereShadowMesh->positionXYZ = pSphereMesh->positionXYZ;
-            pSphereShadowMesh->positionXYZ.y = -3.95f;  // JUST above the ground
-            pSphereShadowMesh->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-            pSphereShadowMesh->uniqueFriendlyName = "Ball_Shadow";
-            ::g_vecMeshesToDraw.push_back(pSphereShadowMesh);
-        }
-
-
-        //    ____  _               _                  _     _           _   
-        //   |  _ \| |__  _   _ ___(_) ___ ___    ___ | |__ (_) ___  ___| |_ 
-        //   | |_) | '_ \| | | / __| |/ __/ __|  / _ \| '_ \| |/ _ \/ __| __|
-        //   |  __/| | | | |_| \__ \ | (__\__ \ | (_) | |_) | |  __/ (__| |_ 
-        //   |_|   |_| |_|\__, |___/_|\___|___/  \___/|_.__// |\___|\___|\__|
-        //                |___/                           |__/               
-        // Add sphere
-        cPhysics::sSphere* pSphereInfo = new cPhysics::sSphere();
-
-        pSphereInfo->centre = glm::vec3(0.0f);  // Sphere's centre (i.e. an offset from the position)
-
-        pSphereInfo->pPhysicInfo->position = pSphereMesh->positionXYZ;
-        // HACK: We know this is 1.0 because...?
-        // We could also have pulled that information from the mesh info
-        pSphereInfo->radius = 1.0f;
-
-        pSphereInfo->pPhysicInfo->velocity.y = 7.5f;
-        
-        // Set some x velocity
-        pSphereInfo->pPhysicInfo->velocity.x = 1.0f;
-
-
-        pSphereInfo->pPhysicInfo->acceleration.y = -3.0f;
-        
-        // Associate this drawing mesh to this physics object
-        pSphereInfo->pPhysicInfo->pAssociatedDrawingMeshInstance = pSphereMesh;
-
-        ::g_pPhysicEngine->vecSpheres.push_back(pSphereInfo);
-    }
-
-
-    for ( unsigned int ballCount = 0; ballCount != 10; ballCount++ )
-    {
-        //    ____                _            __                   _     
-        //   |  _ \ ___ _ __   __| | ___ _ __ / / __ ___   ___  ___| |__  
-        //   | |_) / _ \ '_ \ / _` |/ _ \ '__/ / '_ ` _ \ / _ \/ __| '_ \ 
-        //   |  _ <  __/ | | | (_| |  __/ | / /| | | | | |  __/\__ \ | | |
-        //   |_| \_\___|_| |_|\__,_|\___|_|/_/ |_| |_| |_|\___||___/_| |_|
-        //                                                                
-        sMesh* pSphereMesh = new sMesh();
-        //        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz.ply";
-        pSphereMesh->modelFileName = "assets/models/Sphere_radius_1_xyz_N.ply";
-        pSphereMesh->positionXYZ.x = getRandomFloat(-30.0f, 30.0f);
-        pSphereMesh->positionXYZ.z = getRandomFloat(-30.0f, 30.0f);
-        pSphereMesh->positionXYZ.y = getRandomFloat(0.0f, 40.0f);
-        //pSphereMesh->bIsWireframe = true;
-        pSphereMesh->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
-        pSphereMesh->objectColourRGBA.r = getRandomFloat(0.0f, 1.0f);
-        pSphereMesh->objectColourRGBA.g = getRandomFloat(0.0f, 1.0f);
-        pSphereMesh->objectColourRGBA.b = getRandomFloat(0.0f, 1.0f);
-        std::stringstream ssBallName;
-        ssBallName << "Bouncy_" << ballCount;
-        pSphereMesh->uniqueFriendlyName = ssBallName.str();
-
-        ::g_vecMeshesToDraw.push_back(pSphereMesh);
-
-        //    ____  _               _                  _     _           _   
-        //   |  _ \| |__  _   _ ___(_) ___ ___    ___ | |__ (_) ___  ___| |_ 
-        //   | |_) | '_ \| | | / __| |/ __/ __|  / _ \| '_ \| |/ _ \/ __| __|
-        //   |  __/| | | | |_| \__ \ | (__\__ \ | (_) | |_) | |  __/ (__| |_ 
-        //   |_|   |_| |_|\__, |___/_|\___|___/  \___/|_.__// |\___|\___|\__|
-        //                |___/                           |__/               
-        // Add sphere
-        cPhysics::sSphere* pSphereInfo = new cPhysics::sSphere();
-        pSphereInfo->centre = glm::vec3(0.0f);  // Sphere's centre (i.e. an offset from the position)
-        pSphereInfo->pPhysicInfo->position = pSphereMesh->positionXYZ;
-        pSphereInfo->radius = 1.0f;
-        pSphereInfo->pPhysicInfo->velocity.y = getRandomFloat(2.0f, 10.0f);
-        pSphereInfo->pPhysicInfo->velocity.x = getRandomFloat(-5.0f, 5.0f);
-        pSphereInfo->pPhysicInfo->velocity.z = getRandomFloat(-5.0f, 5.0f);
-        pSphereInfo->pPhysicInfo->acceleration.y = -3.0f;
-        pSphereInfo->pPhysicInfo->pAssociatedDrawingMeshInstance = pSphereMesh;
-        ::g_pPhysicEngine->vecSpheres.push_back(pSphereInfo);
-    }//for ( unsigned int ballCount
-
-
-
-    return;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1072,31 +783,7 @@ void AddModelsToScene(void)
 
 void ConsoleStuff(void)
 {
-    // "o" for output
-//    std::ofstream myFile("someData.txt");
-    // Write something
-    //myFile << "Hello" << std::endl;
-    //myFile << "there";
-    //myFile.close();
 
-    // Now read this file
-//    std::ifstream myFile2("someData.txt");
-//    std::string someString;
-//    myFile2 >> someString;
-//    std::cout << someString << std::endl;
-//
-    //std::string aword;
-    //while (aword != "END_OF_FILE")
-    //{
-    //    myFile2 >> aword;
-    //    std::cout << aword << std::endl;
-    //};
-
-    //std::string aword;
-    //while (myFile2 >> aword)
-    //{
-    //    std::cout << aword << std::endl;
-    //};
 
     std::ifstream myFile2("assets/models/bun_zipper_res3.ply");
     if (myFile2.is_open())
