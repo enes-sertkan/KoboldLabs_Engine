@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Action.h";
+#include "sObject.h"
 #include <glm/vec3.hpp> 
 
 class aMoveXYZSpeed : public Action

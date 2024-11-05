@@ -52,9 +52,16 @@ void Scene::Update()
     if(!flyCamera)
     MoveCameraToPoint();
 
-    for (Action* action : actions)
+
+    for (Object* obj : sceneObjects)
     {
-        action->Update();
+        if (obj)
+        {
+            for (Action* action : obj->actions)
+            {
+                action->Update();
+            }
+        }
     }
 
 }
@@ -62,6 +69,7 @@ void Scene::Update()
 void Scene::AddActionToObj(Action* action, Object* object)
 {
     action->object = object;
+    object->actions.push_back(action);
     actions.push_back(action);
 }
 
