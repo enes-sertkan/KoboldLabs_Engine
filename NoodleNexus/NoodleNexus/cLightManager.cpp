@@ -208,6 +208,7 @@ cLightManager::sLight cLightManager::CreateNewLight(sLight light)
 void cLightManager::RemoveLight(int index)
 {
 	if (index < 0 || index > lastLightIndex) {
+		//TODO: Add error 
 		// Invalid index; do nothing
 		return;
 	}

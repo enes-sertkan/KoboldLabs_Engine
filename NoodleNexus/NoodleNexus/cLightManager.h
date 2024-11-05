@@ -9,7 +9,7 @@
 
 
 
-//TODO: WE should move setLight from main to here;
+//DONE: ? WE should move setLight from main to here;
 class cLightManager
 {
 public:
