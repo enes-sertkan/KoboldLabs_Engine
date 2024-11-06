@@ -29,6 +29,8 @@ public:
 
 	std::vector<std::string> modelPaths;
 	std::vector<Transform*> cameraPositions;
+
+	cBasicFlyCamera* fycamera;
 	void MoveCameraToPoint();
 	void SetCameraToNextPoint();
 	void SetCameraToFirstPoint();

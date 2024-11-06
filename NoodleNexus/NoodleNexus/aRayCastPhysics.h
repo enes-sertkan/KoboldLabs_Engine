@@ -13,6 +13,7 @@ public:
 	glm::vec3 speed = { 0.f,0.f,0.f };
 
 	float baseRayCastLength = 0;
+	float speedLengthMultiplier = 1;
 
 
 	void ApplySpeed()
@@ -36,13 +37,15 @@ public:
 	{
 		//normalize speed direction
 		glm::vec3 normSpeed;
-		if (glm::length(speed) == 0)
-		normSpeed = glm::vec3(0, 0, 0);
-		else 
-		{
-			normSpeed = glm::normalize(speed);
-			normSpeed = normSpeed * (glm::length(speed) + baseRayCastLength);
-		}
+		//if (glm::length(speed) == 0)
+		//normSpeed = glm::vec3(0, 0, 0);
+		//else 
+		//{
+		//	
+		//}
+
+		normSpeed = glm::normalize(speed + gravityAcceleration);
+		normSpeed = normSpeed * (glm::length(speed*speedLengthMultiplier) + baseRayCastLength);
 		glm::vec3 startPos = object->mesh->positionXYZ;
 		glm::vec3 endPos = startPos + normSpeed;
 
@@ -59,8 +62,14 @@ public:
 
 	void HitInteration(std::vector<sCollision_RayTriangleInMesh> collisions)
 	{
-		speed = glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
-	//	object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
+		if (speed.length() < 0.001f)
+		{
+			speed = glm::vec3(0.f, 0.f, 0.f);
+			return;
+		}
+
+		speed = -speed * 0.7f;//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
+		//object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
  }
 
 	void Update() override

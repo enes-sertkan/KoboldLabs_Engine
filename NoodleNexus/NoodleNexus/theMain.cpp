@@ -572,8 +572,8 @@ int main(void)
 
 
     RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -0.01;
-    phys->baseRayCastLength =  1.f;
+    phys->gravityAcceleration.y = -0.1;
+    phys->baseRayCastLength =  1.5;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
