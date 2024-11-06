@@ -573,7 +573,15 @@ int main(void)
 
     RayCastPhysics* phys = new RayCastPhysics;
     phys->gravityAcceleration.y = -0.01;
+    phys->baseRayCastLength =  1.f;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
+
+
+    RayCastPhysics* phys2 = new RayCastPhysics;
+    phys2->gravityAcceleration.y = -0.01;
+    phys2->gravityAcceleration.z = -0.005;
+    phys2->baseRayCastLength = 1.f;
+    scene->AddActionToObj(phys2, scene->sceneObjects[2]);
 
     //MoveForward* action = new MoveForward();
 

@@ -35,9 +35,14 @@ public:
 	std::vector<sCollision_RayTriangleInMesh> CheckHit()
 	{
 		//normalize speed direction
-		glm::vec3 normSpeed = glm::normalize(speed);
-		normSpeed = normSpeed * (glm::length(speed) + baseRayCastLength);
-
+		glm::vec3 normSpeed;
+		if (glm::length(speed) == 0)
+		normSpeed = glm::vec3(0, 0, 0);
+		else 
+		{
+			normSpeed = glm::normalize(speed);
+			normSpeed = normSpeed * (glm::length(speed) + baseRayCastLength);
+		}
 		glm::vec3 startPos = object->mesh->positionXYZ;
 		glm::vec3 endPos = startPos + normSpeed;
 
@@ -54,8 +59,8 @@ public:
 
 	void HitInteration(std::vector<sCollision_RayTriangleInMesh> collisions)
 	{
-		//speed = -speed;
-		object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
+		speed = glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
+	//	object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
  }
 
 	void Update() override
