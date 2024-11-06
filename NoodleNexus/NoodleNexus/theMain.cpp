@@ -565,14 +565,16 @@ int main(void)
     PhysicsManager* physicsMan = new PhysicsManager();
   
    
+    PreparePhysics();
 
+    PrepareFlyCamera();
 
-    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan);
+    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
 
     RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -0.1;
+    phys->gravityAcceleration.y = -0.15;
     phys->baseRayCastLength =  1.5;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
@@ -600,9 +602,7 @@ int main(void)
     */
 
 
-    PreparePhysics();
-
-    PrepareFlyCamera();
+   
 
    // AddModelsToScene();
 

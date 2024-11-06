@@ -31,7 +31,7 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan)
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera)
 {
     for (sModelDrawInfo info : modelInfos)
     {
@@ -49,6 +49,9 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
     
     physicsManager->VAOMan = meshManager;
 
+    window = newWindow;
+
+    fCamera = newFlyCamera;
 }
 
 void Scene::Update()

@@ -29,8 +29,8 @@ public:
 
 	std::vector<std::string> modelPaths;
 	std::vector<Transform*> cameraPositions;
-
-	//cBasicFlyCamera* flyCamera;
+	GLFWwindow* window = nullptr;
+	cBasicFlyCamera* fCamera = nullptr;
 
 	void MoveCameraToPoint();
 	void SetCameraToNextPoint();
@@ -44,7 +44,7 @@ public:
 
 	void Update();
 
-	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan);
+	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFkyCamera);
 
 	
 	void AddActionToObj(Action* action, Object* object);

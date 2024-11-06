@@ -6,6 +6,9 @@
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 
+#include "GLCommon.h"
+
+
 class RayCastPhysics : public Action
 {
 public:
@@ -14,7 +17,8 @@ public:
 
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
-
+	float bounciness = 0.5;
+	glm::vec3 airFriction = glm::vec3(0.01, 0.01, 0.01);
 
 	void ApplySpeed()
 	{
@@ -32,6 +36,61 @@ public:
 		speed.z += gravityAcceleration.z;
 
 	}
+
+	void AddAcceleration(glm::vec3 acceleration)
+	{
+		speed.x += acceleration.x;
+		speed.y += acceleration.y;
+		speed.z += acceleration.z;
+
+		speed.x *= 1-airFriction.x;
+		speed.y *= 1-airFriction.x;
+		speed.z *= 1-airFriction.x;
+
+	}
+
+	void SetSpeed(glm::vec3 newSpeed)
+	{
+		speed.x = newSpeed.x;
+		speed.y = newSpeed.y;
+		speed.z = newSpeed.z;
+	}
+
+	void GetButtonDown(GLFWwindow* window, std::vector<sCollision_RayTriangleInMesh> collisions)
+	{
+		if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+			AddAcceleration(glm::vec3(0.1, 0, 0));
+		
+
+		if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+			AddAcceleration(glm::vec3(-0.1, 0, 0));
+
+		if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+			AddAcceleration(glm::vec3(0, 0, 0.1));
+
+		if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+			AddAcceleration(glm::vec3(0, 0, -0.1));
+
+
+		if (collisions.size()>0)
+		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+			AddAcceleration(glm::vec3(0.f, 4.f, 0.f));
+
+
+
+	}
+
+
+	glm::vec3 gravityComponent(const glm::vec3& speed, const glm::vec3& down) {
+		
+		glm::vec3 gravityDirection = glm::normalize(down);
+
+		float gravitySpeed = glm::dot(speed, gravityDirection);
+
+		return gravitySpeed * gravityDirection;
+	}
+
+
 
 	std::vector<sCollision_RayTriangleInMesh> CheckHit()
 	{
@@ -68,7 +127,12 @@ public:
 			return;
 		}
 
-		speed = -speed * 0.7f;//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
+		
+		speed -= 2.f*gravityComponent(speed, gravityAcceleration);
+
+		
+
+		//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
 		//object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
  }
 
@@ -76,6 +140,8 @@ public:
 	{
 
 		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit();
+
+		GetButtonDown(object->scene->window, collisions);
 
 		if (collisions.size() > 0)
 		{
