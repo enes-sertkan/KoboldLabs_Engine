@@ -30,7 +30,8 @@ public:
 	std::vector<std::string> modelPaths;
 	std::vector<Transform*> cameraPositions;
 
-	cBasicFlyCamera* fycamera;
+	//cBasicFlyCamera* flyCamera;
+
 	void MoveCameraToPoint();
 	void SetCameraToNextPoint();
 	void SetCameraToFirstPoint();

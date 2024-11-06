@@ -163,6 +163,7 @@
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aMoveInDirection.h" />
+    <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />
