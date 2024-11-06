@@ -44,7 +44,7 @@
 #include "PhysicsManager.h"
 #include "SceneEditor.h"
 
-
+#include "aRayCastPhysics.h"
 std::vector<sMesh*> g_vecMeshesToDraw;
 
 cPhysics* g_pPhysicEngine = NULL;
@@ -562,7 +562,18 @@ int main(void)
     ::g_pMeshManager = new cVAOManager();
 
 
-    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw);
+    PhysicsManager* physicsMan = new PhysicsManager();
+  
+   
+
+
+    scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan);
+    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
+
+
+    RayCastPhysics* phys = new RayCastPhysics;
+    phys->gravityAcceleration.y = -0.01;
+    scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
     //MoveForward* action = new MoveForward();
 
@@ -615,11 +626,7 @@ int main(void)
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
-    PhysicsManager* physicsMan = new PhysicsManager();
-    physicsMan->VAOMan = g_pMeshManager;
-    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[1]->startTranform->scale.x);
-
-
+  
 
     while (!glfwWindowShouldClose(window))
     {

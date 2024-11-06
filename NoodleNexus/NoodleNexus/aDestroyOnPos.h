@@ -2,6 +2,7 @@
 
 #include "Action.h";
 #include <glm/vec3.hpp> 
+#include "sObject.h"
 
 class aDEstroyOnPos : public Action
 {

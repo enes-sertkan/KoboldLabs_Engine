@@ -20,6 +20,8 @@
 #include <iostream>
 #include <algorithm>
 
+
+
 struct sTriangleP
 {
 	glm::vec3 vertices[3];

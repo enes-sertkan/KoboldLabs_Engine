@@ -25,7 +25,7 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 }
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes)
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan)
 {
     for (sModelDrawInfo info : modelInfos)
     {
@@ -39,7 +39,9 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
         object->scene = this;
     }
 
+    physicsManager = physMan;
     
+    physicsManager->VAOMan = meshManager;
 
 }
 
