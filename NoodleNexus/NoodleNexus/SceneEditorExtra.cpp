@@ -139,48 +139,33 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
     if (editMode == "Objects")
     {
+        // Pick the next object with 'P' key press
         if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         {
             currentFrameTime = glfwGetTime();
             double deltaTime = currentFrameTime - lastFrameTime;
             lastFrameTime = currentFrameTime;
 
-            // std::cout<< deltaTime<<std::endl;
             if (deltaTime > 0.36f)
             {
                 PickNextObject();
             }
-
-        }
-        // Toggle transformation mode based on key press
-        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-        {
-            currentTransform = Position;
-            std::cout << "Position mode selected." << std::endl;
-        }
-        else if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
-        {
-            currentTransform = Rotation;
-            std::cout << "Rotation mode selected." << std::endl;
-        }
-        else if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
-        {
-            currentTransform = ScaleX;
-            std::cout << "Scale mode selected." << std::endl;
         }
 
-        // Check which mode is active and apply arrow key transformations
-        if (currentTransform == Position)
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS) currentTransform = Position;
+        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS) currentTransform = Rotation;
+        if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) currentTransform = ScaleX;
+
+        // Use switch for transformation mode controls
+        switch (currentTransform)
         {
-            // Arrow key controls for position
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedObject->startTranform->position.z += speed;
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedObject->startTranform->position.z -= speed;
+        case Position:
+            // Adjust position with arrow keys
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                selectedObject->startTranform->position.x += speed;
+                selectedObject->startTranform->position.x += speed; 
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
                 selectedObject->startTranform->position.x -= speed;
+
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
@@ -188,57 +173,68 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                     selectedObject->startTranform->position.y -= speed;
             }
-        }
-        else if (currentTransform == Rotation)
-        {
-            // Arrow key controls for rotation
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedObject->startTranform->rotation.x += 1.0f;
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedObject->startTranform->rotation.x -= 1.0f;
+            else
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedObject->startTranform->position.z += speed;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedObject->startTranform->position.z -= speed;
+            }
+            break;
+
+        case Rotation:
+            // Adjust rotation with arrow keys
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                selectedObject->startTranform->rotation.z += 1.0f;
+                selectedObject->startTranform->rotation.x += speed;
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                selectedObject->startTranform->rotation.z -= 1.0f;
+                selectedObject->startTranform->rotation.x -= speed;
+
             if (isControlD(window))
             {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                    selectedObject->startTranform->rotation.y += 1.0f;
+                    selectedObject->startTranform->rotation.y += speed;
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                    selectedObject->startTranform->rotation.y -= 1.0f;
+                    selectedObject->startTranform->rotation.y -= speed;
             }
-        }
-        else if (currentTransform == ScaleX)
-        {
-            // Arrow key controls for scale (only on the x-axis)
+            else
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedObject->startTranform->rotation.z += speed;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedObject->startTranform->rotation.z -= speed;
+            }
+            break;
+
+        case ScaleX:
+            // Adjust scale with arrow keys
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
                 selectedObject->startTranform->scale.x += 0.01f;
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
                 selectedObject->startTranform->scale.x -= 0.01f;
+            break;
         }
-        
-        if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+
+        // Delete selected object with DELETE key
+        if (glfwGetKey(window, GLFW_KEY_DELETE) == GLFW_PRESS)
         {
             if (selectedObject) // Check if an object is selected
             {
                 scene->RemoveObject(selectedObject);
-               // selectedObject = nullptr; // Clear the pointer after deletion
                 std::cout << "Selected object deleted." << std::endl;
                 PickNextLight();
-               
             }
             else
             {
-                std::cout << "No object selected for deletion." << std::endl; // Prevent access violation
+                std::cout << "No object selected for deletion." << std::endl;
             }
         }
 
-
-        // Update mesh properties
+        // Update selected object's mesh properties
         selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;
         selectedObject->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
         selectedObject->mesh->uniformScale = selectedObject->startTranform->scale.x;
     }
+
 
 
     if (editMode == "Lights")
@@ -268,11 +264,8 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         // Based on the currentLightMode, adjust the corresponding property
         switch (currentLightMode)
         {
-        case Position:
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->position.z += 0.5f;
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->position.z -= 0.5f;
+        case LightPosition:
+
             if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
                 selectedLight->position.x += 0.5f;
             if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
@@ -286,14 +279,21 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                     selectedLight->position.y -= 0.5f;
             }
+            else
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->position.z += 0.5f;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->position.z -= 0.5f;
+            }
             break;
 
         case Diffuse:
             // Increase or decrease diffuse color values
-            if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-                selectedLight->diffuse.y += 0.01f; // Adjusting the Y channel
-            if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-                selectedLight->diffuse.y -= 0.01f;
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                selectedLight->diffuse.x += 0.01f; // Adjusting the Y channel
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                selectedLight->diffuse.x -= 0.01f;
 
             if (isControlD(window))
             {
@@ -301,6 +301,13 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                     selectedLight->diffuse.z += 0.01f; // Adjusting the Z channel
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                     selectedLight->diffuse.z -= 0.01f;
+            }
+            else
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->diffuse.y += 0.01f; // Adjusting the Y channel
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->diffuse.y -= 0.01f;
             }
             break;
 
@@ -322,7 +329,6 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
         case Atten:
             // Adjust attenuation
-            if (isAltD(window)) {
                 if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
                     selectedLight->atten.y *= 0.99f; // Linear
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
@@ -332,7 +338,6 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                     selectedLight->atten.z *= 0.99f; // Quadratic
                 if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
                     selectedLight->atten.z *= 1.01f;
-            }
             break;
 
         case Param1:
@@ -342,13 +347,10 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                 selectedLight->param1.y -= 0.1f;
 
-            if (isControlD(window))
-            {
-                if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-                    selectedLight->param1.z -= 0.1f; // Outer angle
-                if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                    selectedLight->param1.z += 0.1f;
-            }
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+               selectedLight->param1.z -= 0.1f; // Outer angle
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+               selectedLight->param1.z += 0.1f;
             break;
 
         case Param2:

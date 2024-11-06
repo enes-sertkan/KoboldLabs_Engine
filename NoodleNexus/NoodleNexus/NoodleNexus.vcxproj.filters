@@ -24,17 +24,38 @@
     <Filter Include="Global things">
       <UniqueIdentifier>{78450d70-4cd5-41ff-ad02-690efd0d05be}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Phsyics_Stuff">
-      <UniqueIdentifier>{b50e5ed1-0d30-423d-8675-9d288d42b19b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LIghts">
-      <UniqueIdentifier>{0479b598-aa46-49da-ac91-afc112109a35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="RenderStuff">
       <UniqueIdentifier>{9cdea607-512f-4c0a-9b61-159d8362c1d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Actions">
       <UniqueIdentifier>{1ffac4ef-8f2c-48ff-b228-9622c4000b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{d61283d5-1b22-45f7-99ec-5097c2dd69b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{5dd9392c-a386-437d-a02d-09a28b1b4e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Object">
+      <UniqueIdentifier>{68eda7e0-ff62-4261-9ecf-7418a7b28c28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\PhysicsManager">
+      <UniqueIdentifier>{d2bfb15e-1e48-4e01-8243-cdf8576ec6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\LightManager">
+      <UniqueIdentifier>{06139e88-bde6-447a-8a74-9690d3f555ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\LightManager\Lights">
+      <UniqueIdentifier>{0479b598-aa46-49da-ac91-afc112109a35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\PhysicsManager\Phsyics_Stuff">
+      <UniqueIdentifier>{b50e5ed1-0d30-423d-8675-9d288d42b19b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{fe2e679f-06c7-48ea-a00f-7c5fa644c921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash">
+      <UniqueIdentifier>{6f2458ba-12b5-4ff6-9ac0-79f56f3f9b83}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,37 +87,37 @@
       <Filter>Global things</Filter>
     </ClCompile>
     <ClCompile Include="cPhysics.cpp">
-      <Filter>Phsyics_Stuff</Filter>
+      <Filter>Engine\PhysicsManager\Phsyics_Stuff</Filter>
     </ClCompile>
     <ClCompile Include="cLightManager.cpp">
-      <Filter>LIghts</Filter>
+      <Filter>Engine\LightManager\Lights</Filter>
     </ClCompile>
     <ClCompile Include="RenderCall.cpp">
       <Filter>RenderStuff</Filter>
     </ClCompile>
     <ClCompile Include="cLightHelper\cLightHelper.cpp">
-      <Filter>LIghts</Filter>
-    </ClCompile>
-    <ClCompile Include="KLObjectReaderWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="KLSceneReaderWriter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneEditor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneEditorExtra.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PhysicsManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\LightManager\Lights</Filter>
     </ClCompile>
     <ClCompile Include="cObject.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="KLObjectReaderWriter.cpp">
+      <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="KLSceneReaderWriter.cpp">
+      <Filter>Engine\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneEditorExtra.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneEditor.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsManager.cpp">
+      <Filter>Engine\PhysicsManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,28 +143,19 @@
       <Filter>Global things</Filter>
     </ClInclude>
     <ClInclude Include="cPhysics.h">
-      <Filter>Phsyics_Stuff</Filter>
+      <Filter>Engine\PhysicsManager\Phsyics_Stuff</Filter>
     </ClInclude>
     <ClInclude Include="cLightManager.h">
-      <Filter>LIghts</Filter>
+      <Filter>Engine\LightManager\Lights</Filter>
     </ClInclude>
     <ClInclude Include="cLightHelper\cLightHelper.h">
-      <Filter>LIghts</Filter>
+      <Filter>Engine\LightManager\Lights</Filter>
     </ClInclude>
     <ClInclude Include="sObject.h">
       <Filter>Meshes, etc.</Filter>
     </ClInclude>
-    <ClInclude Include="KLFileManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneEditor.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Action.h">
       <Filter>Actions</Filter>
@@ -151,11 +163,20 @@
     <ClInclude Include="aMoveInDirection.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aDestroyOnPos.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.hpp">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEditor.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="KLFileManager.hpp">
+      <Filter>Engine\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsManager.h">
+      <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
