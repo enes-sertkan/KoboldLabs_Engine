@@ -44,7 +44,7 @@ public:
 
 	void Update();
 
-	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFkyCamera);
+	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera);
 
 	
 	void AddActionToObj(Action* action, Object* object);

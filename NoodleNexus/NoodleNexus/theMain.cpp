@@ -43,6 +43,12 @@
 #include "KLFileManager.hpp"
 #include "PhysicsManager.h"
 #include "SceneEditor.h"
+#include "Scene.hpp"
+#include "cBasicFlyCamera/cBasicFlyCamera.h"
+#include "sObject.h"
+#include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
+
+
 
 #include "aRayCastPhysics.h"
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -247,10 +253,12 @@ void PrepareFlyCamera()
 {
 
     ::g_pFlyCamera = new cBasicFlyCamera();
-    ::g_pFlyCamera->setEyeLocation(glm::vec3(0.0f, 10.0f, 50.0f));
+    ::g_pFlyCamera->setEyeLocation(glm::vec3(0.0f, 2.0f, 10.0f));  // Set a more reasonable camera position
     // Rotate the camera 180 degrees
-    ::g_pFlyCamera->rotateLeftRight_Yaw_NoScaling(glm::radians(180.0f));
-
+    ::g_pFlyCamera->rotateLeftRight_Yaw_NoScaling(glm::radians(90.0f));  // Adjust yaw
+    ::g_pFlyCamera->pitchUpDown(glm::radians(15.0f));
+    ::g_pFlyCamera->adjustMovementSpeed(10.0f);
+    ::g_pFlyCamera->setEyeTarget(glm::vec3(0.0f, 0.0f, 0.0f));  // Set target to a specific object (like the player)
 }
 
 
@@ -567,15 +575,39 @@ int main(void)
    
     PreparePhysics();
 
+
+    //// Prepare the camera
+    //PrepareFlyCamera(); // This should initialize `g_pFlyCamera`
+
+    //// Initialize scene and player object
+    //Object* playerObject = new Object();
+    //playerObject->startTranform = new Transform();
+    //playerObject->startTranform->position = glm::vec3(0.0f, 0.0f, 0.0f); // Set initial position
+
+    //// Adding player object to scene
+    //scene->sceneObjects.push_back(playerObject);
+
+    //// Set up camera offset and attach `aPlayerCamera`
+    //glm::vec3 cameraOffset(0.0f, 5.0f, -10.0f); // Customize offset as needed
+    //aPlayerCamera* playerCameraAction = new aPlayerCamera(g_pFlyCamera, cameraOffset);
+
+    //// Add `aPlayerCamera` action to `playerObject`
+    //scene->AddActionToObj(playerCameraAction, playerObject);
+    Object* playerObject = scene->sceneObjects[1];
+
     PrepareFlyCamera();
+
+    // Add the player camera action (with an offset for camera positioning)
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 0.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject); 
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
 
     RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -0.15;
-    phys->baseRayCastLength =  1.5;
+    phys->gravityAcceleration.y = -0.02;
+    phys->baseRayCastLength =  2.0;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
