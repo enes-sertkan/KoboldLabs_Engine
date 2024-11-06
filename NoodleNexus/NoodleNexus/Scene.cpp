@@ -2,6 +2,10 @@
 #include "cVAOManager/cVAOManager.h"
 #include "GLCommon.h"
 #include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/glm.hpp>
+#include <cmath> 
+
 
 
 
@@ -24,6 +28,8 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
     return mesh;
 
 }
+
+
 
 void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan)
 {

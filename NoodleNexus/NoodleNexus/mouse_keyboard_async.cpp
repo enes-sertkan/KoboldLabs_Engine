@@ -133,51 +133,51 @@ void handleKeyboardAsync(GLFWwindow* window)
         {
             ::g_pLightManager->theLights[g_selectedLightIndex].position.y -= LIGHT_MOVE_SPEED;
         }
-        // Linear atten 1 & 2
-        if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-        {
-            // Increase linear (making it darker)
-            ::g_pLightManager->theLights[g_selectedLightIndex].atten.y *= 0.99f;     // Down 1%
-        }
-        if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-        {
-            // Increase linear (making it darker)
-            ::g_pLightManager->theLights[g_selectedLightIndex].atten.y *= 1.01f;     // Up 1%
-        }
-        // Quadratic atten 3 & 4
-        if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-        {
-            // Quadratic linear (making it darker)
-            // This is WAY more sensitive than the linear
-            //  ...so you might want to change it by 0.1% (0.999)
-            ::g_pLightManager->theLights[g_selectedLightIndex].atten.z *= 0.99f;    // Down 1%
-        }
-        if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-        {
-            // Quadratic linear (making it darker)
-            ::g_pLightManager->theLights[g_selectedLightIndex].atten.z *= 1.01f;     // Up 1%
-        }
+        //// Linear atten 1 & 2
+        //if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+        //{
+        //    // Increase linear (making it darker)
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].atten.y *= 0.99f;     // Down 1%
+        //}
+        //if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+        //{
+        //    // Increase linear (making it darker)
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].atten.y *= 1.01f;     // Up 1%
+        //}
+        //// Quadratic atten 3 & 4
+        //if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+        //{
+        //    // Quadratic linear (making it darker)
+        //    // This is WAY more sensitive than the linear
+        //    //  ...so you might want to change it by 0.1% (0.999)
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].atten.z *= 0.99f;    // Down 1%
+        //}
+        //if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+        //{
+        //    // Quadratic linear (making it darker)
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].atten.z *= 1.01f;     // Up 1%
+        //}
 
-        // Angles of spot light
-        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
-        {
-            ::g_pLightManager->theLights[g_selectedLightIndex].param1.y -= 0.1f;     
-        }       
-        if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
-        {
-            ::g_pLightManager->theLights[g_selectedLightIndex].param1.y += 0.1f;     
-        }              
+        //// Angles of spot light
+        //if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
+        //{
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].param1.y -= 0.1f;     
+        //}       
+        //if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+        //{
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].param1.y += 0.1f;     
+        //}              
 
-        if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-        {
-            ::g_pLightManager->theLights[g_selectedLightIndex].param1.z -= 0.1f;     
-        }       
-        if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
-        {
-            ::g_pLightManager->theLights[g_selectedLightIndex].param1.z += 0.1f;     
-        }          
-        // HACK:Exit early
-        return;
+        //if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+        //{
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].param1.z -= 0.1f;     
+        //}       
+        //if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+        //{
+        //    ::g_pLightManager->theLights[g_selectedLightIndex].param1.z += 0.1f;     
+        //}          
+        //// HACK:Exit early
+        //return;
     }
 
     if (areAllModifiersUp(window))

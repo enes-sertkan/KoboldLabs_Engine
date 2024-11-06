@@ -67,6 +67,19 @@ bool LoadBoolData(std::ifstream& file)
     return false;
 }
 
+std::vector<std::string> LoadTags(std::ifstream& file) {
+    std::vector<std::string> tags;
+    std::string tag;
+
+    // Read tags until the end of the line
+    while (file.peek() != '\n' ) {
+        file >> tag;
+        tags.push_back(tag);  // Add each tag to the vector
+    }
+
+    return tags;
+}
+
 
 
 Scene* KLFileManager::ReadSceneFile(std::string filePath)
@@ -166,10 +179,6 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                     return nullptr;
                 }
 
-                
-               
-               
-
                 sceneFile >> token;
 
                 if (token == "<Name->")
@@ -191,6 +200,10 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
 
                 }
+                if (token == "<Tags->") {
+                    object->tags = LoadTags(sceneFile);
+                }
+                if (token == "<StaticCollision->")   object->mesh->isCollisionStatic = LoadBoolData(sceneFile);
                 if (token == "<Position->")   object->mesh->positionXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Scale->")   object->mesh->uniformScale = LoadVector3Data(sceneFile).x;//For now only first float is scale
@@ -203,7 +216,6 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
           
                     object->mesh->objectColourRGBA = glm::vec4(v, 1);
                 }
-
              }       
 
 
@@ -308,6 +320,12 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
             myfile << "<Object-->\n";
             myfile << "<Name-> " << object->name << "\n";
             myfile << "<Model-> " << object->mesh->uniqueFriendlyName << "\n";
+            myfile << "<Tags-> ";
+            for (const std::string& tag : object->tags) {
+                myfile << tag << " ";
+            }
+            myfile << "\n";
+            myfile << "<StaticCollision-> " << (object->isCollisionStatic ? "true" : "false") << "\n";
             myfile << "<Position-> " << object->startTranform->position.x << " "
                 << object->startTranform->position.y << " "
                 << object->startTranform->position.z << "\n";

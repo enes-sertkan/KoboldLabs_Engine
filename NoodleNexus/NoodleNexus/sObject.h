@@ -22,6 +22,8 @@ public:
 	Scene* scene;
 	Transform* startTranform = new Transform;
 	bool isTemporary = false;
+	bool isCollisionStatic = false;
+	std::vector<std::string> tags;
 
 	void Destroy();
 
