@@ -26,12 +26,11 @@ public:
 		object->mesh->positionXYZ.y += speed.y;
 		object->mesh->positionXYZ.z += speed.z;
 
-
 	}
 
 	void ApplyAcceleration()
 	{
-		speed.x += gravityAcceleration.x;//*object->scene->;
+		speed.x += gravityAcceleration.x;
 		speed.y += gravityAcceleration.y;
 		speed.z += gravityAcceleration.z;
 
@@ -78,11 +77,12 @@ public:
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 			AddAcceleration(glm::vec3(0.f, 4.f, 0.f));
 
-		/*if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-			if (speed.y > 0)
-				speed.y -=20;*/
+
 
 	}
+
+
+	
 
 
 	glm::vec3 gravityComponent(const glm::vec3& speed, const glm::vec3& down) {
@@ -98,14 +98,8 @@ public:
 
 	std::vector<sCollision_RayTriangleInMesh> CheckHit()
 	{
-		//normalize speed direction
 		glm::vec3 normSpeed;
-		//if (glm::length(speed) == 0)
-		//normSpeed = glm::vec3(0, 0, 0);
-		//else 
-		//{
-		//	
-		//}
+
 
 		normSpeed = glm::normalize(speed + gravityAcceleration);
 		normSpeed = normSpeed * (glm::length(speed*speedLengthMultiplier) + baseRayCastLength);
@@ -145,7 +139,7 @@ public:
 
 		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit();
 
-		GetButtonDown(object->scene->window, collisions);
+	//	GetButtonDown(object->scene->window, collisions);
 
 		if (collisions.size() > 0)
 		{

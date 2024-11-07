@@ -4,6 +4,7 @@
 
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "cLightManager.h"
+#include "Scene.hpp"
 
 extern cBasicFlyCamera* g_pFlyCamera;
 
@@ -21,7 +22,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // WE call these (not GLFW)
-void handleKeyboardAsync(GLFWwindow* window);
+void handleKeyboardAsync(GLFWwindow* window, Scene* scene);
 void handleMouseAsync(GLFWwindow* window);
 
 // Can call this from anything that has this header file
