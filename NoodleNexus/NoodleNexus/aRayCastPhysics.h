@@ -17,7 +17,7 @@ public:
 
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
-	float bounciness = 0.5;
+	float bounciness = 0.95;
 	glm::vec3 airFriction = glm::vec3(0.01, 0.01, 0.01);
 
 	void ApplySpeed()
@@ -31,9 +31,14 @@ public:
 
 	void ApplyAcceleration()
 	{
-		speed.x += gravityAcceleration.x;
+		speed.x += gravityAcceleration.x;//*object->scene->;
 		speed.y += gravityAcceleration.y;
 		speed.z += gravityAcceleration.z;
+
+
+		speed.x *= 1 - airFriction.x;
+		speed.y *= 1 - airFriction.x;
+		speed.z *= 1 - airFriction.x;
 
 	}
 
@@ -43,9 +48,6 @@ public:
 		speed.y += acceleration.y;
 		speed.z += acceleration.z;
 
-		speed.x *= 1-airFriction.x;
-		speed.y *= 1-airFriction.x;
-		speed.z *= 1-airFriction.x;
 
 	}
 
@@ -76,7 +78,9 @@ public:
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 			AddAcceleration(glm::vec3(0.f, 4.f, 0.f));
 
-
+		/*if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+			if (speed.y > 0)
+				speed.y -=20;*/
 
 	}
 
@@ -128,7 +132,7 @@ public:
 		}
 
 		
-		speed -= 2.f*gravityComponent(speed, gravityAcceleration);
+		speed -= 2.f*gravityComponent(speed, gravityAcceleration)*bounciness;
 
 		
 
