@@ -47,7 +47,7 @@
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "sObject.h"
 #include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
-
+#include "aPlayerMovement.h"
 
 
 #include "aRayCastPhysics.h"
@@ -597,13 +597,22 @@ int main(void)
 
     PrepareFlyCamera();
 
-    // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 0.0f, 0.0f));
-    scene->AddActionToObj(playerCameraAction, playerObject); 
+
+
+
+
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
+
+    // Add the player camera action (with an offset for camera positioning)
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 15.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject);
+
+    aPlayerMovement* playerMovement = new aPlayerMovement();
+
+    scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
 
     RayCastPhysics* phys = new RayCastPhysics;
     phys->gravityAcceleration.y = -0.02;
@@ -616,6 +625,8 @@ int main(void)
     phys2->gravityAcceleration.z = -0.005;
     phys2->baseRayCastLength = 1.f;
     scene->AddActionToObj(phys2, scene->sceneObjects[2]);
+
+
 
     //MoveForward* action = new MoveForward();
 
@@ -779,7 +790,7 @@ int main(void)
 
 
         // Handle async IO stuff
-        handleKeyboardAsync(window);
+        handleKeyboardAsync(window, scene);
         handleMouseAsync(window);
 
         glfwSwapBuffers(window);

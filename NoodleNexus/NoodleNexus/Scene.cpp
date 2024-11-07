@@ -60,7 +60,7 @@ void Scene::Update()
     //{
     //    obj->Update();
     //}
-    if(!flyCamera)
+    if(!isFlyCamera)
     MoveCameraToPoint();
 
 

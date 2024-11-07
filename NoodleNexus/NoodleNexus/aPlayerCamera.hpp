@@ -23,6 +23,10 @@ public:
 
     void Update() override
     {
+
+        if (object->scene->isFlyCamera) return;
+
+
         // Check if the player object and camera are valid
         if (object && object->mesh && fCamera)
         {
@@ -33,17 +37,17 @@ public:
             // Calculate the direction vector from the camera to the player
             glm::vec3 direction = object->mesh->positionXYZ - newCameraPosition;
 
-            // If the direction vector is valid, update the camera's yaw and pitch
-            if (glm::length(direction) > 0.0f)
-            {
-                direction = glm::normalize(direction);
+            //// If the direction vector is valid, update the camera's yaw and pitch
+            //if (glm::length(direction) > 0.0f)
+            //{
+            //    direction = glm::normalize(direction);
 
-                float yaw = glm::atan(direction.x, direction.z); 
-                float pitch = glm::asin(direction.y); 
+            //    float yaw = glm::atan(direction.x, direction.z); 
+            //    float pitch = glm::asin(direction.y); 
 
-                fCamera->rotateLeftRight_Yaw_NoScaling(yaw);
-                fCamera->pitchUpDown(pitch);
-            }
+            //    fCamera->rotateLeftRight_Yaw_NoScaling(yaw);
+            //    fCamera->pitchUpDown(pitch);
+            //}
         }
     }
 };

@@ -9,6 +9,7 @@
 #include "sMesh.h"
 
 #include "cLightManager.h"
+#include "Scene.hpp"
 
 //extern cLightManager* g_pLightManager;
 
@@ -90,10 +91,22 @@ void handleMouseAsync(GLFWwindow* window)
     return;
 }
 
-void handleKeyboardAsync(GLFWwindow* window)
+void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
 {
     const float CAMERA_MOVE_SPEED = 1.0f;
     const float CAMERA_TURN_SPEED = 1.0f;
+
+
+    if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
+    {
+        scene->isFlyCamera = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_F2) == GLFW_PRESS)
+    {
+        scene->isFlyCamera = true;
+    }
+
 
     if ( isShiftDown(window) )
     {
@@ -102,14 +115,18 @@ void handleKeyboardAsync(GLFWwindow* window)
 
     if (isControlDown(window) ) 
     {
+
+     
+
+
         // Find the Light_Sphere
-//        sMesh* pLightSphere = pFindMeshByFriendlyName("Light_Sphere");
+        sMesh* pLightSphere = pFindMeshByFriendlyName("Light_Sphere");
 
         const float LIGHT_MOVE_SPEED = 0.02f;
 
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            ::g_pLightManager->theLights[g_selectedLightIndex].position.z += LIGHT_MOVE_SPEED;
+         ::g_pLightManager->theLights[g_selectedLightIndex].position.z += LIGHT_MOVE_SPEED;
         }
 
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -180,7 +197,7 @@ void handleKeyboardAsync(GLFWwindow* window)
         //return;
     }
 
-    if (areAllModifiersUp(window))
+    if (areAllModifiersUp(window) && scene->isFlyCamera)
     {
 
         // Move the camera 

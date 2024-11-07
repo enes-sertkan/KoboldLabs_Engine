@@ -119,6 +119,9 @@
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Engine\PhysicsManager</Filter>
     </ClCompile>
+    <ClCompile Include="aPlayerMovement.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
