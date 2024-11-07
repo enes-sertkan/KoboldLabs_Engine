@@ -2,7 +2,9 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-MainShip.txt
+wall.txt
+floor.txt
+ceiling.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -10,11 +12,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> Player AA BBB <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 25 -91 -12
 <Rotation-> 0 0 0
-<Scale-> 50 0 0
+<Scale-> 50 9.4592e-39 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -23,7 +25,7 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 10 0 0
 <Rotation-> 0 0 0
@@ -36,7 +38,7 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -9 0 0
 <Rotation-> 0 0 0
@@ -46,21 +48,8 @@ selectBox.txt
 <Color-> 0 1 0
 <--Object>
 
-<Object-->
-<Name-> MainShip
-<Model-> MainShip
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
-<StaticCollision-> false
-<Position-> 0 0 -40000
-<Rotation-> 0 0 0
-<Scale-> 1 0 6.13943e-16
-<Visibility-> true
-<Shading-> true
-<Color-> 1 0 0.5
-<--Object>
-
 <Light-->
-<Position-> 1.3 70000 -40017.2 1
+<Position-> 1.3 70000 -40019 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
@@ -70,7 +59,7 @@ selectBox.txt
 <--Light>
 
 <Light-->
-<Position-> -948.5 2717 -8577.56 1
+<Position-> -856.5 2717 -8508.56 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 7.6419e-10 9.27593e-08 3.40282e+38

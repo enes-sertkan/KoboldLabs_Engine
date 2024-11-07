@@ -48,6 +48,7 @@
 #include "sObject.h"
 #include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
 #include "aPlayerMovement.h"
+#include "MazeGenerator.hpp"
 
 
 #include "aRayCastPhysics.h"
@@ -514,10 +515,20 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
-    modelInfo.modelName = "MainShip";
-    modelInfo.meshPath = "assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply";
+    modelInfo.modelName = "wall";
+    modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
     // Call WriteModelFile to save the model info
-    fileManager->WriteModelFile(&modelInfo, "MainShip.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "floor";
+    modelInfo.meshPath = "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "ceiling";
+    modelInfo.meshPath = "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
+    // Call WriteModelFile to save the model info
+    fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
@@ -677,7 +688,9 @@ int main(void)
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene);
   
+    mazeGenerator->generateMaze();
 
     while (!glfwWindowShouldClose(window))
     {

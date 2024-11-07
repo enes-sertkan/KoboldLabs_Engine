@@ -93,8 +93,8 @@ void handleMouseAsync(GLFWwindow* window)
 
 void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
 {
-    const float CAMERA_MOVE_SPEED = 1.0f;
-    const float CAMERA_TURN_SPEED = 1.0f;
+    const float CAMERA_MOVE_SPEED = 0.01f;
+    const float CAMERA_TURN_SPEED = 0.01f;
 
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)

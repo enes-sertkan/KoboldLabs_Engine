@@ -72,9 +72,10 @@ std::vector<std::string> LoadTags(std::ifstream& file) {
     std::string tag;
 
     // Read tags until the end of the line
-    while (file.peek() != '\n' ) {
-        file >> tag;
-        tags.push_back(tag);  // Add each tag to the vector
+    while (file.peek() != '\n' && file >> tag) {
+        if (tag != "StaticCollision") {
+            tags.push_back(tag);
+        }
     }
 
     return tags;
@@ -325,7 +326,7 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
                 myfile << tag << " ";
             }
             myfile << "\n";
-            myfile << "<StaticCollision-> " << (object->isCollisionStatic ? "true" : "false") << "\n";
+            myfile << "<StaticCollision-> " << (object->mesh->isCollisionStatic ? "true" : "false") << "\n";
             myfile << "<Position-> " << object->startTranform->position.x << " "
                 << object->startTranform->position.y << " "
                 << object->startTranform->position.z << "\n";

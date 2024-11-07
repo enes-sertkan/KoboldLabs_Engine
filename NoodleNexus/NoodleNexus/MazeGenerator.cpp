@@ -25,11 +25,20 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
 void MazeGenerator::generateMaze() {
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
-            if (maze[row][col] == '1') {
+            char cell = maze[row][col];
+
+            if (cell != '1') {
+                // Place floor and ceiling for all non-walkable cells
                 placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col));
             }
-            else if (maze[row][col] == '0') {
+
+            if (cell == '2') {
+                // Place a wall with no rotation
                 placeWall(static_cast<int>(row), static_cast<int>(col));
+            }
+            else if (cell == '0') {
+                // Place a wall rotated 90 degrees on the Y-axis
+                placeWallRotated(static_cast<int>(row), static_cast<int>(col));
             }
         }
     }
@@ -41,24 +50,44 @@ void MazeGenerator::placeFloorAndCeiling(int row, int col) {
     glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
 
     // Create floor
-    scene->GenerateMeshObjectsFromObject("assets/models/Ply/SM_Env_Floor_03_xyz_n_rgba_uv.ply", position, rotation, false, color, true, scene->sceneObjects);
+    Object* floor = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, rotation,
+        false, color, false, scene->sceneObjects);
+    floor->isTemporary = true;
+    floor->tags.push_back("floor");
 
-    // Create ceiling with offset
-    position.y += 5.0f;
-    scene->GenerateMeshObjectsFromObject("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, rotation, false, color, true, scene->sceneObjects);
-
+    // Create ceiling with an offset in height
+    position.y += 2.5f;
+    Object* ceiling = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, rotation,
+        false, color, false, scene->sceneObjects);
+    ceiling->isTemporary = true;
+    ceiling->tags.push_back("ceiling");
 }
 
 void MazeGenerator::placeWall(int row, int col) {
-    glm::vec3 position(col, 2.5f, row);  // Adjust height as needed
-    glm::vec3 rotation(0.0f, 0.0f, 0.0f);
+    glm::vec3 position(col, 0.f, row);  // Adjust height as needed
+    glm::vec3 rotation(0.0f, 0.0f, 0.0f);  // No rotation
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
 
-    // Create wall
-    scene->GenerateMeshObjectsFromObject("assets/models/Ply/SM_Env_ControlRoom_Wall_01_xyz_n_rgba_uv.ply", position, rotation, false, color, true, scene->sceneObjects);
+    // Create the wall object
+    Object* wall = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation,
+        false, color, false, scene->sceneObjects);
+    wall->isTemporary = true;
+    wall->tags.push_back("wall");
 }
 
+void MazeGenerator::placeWallRotated(int row, int col) {
+    glm::vec3 position(col, 0.f, row);  // Adjust height as needed
+    glm::vec3 rotation(0.0f, 90.0f, 0.0f);  // Rotate 90 degrees on Y-axis
+    glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
 
-//MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene);
-//
-//mazeGenerator->generateMaze();
+    // Create the rotated wall object
+    Object* wall = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation,
+        false, color, false, scene->sceneObjects);
+    wall->isTemporary = true;
+    wall->tags.push_back("wall");
+}
+

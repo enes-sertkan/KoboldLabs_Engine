@@ -16,5 +16,5 @@ private:
     void loadMaze(const std::string& filePath);
     void placeFloorAndCeiling(int row, int col);
     void placeWall(int row, int col);
+    void placeWallRotated(int row, int col);
 };
-

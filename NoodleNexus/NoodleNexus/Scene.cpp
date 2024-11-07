@@ -127,7 +127,7 @@ void Scene::RemoveObject(Object* obj)
 }
 
 
-Object * Scene::GenerateMeshObjectsFromObject(
+Object* Scene::GenerateMeshObjectsFromObject(
     const std::string& filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,
     bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
     std::vector<Object*>& sceneObjects // Pass sceneObjects as a parameter
@@ -145,10 +145,11 @@ Object * Scene::GenerateMeshObjectsFromObject(
     object->isTemporary;
     object->isCollisionStatic;
     object->name;
+    object->mesh->uniformScale = 0.5;
 
     // Set lighting based on the parameter
     object->mesh->bDoNotLight = !bDoLightingExist;
-    
+
     // Add the object to the scene
     sceneObjects.push_back(object);
 
