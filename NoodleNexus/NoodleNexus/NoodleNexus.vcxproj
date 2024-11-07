@@ -148,6 +148,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
+    <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="cPhysics.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />

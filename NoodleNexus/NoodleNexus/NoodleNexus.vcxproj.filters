@@ -57,6 +57,9 @@
     <Filter Include="Trash">
       <UniqueIdentifier>{6f2458ba-12b5-4ff6-9ac0-79f56f3f9b83}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MazeReader">
+      <UniqueIdentifier>{b8a31ce9-4d77-4c82-a0fc-eb18467d3784}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsManager.cpp">
       <Filter>Engine\PhysicsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MazeGenerator.cpp">
+      <Filter>MazeReader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="aPlayerCamera.hpp">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="MazeGenerator.hpp">
+      <Filter>MazeReader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,7 @@ public:
 	void Destroy();
 
 	std::vector<Action*> actions;
+	std::vector<Object*> sceneObjects;
 
 	//void Start()
 	//{

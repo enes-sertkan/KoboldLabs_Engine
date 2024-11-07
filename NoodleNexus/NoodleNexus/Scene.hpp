@@ -49,5 +49,11 @@ public:
 	
 	void AddActionToObj(Action* action, Object* object);
 
+	Object* GenerateMeshObjectsFromObject(
+		const std::string& filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,
+		bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
+		std::vector<Object*>& sceneObjects
+	);
+
 	
 };
