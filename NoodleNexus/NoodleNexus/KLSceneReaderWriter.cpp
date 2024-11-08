@@ -201,9 +201,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
 
                 }
-                if (token == "<Tags->") {
-                    object->tags = LoadTags(sceneFile);
-                }
+                if (token == "<Tags->") { object->tags = LoadTags(sceneFile); }
                 if (token == "<StaticCollision->")   object->mesh->isCollisionStatic = LoadBoolData(sceneFile);
                 if (token == "<Position->")   object->mesh->positionXYZ = LoadVector3Data(sceneFile);
                 if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);

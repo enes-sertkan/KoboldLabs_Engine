@@ -128,9 +128,9 @@ void Scene::RemoveObject(Object* obj)
 
 
 Object* Scene::GenerateMeshObjectsFromObject(
-    const std::string& filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,
+    const std::string& filePath, glm::vec3 posXYZ, float scale, glm::vec3 rotXYZ,
     bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
-    std::vector<Object*>& sceneObjects // Pass sceneObjects as a parameter
+    std::vector<Object*>& sceneObjects
 ) {
     Object* object = new Object;
     sMesh* Meshes = new sMesh();
@@ -142,6 +142,7 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->mesh->rotationEulerXYZ = rotXYZ;
     object->mesh->bOverrideObjectColour = bOverrideColor;
     object->mesh->objectColourRGBA = objectColor;
+    object->mesh->uniformScale = scale;
     object->isTemporary;
     object->isCollisionStatic;
     object->name;

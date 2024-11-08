@@ -49,48 +49,51 @@ void MazeGenerator::placeFloorAndCeiling(int row, int col) {
     glm::vec3 position(col, 0, row);
     glm::vec3 rotation(0.0f, 0.0f, 0.0f);
     glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
+    float scale = 1.0f;
 
     // Create floor
     Object* floor = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, rotation,
+        "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, scale, rotation,
         false, color, false, scene->sceneObjects);
     floor->isTemporary = true;
     floor->tags.push_back("floor");
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply",position,rotation,1.f);
+    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, rotation, scale);
 
     // Create ceiling with an offset in height
     position.y += 5.f;
     Object* ceiling = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, rotation,
+        "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, scale, rotation,
         false, color, false, scene->sceneObjects);
     ceiling->isTemporary = true;
     ceiling->tags.push_back("ceiling");
 }
 
 void MazeGenerator::placeWall(int row, int col) {
-    glm::vec3 position(col, 0.f, row);  // Adjust height as needed
-    glm::vec3 rotation(0.0f, 0.0f, 0.0f);  // No rotation
+    glm::vec3 position(col, 0.f, row); 
+    glm::vec3 rotation(0.0f, 0.0f, 0.0f); 
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
+    float scale = 1.0f;
 
     // Create the wall object
     Object* wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation,
+        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation,
         false, color, false, scene->sceneObjects);
     wall->isTemporary = true;
     wall->tags.push_back("wall");
 }
 
 void MazeGenerator::placeWallRotated(int row, int col) {
-    glm::vec3 position(col, 0.f, row);  // Adjust height as needed
-    glm::vec3 rotation(0.0f, 90.0f, 0.0f);  // Rotate 90 degrees on Y-axis
+    glm::vec3 position(col, 0.f, row); 
+    glm::vec3 rotation(0.0f, glm::radians(90.0f), 0.0f); 
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
+    float scale = 1.0f;
 
-    // Create the rotated wall object
-    //TODO: Pl, so GenerateMeshObjectsFromObject doesn't have scale as parametr. Add it
+    //DONE: Pl, so GenerateMeshObjectsFromObject doesn't have scale as parametr. Add it
     Object* wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation,
+        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation,
         false, color, false, scene->sceneObjects);
     wall->isTemporary = true;
-    wall->tags.push_back("wall");
+    wall->tags.push_back("rotatedWall");
 }
+
 

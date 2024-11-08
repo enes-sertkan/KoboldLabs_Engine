@@ -3,6 +3,7 @@
 <ObjectLoad-->
 Cube.txt
 wall.txt
+rotatedWall.txt
 floor.txt
 ceiling.txt
 selectBox.txt
@@ -12,11 +13,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> Player AA BBB <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 25 -91 -12
 <Rotation-> 0 0 0
-<Scale-> 50 0 0
+<Scale-> 50 1.62551e-43 1.04694e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -25,11 +26,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 13 0 5
 <Rotation-> 0 0 0
-<Scale-> 1.58 0 1.66605e-31
+<Scale-> 1.58 1.1151e-38 7.80615e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -38,18 +39,18 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -9 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.06531e-38 1.11122e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
 <--Object>
 
 <Light-->
-<Position-> 1.3 70000 -40019 1
+<Position-> 1.3 70000 -40019.2 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38

@@ -517,22 +517,22 @@ int main(void)
 
     modelInfo.modelName = "wall";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
-    // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "rotatedWall";
+    modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "rotatedWall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "floor";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply";
-    // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "ceiling";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
-    // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
-    // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
 
     // end of question 1 creating models
