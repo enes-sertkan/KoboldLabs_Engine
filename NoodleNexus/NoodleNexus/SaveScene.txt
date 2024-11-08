@@ -13,11 +13,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB false <StaticCollision-> false 
+<Tags-> Player AA BBB false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 25 -91 -12
 <Rotation-> 0 0 0
-<Scale-> 50 7.07143e-39 6.97959e-39
+<Scale-> 50 8.44902e-39 1.02857e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -26,11 +26,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> false <StaticCollision-> false 
+<Tags-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 13 0 5
 <Rotation-> 0 0 0
-<Scale-> 1.58 0 1.04694e-38
+<Scale-> 1.58 0 8.44894e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -39,11 +39,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -9 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 0 1.01938e-38
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0

@@ -620,9 +620,11 @@ int main(void)
     // Add the player camera action (with an offset for camera positioning)
     aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 2.0f, 0.0f));
     scene->AddActionToObj(playerCameraAction, playerObject);
+   
+
 
     aPlayerMovement* playerMovement = new aPlayerMovement();
-
+    playerMovement->program = program;
     scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
 
     RayCastPhysics* phys = new RayCastPhysics;

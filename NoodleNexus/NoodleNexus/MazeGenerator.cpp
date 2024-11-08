@@ -85,6 +85,9 @@ void MazeGenerator::placeWall(int row, int col) {
         false, color, false, scene->sceneObjects);
     wall->isTemporary = true;
     wall->tags.push_back("wall");
+
+    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
+
 }
 
 void MazeGenerator::placeWallRotated(int row, int col) {
@@ -101,6 +104,9 @@ void MazeGenerator::placeWallRotated(int row, int col) {
         false, color, false, scene->sceneObjects);
     wall->isTemporary = true;
     wall->tags.push_back("rotatedWall");
+
+    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
+
 }
 
 
