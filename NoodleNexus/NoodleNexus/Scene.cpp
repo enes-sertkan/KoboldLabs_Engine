@@ -145,7 +145,7 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->isTemporary;
     object->isCollisionStatic;
     object->name;
-    object->mesh->uniformScale = 0.5;
+    object->mesh->uniformScale = 1;
 
     // Set lighting based on the parameter
     object->mesh->bDoNotLight = !bDoLightingExist;

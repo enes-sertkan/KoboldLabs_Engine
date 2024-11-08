@@ -2,6 +2,7 @@
 #include "sObject.h"
 #include <iostream>
 #include <fstream>
+#include "PhysicsManager.h"
 
 MazeGenerator::MazeGenerator(const std::string& filePath, Scene* scene) : scene(scene) {
     loadMaze(filePath);
@@ -29,16 +30,16 @@ void MazeGenerator::generateMaze() {
 
             if (cell != '1') {
                 // Place floor and ceiling for all non-walkable cells
-                placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col));
+                placeFloorAndCeiling(static_cast<int>(row)*2, static_cast<int>(col) * 2);
             }
 
             if (cell == '2') {
                 // Place a wall with no rotation
-                placeWall(static_cast<int>(row), static_cast<int>(col));
+                placeWall(static_cast<int>(row) * 2, static_cast<int>(col) * 2);
             }
             else if (cell == '0') {
                 // Place a wall rotated 90 degrees on the Y-axis
-                placeWallRotated(static_cast<int>(row), static_cast<int>(col));
+                placeWallRotated(static_cast<int>(row) * 2, static_cast<int>(col) * 2);
             }
         }
     }
@@ -55,9 +56,10 @@ void MazeGenerator::placeFloorAndCeiling(int row, int col) {
         false, color, false, scene->sceneObjects);
     floor->isTemporary = true;
     floor->tags.push_back("floor");
+    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply",position,rotation,1.f);
 
     // Create ceiling with an offset in height
-    position.y += 2.5f;
+    position.y += 5.f;
     Object* ceiling = scene->GenerateMeshObjectsFromObject(
         "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, rotation,
         false, color, false, scene->sceneObjects);
@@ -84,6 +86,7 @@ void MazeGenerator::placeWallRotated(int row, int col) {
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
 
     // Create the rotated wall object
+    //TODO: Pl, so GenerateMeshObjectsFromObject doesn't have scale as parametr. Add it
     Object* wall = scene->GenerateMeshObjectsFromObject(
         "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation,
         false, color, false, scene->sceneObjects);
