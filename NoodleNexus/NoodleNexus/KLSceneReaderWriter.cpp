@@ -73,7 +73,7 @@ std::vector<std::string> LoadTags(std::ifstream& file) {
 
     // Read tags until the end of the line
     while (file.peek() != '\n' && file >> tag) {
-        if (tag != "StaticCollision") {
+        if (tag != "<StaticCollision->" || "false" || "true") {
             tags.push_back(tag);
         }
     }
