@@ -1,13 +1,20 @@
+// MazeGenerator.cpp
 #include "MazeGenerator.hpp"
 #include "sObject.h"
 #include <iostream>
 #include <fstream>
 #include "PhysicsManager.h"
+#include <glm/gtc/matrix_transform.hpp> // For glm::radians
 
+// Define a cell size constant to manage object spacing
+const float CELL_SIZE = 5.0f;
+
+// Constructor
 MazeGenerator::MazeGenerator(const std::string& filePath, Scene* scene) : scene(scene) {
     loadMaze(filePath);
 }
 
+// Load maze from file
 void MazeGenerator::loadMaze(const std::string& filePath) {
     std::ifstream file(filePath);
     if (!file.is_open()) {
@@ -17,128 +24,188 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
 
     std::string line;
     while (std::getline(file, line)) {
-        std::vector<char> row(line.begin(), line.end());
+        // Remove any whitespace or non-relevant characters if necessary
+        std::vector<char> row;
+        for (char c : line) {
+            if (c == '0' || c == '1') {
+                row.push_back(c);
+            }
+        }
         maze.push_back(row);
     }
     file.close();
 }
 
+// Generate maze based on 0s and 1s
 void MazeGenerator::generateMaze() {
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
 
             if (cell == '1') {
-                // Place floor and ceiling for all non-walkable cells
-                placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col));
-            }
+                // Place floor and ceiling for walkable cells
+                placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col), 1.0f);
 
-            if (cell == '2') {
-                // Place a wall with no rotation
-              //  placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col));
-                placeWall(static_cast<int>(row), static_cast<int>(col));
-            }
-            else if (cell == '0') {
-               // placeFloorAndCeiling(static_cast<int>(row), static_cast<int>(col));
-                // Place a wall rotated 90 degrees on the Y-axis
-                placeWallRotated(static_cast<int>(row), static_cast<int>(col));
+                // Place walls based on neighboring cells
+                // Top wall
+                if (row > 0 && maze[row - 1][col] == '0') {
+                    placeWallBottom(static_cast<int>(row), static_cast<int>(col), 1.0f);
+                }
+                // Bottom wall
+                if (row < maze.size() - 1 && maze[row + 1][col] == '0') {
+                    placeWallTop(static_cast<int>(row), static_cast<int>(col), 1.0f);
+                }
+                // Left wall
+                if (col > 0 && maze[row][col - 1] == '0') {
+                    placeWallLeft(static_cast<int>(row), static_cast<int>(col), 1.0f);
+                }
+                // Right wall
+                if (col < maze[row].size() - 1 && maze[row][col + 1] == '0') {
+                    placeWallRight(static_cast<int>(row), static_cast<int>(col), 1.0f);
+                }
             }
         }
     }
 }
 
-void MazeGenerator::placeFloorAndCeiling(int row, int col) {
-    row *= 2;
-    col *= 2;
+// Place floor and ceiling for each walkable cell
+void MazeGenerator::placeFloorAndCeiling(int row, int col, float scale) {
+    glm::vec3 floorPosition(col * CELL_SIZE, 0, row * CELL_SIZE);
+    glm::vec4 floorColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-    glm::vec3 position(col, 0, row);
-    glm::vec3 rotation(0.0f, 0.0f, 0.0f);
-    glm::vec4 color(1.0f, 1.0f, 1.0f, 1.0f);
-    float scale = 1.0f;
+    // Place floor
+    floorPosition.z -= 2.5f;
+    floorPosition.x += 2.5f;
 
- 
+    createObject(floorPosition, glm::vec3(0.0f), scale, floorColor, Floor, false);
 
-    // Create floor
-    position.x += 5.f;
-    position.z -= 2.5f;
-    Object* floor = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, scale, rotation,
-        false, color, false, scene->sceneObjects);
-    floor->isTemporary = true;
-    floor->tags.push_back("floor");
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", position, rotation, scale);
-
-    // Create ceiling with an offset in height
-    position.y += 5.f;
-
-    Object* ceiling = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", position, scale, rotation,
-        false, color, false, scene->sceneObjects);
-    ceiling->isTemporary = true;
-    ceiling->mesh->bIsVisible = false;
-    ceiling->tags.push_back("ceiling");
+    // Place ceiling above floor
+    glm::vec3 ceilingPosition = floorPosition;
+    ceilingPosition.y += CELL_SIZE; // Adjust height for ceiling placement
+    createObject(ceilingPosition, glm::vec3(0.0f), scale, floorColor, Ceiling, true);
 }
 
-void MazeGenerator::placeWall(int row, int col) {
-    row *= 2;
-    col *= 2;
-
-    glm::vec3 position(col, 0.f, row); 
-    glm::vec3 rotation(0.0f, 0.0f, 0.0f); 
+// Place a wall on the right side for vertical alignment
+void MazeGenerator::placeWallRight(int row, int col, float scale) {
+    glm::vec3 position(col * CELL_SIZE + (CELL_SIZE / 2.0f), 0.0f, row * CELL_SIZE); // Position for right wall
+    glm::vec3 rotation(0.0f, 90.0f, 0.0f); // Rotate wall to face right
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
-    float scale = 1.0f;
 
-    // Create the wall object
-    position.x -= 1.5f;
-    position.z -= 2.5f;
-    Object* wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation,
-        false, color, false, scene->sceneObjects);
-    wall->isTemporary = true;
-    wall->tags.push_back("wall");
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
-    rotation.y += 180.f;
-    wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation ,
-        false, color, false, scene->sceneObjects);
-    wall->isTemporary = true;
-    wall->tags.push_back("wall");
+    // Place visible wall on the right
+    createObject(position, rotation, scale, color, WallRight, false);
 
-
-   
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
-
+    // Place invisible wall rotated 180 degrees
+    glm::vec3 rotation_invisible = rotation;
+    rotation_invisible.y += 180.0f;
+    createObject(position, rotation_invisible, scale, color, WallLeft, true);
 }
 
-void MazeGenerator::placeWallRotated(int row, int col) {
-    row *= 2;
-    col *= 2;
+// Place a wall on the left side for vertical alignment
+void MazeGenerator::placeWallLeft(int row, int col, float scale) {
+    glm::vec3 position(col * CELL_SIZE - (CELL_SIZE / 2.0f), 0.0f, row * CELL_SIZE); // Position for left wall
+    glm::vec3 rotation(0.0f, 270.0f, 0.0f); // Rotate wall to face left
+    glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
 
-    glm::vec3 position(col, 0.f, row); 
-    glm::vec3 rotation(0.0f, 90.0f, 0.0f); 
+    // Place visible wall on the left
+    createObject(position, rotation, scale, color, WallLeft, false);
+
+    // Place invisible wall rotated 180 degrees
+    glm::vec3 rotation_invisible = rotation;
+    rotation_invisible.y += 180.0f;
+    createObject(position, rotation_invisible, scale, color, WallRight, true);
+}
+
+// Place a wall on the top side for horizontal alignment
+void MazeGenerator::placeWallTop(int row, int col, float scale) {
+    glm::vec3 position(col * CELL_SIZE, 0.0f, row * CELL_SIZE + (CELL_SIZE / 2.0f)); // Position for top wall
+    glm::vec3 rotation(0.0f, 0.0f, 0.0f); // No rotation needed for top
     glm::vec4 color(0.3f, 0.3f, 0.3f, 1.0f);
-    float scale = 1.0f;
 
-  //  position.x += 2.0f;
+    // Place visible wall on the top
+    createObject(position, rotation, scale, color, WallTop, false);
 
-    //TODO: Pl, so GenerateMeshObjectsFromObject doesn't have scale as parametr. Add ita
-    Object* wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation,
-        false, color, false, scene->sceneObjects);
-    wall->isTemporary = true;
-    wall->tags.push_back("rotatedWall");
-
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
-    rotation.y += 180.f;
- wall = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, scale, rotation,
-        false, color, false, scene->sceneObjects);
-    wall->isTemporary = true;
-    wall->tags.push_back("rotatedWall");
-
-
-    scene->physicsManager->AddTriangleMesh("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", position, rotation, scale);
-
+    // Place invisible wall rotated 180 degrees
+    glm::vec3 rotation_invisible = rotation;
+    rotation_invisible.y += 180.0f;
+    createObject(position, rotation_invisible, scale, color, WallBottom, true);
 }
 
+// Place a wall on the bottom side for horizontal alignment
+void MazeGenerator::placeWallBottom(int row, int col, float scale) {
+    glm::vec3 position(col * CELL_SIZE, 0.0f, row * CELL_SIZE - (CELL_SIZE / 2.0f)); // Position for bottom wall
+    glm::vec3 rotation(0.0f, 180.0f, 0.0f); // Rotate wall to face bottom
+    glm::vec4 color(0.3f, 0.3f, 0.3f, 1.0f);
 
+    // Place visible wall on the bottom
+    createObject(position, rotation, scale, color, WallBottom, false);
+
+    // Place invisible wall rotated 180 degrees
+    glm::vec3 rotation_invisible = rotation;
+    rotation_invisible.y += 180.0f;
+    createObject(position, rotation_invisible, scale, color, WallTop, true);
+}
+
+// General function to create objects with optional invisibility
+void MazeGenerator::createObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, ObjectType type, bool invisible) {
+    const char* assetPath = nullptr;
+    std::string tag;
+
+    // Determine the asset path and tag based on type
+    switch (type) {
+    case WallRight:
+        assetPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
+        tag = "wall_right";
+        break;
+    case WallLeft:
+        assetPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
+        tag = "wall_left";
+        break;
+    case WallTop:
+        assetPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
+        tag = "wall_top";
+        break;
+    case WallBottom:
+        assetPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
+        tag = "wall_bottom";
+        break;
+    case Ceiling:
+        assetPath = "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
+        tag = "ceiling";
+        break;
+    case Floor:
+        assetPath = "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply";
+        tag = "floor";
+        break;
+    default:
+        std::cerr << "Unknown ObjectType. Setting default assetPath." << std::endl;
+        assetPath = "assets/models/Ply/Default_Asset.ply";
+        tag = "unknown";
+        break;
+    }
+
+    // Ensure assetPath is set
+    if (assetPath == nullptr) {
+        std::cerr << "Asset path not set for ObjectType: " << tag << std::endl;
+        return;
+    }
+
+    // Generate the object
+    Object* obj = scene->GenerateMeshObjectsFromObject(
+        assetPath, position, scale, rotation, false, color, false, scene->sceneObjects);
+
+    if (obj == nullptr) {
+        std::cerr << "Failed to create object for tag: " << tag << std::endl;
+        return;
+    }
+
+    obj->isTemporary = true;
+    obj->tags.push_back(tag);
+
+    // Set visibility for invisible walls
+    if (invisible) {
+        obj->mesh->bIsVisible = false;
+    }
+
+    // Add to physics manager
+    scene->physicsManager->AddTriangleMesh(assetPath, position, rotation, scale);
+}
