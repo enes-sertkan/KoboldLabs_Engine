@@ -13,7 +13,7 @@ enum Direction {
     LEFT,
     UP,
     DOWN,
-    CENTER
+    CENTER,
     CENTERup
 };
 

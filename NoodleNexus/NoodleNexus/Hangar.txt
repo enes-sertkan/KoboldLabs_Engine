@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Hangar
+<filePath> assets/models/SM_Bld_Hanger_01_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

@@ -142,11 +142,11 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->mesh->rotationEulerXYZ = rotXYZ;
     object->mesh->bOverrideObjectColour = bOverrideColor;
     object->mesh->objectColourRGBA = objectColor;
-    object->mesh->uniformScale = scale;
+    //object->mesh->uniformScale = scale;
     object->isTemporary;
     object->isCollisionStatic;
     object->name;
-    object->mesh->uniformScale = 1;
+    object->mesh->uniformScale = 7;
 
     // Set lighting based on the parameter
     object->mesh->bDoNotLight = !bDoLightingExist;

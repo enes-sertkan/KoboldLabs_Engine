@@ -515,6 +515,10 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
+    modelInfo.modelName = "Hangar";
+    modelInfo.meshPath = "assets/models/SM_Bld_Hanger_01_xyz_n_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Hangar.txt", "XYZNUV");
+
     modelInfo.modelName = "wall";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
