@@ -28,7 +28,7 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float speed=7.f;
+	float speed=30.f;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;

@@ -81,20 +81,21 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         break;
     case RIGHT:
         position.x += scale * 5.0f / 2.0f;
-        rotation.y = 90.0f;
+        rotation.y = -90.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         break;
     case LEFT:
         position.x -= scale * 5.0f / 2.0f;
-        rotation.y = 270.0f;
+        rotation.y = -270.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         break;
     case UP:
         position.z += scale * 5.0f / 2.0f;
+        rotation.y = 180.0f;
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
-        rotation.y = 180.0f;
+       
         break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;

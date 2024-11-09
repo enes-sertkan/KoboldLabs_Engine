@@ -161,7 +161,6 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aCameraPlayer.h" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aMoveInDirection.h" />

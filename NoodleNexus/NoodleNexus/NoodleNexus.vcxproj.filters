@@ -187,9 +187,6 @@
     <ClInclude Include="PhysicsManager.h">
       <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
-    <ClInclude Include="aCameraPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aRayCastPhysics.h">
       <Filter>Header Files</Filter>
     </ClInclude>

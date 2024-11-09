@@ -622,7 +622,7 @@ int main(void)
 
 
     // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 2.0f, 0.0f));
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
     scene->AddActionToObj(playerCameraAction, playerObject);
    
 
