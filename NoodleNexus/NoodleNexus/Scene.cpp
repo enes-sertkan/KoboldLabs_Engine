@@ -54,6 +54,16 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
     fCamera = newFlyCamera;
 }
 
+
+void Scene::UpdateDeltaTime()
+{
+    std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
+    std::chrono::duration<float> dt = currentTime - previousTime;
+    previousTime = currentTime;
+    deltaTime = dt.count();
+    
+}
+
 void Scene::Update()
 {
     //for (Object* obj : sceneObjects)
@@ -74,6 +84,8 @@ void Scene::Update()
             }
         }
     }
+
+    UpdateDeltaTime();
 
 }
 

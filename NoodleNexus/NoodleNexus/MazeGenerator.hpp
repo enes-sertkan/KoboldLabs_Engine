@@ -29,7 +29,7 @@ public:
 
 private:
     void loadMaze(const std::string& filePath);
-    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool invisible = false);
+    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false);
 
     std::vector<std::vector<char>> maze;
     Scene* scene = nullptr;
