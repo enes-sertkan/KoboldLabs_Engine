@@ -28,7 +28,7 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float speed=0.4f;
+	float speed=7.f;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;
@@ -52,58 +52,59 @@ public:
 		glm::vec3 position;
 		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
 		std::vector<sCollision_RayTriangleInMesh> collisions;
-		DrawRayS(position, position + forward * speed * 1.5f, program);
-		DrawRayS(position, position - forward * speed * 1.5f, program);
-		DrawRayS(position, position + left * speed * 1.5f, program);
-		DrawRayS(position, position - left * speed * 1.5f, program);
+		DrawRayS(position, position + forward * speed * 2.f, program);
+		DrawRayS(position, position - forward * speed * 2.f, program);
+		DrawRayS(position, position + left * speed * 2.f, program);
+		DrawRayS(position, position - left * speed * 2.f, program);
 
 		switch (direction)
 		{
 			
 		case aPlayerMovement::FORWARD:
-			if (object->scene->physicsManager->RayCast(position, position + forward*speed * 1.5f, collisions, false))
-			{std::cout << "COLLISION";
+			if (object->scene->physicsManager->RayCast(position, position + forward*speed * 1.5f * object->scene->deltaTime, collisions, false))
+			{
+				//std::cout << "COLLISION";
 		 // 
 			break;
 			}
-			object->mesh->positionXYZ.x += forward.x * speed;
-			object->mesh->positionXYZ.z += forward.z * speed;
+			object->mesh->positionXYZ.x += forward.x * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ.z += forward.z * speed * object->scene->deltaTime;
 			break;
 
 		case aPlayerMovement::BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 2.f, collisions, false))
+			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				std::cout << "COLLISION";
+			//	std::cout << "COLLISION";
 				// 
 				break;
 			}
 
-			object->mesh->positionXYZ.x -= forward.x * speed;
-			object->mesh->positionXYZ.z -= forward.z * speed;
+			object->mesh->positionXYZ.x -= forward.x * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ.z -= forward.z * speed * object->scene->deltaTime;
 			break;
 		case aPlayerMovement::LEFT:
-			if (object->scene->physicsManager->RayCast(position, position + left * speed * 2.f, collisions, false)) 
+			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				std::cout << "COLLISION";
+				//std::cout << "COLLISION";
 				// 
 				break;
 			}
 
 
-			object->mesh->positionXYZ.x += left.x * speed;
-			object->mesh->positionXYZ.z += left.z * speed;
+			object->mesh->positionXYZ.x += left.x * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ.z += left.z * speed * object->scene->deltaTime;
 			break;
 		case aPlayerMovement::RIGHT:
-			if (object->scene->physicsManager->RayCast(position, position - left * speed * 2.f, collisions, false)) 
+			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				std::cout << "COLLISION";
+				//std::cout << "COLLISION";
 				// 
 				break;
 			}
 
 
-			object->mesh->positionXYZ.x -= left.x * speed;
-			object->mesh->positionXYZ.z -= left.z * speed;
+			object->mesh->positionXYZ.x -= left.x * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ.z -= left.z * speed * object->scene->deltaTime;
 			break;
 
 		default:

@@ -10,13 +10,24 @@
 #include "Transform.h"
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "PhysicsManager.h"
-
+#include <chrono>
 
 
 //This is a class bc we gonna have functions in it later
 class Scene
 {
+	
+private:
+	std::chrono::steady_clock::time_point previousTime;
+	std::chrono::steady_clock::time_point currentTime;
+
+
 public:
+
+	float deltaTime=0.00001f;//make it small, but at least something
+
+	void UpdateDeltaTime();
+
 	bool isFlyCamera = true;
 	std::vector<sModelDrawInfo> modelInfos;
 

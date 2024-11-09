@@ -39,20 +39,20 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
 
             if (cell == '1') {
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f, CENTER, false);
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f, CENTER, true);
                 PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f, CENTERup, true);
 
                 if (row > 0 && maze[row - 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, DOWN, false);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, DOWN, true);
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, UP, false);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, UP, true);
                 }
                 if (col > 0 && maze[row][col - 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, LEFT, false);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, LEFT, true);
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, RIGHT, false);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f, RIGHT, true);
                 }
             }
         }
@@ -61,7 +61,7 @@ void MazeGenerator::generateMaze() {
 
 
 // General function to place a model on the grid
-void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, ObjectType type, bool isVisible) {
+void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible) {
     glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f);
     glm::vec3 rotation(0.0f);
     glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
@@ -74,27 +74,26 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         break;
     case CENTERup:
-        position.z -= 2.5f;
-        position.x += 2.5f;
         position.y += scale * 5.0f;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         break;
     case RIGHT:
         position.x += scale * 5.0f / 2.0f;
-        rotation.y = 90.0f;
+        rotation.y = -90.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         break;
     case LEFT:
         position.x -= scale * 5.0f / 2.0f;
-        rotation.y = 270.0f;
+        rotation.y = -270.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         break;
     case UP:
         position.z += scale * 5.0f / 2.0f;
+        rotation.y = 180.0f;
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
-        rotation.y = 180.0f;
+        
         break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;
@@ -119,4 +118,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Add to physics manager
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
+    //rotation.y += 180.f;
+    //scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
+
 }
