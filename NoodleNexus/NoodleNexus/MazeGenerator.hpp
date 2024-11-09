@@ -1,4 +1,3 @@
-// MazeGenerator.hpp
 #ifndef MAZEGENERATOR_HPP
 #define MAZEGENERATOR_HPP
 
@@ -9,20 +8,18 @@
 #include "Scene.hpp"
 
 // Enum for different object types
-enum ObjectType {
-    WallRight,
-    WallLeft,
-    WallTop,
-    WallBottom,
-    Ceiling,
-    Floor
+enum Direction {
+    RIGHT,
+    LEFT,
+    UP,
+    DOWN,
+    CENTER
+    CENTERup
 };
 
-enum Direction {
-    Right,
-    Left,
-    Up,
-    Down
+enum Center {
+    FLOOR,
+    CEILING
 };
 
 class MazeGenerator {
@@ -32,14 +29,7 @@ public:
 
 private:
     void loadMaze(const std::string& filePath);
-    void placeWallRight(int row, int col, float scale);
-    void placeWallLeft(int row, int col, float scale);
-    void placeWallTop(int row, int col, float scale);
-    void placeWallBottom(int row, int col, float scale);
-    void placeFloorAndCeiling(int row, int col, float scale);
-
-    // General function to create objects with optional invisibility
-    void createObject(glm::vec3 position, glm::vec3 rotation, float scale, glm::vec4 color, ObjectType type, bool invisible = false);
+    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool invisible = false);
 
     std::vector<std::vector<char>> maze;
     Scene* scene = nullptr;
