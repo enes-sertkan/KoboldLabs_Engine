@@ -221,7 +221,26 @@ bool PhysicsManager::RayCast(glm::vec3 start, glm::vec3 end,
 									// Add all triangles, even back facing
 				intersectionInfo.vecTriangles.push_back(CurTriangle);
 				//				}
-			}//if (this->bLineSegment_TriangleCollision...
+			}
+			//else if (this->bLineSegment_TriangleCollisionBack(theRay, CurTriangle, u, v, w, t))
+			//{
+			//	// They intersect, so add this triangle to the "intersected triangles" of this mesh		
+			//	CurTriangle.intersectionPoint.x =
+			//		CurTriangle.vertices[0].x * u
+			//		+ CurTriangle.vertices[1].x * v
+			//		+ CurTriangle.vertices[2].x * w;
+			//	CurTriangle.intersectionPoint.y =
+			//		CurTriangle.vertices[0].y * u
+			//		+ CurTriangle.vertices[1].y * v
+			//		+ CurTriangle.vertices[2].y * w;
+			//	CurTriangle.intersectionPoint.z =
+			//		CurTriangle.vertices[0].z * u
+			//		+ CurTriangle.vertices[1].z * v
+			//		+ CurTriangle.vertices[2].z * w;
+
+			//	intersectionInfo.vecTriangles.push_back(CurTriangle);
+			//		
+			//}
 
 		}//for (std::vector<sTriangleP>::iterator itTri
 
@@ -380,3 +399,62 @@ bool PhysicsManager::bLineSegment_TriangleCollision(
 }
 
 
+bool PhysicsManager::bLineSegment_TriangleCollisionBack(
+	sLine theLine, sTriangleP theTri,
+	float& u, float& v, float& w, float& t)
+{
+	glm::vec3 ab = theTri.vertices[1] - theTri.vertices[0];		//	Vector ab = b - a;
+	glm::vec3 ac = theTri.vertices[2] - theTri.vertices[0];		//	Vector ac = c - a;
+	glm::vec3 qp = theLine.endXYZ - theLine.startXYZ;			//	Vector qp = p - q;
+	//
+	//	Compute triangle normal. Can be precalculated or cached if
+	//	intersecting multiple segments against the same triangle
+	glm::vec3 n = glm::cross(ab, ac);	//	Vector n = Cross(ab, ac);
+	//
+	//	Compute denominator d. If d <= 0, segment is parallel to or points
+	//	away from triangle, so exit early
+	float d = glm::dot(qp, n);		//	float d = Dot(qp, n);
+
+	if (d <= 0.0f) {
+		return false;
+	}
+	//
+	//	Compute intersection t value of pq with plane of triangle. A ray
+	//	intersects iff 0 <= t. Segment intersects iff 0 <= t <= 1. Delay
+	//	dividing by d until intersection has been found to pierce triangle
+	glm::vec3 ap = theLine.startXYZ - theTri.vertices[0];		//	Vector ap = p - a;
+	t = glm::dot(ap, n);									//	t = Dot(ap, n);
+
+	if (t < 0.0f) {
+		return false;
+	}
+
+	// For segment; exclude this code line for a ray test
+	if (t > d) {
+		return 0;
+	}
+
+	//	Compute barycentric coordinate components and test if within bounds
+	glm::vec3 e = glm::cross(qp, ap);	//	Vector e = Cross(qp, ap);
+	v = glm::dot(ac, e);		//	v = Dot(ac, e);
+
+	if (v < 0.0f || v > d) {
+		return false;
+	}
+
+	w = -glm::dot(ab, e);		//	w = -Dot(ab, e);
+
+	if ((w < 0.0f) || (v + w > d)) {
+		return 0;
+	}
+
+	//	Segment/ray intersects triangle. Perform delayed division and
+	//	compute the last barycentric coordinate component
+	float ood = 1.0f / d;
+	t *= ood;
+	v *= ood;
+	w *= ood;
+	u = 1.0f - v - w;
+
+	return true;
+}

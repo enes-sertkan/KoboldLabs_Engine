@@ -38,7 +38,8 @@ public:
 		FORWARD,
 		BACK,
 		LEFT,
-		RIGHT
+		RIGHT,
+		NONE
 	};
 
 	void Move(Direction direction)
@@ -49,9 +50,13 @@ public:
 		forward = glm::normalize(forward);
 		glm::vec3 left = glm::cross(up, forward);
 		glm::vec3 position;
-		position = object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
+		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
 		std::vector<sCollision_RayTriangleInMesh> collisions;
-		DrawRayS(position, position + forward * 10.f, program);
+		DrawRayS(position, position + forward * speed * 1.5f, program);
+		DrawRayS(position, position - forward * speed * 1.5f, program);
+		DrawRayS(position, position + left * speed * 1.5f, program);
+		DrawRayS(position, position - left * speed * 1.5f, program);
+
 		switch (direction)
 		{
 			
@@ -66,20 +71,36 @@ public:
 			break;
 
 		case aPlayerMovement::BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 2.f, collisions, false)) { break; }
+			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 2.f, collisions, false))
+			{
+				std::cout << "COLLISION";
+				// 
+				break;
+			}
 
 			object->mesh->positionXYZ.x -= forward.x * speed;
 			object->mesh->positionXYZ.z -= forward.z * speed;
 			break;
 		case aPlayerMovement::LEFT:
-			if (object->scene->physicsManager->RayCast(position, position + left * speed * 2.f, collisions, false)) break;
+			if (object->scene->physicsManager->RayCast(position, position + left * speed * 2.f, collisions, false)) 
+			{
+				std::cout << "COLLISION";
+				// 
+				break;
+			}
 
 
 			object->mesh->positionXYZ.x += left.x * speed;
 			object->mesh->positionXYZ.z += left.z * speed;
 			break;
 		case aPlayerMovement::RIGHT:
-			if (object->scene->physicsManager->RayCast(position, position - left * speed * 2.f, collisions, false)) break;
+			if (object->scene->physicsManager->RayCast(position, position - left * speed * 2.f, collisions, false)) 
+			{
+				std::cout << "COLLISION";
+				// 
+				break;
+			}
+
 
 			object->mesh->positionXYZ.x -= left.x * speed;
 			object->mesh->positionXYZ.z -= left.z * speed;
@@ -96,25 +117,29 @@ public:
 	void Update() override
 	{
 		
-		if (object->scene->isFlyCamera) return;
+		//if (object->scene->isFlyCamera) return;
 
-		if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
+		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 		{
-			Move(FORWARD);
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
-		{
-			Move(BACK);
-		}
+			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
+			{
+				Move(FORWARD);
+			}
+			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
+			{
+				Move(BACK);
+			}
 
-		if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
-		{
-			Move(LEFT);
+			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
+			{
+				Move(LEFT);
+			}
+			if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
+			{
+				Move(RIGHT);
+			}
 		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
-		{
-			Move(RIGHT);
-		}
-	
+		Move(NONE);
 	}
+
 };

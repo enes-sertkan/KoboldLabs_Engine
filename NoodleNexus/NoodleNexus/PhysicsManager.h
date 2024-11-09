@@ -85,6 +85,8 @@ public:
 	// returns the barycentric coordinates(u, v, w)
 	bool bLineSegment_TriangleCollision(sLine theLine, sTriangleP theTri,
 		float& u, float& v, float& w, float& t);
+	bool bLineSegment_TriangleCollisionBack(sLine theLine, sTriangleP theTri,
+		float& u, float& v, float& w, float& t);
 	
 
 
