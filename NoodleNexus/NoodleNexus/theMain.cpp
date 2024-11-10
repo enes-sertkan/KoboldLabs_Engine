@@ -50,8 +50,9 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 
-
 #include "aRayCastPhysics.h"
+#include "aDrawAim.hpp"
+
 std::vector<sMesh*> g_vecMeshesToDraw;
 
 cPhysics* g_pPhysicEngine = NULL;
@@ -650,6 +651,12 @@ int main(void)
     phys2->gravityAcceleration.z = -0.005;
     phys2->baseRayCastLength = 1.f;
     scene->AddActionToObj(phys2, scene->sceneObjects[2]);
+
+
+    aDrawAim* drawAimAction = new aDrawAim();
+    drawAimAction->program = program;
+    scene->AddActionToObj(drawAimAction, scene->sceneObjects[2]);
+    
 
 
 

@@ -67,8 +67,7 @@ void main()
 	// Use lighting?
 	if ( bDoNotLight )
 	{
-		finalPixelColour.rgb = objectColour.rgb;
-		finalPixelColour.a = 1.0f;
+	finalPixelColour = vec4(fColour,1.0f);
 		return;
 	}
 	

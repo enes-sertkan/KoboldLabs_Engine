@@ -39,20 +39,20 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
 
             if (cell == '1' || cell == '2' || cell == '3') {
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true);
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, true);
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true , glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 if (row > 0 && maze[row - 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, UP, true);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, LEFT, true);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true);
+                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
                 //// Place light only for cells marked '2', without a model
@@ -90,11 +90,11 @@ void MazeGenerator::generateMaze() {
 
 
 // General function to place a model on the grid
-void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible) {
+void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible,glm::vec4 color) {
     // Use scale to adjust both position and size
     glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f); // Scaling spacing
     glm::vec3 rotation(0.0f);
-    glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
+ //   glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
     glm::vec3 objectScale(1, 1, 1);
 
 
@@ -159,7 +159,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Generate the object with the applied scale to actually affect the mesh size
     Object* obj = scene->GenerateMeshObjectsFromObject(
-        path, position, scale * objectScale.x, rotation, false, color, true, scene->sceneObjects);
+        path, position, scale * objectScale.x, rotation,true, color, true, scene->sceneObjects);
 
 
     if (obj == nullptr) {

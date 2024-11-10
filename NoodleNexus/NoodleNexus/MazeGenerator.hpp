@@ -32,7 +32,7 @@ public:
 
 private:
     void loadMaze(const std::string& filePath);
-    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false);
+    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
     //void PlaceLight(int row, int col);  // New method to place a light
 
     std::vector<std::vector<char>> maze;

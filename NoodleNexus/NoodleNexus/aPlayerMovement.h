@@ -19,6 +19,7 @@ class aPlayerMovement : public Action
 		float distance = glm::distance(pos, posEnd);
 		glm::vec3 direction = glm::normalize(posEnd - pos);
 		glm::vec3 movingPoint = pos;
+
 		while (glm::distance(pos, movingPoint) < distance)
 		{
 			// Move the next ball 0.1 times the normalized camera direction
@@ -52,10 +53,10 @@ public:
 		glm::vec3 position;
 		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
 		std::vector<sCollision_RayTriangleInMesh> collisions;
-		DrawRayS(position, position + forward * speed * 2.f, program);
+	/*	DrawRayS(position, position + forward * speed * 2.f, program);
 		DrawRayS(position, position - forward * speed * 2.f, program);
 		DrawRayS(position, position + left * speed * 2.f, program);
-		DrawRayS(position, position - left * speed * 2.f, program);
+		DrawRayS(position, position - left * speed * 2.f, program);*/
 
 		switch (direction)
 		{
@@ -64,7 +65,6 @@ public:
 			if (object->scene->physicsManager->RayCast(position, position + forward*speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
 				//std::cout << "COLLISION";
-		 // 
 			break;
 			}
 			object->mesh->positionXYZ.x += forward.x * speed * object->scene->deltaTime;
@@ -118,10 +118,9 @@ public:
 	void Update() override
 	{
 		
-		//if (object->scene->isFlyCamera) return;
+		if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return
 
-		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-		{
+	
 			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
 			{
 				Move(FORWARD);
@@ -129,8 +128,7 @@ public:
 			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
 			{
 				Move(BACK);
-			}
-
+			}		
 			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
 			{
 				Move(LEFT);
@@ -139,7 +137,7 @@ public:
 			{
 				Move(RIGHT);
 			}
-		}
+		
 		Move(NONE);
 	}
 

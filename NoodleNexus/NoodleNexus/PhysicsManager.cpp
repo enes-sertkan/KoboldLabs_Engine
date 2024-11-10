@@ -8,6 +8,13 @@ float distancePointToIntersectionTriangle(
 	return glm::distance(point, theTriangle.intersectionPoint);
 }
 
+float distancePointToIntersectionTriangleMesh(
+	glm::vec3 point, sCollision_RayTriangleInMesh theTriangle)
+{
+	return glm::distance(point, theTriangle.vecTriangles[0].intersectionPoint);
+}
+
+
 class cSortCloseToPoint
 {
 public:
@@ -32,6 +39,35 @@ public:
 		return false;
 	}
 };
+
+class cSortMeshCloseToPoint
+{
+public:
+	cSortMeshCloseToPoint(glm::vec3 point)
+	{
+		this->m_point = point;
+	}
+private:
+	glm::vec3 m_point;
+public:
+	// Predicate comparison method (the "less than") method
+	// on predicate function
+	bool operator()(sCollision_RayTriangleInMesh triA, sCollision_RayTriangleInMesh triB)
+	{
+		float distToA = distancePointToIntersectionTriangleMesh(point, triA);
+		float distToB = distancePointToIntersectionTriangleMesh(point, triB);
+
+		if (distToA < distToB)
+		{
+			return true;
+		}
+		// 
+		return false;
+	}
+};
+
+
+
 
 
 
@@ -222,25 +258,6 @@ bool PhysicsManager::RayCast(glm::vec3 start, glm::vec3 end,
 				intersectionInfo.vecTriangles.push_back(CurTriangle);
 				//				}
 			}
-			//else if (this->bLineSegment_TriangleCollisionBack(theRay, CurTriangle, u, v, w, t))
-			//{
-			//	// They intersect, so add this triangle to the "intersected triangles" of this mesh		
-			//	CurTriangle.intersectionPoint.x =
-			//		CurTriangle.vertices[0].x * u
-			//		+ CurTriangle.vertices[1].x * v
-			//		+ CurTriangle.vertices[2].x * w;
-			//	CurTriangle.intersectionPoint.y =
-			//		CurTriangle.vertices[0].y * u
-			//		+ CurTriangle.vertices[1].y * v
-			//		+ CurTriangle.vertices[2].y * w;
-			//	CurTriangle.intersectionPoint.z =
-			//		CurTriangle.vertices[0].z * u
-			//		+ CurTriangle.vertices[1].z * v
-			//		+ CurTriangle.vertices[2].z * w;
-
-			//	intersectionInfo.vecTriangles.push_back(CurTriangle);
-			//		
-			//}
 
 		}//for (std::vector<sTriangleP>::iterator itTri
 
@@ -250,6 +267,8 @@ bool PhysicsManager::RayCast(glm::vec3 start, glm::vec3 end,
 		std::sort(intersectionInfo.vecTriangles.begin(),
 			intersectionInfo.vecTriangles.end(),
 			cSortCloseToPoint(theRay.startXYZ));
+
+		
 		//std::sort(intersectionInfo.vecTriangles.begin(),
 		//		  intersectionInfo.vecTriangles.end(), 
 		//	      isTriACloserThanB);
@@ -272,6 +291,8 @@ bool PhysicsManager::RayCast(glm::vec3 start, glm::vec3 end,
 		// No
 		return false;
 	}
+
+	std::sort(vec_RayTriangle_Collisions.begin(), vec_RayTriangle_Collisions.end(), cSortMeshCloseToPoint(theRay.startXYZ));
 
 	// There were collisions
 	return true;
