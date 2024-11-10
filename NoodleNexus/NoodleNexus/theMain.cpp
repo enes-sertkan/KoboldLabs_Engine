@@ -527,6 +527,10 @@ int main(void)
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "rotatedWall.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "door";
+    modelInfo.meshPath = "assets/models/Ply/SM_Env_Door_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "door.txt", "XYZNUVRGBA");
+
     modelInfo.modelName = "floor";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
@@ -691,10 +695,11 @@ int main(void)
 
 
     SceneEditor* sceneEditor = new SceneEditor();
+    cLightManager* lightManager = new cLightManager;
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene);
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, lightManager);
   
     mazeGenerator->generateMaze();
 

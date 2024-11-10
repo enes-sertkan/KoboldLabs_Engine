@@ -24,6 +24,7 @@ enum TransformMode
 enum LightModes
 {
     LightPosition,
+    Direction,
     Diffuse,
     Specular,
     Atten,
@@ -255,11 +256,13 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
         // Toggle light editing mode with keys 1-7
         if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS) currentLightMode = LightPosition;
+        if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) currentLightMode = Direction;
         if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS) currentLightMode = Diffuse;
         if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS) currentLightMode = Specular;
         if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS) currentLightMode = Atten;
         if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS) currentLightMode = Param1;
         if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS) currentLightMode = Param2;
+
 
         // Based on the currentLightMode, adjust the corresponding property
         switch (currentLightMode)
@@ -285,6 +288,30 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
                     selectedLight->position.z += 0.5f;
                 if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
                     selectedLight->position.z -= 0.5f;
+            }
+            break;
+
+        case Direction:
+
+            if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                selectedLight->direction.x += 0.04f;
+            if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+                selectedLight->direction.x -= 0.04f;
+
+            // Y-axis controls with Control key
+            if (isControlD(window))
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->direction.y += 0.04f;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->direction.y -= 0.04f;
+            }
+            else
+            {
+                if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+                    selectedLight->direction.z += 0.04f;
+                if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+                    selectedLight->direction.z -= 0.04f;
             }
             break;
 
