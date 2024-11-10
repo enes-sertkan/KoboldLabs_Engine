@@ -540,10 +540,47 @@ int main(void)
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Trolley";
-    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Trolley_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "trolley.txt", "XYZNUVRGBA");
+    //Props
+    //small
+    modelInfo.modelName = "Plants";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Plant_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Plants.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "Chair";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_SwivelChair_04_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Chair.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Bed";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Bed_02_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Bed.txt", "XYZNUVRGBA");
+
+    //medium
+    modelInfo.modelName = "console";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Console_05_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "console.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "SLadder";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "SLadder.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Cdesk";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Cdesk.txt", "XYZNUVRGBA");
+
+    //large
+    modelInfo.modelName = "printer";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "printer.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "treadmill";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "treadmill.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "stairs";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "stairs.txt", "XYZNUVRGBA");
+
+    //SelectBox
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Cdesk
+<filePath> assets/models/Ply/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

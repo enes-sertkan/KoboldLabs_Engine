@@ -8,6 +8,15 @@ rotatedWall.txt
 floor.txt
 ceiling.txt
 door.txt
+Chair.txt
+Bed.txt
+console.txt
+SLadder.txt
+Cdesk.txt
+printer.txt
+treadmill.txt
+stairs.txt
+Plants.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -15,11 +24,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB <StaticCollision-> false 
+<Tags-> Player AA BBB <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -148 0 -276
 <Rotation-> 0 0 0
-<Scale-> 50 9.27555e-39 9.00003e-39
+<Scale-> 50 1.01397e-38 1.01021e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -28,11 +37,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false 
+<Tags-> e <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.01397e-38 1.04694e-38
+<Scale-> 0.5 1.1151e-38 5.60212e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -41,11 +50,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -9 0 -9
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.01938e-38
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -54,11 +63,11 @@ selectBox.txt
 <Object-->
 <Name-> Hangar
 <Model-> Hangar
-<Tags-> <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 -90 0
-<Scale-> 0.1 0 7.98984e-39
+<Scale-> 0.1 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -67,11 +76,11 @@ selectBox.txt
 <Object-->
 <Name-> wall
 <Model-> wall
-<Tags-> <StaticCollision-> false 
+<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 2 -2 472
 <Rotation-> 0 -90 0
-<Scale-> 7.39007 9.27555e-39 1.01021e-38
+<Scale-> 7.39007 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.3 0.3

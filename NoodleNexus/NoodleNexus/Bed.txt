@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Bed
+<filePath> assets/models/Ply/SM_Prop_Bed_02_xyz_n_rgba_uv.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

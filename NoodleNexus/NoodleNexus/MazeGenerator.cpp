@@ -4,6 +4,7 @@
 #include <fstream>
 #include "PhysicsManager.h"
 #include <glm/gtc/matrix_transform.hpp> // For glm::radians
+#include <random>
 
 
 // Constructor
@@ -23,7 +24,7 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     while (std::getline(file, line)) {
         std::vector<char> row;
         for (char c : line) {
-            if (c == '0' || c == '1' || c == '2' || c == '3') {
+            if (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6') {
                 row.push_back(c);
             }
         }
@@ -32,16 +33,16 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     file.close();
 }
 
-// Generate maze based on 0s and 1s
 void MazeGenerator::generateMaze() {
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
 
-            if (cell == '1' || cell == '2' || cell == '3') {
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true , glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+            if (cell == '1' || cell == '2' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
+                // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == '0') {
                     PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
@@ -55,33 +56,37 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
-                //// Place light only for cells marked '2', without a model
-                //if (cell == '2') {
-                //    PlaceLight(row, col);  // Only add the light source without a visual model
-                //}
-
-                // Determine door placement and orientation
+                // Door placement logic (optional, as in your example)
                 if (cell == '3') {
                     Direction doorDirection;
-                    if (col > 0 && maze[row][col - 1] == '1') {  // Left neighbor is a wall
+                    if (col > 0 && maze[row][col - 1] == '1') {
                         doorDirection = DOORleft;
                     }
-                    else if (col < maze[row].size() - 1 && maze[row][col + 1] == '1') {  // Right neighbor is a wall
+                    else if (col < maze[row].size() - 1 && maze[row][col + 1] == '1') {
                         doorDirection = DOORright;
                     }
-                    else if (row > 0 && maze[row - 1][col] == '1') {  // Top neighbor is a wall
+                    else if (row > 0 && maze[row - 1][col] == '1') {
                         doorDirection = DOORup;
                     }
-                    else if (row < maze.size() - 1 && maze[row + 1][col] == '1') {  // Bottom neighbor is a wall
+                    else if (row < maze.size() - 1 && maze[row + 1][col] == '1') {
                         doorDirection = DOORdown;
                     }
                     else {
-                        continue;  // Skip door placement if no wall is adjacent
+                        continue;
                     }
-                    // Place the door with the determined orientation
                     PlaceModelOnGrid("assets/models/Ply/SM_Env_Door_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, doorDirection, true);
                 }
 
+                // Place random objects in '1' cells
+                if (cell == '4') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, SMALLobj, true);
+                }
+                else if (cell == '5') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, MEDIUMobj, true);
+                }
+                else if (cell == '6') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, BIGobj, true);
+                }
             }
         }
     }
@@ -89,16 +94,46 @@ void MazeGenerator::generateMaze() {
 
 
 
-// General function to place a model on the grid
-void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible,glm::vec4 color) {
-    // Use scale to adjust both position and size
-    glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f); // Scaling spacing
+void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible, glm::vec4 color) {
+    glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f);
     glm::vec3 rotation(0.0f);
- //   glm::vec4 color(0.5f, 0.5f, 0.5f, 1.0f);
     glm::vec3 objectScale(1, 1, 1);
 
 
     switch (type) {
+    case SMALLobj: {
+        std::vector<std::string> smallObjectPaths = {
+            "assets/models/Ply/SM_Prop_Plant_01_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_Bed_02_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_Chair_01_xyz_n_rgba_uv.ply"
+        };
+        path = smallObjectPaths[rand() % smallObjectPaths.size()];
+        scale *= 0.5f;  // Smaller scale for small objects
+        color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
+        break;
+    }
+    case MEDIUMobj: {
+        std::vector<std::string> mediumObjectPaths = {
+            "assets/models/Ply/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_Console_05_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply"
+        };
+        path = mediumObjectPaths[rand() % mediumObjectPaths.size()];
+        scale *= 0.75f;  // Medium scale for medium objects
+        color = glm::vec4(0.7f, 0.7f, 0.7f, 1.0f);
+        break;
+    }
+    case BIGobj: {
+        std::vector<std::string> bigObjectPaths = {
+            "assets/models/Ply/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
+            "assets/models/Ply/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
+        };
+        path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        scale *= 1.2f;  // Larger scale for big objects
+        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        break;
+    }
     case CENTER:
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
@@ -159,7 +194,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Generate the object with the applied scale to actually affect the mesh size
     Object* obj = scene->GenerateMeshObjectsFromObject(
-        path, position, scale * objectScale.x, rotation,true, color, true, scene->sceneObjects);
+        path, position, scale * objectScale.x, rotation, true, color, true, scene->sceneObjects);
 
 
     if (obj == nullptr) {
@@ -177,15 +212,4 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     // Add to physics manager with the applied scale
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
 }
-
-//void MazeGenerator::PlaceLight(int row, int col) {
-//    glm::vec4 position(col * 7.0f * 5.0f, 10.0f, row * 7.0f * 5.0f, 1.0f);  // Position the light above the floor level
-//    glm::vec4 diffuse(1.0f, 0.9f, 1.0f, 1.0f);  // Light color (warm white)
-//    glm::vec3 attenuation(0.0f, 0.1f, 0.01f);  // Set attenuation factors
-//    glm::vec4 direction(-4.48f, -9.19999f, 4.08f, 1.0f);  // Downward direction if spotlight
-//    glm::vec3 param1(1.0f, 20.0f, 40.0f);  // Parameter values for light type
-//    float param2x = 1.0f;  // Turn on the light
-//
-//    scene->SetLight(lightManager, lightIndex++, position, diffuse, attenuation, direction, param1, param2x);
-//}
 

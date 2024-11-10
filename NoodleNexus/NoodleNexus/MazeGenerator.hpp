@@ -22,7 +22,10 @@ enum Direction {
     DOORright,
     DOORleft,
     DOORup,
-    DOORdown
+    DOORdown,
+    SMALLobj,
+    MEDIUMobj,
+    BIGobj
 };
 
 class MazeGenerator {
@@ -33,7 +36,8 @@ public:
 private:
     void loadMaze(const std::string& filePath);
     void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
-    //void PlaceLight(int row, int col);  // New method to place a light
+    void PlaceRandomObjects();
+    //void PlaceRandomSizedObject(int row, int col, Direction type)  // New method to place a light
 
     std::vector<std::vector<char>> maze;
     Scene* scene = nullptr;
