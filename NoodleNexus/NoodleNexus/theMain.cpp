@@ -52,6 +52,8 @@
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
+#include "aPlayerItemsController.h"
+
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -162,19 +164,6 @@ sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
     return NULL;
 }
 
-void DrawRay(glm::vec3 pos, glm::vec3 posEnd, GLuint program)
-{
-    float distance = glm::distance(pos, posEnd);
-    glm::vec3 direction = glm::normalize(posEnd - pos);
-    glm::vec3 movingPoint=pos;
-    while (glm::distance(pos, movingPoint) < distance)
-    {
-        // Move the next ball 0.1 times the normalized camera direction
-        movingPoint += (direction * 0.10f);
-        DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
-    }
-
-}
 
 
 
@@ -667,9 +656,7 @@ int main(void)
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
 
-    // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
-    scene->AddActionToObj(playerCameraAction, playerObject);
+
    
 
 
@@ -695,7 +682,14 @@ int main(void)
     scene->AddActionToObj(drawAimAction, scene->sceneObjects[2]);
     
 
+    aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
 
+    scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[2]);
+
+
+    // Add the player camera action (with an offset for camera positioning)
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject);
 
     //MoveForward* action = new MoveForward();
 
@@ -751,6 +745,10 @@ int main(void)
   
     mazeGenerator->generateMaze();
 
+
+    scene->programs.push_back(program);
+    scene->Start();
+
     while (!glfwWindowShouldClose(window))
     {
         float ratio;
@@ -784,21 +782,7 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-        glm::vec3 pos = scene->sceneObjects[1]->mesh->positionXYZ;
-        glm::vec3 posEnd = scene->sceneObjects[1]->mesh->positionXYZ;
-
-        std::vector<sCollision_RayTriangleInMesh> collisions;
-        posEnd.x = -2;
-        if (physicsMan->RayCast(pos, posEnd, collisions, false)) {}//printf("HIT!\n");
-        for (auto col : collisions)
-        {
-           // printf("HIT!\n");
-        }
-
-        posEnd = pos;
-        posEnd.x -= 2;
-
-        DrawRay(pos, posEnd, program);
+       
 
         for (Object* object:scene->sceneObjects)
         {

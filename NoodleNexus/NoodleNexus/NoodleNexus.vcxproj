@@ -174,8 +174,10 @@
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="Laser.hpp" />
     <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="aPlayerItemsController.h" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
@@ -184,7 +186,7 @@
     <ClInclude Include="PlyFileLoaders.h" />
     <ClInclude Include="sObject.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Weapon.hpp" />
+    <ClInclude Include="UsableItem.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

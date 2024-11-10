@@ -20,9 +20,13 @@ class Scene
 private:
 	std::chrono::steady_clock::time_point previousTime;
 	std::chrono::steady_clock::time_point currentTime;
-
+	sMesh* pSphere = NULL;
 
 public:
+	void DrawMesh(sMesh* pCurMesh, GLuint program);
+	std::vector<GLuint> programs;
+	void DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program);
+	void DrawRay(glm::vec3 pos, glm::vec3 posEnd, GLuint program, glm::vec4 color, bool isWire, float scale);
 
 	float deltaTime=0.00001f;//make it small, but at least something
 
@@ -34,6 +38,8 @@ public:
 	std::vector<Object*> sceneObjects;
 
 	std::vector<Action*> actions;
+
+	cVAOManager* vaoManager;
 
 	cLightManager* lightManager;
 	PhysicsManager* physicsManager;
@@ -52,7 +58,7 @@ public:
 	
 	int currentCameraIndex=0;
 
-
+	void Start();
 	void Update();
 
 	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera);

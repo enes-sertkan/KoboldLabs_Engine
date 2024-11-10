@@ -18,6 +18,7 @@ sMesh* pDebugSphere = NULL;
 
 
 
+
 void DrawMesh(sMesh* pCurMesh, GLuint program)
 {
     //std::cout << "Drawing " << pCurMesh->uniqueFriendlyName << ". Position: " << pCurMesh->positionXYZ.x << " " << pCurMesh->positionXYZ.y << " " << pCurMesh->positionXYZ.z << " " << std::endl;

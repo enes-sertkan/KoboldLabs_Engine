@@ -199,8 +199,14 @@
     <ClInclude Include="aDrawAim.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.hpp">
+    <ClInclude Include="UsableItem.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayerItemsController.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

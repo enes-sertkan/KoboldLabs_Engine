@@ -53,7 +53,7 @@ public:
 		std::vector<sCollision_RayTriangleInMesh> collisions;
 
 
-		DrawRay2(startPos, endPos, program);
+		;
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{
 			std::cout << collisions[0].vecTriangles[0].intersectionPoint.x << " " << collisions[0].vecTriangles[0].intersectionPoint.y << " " << collisions[0].vecTriangles[0].intersectionPoint.z << std::endl;
