@@ -9,6 +9,7 @@
 #include <vector>
 #include "Action.h"
 
+
 class Scene;
 
 
@@ -24,6 +25,8 @@ public:
 	bool isTemporary = false;
 	bool isCollisionStatic = false;
 	std::vector<std::string> tags;
+	bool isActive = true;
+	//GLuint program;
 
 	void Destroy();
 

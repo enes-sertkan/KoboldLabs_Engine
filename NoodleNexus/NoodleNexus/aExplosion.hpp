@@ -4,18 +4,29 @@
 #include <string>
 #include <iostream>
 
-class aExplosion : public UsableItem
+class aExplosion : public Action
 {
 public:
+    float expansionRate = 0.4f;
+    float maxScale = 5.0f;
+    glm::vec4 explosionColor = glm::vec4(1.0f, 0.5f, 0.0f, 1.0f);
 
-
-    void Start(glm::vec3 position)
+    void Start() override
     {
-        this->position = position;
+        object->mesh->uniformScale = 0.1f;
+        object->mesh->objectColourRGBA = explosionColor;
     }
 
-    void Update()
+    void Update() override
     {
-        // Implement explosion behavior here if needed
+
+        if (object->mesh->uniformScale >= maxScale)
+        {
+            object->isActive = false;
+            return;
+        }
+
+        object->mesh->uniformScale += expansionRate * object->scene->deltaTime;
+
     }
 };

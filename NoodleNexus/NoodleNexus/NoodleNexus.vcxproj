@@ -147,6 +147,7 @@
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cVAOManager\cVAOManager.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="Gun.hpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
@@ -164,6 +165,8 @@
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
+    <ClInclude Include="aExhaustTrail.hpp" />
+    <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
@@ -176,13 +179,13 @@
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
-    <ClInclude Include="GranadeLauncher.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Laser.hpp" />
     <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />
-    <ClInclude Include="aProjectile.hpp" />
+    <ClInclude Include="aProjectileMovement.hpp" />
+    <ClInclude Include="ProjectileWeapon.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
