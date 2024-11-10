@@ -184,6 +184,7 @@
     <ClInclude Include="PlyFileLoaders.h" />
     <ClInclude Include="sObject.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Weapon.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

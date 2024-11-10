@@ -128,7 +128,9 @@ public:
 		
 		speed -= 2.f*gravityComponent(speed, gravityAcceleration)*bounciness;
 
-		
+			
+		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + 2;
+
 
 		//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
 		//object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
