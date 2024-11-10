@@ -128,6 +128,9 @@
     <ClCompile Include="aPlayerMovement.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Gun.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -208,13 +211,28 @@
     <ClInclude Include="aPlayerItemsController.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="aProjectile.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aExplosion.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GranadeLauncher.hpp">
+    <ClInclude Include="aChangeColorOverTime.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aExhaustTrail.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aLinearProjectileMovement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aSizeUpThenDown.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aProjectileMovement.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileWeapon.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aExplodeOnRayCollision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

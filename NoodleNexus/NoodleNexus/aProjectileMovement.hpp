@@ -8,24 +8,23 @@ class aProjectileMovement : public Action
 {
 public:
     glm::vec3 target;
+    glm::vec3 direction;
     float speed = 100.0f;
     float acceleration = 2.0f;
 
     void Start() override
     {
         // Initialize starting position and direction
+        direction = glm::normalize(target - object->mesh->positionXYZ);
+
     }
 
     void Update() override
     {
-        glm::vec3 direction = glm::normalize(target - object->mesh->positionXYZ);
         speed += acceleration * object->scene->deltaTime;
         object->mesh->positionXYZ += direction * speed * object->scene->deltaTime;
 
-        if (glm::distance(object->mesh->positionXYZ, target) < 0.5f) // Replace with suitable threshold
-        {
-            OnImpact();
-        }
+
     }
 
 protected:
@@ -33,5 +32,6 @@ protected:
     {
         // Add explosion or impact marker actions here
         object->scene->RemoveObject(object);
+
     }
 };

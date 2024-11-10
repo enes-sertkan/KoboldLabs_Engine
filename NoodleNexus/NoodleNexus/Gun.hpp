@@ -9,7 +9,7 @@
 #include "UsableItem.hpp"
 #include "aLinearProjectileMovement.hpp"
 #include "aExhaustTrail.hpp"
-#include "aExplosion.hpp"
+#include "aExplodeOnRayCollision.hpp"
 #include "aChangeColorOverTime.hpp"
 #include "aSizeUpThenDown.hpp"
 
@@ -33,23 +33,6 @@ public:
             Object* projectile = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", position, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.1, 0.1, 0.1, 1), true, scene->sceneObjects);
             projectile->isTemporary = true;
 
-            aChangeColorOverTime* changeColorOverTimeAction = new aChangeColorOverTime();
-            changeColorOverTimeAction->startColour = startColor;
-            changeColorOverTimeAction->endColour = endColor;
-            changeColorOverTimeAction->secondsToChange = 1.f;
-            scene->AddActionToObj(changeColorOverTimeAction, projectile);
-
-
-            aSizeUpThenDown* sizeUpDownAction = new aSizeUpThenDown();
-            sizeUpDownAction->scales.push_back(0.f);
-            sizeUpDownAction->scales.push_back(1.5f);
-            sizeUpDownAction->scales.push_back(0.7f);
-            sizeUpDownAction->scales.push_back(0.f);
-
-            sizeUpDownAction->secondsToChange.push_back(0.1f);
-            sizeUpDownAction->secondsToChange.push_back(1.f);
-
-            scene->AddActionToObj(sizeUpDownAction, projectile);
 
             // Attach movement, trail, and explosion actions
             aLinearProjectileMovement* movement = new aLinearProjectileMovement();
@@ -59,8 +42,7 @@ public:
             aExhaustTrail* exhaust = new aExhaustTrail();
             scene->AddActionToObj(exhaust, projectile);
 
-            aExplosion* explosion = new aExplosion();
-            explosion->explosionColor = glm::vec4(1.0f, 0.6f, 0.0f, 1.0f);
+            aExplodeOnRayCollision* explosion = new aExplodeOnRayCollision();
             scene->AddActionToObj(explosion, projectile);
 
         }
