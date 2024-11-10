@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Sphere
+<filePath> assets/models/Sphere_radius_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

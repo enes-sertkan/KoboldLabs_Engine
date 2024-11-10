@@ -505,6 +505,11 @@ int main(void)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
+    modelInfo.modelName = "Sphere";
+    modelInfo.meshPath = "assets/models/Sphere_radius_xyz_n_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Sphere.txt", "XYZNUV");
+
+    // Maze
     modelInfo.modelName = "Hangar";
     modelInfo.meshPath = "assets/models/SM_Bld_Hanger_01_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "Hangar.txt", "XYZNUV");

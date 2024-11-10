@@ -349,38 +349,6 @@ void Scene::RemoveObject(Object* obj)
 }
 
 
-//Object* Scene::GenerateMeshObjectsFromObject(
-//    const std::string& filePath, glm::vec3 posXYZ, float scale, glm::vec3 rotXYZ,
-//    bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
-//    std::vector<Object*>& sceneObjects
-//) {
-//    Object* object = new Object;
-//    sMesh* Meshes = new sMesh();
-//    object->mesh = Meshes;
-//
-//    // Initialize mesh properties
-//    object->mesh->modelFileName = filePath;
-//    object->mesh->positionXYZ = posXYZ;
-//    object->mesh->rotationEulerXYZ = rotXYZ;
-//    object->mesh->bOverrideObjectColour = bOverrideColor;
-//    object->mesh->objectColourRGBA = objectColor;
-//    
-//    object->mesh->uniformScale = scale;
-//    object->isTemporary;
-//    object->isCollisionStatic;
-//    object->name;
-//    object->mesh->uniformScale = 7;
-//
-//    // Set lighting based on the parameter
-//    object->mesh->bDoNotLight = !bDoLightingExist;
-//
-//    // Add the object to the scene
-//    sceneObjects.push_back(object);
-//
-//    return object;
-//}
-
-
 Object* Scene::GenerateMeshObjectsFromObject(
     const std::string& filePath, glm::vec3 posXYZ, float scale, glm::vec3 rotXYZ,
     bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
@@ -408,25 +376,3 @@ Object* Scene::GenerateMeshObjectsFromObject(
 
     return object;
 }
-
-
-//void Scene::SetLight(cLightManager* lightManager, int index,
-//    const glm::vec4& position,
-//    const glm::vec4& diffuse,
-//    const glm::vec3& attenuation,
-//    const glm::vec4& direction,
-//    const glm::vec3& param1,
-//    float param2x)
-//{
-//    // Set the properties of the light using lightManager instead of g_pLightManager
-//    lightManager->theLights[index].position = position;
-//    lightManager->theLights[index].diffuse = diffuse;
-//    lightManager->theLights[index].atten.y = attenuation.y;
-//    lightManager->theLights[index].atten.z = attenuation.z;
-//
-//    // If it's a spotlight, set the direction and angles
-//    lightManager->theLights[index].direction = direction;
-//    lightManager->theLights[index].param1 = glm::vec4(param1, 0.0f);
-//    lightManager->theLights[index].param2.x = param2x;  // Turn on/off
-//
-//}

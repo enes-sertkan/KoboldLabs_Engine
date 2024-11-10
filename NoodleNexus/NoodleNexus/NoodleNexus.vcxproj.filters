@@ -208,6 +208,15 @@
     <ClInclude Include="aPlayerItemsController.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="aProjectile.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aExplosion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GranadeLauncher.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
