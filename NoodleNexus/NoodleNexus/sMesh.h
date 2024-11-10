@@ -24,7 +24,7 @@ struct sMesh
 	bool bIsWireframe = false;
 	bool bIsVisible = true;
 	bool bDoNotLight = false;
-	bool isCollisionStatic = false;
+	
 
 	unsigned int uniqueID = 0;
 

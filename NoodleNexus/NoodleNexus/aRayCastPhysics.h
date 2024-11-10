@@ -18,7 +18,9 @@ public:
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
 	float bounciness = 0.95;
-	glm::vec3 airFriction = glm::vec3(0.01, 0.01, 0.01);
+	glm::vec3 airFriction = glm::vec3(1, 1, 1);
+
+	float yChange = 10.f;
 
 	void ApplySpeed()
 	{
@@ -30,31 +32,31 @@ public:
 
 	void ApplyAcceleration()
 	{
-		speed.x += gravityAcceleration.x;
-		speed.y += gravityAcceleration.y;
-		speed.z += gravityAcceleration.z;
+		speed.x += gravityAcceleration.x * object->scene->deltaTime;
+		speed.y += gravityAcceleration.y * object->scene->deltaTime;
+		speed.z += gravityAcceleration.z * object->scene->deltaTime;
 
 
-		speed.x *= 1 - airFriction.x;
-		speed.y *= 1 - airFriction.x;
-		speed.z *= 1 - airFriction.x;
+		speed.x *= 1 - airFriction.x * object->scene->deltaTime;
+		speed.y *= 1 - airFriction.x * object->scene->deltaTime;
+		speed.z *= 1 - airFriction.x * object->scene->deltaTime;
 
 	}
 
 	void AddAcceleration(glm::vec3 acceleration)
 	{
-		speed.x += acceleration.x;
-		speed.y += acceleration.y;
-		speed.z += acceleration.z;
+		speed.x += acceleration.x * object->scene->deltaTime;
+		speed.y += acceleration.y * object->scene->deltaTime;
+		speed.z += acceleration.z * object->scene->deltaTime;
 
 
 	}
 
 	void SetSpeed(glm::vec3 newSpeed)
 	{
-		speed.x = newSpeed.x;
-		speed.y = newSpeed.y;
-		speed.z = newSpeed.z;
+		speed.x = newSpeed.x * object->scene->deltaTime;
+		speed.y = newSpeed.y * object->scene->deltaTime;
+		speed.z = newSpeed.z * object->scene->deltaTime;
 	}
 
 	void GetButtonDown(GLFWwindow* window, std::vector<sCollision_RayTriangleInMesh> collisions)
@@ -102,7 +104,7 @@ public:
 
 
 		normSpeed = glm::normalize(speed + gravityAcceleration);
-		normSpeed = normSpeed * (glm::length(speed*speedLengthMultiplier) + baseRayCastLength);
+		normSpeed = normSpeed * (glm::length(speed*speedLengthMultiplier * object->scene->deltaTime) + baseRayCastLength);
 		glm::vec3 startPos = object->mesh->positionXYZ;
 		glm::vec3 endPos = startPos + normSpeed;
 
@@ -126,10 +128,10 @@ public:
 		}
 
 		
-		speed -= 2.f*gravityComponent(speed, gravityAcceleration)*bounciness;
+		speed -= 2.f*gravityComponent(speed*object->scene->deltaTime, gravityAcceleration)*bounciness;
 
 			
-		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + 2;
+		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;
 
 
 		//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;

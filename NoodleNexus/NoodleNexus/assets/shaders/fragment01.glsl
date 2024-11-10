@@ -59,15 +59,15 @@ void main()
 	// we are not using it now, we are just adding to test
 
 	// Sample the texture color using UV coordinates
-    vec3 textureColor = texture(textureSampler, fUV).rgb;
+   // vec3 textureColor = texture(textureSampler, fUV).rgb;
 
     // Blend texture color with vertex color
-    vertexColour *= textureColor;
+   // vertexColour *= textureColor;
 	
 	// Use lighting?
 	if ( bDoNotLight )
 	{
-	finalPixelColour = vec4(fColour,1.0f);
+	finalPixelColour = vec4(vertexColour,1.0f);
 		return;
 	}
 	

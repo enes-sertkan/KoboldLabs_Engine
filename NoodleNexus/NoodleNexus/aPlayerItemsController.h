@@ -6,7 +6,6 @@
 #include "sObject.h"
 #include "Laser.hpp"
 #include "UsableItem.hpp"
-#include "GranadeLauncher.hpp" 
 
 
 class aPlayerItemsController : public Action
@@ -14,39 +13,41 @@ class aPlayerItemsController : public Action
 public:
 
 	Laser* laser = nullptr;
-	GranadeLauncher* grenade = nullptr;
-	UsableItem* currentWeapon = nullptr;
-
 
 	void Start()
 	{
 		laser = new Laser();
 		laser->program = object->scene->programs[0];
 		laser->scene = object->scene;
-
-		// Initialize grenade launcher
-		grenade = new GranadeLauncher();
-		grenade->program = object->scene->programs[0];
-		grenade->scene = object->scene;
 	}
 
 	void Update() override
 	{
 
 
-		if (glfwGetKey(object->scene->window, GLFW_KEY_E) == GLFW_PRESS)
+		if ( glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 		{
-			laser->position = object->scene->fCamera->getEyeLocation();
-			laser->position.y;// -20.f;
-			laser->target = object->scene->fCamera->getTargetLocation();
+			if (object->scene->isFlyCamera) {
+				laser->position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation();
+
+				laser->target = object->mesh->positionXYZ + glm::normalize(object->scene->fCamera->getTargetRelativeToCamera()) * 100.f;
+			}
+			else
+			{
+				laser->position = object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
+				laser->position.y -= 5.f;
+
+				laser->target = object->scene->fCamera->getEyeLocation() + glm::normalize(object->scene->fCamera->getTargetRelativeToCamera()) * 100.f;
+			
+			}
+			
 			laser->Use();
 		}
 
 		if (glfwGetKey(object->scene->window, GLFW_KEY_Q) == GLFW_PRESS)
 		{
-			grenade->position = object->scene->fCamera->getEyeLocation();
-			grenade->target = object->scene->fCamera->getTargetLocation();
-			grenade->Use();  // Launch grenade
+
+		///GUN setup and use
 		}
 	
 		

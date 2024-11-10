@@ -652,13 +652,16 @@ int main(void)
 
     PrepareFlyCamera();
 
-
+    // Add the player camera action (with an offset for camera positioning)
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject);
 
 
 
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
     physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
+
 
 
 
@@ -670,31 +673,23 @@ int main(void)
     scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
 
     RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -0.02;
-    phys->baseRayCastLength =  2.0;
+    phys->gravityAcceleration.y = -5;
+    phys->baseRayCastLength =  10.0;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
-
-    RayCastPhysics* phys2 = new RayCastPhysics;
-    phys2->gravityAcceleration.y = -0.01;
-    phys2->gravityAcceleration.z = -0.005;
-    phys2->baseRayCastLength = 1.f;
-    scene->AddActionToObj(phys2, scene->sceneObjects[2]);
 
 
     aDrawAim* drawAimAction = new aDrawAim();
     drawAimAction->program = program;
-    scene->AddActionToObj(drawAimAction, scene->sceneObjects[2]);
+    scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
     
 
     aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
 
-    scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[2]);
+    scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
-    // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
-    scene->AddActionToObj(playerCameraAction, playerObject);
+
 
     //MoveForward* action = new MoveForward();
 

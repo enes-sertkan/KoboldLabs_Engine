@@ -225,6 +225,18 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera)
 {
+
+    physicsManager = physMan;
+
+    physicsManager->VAOMan = meshManager;
+
+    window = newWindow;
+
+    fCamera = newFlyCamera;
+
+    vaoManager = meshManager;
+
+
     for (sModelDrawInfo info : modelInfos)
     {
         LoadDrawInfo(meshManager, info, program);
@@ -235,17 +247,16 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
     {
         CreateMeshObjects(meshes, object->mesh);
         object->scene = this;
+
+
+        if (object->isCollisionStatic)
+            physicsManager->AddTriangleMesh(object->mesh->modelFileName, object->startTranform->position, object->startTranform->rotation, object->startTranform->scale.x);
+
     }
 
-    physicsManager = physMan;
-    
-    physicsManager->VAOMan = meshManager;
 
-    window = newWindow;
 
-    fCamera = newFlyCamera;
-    
-    vaoManager = meshManager;
+  
 }
 
 
@@ -370,7 +381,7 @@ Object* Scene::GenerateMeshObjectsFromObject(
 
     // Set lighting based on the parameter
     object->mesh->bDoNotLight = !bDoLightingExist;
-
+    object->scene = this;
     // Add the object to the scene
     sceneObjects.push_back(object);
 

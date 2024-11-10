@@ -29,7 +29,9 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float speed=30.f;
+	float walkSpeed=30.f;
+	float runSpeed = 80.f;
+	float speed = walkSpeed;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;
@@ -120,7 +122,15 @@ public:
 		
 		if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return
 
-	
+
+		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+			speed = runSpeed;
+		else
+			speed = walkSpeed;
+
+
+
+
 			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
 			{
 				Move(FORWARD);
@@ -128,7 +138,7 @@ public:
 			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
 			{
 				Move(BACK);
-			}		
+			}
 			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
 			{
 				Move(LEFT);
@@ -137,8 +147,8 @@ public:
 			{
 				Move(RIGHT);
 			}
+
 		
-		Move(NONE);
 	}
 
 };
