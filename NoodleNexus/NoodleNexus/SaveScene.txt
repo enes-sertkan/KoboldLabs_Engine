@@ -15,11 +15,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> Player AA BBB <StaticCollision-> false 
 <StaticCollision-> false
-<Position-> 0 0 -130
+<Position-> -148 0 -276
 <Rotation-> 0 0 0
-<Scale-> 50 0 0
+<Scale-> 50 9.27555e-39 9.00003e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -28,11 +28,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 0 0
+<Scale-> 0.5 1.01397e-38 1.04694e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -41,11 +41,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -9 0 -9
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 1.01938e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -54,11 +54,11 @@ selectBox.txt
 <Object-->
 <Name-> Hangar
 <Model-> Hangar
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 -90 0
-<Scale-> 0.1 0 0
+<Scale-> 0.1 0 7.98984e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -67,18 +67,18 @@ selectBox.txt
 <Object-->
 <Name-> wall
 <Model-> wall
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false 
+<Tags-> <StaticCollision-> false 
 <StaticCollision-> false
 <Position-> 2 -2 472
 <Rotation-> 0 -90 0
-<Scale-> 7.39007 0 0
+<Scale-> 7.39007 9.27555e-39 1.01021e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.3 0.3
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40041.4 1
+<Position-> 0.5 69999.4 -40042.9 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
@@ -104,6 +104,176 @@ selectBox.txt
 <Atten-> 0 0.0010311 1.28329e-07 3.40282e+38
 <Direction-> -5.64 -8.83999 -0.039997 0
 <Param1-> 1 24.0001 24.5001 0
+<Param2-> 0 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 109 24.5 168.26 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 189 31 316.2 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 72 33 669 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 180 33 904 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 113 33 954 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 329 33 875 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 391 33 729 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 241 33 599 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 419 33 465 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 512 33 448 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 663 33 322 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 686 33 633 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 331 33 291 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 502 33 231 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 736 33 145 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 738 33 900 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 529 33 888 1
+<Diffuse-> 200 3.54 1.54 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
+<Direction-> -11 -14.8 -4.48 0
+<Param1-> 0 -0.6 1.6 0
 <Param2-> 1 0 0 0
 <--Light>
 

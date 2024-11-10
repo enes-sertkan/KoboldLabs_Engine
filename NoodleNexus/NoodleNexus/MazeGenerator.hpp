@@ -37,7 +37,6 @@ private:
 
     std::vector<std::vector<char>> maze;
     Scene* scene = nullptr;
-    cLightManager* lightManager;  // Pointer to the light manager
     int lightIndex = 0;  // Index to keep track of lights
 };
 

@@ -67,7 +67,7 @@ public:
         bool loadState(std::string stateString);
     };
 
-    static const int NUMBEROFLIGHTS = 10;
+    static const int NUMBEROFLIGHTS = 30;
     sLight theLights[NUMBEROFLIGHTS];
 
     sLight SetLight(int index,

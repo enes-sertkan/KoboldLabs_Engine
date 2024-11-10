@@ -539,6 +539,10 @@ int main(void)
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "Trolley";
+    modelInfo.meshPath = "assets/models/Ply/SM_Prop_Trolley_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "trolley.txt", "XYZNUVRGBA");
+
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");

@@ -66,7 +66,7 @@ public:
 		std::vector<Object*>& sceneObjects
 	);
 
-	Object* SetLightFromObject(cLightManager* lightManager, int index,
+	Object* SetLight(cLightManager* lightManager, int index,
 		const glm::vec4& position,
 		const glm::vec4& diffuse,
 		const glm::vec3& attenuation,

@@ -200,7 +200,7 @@ Object* Scene::GenerateMeshObjectsFromObject(
 }
 
 
-//Object* Scene::SetLightFromObject(cLightManager* lightManager, int index,
+//void Scene::SetLight(cLightManager* lightManager, int index,
 //    const glm::vec4& position,
 //    const glm::vec4& diffuse,
 //    const glm::vec3& attenuation,
@@ -219,6 +219,4 @@ Object* Scene::GenerateMeshObjectsFromObject(
 //    lightManager->theLights[index].param1 = glm::vec4(param1, 0.0f);
 //    lightManager->theLights[index].param2.x = param2x;  // Turn on/off
 //
-//    // Return a pointer to an object if needed, or nullptr if not
-//    return nullptr;  // or create and return a new Object if needed
 //}

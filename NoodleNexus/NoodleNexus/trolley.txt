@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Trolley
+<filePath> assets/models/Ply/SM_Prop_Trolley_01_xyz_n_rgba_uv.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

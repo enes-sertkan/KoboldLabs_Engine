@@ -186,6 +186,6 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 //    glm::vec3 param1(1.0f, 20.0f, 40.0f);  // Parameter values for light type
 //    float param2x = 1.0f;  // Turn on the light
 //
-//    scene->SetLightFromObject(lightManager, lightIndex++, position, diffuse, attenuation, direction, param1, param2x);
+//    scene->SetLight(lightManager, lightIndex++, position, diffuse, attenuation, direction, param1, param2x);
 //}
 
