@@ -24,12 +24,12 @@ public:
     {
         // Store current position as trail point
         trailPositions.push_back(object->mesh->positionXYZ);
-        if (trailPositions.size() > 50)  // Limit the trail length
+        if (trailPositions.size() > 10)  // Limit the trail length
             trailPositions.erase(trailPositions.begin());
 
-        //// Draw each trail particle
-        //for (glm::vec3& pos : trailPositions) 
-        //    DrawDebugSphere(pos, trailColor, 0.1f, object->program);  // Ensure 'program' is defined
+        ////Draw each trail particle
+        for (glm::vec3& pos : trailPositions) 
+            DrawDebugSphere(pos, trailColor, 1.f, object->scene->programs[0]);  // Ensure 'program' is defined
     }
 };
 

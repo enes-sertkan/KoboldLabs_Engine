@@ -9,6 +9,7 @@ class Laser : public UsableItem
 {
 public:
 	glm::vec3 target;
+	glm::vec3 cameraPos;
 	float lazerLength;
 
 	void Use() override
@@ -16,7 +17,7 @@ public:
 		std::cout << "LAZER TIME" << std::endl;
 
 		std::vector<sCollision_RayTriangleInMesh> collisions;
-		if (scene->physicsManager->RayCast(position, target, collisions, false))
+		if (scene->physicsManager->RayCast(cameraPos, target, collisions, false))
 		{
 		
 			glm::vec3 hitPoint = collisions[0].vecTriangles[0].intersectionPoint;

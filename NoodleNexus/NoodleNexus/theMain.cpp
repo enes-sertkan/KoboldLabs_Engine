@@ -660,7 +660,7 @@ int main(void)
 
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
-    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
+    physicsMan->AddTriangleMesh("assets/models/SM_Bld_Hanger_01_xyz_n_uv.ply", scene->sceneObjects[3]->startTranform->position, scene->sceneObjects[3]->startTranform->rotation, scene->sceneObjects[3]->startTranform->scale.x);
 
 
 

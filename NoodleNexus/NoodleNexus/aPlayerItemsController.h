@@ -46,6 +46,7 @@ public:
                 {
                     laser->position = object->scene->fCamera->getEyeLocation();
                     laser->position.y -= 5.f;
+                    laser->cameraPos = object->scene->fCamera->getEyeLocation();
                     laser->target = object->scene->fCamera->getEyeLocation() + glm::normalize(object->scene->fCamera->getTargetRelativeToCamera()) * 100.f;
                 }
 

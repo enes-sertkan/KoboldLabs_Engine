@@ -301,8 +301,11 @@ void Scene::Update()
     {
         if (obj)
         {
+            if (obj)
             for (Action* action : obj->actions)
             {
+                if (obj && action)
+                if(obj->isActive)
                 action->Update();
             }
         }
@@ -360,7 +363,7 @@ void Scene::RemoveObject(Object* obj)
     }
 }
 
-
+//TODO: ADD IS TEMPORARELY
 Object* Scene::GenerateMeshObjectsFromObject(
     const std::string& filePath, glm::vec3 posXYZ, float scale, glm::vec3 rotXYZ,
     bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
@@ -385,6 +388,6 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->scene = this;
     // Add the object to the scene
     sceneObjects.push_back(object);
-
+    
     return object;
 }

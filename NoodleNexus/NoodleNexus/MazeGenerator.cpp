@@ -40,7 +40,7 @@ void MazeGenerator::generateMaze() {
 
             if (cell == '1' || cell == '2' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
                 PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == '0') {

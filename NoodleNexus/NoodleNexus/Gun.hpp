@@ -37,24 +37,24 @@ public:
             movement->acceleration = 20.f;
             scene->AddActionToObj(movement, projectile);*/
 
-           /* aExhaustTrail* exhaust = new aExhaustTrail();
-            scene->AddActionToObj(exhaust, projectile);*/
+            aExhaustTrail* exhaust = new aExhaustTrail();
+            scene->AddActionToObj(exhaust, projectile);
 
             aExplodeOnRayCollision* explodeOnRayCollision = new aExplodeOnRayCollision();
             explodeOnRayCollision->rayDirection = direction;
-            explodeOnRayCollision->rayLenght = 1.9f;
+            explodeOnRayCollision->rayLenght = 2.5f;
             scene->AddActionToObj(explodeOnRayCollision, projectile);
 
 
             aExplodeOnRayCollision* explodeOnRayCollision2 = new aExplodeOnRayCollision();
             explodeOnRayCollision2->rayDirection = glm::vec3(0, -1, 0);
-            explodeOnRayCollision2->rayLenght = 1.9f;
+            explodeOnRayCollision2->rayLenght = 2.5f;
             scene->AddActionToObj(explodeOnRayCollision2, projectile);
 
 
             RayCastPhysics* phys = new RayCastPhysics;
             phys->gravityAcceleration.y = -2;
-            phys->baseRayCastLength = 5.0;
+            phys->baseRayCastLength = 2.3f;
             phys->speed = direction * 6.f;
             phys->bounciness = 0.8f;
             scene->AddActionToObj(phys, projectile);
