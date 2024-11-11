@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/glm.hpp>
 #include <cmath> 
+#include <algorithm>
+#include <vector>
 
 
 void Scene::DrawMesh(sMesh* pCurMesh, GLuint program)
@@ -350,13 +352,12 @@ void Scene::NextCameraPoint()
 
 void Scene::RemoveObject(Object* obj)
 {
-    auto it = std::find(sceneObjects.begin(), sceneObjects.end(), obj);
+    std::vector<Object*>::iterator it = std::find(sceneObjects.begin(), sceneObjects.end(), obj);
     if (it != sceneObjects.end())
     {
         delete* it; // Free the memory if dynamically allocated
         sceneObjects.erase(it); // Remove from vector
     }
-    
 }
 
 

@@ -55,7 +55,7 @@ public:
             RayCastPhysics* phys = new RayCastPhysics;
             phys->gravityAcceleration.y = -2;
             phys->baseRayCastLength = 5.0;
-            phys->speed = direction * 7.f;
+            phys->speed = direction * 6.f;
             phys->bounciness = 0.8f;
             scene->AddActionToObj(phys, projectile);
 
