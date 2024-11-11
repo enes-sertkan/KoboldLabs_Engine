@@ -164,7 +164,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 50 1.01418e-38 1.10204e-38
+<Scale-> 50 1.06961e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -177,7 +177,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.1151e-38 -1.33912e-34
+<Scale-> 0.5 0 7.24358e+22
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -188,9 +188,9 @@ selectBox.txt
 <Model-> kong1
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 1 172 -81
+<Position-> -5 184 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.01418e-38 0
+<Scale-> 0.05 1.01418e-38 1.8285e+25
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -203,7 +203,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 5 0 -9
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.12597e+24
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -216,7 +216,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -5 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 1.06531e-38 4.7933e+30
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -229,14 +229,14 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 1.06531e-38
+<Scale-> 0.1 5.29691e-43 1.06531e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40042.9 1
+<Position-> 0.5 69999.4 -40042.8 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38

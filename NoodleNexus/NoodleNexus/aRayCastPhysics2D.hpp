@@ -9,7 +9,7 @@
 #include "GLCommon.h"
 
 
-class RayCastPhysics : public Action
+class aRayCastPhysics2D : public Action
 {
 public:
 	glm::vec3 gravityAcceleration = { 0.f,0.f,0.f };
@@ -17,17 +17,17 @@ public:
 
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
-	float bounciness = 0.95;
+	float bounciness = 0.5;
 
-	
 
-	glm::vec3 airFriction = glm::vec3(1, 1, 1);
+
+	glm::vec3 airFriction = glm::vec3(0, 0, 0);
 
 	float yChange = 10.f;
 
 	void ApplySpeed()
 	{
-		object->mesh->positionXYZ.x += speed.x;
+		//object->mesh->positionXYZ.x += speed.x;
 		object->mesh->positionXYZ.y += speed.y;
 		object->mesh->positionXYZ.z += speed.z;
 
@@ -35,20 +35,20 @@ public:
 
 	void ApplyAcceleration()
 	{
-		speed.x += gravityAcceleration.x * object->scene->deltaTime;
-		speed.y += gravityAcceleration.y * object->scene->deltaTime;
-		speed.z += gravityAcceleration.z * object->scene->deltaTime;
+		//speed.x += gravityAcceleration.x * object->scene->deltaTime;
+		speed.y += gravityAcceleration.y;//* object->scene->deltaTime;
+		speed.z += gravityAcceleration.z;// * object->scene->deltaTime;
 
 
-		speed.x *= 1 - airFriction.x * object->scene->deltaTime;
-		speed.y *= 1 - airFriction.x * object->scene->deltaTime;
-		speed.z *= 1 - airFriction.x * object->scene->deltaTime;
+	////	speed.x *= 1 - airFriction.x * object->scene->deltaTime;
+	//	speed.y *= 1 - airFriction.x * object->scene->deltaTime;
+	//	speed.z *= 1 - airFriction.z * object->scene->deltaTime;
 
 	}
 
 	void AddAcceleration(glm::vec3 acceleration)
 	{
-		speed.x += acceleration.x * object->scene->deltaTime;
+		//speed.x += acceleration.x * object->scene->deltaTime;
 		speed.y += acceleration.y * object->scene->deltaTime;
 		speed.z += acceleration.z * object->scene->deltaTime;
 
@@ -57,7 +57,7 @@ public:
 
 	void SetSpeed(glm::vec3 newSpeed)
 	{
-		speed.x = newSpeed.x * object->scene->deltaTime;
+	//	speed.x = newSpeed.x * object->scene->deltaTime;
 		speed.y = newSpeed.y * object->scene->deltaTime;
 		speed.z = newSpeed.z * object->scene->deltaTime;
 	}
@@ -66,7 +66,7 @@ public:
 	{
 		if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
 			AddAcceleration(glm::vec3(0.1, 0, 0));
-		
+
 
 		if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 			AddAcceleration(glm::vec3(-0.1, 0, 0));
@@ -78,20 +78,20 @@ public:
 			AddAcceleration(glm::vec3(0, 0, -0.1));
 
 
-		if (collisions.size()>0)
-		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-			AddAcceleration(glm::vec3(0.f, 4.f, 0.f));
+		if (collisions.size() > 0)
+			if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+				AddAcceleration(glm::vec3(0.f, 4.f, 0.f));
 
 
 
 	}
 
 
-	
+
 
 
 	glm::vec3 gravityComponent(const glm::vec3& speed, const glm::vec3& down) {
-		
+
 		glm::vec3 gravityDirection = glm::normalize(down);
 
 		float gravitySpeed = glm::dot(speed, gravityDirection);
@@ -107,7 +107,7 @@ public:
 
 
 		normSpeed = glm::normalize(speed + gravityAcceleration);
-		normSpeed = normSpeed * (glm::length(speed*speedLengthMultiplier * object->scene->deltaTime) + baseRayCastLength);
+		normSpeed = normSpeed * (glm::length(speed * speedLengthMultiplier * object->scene->deltaTime) + baseRayCastLength);
 		glm::vec3 startPos = object->mesh->positionXYZ;
 		glm::vec3 endPos = startPos + normSpeed;
 
@@ -130,23 +130,24 @@ public:
 			return;
 		}
 
-		
-		speed -= 2.f*gravityComponent(speed, gravityAcceleration)*bounciness;
 
-			
+		speed -= 2.f * gravityComponent(speed, gravityAcceleration) * bounciness;
+
+
 		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;
 
 
 		//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
 		//object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
- }
+	}
 
 	void Update() override
 	{
 
 		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit();
 
-	//	GetButtonDown(object->scene->window, collisions);
+		//	GetButtonDown(object->scene->window, collisions);
+		
 
 		if (collisions.size() > 0)
 		{

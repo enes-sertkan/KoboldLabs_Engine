@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aPlayerMovement.h" />
+    <ClCompile Include="aPlayerMovement2D.hpp" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
     <ClCompile Include="cBasicFlyCamera\cBasicFlyCamera.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
+    <ClInclude Include="aRayCastPhysics2D.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />

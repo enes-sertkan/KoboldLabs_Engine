@@ -53,6 +53,8 @@
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
 #include "aPlayerItemsController.h"
+#include "aRayCastPhysics2D.hpp"
+#include "aPlayerMovement2D.hpp"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -1309,16 +1311,44 @@ int main(void)
 
 
     scene->programs.push_back(program);
+    
+
+
+
     scene->Start();
 
+    //SCENE SETUP
+    Object* player = scene->sceneObjects[2];
+    aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
+    physics2D->gravityAcceleration = glm::vec3(0, -0.1f, 0);
+    physics2D->baseRayCastLength = 2.f;
+    
+   scene->AddActionToObj(physics2D, player);
+   //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
+    Object* ground = scene->sceneObjects[4];
+
+    aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
+    
+    scene->AddActionToObj(playerMovement2D, player);
+    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
+
+
+    //LOOP
     while (!glfwWindowShouldClose(window))
     {
+
+        //std::cout << player->mesh->positionXYZ.x << " " << player->mesh->positionXYZ.y << " " << player->mesh->positionXYZ.x << std::endl;
+        //std::cout << physics2D->speed.x << " " << physics2D->speed.y  << " " << physics2D->speed.z << std::endl;
+        std::cout << scene->deltaTime<<std::endl;
+
         float ratio;
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
         ratio = width / (float)height;
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
 
 
         SetCameraAndProjectionMatrices(ratio, program);
