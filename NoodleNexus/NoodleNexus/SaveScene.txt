@@ -2,22 +2,157 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-Hangar.txt
-wall.txt
-rotatedWall.txt
-floor.txt
-ceiling.txt
-door.txt
-Chair.txt
-Bed.txt
-console.txt
-SLadder.txt
-Cdesk.txt
-printer.txt
-treadmill.txt
-stairs.txt
-Plants.txt
 Sphere.txt
+base.txt
+ladder.txt
+kong1.txt
+kong2.txt
+kong3.txt
+kong4.txt
+kong5.txt
+kong6.txt
+kong7.txt
+kong8.txt
+kong9.txt
+kong10.txt
+kong11.txt
+kong12.txt
+kong13.txt
+kong14.txt
+mario1.txt
+mario2.txt
+mario3.txt
+mario4.txt
+mario5.txt
+mario6.txt
+mario7.txt
+mario8.txt
+mario9.txt
+mario10.txt
+mario11.txt
+mario12.txt
+mario13.txt
+mario14.txt
+mario15.txt
+mario16.txt
+mario17.txt
+mario18.txt
+points100.txt
+points200.txt
+points300.txt
+points500.txt
+points800.txt
+blueBarrel0.txt
+blueBarrel1.txt
+blueBarrel2.txt
+blueBarrel3.txt
+blueBarrel4.txt
+blueBarrel5.txt
+barrelStack.txt
+barrel0.txt
+barrel1.txt
+barrel2.txt
+barrel3.txt
+barrel4.txt
+barrel5.txt
+barrel6.txt
+blueFlameEnemy0.txt
+blueFlameEnemy1.txt
+blueFlameEnemy2.txt
+blueFlameEnemy3.txt
+blueNumber0.txt
+blueNumber1.txt
+blueNumber2.txt
+blueNumber3.txt
+blueNumber4.txt
+blueNumber5.txt
+blueNumber6.txt
+blueNumber7.txt
+blueNumber8.txt
+blueNumber9.txt
+cyanNumber0.txt
+cyanNumber1.txt
+cyanNumber2.txt
+cyanNumber3.txt
+cyanNumber4.txt
+cyanNumber5.txt
+cyanNumber6.txt
+cyanNumber7.txt
+cyanNumber8.txt
+cyanNumber9.txt
+explosion0.txt
+explosion1.txt
+explosion2.txt
+explosion3.txt
+fire0.txt
+fire1.txt
+fire2.txt
+fire3.txt
+flameEnemy0.txt
+flameEnemy1.txt
+flameEnemy2.txt
+flameEnemy3.txt
+hammer.txt
+heart.txt
+heartBroken.txt
+helpCyan.txt
+helpWhite.txt
+kissIcon0.txt
+kissIcon1.txt
+kissIcon2.txt
+marioHammer0.txt
+marioHammer1.txt
+marioHammer2.txt
+marioHammer3.txt
+marioHammer4.txt
+marioHammer5.txt
+marioHammer6.txt
+marioHammer7.txt
+marioHammer8.txt
+marioHammer9.txt
+marioHammer10.txt
+marioHammer11.txt
+marioLittle.txt
+oilDrum0.txt
+oilDrum1.txt
+oilDrum2.txt
+oilDrum3.txt
+oilDrum4.txt
+paulineHat.txt
+paulinePurse.txt
+paulineUmbrella.txt
+pauline0.txt
+pauline1.txt
+pauline2.txt
+pauline3.txt
+pauline4.txt
+pie0.txt
+pie1.txt
+platformSection0.txt
+whiteLadder.txt
+redFire0.txt
+redFire1.txt
+redFire2.txt
+redFire3.txt
+whiteNumber0.txt
+whiteNumber1.txt
+whiteNumber2.txt
+whiteNumber3.txt
+whiteNumber4.txt
+whiteNumber5.txt
+whiteNumber6.txt
+whiteNumber7.txt
+whiteNumber8.txt
+whiteNumber9.txt
+elevatorMotor.txt
+flameEnemyBlue0.txt
+flameEnemyBlue1.txt
+flameEnemyRed0.txt
+flameEnemyRed1.txt
+platformSection1.txt
+rivet.txt
+spring0.txt
+spring1.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -25,11 +160,11 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> Player AA BBB <Position-> -148 0 -276 <StaticCollision-> false <StaticCollision-> false
+<Tags-> Player AA BBB
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 50 1.01939e-38 1.00102e-38
+<Scale-> 50 1.01418e-38 1.10204e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -38,57 +173,70 @@ selectBox.txt
 <Object-->
 <Name-> Cube
 <Model-> Cube
-<Tags-> e <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
+<Tags->
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 6.33677e-39 8.72449e-39
+<Scale-> 0.5 1.1151e-38 -1.33912e-34
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
 <--Object>
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
+<Name-> kong1
+<Model-> kong1
+<Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -9 0 -9
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.15306e-39
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Hangar
-<Model-> Hangar
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> 1 172 -81
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 1.00102e-38
+<Scale-> 0.1 1.01418e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
 <--Object>
 
 <Object-->
-<Name-> wall
-<Model-> wall
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
+<Name-> Cube
+<Model-> Cube
+<Tags->
 <StaticCollision-> false
-<Position-> 2 -2 472
-<Rotation-> 0 -90 0
-<Scale-> 7.39007 6.65182e-41 -1.63552e-13
+<Position-> 5 0 -9
+<Rotation-> 0 0 0
+<Scale-> 1 1.1151e-38 1.12597e+24
 <Visibility-> true
 <Shading-> false
-<Color-> 0.3 0.3 0.3
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> base
+<Model-> base
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -5 0 0
+<Rotation-> 0 -90 0
+<Scale-> 0.1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> ladder
+<Model-> ladder
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 -90 0
+<Scale-> 0.1 1.1151e-38 1.06531e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40043.1 1
+<Position-> 0.5 69999.4 -40042.9 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38

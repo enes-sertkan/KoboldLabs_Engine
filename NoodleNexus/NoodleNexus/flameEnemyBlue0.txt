@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> flameEnemyBlue0
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_1_FlameEnemyBlue_0.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

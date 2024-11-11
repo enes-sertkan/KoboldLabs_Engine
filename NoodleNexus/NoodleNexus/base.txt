@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> base
+<filePath> assets/models/DonkeyKong_Level_0_base.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

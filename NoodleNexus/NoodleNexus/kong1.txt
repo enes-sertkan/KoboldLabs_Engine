@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> kong1
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_0.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> points500
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_500.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

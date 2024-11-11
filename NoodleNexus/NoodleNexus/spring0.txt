@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> spring0
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Spring_0.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

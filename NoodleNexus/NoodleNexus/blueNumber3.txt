@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> blueNumber3
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_3.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

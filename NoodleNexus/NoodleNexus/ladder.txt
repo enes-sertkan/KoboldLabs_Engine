@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> ladder
+<filePath> assets/models/DonkeyKong_Level_0_Ladders.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

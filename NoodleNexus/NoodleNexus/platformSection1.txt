@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> platformSection1
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_1_PlatformSection.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

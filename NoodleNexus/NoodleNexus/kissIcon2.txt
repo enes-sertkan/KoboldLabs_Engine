@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> kissIcon2
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_KissIcon_2.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

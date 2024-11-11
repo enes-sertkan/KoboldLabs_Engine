@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> paulinePurse
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_PaulinePurse.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> cyanNumber6
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_6.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

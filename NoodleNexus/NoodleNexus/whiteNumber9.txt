@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> whiteNumber9
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_9.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

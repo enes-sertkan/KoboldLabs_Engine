@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> helpWhite
+<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Help_White.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>
