@@ -7,31 +7,39 @@
 class aProjectileMovement : public Action
 {
 public:
-    glm::vec3 target;
     glm::vec3 direction;
-    float speed = 100.0f;
-    float acceleration = 2.0f;
+    float speed = 1.0f;
+    float acceleration = 0.1f;
 
     void Start() override
     {
         // Initialize starting position and direction
-        direction = glm::normalize(target - object->mesh->positionXYZ);
+        direction = glm::normalize(direction);
+
+    }
+
+
+    void ApplyAcceleration()
+    {
+        speed += acceleration * object->scene->deltaTime;
+    }
+
+
+    void ApplySpeed()
+    {
+        object->mesh->positionXYZ += direction * speed * object->scene->deltaTime;
 
     }
 
     void Update() override
     {
-        speed += acceleration * object->scene->deltaTime;
-        object->mesh->positionXYZ += direction * speed * object->scene->deltaTime;
+       
+
+        ApplyAcceleration();
+        ApplySpeed();
 
 
     }
 
-protected:
-    virtual void OnImpact()
-    {
-        // Add explosion or impact marker actions here
-        object->scene->RemoveObject(object);
 
-    }
 };

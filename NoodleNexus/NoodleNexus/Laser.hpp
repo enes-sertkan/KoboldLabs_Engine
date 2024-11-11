@@ -25,7 +25,7 @@ public:
 
 
 			scene->DrawRay(position, hitPoint,  program, glm::vec4(100.f, 1.f, 1.f, 1.f), false, 0.1f);
-			Object* heatSphere = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", hitPoint, 0.f, glm::vec3(0.f, 0.f, 0.f), true, startColor, false, scene->sceneObjects);
+			Object* heatSphere = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_xyz_n_uv.ply", hitPoint, 0.f, glm::vec3(0.f, 0.f, 0.f), true, startColor, false, scene->sceneObjects);
 			heatSphere->isTemporary = true;
 
 

@@ -15,7 +15,7 @@ public:
 
     void Start() override
     {
-
+        rayDirection = glm::normalize(rayDirection);
 
     }
 
@@ -42,7 +42,9 @@ protected:
         explosion->isTemporary = true;
 
         aExplosion* explosioning = new aExplosion();
+        explosioning->expansionRate = 10.f;
         explosioning->explosionColor = glm::vec4(1.0f, 0.6f, 0.0f, 1.0f);
+
         object->scene->AddActionToObj(explosioning, explosion);
 
         // Add explosion or impact marker actions here

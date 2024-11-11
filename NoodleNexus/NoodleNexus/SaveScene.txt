@@ -29,7 +29,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 50 8.76542e-39 1.11122e-38
+<Scale-> 50 1.02351e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -42,7 +42,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.61149e-43 1.01938e-38
+<Scale-> 0.5 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -55,7 +55,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -9 0 -9
 <Rotation-> 0 0 0
-<Scale-> 1 0 6.15307e-39
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -68,7 +68,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 1.06531e-38
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -85,6 +85,2268 @@ selectBox.txt
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.3 0.3
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 2.8026e-45
+<Rotation-> 0 0 0
+<Scale-> -0.311141 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 8.72447e-39 6.70411e-39
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 -5.68119e-08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> -0.205208 0 1
+<Rotation-> 0 -2.18193e+12 8.64601e-43
+<Scale-> 1.12104e-43 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> -0 -1 -2.18193e+12
+<Rotation-> 8.64601e-43 1.12104e-43 1.03069
+<Scale-> 2.73611 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Light-->

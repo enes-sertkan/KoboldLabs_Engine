@@ -23,6 +23,7 @@ public:
         if (object->mesh->uniformScale >= maxScale)
         {
             object->isActive = false;
+            object->Destroy();
             return;
         }
 

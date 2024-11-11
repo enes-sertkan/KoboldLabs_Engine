@@ -128,7 +128,7 @@ public:
 		}
 
 		
-		speed -= 2.f*gravityComponent(speed*object->scene->deltaTime, gravityAcceleration)*bounciness;
+		speed -= 2.f*gravityComponent(speed, gravityAcceleration)*bounciness;
 
 			
 		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;

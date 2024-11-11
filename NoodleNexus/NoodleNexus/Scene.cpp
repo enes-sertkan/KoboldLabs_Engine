@@ -160,7 +160,7 @@ void Scene::DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint p
     if (!pSphere)           // Same as if ( pDebugSphere == NULL )
     {
         pSphere = new sMesh();
-        pSphere->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
+        pSphere->modelFileName = "assets/models/Sphere_radius_xyz_n_uv.ply";
         pSphere->positionXYZ = glm::vec3(0.0f, 0.0f, 0.0f);
         pSphere->bIsWireframe = false;
         pSphere->objectColourRGBA = RGBA;

@@ -12,22 +12,17 @@
 class aLinearProjectileMovement : public aProjectileMovement
 {
 public:
-    void Start() override
-    {
-        // Initialize starting speed and direction towards target
-    }
+ 
+
+
 
     void Update() override
     {
-        glm::vec3 direction = glm::normalize(target - object->mesh->positionXYZ);
-        speed += acceleration * object->scene->deltaTime;
-        object->mesh->positionXYZ += direction * speed * object->scene->deltaTime;
+        
+        ApplyAcceleration();
 
-        float threshold = 0.5f;
-        if (glm::distance(object->mesh->positionXYZ, target) < threshold)
-        {
-            OnImpact();
-        }
+        ApplySpeed();
+
 
     }
 

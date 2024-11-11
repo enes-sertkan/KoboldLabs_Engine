@@ -65,7 +65,7 @@ public:
 				gun->position.y -= 5.f;
 				gunTarget = object->scene->fCamera->getEyeLocation() + glm::normalize(object->scene->fCamera->getTargetRelativeToCamera()) * 100.f;
 			}
-			gun->Fire(gunTarget);  // Pass target directly to Fire
+			gun->Use();  // Pass target directly to Fire
 		}
 	
 		
