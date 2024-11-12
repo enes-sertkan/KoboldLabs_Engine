@@ -584,7 +584,7 @@ int main(void)
     // MARIO
     modelInfo.modelName = "mario1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_1.ply";
@@ -1336,9 +1336,9 @@ int main(void)
 
     Object* barrel = scene->sceneObjects[5];
     aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
-    physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
-    physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
-    physics2Db->baseRayCastLength = 3.f;
+    physics2Db->gravityAcceleration = glm::vec3(0, -0.01f, 0);
+    physics2Db->speed = glm::vec3(0.f, 0.f, 0.6f);
+    physics2Db->baseRayCastLength = 3.0f;
 
     scene->AddActionToObj(physics2Db, barrel);
 

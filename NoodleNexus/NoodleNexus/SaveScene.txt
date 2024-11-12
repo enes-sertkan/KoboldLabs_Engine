@@ -165,7 +165,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -13 0 -303
 <Rotation-> 0 0 0
-<Scale-> 50 0 0
+<Scale-> 50 1.01418e-38 1.12597e+24
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -178,10 +178,62 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.06531e-38 0
+<Scale-> 0.5 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> mario1
+<Model-> mario1
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 20 -88
+<Rotation-> 0 -90 0
+<Scale-> 0.05 1.10204e-38 1.62551e-43
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> base
+<Model-> base
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 -90 0
+<Scale-> 0.1 1.1151e-38 -1.33912e-34
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> ladder
+<Model-> ladder
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -10 0 0
+<Rotation-> 0 -90 0
+<Scale-> 0.1 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> barrel2
+<Model-> barrel2
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 170 -68
+<Rotation-> 90 -90 0
+<Scale-> 0.1 7.553e-43 1.10204e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
 <--Object>
 
 <Object-->
@@ -198,25 +250,25 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> base
-<Model-> base
-<Tags->
+<Name-> platformLong
+<Model-> platformLong
+<Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 -90 0
-<Scale-> 0.1 1.01418e-38 0
+<Position-> 0 186 121
+<Rotation-> -94 -90 -4
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
 <--Object>
 
 <Object-->
-<Name-> ladder
-<Model-> ladder
+<Name-> platformLong
+<Model-> platformLong
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -10 0 0
-<Rotation-> 0 -90 0
+<Position-> 0 31 120
+<Rotation-> -96 -90 -4
 <Scale-> 0.1 1.1151e-38 1.06531e-38
 <Visibility-> true
 <Shading-> true
@@ -224,52 +276,13 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> barrel1
-<Model-> barrel1
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 170 -68
-<Rotation-> 90 -90 0
-<Scale-> 0.1 1.01418e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.5 0.5 0.5
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> Player AA BBB
-<StaticCollision-> false
-<Position-> 10 151 166
-<Rotation-> 0 0 0
-<Scale-> 54.5092 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 1 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> Player AA BBB
-<StaticCollision-> false
-<Position-> -13 143 -162
-<Rotation-> 0 0 0
-<Scale-> 50 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 1 0 0
-<--Object>
-
-<Object-->
 <Name-> platformLong
 <Model-> platformLong
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 159 120
-<Rotation-> -102 -90 -4
-<Scale-> 0.1 0 0
+<Position-> 0 199 -119
+<Rotation-> -90 -90 -181
+<Scale-> 0.1 1.1151e-38 -1.33912e-34
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -280,34 +293,21 @@ selectBox.txt
 <Model-> platformLong
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 11 123
-<Rotation-> -102 -90 -4
-<Scale-> 0.1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.5 0.5 0.5
-<--Object>
-
-<Object-->
-<Name-> platformLong
-<Model-> platformLong
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 120 -116
-<Rotation-> -85 -90 -4
-<Scale-> 0.1 1.1151e-38 1.10204e-38
-<Visibility-> true
-<Shading-> true
-<Color-> 0.5 0.5 0.5
-<--Object>
-
-<Object-->
-<Name-> platformLong
-<Model-> platformLong
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 39 -118
+<Position-> 0 118 -113
 <Rotation-> -90 -90 -3
+<Scale-> 0.1 1.1151e-38 1.12597e+24
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags->
+<StaticCollision-> false
+<Position-> 0 39 -112
+<Rotation-> -93 -90 -364
 <Scale-> 0.1 0 0
 <Visibility-> true
 <Shading-> true
@@ -319,8 +319,8 @@ selectBox.txt
 <Model-> platformLong
 <Tags->
 <StaticCollision-> false
-<Position-> 0 78 123
-<Rotation-> -102 -90 -4
+<Position-> 0 108 121
+<Rotation-> -93 -90 -4
 <Scale-> 0.1 0 0
 <Visibility-> true
 <Shading-> true
@@ -341,7 +341,7 @@ selectBox.txt
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40047 1
+<Position-> 0.5 69999.4 -40048.4 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
