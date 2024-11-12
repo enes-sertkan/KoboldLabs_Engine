@@ -49,6 +49,7 @@
 #include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
+#include "aRotateAction.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -584,11 +585,11 @@ int main(void)
     // MARIO
     modelInfo.modelName = "mario1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_2.ply";
@@ -1337,12 +1338,18 @@ int main(void)
 
     Object* barrel = scene->sceneObjects[5];
     aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
+    aRotateAction* rotationBarrel = new aRotateAction();
+
     physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
     physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
     physics2Db->baseRayCastLength = 3.f;
     physics2Db->bounciness = 1.f;
 
+    rotationBarrel->rotationSpeed = 100.0f;
+    
     scene->AddActionToObj(physics2Db, barrel);
+    scene->AddActionToObj(rotationBarrel, barrel);
+
 
     
 

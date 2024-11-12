@@ -247,6 +247,9 @@
     <ClInclude Include="aBarrelCoreAction.hpp">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="aRotateAction.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
