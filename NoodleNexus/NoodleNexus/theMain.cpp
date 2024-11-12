@@ -716,7 +716,7 @@ int main(void)
 
     modelInfo.modelName = "barrel2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel2.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "barrel2.txt", "XYZNUV");
 
     modelInfo.modelName = "barrel3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_3.ply";
