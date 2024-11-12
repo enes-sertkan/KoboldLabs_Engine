@@ -130,11 +130,17 @@ public:
 		{
 
 			// Update position to avoid getting "stuck" at the collision point
+	
+			speed.y = 0;
 
 			//HATE THIS
 			object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;
+			std::vector<sCollision_RayTriangleInMesh> col;
+			collisions = col;//Make this empty
 			return collisions;
 		}
+
+
 
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{

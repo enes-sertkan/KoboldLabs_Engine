@@ -25,7 +25,7 @@ public:
 
         // Initialize gun
         gun = new Gun();
-        gun->program = object->scene->programs[1];  // Assuming Gun uses a different shader program
+        gun->program = object->scene->programs[0];  // Assuming Gun uses a different shader program
         gun->scene = object->scene;
     }
 

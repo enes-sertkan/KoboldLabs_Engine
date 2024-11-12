@@ -1342,7 +1342,7 @@ int main(void)
 
     physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
     physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
-    physics2Db->baseRayCastLength = 3.f;
+    physics2Db->baseRayCastLength = 5.f;
     physics2Db->bounciness = 1.f;
 
     rotationBarrel->rotationSpeed = 100.0f;
