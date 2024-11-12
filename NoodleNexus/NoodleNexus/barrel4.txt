@@ -2,6 +2,6 @@
 <ModelFile>
 <name> barrel4
 <filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_4.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

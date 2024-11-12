@@ -711,27 +711,27 @@ int main(void)
 
     modelInfo.modelName = "barrel1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel3.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel4";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel4.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel4.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel5";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel5.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel5.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel6";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel6.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel6.txt", "XYZNUVRGBA");
 
     //BLUE FLAME ENEMY
     modelInfo.modelName = "blueFlameEnemy0";
@@ -1321,28 +1321,37 @@ int main(void)
 
     scene->Start();
 
-    //SCENE SETUP
+    ////SCENE SETUP
+    for(Object* object:scene->sceneObjects)
+        if (object->name == "platformLong")
+            scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply", object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
+
+
+
+
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
-    physics2D->gravityAcceleration = glm::vec3(0, -0.1f, 0);
+    physics2D->gravityAcceleration = glm::vec3(0, -0.01f, 0);
     physics2D->baseRayCastLength = 2.f;
 
-    Object* boundry = scene->sceneObjects[5];
+    Object* barrel = scene->sceneObjects[5];
     aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
-    physics2Db->gravityAcceleration = glm::vec3(0, -0.1f, 0);
-    physics2Db->speed = glm::vec3(1, 0, 0);
+    physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
+    physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
+    physics2Db->baseRayCastLength = 3.f;
 
-    scene->AddActionToObj(physics2D, boundry);
+    scene->AddActionToObj(physics2Db, barrel);
 
     
     scene->AddActionToObj(physics2D, player);
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
-    Object* ground = scene->sceneObjects[4];
+    Object* ground  = scene->sceneObjects[3];
 
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
     
     scene->AddActionToObj(playerMovement2D, player);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
+
 
 
     //LOOP

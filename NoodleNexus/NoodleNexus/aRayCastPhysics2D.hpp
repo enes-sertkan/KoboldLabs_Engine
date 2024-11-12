@@ -17,7 +17,7 @@ public:
 
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
-	float bounciness = 0.5;
+	float bounciness = 0.99;
 
 
 
@@ -101,17 +101,31 @@ public:
 
 
 
-	std::vector<sCollision_RayTriangleInMesh> CheckHit()
+	std::vector<sCollision_RayTriangleInMesh> CheckHit(const glm::vec3& down)
 	{
 		glm::vec3 normSpeed;
 
 
 		normSpeed = glm::normalize(speed + gravityAcceleration);
 		normSpeed = normSpeed * (glm::length(speed * speedLengthMultiplier * object->scene->deltaTime) + baseRayCastLength);
+		glm::vec3 gravityDirection = glm::normalize(down);
 		glm::vec3 startPos = object->mesh->positionXYZ;
 		glm::vec3 endPos = startPos + normSpeed;
+		glm::vec3 endPos2 = startPos + gravityDirection * baseRayCastLength;
+
 
 		std::vector<sCollision_RayTriangleInMesh> collisions;
+
+
+		if (object->scene->physicsManager->RayCast(startPos, endPos2, collisions, false))
+		{
+
+			// Update position to avoid getting "stuck" at the collision point
+
+			//HATE THIS
+			object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;
+			return collisions;
+		}
 
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{
@@ -119,32 +133,38 @@ public:
 			return collisions;
 		}
 
+
+	
+
 		return collisions;
 	}
 
 	void HitInteration(std::vector<sCollision_RayTriangleInMesh> collisions)
 	{
-		if (speed.length() < 0.001f)
+		/*if (speed.length() < 0.001f)
 		{
 			speed = glm::vec3(0.f, 0.f, 0.f);
 			return;
-		}
+		}*/
 
 
-		speed -= 2.f * gravityComponent(speed, gravityAcceleration) * bounciness;
+		// Use the surface normal of the first collision for bounce calculation
+		glm::vec3 collisionNormal = collisions[0].vecTriangles[0].normal;
+		collisionNormal = glm::normalize(collisionNormal);
+
+		// Reflect the speed vector over the collision normal
+		glm::vec3 reflectedSpeed = glm::reflect(speed, collisionNormal);
+
+		// Apply bounciness factor to the reflected speed
+		speed = reflectedSpeed;//* bounciness;
 
 
-		object->mesh->positionXYZ.y = collisions[0].vecTriangles[0].intersectionPoint.y + baseRayCastLength;
-
-
-		//glm::vec3(0.f,-1.f,0.f);// -speed*0.8f;
-		//object->mesh->positionXYZ = collisions[0].theRay.endXYZ;
 	}
 
 	void Update() override
 	{
 
-		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit();
+		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit(glm::normalize(gravityAcceleration));
 
 		//	GetButtonDown(object->scene->window, collisions);
 		
@@ -153,12 +173,10 @@ public:
 		{
 			HitInteration(collisions);
 		}
-		else
-		{
+		
 			ApplyAcceleration();
 			ApplySpeed();
-		}
-
+		
 	}
 
 
