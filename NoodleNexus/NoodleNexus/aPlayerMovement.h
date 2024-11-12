@@ -6,7 +6,7 @@
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "Scene.hpp"
 #include <glm/glm.hpp>
-
+#include "aRayCastPhysics2D.hpp"
 
 
 
@@ -32,8 +32,12 @@ public:
 	float walkSpeed=5.f;
 	float runSpeed = 10.f;
 	float speed = walkSpeed;
+	float jumpSpeed = 10.f;
 	bool isMoving = true;
-	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
+	glm::vec3 up = glm::vec3(0, 1, 0); 
+	aRayCastPhysics2D* phys;
+	
+	// Common up vector in 3D
 	GLuint program;
 
 	enum Direction
@@ -146,6 +150,19 @@ public:
 			if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
 			{
 				Move(RIGHT);
+			}
+
+			if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS)
+			{
+				if (!phys) return;
+				if (!phys->CheckGround()) return;
+
+					
+					glm::vec3 physSpeed = phys->speed;
+					physSpeed.y = 3;
+					phys->speed = physSpeed;
+					phys->ignoreNextCol = true;
+				
 			}
 
 		

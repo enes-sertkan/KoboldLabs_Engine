@@ -14,10 +14,11 @@ class aRayCastPhysics2D : public Action
 public:
 	glm::vec3 gravityAcceleration = { 0.f,0.f,0.f };
 	glm::vec3 speed = { 0.f,0.f,0.f };
+	bool ignoreNextCol = false;
 
 	float baseRayCastLength = 0;
 	float speedLengthMultiplier = 1;
-	float bounciness = 0.99;
+	float bounciness = 0;
 
 
 
@@ -103,6 +104,14 @@ public:
 
 	std::vector<sCollision_RayTriangleInMesh> CheckHit(const glm::vec3& down)
 	{
+		std::vector<sCollision_RayTriangleInMesh> collisions;
+
+		if (ignoreNextCol)
+		{
+			ignoreNextCol = false;
+			return collisions;
+		}
+
 		glm::vec3 normSpeed;
 
 
@@ -114,7 +123,7 @@ public:
 		glm::vec3 endPos2 = startPos + gravityDirection * baseRayCastLength;
 
 
-		std::vector<sCollision_RayTriangleInMesh> collisions;
+		
 
 
 		if (object->scene->physicsManager->RayCast(startPos, endPos2, collisions, false))
@@ -156,7 +165,7 @@ public:
 		glm::vec3 reflectedSpeed = glm::reflect(speed, collisionNormal);
 
 		// Apply bounciness factor to the reflected speed
-		speed = reflectedSpeed;//* bounciness;
+		speed =  reflectedSpeed* bounciness;
 
 
 	}
@@ -179,5 +188,30 @@ public:
 		
 	}
 
+	bool CheckGround()
+	{
+
+		std::vector<sCollision_RayTriangleInMesh> collisions;
+		glm::vec3 gravityDirection = glm::normalize(gravityAcceleration);
+		glm::vec3 startPos = object->mesh->positionXYZ;
+		glm::vec3 endPos = startPos + gravityDirection * baseRayCastLength;
+
+
+
+
+
+		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
+		{
+
+			// Update position to avoid getting "stuck" at the collision point
+
+			//HATE THIS
+			
+			return true;
+		}
+
+		return false;
+
+	}
 
 };
