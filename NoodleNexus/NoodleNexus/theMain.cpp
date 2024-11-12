@@ -56,6 +56,7 @@
 #include "aPlayerItemsController.h"
 #include "aRayCastPhysics2D.hpp"
 #include "aPlayerMovement2D.hpp"
+#include "BarrelFactory.h"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -1345,8 +1346,8 @@ int main(void)
     physics2Db->baseRayCastLength = 5.f;
     physics2Db->bounciness = 1.f;
 
-    rotationBarrel->rotationSpeed = 100.0f;
-    
+    rotationBarrel->rotationSpeed = 250.0f;
+    rotationBarrel->physics = physics2Db;
     scene->AddActionToObj(physics2Db, barrel);
     scene->AddActionToObj(rotationBarrel, barrel);
 
@@ -1363,11 +1364,23 @@ int main(void)
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
+    float spawnBerrelTime = 3.f;
+    float SpawnTimer = 0;
 
+    BarrelFactory factory;
+    factory.scene = scene;
 
     //LOOP
     while (!glfwWindowShouldClose(window))
     {
+        SpawnTimer += scene->deltaTime;
+
+        if (SpawnTimer > spawnBerrelTime)
+        {
+            SpawnTimer = 0;
+           factory.SpawnRegularBarrel();
+
+        }
 
         //std::cout << player->mesh->positionXYZ.x << " " << player->mesh->positionXYZ.y << " " << player->mesh->positionXYZ.x << std::endl;
         //std::cout << physics2D->speed.x << " " << physics2D->speed.y  << " " << physics2D->speed.z << std::endl;

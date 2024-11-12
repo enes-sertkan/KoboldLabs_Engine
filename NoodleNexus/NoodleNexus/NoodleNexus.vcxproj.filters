@@ -134,6 +134,9 @@
     <ClCompile Include="aPlayerMovement2D.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="BarrelFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -249,6 +252,9 @@
     </ClInclude>
     <ClInclude Include="aRotateAction.hpp">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="BarrelFactory.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
