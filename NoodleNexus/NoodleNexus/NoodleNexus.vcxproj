@@ -163,11 +163,13 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aBarrelCoreAction.hpp" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
+    <ClInclude Include="aLadderUseAction.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="aPlayerCamera.hpp" />

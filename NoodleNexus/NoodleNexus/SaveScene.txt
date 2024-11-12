@@ -5,6 +5,7 @@ Cube.txt
 Sphere.txt
 base.txt
 ladder.txt
+platformLong.txt
 kong1.txt
 kong2.txt
 kong3.txt
@@ -162,9 +163,9 @@ selectBox.txt
 <Model-> Cube
 <Tags-> Player AA BBB
 <StaticCollision-> false
-<Position-> 0 0 0
+<Position-> -13 0 -303
 <Rotation-> 0 0 0
-<Scale-> 50 1.06961e-38 0
+<Scale-> 50 1.0653e-38 1.06531e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -177,7 +178,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 0 7.24358e+22
+<Scale-> 0.5 1.01418e-38 -1.34147e-34
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -188,35 +189,22 @@ selectBox.txt
 <Model-> kong1
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -5 184 -88
+<Position-> 0 184 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.05 1.01418e-38 1.8285e+25
+<Scale-> 0.05 1.06531e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
 <--Object>
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags->
-<StaticCollision-> false
-<Position-> 5 0 -9
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
 <Name-> base
 <Model-> base
-<Tags-> <StaticCollision-> false
+<Tags->
 <StaticCollision-> false
-<Position-> -5 0 0
+<Position-> 0 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.06531e-38 4.7933e+30
+<Scale-> 0.1 1.01418e-38 1.10204e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
@@ -229,14 +217,105 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 5.29691e-43 1.06531e-38
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.5 0.5 0.5
 <--Object>
 
+<Object-->
+<Name-> barrel0
+<Model-> barrel0
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 147 -68
+<Rotation-> 90 -90 0
+<Scale-> 0.1 1.1151e-38 1.10204e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 159 120
+<Rotation-> -102 -90 -4
+<Scale-> 0.1 0 1.06531e-38
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 11 123
+<Rotation-> -102 -90 -4
+<Scale-> 0.1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 120 -116
+<Rotation-> -85 -90 -4
+<Scale-> 0.1 8.84219e-43 1.12597e+24
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 39 -118
+<Rotation-> -90 -90 -3
+<Scale-> 0.1 1.1151e-38 -1.33912e-34
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> platformLong
+<Model-> platformLong
+<Tags->
+<StaticCollision-> false
+<Position-> 0 78 123
+<Rotation-> -102 -90 -4
+<Scale-> 0.1 1.1151e-38 -1.34147e-34
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.5 0.5
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 5 0 -9
+<Rotation-> 0 0 0
+<Scale-> 1 1.1151e-38 -1.34147e-34
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
 <Light-->
-<Position-> 0.5 69999.4 -40042.8 1
+<Position-> 0.5 69999.4 -40047 1
 <Diffuse-> 1000 0 -9388 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38

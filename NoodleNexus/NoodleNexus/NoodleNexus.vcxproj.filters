@@ -131,6 +131,9 @@
     <ClCompile Include="Gun.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="aPlayerMovement2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -234,6 +237,15 @@
     </ClInclude>
     <ClInclude Include="aExplodeOnRayCollision.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aRayCastPhysics2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aLadderUseAction.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aBarrelCoreAction.hpp">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

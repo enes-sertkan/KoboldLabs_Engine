@@ -520,6 +520,10 @@ int main(void)
     modelInfo.meshPath = "assets/models/DonkeyKong_Level_0_Ladders.ply";
     fileManager->WriteModelFile(&modelInfo, "ladder.txt", "XYZNUV");
 
+    modelInfo.modelName = "platformLong";
+    modelInfo.meshPath = "assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply";
+    fileManager->WriteModelFile(&modelInfo, "platformLong.txt", "XYZNUV");
+
     // KONG
     modelInfo.modelName = "kong1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_0.ply";
@@ -703,7 +707,7 @@ int main(void)
     // BARRELS
     modelInfo.modelName = "barrel0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel0.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "barrel0.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "barrel1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_1.ply";
@@ -1322,9 +1326,17 @@ int main(void)
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
     physics2D->gravityAcceleration = glm::vec3(0, -0.1f, 0);
     physics2D->baseRayCastLength = 2.f;
+
+    Object* boundry = scene->sceneObjects[5];
+    aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
+    physics2Db->gravityAcceleration = glm::vec3(0, -0.1f, 0);
+    physics2Db->speed = glm::vec3(1, 0, 0);
+
+    scene->AddActionToObj(physics2D, boundry);
+
     
-   scene->AddActionToObj(physics2D, player);
-   //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
+    scene->AddActionToObj(physics2D, player);
+    //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground = scene->sceneObjects[4];
 
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
