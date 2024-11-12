@@ -1355,11 +1355,13 @@ int main(void)
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground  = scene->sceneObjects[3];
+    Object* ladder = scene->sceneObjects[4];
 
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
     playerMovement->phys = physics2D;
     scene->AddActionToObj(playerMovement2D, player);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
+    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
 
 
