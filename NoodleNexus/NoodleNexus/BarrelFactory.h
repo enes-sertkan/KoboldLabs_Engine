@@ -20,7 +20,7 @@ public:
 	void SpawnRegularBarrel()
 	{
         glm::vec3 position = glm::vec3(0, 190, -37);
-        glm::vec3 rotation = glm::vec3(0, 0, 0);
+        glm::vec3 rotation = glm::vec3(0, -90, 0);
         float scale = 0.1;
 
         Object* barrel = scene->GenerateMeshObjectsFromObject("assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply", position, scale, rotation, true, glm::vec4(0.5, 0.25, 0.1, 1.f), false, scene->sceneObjects);
@@ -34,9 +34,11 @@ public:
 
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
+
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);
 	}
+
 
 };
 
