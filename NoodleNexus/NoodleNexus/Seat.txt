@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> Seat
-<filePath> assets/models/Ply/SM_Prop_Seat_02_xyz_n_rgba_uv.ply
-<fileType> XYZNUVRGBA
-</ModelFile>
-</KoboldLabs>

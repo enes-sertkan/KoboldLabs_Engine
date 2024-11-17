@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> Select_Box
-<filePath> assets/models/Cube_xyz_n_uv.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

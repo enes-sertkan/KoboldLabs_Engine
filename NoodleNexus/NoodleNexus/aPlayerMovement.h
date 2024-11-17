@@ -14,23 +14,17 @@
 class aPlayerMovement : public Action
 {
 
-	void DrawRayS(glm::vec3 pos, glm::vec3 posEnd, GLuint program)
-	{
-		float distance = glm::distance(pos, posEnd);
+	void DrawRayS(glm::vec3 pos, glm::vec3 posEnd, GLuint program) {
 		glm::vec3 direction = glm::normalize(posEnd - pos);
-		glm::vec3 movingPoint = pos;
-
-		while (glm::distance(pos, movingPoint) < distance)
-		{
-			// Move the next ball 0.1 times the normalized camera direction
-			movingPoint += (direction * 0.10f);
-			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
+		float distance = glm::distance(pos, posEnd);
+		for (float t = 0.0f; t <= distance; t += 0.1f) {
+			glm::vec3 point = pos + direction * t;
+			DrawDebugSphere(point, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
 		}
-
 	}
 public:
-	float walkSpeed=5.f;
-	float runSpeed = 10.f;
+	float walkSpeed= 15.f;
+	float runSpeed = 50.f;
 	float speed = walkSpeed;
 	float jumpSpeed = 10.f;
 	bool isMoving = true;
@@ -49,74 +43,59 @@ public:
 		NONE
 	};
 
-	void Move(Direction direction)
-	{
-		glm::vec3 forward = object->scene->fCamera->getTargetRelativeToCamera();
-		forward.y = 0;
-		
+	void Move(Direction direction) {
+		glm::vec3 forward(0.0f, 0.0f, 1.0f); // Forward vector
 		forward = glm::normalize(forward);
-		glm::vec3 left = glm::cross(up, forward);
-		glm::vec3 position;
-		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
-		std::vector<sCollision_RayTriangleInMesh> collisions;
-	/*	DrawRayS(position, position + forward * speed * 2.f, program);
-		DrawRayS(position, position - forward * speed * 2.f, program);
-		DrawRayS(position, position + left * speed * 2.f, program);
-		DrawRayS(position, position - left * speed * 2.f, program);*/
 
-		switch (direction)
-		{
-			
-		case aPlayerMovement::FORWARD:
-			if (object->scene->physicsManager->RayCast(position, position + forward*speed * 1.5f * object->scene->deltaTime, collisions, false))
-			{
-				//std::cout << "COLLISION";
+		glm::vec3 left = glm::cross(up, forward); // Left vector
+		glm::vec3 position = object->mesh->positionXYZ; // Tank's current position
+
+		glm::vec3 offset[] = {
+			glm::vec3(-1.0f, 0.0f, -1.0f), // Bottom-left corner
+			glm::vec3(1.0f, 0.0f, -1.0f),  // Bottom-right corner
+			glm::vec3(-1.0f, 0.0f, 1.0f),  // Top-left corner
+			glm::vec3(1.0f, 0.0f, 1.0f)    // Top-right corner
+		};
+
+		float tankRadius = 1.0f; // Adjust based on the tank's size
+		glm::vec3 directionVector;
+		switch (direction) {
+		case FORWARD:
+			directionVector = forward;
 			break;
-			}
-			object->mesh->positionXYZ.x += forward.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z += forward.z * speed * object->scene->deltaTime;
+		case BACK:
+			directionVector = -forward;
 			break;
-
-		case aPlayerMovement::BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 1.5f * object->scene->deltaTime, collisions, false))
-			{
-			//	std::cout << "COLLISION";
-				// 
-				break;
-			}
-
-			object->mesh->positionXYZ.x -= forward.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z -= forward.z * speed * object->scene->deltaTime;
+		case LEFT:
+			directionVector = left;
 			break;
-		case aPlayerMovement::LEFT:
-			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
-			{
-				//std::cout << "COLLISION";
-				// 
-				break;
-			}
-
-
-			object->mesh->positionXYZ.x += left.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z += left.z * speed * object->scene->deltaTime;
+		case RIGHT:
+			directionVector = -left;
 			break;
-		case aPlayerMovement::RIGHT:
-			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
-			{
-				//std::cout << "COLLISION";
-				// 
-				break;
-			}
-
-
-			object->mesh->positionXYZ.x -= left.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z -= left.z * speed * object->scene->deltaTime;
-			break;
-
 		default:
-			break;
+			return;
 		}
 
+		bool canMove = true;
+
+		// Check collisions for all corners
+		for (const auto& corner : offset) {
+			glm::vec3 checkPosition = position + corner * tankRadius + directionVector * speed * 0.999f * object->scene->deltaTime;
+			std::vector<sCollision_RayTriangleInMesh> collisions;
+
+			if (object->scene->physicsManager->RayCast(position + corner * tankRadius, checkPosition, collisions, false)) {
+				canMove = false;
+				break;
+			}
+		}
+
+		if (canMove) {
+			object->mesh->positionXYZ += directionVector * speed * object->scene->deltaTime;
+			DrawRayS(position, position + directionVector * speed * 2.f, program);
+		}
+		else {
+			std::cout << "Blocked: Can't move in the desired direction.\n";
+		}
 	}
 
 	
@@ -137,19 +116,24 @@ public:
 
 			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
 			{
+				object->mesh->rotationEulerXYZ.y = 360;
 				Move(FORWARD);
 			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
+			else if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
 			{
+				object->mesh->rotationEulerXYZ.y = 180;
 				Move(BACK);
 			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
+			else if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
 			{
+				object->mesh->rotationEulerXYZ.y = 90;
 				Move(LEFT);
 			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
+			else if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
 			{
+				object->mesh->rotationEulerXYZ.y = -90;
 				Move(RIGHT);
+
 			}
 
 			if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS)

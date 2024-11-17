@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> MainShip
-<filePath> assets/models/SM_Ship_Massive_Transport_01_xyz_n_rgba_uv_flatshaded_xyz_n_uv.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

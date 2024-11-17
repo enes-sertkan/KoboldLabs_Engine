@@ -1,47 +1,35 @@
-// MazeGenerator.hpp
+#ifndef MAZE_GENERATOR_HPP
+#define MAZE_GENERATOR_HPP
 
-#ifndef MAZEGENERATOR_HPP
-#define MAZEGENERATOR_HPP
-
+#include "Scene.hpp"
+#include "Tank.hpp" // Include Tank class
 #include <string>
 #include <vector>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-#include "Scene.hpp"
-#include "cLightManager.h" // Include the light manager
+#include <glm/glm.hpp>
 
-// Enum for different object types
-enum Direction {
-    RIGHT,
-    LEFT,
-    UP,
-    DOWN,
-    CENTER,
-    CENTERup,
-    LIGHT,
-    DOORright,
-    DOORleft,
-    DOORup,
-    DOORdown,
-    SMALLobj,
-    MEDIUMobj,
-    BIGobj
+enum MazeElement {
+    Ground, // Empty space
+    Wall,   // X
+    Player, // P
+    Enemy   // T
 };
 
 class MazeGenerator {
 public:
-    MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager
+    MazeGenerator(const std::string& filePath, Scene* scene);
+
+    void loadMaze(const std::string& filePath);
     void generateMaze();
+    void createPlayerTank(int row, int col, float scale);
+    Tank* getPlayerTank() const;
+    std::vector<std::vector<char>> maze;
+
 
 private:
-    void loadMaze(const std::string& filePath);
-    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
-    void PlaceRandomObjects();
-    //void PlaceRandomSizedObject(int row, int col, Direction type)  // New method to place a light
+    Scene* scene;
+    Tank* playerTank = nullptr; // Ensure this is declared here
 
-    std::vector<std::vector<char>> maze;
-    Scene* scene = nullptr;
-    int lightIndex = 0;  // Index to keep track of lights
+    void placeElementOnGrid(const std::string& modelPath, int row, int col, float scale, MazeElement type);
 };
 
-#endif // MAZEGENERATOR_HPP
+#endif // MAZE_GENERATOR_HPP

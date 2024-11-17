@@ -161,6 +161,7 @@
     <ClCompile Include="SceneEditor.cpp" />
     <ClCompile Include="SceneEditorExtra.cpp" />
     <ClCompile Include="sharedThings.cpp" />
+    <ClCompile Include="Tank.cpp" />
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,7 @@
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />
     <ClInclude Include="sObject.h" />
+    <ClInclude Include="Tank.hpp" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UsableItem.hpp" />
   </ItemGroup>

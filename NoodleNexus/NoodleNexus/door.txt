@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> door
-<filePath> assets/models/Ply/SM_Env_Door_01_xyz_n_rgba_uv.ply
-<fileType> XYZNUVRGBA
-</ModelFile>
-</KoboldLabs>

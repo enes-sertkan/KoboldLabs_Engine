@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> redFire1
-<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_RedFire_1.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> platformLong
-<filePath> assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

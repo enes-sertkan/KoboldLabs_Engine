@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> rivet
-<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Rivet.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

@@ -57,6 +57,7 @@
 #include "aRayCastPhysics2D.hpp"
 #include "aPlayerMovement2D.hpp"
 #include "BarrelFactory.h"
+#include "Tank.hpp"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -492,6 +493,34 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 }
 
 
+void PlayerButtonHandle(GLFWwindow* window, Tank* tank, int maze[MAZE_ROWS][MAZE_COLS]) {
+    int currentRow = static_cast<int>(tank->position.x);
+    int currentCol = static_cast<int>(tank->position.z);
+
+
+
+
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) { // Move up
+        tank->Move(currentRow - 1, currentCol, maze);
+        tank->mesh->rotationEulerXYZ.y = 90; // Facing up
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) { // Move down
+        tank->Move(currentRow + 1, currentCol, maze);
+        tank->mesh->rotationEulerXYZ.y = -90; // Facing down
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) { // Move left
+        tank->Move(currentRow, currentCol - 1, maze);
+        tank->mesh->rotationEulerXYZ.y = 180; // Facing left
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) { // Move right
+        tank->Move(currentRow, currentCol + 1, maze);
+        tank->mesh->rotationEulerXYZ.y = 0; // Facing right
+    }
+}
+
 
 int main(void)
 {
@@ -513,636 +542,10 @@ int main(void)
     modelInfo.meshPath = "assets/models/Sphere_radius_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "Sphere.txt", "XYZNUV");
 
-    //Props
-    modelInfo.modelName = "base";
-    modelInfo.meshPath = "assets/models/DonkeyKong_Level_0_base.ply";
-    fileManager->WriteModelFile(&modelInfo, "base.txt", "XYZNUV");
-
-    modelInfo.modelName = "ladder";
-    modelInfo.meshPath = "assets/models/DonkeyKong_Level_0_Ladders.ply";
-    fileManager->WriteModelFile(&modelInfo, "ladder.txt", "XYZNUV");
-
-    modelInfo.modelName = "platformLong";
-    modelInfo.meshPath = "assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply";
-    fileManager->WriteModelFile(&modelInfo, "platformLong.txt", "XYZNUV");
-
-    // KONG
-    modelInfo.modelName = "kong1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong1.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "kong2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong2.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong3.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong4.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong5.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong6.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong7.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong8.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong9.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong10";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong10.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong11";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_10_Barrel.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong11.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong12";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_11_BlueBarrel.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong12.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong13";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_12_Pauline_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong13.txt", "XYZNUV");
-
-    modelInfo.modelName = "kong14";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_13_Pauline_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong14.txt", "XYZNUV");
-
-    // MARIO
-    modelInfo.modelName = "mario1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario1.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "mario2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario2.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "mario3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario3.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario4.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario5.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario6.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario7.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario8.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario9.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario10";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario10.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario11";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_10.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario11.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario12";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_11.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario12.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario13";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_12.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario13.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario14";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_13.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario14.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario15";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_14.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario15.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario16";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_15.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario16.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario17";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_16.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario17.txt", "XYZNUV");
-
-    modelInfo.modelName = "mario18";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_17.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario18.txt", "XYZNUV");
-
-    // POINTS
-    modelInfo.modelName = "points100";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_100.ply";
-    fileManager->WriteModelFile(&modelInfo, "points100.txt", "XYZNUV");
-
-    modelInfo.modelName = "points200";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_200.ply";
-    fileManager->WriteModelFile(&modelInfo, "points200.txt", "XYZNUV");
-
-    modelInfo.modelName = "points300";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_300.ply";
-    fileManager->WriteModelFile(&modelInfo, "points300.txt", "XYZNUV");
-
-    modelInfo.modelName = "points500";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_500.ply";
-    fileManager->WriteModelFile(&modelInfo, "points500.txt", "XYZNUV");
-
-    modelInfo.modelName = "points800";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_800.ply";
-    fileManager->WriteModelFile(&modelInfo, "points800.txt", "XYZNUV");
-
-    // BLUE BARREL
-    modelInfo.modelName = "blueBarrel0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel0.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueBarrel1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel1.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueBarrel2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel2.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueBarrel3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel3.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueBarrel4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel4.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueBarrel5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueBarrel5.txt", "XYZNUV");
-
-    modelInfo.modelName = "barrelStack";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelStack.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrelStack.txt", "XYZNUV");
-
-    // BARRELS
-    modelInfo.modelName = "barrel0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel0.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barrel1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel1.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barrel2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel2.txt", "XYZNUV");
-
-    modelInfo.modelName = "barrel3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel3.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barrel4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel4.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barrel5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel5.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barrel6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "barrel6.txt", "XYZNUVRGBA");
-
-    //BLUE FLAME ENEMY
-    modelInfo.modelName = "blueFlameEnemy0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueFlameEnemy_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueFlameEnemy0.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueFlameEnemy1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueFlameEnemy_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueFlameEnemy1.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueFlameEnemy2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueFlameEnemy_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueFlameEnemy2.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueFlameEnemy3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueFlameEnemy_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueFlameEnemy3.txt", "XYZNUV");
-
-    // BLUE NUMBERS
-    modelInfo.modelName = "blueNumber0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber0.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber1.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber2.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber3.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber4.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber5.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber6.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber7.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber8.txt", "XYZNUV");
-
-    modelInfo.modelName = "blueNumber9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BlueNumber_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "blueNumber9.txt", "XYZNUV");
-
-    // CYAN NUMBERS
-    modelInfo.modelName = "cyanNumber0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber0.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber1.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber2.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber3.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber4.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber5.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber6.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber7.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber8.txt", "XYZNUV");
-
-    modelInfo.modelName = "cyanNumber9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_CyanNumber_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "cyanNumber9.txt", "XYZNUV");
-
-    // EXPLOSION
-    modelInfo.modelName = "explosion0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion0.txt", "XYZNUV");
-
-    modelInfo.modelName = "explosion1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion1.txt", "XYZNUV");
-
-    modelInfo.modelName = "explosion2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion2.txt", "XYZNUV");
-
-    modelInfo.modelName = "explosion3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion3.txt", "XYZNUV");
-
-    // FIRE
-    modelInfo.modelName = "fire0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire0.txt", "XYZNUV");
-
-    modelInfo.modelName = "fire1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire1.txt", "XYZNUV");
-
-    modelInfo.modelName = "fire2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire2.txt", "XYZNUV");
-
-    modelInfo.modelName = "fire3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire3.txt", "XYZNUV");
-
-    // FLAME ENEMY
-    modelInfo.modelName = "flameEnemy0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy0.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemy1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy1.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemy2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy2.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemy3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy3.txt", "XYZNUV");
-
-    // HAMMER
-    modelInfo.modelName = "hammer";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
-    fileManager->WriteModelFile(&modelInfo, "hammer.txt", "XYZNUV");
-
-    // HEART
-    modelInfo.modelName = "heart";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Heart.ply";
-    fileManager->WriteModelFile(&modelInfo, "heart.txt", "XYZNUV");
-
-    modelInfo.modelName = "heartBroken";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_HeartBroken.ply";
-    fileManager->WriteModelFile(&modelInfo, "heartBroken.txt", "XYZNUV");
-
-    // HELP SIGNS
-    modelInfo.modelName = "helpCyan";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Help_Cyan.ply";
-    fileManager->WriteModelFile(&modelInfo, "helpCyan.txt", "XYZNUV");
-
-    modelInfo.modelName = "helpWhite";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Help_White.ply";
-    fileManager->WriteModelFile(&modelInfo, "helpWhite.txt", "XYZNUV");
-
-    // KISS ICONS
-    modelInfo.modelName = "kissIcon0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_KissIcon_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "kissIcon0.txt", "XYZNUV");
-
-    modelInfo.modelName = "kissIcon1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_KissIcon_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "kissIcon1.txt", "XYZNUV");
-
-    modelInfo.modelName = "kissIcon2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_KissIcon_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "kissIcon2.txt", "XYZNUV");
-
-    // MARIO HAMMER FRAMES
-    modelInfo.modelName = "marioHammer0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer0.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer1.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer2.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer3.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer4.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer5.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer6.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer7.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer8.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer9.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer10";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_10.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer10.txt", "XYZNUV");
-
-    modelInfo.modelName = "marioHammer11";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioHammer_11.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioHammer11.txt", "XYZNUV");
-
-    // MARIO LITTLE
-    modelInfo.modelName = "marioLittle";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_MarioLittle.ply";
-    fileManager->WriteModelFile(&modelInfo, "marioLittle.txt", "XYZNUV");
-
-    // OIL DRUM
-    modelInfo.modelName = "oilDrum0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_OilDrum_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "oilDrum0.txt", "XYZNUV");
-
-    modelInfo.modelName = "oilDrum1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_OilDrum_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "oilDrum1.txt", "XYZNUV");
-
-    modelInfo.modelName = "oilDrum2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_OilDrum_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "oilDrum2.txt", "XYZNUV");
-
-    modelInfo.modelName = "oilDrum3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_OilDrum_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "oilDrum3.txt", "XYZNUV");
-
-    modelInfo.modelName = "oilDrum4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_OilDrum_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "oilDrum4.txt", "XYZNUV");
-
-    // PAULINE ACCESSORIES
-    modelInfo.modelName = "paulineHat";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_PaulineHat.ply";
-    fileManager->WriteModelFile(&modelInfo, "paulineHat.txt", "XYZNUV");
-
-    modelInfo.modelName = "paulinePurse";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_PaulinePurse.ply";
-    fileManager->WriteModelFile(&modelInfo, "paulinePurse.txt", "XYZNUV");
-
-    modelInfo.modelName = "paulineUmbrella";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_PaulineUmbrella.ply";
-    fileManager->WriteModelFile(&modelInfo, "paulineUmbrella.txt", "XYZNUV");
-
-    // PAULINE ANIMATIONS
-    modelInfo.modelName = "pauline0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline0.txt", "XYZNUV");
-
-    modelInfo.modelName = "pauline1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline1.txt", "XYZNUV");
-
-    modelInfo.modelName = "pauline2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline2.txt", "XYZNUV");
-
-    modelInfo.modelName = "pauline3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline3.txt", "XYZNUV");
-
-    modelInfo.modelName = "pauline4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline4.txt", "XYZNUV");
-
-    // PIE ANIMATIONS
-    modelInfo.modelName = "pie0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pie_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "pie0.txt", "XYZNUV");
-
-    modelInfo.modelName = "pie1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pie_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "pie1.txt", "XYZNUV");
-
-    // PLATFORM & LADDER
-    modelInfo.modelName = "platformSection0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_PllatformSection.ply";
-    fileManager->WriteModelFile(&modelInfo, "platformSection0.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteLadder";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteLadder.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteLadder.txt", "XYZNUV");
-
-    // RED FIRE ENEMY
-    modelInfo.modelName = "redFire0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_RedFire_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "redFire0.txt", "XYZNUV");
-
-    modelInfo.modelName = "redFire1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_RedFire_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "redFire1.txt", "XYZNUV");
-
-    modelInfo.modelName = "redFire2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_RedFire_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "redFire2.txt", "XYZNUV");
-
-    modelInfo.modelName = "redFire3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_RedFire_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "redFire3.txt", "XYZNUV");
-
-    // WHITE NUMBERS
-    modelInfo.modelName = "whiteNumber0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber0.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber1.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber2";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber2.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber3";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber3.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber4";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber4.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber5";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber5.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber6";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber6.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber7";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber7.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber8";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber8.txt", "XYZNUV");
-
-    modelInfo.modelName = "whiteNumber9";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_WhiteNumber_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "whiteNumber9.txt", "XYZNUV");
-
-    // LEVEL 1 OBJECTS
-    modelInfo.modelName = "elevatorMotor";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_ElevatorMotor.ply";
-    fileManager->WriteModelFile(&modelInfo, "elevatorMotor.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemyBlue0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_FlameEnemyBlue_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemyBlue0.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemyBlue1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_FlameEnemyBlue_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemyBlue1.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemyRed0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_FlameEnemyRed_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemyRed0.txt", "XYZNUV");
-
-    modelInfo.modelName = "flameEnemyRed1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_FlameEnemyRed_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemyRed1.txt", "XYZNUV");
-
-    modelInfo.modelName = "platformSection1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_PlatformSection.ply";
-    fileManager->WriteModelFile(&modelInfo, "platformSection1.txt", "XYZNUV");
-
-    modelInfo.modelName = "rivet";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Rivet.ply";
-    fileManager->WriteModelFile(&modelInfo, "rivet.txt", "XYZNUV");
-
-    modelInfo.modelName = "spring0";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Spring_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "spring0.txt", "XYZNUV");
-
-    modelInfo.modelName = "spring1";
-    modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Spring_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "spring1.txt", "XYZNUV");
-
+    // Tanks
+    modelInfo.modelName = "Tank";
+    modelInfo.meshPath = "assets/models/tank_xyz_n_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "Tank.txt", "XYZNUV");
 
     //SelectBox
     modelInfo.modelName = "Select_Box";
@@ -1218,19 +621,19 @@ int main(void)
 
     //// Add `aPlayerCamera` action to `playerObject`
     //scene->AddActionToObj(playerCameraAction, playerObject);
-    Object* playerObject = scene->sceneObjects[1];
+    Object* playerObject = scene->sceneObjects[0];
 
     PrepareFlyCamera();
 
     // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(85.0f, 160.0f, 8.0f));
     scene->AddActionToObj(playerCameraAction, playerObject);
 
 
 
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
-    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
+    //physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
 
 
@@ -1240,23 +643,23 @@ int main(void)
 
     aPlayerMovement* playerMovement = new aPlayerMovement();
     playerMovement->program = program;
-    scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
+    scene->AddActionToObj(playerMovement, scene->sceneObjects[0]);
 
-    RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -5;
-    phys->baseRayCastLength =  10.0;
-    scene->AddActionToObj(phys, scene->sceneObjects[1]);
+    //RayCastPhysics* phys = new RayCastPhysics;
+    //phys->gravityAcceleration.y = -5;
+    //phys->baseRayCastLength =  10.0;
+    //scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
 
-    aDrawAim* drawAimAction = new aDrawAim();
-    drawAimAction->program = program;
-    scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
-    
+    //aDrawAim* drawAimAction = new aDrawAim();
+    //drawAimAction->program = program;
+    //scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
+    //
 
-    aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
+    //aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
 
-    scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
+    //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
 
@@ -1311,9 +714,15 @@ int main(void)
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
 
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, lightManager);
+    std::string mazeFilePath = "assets/models/Maze_1286651.txt";
   
-    mazeGenerator->generateMaze();
+    MazeGenerator mazeGenerator(mazeFilePath, scene);
+    mazeGenerator.generateMaze();
+
+
+
+    // Run your game loop or scene rendering logic
+    std::cout << "Maze generated successfully!" << std::endl;
 
 
     scene->programs.push_back(program);
@@ -1323,64 +732,13 @@ int main(void)
 
     scene->Start();
 
-    ////SCENE SETUP
-    for(Object* object:scene->sceneObjects)
-        if (object->name == "platformLong")
-            scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply", object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
-
-
-
-
-    Object* player = scene->sceneObjects[2];
-    aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
-    physics2D->gravityAcceleration = glm::vec3(0, -0.1f, 0);
-    physics2D->baseRayCastLength = 2.f;
-    scene->AddActionToObj(physics2D, player);
-
-    Object* barrel = scene->sceneObjects[5];
-    aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
-    aRotateAction* rotationBarrel = new aRotateAction();
-
-    physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
-    physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
-    physics2Db->baseRayCastLength = 5.f;
-    physics2Db->bounciness = 1.f;
-
-    rotationBarrel->rotationSpeed = 250.0f;
-    rotationBarrel->physics = physics2Db;
-    scene->AddActionToObj(physics2Db, barrel);
-    scene->AddActionToObj(rotationBarrel, barrel);
-
-
     
 
-    //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
-    Object* ground  = scene->sceneObjects[3];
-    Object* ladder = scene->sceneObjects[4];
-
-    aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
-    playerMovement->phys = physics2D;
-    scene->AddActionToObj(playerMovement2D, player);
-    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
-    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
-
-    float spawnBerrelTime = 3.f;
-    float SpawnTimer = 0;
-
-    BarrelFactory factory;
-    factory.scene = scene;
 
     //LOOP
     while (!glfwWindowShouldClose(window))
     {
-        SpawnTimer += scene->deltaTime;
-
-        if (SpawnTimer > spawnBerrelTime)
-        {
-            SpawnTimer = 0;
-           factory.SpawnRegularBarrel();
-
-        }
+        
 
         //std::cout << player->mesh->positionXYZ.x << " " << player->mesh->positionXYZ.y << " " << player->mesh->positionXYZ.x << std::endl;
         //std::cout << physics2D->speed.x << " " << physics2D->speed.y  << " " << physics2D->speed.z << std::endl;

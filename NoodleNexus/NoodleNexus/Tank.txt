@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Tank
+<filePath> assets/models/tank_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

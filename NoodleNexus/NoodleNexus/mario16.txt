@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> mario16
-<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_15.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>

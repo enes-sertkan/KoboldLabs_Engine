@@ -60,6 +60,9 @@
     <Filter Include="MazeReader">
       <UniqueIdentifier>{b8a31ce9-4d77-4c82-a0fc-eb18467d3784}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tank">
+      <UniqueIdentifier>{5a0cdc69-e309-4f04-84a7-ffb62f362596}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="BarrelFactory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Tank</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="BarrelFactory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.hpp">
+      <Filter>Tank</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

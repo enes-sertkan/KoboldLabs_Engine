@@ -1,7 +1,0 @@
-<KoboldLabs>
-<ModelFile>
-<name> blueBarrel3
-<filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_BarrelBlue_3.ply
-<fileType> XYZNUV
-</ModelFile>
-</KoboldLabs>
