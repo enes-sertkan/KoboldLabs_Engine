@@ -20,7 +20,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -13 0 -303
 <Rotation-> 0 0 0
-<Scale-> 50 1.62551e-43 0
+<Scale-> 50 1.06531e-38 1.04692e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -33,7 +33,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.01418e-38 1.10203e-38
+<Scale-> 0.5 1.01418e-38 1.10204e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -46,7 +46,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 20 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.07 1.1151e-38 1.06531e-38
+<Scale-> 0.07 1.1151e-38 7.07144e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0.9 0.1 0.1
@@ -59,7 +59,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.62551e-43 0
+<Scale-> 0.1 0 1.06531e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0.9 0.3 0.3
@@ -72,7 +72,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 25 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.06531e-38 0
+<Scale-> 0.1 1.06531e-38 7.53051e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0.2 0.6 0.9
@@ -85,7 +85,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 170 -68
 <Rotation-> 90 -90 0
-<Scale-> 0.1 0 0
+<Scale-> 0.1 5.80138e-43 1.10203e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -98,7 +98,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 173 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.05 1.1151e-38 0
+<Scale-> 0.05 1.1151e-38 9.27555e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0.4 0.2 0.1
@@ -111,7 +111,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 186 121
 <Rotation-> -94 -90 -4
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 1.1151e-38 1.01938e-38
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -124,7 +124,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 31 120
 <Rotation-> -96 -90 -4
-<Scale-> 0.1 0 0
+<Scale-> 0.1 0 8.99988e-39
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -150,7 +150,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 118 -113
 <Rotation-> -90 -90 -3
-<Scale-> 0.1 7.40026e-42 -5.90171e-24
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -163,7 +163,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 39 -112
 <Rotation-> -93 -90 -364
-<Scale-> 0.1 0 6.68383e+22
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -176,7 +176,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 108 121
 <Rotation-> -93 -90 -4
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -202,85 +202,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.25511e-39 6.24492e-39 6.33676e-39
 <Rotation-> 6.33676e-39 7.80614e-39 4.22455e-39
-<Scale-> 8.08162e-39 0 -5.90171e-24
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 6.70411e-39
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
-<Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
-<Scale-> 6.24488e-39 1.1151e-38 -5.90171e-24
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
-<Rotation-> 1.06531e-38 4.77552e-39 4.50007e-39
-<Scale-> 5.59339e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 6.86034e+22
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.00622e+22 1.57871e-19 1.06807e-05
-<Rotation-> 6.7511e-07 6.29828e-10 0.000173763
-<Scale-> 2.57512e-12 1.66418e-41 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 -5.90171e-24
+<Scale-> 8.08162e-39 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -304,9 +226,9 @@ selectBox.txt
 <Model-> <Model-><Tags->
 <Tags->
 <StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.66418e-41 0
+<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
+<Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
+<Scale-> 6.24488e-39 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -319,46 +241,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 9.64288e-39 1.01939e-38 1.04694e-38
 <Rotation-> 1.06531e-38 4.77552e-39 4.50007e-39
-<Scale-> 6.24488e-39 1.66418e-41 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.66418e-41 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 -5.90171e-24
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 -5.90171e-24
+<Scale-> 5.59339e-11 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -372,6 +255,123 @@ selectBox.txt
 <Position-> 0 0 0
 <Rotation-> 0 0 0
 <Scale-> 0 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.00622e+22 1.57871e-19 1.06807e-05
+<Rotation-> 6.7511e-07 6.29828e-10 0.000173763
+<Scale-> 2.57512e-12 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
+<Rotation-> 1.06531e-38 4.77552e-39 4.50007e-39
+<Scale-> 6.24488e-39 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -410,7 +410,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -1.17426e-13 4.59093e-41 0
 <Rotation-> 0 -1.17428e-13 4.59093e-41
-<Scale-> -1.17427e-13 1.66418e-41 0
+<Scale-> -1.17427e-13 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -423,7 +423,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.00622e+22 1.57871e-19 9.32327e-09
 <Rotation-> 6.44379e-10 7.74319e+26 7.36518e+31
-<Scale-> 1.87354e-19 1.1151e-38 1.68514e+22
+<Scale-> 1.87354e-19 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -436,7 +436,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.00622e+22 1.57871e-19 6.89923e-07
 <Rotation-> 6.60208e-07 6.55293e-10 1.05468e-08
-<Scale-> 9.32328e-09 1.1151e-38 9.15816e+08
+<Scale-> 9.32328e-09 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -449,7 +449,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.00622e+22 1.57871e-19 6.86213e-07
 <Rotation-> 2.75998e-06 6.44379e-10 1.69669e-07
-<Scale-> 5.82705e-10 1.66418e-41 -5.90171e-24
+<Scale-> 5.82705e-10 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -462,7 +462,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -4.73588e-15 8.85621e-43 -4.73588e-15
 <Rotation-> 8.85621e-43 3.39451e-41 1.72908e+28
-<Scale-> 7.96617e+37 1.1151e-38 0
+<Scale-> 7.96617e+37 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -475,7 +475,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 9.64288e-39 1.01939e-38 1.04694e-38
 <Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
-<Scale-> 5.82077e-10 1.66418e-41 -5.90171e-24
+<Scale-> 5.82077e-10 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -488,7 +488,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.66418e-41 9.15816e+08
+<Scale-> 5.60382e-11 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -501,7 +501,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.66418e-41 7.18328e+22
+<Scale-> 5.60382e-11 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -527,7 +527,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 9.64288e-39 1.01939e-38 1.04694e-38
 <Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
-<Scale-> 6.24488e-39 1.1151e-38 -5.90171e-24
+<Scale-> 6.24488e-39 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -540,20 +540,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 9.64288e-39 1.01939e-38 1.04694e-38
 <Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
-<Scale-> 6.24488e-39 1.66418e-41 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.5 0.25 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.66418e-41 -4.47166e+35
+<Scale-> 6.24488e-39 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -577,22 +564,61 @@ selectBox.txt
 <Model-> <Model-><Tags->
 <Tags->
 <StaticCollision-> false
-<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
-<Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
-<Scale-> 5.59339e-11 1.66418e-41 -4.47957e+35
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
 <--Object>
 
 <Object-->
-<Name-> 
-<Model-> 
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 9.64288e-39 1.01939e-38 1.04694e-38
+<Rotation-> 1.06531e-38 4.59185e-39 4.50007e-39
+<Scale-> 5.59339e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
 <Tags->
 <StaticCollision-> false
 <Position-> -1.17426e-13 4.59093e-41 0
 <Rotation-> 0 -1.17428e-13 4.59093e-41
-<Scale-> -1.17427e-13 4.59093e-41 0
+<Scale-> -1.17427e-13 1.66418e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0.5 0.25 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.66418e-41 1.00101e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -603,9 +629,9 @@ selectBox.txt
 <Model-> 
 <Tags->
 <StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 0
+<Position-> 2.67692e+06 4.59093e-41 2.67694e+06
+<Rotation-> 4.59093e-41 1.4013e-45 0
+<Scale-> 0 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
@@ -616,9 +642,9 @@ selectBox.txt
 <Model-> 
 <Tags->
 <StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.1151e-38 0
+<Position-> 8.90816e-39 9.27555e-39 9.09183e-39
+<Rotation-> 1.0102e-38 4.22457e-39 1.10204e-38
+<Scale-> 1.62551e-43 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.5 0.25 0.1
