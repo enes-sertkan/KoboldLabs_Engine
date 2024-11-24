@@ -4,6 +4,8 @@
 #include "aPlayerMovement2D.hpp"
 #include "aRotateAction.hpp"
 #include "GLCommon.h"
+#include "aRemoveAfterTime.hpp"
+
 
 //#include "linmath.h"
 #include <glm/glm.hpp>
@@ -26,6 +28,8 @@ public:
         Object* barrel = scene->GenerateMeshObjectsFromObject("assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply", position, scale, rotation, true, glm::vec4(0.5, 0.25, 0.1, 1.f), false, scene->sceneObjects);
         aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
         aRotateAction* rotationBarrel = new aRotateAction();
+        aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
+
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -35,8 +39,12 @@ public:
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
 
+        removeBarrelAction->timeToRemove = 52.0f;
+
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);
+        scene->AddActionToObj(removeBarrelAction, barrel);
+
 	}
 
 

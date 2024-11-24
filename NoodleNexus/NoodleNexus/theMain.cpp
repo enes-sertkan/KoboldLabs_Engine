@@ -50,7 +50,6 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 #include "aRotateAction.hpp"
-#include "aRemoveAfterTime.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -1326,34 +1325,11 @@ int main(void)
         if (object->name == "platformLong")
             scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply", object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
 
-
-
-
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
     physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
     physics2D->baseRayCastLength = 2.f;
     scene->AddActionToObj(physics2D, player);
-
-    Object* barrel = scene->sceneObjects[5];
-    aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
-    aRotateAction* rotationBarrel = new aRotateAction();
-    aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
-
-    physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
-    physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
-    physics2Db->baseRayCastLength = 5.f;
-    physics2Db->bounciness = 1.f;
-
-    rotationBarrel->rotationSpeed = 250.0f;
-    rotationBarrel->physics = physics2Db;
-
-    removeBarrelAction->timeToRemove = 7.0f;
-
-    scene->AddActionToObj(physics2Db, barrel);
-    scene->AddActionToObj(rotationBarrel, barrel);
-    scene->AddActionToObj(removeBarrelAction, barrel);
-
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground  = scene->sceneObjects[3];

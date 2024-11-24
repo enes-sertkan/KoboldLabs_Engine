@@ -2,11 +2,12 @@
 
 #include "Action.h"
 #include "Scene.hpp"
+#include "sObject.h"
 
 class aRemoveAfterTime : public Action
 {
 public:
-    float timeToRemove = 30.0f; // Time after which the object will be removed
+    float timeToRemove = 5.0f; // Time after which the object will be removed
     float elapsedTime = 0.0f;   // Tracks elapsed time
 
 
@@ -18,7 +19,7 @@ public:
         if (elapsedTime >= timeToRemove)
         {
             // Remove object from the scene
-            object->scene->RemoveObject(object);
+            object->Destroy();
         }
     }
 };
