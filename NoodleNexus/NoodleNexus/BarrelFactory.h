@@ -31,6 +31,7 @@ public:
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
 
 
+
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
         physics2Db->baseRayCastLength = 5.f;
@@ -40,6 +41,9 @@ public:
         rotationBarrel->physics = physics2Db;
 
         removeBarrelAction->timeToRemove = 52.0f;
+
+        barrel->isTemporary = true;
+
 
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);

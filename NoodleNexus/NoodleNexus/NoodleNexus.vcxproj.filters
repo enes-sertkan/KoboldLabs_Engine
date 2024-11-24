@@ -259,6 +259,12 @@
     <ClInclude Include="aRemoveAfterTime.hpp">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="aClimbLadder.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aClimb.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

@@ -50,6 +50,7 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 #include "aRotateAction.hpp"
+#include "aClimb.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -1327,13 +1328,22 @@ int main(void)
 
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
-    physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
-    physics2D->baseRayCastLength = 2.f;
-    scene->AddActionToObj(physics2D, player);
+
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground  = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
+
+    Climb* climbAction = new Climb();
+    climbAction->climbSpeed = 85.0f;
+    climbAction->physics = physics2D;
+    scene->AddActionToObj(climbAction, player);
+
+    physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
+    physics2D->baseRayCastLength = 2.f;
+    scene->AddActionToObj(physics2D, player);
+
+
 
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
     playerMovement->phys = physics2D;
@@ -1341,11 +1351,15 @@ int main(void)
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
-    float spawnBerrelTime = 3.5f;
+
+
+    float spawnBerrelTime = 7.f;
     float SpawnTimer = 0;
 
     BarrelFactory factory;
     factory.scene = scene;
+
+    /*climbAction->Update();*/
 
     //LOOP
     while (!glfwWindowShouldClose(window))
