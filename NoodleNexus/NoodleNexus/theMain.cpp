@@ -50,6 +50,7 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 #include "aRotateAction.hpp"
+#include "aRemoveAfterTime.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -1235,9 +1236,6 @@ int main(void)
 
 
 
-   
-
-
     aPlayerMovement* playerMovement = new aPlayerMovement();
     playerMovement->program = program;
     scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
@@ -1333,13 +1331,14 @@ int main(void)
 
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
-    physics2D->gravityAcceleration = glm::vec3(0, -0.1f, 0);
+    physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
     physics2D->baseRayCastLength = 2.f;
     scene->AddActionToObj(physics2D, player);
 
     Object* barrel = scene->sceneObjects[5];
     aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
     aRotateAction* rotationBarrel = new aRotateAction();
+    aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
 
     physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
     physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -1348,11 +1347,13 @@ int main(void)
 
     rotationBarrel->rotationSpeed = 250.0f;
     rotationBarrel->physics = physics2Db;
+
+    removeBarrelAction->timeToRemove = 7.0f;
+
     scene->AddActionToObj(physics2Db, barrel);
     scene->AddActionToObj(rotationBarrel, barrel);
+    scene->AddActionToObj(removeBarrelAction, barrel);
 
-
-    
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground  = scene->sceneObjects[3];
@@ -1364,7 +1365,7 @@ int main(void)
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
-    float spawnBerrelTime = 3.f;
+    float spawnBerrelTime = 3.5f;
     float SpawnTimer = 0;
 
     BarrelFactory factory;

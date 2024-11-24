@@ -256,6 +256,9 @@
     <ClInclude Include="BarrelFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aRemoveAfterTime.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
