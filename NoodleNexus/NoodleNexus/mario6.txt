@@ -2,6 +2,6 @@
 <ModelFile>
 <name> mario6
 <filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_5.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

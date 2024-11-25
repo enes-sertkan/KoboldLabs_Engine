@@ -7,7 +7,15 @@ base.txt
 ladder.txt
 platformLong.txt
 kong1.txt
+kong2.txt
+kong3.txt
+kong4.txt
+kong5.txt
 mario1.txt
+mario2.txt
+mario3.txt
+mario4.txt
+mario5.txt
 barrel2.txt
 selectBox.txt
 <--ObjectLoad>
@@ -20,7 +28,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -13 0 -303
 <Rotation-> 0 0 0
-<Scale-> 50 1.01418e-38 1.10203e-38
+<Scale-> 50 1.01418e-38 1.10204e-38
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -33,7 +41,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 1.1151e-38 1.62551e-43
+<Scale-> 0.5 1.1151e-38 1.06531e-38
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -46,7 +54,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 20 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.07 1.1151e-38 8.99988e-39
+<Scale-> 0.07 1.62551e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.9 0.1 0.1
@@ -59,7 +67,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 1.62551e-43
+<Scale-> 0.1 1.06531e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.9 0.3 0.3
@@ -72,7 +80,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 2 0 0
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.0653e-38 1.06531e-38
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.2 0.6 0.9
@@ -85,7 +93,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 173 -88
 <Rotation-> 0 -90 0
-<Scale-> 0.05 1.1151e-38 5.32646e-39
+<Scale-> 0.05 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.4 0.2 0.1
@@ -98,7 +106,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 186 121
 <Rotation-> -94 -90 -4
-<Scale-> 0.1 1.1151e-38 7.62245e-39
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -111,7 +119,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 31 120
 <Rotation-> -96 -90 -4
-<Scale-> 0.1 1.1151e-38 9.27539e-39
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -124,7 +132,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 199 -119
 <Rotation-> -90 -90 -181
-<Scale-> 0.1 1.1151e-38 1.10203e-38
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -137,7 +145,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 118 -113
 <Rotation-> -90 -90 -3
-<Scale-> 0.1 0 6.68383e+22
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -150,7 +158,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 39 -112
 <Rotation-> -93 -90 -364
-<Scale-> 0.1 0 1.68514e+22
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6
@@ -163,7 +171,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 108 121
 <Rotation-> -93 -90 -4
-<Scale-> 0.1 4.59093e-41 0
+<Scale-> 0.1 0 0
 <Visibility-> false
 <Shading-> false
 <Color-> 0.6 0.6 0.6

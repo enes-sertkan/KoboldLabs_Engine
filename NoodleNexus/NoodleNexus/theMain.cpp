@@ -50,7 +50,6 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 #include "aRotateAction.hpp"
-#include "aClimb.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -58,6 +57,8 @@
 #include "aRayCastPhysics2D.hpp"
 #include "aPlayerMovement2D.hpp"
 #include "BarrelFactory.h"
+#include "aModelsFramesAnimator.hpp"
+#include "aClimb.hpp"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -172,7 +173,7 @@ sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
 
 
 
-GLuint PrepareOpenGL(GLFWwindow* const &window)
+GLuint PrepareOpenGL(GLFWwindow* const& window)
 {
 
 
@@ -211,7 +212,7 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     fragmentShader.fileName = "assets/shaders/fragment01.glsl";
 
     if (!pShaderManager->createProgramFromFile("shader01",
-                                                 vertexShader, fragmentShader))
+        vertexShader, fragmentShader))
     {
         std::cout << "Error: " << pShaderManager->getLastError() << std::endl;
     }
@@ -223,16 +224,16 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     const GLuint program = pShaderManager->getIDFromFriendlyName("shader01");
 
     glUseProgram(program);
-    
+
     return program;
 }
 
-sModelDrawInfo LoadPlyModel(std::string modelPath,GLuint program)
+sModelDrawInfo LoadPlyModel(std::string modelPath, GLuint program)
 {
     sModelDrawInfo modelInfo;
     ::g_pMeshManager->LoadModelIntoVAO(modelPath,
         modelInfo, program);
-    std::cout <<modelInfo.meshPath<< "-Loaded"<< std::endl << modelInfo.numberOfVertices << " vertices loaded" << std::endl;
+    std::cout << modelInfo.meshPath << "-Loaded" << std::endl << modelInfo.numberOfVertices << " vertices loaded" << std::endl;
     return modelInfo;
 }
 
@@ -242,8 +243,8 @@ void PreparePhysics()
 {
     ::g_pPhysicEngine = new cPhysics();
 
-// For triangle meshes, let the physics object "know" about the VAO manager
-::g_pPhysicEngine->setVAOManager(::g_pMeshManager);
+    // For triangle meshes, let the physics object "know" about the VAO manager
+    ::g_pPhysicEngine->setVAOManager(::g_pMeshManager);
 }
 void PrepareFlyCamera()
 {
@@ -262,31 +263,31 @@ void PrepareFlyCamera()
 //DONE: Pick Better Name
 void SetCameraAndProjectionMatrices(float ratio, GLuint program)
 {
-//        glm::mat4 m, p, v, mvp;
-glm::mat4 matProjection = glm::mat4(1.0f);
+    //        glm::mat4 m, p, v, mvp;
+    glm::mat4 matProjection = glm::mat4(1.0f);
 
-matProjection = glm::perspective(0.6f,           // FOV
-    ratio,          // Aspect ratio of screen
-    0.1f,           // Near plane
-    1000000.0f);       // Far plane
+    matProjection = glm::perspective(0.6f,           // FOV
+        ratio,          // Aspect ratio of screen
+        0.1f,           // Near plane
+        1000000.0f);       // Far plane
 
-// View or "camera"
-glm::mat4 matView = glm::mat4(1.0f);
+    // View or "camera"
+    glm::mat4 matView = glm::mat4(1.0f);
 
-//        glm::vec3 cameraEye = glm::vec3(0.0, 0.0, 4.0f);
-glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+    //        glm::vec3 cameraEye = glm::vec3(0.0, 0.0, 4.0f);
+    glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+    glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
-matView = glm::lookAt(::g_pFlyCamera->getEyeLocation(),
-    ::g_pFlyCamera->getTargetLocation(),
-    upVector);
+    matView = glm::lookAt(::g_pFlyCamera->getEyeLocation(),
+        ::g_pFlyCamera->getTargetLocation(),
+        upVector);
 
 
-const GLint matView_UL = glGetUniformLocation(program, "matView");
-glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
+    const GLint matView_UL = glGetUniformLocation(program, "matView");
+    glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
 
-const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
-glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+    const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
+    glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
 
 }
 
@@ -377,7 +378,7 @@ void SetLight(cLightManager* lightManager, int index,
 
 
 
-void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager* lightManager)
+void DrawDebugObjects(cLightHelper TheLightHelper, GLuint program, cLightManager* lightManager)
 {
 
 
@@ -534,51 +535,51 @@ int main(void)
 
     modelInfo.modelName = "kong2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong3.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong4";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong4.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong4.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong5";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong5.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong5.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong6";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong6.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong6.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong7";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong7.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong7.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong8";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_7.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong8.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong8.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong9";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_8.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong9.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong9.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong10";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_9.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong10.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong10.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong11";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_10_Barrel.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong11.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong11.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong12";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_11_BlueBarrel.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong12.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong12.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong13";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_12_Pauline_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "kong13.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "kong13.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "kong14";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_13_Pauline_1.ply";
@@ -595,23 +596,23 @@ int main(void)
 
     modelInfo.modelName = "mario3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario3.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario4";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario4.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario4.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario5";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario5.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario5.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario6";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_5.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario6.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario6.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario7";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_6.ply";
-    fileManager->WriteModelFile(&modelInfo, "mario7.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "mario7.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "mario8";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_7.ply";
@@ -1167,7 +1168,7 @@ int main(void)
 
     for (Object* object : scene->sceneObjects)
     {
-        std::cout<<object->name<<std::endl;
+        std::cout << object->name << std::endl;
     }
 
 
@@ -1184,21 +1185,21 @@ int main(void)
     //
 
     GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
-    
-    GLuint program = PrepareOpenGL(window);
-   
 
-   
-  
-    
-// Loading the TYPES of models I can draw...
+    GLuint program = PrepareOpenGL(window);
+
+
+
+
+
+    // Loading the TYPES of models I can draw...
 
     ::g_pMeshManager = new cVAOManager();
 
 
     PhysicsManager* physicsMan = new PhysicsManager();
-  
-   
+
+
     PreparePhysics();
 
 
@@ -1236,13 +1237,11 @@ int main(void)
 
 
 
-    aPlayerMovement* playerMovement = new aPlayerMovement();
-    playerMovement->program = program;
-    scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
+
 
     RayCastPhysics* phys = new RayCastPhysics;
     phys->gravityAcceleration.y = -5;
-    phys->baseRayCastLength =  10.0;
+    phys->baseRayCastLength = 10.0;
     scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
@@ -1250,7 +1249,7 @@ int main(void)
     aDrawAim* drawAimAction = new aDrawAim();
     drawAimAction->program = program;
     scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
-    
+
 
     aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
 
@@ -1276,9 +1275,9 @@ int main(void)
     */
 
 
-   
 
-   // AddModelsToScene();
+
+    // AddModelsToScene();
 
 
 
@@ -1307,32 +1306,69 @@ int main(void)
     SceneEditor* sceneEditor = new SceneEditor();
     cLightManager* lightManager = new cLightManager;
 
-    sceneEditor->Start("selectBox.txt",fileManager, program, window, g_pMeshManager, scene);
+    sceneEditor->Start("selectBox.txt", fileManager, program, window, g_pMeshManager, scene);
 
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, lightManager);
-  
+
     mazeGenerator->generateMaze();
 
 
     scene->programs.push_back(program);
-    
 
 
 
-    scene->Start();
+
 
     ////SCENE SETUP
-    for(Object* object:scene->sceneObjects)
+    for (Object* object : scene->sceneObjects)
         if (object->name == "platformLong")
             scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply", object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
 
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
-
+    physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
+    physics2D->baseRayCastLength = 2.f;
+    scene->AddActionToObj(physics2D, player);
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
-    Object* ground  = scene->sceneObjects[3];
+    Object* ground = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
+    Object* kong = scene->sceneObjects[5];
+
+
+
+
+
+
+
+
+
+    aModelsFramesAnimator* kongAnimator = new aModelsFramesAnimator();
+    kongAnimator->animationSpeed = 3;
+    std::vector<std::string> kongFrames0 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_0.ply" };
+
+    std::vector<std::string> kongFrames1 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_1.ply" ,
+                                             "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_2.ply" ,
+                                             "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_3.ply" };
+
+    std::vector<std::string> kongFrames2 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_4.ply"
+                                           ,"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_5.ply"
+                                           ,"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_6.ply"
+                                           ,"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_7.ply"
+                                           ,"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_8.ply"
+                                           ,"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_9.ply" };
+
+    kongAnimator->animations.push_back(kongFrames0);
+    kongAnimator->animations.push_back(kongFrames1);
+    kongAnimator->animations.push_back(kongFrames2);
+
+    scene->AddActionToObj(kongAnimator, kong);
+
+
+
+
+
+
 
     Climb* climbAction = new Climb();
     climbAction->climbSpeed = 85.0f;
@@ -1345,37 +1381,87 @@ int main(void)
 
 
 
+    aModelsFramesAnimator* marioAnimator = new aModelsFramesAnimator();
+    marioAnimator->animationSpeed = 5;
+    std::vector<std::string> marioFrames0 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply" };
+
+    std::vector<std::string> marioFrames1 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_1.ply" ,
+                                             "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_2.ply" ,
+    };
+
+    std::vector<std::string> marioFrames2 = { };
+
+    marioAnimator->animations.push_back(marioFrames0);
+    marioAnimator->animations.push_back(marioFrames1);
+    marioAnimator->animations.push_back(marioFrames2);
+
+    scene->AddActionToObj(marioAnimator, player);
+
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
-    playerMovement->phys = physics2D;
+    playerMovement2D->animator = marioAnimator;
+
     scene->AddActionToObj(playerMovement2D, player);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
-
-
-    float spawnBerrelTime = 7.f;
+    bool barrelSpawned = false;
+    bool kongAnimChanged = false;
+    float spawnBerrelTime = 3.75f;
+    float restartTimerTime = 4.f;
     float SpawnTimer = 0;
+    float kongAnimationTime = 3.f;
 
     BarrelFactory factory;
     factory.scene = scene;
 
-    /*climbAction->Update();*/
 
+    bool kongChangge = false;
+    //START
+    scene->Start();
     //LOOP
     while (!glfwWindowShouldClose(window))
     {
+
+
+        //KINDA SCENE GLOBAL UPDATE
+        //Better put this all to action later
         SpawnTimer += scene->deltaTime;
 
-        if (SpawnTimer > spawnBerrelTime)
+        if (SpawnTimer > kongAnimationTime)
         {
-            SpawnTimer = 0;
-           factory.SpawnRegularBarrel();
+            if (!kongAnimChanged)
+            {
+                kongAnimator->ChangeAnimation(1);
+                kongAnimChanged = true;
+            }
 
         }
 
+        if (SpawnTimer > spawnBerrelTime)
+        {
+            if (!barrelSpawned)
+            {
+                factory.SpawnRegularBarrel();
+                barrelSpawned = true;
+            }
+        }
+
+        if (SpawnTimer > restartTimerTime)
+        {
+            SpawnTimer = 0;
+
+            kongAnimator->ChangeAnimation(0);
+            barrelSpawned = false;
+            kongAnimChanged = false;
+
+        }
+
+
+
+
         //std::cout << player->mesh->positionXYZ.x << " " << player->mesh->positionXYZ.y << " " << player->mesh->positionXYZ.x << std::endl;
         //std::cout << physics2D->speed.x << " " << physics2D->speed.y  << " " << physics2D->speed.z << std::endl;
-        std::cout << scene->deltaTime<<std::endl;
+        std::cout << scene->deltaTime << std::endl;
 
         float ratio;
         int width, height;
@@ -1389,11 +1475,11 @@ int main(void)
 
         SetCameraAndProjectionMatrices(ratio, program);
 
-//        // *******************************************************************
+        //        // *******************************************************************
 
 
-        // Update the light info in the shader
-        // (Called every frame)
+                // Update the light info in the shader
+                // (Called every frame)
         scene->lightManager->updateShaderWithLightInfo();
         // *******************************************************************
 
@@ -1410,9 +1496,9 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-       
 
-        for (Object* object:scene->sceneObjects)
+
+        for (Object* object : scene->sceneObjects)
         {
             //            sMesh* pCurMesh = ::g_myMeshes[meshIndex];
             sMesh* pCurMesh = object->mesh;
@@ -1423,14 +1509,14 @@ int main(void)
 
 
 
-      
+
         //DrawLazer(program);
 
 
         // **********************************************************************************
         if (::g_bShowDebugSpheres)
         {
-            DrawDebugObjects(TheLightHelper,program, g_pLightManager);
+            DrawDebugObjects(TheLightHelper, program, g_pLightManager);
         }
         // **********************************************************************************
 
@@ -1444,23 +1530,23 @@ int main(void)
         lastFrameTime = currentFrameTime;
 
 
-      //  UpdateBallShadow();
+        //  UpdateBallShadow();
 
-        // Physic update and test 
-      //  ::g_pPhysicEngine->StepTick(deltaTime);
+          // Physic update and test 
+        //  ::g_pPhysicEngine->StepTick(deltaTime);
 
-       // HandleCollisions();
-
-
+         // HandleCollisions();
 
 
-        // Point the spot light to the ball
+
+
+          // Point the spot light to the ball
         sMesh* pBouncy_5_Ball = pFindMeshByFriendlyName("Bouncy_5");
         if (pBouncy_5_Ball)
         {
             glm::vec3 directionToBal
                 = pBouncy_5_Ball->positionXYZ - glm::vec3(scene->lightManager->theLights[1].position);
-    
+
             // Normalize to get the direction only
             directionToBal = glm::normalize(directionToBal);
 
@@ -1500,7 +1586,7 @@ int main(void)
 //DONE: Add this mesh to vector with all meshes on the screen + return this sMesh*
 //return and push_back
 sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rotXYZ,
-                           bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
+    bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist)
 {
     sMesh* Meshes = new sMesh();
     Meshes->modelFileName = filePath;
@@ -1508,7 +1594,7 @@ sMesh* GenerateMeshObjects(std::string filePath, glm::vec3 posXYZ, glm::vec3 rot
     Meshes->rotationEulerXYZ = rotXYZ;
     Meshes->bOverrideObjectColour = bOverrideColor;
     Meshes->objectColourRGBA = objectColor;
-    
+
     // Set lighting based on the parameter
     Meshes->bDoNotLight = !bDoLightingExist;
 

@@ -108,6 +108,8 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
     }
 
 
+
+
     if ( isShiftDown(window) )
     {
         // Keys move the target

@@ -21,7 +21,7 @@ public:
 
 	void SpawnRegularBarrel()
 	{
-        glm::vec3 position = glm::vec3(0, 190, -37);
+        glm::vec3 position = glm::vec3(0, 180, -70);
         glm::vec3 rotation = glm::vec3(0, -90, 0);
         float scale = 0.1;
 

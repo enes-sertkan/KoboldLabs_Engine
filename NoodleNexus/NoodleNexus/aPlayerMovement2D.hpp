@@ -6,6 +6,7 @@
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "Scene.hpp"
 #include <glm/glm.hpp>
+#include "aModelsFramesAnimator.hpp"
 
 
 
@@ -29,12 +30,19 @@ class aPlayerMovement2D : public Action
 
 	}
 public:
+	aModelsFramesAnimator* animator = nullptr;
 	float walkSpeed = 30.f;
 	float runSpeed = 80.f;
 	float speed = walkSpeed;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;
+	
+	void SetAnimator(aModelsFramesAnimator* newAnimator)
+	{
+		animator = newAnimator;
+	}
+
 
 	enum Direction
 	{
@@ -125,26 +133,54 @@ public:
 		else
 			speed = walkSpeed;
 
-
-
+		bool anyButtonPressed = false;
+		bool walkingAnim = false;
 
 		if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
 		{
 			Move(FORWARD);
+		
 		}
 		if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
 		{
 			Move(BACK);
+	
 		}
 		if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
 		{
+			if (animator)
+				animator->lookingRight = true;
+			if (!walkingAnim)
+			{
+				animator->ChangeAnimation(1);
+				walkingAnim = true;
+			}
 			Move(LEFT);
+			anyButtonPressed = true;
 		}
 		if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
 		{
+			if (animator)
+				animator->lookingRight = false;
+
+			if (!walkingAnim)
+			{
+				animator->ChangeAnimation(1);
+				walkingAnim = true;
+			}
+
 			Move(RIGHT);
+			anyButtonPressed = true;
 		}
 
+
+
+		//Not good to base animations based on buttons and not speed. But ok...
+		if (!anyButtonPressed)
+		{
+			animator->ChangeAnimation(0);
+			walkingAnim = false;
+		}
 
 	}
 

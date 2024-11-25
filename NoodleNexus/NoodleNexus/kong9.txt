@@ -2,6 +2,6 @@
 <ModelFile>
 <name> kong9
 <filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Kong_8.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>
