@@ -20,6 +20,7 @@ public:
 	float speedLengthMultiplier = 1;
 	float bounciness = 0;
 
+
 	bool isPhysicsEnabled = true;
 
 	glm::vec3 airFriction = glm::vec3(0, 0, 0);

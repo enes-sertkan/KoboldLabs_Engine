@@ -1382,12 +1382,13 @@ int main(void)
 
 
     aModelsFramesAnimator* marioAnimator = new aModelsFramesAnimator();
-    marioAnimator->animationSpeed = 5;
+    marioAnimator->animationSpeed = 20;
     std::vector<std::string> marioFrames0 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply" };
 
     std::vector<std::string> marioFrames1 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_1.ply" ,
+                                              "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply",
                                              "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_2.ply" ,
-    };
+                                            "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply" };
 
     std::vector<std::string> marioFrames2 = { };
 
@@ -1399,6 +1400,7 @@ int main(void)
 
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
     playerMovement2D->animator = marioAnimator;
+    playerMovement2D->phys = physics2D;
 
     scene->AddActionToObj(playerMovement2D, player);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);

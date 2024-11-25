@@ -7,6 +7,7 @@
 #include "Scene.hpp"
 #include <glm/glm.hpp>
 #include "aModelsFramesAnimator.hpp"
+#include "aRayCastPhysics2D.hpp"
 
 
 
@@ -37,7 +38,8 @@ public:
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;
-	
+	aRayCastPhysics2D* phys = nullptr;
+
 	void SetAnimator(aModelsFramesAnimator* newAnimator)
 	{
 		animator = newAnimator;
@@ -173,6 +175,19 @@ public:
 			anyButtonPressed = true;
 		}
 
+
+		if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		{
+			if (!phys) return;
+			if (!phys->CheckGround()) return;
+
+
+			glm::vec3 physSpeed = phys->speed;
+			physSpeed.y = 3;
+			phys->speed = physSpeed;
+			phys->ignoreNextCol = true;
+
+		}
 
 
 		//Not good to base animations based on buttons and not speed. But ok...
