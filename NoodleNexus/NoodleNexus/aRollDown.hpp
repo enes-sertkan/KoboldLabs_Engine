@@ -33,6 +33,7 @@ public:
     glm::vec3 savedBarrelGrav;
     glm::vec4     originalColor = glm::vec4(0.f, 1.f, 0.f, 1.f);
     aModelsFramesAnimator* animator = nullptr;
+    float rayLength = 10.0f;
 
     aRollDown() {
         std::srand(static_cast<unsigned>(std::time(0))); // Seed the RNG
@@ -48,7 +49,7 @@ public:
         std::vector<sCollision_RayTriangleInMesh> collisions;
         glm::vec4 gridRayColor = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f); // Blue for horizontal rays
         float rayScale = 0.1f;
-        float rayLength = 10.0f;
+        
         
 
         for (int i = 0; i < rayAmmont; i++)
@@ -174,6 +175,16 @@ public:
             phys->speed = glm::vec3(0, 0, 0);
             savedBarrelGrav = phys->gravityAcceleration;
             phys->gravityAcceleration = glm::vec3(0.f, 0.000000001f, 0.f);
+
+           if (savedBarrelSpeed.z>0)
+           {
+               object->mesh->positionXYZ.z += rayLength ;
+           }
+           else
+           {
+               object->mesh->positionXYZ.z -= rayLength;
+           }
+
         }
 
 
