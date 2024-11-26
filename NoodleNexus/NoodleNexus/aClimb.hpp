@@ -12,7 +12,7 @@ public:
     float climbSpeed = 10.0f;
     int forwardRays = 6;
     int verticalRays = 2;
-    int horizontalRays = 2;
+    int horizontalRays = 5;
     float raySpacing = 2.0f;
 
     bool isClimbing = false;
@@ -88,23 +88,6 @@ public:
             return true;  
         }
 
-        // Vertical and Horizontal rays (grid pattern)
-        //for (int i = 0; i < verticalRays; ++i) {
-        //    for (int j = 0; j < horizontalRays; ++j) {
-        //        glm::vec3 offset = glm::vec3(j * raySpacing - (horizontalRays * raySpacing) / 2.0f,
-        //            i * raySpacing, 0.0f);
-        //        glm::vec3 rayStart = position + offset + forward * forwardOffset;
-        //        glm::vec3 rayEnd = rayStart + forward * rayLength;
-
-        //        
-        //        scene->DrawRay(rayStart, rayEnd, scene->programs[0], gridRayColor, true, rayScale);
-
-        //        
-        //        if (scene->physicsManager->RayCast(rayStart, rayEnd, collisions, true)) {
-        //            return true;  
-        //        }
-        //    }
-        //}
 
         return false;  // No climbable surfaces detected
     }

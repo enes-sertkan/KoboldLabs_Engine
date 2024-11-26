@@ -41,8 +41,8 @@ public:
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
 
-        barrelRoll->climbSpeed = 10;
-        barrelRoll->fallSpeed = -9.8;
+        barrelRoll->descentSpeed = 10;
+        //barrelRoll->velocity = physics2Db->speed;
 
         removeBarrelAction->timeToRemove = 52.0f;
 
