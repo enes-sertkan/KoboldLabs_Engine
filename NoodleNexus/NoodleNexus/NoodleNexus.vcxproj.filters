@@ -137,6 +137,9 @@
     <ClCompile Include="BarrelFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="aModelsFramesAnimator.hpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -263,6 +266,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="aClimb.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aRollDown.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

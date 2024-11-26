@@ -5,6 +5,7 @@
 #include "aRotateAction.hpp"
 #include "GLCommon.h"
 #include "aRemoveAfterTime.hpp"
+#include "aRollDown.hpp"
 
 
 //#include "linmath.h"
@@ -13,6 +14,7 @@
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> 
+
 
 class BarrelFactory
 {
@@ -29,8 +31,7 @@ public:
         aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
         aRotateAction* rotationBarrel = new aRotateAction();
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
-
-
+        aRollDown* barrelRoll = new aRollDown();
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -40,15 +41,17 @@ public:
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
 
+        barrelRoll->climbSpeed = 10;
+        barrelRoll->fallSpeed = -9.8;
+
         removeBarrelAction->timeToRemove = 52.0f;
 
         barrel->isTemporary = true;
 
-
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);
+        scene->AddActionToObj(barrelRoll, barrel);
         scene->AddActionToObj(removeBarrelAction, barrel);
-
 	}
 
 

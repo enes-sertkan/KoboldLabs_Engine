@@ -180,6 +180,7 @@
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRayCastPhysics2D.hpp" />
     <ClInclude Include="aRemoveAfterTime.hpp" />
+    <ClInclude Include="aRollDown.hpp" />
     <ClInclude Include="aRotateAction.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="BarrelFactory.h" />
