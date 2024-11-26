@@ -271,6 +271,18 @@
     <ClInclude Include="aStandingBarrel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aRollDown.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemFactory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aEquipItem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aUseItem.hpp">
+      <Filter>Global things</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

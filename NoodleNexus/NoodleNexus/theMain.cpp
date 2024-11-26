@@ -889,9 +889,9 @@ int main(void)
     fileManager->WriteModelFile(&modelInfo, "flameEnemy3.txt", "XYZNUV");
 
     // HAMMER
-    modelInfo.modelName = "hammer";
+    modelInfo.modelName = "Hammer";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
-    fileManager->WriteModelFile(&modelInfo, "hammer.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "hammer.txt", "XYZNUVRBGA");
 
     // HEART
     modelInfo.modelName = "heart";

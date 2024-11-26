@@ -171,8 +171,11 @@
     <ClInclude Include="aClimbLadder.hpp" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
+    <ClInclude Include="aEquipItem.hpp" />
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
+    <ClInclude Include="aUseItem.hpp" />
+    <ClInclude Include="ItemFactory.hpp" />
     <ClInclude Include="aLadderUseAction.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMoveInDirection.h" />
