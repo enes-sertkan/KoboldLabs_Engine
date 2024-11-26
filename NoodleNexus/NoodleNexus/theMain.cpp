@@ -1135,7 +1135,7 @@ int main(void)
 
     modelInfo.modelName = "rivet";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Rivet.ply";
-    fileManager->WriteModelFile(&modelInfo, "rivet.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "rivet.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "spring0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_1_Spring_0.ply";
@@ -1232,7 +1232,7 @@ int main(void)
 
 
     scene->Prepare(g_pMeshManager, program, g_vecMeshesToDraw, physicsMan, window, g_pFlyCamera);
-    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
+    physicsMan->AddTriangleMesh("assets/models/Cube_xyz_n_uv.ply", scene->sceneObjects[0], scene->sceneObjects[0]->startTranform->position, scene->sceneObjects[0]->startTranform->rotation, scene->sceneObjects[0]->startTranform->scale.x);
 
 
 
@@ -1322,7 +1322,7 @@ int main(void)
     ////SCENE SETUP
     for (Object* object : scene->sceneObjects)
         if (object->name == "platformLong")
-            scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply", object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
+            scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply",object, object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
 
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
@@ -1334,6 +1334,8 @@ int main(void)
     Object* ground = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
     Object* kong = scene->sceneObjects[5];
+    Object* standingBarrel = scene->sceneObjects[14];
+
 
 
 
@@ -1402,9 +1404,9 @@ int main(void)
     playerMovement2D->animator = marioAnimator;
     playerMovement2D->phys = physics2D;
 
-    scene->AddActionToObj(playerMovement2D, player);
-    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
-    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
+   
+    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground, ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
+    scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ground, ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
     bool barrelSpawned = false;
     bool kongAnimChanged = false;

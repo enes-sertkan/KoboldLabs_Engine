@@ -73,6 +73,7 @@ public:
 
 bool PhysicsManager::AddTriangleMesh(
 	std::string meshModelName,
+	Object* object,
 	glm::vec3 meshWorldPosition,
 	glm::vec3 meshWorldOrientation,
 	float uniformScale)
@@ -182,8 +183,11 @@ bool PhysicsManager::AddTriangleMesh(
 	}//for (std::vector<sTriangleP>::iterator itTri
 
 	pMesh->meshInstanceName = meshModelName;
+	pMesh->object = object;
 	//	pMesh->meshModelName = ??
+
 	this->meshColliders.push_back(pMesh);
+
 
 
 	return true;
@@ -210,7 +214,7 @@ bool PhysicsManager::RayCast(glm::vec3 start, glm::vec3 end,
 
 		sCollision_RayTriangleInMesh intersectionInfo;
 		intersectionInfo.theRay = theRay;
-		intersectionInfo.meshInstanceName = pCurTriMesh->meshInstanceName;
+		intersectionInfo.object = pCurTriMesh->object;
 
 		// Go through each triangle
 		for (std::vector<sTriangleP>::iterator itTri = pCurTriMesh->vecTriangles.begin();

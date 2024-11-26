@@ -268,7 +268,7 @@
     <ClInclude Include="aClimb.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aRollDown.hpp">
+    <ClInclude Include="aStandingBarrel.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

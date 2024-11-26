@@ -183,6 +183,7 @@
     <ClInclude Include="aRollDown.hpp" />
     <ClInclude Include="aRotateAction.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
+    <ClInclude Include="aStandingBarrel.hpp" />
     <ClInclude Include="BarrelFactory.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />

@@ -211,7 +211,7 @@ public:
 
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{
-
+			
 			// Update position to avoid getting "stuck" at the collision point
 
 			//HATE THIS

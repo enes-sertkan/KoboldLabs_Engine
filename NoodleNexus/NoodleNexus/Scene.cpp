@@ -252,7 +252,7 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
 
 
         if (object->isCollisionStatic)
-            physicsManager->AddTriangleMesh(object->mesh->modelFileName, object->startTranform->position, object->startTranform->rotation, object->startTranform->scale.x);
+            physicsManager->AddTriangleMesh(object->mesh->modelFileName, object, object->startTranform->position, object->startTranform->rotation, object->startTranform->scale.x);
 
     }
 

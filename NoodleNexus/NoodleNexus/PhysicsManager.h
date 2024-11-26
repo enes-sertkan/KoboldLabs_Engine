@@ -19,6 +19,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include "sObject.h"
 
 
 
@@ -32,9 +33,11 @@ struct sTriangleP
 
 struct sTrianglePMesh
 {
+
 	std::string meshModelName;
 	std::string meshInstanceName;	// Friendly name?
 	std::vector<sTriangleP> vecTriangles;
+	Object* object;
 };
 
 struct sLine
@@ -57,7 +60,7 @@ struct sCollision_RayTriangleInMesh
 	double timeOfCollision;
 
 	sLine theRay;
-	std::string meshInstanceName;
+	Object* object = nullptr;
 	std::vector<sTriangleP> vecTriangles;
 	// Any other things you might want
 };
@@ -73,6 +76,7 @@ public:
 
 	bool AddTriangleMesh(
 		std::string meshModelName,
+		Object* object,
 		glm::vec3 meshWorldPosition,
 		glm::vec3 meshWorldOrientation,
 		float uniformScale);

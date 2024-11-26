@@ -210,6 +210,6 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     }
 
     // Add to physics manager with the applied scale
-    scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
+    scene->physicsManager->AddTriangleMesh(path, obj, position, rotation, scale);
 }
 
