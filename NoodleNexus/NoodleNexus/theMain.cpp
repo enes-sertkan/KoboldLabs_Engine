@@ -1408,6 +1408,9 @@ int main(void)
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground, ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_Ladders.ply", ground, ladder->mesh->positionXYZ, ladder->mesh->rotationEulerXYZ, ladder->mesh->uniformScale);
 
+
+    scene->AddActionToObj(playerMovement2D, player);
+
     bool barrelSpawned = false;
     bool kongAnimChanged = false;
     float spawnBerrelTime = 3.75f;
