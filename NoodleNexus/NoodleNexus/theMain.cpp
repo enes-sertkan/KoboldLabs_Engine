@@ -59,6 +59,7 @@
 #include "BarrelFactory.h"
 #include "aModelsFramesAnimator.hpp"
 #include "aClimb.hpp"
+#include "aStandingBarrel.hpp"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -1334,13 +1335,14 @@ int main(void)
     Object* ground = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
     Object* kong = scene->sceneObjects[5];
-    Object* standingBarrel = scene->sceneObjects[14];
+    Object* standingBarrel = scene->sceneObjects[13];
 
 
+    
 
-
-
-
+    aStandingBarrel* standBarrelAction = new aStandingBarrel();
+    scene->AddActionToObj(standBarrelAction, standingBarrel);
+    
 
 
 

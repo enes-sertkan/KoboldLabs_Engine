@@ -57,7 +57,7 @@ public:
 
 	void Move(Direction direction)
 	{
-		glm::vec3 forward = object->scene->fCamera->getTargetRelativeToCamera();
+		glm::vec3 forward = glm::vec3(-1.f,0.f,0.f);
 		forward.y = 0;
 
 		forward = glm::normalize(forward);

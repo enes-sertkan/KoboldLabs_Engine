@@ -28,6 +28,8 @@ public:
         float scale = 0.1;
 
         Object* barrel = scene->GenerateMeshObjectsFromObject("assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply", position, scale, rotation, true, glm::vec4(0.5, 0.25, 0.1, 1.f), false, scene->sceneObjects);
+        barrel->name = "Barrel";
+        
         aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
         aRotateAction* rotationBarrel = new aRotateAction();
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
