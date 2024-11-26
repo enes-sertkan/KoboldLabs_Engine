@@ -34,6 +34,8 @@ public:
         aRotateAction* rotationBarrel = new aRotateAction();
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
         aRollDown* barrelRoll = new aRollDown();
+        aModelsFramesAnimator* barrelAnimator = new aModelsFramesAnimator();
+
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -43,17 +45,27 @@ public:
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
 
-        barrelRoll->descentSpeed = 10;
+        barrelRoll->descentSpeed = 1;
+        barrelRoll->phys = physics2Db;
+        barrelRoll->animator = barrelAnimator;
         //barrelRoll->velocity = physics2Db->speed;
 
         removeBarrelAction->timeToRemove = 52.0f;
 
         barrel->isTemporary = true;
 
+        std::vector<std::string> berrelRollAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply" };
+        std::vector<std::string> berrelClimbAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply" };
+        barrelAnimator->animations.push_back(berrelRollAnim);
+        barrelAnimator->animations.push_back(berrelClimbAnim);
+
+
+
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);
         scene->AddActionToObj(barrelRoll, barrel);
         scene->AddActionToObj(removeBarrelAction, barrel);
+        scene->AddActionToObj(barrelAnimator, barrel);
 	}
 
     void SpawnBlueBarrel()

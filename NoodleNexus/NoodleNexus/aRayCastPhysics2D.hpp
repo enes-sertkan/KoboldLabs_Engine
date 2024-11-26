@@ -27,6 +27,8 @@ public:
 
 	float yChange = 10.f;
 
+	bool isOn = true;
+
 	void ApplySpeed()
 	{
 		//object->mesh->positionXYZ.x += speed.x;
@@ -179,6 +181,8 @@ public:
 
 	void Update() override
 	{
+		if (!isOn) return;
+
 
 		std::vector<sCollision_RayTriangleInMesh> collisions = CheckHit(glm::normalize(gravityAcceleration));
 

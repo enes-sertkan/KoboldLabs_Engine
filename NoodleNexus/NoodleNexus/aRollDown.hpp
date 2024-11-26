@@ -2,11 +2,14 @@
 
 #include "Action.h"
 #include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
 #include <vector>
 #include "PhysicsManager.h"
 #include "Scene.hpp"
 #include <cstdlib> // For random number generation
 #include <ctime>   // To seed the random number generator
+#include "aRayCastPhysics2D.hpp"
+#include "aModelsFramesAnimator.hpp"
 
 class aRollDown : public Action {
 public:
@@ -15,114 +18,197 @@ public:
     bool isDescending = false;  // Whether the barrel is currently descending
     bool canUseLadder = false;  // Whether this barrel can detect ladders
     bool usedFirstLadder = false; // Tracks if the first ladder was used
-    float raySpacing = 2.0f; // Ray spacing for side collision detection
+    bool skippedFirst = false;
+    float raySpacing = -10.0f; 
+    float rayHeight = -8.f;
+    bool skippedLadder = false;
+
+    int rayAmmont = 2;
     bool isOnGround = false;  // Whether the barrel has landed on the ground
     bool isMovingDown = true;  // Direction flag for movement after hitting the ground
+    bool onLadder = false;
+    bool isOn = true;
+    aRayCastPhysics2D* phys = nullptr;
+    glm::vec3 savedBarrelSpeed;
+    glm::vec3 savedBarrelGrav;
+    glm::vec4     originalColor = glm::vec4(0.f, 1.f, 0.f, 1.f);
+    aModelsFramesAnimator* animator = nullptr;
 
     aRollDown() {
         std::srand(static_cast<unsigned>(std::time(0))); // Seed the RNG
 
         // Assign 10% chance for this barrel to use ladders
-        canUseLadder = (std::rand() % 100) < 10;
+        isOn = (std::rand() % 100) < 70;
     }
 
     // Ladder detection using horizontal rays
-    bool DetectLadder(Scene* scene, glm::vec3 position, glm::vec3& ladderPosition) {
-        if (!canUseLadder) return false; // Skip detection for barrels without ladder ability
+    bool DetectLadder(Scene* scene, glm::vec3 position) {
+       
 
         std::vector<sCollision_RayTriangleInMesh> collisions;
         glm::vec4 gridRayColor = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f); // Blue for horizontal rays
         float rayScale = 0.1f;
         float rayLength = 10.0f;
-        float lowerYOffset = -17.0f;
+        
 
-        // Horizontal grid ray detection
-        glm::vec3 right = glm::vec3(0, 0, 1); // Direction along Z-axis
-        glm::vec3 rayStart = position + glm::vec3(1.8f, lowerYOffset, 0.0f) - right * rayLength / 2.0f;
-        glm::vec3 rayEnd = rayStart + right * rayLength;
+        for (int i = 0; i < rayAmmont; i++)
+        {
+            // Horizontal grid ray detection
+            glm::vec3 right = glm::vec3(0, 0, 1); // Direction along Z-axis
+            glm::vec3 rayStart = position + glm::vec3(1.8f, rayHeight, 0.0f) - right * rayLength / 2.0f;
+            glm::vec3 rayEnd = rayStart + right * rayLength;
 
-        // Draw the ray for debugging
-        scene->DrawRay(rayStart, rayEnd, scene->programs[0], gridRayColor, true, rayScale);
 
-        // Perform raycast
-        if (scene->physicsManager->RayCast(rayStart, rayEnd, collisions, true)) {
-            if (!collisions.empty() && collisions[0].object && collisions[0].object->name == "ladder") {
-                glm::vec3 rayDirection = glm::normalize(rayEnd - rayStart);
-                ladderPosition = rayStart + rayDirection * static_cast<float>(collisions[0].timeOfCollision);
-                return true; // Ladder detected
+            // Draw the ray for debugging
+          //  scene->DrawRay(rayStart, rayEnd, scene->programs[0], gridRayColor, true, rayScale);
+
+            // Perform raycast
+            if (scene->physicsManager->RayCast(rayStart, rayEnd, collisions, false)) {
+                return true;
             }
+
+            position.y += raySpacing;
         }
+
+      
+
         return false; // No ladder detected
     }
 
-    void Update() override {
-        glm::vec3 position = object->mesh->positionXYZ;
-        glm::vec3 ladderPosition;
 
-        // Ladder detection and descent logic
-        if (DetectLadder(object->scene, position, ladderPosition)) {
-            if (!usedFirstLadder) {
-                // Always descend the first ladder
-                object->mesh->positionXYZ = glm::mix(position, ladderPosition, 0.1f);
-                object->mesh->positionXYZ.y -= descentSpeed * object->scene->deltaTime;
-                isDescending = true;
-                usedFirstLadder = true;
-            }
-            else {
-                // 50% chance to descend additional ladders
-                if ((std::rand() % 100) < 50) {
-                    object->mesh->positionXYZ = glm::mix(position, ladderPosition, 0.1f);
-                    object->mesh->positionXYZ.y -= descentSpeed * object->scene->deltaTime;
-                    isDescending = true;
-                }
-                else {
-                    isDescending = false; // Skip this ladder
-                }
-            }
+
+
+
+    void Update() override {
+
+
+
+
+        if (!isOn) {
+            object->mesh->objectColourRGBA = originalColor; return;
         }
-        else {
-            isDescending = false; // Not descending
+
+
+
+        glm::vec3 position = object->mesh->positionXYZ;
+     
+        if (skippedLadder)
+        {
+            if (!DetectLadder(object->scene, position))
+            {
+                skippedLadder = false;
+            }
+            return;
+        }
+
+        if (!onLadder)
+        {
+
+            // Ladder detection and descent logic
+            if (DetectLadder(object->scene, position)) {
+              
+                if ((std::rand() % 100) < 50) {
+                    StartRollingOnLadder();
+                    onLadder = true;
+                }
+                else
+                {
+                    skippedLadder = true;
+                }
+
+
+                //if (!usedFirstLadder) {
+                //    StartRollingOnLadder();
+                //    onLadder = true;
+                //    usedFirstLadder = true;
+                //}
+                //else {
+                //    // 50% chance to descend additional ladders
+                //    if ((std::rand() % 100) < 50) {
+                //        StartRollingOnLadder();
+                //        onLadder = true;
+                //    }
+                //    else
+                //    {
+                //        isOn = false;
+                //    }
+
+                
+            }
         }
 
         // Disable physics (no gravity) while on the ladder
-        if (isDescending) {
-            velocity = glm::vec3(0.0f); // Stop moving in any direction other than Y
-            // Only update Y-axis (vertical movement) for descent
-            object->mesh->positionXYZ.y -= descentSpeed * object->scene->deltaTime;
-        }
-        else {
-            // Ground collision handling when barrel is not descending
-            glm::vec3 groundRayStart = position;
-            glm::vec3 groundRayEnd = position + glm::vec3(0.0f, -1.0f, 0.0f);
-            std::vector<sCollision_RayTriangleInMesh> groundCollisions;
+        if (onLadder) {
 
-            if (object->scene->physicsManager->RayCast(groundRayStart, groundRayEnd, groundCollisions, true)) {
-                glm::vec3 rayDirection = glm::normalize(groundRayEnd - groundRayStart);
-                glm::vec3 collisionPoint = groundRayStart + rayDirection * static_cast<float>(groundCollisions[0].timeOfCollision);
+            object->mesh->objectColourRGBA = glm::vec4(1.f, 0.f, 0.f, 1.f);
 
-                object->mesh->positionXYZ.y = collisionPoint.y;
-                velocity.y = 0.0f; // Stop falling after hitting the ground
+            if (!DetectLadder(object->scene, position))
+            {
+                onLadder = false;
 
-                if (!isOnGround) {
-                    // Reverse movement direction once the barrel hits the ground
-                    isMovingDown = !isMovingDown;
-                    isOnGround = true;
-                }
+                StopRollingOnLadder();
             }
+
+            RollOnLadder();
         }
 
-        // After hitting the ground, the barrel will move in the opposite direction
-        if (isOnGround) {
-            if (isMovingDown) {
-                velocity.y = -descentSpeed;  // Move downwards
-            }
-            else {
-                velocity.y = descentSpeed;   // Move upwards (or stop moving)
-            }
+        else
+
+        {
+            object->mesh->objectColourRGBA = glm::vec4(0.f, 0.f, 1.f, 1.f);
+        }
+            
+        
+
+       
+    }
+
+    void StartRollingOnLadder()
+    {
+        //Set Position on Barrel to ladder pos
+
+        if (phys)
+        {
+            phys->isOn = false;
+            savedBarrelSpeed = phys->speed;
+            phys->speed = glm::vec3(0, 0, 0);
+            savedBarrelGrav = phys->gravityAcceleration;
+            phys->gravityAcceleration = glm::vec3(0.f, 0.000000001f, 0.f);
         }
 
-        // Update barrel position with velocity
-        object->mesh->positionXYZ += velocity * object->scene->deltaTime;
+
+        if (animator)
+        {
+            animator->ChangeAnimation(1); // 1 = Climb Down Anim
+        }
+
+        object->mesh->rotationEulerXYZ = glm::vec3(0.f, 0.f, 0.f);
+    }   
+
+    void RollOnLadder()
+    {
+        object->mesh->positionXYZ.y -= descentSpeed;
+
+    }
+
+    void StopRollingOnLadder()
+    {
+        //Set Position on Barrel to ladder pos
+
+        if (phys)
+        {
+            phys->isOn = true;;
+            savedBarrelSpeed.z = -savedBarrelSpeed.z;
+            phys->speed = savedBarrelSpeed;
+            phys->gravityAcceleration = savedBarrelGrav;
+       
+        }
+
+        if (animator)
+        {
+            animator->ChangeAnimation(0);// 0 = Roll Anim
+        }
+
     }
 
     void DrawRays(Scene* scene, glm::vec3 position, glm::vec3 forward, float climbHeight, GLuint program) {

@@ -1385,6 +1385,7 @@ int main(void)
 
 
 
+
     aModelsFramesAnimator* marioAnimator = new aModelsFramesAnimator();
     marioAnimator->animationSpeed = 20;
     std::vector<std::string> marioFrames0 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Mario_0.ply" };

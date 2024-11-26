@@ -12,8 +12,10 @@ public:
 
     void Update() override
     {
-        if (object && object->mesh) 
+        if (object && object->mesh && physics) 
         {
+            if (!physics->isOn) return;
+
            if ( physics->speed.z<0) 
             object->mesh->rotationEulerXYZ.z += rotationSpeed * object->scene->deltaTime;
            else
