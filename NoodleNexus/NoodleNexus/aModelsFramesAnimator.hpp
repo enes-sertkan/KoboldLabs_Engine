@@ -96,6 +96,7 @@ public:
 			std::cout << "SAME ANIM" << std::endl;
 			return;
 		}
+
 		lastFrame = -1;
 		currentFrame = 0;
 		currentTime = 0;

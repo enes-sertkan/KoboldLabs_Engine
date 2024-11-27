@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> hammer
+<name> Hammer
 <filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRBGA
 </ModelFile>
 </KoboldLabs>

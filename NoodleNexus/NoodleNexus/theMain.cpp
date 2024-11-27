@@ -857,19 +857,19 @@ int main(void)
     // FIRE
     modelInfo.modelName = "fire0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire0.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "fire0.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "fire1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "fire1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "fire2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "fire2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "fire3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Fire_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "fire3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "fire3.txt", "XYZNUVRGBA");
 
     // FLAME ENEMY
     modelInfo.modelName = "flameEnemy0";
@@ -1335,13 +1335,12 @@ int main(void)
     Object* ground = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
     Object* kong = scene->sceneObjects[5];
-    Object* standingBarrel = scene->sceneObjects[13];
+    
 
 
     
 
-    aStandingBarrel* standBarrelAction = new aStandingBarrel();
-    scene->AddActionToObj(standBarrelAction, standingBarrel);
+  
     
 
 
@@ -1426,6 +1425,9 @@ int main(void)
 
 
     bool kongChangge = false;
+
+
+    factory.SpawnStandingBarrel(glm::vec3(0.f, 180.f, 50.f));
     //START
     scene->Start();
     //LOOP
