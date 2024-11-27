@@ -33,6 +33,20 @@ public:
 	std::vector<Action*> actions;
 	std::vector<Object*> sceneObjects;
 
+	int health = 100;        
+	bool isDestructible = false;
+
+	void TakeDamage(int damageAmount) {
+		if (!isDestructible) return;  
+
+		health -= damageAmount;
+
+		if (health <= 0) {
+			health = 0;
+			Destroy(); 
+		}
+	}
+
 	//void Start()
 	//{
 	//	for (Action* action : actions)

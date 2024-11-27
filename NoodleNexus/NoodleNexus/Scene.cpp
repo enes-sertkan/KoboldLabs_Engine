@@ -388,3 +388,13 @@ Object* Scene::GenerateMeshObjectsFromObject(
 
     return object;
 }
+
+
+bool Scene::IsNearby(const std::string& targetName, const glm::vec3& position, float range) {
+    for (Object* obj : sceneObjects) {
+        if (obj->name == targetName && glm::distance(obj->mesh->positionXYZ, position) <= range) {
+            return true;
+        }
+    }
+    return false;
+}

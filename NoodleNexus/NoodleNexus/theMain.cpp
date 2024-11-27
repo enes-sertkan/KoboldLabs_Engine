@@ -50,6 +50,7 @@
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
 #include "aRotateAction.hpp"
+#include "ItemFactory.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -1382,6 +1383,14 @@ int main(void)
     physics2D->baseRayCastLength = 2.f;
     scene->AddActionToObj(physics2D, player);
 
+
+    ItemFactory* spawnItem = new ItemFactory(scene);
+    spawnItem->SpawnRandomItems();
+    spawnItem->SpawnRandomItems();
+    spawnItem->SpawnRandomItems();
+    spawnItem->SpawnRandomItems();
+    spawnItem->SpawnRandomItems();
+    spawnItem->SpawnRandomItems();
 
 
 

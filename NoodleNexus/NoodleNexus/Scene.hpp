@@ -80,5 +80,8 @@ public:
 		const glm::vec3& param1,
 		float param2x);
 
+
+	bool IsNearby(const std::string& targetName, const glm::vec3& position, float range = 5.0f);
+
 	
 };
