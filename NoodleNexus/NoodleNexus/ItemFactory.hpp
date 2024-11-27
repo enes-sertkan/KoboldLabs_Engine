@@ -4,6 +4,8 @@
 #include "aRemoveAfterTime.hpp"
 #include "aEquipItem.hpp"
 #include "aUseItem.hpp"
+#include "aPlayerHammerController.hpp"
+
 #include "glm/vec3.hpp"
 #include <vector>
 #include <cstdlib>
@@ -12,48 +14,53 @@
 class ItemFactory
 {
 public:
-	Scene* scene;
+    Scene* scene;
 
-	std::vector<glm::vec3> spawnLocations = {
-		glm::vec3(0, 57, 111),
-		glm::vec3(0, 87, -92),
-		glm::vec3(0, 117, 63),
-		glm::vec3(0, 147, -56),
-	};
+    std::vector<glm::vec3> spawnLocations = {
+        glm::vec3(0, 57, 100),
+        glm::vec3(0, 87, -80),
+        glm::vec3(0, 117, 55),
+        glm::vec3(0, 147, -45),
+    };
 
-	ItemFactory(Scene* scene) : scene(scene) {
-		std::srand(static_cast<unsigned>(std::time(0)));
-	}
+    ItemFactory(Scene* scene) : scene(scene) {
+        std::srand(static_cast<unsigned>(std::time(0)));
+    }
 
-	void SpawnHammer(glm::vec3 position, float scale = 1.0f)
-	{
-		glm::vec3 rotation = glm::vec3(0, 0, 0);
-		glm::vec4 color = glm::vec4(0.8f, 0.8f, 0.1f, 1.0f);
+    void SpawnHammer(glm::vec3 position, float scale = 0.1f)
+    {
+        glm::vec3 rotation = glm::vec3(0, -90, 0);
+        glm::vec4 color = glm::vec4(0.8f, 0.8f, 0.1f, 1.0f);
 
-		Object* hammer = scene->GenerateMeshObjectsFromObject(
-			"assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply",
-			position,
-			scale,
-			rotation,
-			true,
-			color,
-			false,
-			scene->sceneObjects
+        Object* hammer = scene->GenerateMeshObjectsFromObject(
+            "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply",
+            position,
+            scale,
+            rotation,
+            true,
+            color,
+            false,
+            scene->sceneObjects
 
-		);
+        );
         hammer->name = "Hammer";
 
         aEquipItem* equipAction = new aEquipItem();
         aUseItem* useAction = new aUseItem();
         aRemoveAfterTime* removeAction = new aRemoveAfterTime();
+        aPlayerHammerController* playerHammer = new aPlayerHammerController();
 
-        useAction->effectRange = 10.0f;
+        useAction->effectRange = 3.0f;
         useAction->damage = 50;
-        removeAction->timeToRemove = 30.0f;
+        //removeAction->timeToRemove = 30.0f;
+        playerHammer->equipTarget = "mario1";
+        //equipAction->equipTarget = "Hammer";
 
-        scene->AddActionToObj(equipAction, hammer);
+        //scene->AddActionToObj(equipAction, hammer);
         scene->AddActionToObj(useAction, hammer);
-        scene->AddActionToObj(removeAction, hammer);
+        scene->AddActionToObj(playerHammer, hammer);
+        //scene->AddActionToObj(equipAction, hammer);
+
         hammer->isTemporary = true;
     }
 

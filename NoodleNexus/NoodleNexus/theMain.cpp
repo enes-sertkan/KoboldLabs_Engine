@@ -892,7 +892,7 @@ int main(void)
     // HAMMER
     modelInfo.modelName = "Hammer";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
-    fileManager->WriteModelFile(&modelInfo, "hammer.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "hammer.txt", "XYZNUVRGBA");
 
     // HEART
     modelInfo.modelName = "heart";
@@ -1186,7 +1186,7 @@ int main(void)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     //
 
-    GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(640, 480, "Donkey Kong", NULL, NULL);
 
     GLuint program = PrepareOpenGL(window);
 
@@ -1328,9 +1328,15 @@ int main(void)
 
     Object* player = scene->sceneObjects[2];
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
+    aPlayerHammerController* playerHammer = new aPlayerHammerController();
+
     physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
     physics2D->baseRayCastLength = 2.f;
+
+    playerHammer->equipTarget = "Hammer";
+
     scene->AddActionToObj(physics2D, player);
+    scene->AddActionToObj(playerHammer, player);
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground = scene->sceneObjects[3];
@@ -1389,8 +1395,7 @@ int main(void)
     spawnItem->SpawnRandomItems();
     spawnItem->SpawnRandomItems();
     spawnItem->SpawnRandomItems();
-    spawnItem->SpawnRandomItems();
-    spawnItem->SpawnRandomItems();
+
 
 
 

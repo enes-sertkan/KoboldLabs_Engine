@@ -11,7 +11,7 @@ public:
         for (Object* target : object->scene->sceneObjects) {
             if (target->name == "Barrel" || target->name == "Flame_Enemy") {
                 if (glm::distance(object->mesh->positionXYZ, target->mesh->positionXYZ) <= effectRange) {
-                    target->TakeDamage(damage);
+                    target->Destroy();
                 }
             }
         }

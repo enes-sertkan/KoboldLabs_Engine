@@ -32,6 +32,8 @@ public:
 
 	std::vector<Action*> actions;
 	std::vector<Object*> sceneObjects;
+	std::vector<Object*> heldItems;
+
 
 	int health = 100;        
 	bool isDestructible = false;
@@ -46,6 +48,7 @@ public:
 			Destroy(); 
 		}
 	}
+
 
 	//void Start()
 	//{
