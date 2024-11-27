@@ -1462,7 +1462,15 @@ int main(void)
         {
             if (!barrelSpawned)
             {
-                factory.SpawnRegularBarrel();
+
+                if ((std::rand() % 100) < 80) {
+                    factory.SpawnRegularBarrel();
+                                   }
+                else
+                {
+                    factory.SpawnBlueBarrel();
+                }
+
                 barrelSpawned = true;
             }
         }

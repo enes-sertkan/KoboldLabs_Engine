@@ -18,7 +18,7 @@ public:
 
 		for (Object* obj:object->scene->sceneObjects)
 		{
-			if (obj->name == "Barrel")
+			if (obj->name == "BlueBarrel")
 			{
 				if (glm::distance(obj->mesh->positionXYZ, object->mesh->positionXYZ) < 5)
 				{

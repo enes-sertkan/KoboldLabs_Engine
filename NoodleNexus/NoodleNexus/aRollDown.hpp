@@ -22,7 +22,7 @@ public:
     float raySpacing = -10.0f; 
     float rayHeight = -8.f;
     bool skippedLadder = false;
-
+    int rollDownChance = 50;
     int rayAmmont = 2;
     bool isOnGround = false;  // Whether the barrel has landed on the ground
     bool isMovingDown = true;  // Direction flag for movement after hitting the ground
@@ -86,7 +86,7 @@ public:
 
 
         if (!isOn) {
-            object->mesh->objectColourRGBA = originalColor; return;
+            return;
         }
 
 
@@ -108,7 +108,7 @@ public:
             // Ladder detection and descent logic
             if (DetectLadder(object->scene, position)) {
               
-                if ((std::rand() % 100) < 50) {
+                if ((std::rand() % 100) < rollDownChance) {
                     StartRollingOnLadder();
                     onLadder = true;
                 }
@@ -141,7 +141,7 @@ public:
         // Disable physics (no gravity) while on the ladder
         if (onLadder) {
 
-            object->mesh->objectColourRGBA = glm::vec4(1.f, 0.f, 0.f, 1.f);
+            
 
             if (!DetectLadder(object->scene, position))
             {
@@ -156,7 +156,7 @@ public:
         else
 
         {
-            object->mesh->objectColourRGBA = glm::vec4(0.f, 0.f, 1.f, 1.f);
+       
         }
             
         

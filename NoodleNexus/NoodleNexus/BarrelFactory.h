@@ -71,16 +71,20 @@ public:
 
     void SpawnBlueBarrel()
     {
+
         glm::vec3 position = glm::vec3(0, 180, -70);
         glm::vec3 rotation = glm::vec3(0, -90, 0);
         float scale = 0.1;
 
         Object* barrel = scene->GenerateMeshObjectsFromObject("assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply", position, scale, rotation, true, glm::vec4(0.1, 0.1, 0.5, 1.f), false, scene->sceneObjects);
+        barrel->name = "BlueBarrel";
+
         aRayCastPhysics2D* physics2Db = new aRayCastPhysics2D();
         aRotateAction* rotationBarrel = new aRotateAction();
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
-
-
+        aRollDown* barrelRoll = new aRollDown();
+        aModelsFramesAnimator* barrelAnimator = new aModelsFramesAnimator();
+        barrelRoll->rollDownChance = 100;
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -90,15 +94,28 @@ public:
         rotationBarrel->rotationSpeed = 250.0f;
         rotationBarrel->physics = physics2Db;
 
+        barrelRoll->descentSpeed = 1;
+        barrelRoll->phys = physics2Db;
+        barrelRoll->animator = barrelAnimator;
+        //barrelRoll->velocity = physics2Db->speed;
+
         removeBarrelAction->timeToRemove = 52.0f;
 
         barrel->isTemporary = true;
 
+        std::vector<std::string> berrelRollAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply" };
+        std::vector<std::string> berrelClimbAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply" };
+        barrelAnimator->animations.push_back(berrelRollAnim);
+        barrelAnimator->animations.push_back(berrelClimbAnim);
+
+
 
         scene->AddActionToObj(physics2Db, barrel);
         scene->AddActionToObj(rotationBarrel, barrel);
+        scene->AddActionToObj(barrelRoll, barrel);
         scene->AddActionToObj(removeBarrelAction, barrel);
-
+        scene->AddActionToObj(barrelAnimator, barrel);
+    
     }
 
     void SpawnStandingBarrel(glm::vec3 position)
@@ -123,6 +140,7 @@ public:
         animator->animationSpeed = 5;
 
         scene->AddActionToObj(animator, fire);
+        standingBarrel->isTemporary = true;
 
         animator->animations.push_back(fireAnim);
     }
