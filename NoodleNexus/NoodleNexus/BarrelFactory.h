@@ -84,7 +84,7 @@ public:
         aRemoveAfterTime* removeBarrelAction = new aRemoveAfterTime();
         aRollDown* barrelRoll = new aRollDown();
         aModelsFramesAnimator* barrelAnimator = new aModelsFramesAnimator();
-        barrelRoll->rollDownChance = 100;
+        barrelRoll->rollDownChance = 1000;
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
         physics2Db->speed = glm::vec3(0.f, 0.f, 1.f);
@@ -145,5 +145,6 @@ public:
         animator->animations.push_back(fireAnim);
     }
 
+   
 };
 

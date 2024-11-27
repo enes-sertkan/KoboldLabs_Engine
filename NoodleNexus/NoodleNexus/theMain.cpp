@@ -875,19 +875,19 @@ int main(void)
     // FLAME ENEMY
     modelInfo.modelName = "flameEnemy0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy0.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "flameEnemy0.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "flameEnemy1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "flameEnemy1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "flameEnemy2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "flameEnemy2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "flameEnemy3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_FlameEnemy_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "flameEnemy3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "flameEnemy3.txt", "XYZNUVRGBA");
 
     // HAMMER
     modelInfo.modelName = "Hammer";
@@ -1429,10 +1429,10 @@ int main(void)
 
     bool barrelSpawned = false;
     bool kongAnimChanged = false;
-    float spawnBerrelTime = 3.75f;
-    float restartTimerTime = 4.f;
+    float spawnBerrelTime = 5.75f;
+    float restartTimerTime = 6.f;
     float SpawnTimer = 0;
-    float kongAnimationTime = 3.f;
+    float kongAnimationTime = 5.f;
 
     BarrelFactory factory;
     factory.scene = scene;
@@ -1441,7 +1441,7 @@ int main(void)
     bool kongChangge = false;
 
 
-    factory.SpawnStandingBarrel(glm::vec3(0.f, 180.f, 50.f));
+    factory.SpawnStandingBarrel(glm::vec3(0.f, 10.f, -70.f));
     //START
     scene->Start();
     //LOOP
