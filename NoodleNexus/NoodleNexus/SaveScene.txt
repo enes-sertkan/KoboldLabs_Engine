@@ -30,6 +30,7 @@ pauline2.txt
 pauline3.txt
 pauline4.txt
 selectBox.txt
+points100.txt
 <--ObjectLoad>
 <Scene-->
 
