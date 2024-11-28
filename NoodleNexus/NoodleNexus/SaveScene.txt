@@ -34,7 +34,7 @@ points100.txt
 explosion0.txt
 explosion1.txt
 explosion2.txt
-explosion3.txt
+explosion3sssssssssss.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -246,253 +246,6 @@ explosion3.txt
 <Color-> 0.9 0.15 0.56
 <--Object>
 
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 1.49189e+27 6.93643e-43 1.49252e+27
-<Rotation-> 6.93643e-43 1.4928e+27 6.93643e-43
-<Scale-> 1.493e+27 0 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.66418e-41 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> -1.37178e-19 4.58225e-43 -1.37058e-19
-<Rotation-> 4.58225e-43 -1.37034e-19 4.58225e-43
-<Scale-> -1.37183e-19 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> -1.30935e-10 6.75426e-43 -1.30932e-10
-<Rotation-> 6.75426e-43 -1.31015e-10 6.75426e-43
-<Scale-> -1.30996e-10 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 2.99043e-05 7.25873e-43 2.9905e-05
-<Rotation-> 7.25873e-43 2.98969e-05 7.25873e-43
-<Scale-> 2.98847e-05 0 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.66418e-41 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> -1.57378e-13 5.64723e-43 -1.57365e-13
-<Rotation-> 5.64723e-43 -1.57412e-13 5.64723e-43
-<Scale-> -1.57509e-13 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 6.86523e+34 4.82047e-43 6.86542e+34
-<Rotation-> 4.82047e-43 6.86609e+34 4.82047e-43
-<Scale-> 6.86409e+34 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 3.15943e-23 4.84849e-43 3.159e-23
-<Rotation-> 4.84849e-43 3.15815e-23 4.84849e-43
-<Scale-> 3.15743e-23 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.66418e-41 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> <Model-><Tags->
-<Model-> <Model-><Tags->
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.66418e-41 0
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
-<Object-->
-<Name-> 
-<Model-> 
-<Tags->
-<StaticCollision-> false
-<Position-> -1.67938e+12 6.74025e-43 -1.67943e+12
-<Rotation-> 6.74025e-43 -1.67969e+12 6.74025e-43
-<Scale-> -1.67923e+12 6.74025e-43 -1.67886e+12
-<Visibility-> false
-<Shading-> false
-<Color-> 0.9 0.3 0.3
-<--Object>
-
 <Light-->
 <Position-> 0.64 69999.4 -40049 1
 <Diffuse-> 1000 0 -9388 1
@@ -564,12 +317,12 @@ explosion3.txt
 <--Light>
 
 <Camera-->
-<Position-> 78 60 15
+<Position-> -431 137 2
 <Rotation-> 163 84 -164
 <--Camera>
 
 <Camera-->
-<Position-> 40 60 15
+<Position-> -431 137 2
 <Rotation-> 163 84 -164
 <--Camera>
 
