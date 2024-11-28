@@ -61,6 +61,8 @@
 #include "aModelsFramesAnimator.hpp"
 #include "aClimb.hpp"
 #include "aStandingBarrel.hpp"
+#include "aMarioDeath.h"
+#include "aScoreManager.h"
 
 
 std::vector<sMesh*> g_vecMeshesToDraw;
@@ -663,7 +665,7 @@ int main(void)
     // POINTS
     modelInfo.modelName = "points100";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_100.ply";
-    fileManager->WriteModelFile(&modelInfo, "points100.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "points100.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "points200";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_200.ply";
@@ -1156,13 +1158,8 @@ int main(void)
     // end of question 1 creating models
 
 
-    // Read the model from the file (assuming the file exists)
-   // Read the model from the file (assuming the file exists)
-    sModelDrawInfo readModel = fileManager->ReadModelFile("bunny.txt");
 
-    // Output the result to verify the correct reading
-    std::cout << "Model Name: " << readModel.modelName << std::endl;
-    std::cout << "Mesh Path: " << readModel.meshPath << std::endl;
+
 
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
@@ -1446,9 +1443,17 @@ int main(void)
 
     scene->AddActionToObj(marioAnimator, player);
 
+    aMarioDeath* marioDeath = new aMarioDeath();
+    scene->AddActionToObj(marioDeath, player);
+
     aPlayerMovement2D* playerMovement2D = new aPlayerMovement2D();
     playerMovement2D->animator = marioAnimator;
     playerMovement2D->phys = physics2D;
+    
+    aScoreManager* scoreManager = new aScoreManager();//It tracks when to give score and draws score on the screen
+    scoreManager->marioPhys = physics2D;
+    scene->AddActionToObj(scoreManager, player);
+
 
    
     scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_0_base.ply", ground, ground->mesh->positionXYZ, ground->mesh->rotationEulerXYZ, ground->mesh->uniformScale);
@@ -1469,6 +1474,8 @@ int main(void)
 
 
     bool kongChangge = false;
+
+
 
 
     factory.SpawnStandingBarrel(glm::vec3(0.f, 10.f, -70.f));
@@ -1525,7 +1532,7 @@ int main(void)
 
         //std::cout << player->mesh->positionXYZ.x << " " << player->mesh->positionXYZ.y << " " << player->mesh->positionXYZ.x << std::endl;
         //std::cout << physics2D->speed.x << " " << physics2D->speed.y  << " " << physics2D->speed.z << std::endl;
-        std::cout << scene->deltaTime << std::endl;
+       // std::cout << scene->deltaTime << std::endl;
 
         float ratio;
         int width, height;

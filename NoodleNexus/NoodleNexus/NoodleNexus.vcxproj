@@ -140,6 +140,7 @@
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aPlayerMovement2D.hpp" />
     <ClCompile Include="aModelsFramesAnimator.hpp" />
+    <ClCompile Include="aScoreManager.h" />
     <ClCompile Include="BarrelFactory.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />

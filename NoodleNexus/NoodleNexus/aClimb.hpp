@@ -70,6 +70,8 @@ public:
 
             // Perform raycast for forward rays
             if (scene->physicsManager->RayCast(rayStart, rayEnd, collisions, true)) {
+                
+                if (collisions[0].object->name=="ladder")
                 return true; 
             }
         }

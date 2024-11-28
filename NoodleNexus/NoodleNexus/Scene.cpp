@@ -302,7 +302,7 @@ void Scene::Update()
         if (obj)
         {
             for (Action* action : obj->actions)
-            {
+            {if (action)
                 action->Update();
             }
         }
@@ -397,4 +397,13 @@ bool Scene::IsNearby(const std::string& targetName, const glm::vec3& position, f
         }
     }
     return false;
+}
+
+Object* Scene::GetNearbyObject(const std::string& targetName, const glm::vec3& position, float range) {
+    for (Object* obj : sceneObjects) {
+        if (obj->name == targetName && glm::distance(obj->mesh->positionXYZ, position) <= range) {
+            return obj;
+        }
+    }
+    return nullptr;
 }

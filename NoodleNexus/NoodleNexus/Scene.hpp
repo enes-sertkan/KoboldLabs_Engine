@@ -82,6 +82,7 @@ public:
 
 
 	bool IsNearby(const std::string& targetName, const glm::vec3& position, float range = 5.0f);
+	Object* GetNearbyObject(const std::string& targetName, const glm::vec3& position, float range = 5.0f);
 
 	
 };

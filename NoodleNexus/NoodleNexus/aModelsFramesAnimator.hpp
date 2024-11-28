@@ -93,7 +93,7 @@ public:
 
 		if (animations[newAnimationId] == frameModelNames)
 		{
-			std::cout << "SAME ANIM" << std::endl;
+			//std::cout << "SAME ANIM" << std::endl;
 			return;
 		}
 

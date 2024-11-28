@@ -56,7 +56,7 @@ public:
 		;
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{
-			std::cout << collisions[0].vecTriangles[0].intersectionPoint.x << " " << collisions[0].vecTriangles[0].intersectionPoint.y << " " << collisions[0].vecTriangles[0].intersectionPoint.z << std::endl;
+		
 			DrawDebugSphere(collisions[0].vecTriangles[0].intersectionPoint , glm::vec4(1.f, 0.f, 0.f, 1.f),10.f, program);
 
 		}
