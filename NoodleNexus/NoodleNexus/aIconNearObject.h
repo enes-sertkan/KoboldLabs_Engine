@@ -18,7 +18,7 @@ public:
 
     void Update() override
     {
-        if (isOn && objectToFollow->name == "Hammer")
+        if (isOn)
         {
             object->mesh->modelFileName = modelName;
             object->mesh->positionXYZ = objectToFollow->mesh->positionXYZ + offset;

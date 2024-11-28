@@ -3,6 +3,7 @@
 #include "Action.h"
 #include "Scene.hpp"
 #include "aIconNearObject.h"
+#include "aHammerAction.hpp"
 
 
 class aPlayerHammerController : public Action
@@ -10,7 +11,6 @@ class aPlayerHammerController : public Action
 public:
 	std::string equipTarget;
 	bool isEquipped = false;
-	float effectRange = 5.0f;
 
 
 
@@ -22,6 +22,7 @@ public:
 			{
 				if (object->scene->IsNearby(equipTarget, object->mesh->positionXYZ))
 				{
+					CreateHammerIcon(glm::vec3(0.0f, 1.0f, 0.5f), 0.07f);
 					//object->mesh->bIsVisible = false;  // Hide the item
 
 					isEquipped = true;
@@ -34,19 +35,11 @@ public:
 		}
 
 		if (!isEquipped) return;
-
-		for (Object* target : object->scene->sceneObjects) {
-			if (target->name == "Barrel" || target->name == "FlameEnemy" || target->name == "BlueBarrel") {
-				if (glm::distance(object->mesh->positionXYZ, target->mesh->positionXYZ) <= effectRange) {
-					target->Destroy();
-				}
-			}
-		}
 	}
 
-	Object* CreateHammerIcon(glm::vec3 position, float scale = 0.1f)
+	Object* CreateHammerIcon(glm::vec3 position, float scale = 0.07f)
 	{
-		glm::vec3 rotation = glm::vec3(0, -90, 0);
+		glm::vec3 rotation = glm::vec3(45, -90, 0);
 		glm::vec4 color = glm::vec4(0.8f, 0.8f, 0.1f, 1.0f);
 		//create new object with hummer model
 		Object* hammer = object->scene->GenerateMeshObjectsFromObject(
@@ -66,14 +59,17 @@ public:
 
 		aIconNearObject* iconAction = new aIconNearObject();
 		Object* player = object->scene->sceneObjects[2];
+		aHammerAction* hammerAction = new aHammerAction();
 
 
 		iconAction->isOn = true;
 		iconAction->modelName = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
-		iconAction->offset = glm::vec3(0.0f, 1.0f, 0.5f);
+		iconAction->offset = glm::vec3(0.0f, 9.0f, 2.0f);
 		iconAction->objectToFollow = player;
 
+
 		object->scene->AddActionToObj(iconAction, hammer);
+		object->scene->AddActionToObj(hammerAction, hammer);
 
 		hammer->isTemporary = true;
 

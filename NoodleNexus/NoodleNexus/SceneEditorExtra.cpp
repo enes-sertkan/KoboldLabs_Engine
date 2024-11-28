@@ -400,7 +400,7 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
 
 void SceneEditor::SaveScene(std::string name)
 {
-    fileManger->WriteSceneFile(scene, name);
+    //fileManger->WriteSceneFile(scene, name);
         
 }
 

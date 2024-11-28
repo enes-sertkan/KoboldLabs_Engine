@@ -140,6 +140,9 @@
     <ClCompile Include="aModelsFramesAnimator.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="aScoreManager.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -290,6 +293,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="aIconNearObject.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aHammerAction.hpp">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
