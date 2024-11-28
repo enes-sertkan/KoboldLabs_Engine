@@ -5,6 +5,7 @@
 #include "aEquipItem.hpp"
 #include "aUseItem.hpp"
 #include "aPlayerHammerController.hpp"
+#include "aIconNearObject.h"
 
 #include "glm/vec3.hpp"
 #include <vector>
@@ -20,7 +21,7 @@ public:
         glm::vec3(0, 57, 100),
         glm::vec3(0, 87, -80),
         glm::vec3(0, 117, 55),
-        glm::vec3(0, 147, -45),
+        glm::vec3(0, 149, -45),
     };
 
     ItemFactory(Scene* scene) : scene(scene) {
@@ -44,22 +45,6 @@ public:
 
         );
         hammer->name = "Hammer";
-
-        aEquipItem* equipAction = new aEquipItem();
-        aUseItem* useAction = new aUseItem();
-        aRemoveAfterTime* removeAction = new aRemoveAfterTime();
-        aPlayerHammerController* playerHammer = new aPlayerHammerController();
-
-        useAction->effectRange = 3.0f;
-        useAction->damage = 50;
-        //removeAction->timeToRemove = 30.0f;
-        playerHammer->equipTarget = "mario1";
-        //equipAction->equipTarget = "Hammer";
-
-        //scene->AddActionToObj(equipAction, hammer);
-        scene->AddActionToObj(useAction, hammer);
-        scene->AddActionToObj(playerHammer, hammer);
-        //scene->AddActionToObj(equipAction, hammer);
 
         hammer->isTemporary = true;
     }

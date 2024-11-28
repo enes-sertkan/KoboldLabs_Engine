@@ -18,16 +18,16 @@ public:
 
     void Update() override
     {
-
-     if (isOn)
-     {
-         object->mesh->modelFileName = modelName;
-         object->mesh->positionXYZ = objectToFollow->mesh->positionXYZ+offset;
-         object->mesh->bIsVisible = true;
-     }
-     else
-     {
-         object->mesh->bIsVisible = false;
-     }
+        if (isOn && objectToFollow->name == "Hammer")
+        {
+            object->mesh->modelFileName = modelName;
+            object->mesh->positionXYZ = objectToFollow->mesh->positionXYZ + offset;
+            object->mesh->bIsVisible = true;
+        }
+        else
+        {
+            object->mesh->bIsVisible = false; // Consider only hiding the icon, not Mario
+        }
     }
+
 };

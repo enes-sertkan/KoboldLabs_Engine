@@ -1016,23 +1016,23 @@ int main(void)
     // PAULINE ANIMATIONS
     modelInfo.modelName = "pauline0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline0.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "pauline0.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "pauline1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "pauline1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "pauline2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "pauline2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "pauline3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "pauline3.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "pauline4";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_4.ply";
-    fileManager->WriteModelFile(&modelInfo, "pauline4.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "pauline4.txt", "XYZNUVRGBA");
 
     // PIE ANIMATIONS
     modelInfo.modelName = "pie0";
@@ -1327,21 +1327,37 @@ int main(void)
             scene->physicsManager->AddTriangleMesh("assets/models/DonkeyKong_Level_1_PlatformSectionLong.ply",object, object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, object->mesh->uniformScale);
 
     Object* player = scene->sceneObjects[2];
+    Object* icon = new Object();
     aRayCastPhysics2D* physics2D = new aRayCastPhysics2D();
     aPlayerHammerController* playerHammer = new aPlayerHammerController();
+    aIconNearObject* iconAction = new aIconNearObject();
+
 
     physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
     physics2D->baseRayCastLength = 2.f;
 
     playerHammer->equipTarget = "Hammer";
+    //playerHammer->CreateHammerIcon(glm::vec3(0.0f, 1.0f, 0.5f), 0.1f);
+
+    // Configure icon near hammer.
+    iconAction->isOn = true;
+    iconAction->modelName = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
+    iconAction->offset = glm::vec3(0.0f, 1.0f, 0.5f);
+    iconAction->objectToFollow = player;
+
+
 
     scene->AddActionToObj(physics2D, player);
     scene->AddActionToObj(playerHammer, player);
+    scene->AddActionToObj(iconAction, icon);
+
+
 
     //physics2D->speed = glm::vec3(0.f, 0.f, 1.f);
     Object* ground = scene->sceneObjects[3];
     Object* ladder = scene->sceneObjects[4];
     Object* kong = scene->sceneObjects[5];
+    Object* pauline = scene->sceneObjects[15];
     
 
 
@@ -1373,6 +1389,20 @@ int main(void)
     kongAnimator->animations.push_back(kongFrames2);
 
     scene->AddActionToObj(kongAnimator, kong);
+
+
+    aModelsFramesAnimator* paulineAnimator = new aModelsFramesAnimator();
+    paulineAnimator->animationSpeed = 2;
+    std::vector<std::string> paulineFrames0 = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_0.ply",
+                                                "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_1.ply",
+                                                "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_2.ply",
+                                                "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_3.ply",
+                                                "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Pauline_4.ply" };
+
+    paulineAnimator->animations.push_back(paulineFrames0);
+
+
+    scene->AddActionToObj(paulineAnimator, pauline);
 
 
 

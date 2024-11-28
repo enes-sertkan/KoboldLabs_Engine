@@ -10,26 +10,32 @@ public:
 
     void Update() override
     {
-        // Iterate over all objects in the scene to find the item and Mario
         for (Object* obj : object->scene->sceneObjects)
         {
-            if (obj->name == "mario1") // If this is the player (Mario)
+            if (obj->name == "mario1")
             {
-                if (object->scene->IsNearby(equipTarget, object->mesh->positionXYZ)) // If Mario is nearby the item
+                if (object->scene->IsNearby(equipTarget, object->mesh->positionXYZ))
                 {
-                    object->mesh->bIsVisible = false;  // Hide the item
+                    std::cout << "Mario nearby hammer. Equipping hammer..." << std::endl;
 
-                    // Remove the item from the scene
-                    //object->scene->RemoveObject(object);
+                    // Hide hammer initially.
+                    object->mesh->bIsVisible = false;
 
-                    // Attach the item to Mario
-                    object->mesh->positionXYZ = obj->mesh->positionXYZ + glm::vec3(0.0f, 2.0f, 0.5f); // Adjust position to appear in hand
-                    obj->heldItems.push_back(object);  // Add to Mario's inventory
+                    // Attach hammer to Mario.
+                    object->mesh->positionXYZ = obj->mesh->positionXYZ + glm::vec3(0.0f, 2.0f, 0.5f);
 
-                    // You can optionally set the item as a child or make it visible after the attachment
-                    object->mesh->bIsVisible = true;  
+                    // Add hammer to Mario's held items.
+                    obj->heldItems.push_back(object);
+
+                    // Make hammer visible again and confirm position.
+                    object->mesh->bIsVisible = true;
+
+                    std::cout << "Hammer equipped. Visibility: " << object->mesh->bIsVisible << std::endl;
+                    std::cout << "New Hammer Position Y: " << object->mesh->positionXYZ.y << std::endl;
+                    std::cout << "New Hammer Position Z: " << object->mesh->positionXYZ.z << std::endl;
                 }
             }
         }
     }
+
 };

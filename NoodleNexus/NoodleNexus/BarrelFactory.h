@@ -53,13 +53,13 @@ public:
 
         removeBarrelAction->timeToRemove = 52.0f;
 
-        barrel->isTemporary = true;
 
         std::vector<std::string> berrelRollAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply" };
         std::vector<std::string> berrelClimbAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply" };
         barrelAnimator->animations.push_back(berrelRollAnim);
         barrelAnimator->animations.push_back(berrelClimbAnim);
 
+        barrel->isTemporary = true;
 
 
         scene->AddActionToObj(physics2Db, barrel);
@@ -101,13 +101,13 @@ public:
 
         removeBarrelAction->timeToRemove = 52.0f;
 
-        barrel->isTemporary = true;
 
         std::vector<std::string> berrelRollAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_2.ply" };
         std::vector<std::string> berrelClimbAnim = { "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Barrel_5.ply" };
         barrelAnimator->animations.push_back(berrelRollAnim);
         barrelAnimator->animations.push_back(berrelClimbAnim);
 
+        barrel->isTemporary = true;
 
 
         scene->AddActionToObj(physics2Db, barrel);

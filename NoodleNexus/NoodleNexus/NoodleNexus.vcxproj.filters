@@ -140,9 +140,6 @@
     <ClCompile Include="aModelsFramesAnimator.hpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="aIconNearObject.h">
-      <Filter>Actions</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -290,6 +287,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aMarioDeath.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aIconNearObject.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
