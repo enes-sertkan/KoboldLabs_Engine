@@ -2,6 +2,6 @@
 <ModelFile>
 <name> explosion0
 <filePath> assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_0.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

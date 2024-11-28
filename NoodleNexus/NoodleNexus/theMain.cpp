@@ -843,19 +843,20 @@ int main(void)
     // EXPLOSION
     modelInfo.modelName = "explosion0";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_0.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion0.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "explosion0.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "explosion1";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_1.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion1.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "explosion1.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "explosion2";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_2.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion2.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "explosion2.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "explosion3";
     modelInfo.meshPath = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Explosion_3.ply";
-    fileManager->WriteModelFile(&modelInfo, "explosion3.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "explosion3.txt", "XYZNUVRGBA");
+
 
     // FIRE
     modelInfo.modelName = "fire0";
@@ -1358,12 +1359,6 @@ int main(void)
     
 
 
-    
-
-  
-    
-
-
 
 
     aModelsFramesAnimator* kongAnimator = new aModelsFramesAnimator();
@@ -1400,6 +1395,8 @@ int main(void)
 
 
     scene->AddActionToObj(paulineAnimator, pauline);
+
+
 
 
 

@@ -31,6 +31,10 @@ pauline3.txt
 pauline4.txt
 selectBox.txt
 points100.txt
+explosion0.txt
+explosion1.txt
+explosion2.txt
+explosion3.txt
 <--ObjectLoad>
 <Scene-->
 
