@@ -11,7 +11,7 @@ class aFlameEnemyController : public Action
 public:
 
 
-    float timeToChangeDirection=6.f;
+    float timeToChangeDirection=20.f;
     float timer=0;
 
     aModelsFramesAnimator* animator = new aModelsFramesAnimator();

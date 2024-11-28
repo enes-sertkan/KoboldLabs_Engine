@@ -63,18 +63,21 @@ public:
 		forward = glm::normalize(forward);
 		glm::vec3 left = glm::cross(up, forward);
 		glm::vec3 position;
-		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
+		position = object->mesh->positionXYZ;
+		position.y += 5;//object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
 		std::vector<sCollision_RayTriangleInMesh> collisions;
 		/*	DrawRayS(position, position + forward * speed * 2.f, program);
 			DrawRayS(position, position - forward * speed * 2.f, program);
-			DrawRayS(position, position + left * speed * 2.f, program);
-			DrawRayS(position, position - left * speed * 2.f, program);*/
+		*/
+
+		DrawRayS(position, position + left * speed * 2.f, program);
+		DrawRayS(position, position - left * speed * 2.f, program);
 
 		switch (direction)
 		{
 
 		case aPlayerMovement2D::FORWARD:
-			if (object->scene->physicsManager->RayCast(position, position + forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (object->scene->physicsManager->RayCast(position, position + forward * speed * 1.f * object->scene->deltaTime, collisions, false))
 			{
 				//std::cout << "COLLISION";
 				break;
@@ -83,7 +86,7 @@ public:
 			break;
 
 		case aPlayerMovement2D::BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (object->scene->physicsManager->RayCast(position, position - forward * speed * 0.5f, collisions, false))
 			{
 				//	std::cout << "COLLISION";
 					// 
@@ -93,27 +96,37 @@ public:
 
 			break;
 		case aPlayerMovement2D::LEFT:
-			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			object->scene->physicsManager->RayCast(position, position + left * speed * 0.2f, collisions, false);
+			if (collisions.size()>0)
 			{
-				//std::cout << "COLLISION";
-				// 
+				if (collisions[0].object->name!="base")
+					object->mesh->positionXYZ.z -= speed * object->scene->deltaTime;
 				break;
+			}
+			else
+			{
+				object->mesh->positionXYZ.z -= speed * object->scene->deltaTime;
 			}
 
 
 			//object->mesh->positionXYZ.x += left.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z -=  speed * object->scene->deltaTime;
+			
 			break;
 		case aPlayerMovement2D::RIGHT:
-			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			object->scene->physicsManager->RayCast(position, position - left * speed * 0.2f, collisions, false);
+			if (collisions.size() > 0)
 			{
-				//std::cout << "COLLISION";
-				// 
+				if (collisions[0].object->name != "base")
+					object->mesh->positionXYZ.z += speed * object->scene->deltaTime;
 				break;
 			}
+			else
+			{
+				object->mesh->positionXYZ.z += speed * object->scene->deltaTime;
+			}
 
-
-			object->mesh->positionXYZ.z +=speed * object->scene->deltaTime;
+			
+		
 			break;
 
 		default:

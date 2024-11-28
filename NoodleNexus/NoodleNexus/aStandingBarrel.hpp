@@ -35,6 +35,8 @@ public:
         aModelsFramesAnimator* flameAnimator = new aModelsFramesAnimator();
         aFlameEnemyController* enemyController = new aFlameEnemyController();
 
+        aRollDown* climbAction = new aRollDown();
+
         barrelRoll->rollDownChance = 100;
 
         physics2Db->gravityAcceleration = glm::vec3(0, -0.05f, 0);
@@ -66,8 +68,17 @@ public:
         enemyController->animator = flameAnimator;
         enemyController->physics = physics2Db;
 
+
+        climbAction->rayHeight = 12;
+        climbAction->raySpacing = -5;
+        climbAction->rayAmmont = 4;
+        climbAction->descentSpeed = -3.f;
+        climbAction->rollDownChance = 1000;
+        climbAction->rayLength = 20.f;
+        climbAction->phys = physics2Db;
+
         object->scene->AddActionToObj(physics2Db, barrel);
-      //  object->scene->AddActionToObj(barrelRoll, barrel);
+        object->scene->AddActionToObj(climbAction, barrel);
         object->scene->AddActionToObj(removeBarrelAction, barrel);
         object->scene->AddActionToObj(flameAnimator, barrel);
         object->scene->AddActionToObj(enemyController, barrel);
