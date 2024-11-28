@@ -178,6 +178,7 @@
     <ClInclude Include="aFlameEnemyController.hpp" />
     <ClInclude Include="aIconNearObject.h" />
     <ClInclude Include="aMarioDeath.h" />
+    <ClInclude Include="aToggleHammerVisibility.hpp" />
     <ClInclude Include="aUseItem.hpp" />
     <ClInclude Include="aHammerAction.hpp" />
     <ClInclude Include="ItemFactory.hpp" />

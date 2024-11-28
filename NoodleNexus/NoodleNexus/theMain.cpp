@@ -1333,7 +1333,7 @@ int main(void)
     physics2D->gravityAcceleration = glm::vec3(0, -0.18f, 0);
     physics2D->baseRayCastLength = 2.f;
 
-    playerHammer->equipTarget = "Hammer";
+
     //playerHammer->CreateHammerIcon(glm::vec3(0.0f, 1.0f, 0.5f), 0.1f);
 
     // Configure icon near hammer.
@@ -1344,8 +1344,8 @@ int main(void)
 
 
 
+
     scene->AddActionToObj(physics2D, player);
-    scene->AddActionToObj(playerHammer, player);
     scene->AddActionToObj(iconAction, icon);
 
 
@@ -1453,6 +1453,10 @@ int main(void)
     aScoreManager* scoreManager = new aScoreManager();//It tracks when to give score and draws score on the screen
     scoreManager->marioPhys = physics2D;
     scene->AddActionToObj(scoreManager, player);
+
+    playerHammer->equipTarget = "Hammer";
+    playerHammer->scoreManager = scoreManager;
+    scene->AddActionToObj(playerHammer, player);
 
 
    

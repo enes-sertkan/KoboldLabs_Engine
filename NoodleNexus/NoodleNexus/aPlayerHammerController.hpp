@@ -4,13 +4,17 @@
 #include "Scene.hpp"
 #include "aIconNearObject.h"
 #include "aHammerAction.hpp"
-
+#include "aScoreManager.h"
+#include "aToggleHammerVisibility.hpp"
+#include <GLFW/glfw3.h>
 
 class aPlayerHammerController : public Action
 {
 public:
 	std::string equipTarget;
 	bool isEquipped = false;
+	aHammerAction* hammerAction;
+	aScoreManager* scoreManager = new aScoreManager();
 
 
 
@@ -35,6 +39,17 @@ public:
 		}
 
 		if (!isEquipped) return;
+
+		if (glfwGetKey(object->scene->window, GLFW_KEY_E) == GLFW_PRESS)
+		{
+
+			hammerAction->isOn = true;
+		}
+		else
+		{
+			hammerAction->isOn = false;
+
+		}
 	}
 
 	Object* CreateHammerIcon(glm::vec3 position, float scale = 0.07f)
@@ -59,8 +74,18 @@ public:
 
 		aIconNearObject* iconAction = new aIconNearObject();
 		Object* player = object->scene->sceneObjects[2];
-		aHammerAction* hammerAction = new aHammerAction();
+		hammerAction = new aHammerAction();
 
+		GLFWwindow* glfwWindow = object->scene->window;
+
+		aToggleHammerVisibility* toggleAction = new aToggleHammerVisibility(glfwWindow);
+		toggleAction->hammerObject = hammer;
+
+
+		if (scoreManager)
+		{
+			hammerAction->scoreManager = scoreManager;
+		}
 
 		iconAction->isOn = true;
 		iconAction->modelName = "assets/models/dk_3d_all_obj/DonkeyKong_Level_0_Hammer.ply";
@@ -70,6 +95,8 @@ public:
 
 		object->scene->AddActionToObj(iconAction, hammer);
 		object->scene->AddActionToObj(hammerAction, hammer);
+		object->scene->AddActionToObj(toggleAction, hammer);
+
 
 		hammer->isTemporary = true;
 

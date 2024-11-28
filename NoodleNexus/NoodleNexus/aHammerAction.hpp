@@ -20,7 +20,8 @@ public:
                 if (glm::distance(object->mesh->positionXYZ, target->mesh->positionXYZ) <= effectRange) {
                     target->Destroy();
                     if (scoreManager)
-                        scoreManager->DrawScore(target->mesh->positionXYZ)
+                        scoreManager->DrawScore(target->mesh->positionXYZ);
+
                 }
             }
         }
