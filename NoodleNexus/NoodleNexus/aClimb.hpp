@@ -72,7 +72,7 @@ public:
 
 
             // Draw the ray for debugging
-            scene->DrawRay(rayStart, rayEnd, scene->programs[0], gridRayColor, true, rayScale);
+           // scene->DrawRay(rayStart, rayEnd, scene->programs[0], gridRayColor, true, rayScale);
 
             // Perform raycast
             if (scene->physicsManager->RayCast(rayStart, rayEnd, collisions, false)) {
