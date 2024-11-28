@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aIconNearObject.h" />
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aPlayerMovement2D.hpp" />
     <ClCompile Include="aModelsFramesAnimator.hpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
     <ClInclude Include="aFlameEnemyController.hpp" />
+    <ClInclude Include="aMarioDeath.h" />
     <ClInclude Include="aUseItem.hpp" />
     <ClInclude Include="ItemFactory.hpp" />
     <ClInclude Include="aLadderUseAction.hpp" />
