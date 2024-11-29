@@ -57,8 +57,14 @@
     <Filter Include="Trash">
       <UniqueIdentifier>{6f2458ba-12b5-4ff6-9ac0-79f56f3f9b83}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MazeReader">
+    <Filter Include="Textures">
+      <UniqueIdentifier>{29bdc61c-b0c7-4678-a083-9b04b8196998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\MazeReader">
       <UniqueIdentifier>{b8a31ce9-4d77-4c82-a0fc-eb18467d3784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Trash\Extra Actions">
+      <UniqueIdentifier>{54b720e4-c86f-4fec-a0d4-71fc9c3a5830}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,13 +129,22 @@
       <Filter>Engine\PhysicsManager</Filter>
     </ClCompile>
     <ClCompile Include="MazeGenerator.cpp">
-      <Filter>MazeReader</Filter>
+      <Filter>Trash\MazeReader</Filter>
     </ClCompile>
     <ClCompile Include="aPlayerMovement.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="C24BitBMPpixel.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="cBasicTextureManager.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureFromBMP.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
     <ClCompile Include="Gun.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Trash\Extra Actions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,12 +187,6 @@
     <ClInclude Include="Action.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="aMoveInDirection.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="aDestroyOnPos.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Scene.hpp">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
@@ -193,11 +202,8 @@
     <ClInclude Include="aRayCastPhysics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aPlayerCamera.hpp">
-      <Filter>Actions</Filter>
-    </ClInclude>
     <ClInclude Include="MazeGenerator.hpp">
-      <Filter>MazeReader</Filter>
+      <Filter>Trash\MazeReader</Filter>
     </ClInclude>
     <ClInclude Include="aDrawAim.hpp">
       <Filter>Header Files</Filter>
@@ -205,28 +211,10 @@
     <ClInclude Include="UsableItem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Laser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aPlayerItemsController.h">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="aExplosion.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aChangeColorOverTime.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aExhaustTrail.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aLinearProjectileMovement.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aSizeUpThenDown.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aProjectileMovement.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ProjectileWeapon.hpp">
@@ -235,12 +223,51 @@
     <ClInclude Include="aExplodeOnRayCollision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="C24BitBMPpixel.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="cBasicTextureManager.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureFromBMP.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayerItemsController.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aDestroyOnPos.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aMoveInDirection.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayerCamera.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aExhaustTrail.hpp">
+      <Filter>Trash\Extra Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.hpp">
+      <Filter>Trash\Extra Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aProjectileMovement.hpp">
+      <Filter>Trash\Extra Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aLinearProjectileMovement.hpp">
+      <Filter>Trash\Extra Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aExplosion.hpp">
+      <Filter>Trash\Extra Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
       <Filter>Shaders</Filter>
     </None>
     <None Include="assets\shaders\vertex01.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="fragment02.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
