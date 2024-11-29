@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Action.h";
+#include "Action.h"
 #include "sObject.h"
 #include <glm/vec3.hpp> 
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
@@ -24,7 +24,7 @@ class aPlayerMovement : public Action
 		{
 			// Move the next ball 0.1 times the normalized camera direction
 			movingPoint += (direction * 0.10f);
-			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program);
+			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program, object->scene->vaoManager);
 		}
 
 	}
@@ -53,7 +53,7 @@ public:
 		forward = glm::normalize(forward);
 		glm::vec3 left = glm::cross(up, forward);
 		glm::vec3 position;
-		position = object->mesh->positionXYZ; //object->scene->fCamera->getEyeLocation(); //object->scene->fCamera->getEyeLocation();
+		position = object->mesh->positionXYZ; 
 		std::vector<sCollision_RayTriangleInMesh> collisions;
 	/*	DrawRayS(position, position + forward * speed * 2.f, program);
 		DrawRayS(position, position - forward * speed * 2.f, program);

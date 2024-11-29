@@ -36,6 +36,8 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, 
     PickFirstObject();
     PickFirstLight();
 
+    
+
     fileManger = klFileManger;
  
 

@@ -208,7 +208,7 @@ sModelDrawInfo LoadDrawInfo(cVAOManager* meshManager, sModelDrawInfo drawInfo, G
     meshManager->LoadModelIntoVAO(drawInfo.meshPath,
         drawInfo, program);
 
-    std::cout << drawInfo.meshPath << "-Loaded" << std::endl << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
+    std::cout <<"Draw Info for '"<< drawInfo.meshPath << "' - Loaded" << std::endl << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
 
     return drawInfo;
 }
@@ -225,7 +225,7 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera)
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera)
 {
 
     physicsManager = physMan;
@@ -247,7 +247,7 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
 
     for (Object* object : sceneObjects)
     {
-        CreateMeshObjects(meshes, object->mesh);
+       
         object->scene = this;
 
 
@@ -256,9 +256,10 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*
 
     }
 
+    //called only once
+    this->lightManager->loadUniformLocations(program);
 
-
-  
+    programs.push_back(program);
 }
 
 
@@ -300,12 +301,10 @@ void Scene::Update()
     for (Object* obj : sceneObjects)
     {
         if (obj)
-        {
-            for (Action* action : obj->actions)
-            {
-                action->Update();
-            }
-        }
+            if (actions.size()>0)
+                for (Action* action : obj->actions)
+                    if (action) action->Update();
+
     }
 
     UpdateDeltaTime();
@@ -387,4 +386,10 @@ Object* Scene::GenerateMeshObjectsFromObject(
     sceneObjects.push_back(object);
 
     return object;
+}
+
+
+void Scene::ErrorCallback(int error, const char* description)
+{
+    fprintf(stderr, "Error: %s\n", description);
 }

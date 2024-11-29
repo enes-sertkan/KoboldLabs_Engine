@@ -48,7 +48,7 @@ public:
 	cLightManager::sLight* selectedLight;
 	int lightIndex=0;
 
-	cLightManager lightManager;
+
 	
 	void HandleInputAsync(GLFWwindow* window);
 

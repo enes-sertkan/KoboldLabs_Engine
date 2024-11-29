@@ -9,7 +9,7 @@
 #include "cVAOManager/cVAOManager.h"
 #include <iostream>
 
-extern cVAOManager* g_pMeshManager;
+
 
 //RenderCall
 
@@ -19,9 +19,9 @@ sMesh* pDebugSphere = NULL;
 
 
 
-void DrawMesh(sMesh* pCurMesh, GLuint program)
+void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager)
 {
-    //std::cout << "Drawing " << pCurMesh->uniqueFriendlyName << ". Position: " << pCurMesh->positionXYZ.x << " " << pCurMesh->positionXYZ.y << " " << pCurMesh->positionXYZ.z << " " << std::endl;
+    
 
     // Is it visible? 
     if (!pCurMesh->bIsVisible)
@@ -148,7 +148,7 @@ void DrawMesh(sMesh* pCurMesh, GLuint program)
 //            glDrawArrays(GL_TRIANGLES, 0, numberOfVertices_TO_DRAW);
 
     sModelDrawInfo meshToDrawInfo;
-    if (::g_pMeshManager->FindDrawInfoByModelName(pCurMesh->modelFileName, meshToDrawInfo))
+    if (vaoManager->FindDrawInfoByModelName(pCurMesh->modelFileName, meshToDrawInfo))
     {
         // Found the model
         glBindVertexArray(meshToDrawInfo.VAO_ID); 		// enable VAO(and everything else)
@@ -166,7 +166,7 @@ void DrawMesh(sMesh* pCurMesh, GLuint program)
 }
 
 
-void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program)
+void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, cVAOManager* vaoManager)
 {
     // Created the debug sphere, yet?
     if (!pDebugSphere)           // Same as if ( pDebugSphere == NULL )
@@ -188,7 +188,7 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     pDebugSphere->objectColourRGBA = RGBA;
     pDebugSphere->uniformScale = scale;
 
-    DrawMesh(pDebugSphere, program);
+    DrawMesh(pDebugSphere, program, vaoManager);
 
     pDebugSphere->bIsVisible = false;
 

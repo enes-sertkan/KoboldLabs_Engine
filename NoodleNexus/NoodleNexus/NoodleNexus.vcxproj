@@ -183,6 +183,7 @@
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Laser.hpp" />
     <ClInclude Include="MazeGenerator.hpp" />
+    <ClInclude Include="ModelsLoader.hpp" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />
     <ClInclude Include="aProjectileMovement.hpp" />

@@ -13,6 +13,7 @@
 #include <chrono>
 
 
+
 //This is a class bc we gonna have functions in it later
 class Scene
 {
@@ -61,7 +62,7 @@ public:
 	void Start();
 	void Update();
 
-	void Prepare(cVAOManager* meshManager, GLuint program, std::vector<sMesh*>& meshes, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera);
+	void Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera);
 
 	
 	void AddActionToObj(Action* action, Object* object);
@@ -79,6 +80,8 @@ public:
 		const glm::vec4& direction,
 		const glm::vec3& param1,
 		float param2x);
+
+	void ErrorCallback(int error, const char* description);
 
 	
 };

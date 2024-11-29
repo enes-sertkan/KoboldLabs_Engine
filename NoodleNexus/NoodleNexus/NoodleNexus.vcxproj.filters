@@ -48,9 +48,6 @@
     <Filter Include="Engine\LightManager\Lights">
       <UniqueIdentifier>{0479b598-aa46-49da-ac91-afc112109a35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\PhysicsManager\Phsyics_Stuff">
-      <UniqueIdentifier>{b50e5ed1-0d30-423d-8675-9d288d42b19b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{fe2e679f-06c7-48ea-a00f-7c5fa644c921}</UniqueIdentifier>
     </Filter>
@@ -59,6 +56,9 @@
     </Filter>
     <Filter Include="MazeReader">
       <UniqueIdentifier>{b8a31ce9-4d77-4c82-a0fc-eb18467d3784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\PhysicsManager\Phsyics_Stuff_Old">
+      <UniqueIdentifier>{b50e5ed1-0d30-423d-8675-9d288d42b19b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +90,7 @@
       <Filter>Global things</Filter>
     </ClCompile>
     <ClCompile Include="cPhysics.cpp">
-      <Filter>Engine\PhysicsManager\Phsyics_Stuff</Filter>
+      <Filter>Engine\PhysicsManager\Phsyics_Stuff_Old</Filter>
     </ClCompile>
     <ClCompile Include="cLightManager.cpp">
       <Filter>Engine\LightManager\Lights</Filter>
@@ -155,7 +155,7 @@
       <Filter>Global things</Filter>
     </ClInclude>
     <ClInclude Include="cPhysics.h">
-      <Filter>Engine\PhysicsManager\Phsyics_Stuff</Filter>
+      <Filter>Engine\PhysicsManager\Phsyics_Stuff_Old</Filter>
     </ClInclude>
     <ClInclude Include="cLightManager.h">
       <Filter>Engine\LightManager\Lights</Filter>
@@ -234,6 +234,9 @@
     </ClInclude>
     <ClInclude Include="aExplodeOnRayCollision.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelsLoader.hpp">
+      <Filter>Engine\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

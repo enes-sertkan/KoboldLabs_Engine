@@ -35,7 +35,7 @@ public:
 		{
 			// Move the next ball 0.1 times thw normalized camera direction
 			movingPoint += (direction * 0.10f);
-			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.01f, program);
+			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.01f, program, object->scene->vaoManager);
 		}
 
 	}
@@ -56,8 +56,7 @@ public:
 		;
 		if (object->scene->physicsManager->RayCast(startPos, endPos, collisions, false))
 		{
-			std::cout << collisions[0].vecTriangles[0].intersectionPoint.x << " " << collisions[0].vecTriangles[0].intersectionPoint.y << " " << collisions[0].vecTriangles[0].intersectionPoint.z << std::endl;
-			DrawDebugSphere(collisions[0].vecTriangles[0].intersectionPoint , glm::vec4(1.f, 0.f, 0.f, 1.f),10.f, program);
+			DrawDebugSphere(collisions[0].vecTriangles[0].intersectionPoint , glm::vec4(1.f, 0.f, 0.f, 1.f),10.f, program, object->scene->vaoManager);
 
 		}
 	}

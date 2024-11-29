@@ -206,9 +206,9 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 }
                 if (token == "<Tags->") { object->tags = LoadTags(sceneFile); }
                 if (token == "<StaticCollision->")   object->isCollisionStatic = LoadBoolData(sceneFile);
-                if (token == "<Position->")   object->mesh->positionXYZ = LoadVector3Data(sceneFile);
-                if (token == "<Rotation->")   object->mesh->rotationEulerXYZ = LoadVector3Data(sceneFile);
-                if (token == "<Scale->")   object->mesh->uniformScale = LoadVector3Data(sceneFile).x;//For now only first float is scale
+                if (token == "<Position->")   object->startTranform->position = LoadVector3Data(sceneFile);
+                if (token == "<Rotation->")    object->startTranform->rotation = LoadVector3Data(sceneFile);
+                if (token == "<Scale->")    object->startTranform->scale.x = LoadVector3Data(sceneFile).x;//For now only first float is scale
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
                 if (token == "<Shading->")   object->mesh->bDoNotLight = !LoadBoolData(sceneFile);
                 if (token == "<Color->")
@@ -226,9 +226,9 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
 
             //TODO: I think we should originally give value to start transform and THEN give it to mesh. SO shoueld fix it later.
            
-            object->startTranform->position = object->mesh->positionXYZ;
-            object->startTranform->rotation = object->mesh->rotationEulerXYZ;
-            object->startTranform->scale.x =    object->mesh->uniformScale; //TODO: if you need proper scale - fix this.
+            object->mesh->positionXYZ = object->startTranform->position;
+            object->mesh->rotationEulerXYZ = object->startTranform->rotation;
+            object->mesh->uniformScale  = object->startTranform->scale.x; //TODO: if you need proper scale - fix this.
 
             std::cout << "Object " + object->name + " loaded." << std::endl;
 
