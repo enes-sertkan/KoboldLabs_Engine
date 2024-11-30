@@ -259,6 +259,9 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* ph
     //called only once
     this->lightManager->loadUniformLocations(program);
 
+    textureManager = new cBasicTextureManager();
+    
+
     programs.push_back(program);
 }
 

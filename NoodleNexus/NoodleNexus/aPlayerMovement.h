@@ -24,7 +24,7 @@ class aPlayerMovement : public Action
 		{
 			// Move the next ball 0.1 times the normalized camera direction
 			movingPoint += (direction * 0.10f);
-			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program, object->scene->vaoManager);
+			DrawDebugSphere(movingPoint, glm::vec4(0.0f, 0.0f, 1.0f, 1.0f), 0.05f, program, object->scene);
 		}
 
 	}

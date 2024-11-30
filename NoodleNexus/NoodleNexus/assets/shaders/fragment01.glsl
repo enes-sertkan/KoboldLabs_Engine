@@ -3,20 +3,18 @@
 in vec3 fColour;			// Actual 3D model colour (from vertex buffer)
 in vec4 fvertexWorldLocation;
 in vec4 fvertexNormal;
-
-// we are not using it now, we are just adding to test
-in vec2 fUV;   
+in vec2 fUV;				// Texture (UV) coordinates
 
 uniform vec4 objectColour;			// Override colour 
 uniform bool bUseObjectColour;
 uniform vec4 eyeLocation;			// Where the camera is
 uniform bool bDoNotLight;			// if true, skips lighting
+// 0.0 to 1.0 (invisible to solid)
+// Controls the alpha channel
+uniform float wholeObjectTransparencyAlpha;
 
-// we are not using it now, we are just adding to test
-
-uniform sampler2D textureSampler; // Texture sampler
-
-out vec4 finalPixelColour;
+// Written to the framebuffer (backbuffer)
+out vec4 finalPixelColour;	// RGB_A
 
 const int POINT_LIGHT_TYPE = 0;
 const int SPOT_LIGHT_TYPE = 1;
@@ -38,7 +36,7 @@ struct sLight
 	                // yzw are TBD
 };
 
-const int NUMBEROFLIGHTS = 100;
+const int NUMBEROFLIGHTS = 20;
 uniform sLight theLights[NUMBEROFLIGHTS]; 
 // uniform vec4 thelights[0].position;
 // uniform vec4 thelights[1].position;
@@ -48,26 +46,71 @@ uniform sLight theLights[NUMBEROFLIGHTS];
 vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal, 
                             vec3 vertexWorldPos, vec4 vertexSpecular );
 
+// Allows us to lookup the RGB colour from a 2D texture
+// Give it the UV and it returns the colour at that UV location
+uniform sampler2D texture00;
+uniform sampler2D texture01;
+uniform sampler2D texture02;
+uniform sampler2D texture03;
+uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
+//uniform float texRatio[4];
+uniform bool bUseTextureAsColour;	// If true, then sample the texture
+
+// Skybox (or reflection, refraction, etc.)
+uniform samplerCube skyBoxTextureSampler;
+uniform bool bIsSkyBoxObject;
+//
+
+
+
+//uniform sampler2D textures[4];
+//uniform sampler2DArray textures[3]
+
+
+
 void main()
 {
+
+
+
 	vec3 vertexColour = fColour;
 	if ( bUseObjectColour )
 	{
 		vertexColour = objectColour.rgb;
 	}
-
-	// we are not using it now, we are just adding to test
-
-	// Sample the texture color using UV coordinates
-   // vec3 textureColor = texture(textureSampler, fUV).rgb;
-
-    // Blend texture color with vertex color
-   // vertexColour *= textureColor;
+	
+	if ( bUseTextureAsColour )
+	{
+//			uniform sampler2D texture00;
+//		uniform sampler2D texture01;
+//		uniform sampler2D texture02;
+//		uniform sampler2D texture03;
+//		uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
+	
+		vec3 texColour00 = texture( texture00, fUV.st ).rgb;
+		vec3 texColour01 = texture( texture01, fUV.st ).rgb;	
+		vec3 texColour02 = texture( texture02, fUV.st ).rgb;	
+		vec3 texColour03 = texture( texture03, fUV.st ).rgb;	
+		
+		
+		// All these ratios should add up to 1.0
+		vertexColour.rgb =   (texColour00.rgb * texRatio_0_to_3.x)
+		                   + (texColour01.rgb * texRatio_0_to_3.y)
+		                   + (texColour02.rgb * texRatio_0_to_3.z)
+		                   + (texColour03.rgb * texRatio_0_to_3.w);
+				
+		// Use #2 texture to modulate the 1st texture		
+//		vertexColour.rgb =   (texColour03.rgb * texColour02.r) 
+//		                   + (texColour00.rgb * (1.0f - texColour02.r));
+						   
+					   
+	} 
 	
 	// Use lighting?
 	if ( bDoNotLight )
 	{
-	finalPixelColour = vec4(vertexColour,1.0f);
+		finalPixelColour.rgb = objectColour.rgb;
+		finalPixelColour.a = 1.0f;
 		return;
 	}
 	
@@ -85,7 +128,40 @@ void main()
 
 											
 	finalPixelColour = pixelColour;
-	finalPixelColour.a = 1.0f;		
+	// Set the alpha channel
+	finalPixelColour.a = wholeObjectTransparencyAlpha;	
+	
+//	// Reflection:
+//	vec3 eyeToVertexRay = normalize(eyeLocation.xyz - fvertexWorldLocation.xyz);
+//	
+//	vec3 reflectRay = reflect(eyeToVertexRay, fvertexNormal.xyz);	
+//	vec3 refractRay = refract(eyeToVertexRay, fvertexNormal.xyz, 1.2f);
+//	
+//	vec3 reflectColour = texture( skyBoxTextureSampler, reflectRay.xyz ).rgb;
+//	vec3 refractColour = texture( skyBoxTextureSampler, refractRay.xyz ).rgb;
+//	
+//	finalPixelColour.rgb += reflectColour.rgb * 0.3f
+//	                       + refractColour.rgb * 0.3f;
+						   
+	return;
+
+	
+	
+	
+	// Use the 4th value (alpha) as the transparency
+//	finalPixelColour.a = 1.0f - texture( texture03, fUV.st ).r;
+
+//	finalPixelColour.a = 1.0f;		
+//	finalPixelColour.a = 0.9f;		
+
+	// Make the actual colour almost black
+	// Apply the UVs as a colour
+//	finalPixelColour.rgb *= 0.001f;	// Almost black
+//	finalPixelColour.rg += fUV.xy;	// Add the UVs as colours
+
+	// uniform sampler2D texture01;
+	//vec3 texColour = texture( texture00, fUV.st ).rgb;
+	//finalPixelColour.rgb += texColour;
 
 }
 

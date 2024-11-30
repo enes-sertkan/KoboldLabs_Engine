@@ -11,6 +11,7 @@
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "PhysicsManager.h"
 #include <chrono>
+#include "cBasicTextureManager.h"
 
 
 
@@ -24,6 +25,9 @@ private:
 	sMesh* pSphere = NULL;
 
 public:
+
+	cBasicTextureManager* textureManager;
+
 	void DrawMesh(sMesh* pCurMesh, GLuint program);
 	std::vector<GLuint> programs;
 	void DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program);

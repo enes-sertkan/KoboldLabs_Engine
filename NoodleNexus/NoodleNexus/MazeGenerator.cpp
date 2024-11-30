@@ -194,7 +194,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Generate the object with the applied scale to actually affect the mesh size
     Object* obj = scene->GenerateMeshObjectsFromObject(
-        path, position, scale * objectScale.x, rotation, true, color, true, scene->sceneObjects);
+        path, position, scale * objectScale.x, rotation,false, color, true, scene->sceneObjects);
 
 
     if (obj == nullptr) {
@@ -209,6 +209,8 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         obj->mesh->bIsVisible = false;
     }
 
+    obj->mesh->textures[0] = "Puzzle_parts.bmp";
+    obj->mesh->blendRatio[0] = 1;
     // Add to physics manager with the applied scale
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
 }

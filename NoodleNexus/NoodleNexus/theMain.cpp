@@ -56,7 +56,7 @@
 #include "ModelsLoader.hpp"
 
 
-void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager);
+void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
 
 
 
@@ -189,12 +189,12 @@ glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection
 }
 
 
-void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager* lightManager, cVAOManager* vaoManager)
+void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager* lightManager, Scene* scene)
 {
 
 
     DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
-        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program, vaoManager);
+        glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program, scene);
 
     const float DEBUG_LIGHT_BRIGHTNESS = 0.3f;
 
@@ -208,7 +208,7 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager
     DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(DEBUG_LIGHT_BRIGHTNESS, 0.0f, 0.0f, 1.0f),
         distance_75_percent,
-        program, vaoManager);
+        program, scene);
 
 
     float distance_50_percent =
@@ -220,7 +220,7 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager
     DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(0.0f, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
         distance_50_percent,
-        program, vaoManager);
+        program, scene);
 
     float distance_25_percent =
         TheLightHelper.calcApproxDistFromAtten(0.25f, ACCURACY, FLT_MAX,
@@ -231,7 +231,7 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager
     DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(0.0f, 0.0f, DEBUG_LIGHT_BRIGHTNESS, 1.0f),
         distance_25_percent,
-        program, vaoManager);
+        program, scene);
 
     float distance_05_percent =
         TheLightHelper.calcApproxDistFromAtten(0.05f, ACCURACY, FLT_MAX,
@@ -242,7 +242,7 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager
     DrawDebugSphere(lightManager->theLights[::g_selectedLightIndex].position,
         glm::vec4(DEBUG_LIGHT_BRIGHTNESS, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
         distance_05_percent,
-        program, vaoManager);
+        program, scene);
 }
 
 
@@ -390,6 +390,11 @@ int main(void)
 
     glUseProgram(program);
 
+
+    scene->textureManager->SetBasePath("assets/textures");
+    scene->textureManager->Create2DTextureFromBMPFile("bad_bunny_1920x1080.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Puzzle_parts.bmp");
+
     // Enable depth buffering (z buffering)
     // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glEnable.xhtml
     glEnable(GL_DEPTH_TEST);
@@ -449,7 +454,7 @@ int main(void)
   
             sMesh* pCurMesh = object->mesh;
 
-            DrawMesh(pCurMesh, program, scene->vaoManager);
+            DrawMesh(pCurMesh, program, scene->vaoManager, scene->textureManager);
 
         }
 
@@ -459,7 +464,7 @@ int main(void)
 //      ------------------------------------------     
         if (::g_bShowDebugSpheres)
         {
-            DrawDebugObjects(TheLightHelper,program, scene->lightManager, scene->vaoManager);
+            DrawDebugObjects(TheLightHelper,program, scene->lightManager, scene);
         }
 //      ------------------------------------------     
 

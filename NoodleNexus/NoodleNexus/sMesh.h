@@ -26,6 +26,13 @@ struct sMesh
 	bool bDoNotLight = false;
 	
 
+
+	static const unsigned int MAX_NUM_TEXTURES = 4;
+	std::string textures[MAX_NUM_TEXTURES];
+
+	float blendRatio[MAX_NUM_TEXTURES];
+
+
 	unsigned int uniqueID = 0;
 
 	std::string getState(void);

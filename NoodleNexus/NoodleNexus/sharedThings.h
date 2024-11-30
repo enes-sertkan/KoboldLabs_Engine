@@ -26,7 +26,7 @@ void handleKeyboardAsync(GLFWwindow* window, Scene* scene);
 void handleMouseAsync(GLFWwindow* window);
 
 // Can call this from anything that has this header file
-void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, cVAOManager* vaoManager);
+void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, Scene* scene);
 
 extern bool g_bShowDebugSpheres;
 
