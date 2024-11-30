@@ -140,6 +140,29 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     const GLuint program = pShaderManager->getIDFromFriendlyName("shader01");
 
     glUseProgram(program);
+
+
+    
+    GLint iMaxCombinedTextureInmageUnits = 0;
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &iMaxCombinedTextureInmageUnits);
+    std::cout << "GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = " << iMaxCombinedTextureInmageUnits << std::endl;
+
+    // data returns one value, the maximum number of components of the inputs read by the fragment shader, 
+    // which must be at least 128.
+    GLint iMaxFragmentInputComponents = 0;
+    glGetIntegerv(GL_MAX_FRAGMENT_INPUT_COMPONENTS, &iMaxFragmentInputComponents);
+    std::cout << "GL_MAX_FRAGMENT_INPUT_COMPONENTS = " << iMaxFragmentInputComponents << std::endl;
+    
+
+    // data returns one value, the maximum number of individual floating - point, integer, or boolean values 
+    // that can be held in uniform variable storage for a fragment shader.The value must be at least 1024. 
+    GLint iMaxFragmentUniformComponents = 0;
+    glGetIntegerv(GL_MAX_FRAGMENT_UNIFORM_COMPONENTS, &iMaxFragmentUniformComponents);
+    std::cout << "GL_MAX_FRAGMENT_UNIFORM_COMPONENTS = " << iMaxFragmentUniformComponents << std::endl;
+        
+
+
+
     
     return program;
 }
@@ -298,6 +321,10 @@ void AddActions(Scene* scene, GLuint program)
     aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
     scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
+
+    scene->sceneObjects[3]->mesh->textures[0] = "Puzzle_parts.bmp";
+    scene->sceneObjects[3]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 }
 
 

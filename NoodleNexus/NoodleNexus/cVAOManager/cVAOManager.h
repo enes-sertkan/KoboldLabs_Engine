@@ -24,6 +24,7 @@ struct sVertex_SHADER_FORMAT_xyz_rgb_N
 	float x, y, z;		// in vec3 vPos;
 	float r, g, b, a;		// in vec3 vCol;
 	float nx, ny, nz;	// in vec3 vNormal;
+	float u, v;
 };
 
 struct sModelDrawInfo

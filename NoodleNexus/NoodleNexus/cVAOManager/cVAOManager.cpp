@@ -441,6 +441,8 @@ bool readPlyFile_XYZ_Normal_RGBA(sModelDrawInfo& modelDrawInfo) {
 		// Skip UV coordinates (texture_u, texture_v)
 		float u, v;
 		plyFile >> u >> v;
+		modelDrawInfo.pVertices[index].u = u;
+		modelDrawInfo.pVertices[index].v = v;
 	}
 
 	// Load triangle info from the file
@@ -582,6 +584,7 @@ bool cVAOManager::LoadModelIntoVAO(
 	GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPos");	// program
 	GLint vcol_location = glGetAttribLocation(shaderProgramID, "vCol");	// program;
 	GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");	// program;
+	GLint vUV_location = glGetAttribLocation(shaderProgramID, "vUV");			// in vec2 vUV;
 
 
 	//struct sVertex_SHADER_FORMAT_xyz_rgb
@@ -618,6 +621,15 @@ bool cVAOManager::LoadModelIntoVAO(
 //		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
 		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, nx));			//( void* )( sizeof(float) * 3 ));
 
+
+
+	glEnableVertexAttribArray(vUV_location);	// vUV
+	glVertexAttribPointer(vUV_location,
+		2,		// in vec2 vUV;
+		GL_FLOAT, GL_FALSE,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, u));
+
 						   // Now that all the parts are set up, set the VAO to zero
 	glBindVertexArray(0);
 
@@ -627,7 +639,7 @@ bool cVAOManager::LoadModelIntoVAO(
 	glDisableVertexAttribArray(vpos_location);
 	glDisableVertexAttribArray(vcol_location);
 	glDisableVertexAttribArray(vnorm_location);
-
+	glDisableVertexAttribArray(vUV_location);
 
 	// Store the draw information into the map
 	this->m_map_ModelName_to_VAOID[ drawInfo.meshPath ] = drawInfo;

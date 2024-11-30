@@ -56,6 +56,7 @@ glm::vec4 LoadVector4Data(std::ifstream& file)
     return finalVector;
 }
 
+
 bool LoadBoolData(std::ifstream& file)
 {
     std::string token = "";
@@ -175,6 +176,7 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         {
             Object* object = new Object();
             object->mesh = new sMesh();
+            int textureID = 0;
             while (token != "<--Object>")
             {
                 if (sceneFile.peek() == EOF)
@@ -211,7 +213,10 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
                 if (token == "<Scale->")    object->startTranform->scale.x = LoadVector3Data(sceneFile).x;//For now only first float is scale
                 if (token == "<Visibility->")   object->mesh->bIsVisible = LoadBoolData(sceneFile);
                 if (token == "<Shading->")   object->mesh->bDoNotLight = !LoadBoolData(sceneFile);
-                if (token == "<Color->")
+                if (token == "<Texture->") {
+                    sceneFile >> object->mesh->textures[textureID]; textureID++; //TODO: Put this into function or smt
+                }
+                if (token == "<Color->") 
                 {
                     object->mesh->bOverrideObjectColour = true;
                     glm::vec3 v = LoadVector3Data(sceneFile);

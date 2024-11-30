@@ -21,7 +21,7 @@ void CreateModelFiles(KLFileManager* fileManager)
     // Maze
     modelInfo.modelName = "Hangar";
     modelInfo.meshPath = "assets/models/SM_Bld_Hanger_01_xyz_n_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "Hangar.txt", "XYZNUV");
+    fileManager->WriteModelFile(&modelInfo, "Hangar.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "wall";
     modelInfo.meshPath = "assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply";

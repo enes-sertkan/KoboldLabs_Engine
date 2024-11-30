@@ -29,7 +29,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 50 0 0
+<Scale-> 50 1.0511e-38 7.07142e-39
 <Visibility-> true
 <Shading-> true
 <Color-> 1 0 0
@@ -42,7 +42,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 45 5 46
 <Rotation-> 0 0 0
-<Scale-> 0.5 5.42559e+20 0
+<Scale-> 0.5 6.52032e-39 6.33674e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -55,7 +55,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -9 0 -9
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 9.09187e-39
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -68,10 +68,9 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 -90 0
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 9.21849e-39 8.90815e-39
 <Visibility-> true
 <Shading-> true
-<Color-> 0.5 0.5 0.5
 <--Object>
 
 <Object-->
@@ -81,14 +80,14 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 2 -2 472
 <Rotation-> 0 -90 0
-<Scale-> 7.39007 0 0
+<Scale-> 7.39007 0 6.90433e+11
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.3 0.3
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40043.1 1
+<Position-> 0.5 69999.4 -40043.4 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
