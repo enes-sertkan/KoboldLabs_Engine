@@ -273,6 +273,40 @@ bool cPhysics::bAABB_ABBBCollision(sAABB* pA, sAABB* pB)
 }
 
 
+cPhysics::sPhysInfo* cPhysics::pFindAssociateMeshByFriendlyName(std::string friendlyName)
+{
+	// All the general objects
+	for (sPhysInfo* pCurPhysObject : this->vecGeneralPhysicsObjects)
+	{
+		if (pCurPhysObject->pAssociatedDrawingMeshInstance->uniqueFriendlyName == friendlyName)
+		{
+			// Found it 
+			return pCurPhysObject;
+		}
+	}
+
+	for (cPhysics::sSphere* pCurSphere : this->vecSpheres)
+	{
+		if (pCurSphere->pPhysicInfo->pAssociatedDrawingMeshInstance->uniqueFriendlyName == friendlyName)
+		{
+			// Found it
+			return pCurSphere->pPhysicInfo;
+		}
+	}
+
+	for (cPhysics::sAABB* pCurAABB : this->vecAABBs)
+	{
+		if (pCurAABB->pPhysicInfo->pAssociatedDrawingMeshInstance->uniqueFriendlyName == friendlyName)
+		{
+			// Found it
+			return pCurAABB->pPhysicInfo;
+		}
+	}
+
+	// Didn't find it.
+	return NULL;
+}
+
 void cPhysics::setVAOManager(cVAOManager* pTheVAOManager)
 {
 	this->m_pVAOManager = pTheVAOManager;

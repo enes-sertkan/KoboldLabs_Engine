@@ -14,7 +14,7 @@ cBasicFlyCamera::cBasicFlyCamera()
 	this->m_Yaw_Y_axis_rotation = 0.0f;
 	this->m_Pitch_X_axis_rotation = 0.0f;
 
-	const float DEFAULT_CAMERA_MOVE_SPEED = 50.0f;
+	const float DEFAULT_CAMERA_MOVE_SPEED = 1.0f;
 	// At 60Hz (FPS) we'll move 1 degree per second
 //	const float DEFAULT_CAMERA_TURN_ANGLE_SPEED_SCALING = 1.0f/60.0f;
 	const float DEFAULT_CAMERA_TURN_ANGLE_SPEED_SCALING = 1.0f/600.0f;

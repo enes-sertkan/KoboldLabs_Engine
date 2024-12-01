@@ -14,6 +14,7 @@ rock.txt
 trees.txt
 tyres.txt
 gravel.txt
+skysphere.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -25,7 +26,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 8.76577e-39 6.15306e-39
+<Scale-> 1 1.01939e-38 5.60212e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -37,7 +38,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 8.76577e-39 1.04694e-38
+<Scale-> 1 8.76579e-39 6.15306e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -49,7 +50,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.06531e-38 7.53067e-39
+<Scale-> 1 1.1151e-38 7.80613e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -61,7 +62,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 7.62245e-39
+<Scale-> 1 1.1151e-38 8.72449e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -73,7 +74,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 9.27555e-39
+<Scale-> 1 1.1151e-38 7.07144e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -85,7 +86,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 7.98982e-39 1.01021e-38
+<Scale-> 1 7.16327e-39 7.62246e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -97,7 +98,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 6.15309e-39
+<Scale-> 1 1.1151e-38 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -109,7 +110,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 7.62246e-39
+<Scale-> 1 1.1151e-38 8.90818e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -121,7 +122,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 1.11122e-38
+<Scale-> 1 1.1151e-38 5.32655e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -133,7 +134,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 1.06531e-38
+<Scale-> 1 0 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -161,6 +162,19 @@ selectBox.txt
 <Visibility-> true
 <Shading-> true
 <--Object>
+
+<Object-->
+<Name-> SkySphere
+<Model-> SkySphere
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.01939e-38 5.60212e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
 
 <Light-->
 <Position-> 0.54 69999.4 -40044.5 1

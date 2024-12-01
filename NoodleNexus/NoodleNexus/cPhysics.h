@@ -129,6 +129,10 @@ public:
 	std::vector<sAABB*> vecAABBs;
 	std::vector< sTriangleMesh*> vecMeshes;
 
+	std::vector< sPhysInfo* > vecGeneralPhysicsObjects;
+
+	sPhysInfo* pFindAssociateMeshByFriendlyName(std::string friendlyName);
+
 
 	// Looks up the mesh information from the VAO manager
 	void setVAOManager(cVAOManager* pTheVAOManager);

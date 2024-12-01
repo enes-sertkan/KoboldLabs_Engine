@@ -49,12 +49,24 @@
 #include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
 #include "aPlayerMovement.h"
 #include "MazeGenerator.hpp"
+#include "cCommandFactory.hpp"
+#include "cCommandGroup.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
 #include "aPlayerItemsController.h"
 #include "ModelsLoader.hpp"
 
+std::vector<sMesh*> g_vecMeshesToDraw;
+
+cPhysics* g_pPhysicEngine = NULL;
+// This loads the 3D models for drawing, etc.
+cVAOManager* g_pMeshManager = NULL;
+
+cBasicTextureManager* g_pTextures = NULL;
+
+cCommandGroup* g_pCommandDirector = NULL;
+cCommandFactory* g_pCommandFactory = NULL;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
 
@@ -268,6 +280,20 @@ void DrawDebugObjects(cLightHelper TheLightHelper ,GLuint program, cLightManager
         program, scene);
 }
 
+// Returns NULL if NOT found
+sMesh* pFindMeshByFriendlyName(std::string theNameToFind)
+{
+    for (unsigned int index = 0; index != ::g_vecMeshesToDraw.size(); index++)
+    {
+        if (::g_vecMeshesToDraw[index]->uniqueFriendlyName == theNameToFind)
+        {
+            return ::g_vecMeshesToDraw[index];
+        }
+    }
+    // Didn't find it
+    return NULL;
+}
+
 
 void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 {
@@ -401,6 +427,8 @@ int main(void)
         std::cout<<object->name<<std::endl;
     }
 
+    
+
 
 
 //   CHECK IF INIT
@@ -452,6 +480,7 @@ int main(void)
 
 
 
+
 //   PREPARING SOMETHING ELSE (TODO: Try to put it away into functions)
 //   ------------------------
 
@@ -472,6 +501,25 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
+
+
+
+    // lookings
+    std::string errorString;
+    if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
+        "CubeMaps/SpaceBox_right1_posX.bmp",
+        "CubeMaps/SpaceBox_left2_negX.bmp",
+        "CubeMaps/SpaceBox_top3_posY.bmp",
+        "CubeMaps/SpaceBox_bottom4_negY.bmp",
+        "CubeMaps/SpaceBox_front5_posZ.bmp",
+        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
+    {
+        std::cout << "Loaded space skybox" << std::endl;
+    }
+    else
+    {
+        std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
+    }
 
 
     // Enable depth buffering (z buffering)
@@ -523,6 +571,68 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
+
+
+        // lookings
+        // Sky box
+ //Move the sky sphere with the camera
+        Object* SkySphere = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply",
+            glm::vec3(0, 0, 0), 
+            1, 
+            glm::vec3(0, 0, 0), 
+            false, 
+            glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+            true,
+            scene->sceneObjects);
+        SkySphere->mesh->textures[0];
+        SkySphere->mesh->positionXYZ = scene->fCamera->getEyeLocation();
+
+        // Disable backface culling (so BOTH sides are drawn)
+        glDisable(GL_CULL_FACE);
+        // Don't perform depth buffer testing
+        glDisable(GL_DEPTH_TEST);
+        // Don't write to the depth buffer when drawing to colour (back) buffer
+        glDepthMask(GL_FALSE);
+        glDepthFunc(GL_ALWAYS);// or GL_LESS (default)
+        // GL_DEPTH_TEST : do or not do the test against what's already on the depth buffer
+
+        SkySphere->mesh->bIsVisible = true;
+        //        pSkySphere->bDoNotLight = true;
+
+        SkySphere->mesh->uniformScale = 1.0f;
+
+        // Tell the shader this is the skybox, so use the cube map
+        // uniform samplerCube skyBoxTexture;
+        // uniform bool bIsSkyBoxObject;
+        GLuint bIsSkyBoxObject_UL = glGetUniformLocation(program, "bIsSkyBoxObject");
+        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_TRUE);
+
+        // Set the cube map texture, just like we do with the 2D
+        GLuint cubeSamplerID = scene->textureManager->getTextureIDFromName("Space");
+        //        GLuint cubeSamplerID = ::g_pTextures->getTextureIDFromName("SunnyDay");
+                // Make sure this is an unused texture unit
+        glActiveTexture(GL_TEXTURE0 + 60);
+        // *****************************************
+        // NOTE: This is a CUBE_MAP, not a 2D
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeSamplerID);
+        //        glBindTexture(GL_TEXTURE_2D, cubeSamplerID);
+                // *****************************************
+        GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
+        glUniform1i(skyBoxTextureSampler_UL, 60);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+
+        DrawMesh(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
+
+        SkySphere->mesh->bIsVisible = false;
+
+        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_FALSE);
+
+        glEnable(GL_CULL_FACE);
+        // Enable depth test and write to depth buffer (normal rendering)
+        glEnable(GL_DEPTH_TEST);
+        //        glDepthMask(GL_FALSE);
+        //        glDepthFunc(GL_LESS);
+                // **************************************************************
+
     
 
 //      DRAW LOOP
@@ -555,6 +665,8 @@ int main(void)
         double deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
 //      ------------------------------------------ 
+
+        
 
 
 

@@ -60,6 +60,9 @@
     <Filter Include="Engine\PhysicsManager\Phsyics_Stuff_Old">
       <UniqueIdentifier>{b50e5ed1-0d30-423d-8675-9d288d42b19b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="New Stuff">
+      <UniqueIdentifier>{d23ee73a-5063-45af-8eac-f931982d2787}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -130,6 +133,27 @@
     </ClCompile>
     <ClCompile Include="Gun.hpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C24BitBMPpixel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cBasicTextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureFromBMP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cCommandFactory.cpp">
+      <Filter>New Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="cMoveRelativeTime.cpp">
+      <Filter>New Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="cFollowObject_A.cpp">
+      <Filter>New Stuff</Filter>
+    </ClCompile>
+    <ClCompile Include="cCommandGroup.cpp">
+      <Filter>New Stuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +262,30 @@
     <ClInclude Include="ModelsLoader.hpp">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="C24BitBMPpixel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cBasicTextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureFromBMP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iCommand.hpp">
+      <Filter>New Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="cCommandGroup.hpp">
+      <Filter>New Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="cCommandFactory.hpp">
+      <Filter>New Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="cMoveRelativeTime.hpp">
+      <Filter>New Stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="cFollowObject_A.hpp">
+      <Filter>New Stuff</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
@@ -246,5 +294,6 @@
     <None Include="assets\shaders\vertex01.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="fragment02.glsl" />
   </ItemGroup>
 </Project>

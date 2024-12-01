@@ -198,11 +198,21 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	}
 
 	//
-	//glEnable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
 	//glActiveTexture( textureUnit );	// GL_TEXTURE0, GL_TEXTURE1, etc.
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->m_textureNumber);
 
-	//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
+
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+
+	glBegin(GL_QUADS);
+	glVertex2f(-0.5f, -0.5f);
+	glVertex2f(0.5f, -0.5f);
+	glVertex2f(0.5f, 0.5f);
+	glVertex2f(-0.5f, 0.5f);
+	glEnd();
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
