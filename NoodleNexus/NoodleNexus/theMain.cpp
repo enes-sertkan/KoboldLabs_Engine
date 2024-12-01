@@ -295,40 +295,81 @@ void AddActions(Scene* scene, GLuint program)
 {
 
 
-    Object* playerObject = scene->sceneObjects[1];
+    //Object* playerObject = scene->sceneObjects[1];
 
-    // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
-    scene->AddActionToObj(playerCameraAction, playerObject);
-
-
-    aPlayerMovement* playerMovement = new aPlayerMovement();
-    playerMovement->program = program;
-    scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
-
-    RayCastPhysics* phys = new RayCastPhysics;
-    phys->gravityAcceleration.y = -5;
-    phys->baseRayCastLength = 10.0;
-    scene->AddActionToObj(phys, scene->sceneObjects[1]);
+    //// Add the player camera action (with an offset for camera positioning)
+    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    //scene->AddActionToObj(playerCameraAction, playerObject);
 
 
+    //aPlayerMovement* playerMovement = new aPlayerMovement();
+    //playerMovement->program = program;
+    //scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
 
-    aDrawAim* drawAimAction = new aDrawAim();
-    drawAimAction->program = program;
-    scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
+    //RayCastPhysics* phys = new RayCastPhysics;
+    //phys->gravityAcceleration.y = -5;
+    //phys->baseRayCastLength = 10.0;
+    //scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
-    aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
-    scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
+
+    //aDrawAim* drawAimAction = new aDrawAim();
+    //drawAimAction->program = program;
+    //scene->AddActionToObj(drawAimAction, scene->sceneObjects[1]);
 
 
-    scene->sceneObjects[3]->mesh->textures[0] = "Puzzle_parts.bmp";
-    scene->sceneObjects[3]->mesh->blendRatio[0] = 1;
+    //aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
+    //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
+
+
+    scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
+    scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
+    scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
+    scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
+    scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
+    scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
+    scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
+    scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
+    scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
+    scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
+    scene->sceneObjects[9]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
+    scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
+    scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 }
-
-
-
 
 
 
@@ -419,8 +460,19 @@ int main(void)
 
 
     scene->textureManager->SetBasePath("assets/textures");
-    scene->textureManager->Create2DTextureFromBMPFile("bad_bunny_1920x1080.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Puzzle_parts.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("baloon.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("banners.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("barriers.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("garages.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("grass_1.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("grass_2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("gravel.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("metal_fence.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("road.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
+
 
     // Enable depth buffering (z buffering)
     // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glEnable.xhtml
@@ -445,9 +497,9 @@ int main(void)
 
 //   GENERATING MAZE
 //   ---------------
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
+    //MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
   
-    mazeGenerator->generateMaze();
+    //mazeGenerator->generateMaze();
 
 
 

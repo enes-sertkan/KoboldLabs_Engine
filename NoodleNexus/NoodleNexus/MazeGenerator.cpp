@@ -209,8 +209,8 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         obj->mesh->bIsVisible = false;
     }
 
-    obj->mesh->textures[0] = "Puzzle_parts.bmp";
-    obj->mesh->blendRatio[0] = 1;
+   /* obj->mesh->textures[0] = "Puzzle_parts.bmp";
+    obj->mesh->blendRatio[0] = 1;*/
     // Add to physics manager with the applied scale
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
 }

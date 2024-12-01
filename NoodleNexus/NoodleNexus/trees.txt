@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> trees
+<filePath> assets/models/Race_track/trees_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

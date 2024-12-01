@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> grass01
+<filePath> assets/models/Race_track/grass_01_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

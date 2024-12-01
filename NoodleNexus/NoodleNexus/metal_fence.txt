@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> metal_fence
+<filePath> assets/models/Race_track/metal_fence_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> barriers
+<filePath> assets/models/Race_track/barriers_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

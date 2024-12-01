@@ -2,92 +2,168 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-Hangar.txt
-wall.txt
-rotatedWall.txt
-floor.txt
-ceiling.txt
-door.txt
-Chair.txt
-Bed.txt
-console.txt
-SLadder.txt
-Cdesk.txt
-printer.txt
-treadmill.txt
-stairs.txt
-Plants.txt
-Sphere.txt
+baloons.txt
+banners.txt
+barriers.txt
+garage.txt
+grass01.txt
+grass02.txt
+metal_fence.txt
+road.txt
+rock.txt
+trees.txt
+tyres.txt
+gravel.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> Player AA BBB <Position-> -148 0 -276 <StaticCollision-> false <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 50 1.0511e-38 7.07142e-39
-<Visibility-> true
-<Shading-> true
-<Color-> 1 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> e <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 45 5 46
-<Rotation-> 0 0 0
-<Scale-> 0.5 6.52032e-39 6.33674e-39
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -9 0 -9
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.09187e-39
-<Visibility-> true
-<Shading-> false
-<Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Hangar
-<Model-> Hangar
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
+<Name-> baloons
+<Model-> baloons
+<Tags-> <StaticCollision-> false
 <StaticCollision-> false
 <Position-> -151 -1 265
-<Rotation-> 0 -90 0
-<Scale-> 0.1 9.21849e-39 8.90815e-39
+<Rotation-> -90 0 0
+<Scale-> 1 8.76577e-39 6.15306e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> wall
-<Model-> wall
-<Tags-> <StaticCollision-> false <StaticCollision-> false <StaticCollision-> false
+<Name-> banners
+<Model-> banners
+<Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 2 -2 472
-<Rotation-> 0 -90 0
-<Scale-> 7.39007 0 6.90433e+11
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 8.76577e-39 1.04694e-38
 <Visibility-> true
-<Shading-> false
-<Color-> 0.3 0.3 0.3
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> barriers
+<Model-> barriers
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.06531e-38 7.53067e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> garage
+<Model-> garage
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 0 7.62245e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> grass01
+<Model-> grass01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.1151e-38 9.27555e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> grass02
+<Model-> grass02
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 7.98982e-39 1.01021e-38
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> gravel
+<Model-> gravel
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.1151e-38 6.15309e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> metal_fence
+<Model-> metal_fence
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.1151e-38 7.62246e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> road
+<Model-> road
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 1.1151e-38 1.11122e-38
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> rock
+<Model-> rock
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 0 1.06531e-38
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> trees
+<Model-> trees
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> tyres
+<Model-> tyres
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -151 -1 265
+<Rotation-> -90 0 0
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
 <--Object>
 
 <Light-->
-<Position-> 0.5 69999.4 -40043.4 1
+<Position-> 0.54 69999.4 -40044.5 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
@@ -97,7 +173,7 @@ selectBox.txt
 <--Light>
 
 <Light-->
-<Position-> -276.5 94.5 605 1
+<Position-> -433.5 362.5 629.5 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
