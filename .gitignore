@@ -101,6 +101,14 @@ StyleCopReport.xml
 # Chutzpah Test files
 _Chutzpah*
 
+# Ignore specific .ply files
+assets/models/Race_track/garage_xyznuvrbga.ply
+assets/models/Race_track/trees_xyznuvrbga.ply
+
+# Ignore a specific texture file
+assets/textures/road.bmp
+
+
 # Visual C++ cache files
 ipch/
 *.aps
