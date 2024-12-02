@@ -61,7 +61,9 @@ uniform samplerCube skyBoxTextureSampler;
 uniform bool bIsSkyBoxObject;
 //
 
-
+// For discard stencil example
+uniform sampler2D stencilTexture;
+uniform bool bUseStencilTexture;
 
 //uniform sampler2D textures[4];
 //uniform sampler2DArray textures[3]
@@ -70,6 +72,33 @@ uniform bool bIsSkyBoxObject;
 
 void main()
 {
+	// discard transparency
+	// uniform sampler2D stencilTexture;
+	// uniform bool bUseStencilTexture;
+	if ( bUseStencilTexture )
+	{
+		float stencilColour = texture( stencilTexture, fUV.st ).r;
+		//
+		if ( stencilColour < 0.5f )	// Is it "black enough"
+		{
+			discard;	// don't draw this pixel
+		}
+	}
+
+
+	// For the skybox object
+	if ( bIsSkyBoxObject )
+	{
+		//finalPixelColour.rgb = fvertexNormal.xyz;
+		//uniform samplerCube skyBoxTextureSampler;
+		// Note: We are passing the NORMALS (a ray to hit the inside
+		// 	of the cube) and NOT the texture coordinates
+		finalPixelColour.rgb = texture( skyBoxTextureSampler, fvertexNormal.xyz ).rgb;
+		finalPixelColour.a = 1.0f;
+		return;
+	}
+	
+	
 
 
 

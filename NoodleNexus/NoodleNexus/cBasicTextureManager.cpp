@@ -102,9 +102,13 @@ bool cBasicTextureManager::CreateCubeTextureFromBMPFiles(
 	std::string posZ_fileName_FullPath = this->m_basePath + "/" + posZ_fileName;
 	std::string negZ_fileName_FullPath = this->m_basePath + "/" + negZ_fileName;
 
+	
+	
+
 	GLenum errorEnum;
 	std::string errorDetails;
 	CTextureFromBMP* pTempTexture = new CTextureFromBMP();
+
 	if (!pTempTexture->CreateNewCubeTextureFromBMPFiles(
 		cubeMapName,
 		posX_fileName_FullPath, negX_fileName_FullPath,

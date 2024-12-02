@@ -174,7 +174,6 @@ bool CTextureFromBMP::CreateNewTextureFromBMPFile2(std::string textureName, std:
 	return bReturnVal;
 }
 
-
 bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	std::string posX_fileName, std::string negX_fileName,
 	std::string posY_fileName, std::string negY_fileName,
@@ -198,21 +197,11 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	}
 
 	//
-	glEnable(GL_BLEND);
+	//glEnable(GL_TEXTURE_2D);
 	//glActiveTexture( textureUnit );	// GL_TEXTURE0, GL_TEXTURE1, etc.
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->m_textureNumber);
 
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
-
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-
-	glBegin(GL_QUADS);
-	glVertex2f(-0.5f, -0.5f);
-	glVertex2f(0.5f, -0.5f);
-	glVertex2f(0.5f, 0.5f);
-	glVertex2f(-0.5f, 0.5f);
-	glEnd();
+	//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
@@ -235,6 +224,7 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	// Assume all the images are the same size. If not, then it will screw up
 	if (this->LoadBMP2(posX_fileName))
 	{
+		if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
 
 		glTexStorage2D(GL_TEXTURE_CUBE_MAP,
 			5, // Mipmap levels
@@ -247,7 +237,7 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 		//			this->m_numberOfColumns,	// width (pixels)
 		//			this->m_numberOfRows );		// height (pixels)
 
-		if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
+	
 	}
 	else
 	{
@@ -255,17 +245,17 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 		return false;
 	}
 
-	// Positive X image...
-	glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-		0,   // Level
-		0, 0, // Offset
-		this->m_numberOfColumns,	// width
-		this->m_numberOfRows,		// height
-		GL_RGB,
-		GL_UNSIGNED_BYTE,
-		this->m_p_theImages);
-	this->ClearBMP();
-	if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
+	//// Positive X image...
+	//glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+	//	0,   // Level
+	//	0, 0, // Offset
+	//	this->m_numberOfColumns,	// width
+	//	this->m_numberOfRows,		// height
+	//	GL_RGB,
+	//	GL_UNSIGNED_BYTE,
+	//	this->m_p_theImages);
+	//this->ClearBMP();
+	//if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
 
 
 	// Negative X image...
@@ -343,6 +333,8 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 
 	return bReturnVal;
 }
+
+
 
 bool CTextureFromBMP::ClearBMP(void)
 {

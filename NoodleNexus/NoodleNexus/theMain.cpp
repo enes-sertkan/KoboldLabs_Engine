@@ -503,6 +503,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
 
 
+    std::cout << "Skybox Texture Load Start" << std::endl;
 
     // lookings
     std::string errorString;
@@ -521,7 +522,7 @@ int main(void)
         std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
     }
 
-
+    std::cout << "Skybox Texture Load End" << std::endl;
     // Enable depth buffering (z buffering)
     // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glEnable.xhtml
     glEnable(GL_DEPTH_TEST);
