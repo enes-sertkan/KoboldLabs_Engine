@@ -197,11 +197,11 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	}
 
 	//
-	//glEnable(GL_TEXTURE_2D);
+	glEnable(GL_TEXTURE_2D);
 	//glActiveTexture( textureUnit );	// GL_TEXTURE0, GL_TEXTURE1, etc.
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->m_textureNumber);
 
-	//glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
@@ -211,7 +211,14 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 
 	// IF YOU DON'T GENERATE MIP MAPS, then you can use LINEAR filtering
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	//glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+
+	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
+
+	//for (int i = 0; i < 6; ++i) {
+	//	glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, imageData[i]);
+	//}
+
 
 	if (bIsSeamless)
 	{
@@ -224,20 +231,23 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	// Assume all the images are the same size. If not, then it will screw up
 	if (this->LoadBMP2(posX_fileName))
 	{
+
+		//glTexStorage2D(GL_TEXTURE_CUBE_MAP,
+		//	5, // Mipmap levels
+		//	GL_RGBA8,	// Internal format
+		//	this->m_numberOfColumns,	// width (pixels)
+		//	this->m_numberOfRows);		// height (pixels)
+		////glTextureStorage2D( GL_TEXTURE_CUBE_MAP,
+		////            5, // Mipmap levels
+		////			GL_RGBA8,	// Internal format
+		////			this->m_numberOfColumns,	// width (pixels)
+		////			this->m_numberOfRows );		// height (pixels)
+
+		glTexStorage2D(GL_TEXTURE_CUBE_MAP, 5, GL_RGBA8, this->m_numberOfColumns, this->m_numberOfRows);
+		glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, 0, 0, this->m_numberOfColumns, this->m_numberOfRows, GL_RGB, GL_UNSIGNED_BYTE, this->m_p_theImages);
+
+
 		if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
-
-		glTexStorage2D(GL_TEXTURE_CUBE_MAP,
-			5, // Mipmap levels
-			GL_RGBA8,	// Internal format
-			this->m_numberOfColumns,	// width (pixels)
-			this->m_numberOfRows);		// height (pixels)
-		//glTextureStorage2D( GL_TEXTURE_CUBE_MAP,
-		//            5, // Mipmap levels
-		//			GL_RGBA8,	// Internal format
-		//			this->m_numberOfColumns,	// width (pixels)
-		//			this->m_numberOfRows );		// height (pixels)
-
-	
 	}
 	else
 	{
@@ -245,17 +255,17 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 		return false;
 	}
 
-	//// Positive X image...
-	//glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-	//	0,   // Level
-	//	0, 0, // Offset
-	//	this->m_numberOfColumns,	// width
-	//	this->m_numberOfRows,		// height
-	//	GL_RGB,
-	//	GL_UNSIGNED_BYTE,
-	//	this->m_p_theImages);
-	//this->ClearBMP();
-	//if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
+	// Positive X image...
+	glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+		0,   // Level
+		0, 0, // Offset
+		this->m_numberOfColumns,	// width
+		this->m_numberOfRows,		// height
+		GL_RGB,
+		GL_UNSIGNED_BYTE,
+		this->m_p_theImages);
+	this->ClearBMP();
+	if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }
 
 
 	// Negative X image...
