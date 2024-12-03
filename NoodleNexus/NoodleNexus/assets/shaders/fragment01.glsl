@@ -177,20 +177,6 @@ void main()
 	
 	
 	
-	// Use the 4th value (alpha) as the transparency
-//	finalPixelColour.a = 1.0f - texture( texture03, fUV.st ).r;
-
-//	finalPixelColour.a = 1.0f;		
-//	finalPixelColour.a = 0.9f;		
-
-	// Make the actual colour almost black
-	// Apply the UVs as a colour
-//	finalPixelColour.rgb *= 0.001f;	// Almost black
-//	finalPixelColour.rg += fUV.xy;	// Add the UVs as colours
-
-	// uniform sampler2D texture01;
-	//vec3 texColour = texture( texture00, fUV.st ).rgb;
-	//finalPixelColour.rgb += texColour;
 
 }
 

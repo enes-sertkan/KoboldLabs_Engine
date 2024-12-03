@@ -25,7 +25,7 @@ struct sMesh
 	bool bIsVisible = true;
 	bool bDoNotLight = false;
 
-	float wholeObjectTransparencyIndex;
+	float transperency=1.f;
 	
 	static const unsigned int MAX_NUM_TEXTURES = 4;
 	std::string textures[MAX_NUM_TEXTURES];

@@ -213,6 +213,12 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         pCurMesh->objectColourRGBA.b,
         1.0f);
 
+    //transperency
+   // if (pCurMesh->transperency < 1)
+   // {
+       // glDisable(GL_DEPTH_TEST);
+        glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+    //}
 
     // solid or wireframe, etc.
 //        glPointSize(10.0f);
@@ -242,7 +248,7 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         glBindVertexArray(0); 			//disable VAO(and everything else)
     }
 
-
+   // glEnable(GL_DEPTH_TEST);
 	return;
 }
 
@@ -274,4 +280,60 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     pDebugSphere->bIsVisible = false;
 
     return;
+}
+
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager)
+{
+
+
+    // lookings
+    // Sky box
+//Move the sky sphere with the camera
+
+
+       // Disable backface culling (so BOTH sides are drawn)
+    glDisable(GL_CULL_FACE);
+    // Don't perform depth buffer testing
+    glDisable(GL_DEPTH_TEST);
+    // Don't write to the depth buffer when drawing to colour (back) buffer
+    // Not transperancy, just enables or disables
+    /*glDepthMask(GL_FALSE);
+    glDepthFunc(GL_ALWAYS);*/// or GL_LESS (default)
+    // GL_DEPTH_TEST : do or not do the test against what's already on the depth buffer
+
+  
+
+
+    // Tell the shader this is the skybox, so use the cube map
+    // uniform samplerCube skyBoxTexture;
+    // uniform bool bIsSkyBoxObject;
+    GLuint bIsSkyBoxObject_UL = glGetUniformLocation(program, "bIsSkyBoxObject");
+    glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_TRUE);
+
+    //// Set the cube map texture, just like we do with the 2D
+    GLuint cubeSamplerID = textureManager->getTextureIDFromName("Space");
+    //        GLuint cubeSamplerID = ::g_pTextures->getTextureIDFromName("SunnyDay");
+            // Make sure this is an unused texture unit
+    glActiveTexture(GL_TEXTURE0 + 40);
+    // *****************************************
+    // NOTE: This is a CUBE_MAP, not a 2D
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubeSamplerID);
+    //glBindTexture(GL_TEXTURE_2D, cubeSamplerID);
+            // *****************************************
+    GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
+    glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+
+    DrawMesh(pCurMesh, program, vaoManager, textureManager);
+
+    //SkySphere->mesh->bIsVisible = true;
+
+    glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_FALSE);
+    glEnable(GL_CULL_FACE);
+    //// Enable depth test and write to depth buffer (normal rendering)
+    glEnable(GL_DEPTH_TEST);
+    //glDepthMask(GL_FALSE);
+    //glDepthFunc(GL_LESS);
+    // **************************************************************
+
+
 }

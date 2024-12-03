@@ -69,7 +69,7 @@ cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
-
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
 
 
 static void error_callback(int error, const char* description)
@@ -351,10 +351,12 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[0]->mesh->transperency = 1;
 
     scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[1]->mesh->transperency = 0.2;
 
     scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
     scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
@@ -363,10 +365,12 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
     scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+    
 
     scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[4]->mesh->transperency = 0.99;
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
@@ -383,6 +387,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
     scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[8]->mesh->transperency = 1;
 
     scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
     scene->sceneObjects[9]->mesh->blendRatio[0] = 3;
@@ -561,10 +566,21 @@ int main(void)
     SkySphere->mesh->textures[0] = "tyres.bmp";
     SkySphere->isTemporary = true;
 
-    float transparency = SkySphere->mesh->wholeObjectTransparencyIndex = 0.4;
-    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), transparency);
+
+    SkySphere->mesh->transperency = 1;
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
     scene->Start();
+
+
+
+    //  Turn on the blend operation
+    glEnable(GL_BLEND);
+    // Do alpha channel transparency
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -584,23 +600,6 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-
-
-        // lookings
-        // Sky box
- //Move the sky sphere with the camera
-        
-
-        // Disable backface culling (so BOTH sides are drawn)
-        glDisable(GL_CULL_FACE);
-        // Don't perform depth buffer testing
-        glDisable(GL_DEPTH_TEST);
-        // Don't write to the depth buffer when drawing to colour (back) buffer
-        // Not transperancy, just enables or disables
-        /*glDepthMask(GL_FALSE);
-        glDepthFunc(GL_ALWAYS);*/// or GL_LESS (default)
-        // GL_DEPTH_TEST : do or not do the test against what's already on the depth buffer
-
         SkySphere->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //SkySphere->mesh->positionXYZ.x -= 5.0f;
 
@@ -609,40 +608,7 @@ int main(void)
         //        pSkySphere->bDoNotLight = true;
 
         SkySphere->mesh->uniformScale = 25.0f;
-
-        // Tell the shader this is the skybox, so use the cube map
-        // uniform samplerCube skyBoxTexture;
-        // uniform bool bIsSkyBoxObject;
-        GLuint bIsSkyBoxObject_UL = glGetUniformLocation(program, "bIsSkyBoxObject");
-        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_TRUE);
-
-        //// Set the cube map texture, just like we do with the 2D
-        GLuint cubeSamplerID = scene->textureManager->getTextureIDFromName("Space");
-        //        GLuint cubeSamplerID = ::g_pTextures->getTextureIDFromName("SunnyDay");
-                // Make sure this is an unused texture unit
-        glActiveTexture(GL_TEXTURE0 + 40);
-        // *****************************************
-        // NOTE: This is a CUBE_MAP, not a 2D
-        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeSamplerID);
-        //glBindTexture(GL_TEXTURE_2D, cubeSamplerID);
-                // *****************************************
-        GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
-        glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
-
-        DrawMesh(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
-
-        //SkySphere->mesh->bIsVisible = true;
-
-        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_FALSE);
-        glEnable(GL_CULL_FACE);
-        //// Enable depth test and write to depth buffer (normal rendering)
-        glEnable(GL_DEPTH_TEST);
-                //glDepthMask(GL_FALSE);
-                //glDepthFunc(GL_LESS);
-                // **************************************************************
-
-    
-
+        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
 //      DRAW LOOP
 //      ------------------------------------------       
 
