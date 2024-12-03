@@ -197,21 +197,15 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 	}
 
 	//
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 	//glActiveTexture( textureUnit );	// GL_TEXTURE0, GL_TEXTURE1, etc.
 	glBindTexture(GL_TEXTURE_CUBE_MAP, this->m_textureNumber);
 
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_GENERATE_MIPMAP, GL_TRUE);
-
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE /*GL_REPEAT*/);
-
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	// IF YOU DON'T GENERATE MIP MAPS, then you can use LINEAR filtering
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri( GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
 	glGenerateMipmap(GL_TEXTURE_CUBE_MAP);
 
@@ -244,7 +238,7 @@ bool CTextureFromBMP::CreateNewCubeTextureFromBMPFiles(std::string cubeMapName,
 		////			this->m_numberOfRows );		// height (pixels)
 
 		glTexStorage2D(GL_TEXTURE_CUBE_MAP, 5, GL_RGBA8, this->m_numberOfColumns, this->m_numberOfRows);
-		glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, 0, 0, this->m_numberOfColumns, this->m_numberOfRows, GL_RGB, GL_UNSIGNED_BYTE, this->m_p_theImages);
+		//glTexSubImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, 0, 0, this->m_numberOfColumns, this->m_numberOfRows, GL_RGB, GL_UNSIGNED_BYTE, this->m_p_theImages);
 
 
 		if (this->bWasThereAnOpenGLError(errorEnum, errorString, errorDetails)) { return false; }

@@ -445,8 +445,8 @@ int main(void)
 //   ----------------
 
     ///I really want to put this into a function, vut IDK how
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
@@ -508,12 +508,12 @@ int main(void)
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/SpaceBox_right1_posX.bmp",
-        "CubeMaps/SpaceBox_left2_negX.bmp",
-        "CubeMaps/SpaceBox_top3_posY.bmp",
-        "CubeMaps/SpaceBox_bottom4_negY.bmp",
-        "CubeMaps/SpaceBox_front5_posZ.bmp",
-        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
+        "CubeMaps/TropicalSunnyDayLeft2048.bmp",
+        "CubeMaps/TropicalSunnyDayRight2048.bmp",
+        "CubeMaps/TropicalSunnyDayUp2048.bmp",
+        "CubeMaps/TropicalSunnyDayDown2048.bmp",
+        "CubeMaps/TropicalSunnyDayFront2048.bmp",
+        "CubeMaps/TropicalSunnyDayBack2048.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }
@@ -558,10 +558,11 @@ int main(void)
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
         true,
         scene->sceneObjects);
-    SkySphere->mesh->textures[0] = "trees.bmp";
+    SkySphere->mesh->textures[0] = "tyres.bmp";
     SkySphere->isTemporary = true;
 
-
+    float transparency = SkySphere->mesh->wholeObjectTransparencyIndex = 0.4;
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), transparency);
 
     scene->Start();
 
@@ -601,39 +602,38 @@ int main(void)
         // GL_DEPTH_TEST : do or not do the test against what's already on the depth buffer
 
         SkySphere->mesh->positionXYZ = scene->fCamera->getEyeLocation();
-        SkySphere->mesh->positionXYZ.x -= 5.0f;
+        //SkySphere->mesh->positionXYZ.x -= 5.0f;
 
 
         SkySphere->mesh->bIsVisible = true;
         //        pSkySphere->bDoNotLight = true;
 
-        SkySphere->mesh->uniformScale = 1.0f;
+        SkySphere->mesh->uniformScale = 25.0f;
 
         // Tell the shader this is the skybox, so use the cube map
         // uniform samplerCube skyBoxTexture;
         // uniform bool bIsSkyBoxObject;
-        //GLuint bIsSkyBoxObject_UL = glGetUniformLocation(program, "bIsSkyBoxObject");
-        //glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_TRUE);
+        GLuint bIsSkyBoxObject_UL = glGetUniformLocation(program, "bIsSkyBoxObject");
+        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_TRUE);
 
         //// Set the cube map texture, just like we do with the 2D
-        //GLuint cubeSamplerID = scene->textureManager->getTextureIDFromName("Space");
-        ////        GLuint cubeSamplerID = ::g_pTextures->getTextureIDFromName("SunnyDay");
-        //        // Make sure this is an unused texture unit
-        //glActiveTexture(GL_TEXTURE0 + 15);
-        //// *****************************************
-        //// NOTE: This is a CUBE_MAP, not a 2D
-        //glBindTexture(GL_TEXTURE_CUBE_MAP, cubeSamplerID);
+        GLuint cubeSamplerID = scene->textureManager->getTextureIDFromName("Space");
+        //        GLuint cubeSamplerID = ::g_pTextures->getTextureIDFromName("SunnyDay");
+                // Make sure this is an unused texture unit
+        glActiveTexture(GL_TEXTURE0 + 40);
+        // *****************************************
+        // NOTE: This is a CUBE_MAP, not a 2D
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubeSamplerID);
         //glBindTexture(GL_TEXTURE_2D, cubeSamplerID);
-        //        // *****************************************
-        //GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
-        //glUniform1i(skyBoxTextureSampler_UL, 15);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+                // *****************************************
+        GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
+        glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
 
-        ////DrawMesh(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
+        DrawMesh(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
 
-        ////SkySphere->mesh->bIsVisible = true;
+        //SkySphere->mesh->bIsVisible = true;
 
-        //glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_FALSE);
-
+        glUniform1f(bIsSkyBoxObject_UL, (GLfloat)GL_FALSE);
         glEnable(GL_CULL_FACE);
         //// Enable depth test and write to depth buffer (normal rendering)
         glEnable(GL_DEPTH_TEST);
