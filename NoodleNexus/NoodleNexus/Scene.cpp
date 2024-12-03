@@ -277,8 +277,18 @@ void Scene::SortObjectsForDrawing()
 {
      sceneObjectsSorted = sceneObjects;
     std::sort(sceneObjectsSorted.begin(), sceneObjectsSorted.end(), [this](Object* a, Object* b) {
+        if(a->mesh->transperency<1 && b->mesh->transperency>=1)
+        {
+            return false;
+        } 
+        
+        if(a->mesh->transperency>=1 && b->mesh->transperency<1)
+        {
+            return true;
+        }
         float distanceA = glm::distance(a->mesh->positionXYZ, fCamera->getEyeLocation());
         float distanceB = glm::distance(b->mesh->positionXYZ, fCamera->getEyeLocation());
+
         return distanceA > distanceB;
         });//I tried using function to sort, but it didn't work, so I used "lambda" approach.
 

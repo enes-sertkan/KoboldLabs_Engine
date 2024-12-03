@@ -370,7 +370,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[4]->mesh->transperency = 0.99;
+
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
