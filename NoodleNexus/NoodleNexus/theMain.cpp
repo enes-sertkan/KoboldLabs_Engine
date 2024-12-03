@@ -365,7 +365,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
     scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
-    
+  
 
     scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
@@ -401,25 +401,16 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[13]->mesh->textures[0] = "godray.bmp";
+    scene->sceneObjects[13]->mesh->textures[0] = "cloud.bmp";
     scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[13]->mesh->transperency = 0.2;
+    scene->sceneObjects[13]->mesh->transperency = 0.9;
 
-    scene->sceneObjects[14]->mesh->textures[0] = "godray.bmp";
+    scene->sceneObjects[14]->mesh->textures[0] = "yellow.bmp";
     scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[14]->mesh->transperency = 0.2;
-
-    scene->sceneObjects[15]->mesh->textures[0] = "godray.bmp";
-    scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[15]->mesh->transperency = 0.2;
 }
-
-
-
-
 
 //MAIN
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -521,7 +512,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("godray.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("yellow.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("cloud.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
@@ -628,7 +620,7 @@ int main(void)
 //      DRAW LOOP
 //      ------------------------------------------       
         scene->SortObjectsForDrawing();
-        for (Object* object:scene->sceneObjectsSorted)
+        for (Object* object:scene->sceneObjects)
         {
   
             sMesh* pCurMesh = object->mesh;

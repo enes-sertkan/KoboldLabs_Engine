@@ -16,6 +16,7 @@ tyres.txt
 gravel.txt
 skysphere.txt
 godray.txt
+clouds.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -27,7 +28,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.01419e-38 1.00102e-38
+<Scale-> 1 4.77551e-39 5.05102e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -39,7 +40,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 8.76577e-39 7.62246e-39
+<Scale-> 1 1.05613e-38 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -51,7 +52,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 7.62249e-39
+<Scale-> 1 1.1151e-38 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -63,7 +64,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 6.33665e-39 5.96942e-39
+<Scale-> 1 0 7.255e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -75,7 +76,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 9.27555e-39 1.01021e-38
+<Scale-> 1 1.1151e-38 5.60212e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -87,7 +88,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 6.22177e-43 8.44895e-39
+<Scale-> 1 5.70328e-43 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -99,7 +100,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 5.96944e-39
+<Scale-> 1 1.1151e-38 6.15306e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -111,7 +112,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 7.07144e-39
+<Scale-> 1 1.1151e-38 1.04694e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -123,7 +124,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 7.53067e-39
+<Scale-> 1 0 1.01938e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -135,7 +136,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 0
+<Scale-> 1 0 9.64289e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -171,32 +172,20 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
 <--Object>
 
 <Object-->
-<Name-> GodRay
-<Model-> GodRay
+<Name-> Clouds
+<Model-> Clouds
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -535 198 74
-<Rotation-> -60 6 -258
-<Scale-> 200 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> GodRay
-<Model-> GodRay
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -393 145 -149
-<Rotation-> -60 6 -258
-<Scale-> 150 1.1151e-38 0
+<Position-> -341 525 420
+<Rotation-> -89 0 -250
+<Scale-> 20 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -214,7 +203,7 @@ selectBox.txt
 <--Object>
 
 <Light-->
-<Position-> 0.54 69999.4 -40045.9 1
+<Position-> 1.4 69999.4 -40048.7 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
@@ -234,182 +223,22 @@ selectBox.txt
 <--Light>
 
 <Light-->
-<Position-> 827 536 940.5 1
-<Diffuse-> 1 1 1 1
+<Position-> 67 149.5 380 1
+<Diffuse-> 1 0.85 0.3 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0010311 1.28329e-07 3.40282e+38
-<Direction-> -5.64 -8.83999 -0.039997 0
-<Param1-> 1 24.0001 24.5001 0
-<Param2-> 0 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 109 24.5 168.26 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
+<Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
+<Direction-> 32.5604 -7.2 -8.84 0
+<Param1-> 1 -12.5001 15.5 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 189 31 316.2 1
-<Diffuse-> 1 1 1 1
+<Position-> 234.5 149.5 485.5 1
+<Diffuse-> 1 0.85 0.3 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 72 33 669 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 180 33 904 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 113 33 954 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 329 33 875 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 391 33 729 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 241 33 599 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 419 33 465 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 512 33 448 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 663 33 322 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 686 33 633 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 331 33 291 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 502 33 231 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 736 33 145 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 738 33 900 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 529 33 888 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.114317 1.67201e-07 3.40282e+38
-<Direction-> -11 -14.8 -4.48 0
-<Param1-> 0 -0.6 1.6 0
+<Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
+<Direction-> -169.156 11.16 42.2806 0
+<Param1-> 1 61.0996 89.8992 0
 <Param2-> 1 0 0 0
 <--Light>
 

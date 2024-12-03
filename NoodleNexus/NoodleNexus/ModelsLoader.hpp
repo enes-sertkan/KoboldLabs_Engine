@@ -73,6 +73,11 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Race_track/godray_xyznuvrgba.ply";
     fileManager->WriteModelFile(&modelInfo, "godray.txt", "XYZNUVRGBA");
 
+    //Cloud
+    modelInfo.modelName = "Clouds";
+    modelInfo.meshPath = "assets/models/Race_track/clouds_xyznuvrbga.ply";
+    fileManager->WriteModelFile(&modelInfo, "clouds.txt", "XYZNUVRGBA");
+
     //SelectBox
     modelInfo.modelName = "Select_Box";
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
