@@ -620,7 +620,7 @@ int main(void)
 //      DRAW LOOP
 //      ------------------------------------------       
         scene->SortObjectsForDrawing();
-        for (Object* object:scene->sceneObjects)
+        for (Object* object:scene->sceneObjectsSorted)
         {
   
             sMesh* pCurMesh = object->mesh;
