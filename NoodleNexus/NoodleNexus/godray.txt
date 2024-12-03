@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> GodRay
+<filePath> assets/models/Race_track/godray_xyznuvrgba.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

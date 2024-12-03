@@ -400,6 +400,21 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
     scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[13]->mesh->textures[0] = "godray.bmp";
+    scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[13]->mesh->transperency = 0.2;
+
+    scene->sceneObjects[14]->mesh->textures[0] = "godray.bmp";
+    scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[14]->mesh->transperency = 0.2;
+
+    scene->sceneObjects[15]->mesh->textures[0] = "godray.bmp";
+    scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[15]->mesh->transperency = 0.2;
 }
 
 
@@ -506,6 +521,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("godray.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;

@@ -295,6 +295,7 @@ void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasic
     glDisable(GL_CULL_FACE);
     // Don't perform depth buffer testing
     glDisable(GL_DEPTH_TEST);
+    
     // Don't write to the depth buffer when drawing to colour (back) buffer
     // Not transperancy, just enables or disables
     /*glDepthMask(GL_FALSE);

@@ -15,6 +15,7 @@ trees.txt
 tyres.txt
 gravel.txt
 skysphere.txt
+godray.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -26,7 +27,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 8.76577e-39 0
+<Scale-> 1 1.01419e-38 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -38,7 +39,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 0
+<Scale-> 1 8.76577e-39 7.62246e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -50,7 +51,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 -1.49675e+32 0
+<Scale-> 1 0 7.62249e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -62,7 +63,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 6.33665e-39 5.96942e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -74,7 +75,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 0
+<Scale-> 1 9.27555e-39 1.01021e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -86,7 +87,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 6.22177e-43 8.44895e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -98,7 +99,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 5.96944e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -110,7 +111,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 7.07144e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -122,7 +123,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> -90 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.1151e-38 7.53067e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -176,8 +177,44 @@ selectBox.txt
 <Color-> 0 0 0
 <--Object>
 
+<Object-->
+<Name-> GodRay
+<Model-> GodRay
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -535 198 74
+<Rotation-> -60 6 -258
+<Scale-> 200 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> GodRay
+<Model-> GodRay
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -393 145 -149
+<Rotation-> -60 6 -258
+<Scale-> 150 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> GodRay
+<Model-> GodRay
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -7 170 -126
+<Rotation-> -60 6 -258
+<Scale-> 170 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
 <Light-->
-<Position-> 0.54 69999.4 -40044.7 1
+<Position-> 0.54 69999.4 -40045.9 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
