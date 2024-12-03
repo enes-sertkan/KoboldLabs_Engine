@@ -26,6 +26,10 @@ private:
 
 public:
 
+
+	void SortObjectsForDrawing();
+	bool CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b);
+
 	cBasicTextureManager* textureManager;
 
 	void DrawMesh(sMesh* pCurMesh, GLuint program);
@@ -41,6 +45,7 @@ public:
 	std::vector<sModelDrawInfo> modelInfos;
 
 	std::vector<Object*> sceneObjects;
+	std::vector<Object*> sceneObjectsSorted;
 
 	std::vector<Action*> actions;
 

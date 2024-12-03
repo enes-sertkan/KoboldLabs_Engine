@@ -264,7 +264,28 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* ph
 
     programs.push_back(program);
 }
+// Comparator function
+bool Scene::CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b) {
 
+    float distanceA = glm::distance(a->mesh->positionXYZ, fCamera->getEyeLocation());
+    float distanceB = glm::distance(b->mesh->positionXYZ, fCamera->getEyeLocation());
+
+    return distanceA < distanceB;
+}
+
+void Scene::SortObjectsForDrawing()
+{
+     sceneObjectsSorted = sceneObjects;
+    std::sort(sceneObjectsSorted.begin(), sceneObjectsSorted.end(), [this](Object* a, Object* b) {
+        float distanceA = glm::distance(a->mesh->positionXYZ, fCamera->getEyeLocation());
+        float distanceB = glm::distance(b->mesh->positionXYZ, fCamera->getEyeLocation());
+        return distanceA > distanceB;
+        });//I tried using function to sort, but it didn't work, so I used "lambda" approach.
+
+
+
+    
+}
 
 void Scene::UpdateDeltaTime()
 {

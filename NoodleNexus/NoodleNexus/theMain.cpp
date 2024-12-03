@@ -440,7 +440,7 @@ int main(void)
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
 
-
+    
 
     for (Object* object : scene->sceneObjects)
     {
@@ -627,8 +627,8 @@ int main(void)
         DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
 //      DRAW LOOP
 //      ------------------------------------------       
-
-        for (Object* object:scene->sceneObjects)
+        scene->SortObjectsForDrawing();
+        for (Object* object:scene->sceneObjectsSorted)
         {
   
             sMesh* pCurMesh = object->mesh;
