@@ -65,13 +65,16 @@ uniform bool bIsSkyBoxObject;
 uniform sampler2D stencilTexture;
 uniform bool bUseStencilTexture;
 
-//uniform sampler2D textures[4];
-//uniform sampler2DArray textures[3]
+uniform float time;        // Current time in seconds
+uniform float speedX;      // Speed in the X direction
+uniform float speedY;      // Speed in the Y direction
 
 
 
 void main()
 {
+
+ //fUV = fUV + vec2(time * speedX, time * speedY);
 	// discard transparency
 	// uniform sampler2D stencilTexture;
 	// uniform bool bUseStencilTexture;

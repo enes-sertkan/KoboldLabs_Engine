@@ -357,6 +357,8 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[1]->mesh->transperency = 0.2;
+   // scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+
 
     scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
     scene->sceneObjects[2]->mesh->blendRatio[0] = 1;

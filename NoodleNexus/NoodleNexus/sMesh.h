@@ -26,6 +26,10 @@ struct sMesh
 	bool bDoNotLight = false;
 	bool bIsStencilTexture = false;
 
+	glm::vec2 textureSpeed = glm::vec2(0.0);
+	float time = 0;
+
+
 	int stencilTextureID = 100;//SMELLS LIKE A BAD IDEA Maybe TODO later.
 								//If you use stencil texture you MUST change this.
 	std::string stencilTexture; // you also must set this up.

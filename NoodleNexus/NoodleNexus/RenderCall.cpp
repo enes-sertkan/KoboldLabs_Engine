@@ -106,25 +106,18 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 
     GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
 
-    if (pCurMesh->bIsStencilTexture)
-    {
-        
+    
+        pCurMesh->time += 0.1;
+        GLint time_UL = glGetUniformLocation(program, "time");
+        glUniform1f(time_UL, pCurMesh->time);
 
-       
-            glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_TRUE);            
+        GLint speedX_UL = glGetUniformLocation(program, "speedX");
+        glUniform1f(speedX_UL, pCurMesh->textureSpeed.x);
 
-            glActiveTexture(GL_TEXTURE0 + pCurMesh->stencilTextureID);
+        GLint speedY_UL = glGetUniformLocation(program, "speedY");
+        glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
 
-            GLuint stencilTextureID = textureManager->getTextureIDFromName(pCurMesh->stencilTexture);
-            glBindTexture(GL_TEXTURE_2D, stencilTextureID);
-
-            GLint stencilTexture_UL = glGetUniformLocation(program, "stencilTexture");
-            glUniform1i(stencilTexture_UL, pCurMesh->stencilTextureID);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
-        }
-        else
-        {
-            glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
-        }
+  
 
     // Use lighting or not
     // uniform bool bDoNotLight;	
