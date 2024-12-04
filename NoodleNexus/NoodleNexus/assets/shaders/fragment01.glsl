@@ -74,13 +74,16 @@ uniform float speedY;      // Speed in the Y direction
 void main()
 {
 
- //fUV = fUV + vec2(time * speedX, time * speedY);
+ vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
+
+
+
 	// discard transparency
 	// uniform sampler2D stencilTexture;
 	// uniform bool bUseStencilTexture;
 	if ( bUseStencilTexture )
 	{
-		float stencilColour = texture( stencilTexture, fUV.st ).r;
+		float stencilColour = texture( stencilTexture, movingUV.st ).r;
 		//
 		if ( stencilColour < 0.5f )	// Is it "black enough"
 		{
@@ -119,10 +122,10 @@ void main()
 //		uniform sampler2D texture03;
 //		uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
 	
-		vec3 texColour00 = texture( texture00, fUV.st ).rgb;
-		vec3 texColour01 = texture( texture01, fUV.st ).rgb;	
-		vec3 texColour02 = texture( texture02, fUV.st ).rgb;	
-		vec3 texColour03 = texture( texture03, fUV.st ).rgb;	
+		vec3 texColour00 = texture( texture00, movingUV.st ).rgb;
+		vec3 texColour01 = texture( texture01, movingUV.st ).rgb;	
+		vec3 texColour02 = texture( texture02, movingUV.st ).rgb;	
+		vec3 texColour03 = texture( texture03, movingUV.st ).rgb;	
 		
 		
 		// All these ratios should add up to 1.0
