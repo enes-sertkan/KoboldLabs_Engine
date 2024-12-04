@@ -384,11 +384,6 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
- /*   scene->sceneObjects[6]->mesh->bIsStencilTexture = true;
-    scene->sceneObjects[6]->mesh->stencilTexture = "rock.bmp";
-    scene->sceneObjects[6]->mesh->stencilTextureID = 60;*/
-
-
     scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
     scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
@@ -398,6 +393,10 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[8]->mesh->transperency = 1;
 
+    scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
+    scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
+    scene->sceneObjects[8]->mesh->stencilTextureID = 61;
+    scene->sceneObjects[8]->mesh->textureSpeed.x = 1;
 
     scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
     scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
@@ -585,9 +584,13 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
 
+    //Effects
+    scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
+
+
     //class
     scene->textureManager->Create2DTextureFromBMPFile("chairs.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");

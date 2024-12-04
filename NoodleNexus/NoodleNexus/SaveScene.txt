@@ -40,7 +40,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 258
 <Rotation-> 0 0 0
-<Scale-> 1 1.06021e-38 1.01937e-38
+<Scale-> 1 8.7629e-39 9.00003e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -52,7 +52,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 9.27548e-39 8.90819e-39
+<Scale-> 1 1.06531e-38 9.27539e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -64,7 +64,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 8.76041e-39 8.72449e-39
+<Scale-> 1 9.12595e-39 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -76,7 +76,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.01021e-38
+<Scale-> 1 1.1151e-38 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -88,7 +88,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 7.34697e-39
+<Scale-> 1 1.1151e-38 7.98969e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -100,7 +100,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 4.62428e-43 1.00102e-38
+<Scale-> 1 8.44903e-39 1.04693e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -112,7 +112,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 5.96942e-39
+<Scale-> 1 1.1151e-38 8.72449e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -124,7 +124,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.07448e-38
+<Scale-> 1 1.1151e-38 1.04694e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -219,9 +219,9 @@ selectBox.txt
 <Model-> Chairs
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -231,7 +231,7 @@ selectBox.txt
 <Model-> board
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
 <Scale-> 1 0 0
 <Visibility-> true
@@ -243,7 +243,7 @@ selectBox.txt
 <Model-> casier
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
 <Scale-> 1 0 0
 <Visibility-> true
@@ -255,7 +255,7 @@ selectBox.txt
 <Model-> ceiling
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
 <Scale-> 1 0 0
 <Visibility-> true
@@ -267,7 +267,7 @@ selectBox.txt
 <Model-> clock
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
 <Scale-> 1 0 0
 <Visibility-> true
@@ -279,7 +279,7 @@ selectBox.txt
 <Model-> desk
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
 <Scale-> 1 0 0
 <Visibility-> true
@@ -291,9 +291,9 @@ selectBox.txt
 <Model-> door
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -303,9 +303,9 @@ selectBox.txt
 <Model-> etagere
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -315,9 +315,9 @@ selectBox.txt
 <Model-> grand_casier
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -327,9 +327,9 @@ selectBox.txt
 <Model-> ground
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -339,9 +339,9 @@ selectBox.txt
 <Model-> teacher_desk
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -351,15 +351,15 @@ selectBox.txt
 <Model-> wall_concrete
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -80 0 336
+<Position-> -80 -0.9 336
 <Rotation-> -90 0 -90
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Light-->
-<Position-> -80.5 12 343.24 1
+<Position-> -80.5 12 342.62 1
 <Diffuse-> 1.8 0.7 0.7 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.118857 0.0124281 3.40282e+38
@@ -579,13 +579,33 @@ selectBox.txt
 <--Light>
 
 <Camera-->
-<Position-> 78 60 15
+<Position-> -85 0.5 335
 <Rotation-> 163 84 -164
 <--Camera>
 
 <Camera-->
-<Position-> 40 60 15
+<Position-> -277 2 243
 <Rotation-> 163 84 -164
+<--Camera>
+
+<Camera-->
+<Position-> -238 6 165
+<Rotation-> 163 84 -164
+<--Camera>
+
+<Camera-->
+<Position-> -310 4 17
+<Rotation-> 163 84 -164
+<--Camera>
+
+<Camera-->
+<Position-> -1018 250 192
+<Rotation-> 0 0 0
+<--Camera>
+
+<Camera-->
+<Position-> -2148 533 -212
+<Rotation-> 0 0 0
 <--Camera>
 
 <--Scene>

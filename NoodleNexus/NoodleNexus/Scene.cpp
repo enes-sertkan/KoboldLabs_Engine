@@ -355,7 +355,7 @@ void Scene::AddActionToObj(Action* action, Object* object)
 void Scene::MoveCameraToPoint()
 {
    if (cameraPositions.size() == 0) return;
-   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPositions[currentCameraIndex]->position, 10.f);
+   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPositions[currentCameraIndex]->position, 35.f * deltaTime);
    g_pFlyCamera->setEyeLocation(newPos);
 }
 
