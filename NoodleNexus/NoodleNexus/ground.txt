@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> grand_casier
+<filePath> assets/models/Class_Room/grand_casier_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

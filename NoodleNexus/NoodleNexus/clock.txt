@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> clock
+<filePath> assets/models/Class_Room/clock_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

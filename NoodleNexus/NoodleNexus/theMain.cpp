@@ -365,19 +365,21 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
     scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
-  
 
     scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
+    scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[4]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
-
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
+    scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
@@ -390,7 +392,11 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->transperency = 1;
 
     scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
-    scene->sceneObjects[9]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
+    scene->sceneObjects[9]->mesh->textures[2] = "Ground.bmp";
+    scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
+    scene->sceneObjects[9]->mesh->blendRatio[1] = 0.4;
+    scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
     scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
@@ -410,6 +416,58 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[14]->mesh->transperency = 0.2;
+
+    //class room
+    scene->sceneObjects[15]->mesh->textures[0] = "chairs.bmp";
+    scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
+    scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
+    scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
+    scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
+    scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
+    scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
+    scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
+    scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
+    scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
+    scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
+    scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
+    scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+
+
+
 }
 
 //MAIN
@@ -460,7 +518,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1024, 780, "OpenGL Triangle", NULL, NULL);
     
 
 
@@ -514,6 +572,27 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("yellow.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cloud.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Ground.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
+
+    //class
+    scene->textureManager->Create2DTextureFromBMPFile("chairs.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
+
+
+
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;

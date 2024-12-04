@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> desk
+<filePath> assets/models/Class_Room/desk_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

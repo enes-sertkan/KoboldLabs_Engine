@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> wall_concrete
+<filePath> assets/models/Class_Room/wall_concrete_xyznuvrbga.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
