@@ -382,6 +382,11 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
+ /*   scene->sceneObjects[6]->mesh->bIsStencilTexture = true;
+    scene->sceneObjects[6]->mesh->stencilTexture = "rock.bmp";
+    scene->sceneObjects[6]->mesh->stencilTextureID = 60;*/
+
+
     scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
     scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
@@ -390,6 +395,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[8]->mesh->transperency = 1;
+
 
     scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
     scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";

@@ -104,6 +104,28 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         return;
     }
 
+    GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
+
+    if (pCurMesh->bIsStencilTexture)
+    {
+        
+
+       
+            glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_TRUE);            
+
+            glActiveTexture(GL_TEXTURE0 + pCurMesh->stencilTextureID);
+
+            GLuint stencilTextureID = textureManager->getTextureIDFromName(pCurMesh->stencilTexture);
+            glBindTexture(GL_TEXTURE_2D, stencilTextureID);
+
+            GLint stencilTexture_UL = glGetUniformLocation(program, "stencilTexture");
+            glUniform1i(stencilTexture_UL, pCurMesh->stencilTextureID);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+        }
+        else
+        {
+            glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
+        }
+
     // Use lighting or not
     // uniform bool bDoNotLight;	
     GLint bDoNotLight_UL = glGetUniformLocation(program, "bDoNotLight");

@@ -24,6 +24,11 @@ struct sMesh
 	bool bIsWireframe = false;
 	bool bIsVisible = true;
 	bool bDoNotLight = false;
+	bool bIsStencilTexture = false;
+
+	int stencilTextureID = 100;//SMELLS LIKE A BAD IDEA Maybe TODO later.
+								//If you use stencil texture you MUST change this.
+	std::string stencilTexture; // you also must set this up.
 
 	float transperency=1.f;
 	
