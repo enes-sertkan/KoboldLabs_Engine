@@ -36,7 +36,7 @@ struct sLight
 	                // yzw are TBD
 };
 
-const int NUMBEROFLIGHTS = 20;
+const int NUMBEROFLIGHTS = 40;
 uniform sLight theLights[NUMBEROFLIGHTS]; 
 // uniform vec4 thelights[0].position;
 // uniform vec4 thelights[1].position;
