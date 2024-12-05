@@ -396,7 +396,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
     scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
     scene->sceneObjects[8]->mesh->stencilTextureID = 61;
-    scene->sceneObjects[8]->mesh->textureSpeed.x = 1;
+    scene->sceneObjects[8]->mesh->textureSpeed.x = 0.01f;
 
     scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
     scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
