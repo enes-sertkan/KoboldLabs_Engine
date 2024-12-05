@@ -51,6 +51,7 @@
 #include "MazeGenerator.hpp"
 #include "cCommandFactory.hpp"
 #include "cCommandGroup.hpp"
+#include "cLuaBrain.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -71,6 +72,78 @@ cCommandFactory* g_pCommandFactory = NULL;
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
 
+
+std::string g_floatToString(float theFloat)
+{
+    std::stringstream ssFloat;
+    ssFloat << theFloat;
+    return ssFloat.str();
+}
+
+// This is the function that Lua will call when 
+//void g_Lua_AddSerialCommand(std::string theCommandText)
+int g_Lua_AddSerialCommand(lua_State* L)
+{
+    //    std::cout << "**************************" << std::endl;
+    //    std::cout << "g_Lua_AddSerialCommand() called" << std::endl;
+    //    std::cout << "**************************" << std::endl;
+        // AddSerialCommand() has been called
+        // eg: AddSerialCommand('New_Viper_Player', -50.0, 15.0, 30.0, 5.0)
+
+    std::string objectFriendlyName = lua_tostring(L, 1);      // 'New_Viper_Player'
+    float x = (float)lua_tonumber(L, 2);                   // -50.0
+    float y = (float)lua_tonumber(L, 3);                   // 15.0
+    float z = (float)lua_tonumber(L, 4);                   // 30.0
+    float timeSeconds = (float)lua_tonumber(L, 5);                   // 5.0
+
+    std::vector<std::string> vecCommandDetails;
+    vecCommandDetails.push_back(objectFriendlyName);    // Object command controls
+    vecCommandDetails.push_back(::g_floatToString(x));
+    vecCommandDetails.push_back(::g_floatToString(y));
+    vecCommandDetails.push_back(::g_floatToString(z));
+    vecCommandDetails.push_back(::g_floatToString(timeSeconds));
+
+    iCommand* pMoveViper = ::g_pCommandFactory->pCreateCommandObject(
+        "Move Relative ConstVelocity+Time", vecCommandDetails);
+
+    ::g_pCommandDirector->addSerial(pMoveViper);
+
+    // We'll return some value to indicate if the command worked or not
+    // Here, we'll push "true" if it worked
+    lua_pushboolean(L, true);
+    // return 1 because we pushed 1 thing onto the stack
+    return 1;
+}
+
+// Add object to scene through Lua
+// AddMeshToScene('plyname.ply', 'friendlyName', x, y, z);
+int g_Lua_AddMeshToScene(lua_State* L)
+{
+    //    std::cout << "g_Lua_AddMeshToScene" << std::endl;
+
+        //{
+        //    sModelDrawInfo galacticaModel;
+        //    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Battlestar_Galactica_Res_0_(444,087 faces)_xyz_n_uv (facing +z, up +y).ply",
+        //        galacticaModel, program);
+        //    std::cout << galacticaModel.meshName << ": " << galacticaModel.numberOfVertices << " vertices loaded" << std::endl;
+        //}
+
+        // AddMeshToScene('plyname.ply', 'friendlyName', x, y, z);
+
+    sMesh* pNewMesh = new sMesh();
+    pNewMesh->modelFileName = lua_tostring(L, 1);       // 'plyname.ply'
+    pNewMesh->uniqueFriendlyName = lua_tostring(L, 2);  // Friendly name
+    pNewMesh->positionXYZ.x = (float)lua_tonumber(L, 3);
+    pNewMesh->positionXYZ.y = (float)lua_tonumber(L, 4);
+    pNewMesh->positionXYZ.z = (float)lua_tonumber(L, 5);
+    pNewMesh->textures[0] = lua_tostring(L, 6);
+    pNewMesh->blendRatio[0] = (float)lua_tonumber(L, 7);
+    //
+    pNewMesh->bIsVisible = true;
+    ::g_vecMeshesToDraw.push_back(pNewMesh);
+
+    return 0;
+}
 
 static void error_callback(int error, const char* description)
 {
