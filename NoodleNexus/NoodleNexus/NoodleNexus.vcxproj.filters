@@ -66,6 +66,9 @@
     <Filter Include="Commands_Lua\Lua_Brain">
       <UniqueIdentifier>{2f613939-3d6c-49c3-9792-b4eed2545357}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands_Lua\LuaObjectManager">
+      <UniqueIdentifier>{c0d8a6d6-96de-494e-bfdf-ed98255a016a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -169,6 +172,12 @@
     </ClCompile>
     <ClCompile Include="cLowPassFilter.cpp">
       <Filter>Engine\PhysicsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaScript.cpp">
+      <Filter>Commands_Lua\Lua_Brain</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Commands_Lua\LuaObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +316,12 @@
     <ClInclude Include="cLowPassFilter.h">
       <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
+    <ClInclude Include="LuaScript.h">
+      <Filter>Commands_Lua\Lua_Brain</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Commands_Lua\LuaObjectManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
@@ -316,5 +331,8 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="fragment02.glsl" />
+    <None Include="cObjectMovement.lua">
+      <Filter>Commands_Lua\Lua_Brain</Filter>
+    </None>
   </ItemGroup>
 </Project>

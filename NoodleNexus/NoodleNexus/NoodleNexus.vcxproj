@@ -160,8 +160,10 @@
     <ClCompile Include="Gun.hpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
+    <ClCompile Include="LuaScript.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
@@ -203,8 +205,10 @@
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Laser.hpp" />
+    <ClInclude Include="LuaScript.h" />
     <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="ModelsLoader.hpp" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />
     <ClInclude Include="aProjectileMovement.hpp" />
@@ -222,6 +226,7 @@
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />
     <None Include="assets\shaders\vertex01.glsl" />
+    <None Include="cObjectMovement.lua" />
     <None Include="fragment02.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

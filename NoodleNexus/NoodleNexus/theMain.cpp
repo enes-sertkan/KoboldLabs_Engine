@@ -29,6 +29,8 @@
 #include <sstream>      // "string" stream ("string builder" in Java c#, etc.)
 #include <string>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 //void ReadPlyModelFromFile(std::string plyFileName);
 #include "PlyFileLoaders.h"
@@ -52,6 +54,8 @@
 #include "cCommandFactory.hpp"
 #include "cCommandGroup.hpp"
 #include "cLuaBrain.hpp"
+#include "LuaScript.h"
+#include "ObjectManager.h"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -553,9 +557,9 @@ void AddActions(Scene* scene, GLuint program)
 //MAIN
 //-----------------------------------------------------------------------------------------------------------------------------
 
-
 int main(void)
 {
+    
 
 //   READING FILES
 //   -------------
@@ -625,6 +629,8 @@ int main(void)
 //   ---------------
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     AddActions(scene, program);
+
+
 
 
 
@@ -755,6 +761,51 @@ int main(void)
     //RacingCar->isTemporary = true;
     //RacingCar->mesh->uniqueFriendlyName = "New_Viper_Player";
 
+    LuaScript luaScript; // Declare luaScript at the beginning of your main function
+
+    // Initialize RacingCar
+    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Class_Room/desk_xyznuvrbga.ply",
+        glm::vec3(0, 100, 0),
+        1,
+        glm::vec3(0, 0, 0),
+        false,
+        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+        true,
+        scene->sceneObjects
+    );
+    RacingCar->mesh->textures[0] = "desk.bmp";
+    RacingCar->isTemporary = true;
+    RacingCar->mesh->uniqueFriendlyName = "racing_desk";
+
+    //if(!luaScript.LoadScript("cObjectMovement.lua")) {
+    //    std::cerr << "Failed to load Lua script." << std::endl;
+    //    return -1;
+    //}
+
+    //// Now you can use luaScript to access Lua state and register functions
+    //lua_State* L = luaScript.GetLuaState();
+    //if (!L) {
+    //    std::cerr << "Lua state is invalid." << std::endl;
+    //    return -1;
+    //}
+
+    //// Continue with the rest of your logic
+    //lua_register(L, "MoveObject", Scene::Lua_MoveObject);
+    ////lua_register(L, "MoveObject", ObjectManager::BindToLua);
+
+
+
+    //// Example Lua call
+    //float time = 0.0f;
+    //lua_getglobal(L, "MoveCar");
+    //lua_pushlightuserdata(L, RacingCar);
+    //lua_pushnumber(L, time);
+    //if (lua_pcall(L, 2, 0, 0) != LUA_OK) {
+    //    std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+    //}
+
+
     scene->Start();
 
 
@@ -809,91 +860,6 @@ int main(void)
 
         }
 
-
-        //// This should be inside the phsyics thing, I guess...
-        //// Which AABB bounding box of the broad phase is the viper now? 
-        //{
-        //    cPhysics::sPhysInfo* pViperPhys = ::g_pPhysicEngine->pFindAssociateMeshByFriendlyName("New_Viper_Player");
-        //    if (pViperPhys)
-        //    {
-        //        // The size of the AABBs that we sliced up the Galactical model in the broad phase
-        //        const float AABBSIZE = 1000.0f;
-
-        //        // Using the same XYZ location in space we used for the triangle vertices,
-        //        //  we are going to pass the location of the viper to get an ID
-        //        //  of an AABB/Cube that WOULD BE at that location (if there was one...)
-        //        unsigned long long hypotheticalAABB_ID
-        //            = ::g_pPhysicEngine->calcBP_GridIndex(
-        //                pViperPhys->position.x,
-        //                pViperPhys->position.y,
-        //                pViperPhys->position.z, AABBSIZE);
-
-        //        // Where would that hypothetical AABB be in space
-        //        glm::vec3 minXYZofHypotheticalCube = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(hypotheticalAABB_ID, AABBSIZE);
-
-        //        // Draw a cube at that location
-        //        sMesh* pDebugAABB = pFindMeshByFriendlyName("AABB_MinXYZ_At_Origin");
-        //        pDebugAABB->positionXYZ = minXYZofHypotheticalCube;
-        //        pDebugAABB->bIsVisible = true;
-        //        pDebugAABB->uniformScale = 1'000.0f;
-
-        //        // Is this an AABB that's already part of the broad phase? 
-        //        // i.e. is it already in the map?
-        //        std::map< unsigned long long, cPhysics::cBroad_Cube* >::iterator
-        //            it_pCube = ::g_pPhysicEngine->map_BP_CubeGrid.find(hypotheticalAABB_ID);
-        //        //
-        //        if (it_pCube == ::g_pPhysicEngine->map_BP_CubeGrid.end())
-        //        {
-        //            // NO, there is no cube there
-        //            pDebugAABB->objectColourRGBA = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-        //            numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
-        //        }
-        //        // NOT equal to the end
-        //        if (it_pCube != ::g_pPhysicEngine->map_BP_CubeGrid.end())
-        //        {
-        //            // YES, there is an AABB (full of triangles) there!
-        //            pDebugAABB->objectColourRGBA = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-        //            // 
-        //            // 
-        //            cPhysics::cBroad_Cube* pTheAABB_Cube = it_pCube->second;
-        //            std::cout << pTheAABB_Cube->vec_pTriangles.size() << std::endl;
-        //            // Pass THIS smaller list of triangles to the narrow phase
-        //            numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = pTheAABB_Cube->vec_pTriangles.size();
-        //        }
-
-        //        DrawMesh(pDebugAABB, program, scene->vaoManager, scene->textureManager);
-        //        pDebugAABB->bIsVisible = false;
-
-        //    }
-        //}
-
-
-        // For Debug, draw a cube where the smaller Cube/AABB/Regions on the broad phase 
-        //  structrue is, in world space
-        // 
-        //        std::map< unsigned long long /*index*/, cBroad_Cube* > map_BP_CubeGrid;
-
-        sMesh* pDebugAABB = pFindMeshByFriendlyName("AABB_MinXYZ_At_Origin");
-        if (pDebugAABB)
-        {
-            pDebugAABB->bIsVisible = true;
-            pDebugAABB->uniformScale = 1'000.0f;
-
-            for (std::map< unsigned long long, cPhysics::cBroad_Cube* >::iterator
-                it_pCube = ::g_pPhysicEngine->map_BP_CubeGrid.begin();
-                it_pCube != ::g_pPhysicEngine->map_BP_CubeGrid.end();
-                it_pCube++)
-            {
-
-                // Draw a cube at that location
-                pDebugAABB->positionXYZ = it_pCube->second->getMinXYZ();
-                pDebugAABB->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-                DrawMesh(pDebugAABB, program, scene->vaoManager, scene->textureManager);
-
-            }
-
-            pDebugAABB->bIsVisible = false;
-        }//if (pDebugAABB)
 
 
 //      ADDITIONAL DRAW STUFF

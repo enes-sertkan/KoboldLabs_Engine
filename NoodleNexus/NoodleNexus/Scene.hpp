@@ -1,17 +1,30 @@
 #pragma once
 
 #include "sObject.h";
-#include <vector>
 #include "cVAOManager/cVAOManager.h"
 #include "GLCommon.h"
-#include <iostream>
 #include "sharedThings.h"
 #include "Action.h"
 #include "Transform.h"
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "PhysicsManager.h"
-#include <chrono>
 #include "cBasicTextureManager.h"
+#include "LuaScript.h"
+#include "cVAOManager/cVAOManager.h"
+#include "GLCommon.h"
+
+#include <iostream>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/glm.hpp>
+#include <cmath> 
+#include <algorithm>
+#include <vector>
+#include <Lua5.4.7/lua.hpp>
+#include <chrono>
+#include <vector>
+#include <iostream>
+
+
 
 
 
@@ -23,6 +36,8 @@ private:
 	std::chrono::steady_clock::time_point previousTime;
 	std::chrono::steady_clock::time_point currentTime;
 	sMesh* pSphere = NULL;
+	LuaScript luaScript;
+
 
 public:
 
@@ -92,5 +107,6 @@ public:
 
 	void ErrorCallback(int error, const char* description);
 
+	int Lua_MoveObject(lua_State* L);
 	
 };
