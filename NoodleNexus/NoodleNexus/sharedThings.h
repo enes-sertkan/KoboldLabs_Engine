@@ -10,6 +10,7 @@ extern cBasicFlyCamera* g_pFlyCamera;
 
 extern cLightManager* g_pLightManager;
 extern unsigned int g_selectedLightIndex;
+//extern Scene* currentScene;
 
 
 // GLFW callback function signatures

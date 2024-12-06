@@ -49,8 +49,5 @@ public:
 	//	}
 	//}
 
-	// New Methods for Position Manipulation
-	glm::vec3 GetPosition() const;
-	void SetPosition(const glm::vec3& newPosition);
 	
 };

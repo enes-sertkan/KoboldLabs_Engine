@@ -1,5 +1,7 @@
 #include "Scene.hpp"
 
+int lua_SetObjectPos(lua_State* L);
+
 
 void Scene::DrawMesh(sMesh* pCurMesh, GLuint program)
 {
@@ -312,31 +314,33 @@ void Scene::Start()
         }
     }
 
-    //if (!luaScript.LoadScript("cObjectMovement.lua")) {
-    //    std::cerr << "Failed to load Lua script." << std::endl;
-    //}
-
-    //// Now you can use luaScript to access Lua state and register functions
-    //lua_State* L = luaScript.GetLuaState();
-    //if (!L) {
-    //    std::cerr << "Lua state is invalid." << std::endl;
-    //}
-    //luaL_openlibs(L);
-
-    //// Continue with the rest of your logic
-    //lua_register(L, "MoveObject", Scene::Lua_MoveObject);
-    ////lua_register(L, "MoveObject", ObjectManager::BindToLua);
-    //
+  /*  if (!luaScript.LoadScript("cObjectMovement.lua")) {
+        std::cerr << "Failed to load Lua script." << std::endl;
+    }*/
 
 
 
-    //// Example Lua call
-    //float speed = 0.0f;
-    //lua_getglobal(L, "MoveCar");
-    //lua_pushnumber(L, speed);
-    //if (lua_pcall(L, 2, 0, 0) != LUA_OK) {
-    //    std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-    //}
+    // Now you can use luaScript to access Lua state and register functions
+    L = luaL_newstate();
+   
+
+    if (!L) {
+        std::cerr << "Lua state is invalid." << std::endl;
+    }
+    luaL_openlibs(L);
+
+    luaL_dofile(L, "cObjectMovement.lua");
+    lua_register(L, "MoveObject", lua_SetObjectPos);
+  
+    
+    // Continue with the rest of your logic
+
+    //lua_register(L, "MoveObject", ObjectManager::BindToLua);
+    
+
+
+
+    
 }
 
 
@@ -361,13 +365,33 @@ void Scene::Update()
 
     }
 
-    //lua_getglobal(luaScript.GetLuaState(), "MoveCar");
-    //lua_pushnumber(luaScript.GetLuaState(), speed);
-    //if (lua_pcall(luaScript.GetLuaState(), 2, 0, 0) != LUA_OK) {
-    //    std::cerr << lua_tostring(luaScript.GetLuaState(), -1) << std::endl;
-    //}
-    //speed += 0.16f; // Increment time
 
+
+    Object* car = nullptr;
+
+    for (Object* obj : sceneObjects)
+    {
+        if (obj->name == "racing_desk")
+            car = obj;
+    }
+
+
+    // Example Lua call
+    float speed = 0.01f;
+    lua_getglobal(L, "MoveCar");
+
+    if (lua_isfunction(L, -1))
+    {
+        lua_pushnumber(L, car->mesh->positionXYZ.x);
+        lua_pushnumber(L, car->mesh->positionXYZ.y);
+        lua_pushnumber(L, car->mesh->positionXYZ.z);
+        lua_pushnumber(L, speed);
+
+        if (lua_pcall(L, 4, 0, 0) != LUA_OK) {
+            std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
+        }
+
+    }
     UpdateDeltaTime();
 
 }
@@ -453,22 +477,4 @@ Object* Scene::GenerateMeshObjectsFromObject(
 void Scene::ErrorCallback(int error, const char* description)
 {
     fprintf(stderr, "Error: %s\n", description);
-}
-
-int Scene::Lua_MoveObject(lua_State* L) {
-    // Retrieve arguments from the Lua stack
-    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
-    float x = luaL_checknumber(L, 2);  // Retrieve x position (second argument)
-    float y = luaL_checknumber(L, 3);  // Retrieve y position (third argument)
-    float z = luaL_checknumber(L, 4);  // Retrieve z position (fourth argument)
-
-    // Find the object and set its position
-    for (Object* obj : sceneObjects) {
-        if (obj->name == objectName) {
-            obj->SetPosition(glm::vec3(x, y, z));
-            std::cout << "New Position for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
-        }
-    }
-
-    return 1;  // Return the number of results pushed onto the Lua stack
 }

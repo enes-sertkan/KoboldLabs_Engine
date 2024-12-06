@@ -36,7 +36,7 @@ private:
 	std::chrono::steady_clock::time_point previousTime;
 	std::chrono::steady_clock::time_point currentTime;
 	sMesh* pSphere = NULL;
-	LuaScript luaScript;
+	lua_State* L;
 
 
 public:
@@ -107,6 +107,5 @@ public:
 
 	void ErrorCallback(int error, const char* description);
 
-	int Lua_MoveObject(lua_State* L);
 	
 };

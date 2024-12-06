@@ -62,6 +62,12 @@
 #include "aPlayerItemsController.h"
 #include "ModelsLoader.hpp"
 
+
+
+Scene* currentScene=nullptr;
+
+
+
 std::vector<sMesh*> g_vecMeshesToDraw;
 
 cPhysics* g_pPhysicEngine = NULL;
@@ -82,6 +88,26 @@ std::string g_floatToString(float theFloat)
     std::stringstream ssFloat;
     ssFloat << theFloat;
     return ssFloat.str();
+}
+
+
+int lua_SetObjectPos(lua_State* L) {
+    // Retrieve arguments from the Lua stack
+    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
+    float x = luaL_checknumber(L, 2);  // Retrieve x position (second argument)
+    float y = luaL_checknumber(L, 3);  // Retrieve y position (third argument)
+    float z = luaL_checknumber(L, 4);  // Retrieve z position (fourth argument)
+
+    // Find the object and set its position
+    for (Object* obj : currentScene->sceneObjects) {
+        if (obj->name == objectName) {
+            obj->mesh->positionXYZ = glm::vec3(x, y, z);
+
+            std::cout << "New Position for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
+        }
+    }
+
+    return 1;  // Return the number of results pushed onto the Lua stack
 }
 
 // This is the function that Lua will call when 
@@ -572,7 +598,7 @@ int main(void)
 
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
-
+    currentScene = scene;
     
 
     for (Object* object : scene->sceneObjects)
@@ -776,7 +802,7 @@ int main(void)
     );
     RacingCar->mesh->textures[0] = "desk.bmp";
     RacingCar->isTemporary = true;
-    RacingCar->mesh->uniqueFriendlyName = "racing_desk";
+    RacingCar->name = "racing_desk";
 
     //if(!luaScript.LoadScript("cObjectMovement.lua")) {
     //    std::cerr << "Failed to load Lua script." << std::endl;
