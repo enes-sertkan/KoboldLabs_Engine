@@ -358,6 +358,19 @@ selectBox.txt
 <Shading-> true
 <--Object>
 
+<Object-->
+<Name-> New_Viper_Player
+<Model-> New_Viper_Player
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -80 -0.9 336
+<Rotation-> -90 0 -90
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+
 <Light-->
 <Position-> -80.5 12 342.62 1
 <Diffuse-> 1.8 0.7 0.7 1

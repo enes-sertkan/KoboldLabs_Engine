@@ -164,6 +164,12 @@
     <ClCompile Include="sMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bPhysics_BroadPhase.cpp">
+      <Filter>Engine\PhysicsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="cLowPassFilter.cpp">
+      <Filter>Engine\PhysicsManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -297,6 +303,9 @@
     </ClInclude>
     <ClInclude Include="cLuaBrain.hpp">
       <Filter>Commands_Lua\Lua_Brain</Filter>
+    </ClInclude>
+    <ClInclude Include="cLowPassFilter.h">
+      <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

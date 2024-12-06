@@ -48,8 +48,13 @@ void cPhysics::StepTick(double deltaTime)
 		vec_Temp_pPhysInfos.push_back(pCurrentAABB->pPhysicInfo);
 	}
 
+	// Copy any other objects that's moving with the integration step
+	for (sPhysInfo* pCurPhysObject : this->vecGeneralPhysicsObjects)
+	{
+		vec_Temp_pPhysInfos.push_back(pCurPhysObject);
+	}
 
-	//PHYSICS MOVEMENT
+
 
 	// Now ALL the physical properties we are integrating are in one step
 	for (unsigned int index = 0; index != vec_Temp_pPhysInfos.size(); index++)
@@ -71,6 +76,7 @@ void cPhysics::StepTick(double deltaTime)
 		// i.e. how much this objects velocity is changing THIS step (this frame)
 		glm::vec3 deltaPosition = pCurObject->velocity * (float)deltaTime;
 		pCurObject->position += deltaPosition;
+
 	}//for (unsigned int index
 
 	// ***********************************************************************************
@@ -179,9 +185,9 @@ void cPhysics::m_CheckForCollisions(double deltaTime)
 				continue;
 			}
 
-			if ( this->bSphereSphereCollision(pInnerLoopSphere, pOuterLoopSphere) )
+			if (this->bSphereSphereCollision(pInnerLoopSphere, pOuterLoopSphere))
 			{
-//				std::cout << "Two spheres have collided!" << std::endl;
+				//				std::cout << "Two spheres have collided!" << std::endl;
 			}
 
 		}//for (unsigned int innerLoopSphereIndex
@@ -245,20 +251,20 @@ bool cPhysics::bSphereSphereCollision(sSphere* pA, sSphere* pB)
 
 	float totalRadius = pA->radius + pB->radius;
 
-		// Like 2D pythagorean theorem, you can calculate the distance between two points
-		//	by taking the square root of the sum of the differences of each axis
+	// Like 2D pythagorean theorem, you can calculate the distance between two points
+	//	by taking the square root of the sum of the differences of each axis
 //			float deltaX = pInnerLoopSphere->pPhysicInfo->position.x - pOuterLoopSphere->pPhysicInfo->position.x;
 //			float deltaY = pInnerLoopSphere->pPhysicInfo->position.y - pOuterLoopSphere->pPhysicInfo->position.y;
 //			float deltaZ = pInnerLoopSphere->pPhysicInfo->position.z - pOuterLoopSphere->pPhysicInfo->position.z;
 //
 //			float distance = sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-			
+
 	// Or use glm
 	float distance = glm::distance(pA->pPhysicInfo->position, pB->pPhysicInfo->position);
 
 	if (distance <= totalRadius)
 	{
-//		std::cout << "Two spheres have collided!" << std::endl;
+		//		std::cout << "Two spheres have collided!" << std::endl;
 		return true;
 	}
 
@@ -273,6 +279,21 @@ bool cPhysics::bAABB_ABBBCollision(sAABB* pA, sAABB* pB)
 }
 
 
+void cPhysics::setVAOManager(cVAOManager* pTheVAOManager)
+{
+	this->m_pVAOManager = pTheVAOManager;
+	return;
+}
+
+bool cPhysics::addTriangleMesh(std::string meshModelName)
+{
+	// TODO: 
+	return false;
+}
+
+
+// This is used to find a particular mesh that's connected to this phsyics object
+// Reutrns NULL if not found
 cPhysics::sPhysInfo* cPhysics::pFindAssociateMeshByFriendlyName(std::string friendlyName)
 {
 	// All the general objects
@@ -307,17 +328,7 @@ cPhysics::sPhysInfo* cPhysics::pFindAssociateMeshByFriendlyName(std::string frie
 	return NULL;
 }
 
-void cPhysics::setVAOManager(cVAOManager* pTheVAOManager)
-{
-	this->m_pVAOManager = pTheVAOManager;
-	return;
-}
 
-bool cPhysics::addTriangleMesh(std::string meshModelName)
-{
-	// TODO: 
-	return false;
-}
 
 bool cPhysics::addTriangleMesh(
 	std::string meshModelName,
@@ -339,7 +350,7 @@ bool cPhysics::addTriangleMesh(
 	}
 
 	// At this point, the vecTriangles has all the triangle info.
-	
+
 	sTriangleMesh* pMesh = new sTriangleMesh();
 
 	// Copy that vector into the local mesh format 
@@ -357,7 +368,7 @@ bool cPhysics::addTriangleMesh(
 		pMesh->vecTriangles.push_back(curTri);
 
 	}//for (std::vector<cVAOManager::sTriangle>::iterator itVAOTri
-	 
+
 	// Transform the triangles to where they are in the world
 	for (std::vector<sTriangle>::iterator itTri = pMesh->vecTriangles.begin();
 		itTri != pMesh->vecTriangles.end(); itTri++)
@@ -424,13 +435,13 @@ bool cPhysics::addTriangleMesh(
 		// Also rotate the normal
 		glm::mat4 matModelInverseTranspose = glm::inverse(glm::transpose(matModel));
 
-		itTri->normal 
-			= glm::vec3( matModelInverseTranspose * glm::vec4(itTri->normal, 1.0f) );
+		itTri->normal
+			= glm::vec3(matModelInverseTranspose * glm::vec4(itTri->normal, 1.0f));
 
 	}//for (std::vector<sTriangle>::iterator itTri
 
 	pMesh->meshInstanceName = meshModelName;
-//	pMesh->meshModelName = ??
+	//	pMesh->meshModelName = ??
 	this->vecMeshes.push_back(pMesh);
 
 
@@ -503,7 +514,7 @@ public:
 //}
 
 bool cPhysics::rayCast(glm::vec3 start, glm::vec3 end,
-	std::vector<sCollision_RayTriangleInMesh>& vec_RayTriangle_Collisions, 
+	std::vector<sCollision_RayTriangleInMesh>& vec_RayTriangle_Collisions,
 	bool bIgnoreBackFacingTriangles /*= true*/)
 {
 	sLine theRay;
@@ -539,37 +550,37 @@ bool cPhysics::rayCast(glm::vec3 start, glm::vec3 end,
 			{
 				// They intersect, so add this triangle to the "intersected triangles" of this mesh		
 				CurTriangle.intersectionPoint.x =
-					  CurTriangle.vertices[0].x * u 
-					+ CurTriangle.vertices[1].x * v 
+					CurTriangle.vertices[0].x * u
+					+ CurTriangle.vertices[1].x * v
 					+ CurTriangle.vertices[2].x * w;
 				CurTriangle.intersectionPoint.y =
-					  CurTriangle.vertices[0].y * u 
-					+ CurTriangle.vertices[1].y * v 
+					CurTriangle.vertices[0].y * u
+					+ CurTriangle.vertices[1].y * v
 					+ CurTriangle.vertices[2].y * w;
 				CurTriangle.intersectionPoint.z =
-					  CurTriangle.vertices[0].z * u 
-					+ CurTriangle.vertices[1].z * v 
+					CurTriangle.vertices[0].z * u
+					+ CurTriangle.vertices[1].z * v
 					+ CurTriangle.vertices[2].z * w;
 
-//				// Ignoring backfacing triangle? 
-//				if (bIgnoreBackFacingTriangles)
-//				{
-//					// See if this traingle is facing "away" from the ray
-//					glm::vec3 rayDirection = (start - end);
-//					rayDirection = glm::normalize(rayDirection);
-//					float dotProd = glm::dot(rayDirection, CurTriangle.normal);
-//					//
-//					if (dotProd > 0.0f)
-//					{
-//						// Facing towards, so add
-//						intersectionInfo.vecTriangles.push_back(CurTriangle);
-//					}
-//				}
-//				else
-//				{
-					// Add all triangles, even back facing
-					intersectionInfo.vecTriangles.push_back(CurTriangle);
-//				}
+				//				// Ignoring backfacing triangle? 
+				//				if (bIgnoreBackFacingTriangles)
+				//				{
+				//					// See if this traingle is facing "away" from the ray
+				//					glm::vec3 rayDirection = (start - end);
+				//					rayDirection = glm::normalize(rayDirection);
+				//					float dotProd = glm::dot(rayDirection, CurTriangle.normal);
+				//					//
+				//					if (dotProd > 0.0f)
+				//					{
+				//						// Facing towards, so add
+				//						intersectionInfo.vecTriangles.push_back(CurTriangle);
+				//					}
+				//				}
+				//				else
+				//				{
+									// Add all triangles, even back facing
+				intersectionInfo.vecTriangles.push_back(CurTriangle);
+				//				}
 			}//if (this->bLineSegment_TriangleCollision...
 
 		}//for (std::vector<sTriangle>::iterator itTri
@@ -578,8 +589,8 @@ bool cPhysics::rayCast(glm::vec3 start, glm::vec3 end,
 		// Compare the intersection point with the "glm::vec3 start" ray point
 		thePoint = theRay.startXYZ;
 		std::sort(intersectionInfo.vecTriangles.begin(),
-				  intersectionInfo.vecTriangles.end(), 
-			      cSortCloseToPoint(theRay.startXYZ) );
+			intersectionInfo.vecTriangles.end(),
+			cSortCloseToPoint(theRay.startXYZ));
 		//std::sort(intersectionInfo.vecTriangles.begin(),
 		//		  intersectionInfo.vecTriangles.end(), 
 		//	      isTriACloserThanB);
@@ -587,7 +598,7 @@ bool cPhysics::rayCast(glm::vec3 start, glm::vec3 end,
 
 		// Add this mesh-triangle(s) to the vector of collisions
 		// (one entry per mesh)
-		if ( ! intersectionInfo.vecTriangles.empty() )
+		if (!intersectionInfo.vecTriangles.empty())
 		{
 			vec_RayTriangle_Collisions.push_back(intersectionInfo);
 		}
@@ -617,9 +628,9 @@ void cPhysics::rayCast(glm::vec3 start, glm::vec3 end, bool bIgnoreBackFacingTri
 
 // Not sure what the AI was on about, but here's a much 
 //	simpler version of the drek it spit out:
-float ScalarTriple(glm::vec3 a, glm::vec3 b, glm::vec3 c) 
+float ScalarTriple(glm::vec3 a, glm::vec3 b, glm::vec3 c)
 {
-	return glm::dot (a, glm::cross(b, c));
+	return glm::dot(a, glm::cross(b, c));
 }
 
 // Reworked from the Christer Ericsson collision book
@@ -642,11 +653,11 @@ bool cPhysics::bRay_TriangleCollision(sLine theLine, sTriangle theTri)
 	//	that the signed tetrahedral volumes, computed using scalar triple
 	//	products, are all positive
 	float u = ScalarTriple(pq, pc, pb);		//	u = ScalarTriple(pq, pc, pb);
-	if (u < 0.0f)	{
+	if (u < 0.0f) {
 		return false;
 	}
 	float v = ScalarTriple(pq, pa, pc);		//	v = ScalarTriple(pq, pa, pc);
-	if (v < 0.0f)	{
+	if (v < 0.0f) {
 		return false;
 	}
 	float w = ScalarTriple(pq, pb, pa);		//	w = ScalarTriple(pq, pb, pa);
@@ -660,7 +671,7 @@ bool cPhysics::bRay_TriangleCollision(sLine theLine, sTriangle theTri)
 	u *= denom;
 	v *= denom;
 	w *= denom; // w = 1.0f - u - v;
-	
+
 	return true;
 }
 
@@ -735,7 +746,7 @@ bool cPhysics::bLineSegment_TriangleCollision(sLine theLine, sTriangle theTri)
 //		float& u, float& v, float& w, float& t)
 bool cPhysics::bLineSegment_TriangleCollision(
 	sLine theLine, sTriangle theTri,
-    float& u, float& v, float& w, float& t)
+	float& u, float& v, float& w, float& t)
 {
 	glm::vec3 ab = theTri.vertices[1] - theTri.vertices[0];		//	Vector ab = b - a;
 	glm::vec3 ac = theTri.vertices[2] - theTri.vertices[0];		//	Vector ac = c - a;
@@ -748,7 +759,7 @@ bool cPhysics::bLineSegment_TriangleCollision(
 	//	Compute denominator d. If d <= 0, segment is parallel to or points
 	//	away from triangle, so exit early
 	float d = glm::dot(qp, n);		//	float d = Dot(qp, n);
-	
+
 	if (d <= 0.0f) {
 		return false;
 	}
@@ -758,7 +769,7 @@ bool cPhysics::bLineSegment_TriangleCollision(
 	//	dividing by d until intersection has been found to pierce triangle
 	glm::vec3 ap = theLine.startXYZ - theTri.vertices[0];		//	Vector ap = p - a;
 	t = glm::dot(ap, n);									//	t = Dot(ap, n);
-	
+
 	if (t < 0.0f) {
 		return false;
 	}
@@ -778,10 +789,10 @@ bool cPhysics::bLineSegment_TriangleCollision(
 
 	w = -glm::dot(ab, e);		//	w = -Dot(ab, e);
 
-	if ( (w < 0.0f) || (v + w > d) ) {
+	if ((w < 0.0f) || (v + w > d)) {
 		return 0;
 	}
-	
+
 	//	Segment/ray intersects triangle. Perform delayed division and
 	//	compute the last barycentric coordinate component
 	float ood = 1.0f / d;
@@ -789,7 +800,7 @@ bool cPhysics::bLineSegment_TriangleCollision(
 	v *= ood;
 	w *= ood;
 	u = 1.0f - v - w;
-	
+
 	return true;
 }
 
@@ -808,11 +819,11 @@ bool cPhysics::bLineSegment_TriangleCollision(
 
 
 
-	// Feeney asked chatGPT this:
-	// 
-	// "give me the triple product of three vectors in C++"
-	// 
-	// And got this:
+// Feeney asked chatGPT this:
+// 
+// "give me the triple product of three vectors in C++"
+// 
+// And got this:
 //#include <iostream>
 //#include <vector>
 //	using namespace std;
