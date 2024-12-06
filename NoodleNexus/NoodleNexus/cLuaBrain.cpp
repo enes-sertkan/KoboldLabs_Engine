@@ -18,7 +18,7 @@ cLuaBrain::cLuaBrain()
 		// NOTE: this is common to ALL script in this case
 	this->m_pLuaState = luaL_newstate();
 
-	luaL_openlibs(this->m_pLuaState);					/* Lua 5.3.3 */
+	luaL_openlibs(this->m_pLuaState);		/* Lua 5.3.3 */
 
 	// This function is really theMain.cpp:
 	// int g_Lua_AddSerialCommand(lua_State* L)
