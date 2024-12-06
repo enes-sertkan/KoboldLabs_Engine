@@ -320,17 +320,7 @@ void Scene::Start()
 
 
 
-    // Now you can use luaScript to access Lua state and register functions
-    L = luaL_newstate();
-   
-
-    if (!L) {
-        std::cerr << "Lua state is invalid." << std::endl;
-    }
-    luaL_openlibs(L);
-
-    luaL_dofile(L, "cObjectMovement.lua");
-    lua_register(L, "MoveObject", lua_SetObjectPos);
+    
   
     
     // Continue with the rest of your logic
@@ -367,31 +357,7 @@ void Scene::Update()
 
 
 
-    Object* car = nullptr;
-
-    for (Object* obj : sceneObjects)
-    {
-        if (obj->name == "racing_desk")
-            car = obj;
-    }
-
-
-    // Example Lua call
-    float speed = 0.01f;
-    lua_getglobal(L, "MoveCar");
-
-    if (lua_isfunction(L, -1))
-    {
-        lua_pushnumber(L, car->mesh->positionXYZ.x);
-        lua_pushnumber(L, car->mesh->positionXYZ.y);
-        lua_pushnumber(L, car->mesh->positionXYZ.z);
-        lua_pushnumber(L, speed);
-
-        if (lua_pcall(L, 4, 0, 0) != LUA_OK) {
-            std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-        }
-
-    }
+  
     UpdateDeltaTime();
 
 }

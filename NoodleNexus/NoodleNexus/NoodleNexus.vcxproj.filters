@@ -179,6 +179,9 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Commands_Lua\LuaObjectManager</Filter>
     </ClCompile>
+    <ClCompile Include="aLuaScript.h">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">

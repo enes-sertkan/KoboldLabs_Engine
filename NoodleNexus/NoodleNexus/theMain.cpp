@@ -61,10 +61,11 @@
 #include "aDrawAim.hpp"
 #include "aPlayerItemsController.h"
 #include "ModelsLoader.hpp"
+#include "aLuaScript.h"
 
 
 
-Scene* currentScene=nullptr;
+ Scene* currentScene=nullptr;
 
 
 
@@ -773,7 +774,23 @@ int main(void)
     SkySphere->mesh->transperency = 1;
     glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
+    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Class_Room/desk_xyznuvrbga.ply",
+        glm::vec3(0, 100, 0),
+        1,
+        glm::vec3(0, 0, 0),
+        false,
+        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+        true,
+        scene->sceneObjects
+    );
+    RacingCar->mesh->textures[0] = "desk.bmp";
+    RacingCar->isTemporary = true;
+    RacingCar->name = "racing_desk";
 
+
+    aLuaScript* luaAction = new aLuaScript();
+    scene->AddActionToObj(luaAction, RacingCar);
     ////new
     //Object* RacingCar = scene->GenerateMeshObjectsFromObject("assets/models/Class_Room/desk_xyznuvrbga.ply",
     //    glm::vec3(0, 100, 0),
@@ -790,19 +807,7 @@ int main(void)
     LuaScript luaScript; // Declare luaScript at the beginning of your main function
 
     // Initialize RacingCar
-    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Class_Room/desk_xyznuvrbga.ply",
-        glm::vec3(0, 100, 0),
-        1,
-        glm::vec3(0, 0, 0),
-        false,
-        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-        true,
-        scene->sceneObjects
-    );
-    RacingCar->mesh->textures[0] = "desk.bmp";
-    RacingCar->isTemporary = true;
-    RacingCar->name = "racing_desk";
+   
 
     //if(!luaScript.LoadScript("cObjectMovement.lua")) {
     //    std::cerr << "Failed to load Lua script." << std::endl;
