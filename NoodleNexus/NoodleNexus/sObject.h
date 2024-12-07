@@ -49,5 +49,15 @@ public:
 	//	}
 	//}
 
+	//// Waypoint-related members
+	//std::vector<glm::vec3> waypoints;  // List of waypoints for the object
+	//size_t currentWaypoint = 0;       // Current waypoint index
+	//float movementSpeed = 1.0f;       // Speed of movement
+
+	//// Bezier curve-related members
+	//std::vector<glm::vec3> bezierControlPoints; // Bezier control points
+	//float t = 0.0f;                              // Parameter t for Bezier
+	//float bezierSpeed = 0.1f;                    // Speed of Bezier traversal
+
 	
 };

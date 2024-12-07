@@ -92,65 +92,6 @@ std::string g_floatToString(float theFloat)
 }
 
 
-//int lua_SetObjectPos(lua_State* L) {
-//    // Retrieve arguments from the Lua stack
-//    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
-//    float x = luaL_checknumber(L, 2);  // Retrieve x position (second argument)
-//    float y = luaL_checknumber(L, 3);  // Retrieve y position (third argument)
-//    float z = luaL_checknumber(L, 4);  // Retrieve z position (fourth argument)
-//
-//    // Find the object and set its position
-//    for (Object* obj : currentScene->sceneObjects) {
-//        if (obj->name == objectName) {
-//            obj->mesh->positionXYZ = glm::vec3(x, y, z);
-//
-//            std::cout << "New Position for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
-//        }
-//    }
-//
-//    return 1;  // Return the number of results pushed onto the Lua stack
-//}
-//
-//int lua_SetObjectRot(lua_State* L) {
-//    // Retrieve arguments from the Lua stack
-//    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
-//    float x = luaL_checknumber(L, 2);  // Retrieve x rotation (second argument)
-//    float y = luaL_checknumber(L, 3);  // Retrieve y rotation (third argument)
-//    float z = luaL_checknumber(L, 4);  // Retrieve z rotation (fourth argument)
-//
-//    // Find the object and set its position
-//    for (Object* obj : currentScene->sceneObjects) {
-//        if (obj->name == objectName) {
-//            obj->mesh->rotationEulerXYZ = glm::vec3(x, y, z);
-//
-//            std::cout << "New Rotation for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
-//        }
-//    }
-//
-//    return 1;  // Return the number of results pushed onto the Lua stack
-//}
-
-//void MoveTo(glm::vec3& currentPos, glm::vec3 startXYZ, glm::vec3 endXYZ, float seconds, float deltaTime) {
-//    // Compute direction vector
-//    glm::vec3 direction = glm::normalize(endXYZ - startXYZ);
-//
-//    // Distance to travel (magnitude of direction vector)
-//    float distance = glm::length(endXYZ - startXYZ);
-//
-//    // Compute velocity vector (distance / time)
-//    glm::vec3 velocity = direction * (distance / seconds);
-//
-//    // Update the current position
-//    currentPos += velocity * deltaTime;
-//
-//    // Print current position for debugging
-//    std::cout << "Current Position: ("
-//        << currentPos.x << ", "
-//        << currentPos.y << ", "
-//        << currentPos.z << ")" << std::endl;
-//}
-
-
 // Function to be called in Lua
 int lua_MoveObject(lua_State* L) {
     // Retrieve arguments from the Lua stack
@@ -195,8 +136,55 @@ int lua_RotateTo(lua_State* L) {
 }
 
 
+// Function to interpolate along a quadratic Bézier curve
+glm::vec3 QuadraticBezier(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, float t) {
+    return (1 - t) * (1 - t) * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
+}
 
+// Lua binding function for following a curve
+int lua_FollowACurve(lua_State* L) {
+    // Retrieve arguments from Lua stack
+    const char* objectName = luaL_checkstring(L, 1);  // Object name
+    float startX = luaL_checknumber(L, 2);  // Start point X
+    float startY = luaL_checknumber(L, 3);  // Start point Y
+    float startZ = luaL_checknumber(L, 4);  // Start point Z
+    float controlX = luaL_checknumber(L, 5);  // Control point X
+    float controlY = luaL_checknumber(L, 6);  // Control point Y
+    float controlZ = luaL_checknumber(L, 7);  // Control point Z
+    float endX = luaL_checknumber(L, 8);  // End point X
+    float endY = luaL_checknumber(L, 9);  // End point Y
+    float endZ = luaL_checknumber(L, 10);  // End point Z
+    float seconds = luaL_checknumber(L, 11);  // Duration
+    float deltaTime = luaL_checknumber(L, 12);  // Frame time
 
+    // Calculate time increment based on deltaTime and seconds
+    static float elapsedTime = 0.0f;  // Track elapsed time across frames
+    elapsedTime += deltaTime;
+    float t = elapsedTime / seconds;
+    if (t > 1.0f) t = 1.0f;  // Clamp t to 1.0f to ensure movement stops at end
+
+    // Interpolate position along the curve
+    glm::vec3 start(startX, startY, startZ);
+    glm::vec3 control(controlX, controlY, controlZ);
+    glm::vec3 end(endX, endY, endZ);
+    glm::vec3 newPos = QuadraticBezier(start, control, end, t);
+
+    // Find the object and update its position
+    for (Object* obj : currentScene->sceneObjects) {
+        if (obj->name == objectName) {
+            obj->mesh->positionXYZ = newPos;
+            std::cout << "Updated Position: (" << newPos.x << ", " << newPos.y << ", " << newPos.z << ")\n";
+            break;
+        }
+    }
+
+    // Reset elapsed time if movement is complete
+    if (t >= 1.0f) {
+        elapsedTime = 0.0f;
+    }
+
+    return 0;  // No return values to Lua
+}
 
 
 
@@ -906,35 +894,6 @@ int main(void)
 
     LuaScript luaScript; // Declare luaScript at the beginning of your main function
 
-    // Initialize RacingCar
-   
-
-    //if(!luaScript.LoadScript("cObjectMovement.lua")) {
-    //    std::cerr << "Failed to load Lua script." << std::endl;
-    //    return -1;
-    //}
-
-    //// Now you can use luaScript to access Lua state and register functions
-    //lua_State* L = luaScript.GetLuaState();
-    //if (!L) {
-    //    std::cerr << "Lua state is invalid." << std::endl;
-    //    return -1;
-    //}
-
-    //// Continue with the rest of your logic
-    //lua_register(L, "MoveObject", Scene::Lua_MoveObject);
-    ////lua_register(L, "MoveObject", ObjectManager::BindToLua);
-
-
-
-    //// Example Lua call
-    //float time = 0.0f;
-    //lua_getglobal(L, "MoveCar");
-    //lua_pushlightuserdata(L, RacingCar);
-    //lua_pushnumber(L, time);
-    //if (lua_pcall(L, 2, 0, 0) != LUA_OK) {
-    //    std::cerr << "Lua error: " << lua_tostring(L, -1) << std::endl;
-    //}
 
 
     scene->Start();

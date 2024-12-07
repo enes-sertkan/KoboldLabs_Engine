@@ -8,10 +8,9 @@
 #include <iostream>
 
 
-int lua_SetObjectPos(lua_State* L);
-int lua_SetObjectRot(lua_State* L);
 int lua_MoveObject(lua_State* L);
 int lua_RotateTo(lua_State* L);
+int lua_FollowACurve(lua_State* L);
 
 class aLuaScript : public Action
 {
@@ -32,19 +31,23 @@ public:
 		luaL_openlibs(L);
 
 		luaL_dofile(L, "cObjectMovement.lua");
-		//lua_register(L, "MoveObject", lua_SetObjectPos);
-		//lua_register(L, "RotateObject", lua_SetObjectRot);
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
+        lua_register(L, "FollowACurve", lua_FollowACurve);
+
 
 		//printf("WOW, you are UPDATING\n");
 	}
 
     void Update() override
     {
-        float speed = 0.01f;
-        float rotationSpeed = 1.0f;
-        float deltaTime = 0.016;
+        float deltaTime = 0.016f; // Frame time, assuming 60 FPS
+
+        // Define curve parameters
+        glm::vec3 start(0.0f, 0.0f, 0.0f);   // Start point
+        glm::vec3 control(5.0f, 10.0f, 0.0f); // Control point for the curve
+        glm::vec3 end(10.0f, 0.0f, 0.0f);    // End point
+        float seconds = 5.0f;
 
         
 
@@ -108,6 +111,37 @@ public:
             lua_pop(L, 1);  // Remove invalid global
             std::cerr << "RotateObj is not a valid function." << std::endl;
         }
+
+        lua_getglobal(L, "MoveAlongCurve");
+        if (lua_isfunction(L, -1)) {
+            // Push control points for the curve
+            lua_pushstring(L, "racing_desk");   // Object name
+            lua_pushnumber(L, start.x);         // Start point (P0) X
+            lua_pushnumber(L, start.y);         // Start point (P0) Y
+            lua_pushnumber(L, start.z);         // Start point (P0) Z
+            lua_pushnumber(L, control.x);       // Control point (P1) X
+            lua_pushnumber(L, control.y);       // Control point (P1) Y
+            lua_pushnumber(L, control.z);       // Control point (P1) Z
+            lua_pushnumber(L, end.x);           // End point (P2) X
+            lua_pushnumber(L, end.y);           // End point (P2) Y
+            lua_pushnumber(L, end.z);           // End point (P2) Z
+            lua_pushnumber(L, seconds);         // Duration
+            lua_pushnumber(L, deltaTime);       // Frame time
+
+            // Call the Lua function (12 arguments, no returns)
+            if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
+                std::cerr << "Lua error in MoveAlongCurve: " << lua_tostring(L, -1) << std::endl;
+                lua_pop(L, 1); // Remove error message
+            }
+        }
+        else {
+            lua_pop(L, 1); // Remove invalid global
+            std::cerr << "MoveAlongCurve is not a valid function." << std::endl;
+        }
+
+
+
+
 
     }
 
