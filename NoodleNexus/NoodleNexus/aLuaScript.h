@@ -45,110 +45,92 @@ public:
     {
         float deltaTime = 0.016f; // Frame time, assuming 60 FPS
         luaL_dofile(L, "cObjectMovement.lua");
-        // Define curve parameters
-        glm::vec3 start(0.0f, 0.0f, 0.0f);   // Start point
-        glm::vec3 control(5.0f, 10.0f, 0.0f); // Control point for the curve
-        glm::vec3 end(10.0f, 0.0f, 0.0f);    // End point
-        float seconds = 5.0f;
 
-        
+        glm::vec3 control(100.f, 10.0f, 0.0f); // Control point for the curve
 
-        lua_getglobal(L, "MovObj");  // Get the Lua function MovObj
-        if (lua_isfunction(L, -1)) {
-            glm::vec3 start = object->mesh->positionXYZ;  // Current position
-            glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
-            float seconds = 5.0f;                         // Duration in seconds
-            float deltaTime = 0.016f;                     // Frame time
-
-            // Push arguments onto the Lua stack
-            lua_pushstring(L, "racing_desk");  // Object name
-            lua_pushnumber(L, start.x);        // Start position X
-            lua_pushnumber(L, start.y);        // Start position Y
-            lua_pushnumber(L, start.z);        // Start position Z
-            lua_pushnumber(L, end.x);          // End position X
-            lua_pushnumber(L, end.y);          // End position Y
-            lua_pushnumber(L, end.z);          // End position Z
-            lua_pushnumber(L, seconds);        // Total time to move
-            lua_pushnumber(L, deltaTime);      // Frame time
-
-            // Call Lua function (9 arguments, 0 return values)
-            if (lua_pcall(L, 9, 0, 0) != LUA_OK) {
-                // Handle Lua error
-                std::cerr << "Lua error in MovObj: " << lua_tostring(L, -1) << std::endl;
-                lua_pop(L, 1);  // Remove error message from the stack
-            }
-        }
-        else {
-            lua_pop(L, 1);  // Remove invalid global
-            std::cerr << "MovObj is not a valid function." << std::endl;
-        }
+     
 
 
-        // Optionally, you can call RotateObj here if needed
-        lua_getglobal(L, "RotateObj");
-        if (lua_isfunction(L, -1)) {
-            // Add parameters for rotation (example)
-            glm::vec3 start = object->mesh->positionXYZ;  // Current position
-            glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
-            float seconds = 5.0f;                         // Duration in seconds
+        glm::vec3 start(10.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
+        glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
+        float seconds = 2.0f;                         // Duration in seconds
+ 
+        //
+       
 
-            // Push all required arguments onto the Lua stack
-            lua_pushstring(L, "racing_desk");  // Object name
-            lua_pushnumber(L, start.x);        // Start position X
-            lua_pushnumber(L, start.y);        // Start position Y
-            lua_pushnumber(L, start.z);        // Start position Z
-            lua_pushnumber(L, end.x);          // End position X
-            lua_pushnumber(L, end.y);          // End position Y
-            lua_pushnumber(L, end.z);          // End position Z
-            lua_pushnumber(L, seconds);        // Total time to move
-            lua_pushnumber(L, deltaTime);      // Frame time
+        CallLuaFunction("MoveObj", start, end, seconds, time, control);
+        CallLuaFunction("RotateObj", start, end, seconds, time, control);
 
-            // Call Lua function (8 arguments, 0 return values)
-            if (lua_pcall(L, 9, 0, 0) != LUA_OK) {
-                std::cerr << "Lua error in RotateObj: " << lua_tostring(L, -1) << std::endl;
-                lua_pop(L, 1);  // Remove error message from the stack
-            }
-        }
-        else {
-            lua_pop(L, 1);  // Remove invalid global
-            std::cerr << "RotateObj is not a valid function." << std::endl;
-        }
-        luaL_dofile(L, "cObjectMovement.lua");
-        lua_getglobal(L, "MoveAlongCurve");
-        if (lua_isfunction(L, -1)) {
-            // Push control points for the curve
-            lua_pushstring(L, "racing_desk");   // Object name
-            lua_pushnumber(L, start.x);         // Start point (P0) X
-            lua_pushnumber(L, start.y);         // Start point (P0) Y
-            lua_pushnumber(L, start.z);         // Start point (P0) Z
-            lua_pushnumber(L, control.x);       // Control point (P1) X
-            lua_pushnumber(L, control.y);       // Control point (P1) Y
-            lua_pushnumber(L, control.z);       // Control point (P1) Z
-            lua_pushnumber(L, end.x);           // End point (P2) X
-            lua_pushnumber(L, end.y);           // End point (P2) Y
-            lua_pushnumber(L, end.z);           // End point (P2) Z
-            lua_pushnumber(L, seconds);         // Duration
-            lua_pushnumber(L, time);       // Frame time
-
-            // Call the Lua function (12 arguments, no returns)
-            if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
-                std::cerr << "Lua error in MoveAlongCurve: " << lua_tostring(L, -1) << std::endl;
-                lua_pop(L, 1); // Remove error message
-            }
-        }
-        else {
-            std::cerr << "FUUUUUUCK!" << std::endl;
-            lua_pop(L, 1); // Remove invalid global
-            
-        }
+        //lua_settop(L, 0);
+        //lua_getglobal(L, "MoveAlongCurve");
+        //if (lua_isfunction(L, -1)) {
+        //          // Frame time
+        //    PushData(start, end, seconds, time, control);
 
 
+        //    // Call the Lua function (12 arguments, no returns)
+        //    if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
+        //        std::cerr << "Lua error in MoveAlongCurve: " << lua_tostring(L, -1) << std::endl;
+        //        lua_pop(L, 1); // Remove error message
+        //    }
+        //}
+        //else {
+        //    std::cerr << "FUUUUUUCK!" << std::endl;
+        //    lua_pop(L, 1); // Remove invalid global
+        //    
+        //}
+
+        //lua_settop(L, 0);
         time += deltaTime;
 
-    
+
+        //EASY REPEWAT
+        if (time>seconds)
+        {
+            time = 0;
+        }
+      
        
     }
 
+    void PushData(glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
+    {
+        lua_pushstring(L, object->name.c_str());   // Object name
+        lua_pushnumber(L, start.x);         // Start point (P0) X
+        lua_pushnumber(L, start.y);         // Start point (P0) Y
+        lua_pushnumber(L, start.z);         // Start point (P0) Z
+        lua_pushnumber(L, end.x);           // End point (P2) X
+        lua_pushnumber(L, end.y);           // End point (P2) Y
+        lua_pushnumber(L, end.z);           // End point (P2) Z
+        lua_pushnumber(L, duration);         // Duration
+        lua_pushnumber(L, time);       // Frame time
+        lua_pushnumber(L, additData.x);       // Control point (P1) X
+        lua_pushnumber(L, additData.y);       // Control point (P1) Y
+        lua_pushnumber(L, additData.z);       // Control point (P1) Z
+
+    }
+
+    void CallLuaFunction(std::string functionName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
+    {
 
 
+        lua_settop(L, 0);
+        lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
+        if (lua_isfunction(L, -1)) {
+           
+            PushData(start, end, duration, time, additData);
+
+            // Call Lua function (9 arguments, 0 return values)
+            if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
+                // Handle Lua error
+                std::cerr << "Lua error in"<< functionName <<": " << lua_tostring(L, -1) << std::endl;
+                lua_pop(L, 1);  // Remove error message from the stack
+            }
+        }
+        else {
+            lua_pop(L, 1);  // Remove invalid global
+            std::cerr << functionName << " is not a valid function." << std::endl;
+        }
+        lua_settop(L, 0);
+    }
 };

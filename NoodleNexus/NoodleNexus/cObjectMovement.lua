@@ -1,53 +1,42 @@
 -- Function to handle rotation calculations and apply the rotation to the object
-function RotateObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, deltaTime)
-    -- Compute the direction vector (as a simplified rotation example)
-    local directionX = endPosX - startX
-    local directionY = endPosY - startY
-    local directionZ = endPosZ - startZ
 
-    -- Calculate distance
-    local distance = math.sqrt(directionX^2 + directionY^2 + directionZ^2)
+function LerpVec3(startX, startY, startZ, endPosX, endPosY, endPosZ, t, p1x, p1y, p1z)
+    -- Ensure t is clamped between 0 and 1
+    if t < 0 then t = 0 elseif t > 1 then t = 1 end
 
-    -- Normalize the direction vector
-    local directionNormX = directionX / distance
-    local directionNormY = directionY / distance
-    local directionNormZ = directionZ / distance
+    -- Calculate interpolated vector
+    local result = {
+        x = startX + (endPosX - startX) * t,
+        y = startZ + (endPosY - startY) * t,
+        z = startZ + (endPosZ - startZ) * t
 
-    -- Define rotation speed (e.g., 1 degree per second)
-    local rotationSpeed = 10.0  -- degrees per second
-
-    -- Calculate the rotation to be applied for this frame
-    local rotationX = startX + rotationSpeed * deltaTime
-    local rotationY = startY + rotationSpeed * deltaTime
-    local rotationZ = startZ + rotationSpeed * deltaTime
-
-    -- Call RotateTo to apply the calculated rotation
-    RotateTo(objectName, rotationX, rotationY, rotationZ)
+    }
+    return result
 end
 
 
-function MovObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, deltaTime)
-    -- Compute the direction and velocity
-    local directionX = endPosX - startX
-    local directionY = endPosY - startY
-    local directionZ = endPosZ - startZ
 
-    local distance = math.sqrt(directionX^2 + directionY^2 + directionZ^2)
-    local directionNormX = directionX / distance
-    local directionNormY = directionY / distance
-    local directionNormZ = directionZ / distance
+function RotateObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, time)
+    print("[LUA] [RotateObj] Got:"..objectName..", "..startX..", "..startY..", "..startZ..', '..endPosX..', '..endPosY..', '..endPosZ) 
+    local t = time/seconds;
+    -- Compute the direction vector (as a simplified rotation example)
+    local newRotation = LerpVec3(startX, startY, startZ, endPosX, endPosY, endPosZ, t)
+    -- Call RotateTo to apply the calculated rotation
+    RotateTo(objectName, newRotation.x, newRotation.y, newRotation.z)
+end
 
-    local velocityX = directionNormX * (distance / seconds)
-    local velocityY = directionNormY * (distance / seconds)
-    local velocityZ = directionNormZ * (distance / seconds)
 
-    -- Compute the new position
-    local newX = startX + velocityX * deltaTime
-    local newY = startY + velocityY * deltaTime
-    local newZ = startZ + velocityZ * deltaTime
+function MoveObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, time)
+   print("[LUA] [MovObj] Got:"..objectName..", "..startX..", "..startY..", "..startZ..', '..endPosX..', '..endPosY..', '..endPosZ)     
 
+   
+    local t = time/seconds;
+
+    -- Compute the direction vector (as a simplified rotation example)
+    local newPosition = LerpVec3(startX, startY, startZ, endPosX, endPosY, endPosZ, t)
+    
     -- Move the object using the calculated position
-    MoveTo(objectName, newX, newY, newZ)
+    MoveTo(objectName, newPosition.x, newPosition.y, newPosition.z)
 end
 
 function QuadraticBezier(t, p0, p1, p2)
@@ -57,7 +46,8 @@ end
 
 
 
-function MoveAlongCurve(objectName, p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, duration, time)
+function MoveAlongCurve(objectName, p0x, p0y, p0z, p2x, p2y, p2z, duration, time, p1x, p1y, p1z)
+  print("[LUA] [MoveAlongCurve] Got:"..objectName..", "..p0x..", "..p0y..", "..p0z..', '..p2x..', '..p2y..', '..p2z)     
     local t = duration/time;
     local x = QuadraticBezier(t, p0x, p1x, p2x)
     local y = QuadraticBezier(t, p0y, p1y, p2y)

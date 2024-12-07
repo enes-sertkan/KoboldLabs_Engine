@@ -103,7 +103,7 @@ int lua_MoveObject(lua_State* L) {
     // Find the object and update its position
     for (Object* obj : currentScene->sceneObjects) {
         if (obj->name == objectName) {
-            std::cout << "current Position X: " << x << "Y: " << y << "Z: " << z << std::endl;
+            std::cout <<"[C++] ["<<obj->name << "] current Position X: " << x << "Y: " << y << "Z: " << z << std::endl;
 
             obj->mesh->positionXYZ = glm::vec3(x, y, z);
             break;
@@ -852,7 +852,7 @@ int main(void)
     glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
     Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Class_Room/desk_xyznuvrbga.ply",
+        "assets/models/Cube_xyz_n_uv.ply",
         glm::vec3(0, 100, 0),
         1,
         glm::vec3(0, 0, 0),
@@ -862,6 +862,7 @@ int main(void)
         scene->sceneObjects
     );
     RacingCar->mesh->textures[0] = "desk.bmp";
+    RacingCar->mesh->uniformScale = 30.f;
     RacingCar->isTemporary = true;
     RacingCar->name = "racing_desk";
 
