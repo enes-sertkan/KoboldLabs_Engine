@@ -92,104 +92,111 @@ std::string g_floatToString(float theFloat)
 }
 
 
-int lua_SetObjectPos(lua_State* L) {
+//int lua_SetObjectPos(lua_State* L) {
+//    // Retrieve arguments from the Lua stack
+//    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
+//    float x = luaL_checknumber(L, 2);  // Retrieve x position (second argument)
+//    float y = luaL_checknumber(L, 3);  // Retrieve y position (third argument)
+//    float z = luaL_checknumber(L, 4);  // Retrieve z position (fourth argument)
+//
+//    // Find the object and set its position
+//    for (Object* obj : currentScene->sceneObjects) {
+//        if (obj->name == objectName) {
+//            obj->mesh->positionXYZ = glm::vec3(x, y, z);
+//
+//            std::cout << "New Position for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
+//        }
+//    }
+//
+//    return 1;  // Return the number of results pushed onto the Lua stack
+//}
+//
+//int lua_SetObjectRot(lua_State* L) {
+//    // Retrieve arguments from the Lua stack
+//    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
+//    float x = luaL_checknumber(L, 2);  // Retrieve x rotation (second argument)
+//    float y = luaL_checknumber(L, 3);  // Retrieve y rotation (third argument)
+//    float z = luaL_checknumber(L, 4);  // Retrieve z rotation (fourth argument)
+//
+//    // Find the object and set its position
+//    for (Object* obj : currentScene->sceneObjects) {
+//        if (obj->name == objectName) {
+//            obj->mesh->rotationEulerXYZ = glm::vec3(x, y, z);
+//
+//            std::cout << "New Rotation for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
+//        }
+//    }
+//
+//    return 1;  // Return the number of results pushed onto the Lua stack
+//}
+
+//void MoveTo(glm::vec3& currentPos, glm::vec3 startXYZ, glm::vec3 endXYZ, float seconds, float deltaTime) {
+//    // Compute direction vector
+//    glm::vec3 direction = glm::normalize(endXYZ - startXYZ);
+//
+//    // Distance to travel (magnitude of direction vector)
+//    float distance = glm::length(endXYZ - startXYZ);
+//
+//    // Compute velocity vector (distance / time)
+//    glm::vec3 velocity = direction * (distance / seconds);
+//
+//    // Update the current position
+//    currentPos += velocity * deltaTime;
+//
+//    // Print current position for debugging
+//    std::cout << "Current Position: ("
+//        << currentPos.x << ", "
+//        << currentPos.y << ", "
+//        << currentPos.z << ")" << std::endl;
+//}
+
+
+// Function to be called in Lua
+int lua_MoveObject(lua_State* L) {
     // Retrieve arguments from the Lua stack
-    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
-    float x = luaL_checknumber(L, 2);  // Retrieve x position (second argument)
-    float y = luaL_checknumber(L, 3);  // Retrieve y position (third argument)
-    float z = luaL_checknumber(L, 4);  // Retrieve z position (fourth argument)
-
-    // Find the object and set its position
-    for (Object* obj : currentScene->sceneObjects) {
-        if (obj->name == objectName) {
-            obj->mesh->positionXYZ = glm::vec3(x, y, z);
-
-            std::cout << "New Position for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
-        }
-    }
-
-    return 1;  // Return the number of results pushed onto the Lua stack
-}
-
-int lua_SetObjectRot(lua_State* L) {
-    // Retrieve arguments from the Lua stack
-    const char* objectName = luaL_checkstring(L, 1);  // Retrieve object name (assumes it's the first argument)
-    float x = luaL_checknumber(L, 2);  // Retrieve x rotation (second argument)
-    float y = luaL_checknumber(L, 3);  // Retrieve y rotation (third argument)
-    float z = luaL_checknumber(L, 4);  // Retrieve z rotation (fourth argument)
-
-    // Find the object and set its position
-    for (Object* obj : currentScene->sceneObjects) {
-        if (obj->name == objectName) {
-            obj->mesh->rotationEulerXYZ = glm::vec3(x, y, z);
-
-            std::cout << "New Rotation for " << objectName << ": " << x << ", " << y << ", " << z << std::endl;
-        }
-    }
-
-    return 1;  // Return the number of results pushed onto the Lua stack
-}
-
-void MoveTo(glm::vec3& currentPos, glm::vec3 startXYZ, glm::vec3 endXYZ, float seconds, float deltaTime) {
-    // Compute direction vector
-    glm::vec3 direction = endXYZ - startXYZ;
-
-    // Distance to travel (magnitude of direction vector)
-    float distance = glm::length(direction);
-
-    // Normalize the direction vector to get a unit vector
-    glm::vec3 normalizedDirection = glm::normalize(direction);
-
-    // Compute velocity vector (distance / time)
-    glm::vec3 velocity = (distance / seconds) * normalizedDirection;
-
-    // Update the current position
-    currentPos += velocity * deltaTime;
-
-    // Print current position for debugging
-    std::cout << "Current Position: ("
-        << currentPos.x << ", "
-        << currentPos.y << ", "
-        << currentPos.z << ")" << std::endl;
-}
-
-int lua_MoveTo(lua_State* L) {
-    // Retrieve arguments from the Lua stack
-    const char* objectName = luaL_checkstring(L, 1);
-    float startX = luaL_checknumber(L, 2);
-    float startY = luaL_checknumber(L, 3);
-    float startZ = luaL_checknumber(L, 4);
-    float endPosX = luaL_checknumber(L, 5);
-    float endPosY = luaL_checknumber(L, 6);
-    float endPosZ = luaL_checknumber(L, 7);
-    float seconds = luaL_checknumber(L, 8);
-    float deltaTime = luaL_checknumber(L, 9);
-
-    // Compute direction and velocity
-    glm::vec3 start(startX, startY, startZ);
-    glm::vec3 end(endPosX, endPosY, endPosZ);
-    glm::vec3 direction = glm::normalize(end - start);
-    float distance = glm::length(end - start);
-    glm::vec3 velocity = direction * (distance / seconds);
-
-    // Update position based on velocity and deltaTime
-    glm::vec3 newPosition = start + velocity * deltaTime;
+    const char* objectName = luaL_checkstring(L, 1);  // Object name
+    float x = luaL_checknumber(L, 2);  // New x position
+    float y = luaL_checknumber(L, 3);  // New y position
+    float z = luaL_checknumber(L, 4);  // New z position
 
     // Find the object and update its position
     for (Object* obj : currentScene->sceneObjects) {
-        if (std::strcmp(obj->name.c_str(), objectName) == 0) {
-            obj->mesh->positionXYZ = newPosition;
+        if (obj->name == objectName) {
+            std::cout << "current Position X: " << x << "Y: " << y << "Z: " << z << std::endl;
+
+            obj->mesh->positionXYZ = glm::vec3(x, y, z);
             break;
         }
     }
 
-    // Push new position back to Lua
-    lua_pushnumber(L, newPosition.x);
-    lua_pushnumber(L, newPosition.y);
-    lua_pushnumber(L, newPosition.z);
-
-    return 3; // Returning three values: x, y, z
+    return 0;  // No values are returned to Lua
 }
+
+// Function to rotate an object to a new orientation (this will be called from Lua)
+int lua_RotateTo(lua_State* L) {
+    // Retrieve arguments from the Lua stack
+    const char* objectName = luaL_checkstring(L, 1);  // Object name
+    float rotationX = luaL_checknumber(L, 2);  // Rotation around the X-axis
+    float rotationY = luaL_checknumber(L, 3);  // Rotation around the Y-axis
+    float rotationZ = luaL_checknumber(L, 4);  // Rotation around the Z-axis
+
+    // Find the object and update its rotation
+    for (Object* obj : currentScene->sceneObjects) {
+        if (obj->name == objectName) {
+            std::cout << "current Rotation X: " << rotationX << "Y: " << rotationY << "Z: " << rotationZ << std::endl;
+            // Apply rotation (Assuming we use Euler angles here)
+            obj->mesh->rotationEulerXYZ = glm::vec3(rotationX, rotationY, rotationZ);
+            break;
+        }
+        
+    }
+
+    return 0;  // No return values
+}
+
+
+
+
 
 
 
@@ -870,15 +877,15 @@ int main(void)
     RacingCar->isTemporary = true;
     RacingCar->name = "racing_desk";
 
-    glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
-    glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
-    glm::vec3 endXYZ(2000.0f, 0.0f, 0.0f);    // End point
-    float seconds = 30.0f;                   // Time to reach the target
-    float deltaTime = 0.016f;               // Simulated frame time (60 FPS)
+    //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
+    //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
+    //glm::vec3 endXYZ(2000.0f, 0.0f, 0.0f);    // End point
+    //float seconds = 30.0f;                   // Time to reach the target
+    //float deltaTime = 0.016f;               // Simulated frame time (60 FPS)
 
-    for (int i = 0; i < 300; ++i) {         // Simulate 300 frames (~5 seconds)
-        MoveTo(currentPos, startXYZ, endXYZ, seconds, deltaTime);
-    }
+    //for (int i = 0; i < 300; ++i) {         // Simulate 300 frames (~5 seconds)
+    //    MoveTo(currentPos, startXYZ, endXYZ, seconds, deltaTime);
+    //}
 
 
 
