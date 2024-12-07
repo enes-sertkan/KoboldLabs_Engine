@@ -34,7 +34,8 @@ public:
 		luaL_dofile(L, "cObjectMovement.lua");
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
-        lua_register(L, "FollowACurve", lua_FollowACurve);
+
+  
 
 
 		//printf("WOW, you are UPDATING\n");
@@ -113,7 +114,7 @@ public:
             std::cerr << "RotateObj is not a valid function." << std::endl;
         }
         luaL_dofile(L, "cObjectMovement.lua");
-        lua_getglobal(L, "AAA");
+        lua_getglobal(L, "MoveAlongCurve");
         if (lua_isfunction(L, -1)) {
             // Push control points for the curve
             lua_pushstring(L, "racing_desk");   // Object name

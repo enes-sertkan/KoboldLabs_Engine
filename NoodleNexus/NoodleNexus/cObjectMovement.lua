@@ -57,7 +57,7 @@ end
 
 
 
-function AAA(objectName, p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, duration, time)
+function MoveAlongCurve(objectName, p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, duration, time)
     local t = duration/time;
     local x = QuadraticBezier(t, p0x, p1x, p2x)
     local y = QuadraticBezier(t, p0y, p1y, p2y)
