@@ -6,6 +6,7 @@
 #include <string>
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>
+#include "Scene.hpp"
 
 
 int lua_MoveObject(lua_State* L);
@@ -17,7 +18,7 @@ class aLuaScript : public Action
 public:
 	std::string luaPath;
 	lua_State* L = nullptr;
-	
+    float time = 0.f;
 
 	void Start() override
 	{
@@ -42,7 +43,7 @@ public:
     void Update() override
     {
         float deltaTime = 0.016f; // Frame time, assuming 60 FPS
-
+        luaL_dofile(L, "cObjectMovement.lua");
         // Define curve parameters
         glm::vec3 start(0.0f, 0.0f, 0.0f);   // Start point
         glm::vec3 control(5.0f, 10.0f, 0.0f); // Control point for the curve
@@ -111,8 +112,8 @@ public:
             lua_pop(L, 1);  // Remove invalid global
             std::cerr << "RotateObj is not a valid function." << std::endl;
         }
-
-        lua_getglobal(L, "MoveAlongCurve");
+        luaL_dofile(L, "cObjectMovement.lua");
+        lua_getglobal(L, "AAA");
         if (lua_isfunction(L, -1)) {
             // Push control points for the curve
             lua_pushstring(L, "racing_desk");   // Object name
@@ -126,7 +127,7 @@ public:
             lua_pushnumber(L, end.y);           // End point (P2) Y
             lua_pushnumber(L, end.z);           // End point (P2) Z
             lua_pushnumber(L, seconds);         // Duration
-            lua_pushnumber(L, deltaTime);       // Frame time
+            lua_pushnumber(L, time);       // Frame time
 
             // Call the Lua function (12 arguments, no returns)
             if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
@@ -135,14 +136,16 @@ public:
             }
         }
         else {
+            std::cerr << "FUUUUUUCK!" << std::endl;
             lua_pop(L, 1); // Remove invalid global
-            std::cerr << "MoveAlongCurve is not a valid function." << std::endl;
+            
         }
 
 
+        time += deltaTime;
 
-
-
+    
+       
     }
 
 

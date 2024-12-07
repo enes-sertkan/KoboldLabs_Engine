@@ -50,67 +50,23 @@ function MovObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, s
     MoveTo(objectName, newX, newY, newZ)
 end
 
-MovObj("racing_desk", startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, deltaTime)
-RotateObj("racing_desk", startX, startY, startZ, endPosX, endPosY, endPosZ, seconds, deltaTime)
-
-
--- Helper function for quadratic Bézier curve interpolation
 function QuadraticBezier(t, p0, p1, p2)
     local u = 1 - t
     return u * u * p0 + 2 * u * t * p1 + t * t * p2
 end
 
--- Table to track ongoing curve movements for objects
-local movingObjects = {}
 
--- Function to start moving an object along a quadratic Bézier curve
-function MoveAlongCurve(objectName, p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, duration)
-    movingObjects[objectName] = {
-        p0 = {x = p0x, y = p0y, z = p0z},
-        p1 = {x = p1x, y = p1y, z = p1z},
-        p2 = {x = p2x, y = p2y, z = p2z},
-        duration = duration,
-        elapsedTime = 0
-    }
+
+function AAA(objectName, p0x, p0y, p0z, p1x, p1y, p1z, p2x, p2y, p2z, duration, time)
+    local t = duration/time;
+    local x = QuadraticBezier(t, p0x, p1x, p2x)
+    local y = QuadraticBezier(t, p0y, p1y, p2y)
+    local z = QuadraticBezier(t, p0z, p1z, p2z)
+
+    print("[LUA] New position for "..objectName.." is "..x..","..y..","..z)
+
+    -- Move the object using the calculated position
+    MoveTo(objectName, x, y, z)
 end
 
 
-
--- Function to update object movements (should be called every frame)
-function UpdateCurveMovements(deltaTime)
-    for objectName, movement in pairs(movingObjects) do
-        -- Update elapsed time
-        movement.elapsedTime = movement.elapsedTime + deltaTime
-        local t = movement.elapsedTime / movement.duration
-
-        -- Clamp t to ensure it doesn't exceed 1
-        if t > 1 then
-            t = 1
-        end
-
-        -- Calculate the interpolated position on the curve
-        local x = QuadraticBezier(t, movement.p0.x, movement.p1.x, movement.p2.x)
-        local y = QuadraticBezier(t, movement.p0.y, movement.p1.y, movement.p2.y)
-        local z = QuadraticBezier(t, movement.p0.z, movement.p1.z, movement.p2.z)
-
-        -- Move the object to the calculated position
-        FollowCurve(objectName, x, y, z)
-
-        -- Remove the object from the movingObjects table when the movement is complete
-        if t >= 1 then
-            movingObjects[objectName] = nil
-        end
-    end
-end
-
-
-
--- Start moving an object
-MoveAlongCurve("racing_desk", 0, 0, 0, 1, 2, 3, 4, 5, 6, 5)
-
--- In your game loop, update curve movements
-deltaTime = 0.016 -- Example delta time (60 FPS)
-while true do
-    UpdateCurveMovements(deltaTime)
-    -- Other game logic here...
-end

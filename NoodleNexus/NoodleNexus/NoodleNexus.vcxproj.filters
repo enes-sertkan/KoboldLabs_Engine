@@ -182,6 +182,9 @@
     <ClCompile Include="aLuaScript.h">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="aLuaScriptsSerial.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">

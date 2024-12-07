@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aLuaScript.h" />
+    <ClCompile Include="aLuaScriptsSerial.cpp" />
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />

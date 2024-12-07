@@ -7,3 +7,4 @@ void Object::Destroy()
 {
 	scene->RemoveObject(this);
 }
+
