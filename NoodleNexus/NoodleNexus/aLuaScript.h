@@ -46,20 +46,17 @@ public:
         float deltaTime = 0.016f; // Frame time, assuming 60 FPS
         luaL_dofile(L, "cObjectMovement.lua");
 
-        glm::vec3 control(100.f, 10.0f, 0.0f); // Control point for the curve
-
-     
-
-
-        glm::vec3 start(10.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
-        glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
-        float seconds = 2.0f;                         // Duration in seconds
+        glm::vec3 control(-50.f, 200.0f, 20.0f); // Control point for the curve
+        glm::vec3 start(-100.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
+        glm::vec3 end(100.0f, 5.0f, 15.0f);            // Target position
+        float seconds = 10.0f;                         // Duration in seconds
  
         //
        
 
-        CallLuaFunction("MoveObj", start, end, seconds, time, control);
-        CallLuaFunction("RotateObj", start, end, seconds, time, control);
+        //CallLuaFunction("MoveObj", start, end, seconds, time, control);
+        //CallLuaFunction("RotateObj", start, end, seconds, time, control);
+        CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
 
         //lua_settop(L, 0);
         //lua_getglobal(L, "MoveAlongCurve");
@@ -112,8 +109,6 @@ public:
 
     void CallLuaFunction(std::string functionName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
     {
-
-
         lua_settop(L, 0);
         lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
         if (lua_isfunction(L, -1)) {

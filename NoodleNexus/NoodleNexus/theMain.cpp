@@ -854,7 +854,7 @@ int main(void)
     Object* RacingCar = scene->GenerateMeshObjectsFromObject(
         "assets/models/Cube_xyz_n_uv.ply",
         glm::vec3(0, 100, 0),
-        1,
+        0.1,
         glm::vec3(0, 0, 0),
         false,
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
