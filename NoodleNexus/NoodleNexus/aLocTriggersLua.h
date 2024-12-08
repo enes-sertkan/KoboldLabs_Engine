@@ -1,76 +1,76 @@
 #pragma once
 
 #include "Action.h";
-#include <glm/vec3.hpp> 
 #include "sObject.h"
-#include <string>
+#include <glm/vec3.hpp> 
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>
 #include "Scene.hpp"
 
 
-int lua_MoveObject(lua_State* L);
-int lua_RotateTo(lua_State* L);
-int lua_FollowACurve(lua_State* L);
+struct TriggerAndLua
+{
+	glm::vec3 triggerCenter;
+	float radius;
+	std::string luaScript;
+    float duration;
+    float time;
 
-class aLuaScript : public Action
+
+	TriggerAndLua(glm::vec3 center, float sphereRadius , std::string script)
+	{
+		triggerCenter = triggerCenter;
+		radius = sphereRadius;
+		luaScript = script;
+	}
+};
+
+
+class aLocTrggersLua : public Action
 {
 public:
-	std::string luaPath;
-	lua_State* L = nullptr;
-    float time = 0.f;
+	std::vector<TriggerAndLua> triggers;
+    lua_State* L = nullptr;
 
-	void Start() override
+
+
+    void Start() override
+    {
+        // Now you can use luaScript to access Lua state and register functions
+        L = luaL_newstate();
+
+
+        if (!L) {
+            std::cout << "Lua state is invalid." << std::endl;
+        }
+        luaL_openlibs(L);
+
+        ////luaL_dofile(L, "cObjectMovement.lua");
+        //lua_register(L, "MoveTo", lua_MoveObject);
+        //lua_register(L, "RotateTo", lua_RotateTo);
+
+
+
+
+        //printf("WOW, you are UPDATING\n");
+    }
+	void Update() override
 	{
-		// Now you can use luaScript to access Lua state and register functions
-		L = luaL_newstate();
+	 for (TriggerAndLua trigger:triggers)
+         if (glm::distance(object->mesh->positionXYZ, trigger.triggerCenter) < trigger.radius)
+         {
+
+         }
 
 
-		if (!L) {
-			std::cout << "Lua state is invalid." << std::endl;
-		}
-		luaL_openlibs(L);
 
-		luaL_dofile(L, "cObjectMovement.lua");
-        lua_register(L, "MoveTo", lua_MoveObject);
-        lua_register(L, "RotateTo", lua_RotateTo);
-
-  
-
-
-		//printf("WOW, you are UPDATING\n");
 	}
 
-    void Update() override
-    {
-        float deltaTime = 0.016f; // Frame time, assuming 60 FPS
-        luaL_dofile(L, "cObjectMovement.lua");
+	void AddTriggerScript(glm::vec3 triggerCenter, float radius, std::string luaScript)
+	{
+		TriggerAndLua trigger = TriggerAndLua(triggerCenter, radius, luaScript);
+	}
 
-        glm::vec3 control(100.f, 10.0f, 0.0f); // Control point for the curve
-
-
-        glm::vec3 start(10.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
-        glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
-        float seconds = 2.0f;                         // Duration in seconds
-
-       
-
-        CallLuaFunction("MoveObj", start, end, seconds, time, control);
-        CallLuaFunction("RotateObj", start, end, seconds, time, control);
-
-   
-        //lua_settop(L, 0);
-        time += deltaTime;
-
-
-        //EASY REPEWAT
-        if (time>seconds)
-        {
-            time = 0;
-        }
-      
-       
-    }
 
     void PushData(glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
     {
@@ -96,13 +96,13 @@ public:
         lua_settop(L, 0);
         lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
         if (lua_isfunction(L, -1)) {
-           
+
             PushData(start, end, duration, time, additData);
 
             // Call Lua function (9 arguments, 0 return values)
             if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
                 // Handle Lua error
-                std::cerr << "Lua error in"<< functionName <<": " << lua_tostring(L, -1) << std::endl;
+                std::cerr << "Lua error in" << functionName << ": " << lua_tostring(L, -1) << std::endl;
                 lua_pop(L, 1);  // Remove error message from the stack
             }
         }
