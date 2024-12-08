@@ -12,6 +12,8 @@
 int lua_MoveObject(lua_State* L);
 int lua_RotateTo(lua_State* L);
 int lua_FollowACurve(lua_State* L);
+int lua_FollowObject(lua_State* L);
+int lua_FollowPosition(lua_State* L);
 
 class aLuaScript : public Action
 {
@@ -19,6 +21,8 @@ public:
 	std::string luaPath;
 	lua_State* L = nullptr;
     float time = 0.f;
+    glm::vec3 end = glm::vec3(10.0f, 5.0f, 15.0f);
+
 
 	void Start() override
 	{
@@ -34,6 +38,10 @@ public:
 		luaL_dofile(L, "cObjectMovement.lua");
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
+        lua_register(L, "FollowObject", lua_FollowObject);
+        lua_register(L, "FollowPosition", lua_FollowPosition);
+
+
 
   
 
@@ -46,19 +54,42 @@ public:
         float deltaTime = 0.016f; // Frame time, assuming 60 FPS
         luaL_dofile(L, "cObjectMovement.lua");
 
-        glm::vec3 control(100.f, 10.0f, 0.0f); // Control point for the curve
-
-
-        glm::vec3 start(10.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
-        glm::vec3 end(10.0f, 5.0f, 15.0f);            // Target position
-        float seconds = 2.0f;                         // Duration in seconds
+        glm::vec3 control(5, deltaTime, 20.0f); // Control point for the curve
+        glm::vec3 start(0.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
+        end = object->scene->fCamera->getEyeLocation();
+        float seconds = 5000.0f;                        
+        start = object->mesh->positionXYZ;
+        float speed = 5.0f;
 
        
 
-        CallLuaFunction("MoveObj", start, end, seconds, time, control);
-        CallLuaFunction("RotateObj", start, end, seconds, time, control);
+        //CallLuaFunction("MoveObj", start, end, seconds, time, control);
+        //CallLuaFunction("RotateObj", start, end, seconds, time, control);
+        //CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
+        //CallLuaFunction("FollowObject", start, end, seconds, time, control);
+        CallLuaFunction("FollowPosition", start, end, seconds, speed, control);
 
-   
+
+
+        //lua_settop(L, 0);
+        //lua_getglobal(L, "MoveAlongCurve");
+        //if (lua_isfunction(L, -1)) {
+        //          // Frame time
+        //    PushData(start, end, seconds, time, control);
+
+
+        //    // Call the Lua function (12 arguments, no returns)
+        //    if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
+        //        std::cerr << "Lua error in MoveAlongCurve: " << lua_tostring(L, -1) << std::endl;
+        //        lua_pop(L, 1); // Remove error message
+        //    }
+        //}
+        //else {
+        //    std::cerr << "FUUUUUUCK!" << std::endl;
+        //    lua_pop(L, 1); // Remove invalid global
+        //    
+        //}
+
         //lua_settop(L, 0);
         time += deltaTime;
 
@@ -91,8 +122,6 @@ public:
 
     void CallLuaFunction(std::string functionName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
     {
-
-
         lua_settop(L, 0);
         lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
         if (lua_isfunction(L, -1)) {

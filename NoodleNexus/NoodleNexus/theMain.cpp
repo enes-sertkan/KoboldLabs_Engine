@@ -186,6 +186,42 @@ int lua_FollowACurve(lua_State* L) {
     return 0;  // No return values to Lua
 }
 
+int lua_FollowObject(lua_State* L) {
+    const char* followerName = lua_tostring(L, 1);
+    const char* targetName = lua_tostring(L, 2);
+    float followDistance = lua_tonumber(L, 3);
+    float followOffsetX = lua_tonumber(L, 4);
+    float followOffsetY = lua_tonumber(L, 5);
+    float followOffsetZ = lua_tonumber(L, 6);
+    float maxSpeed = lua_tonumber(L, 7);
+    float slowDownRange = lua_tonumber(L, 8);
+    float speedUpRange = lua_tonumber(L, 9);
+    float deltaTime = lua_tonumber(L, 10);
+
+    // Call the Lua function here or use logic as needed
+    // This implementation assumes Lua handles the actual movement.
+
+    return 0;
+}
+
+
+int lua_FollowPosition(lua_State* L) {
+    const char* objectName = lua_tostring(L, 1);
+    float targetX = lua_tonumber(L, 2);
+    float targetY = lua_tonumber(L, 3);
+    float targetZ = lua_tonumber(L, 4);
+    float followDistance = lua_tonumber(L, 5);
+    float maxSpeed = lua_tonumber(L, 6);
+    float slowDownRange = lua_tonumber(L, 7);
+    float deltaTime = lua_tonumber(L, 8);
+
+    // Handle logic in C++ or pass it directly to Lua
+    // Assuming `GetObjectPosition` is available in your C++ code to retrieve the position of the object.
+    // If you have the function implemented, pass the object position to Lua
+
+    return 0;
+}
+
 
 
 // This is the function that Lua will call when 
@@ -854,7 +890,7 @@ int main(void)
     Object* RacingCar = scene->GenerateMeshObjectsFromObject(
         "assets/models/Cube_xyz_n_uv.ply",
         glm::vec3(0, 100, 0),
-        1,
+        0.1,
         glm::vec3(0, 0, 0),
         false,
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
