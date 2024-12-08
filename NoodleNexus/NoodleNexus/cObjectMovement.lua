@@ -149,4 +149,14 @@ function FollowPosition(objectName, startX, startY, startZ, targetX, targetY, ta
         objectName, targetX, targetY, targetZ, distance, speed))
 end
 
+-- Lua function to set the texture of an object
+function SetTexture(objectName, textureName, textureId, blendAmount)
+    -- Call the C++ function bound to Lua to set the texture
+    lua_SetTexture(objectName, textureName, textureId, blendAmount)
+end
+
+function ToggleVisibility(objectName, isVisible)
+    lua_ToggleVisibility(objectName, isVisible) -- Calls the C++ function
+end
+
 

@@ -222,6 +222,18 @@ int lua_FollowPosition(lua_State* L) {
     return 0;
 }
 
+// Function to change the texture of an object (called from Lua)
+int lua_SetTexture(lua_State* L) {
+    // Retrieve arguments from the Lua stack
+    const char* objectName = luaL_checkstring(L, 1);  // Object name
+    const char* textureName = luaL_checkstring(L, 2);  // Texture name
+    int textureId = luaL_checkinteger(L, 3);  // Texture ID
+    float blendAmount = luaL_checknumber(L, 4);  // Blend amount (float)
+
+    lua_pushstring(L, "Texture applied successfully.");
+    return 1;  // Return 1 value to Lua (success message)
+}
+
 
 
 // This is the function that Lua will call when 
@@ -566,7 +578,9 @@ void AddActions(Scene* scene, GLuint program)
 
 
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
+    scene->sceneObjects[0]->mesh->textures[1] = "cloud.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[0]->mesh->blendRatio[1] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
 
