@@ -69,4 +69,84 @@ function MoveAlongCurve(objectName, p0x, p0y, p0z, p2x, p2y, p2z, duration, elap
 end
 
 
+function FollowObject(followerName, targetName, followDistance, followOffsetX, followOffsetY, followOffsetZ, maxSpeed, slowDownRange, speedUpRange, deltaTime)
+    -- Get positions of the follower and the target
+    local followerPos = GetObjectPosition(followerName)
+    local targetPos = GetObjectPosition(targetName)
+
+    if not followerPos or not targetPos then
+        print("[LUA] Error: Invalid follower or target object.")
+        return
+    end
+
+    -- Calculate the desired position to follow
+    local desiredPosX = targetPos.x + followOffsetX
+    local desiredPosY = targetPos.y + followOffsetY
+    local desiredPosZ = targetPos.z + followOffsetZ
+
+    -- Calculate the vector from the follower to the desired position
+    local dx = desiredPosX - followerPos.x
+    local dy = desiredPosY - followerPos.y
+    local dz = desiredPosZ - followerPos.z
+    local distance = math.sqrt(dx * dx + dy * dy + dz * dz)
+
+    -- Determine the speed based on the distance
+    local speed = 0
+    if distance > slowDownRange then
+        speed = maxSpeed -- Beyond slowDownRange, move at max speed
+    elseif distance > followDistance then
+        -- Between followDistance and slowDownRange, proportionally slow down
+        local normalizedDist = (distance - followDistance) / (slowDownRange - followDistance)
+        speed = maxSpeed * normalizedDist
+    end
+
+    -- Calculate the movement vector
+    if speed > 0 then
+        local moveFactor = speed * deltaTime / distance
+        local moveX = dx * moveFactor
+        local moveY = dy * moveFactor
+        local moveZ = dz * moveFactor
+
+        -- Update the follower's position
+        MoveTo(followerName, followerPos.x + moveX, followerPos.y + moveY, followerPos.z + moveZ)
+    end
+
+    -- Debugging output
+    print(string.format("[LUA] %s following %s: Distance %.2f, Speed %.2f", followerName, targetName, distance, speed))
+end
+
+
+function FollowPosition(objectName, startX, startY, startZ, targetX, targetY, targetZ, followDistance, maxSpeed, slowDownRange, deltaTime)
+    -- Calculate the vector from the object to the target position
+    local dx = targetX - startX
+    local dy = targetY - startY
+    local dz = targetZ - startZ
+    local distance = math.sqrt(dx * dx + dy * dy + dz * dz)
+
+    -- Determine the speed based on the distance
+    local speed = 0
+    if distance > slowDownRange then
+        speed = maxSpeed -- Beyond slowDownRange, move at max speed
+    elseif distance > followDistance then
+        -- Between followDistance and slowDownRange, proportionally slow down
+        local normalizedDist = (distance - followDistance) / (slowDownRange - followDistance)
+        speed = maxSpeed * normalizedDist
+    end
+
+    -- Calculate the movement vector
+    if speed > 0 then
+        local moveFactor = speed * deltaTime / distance
+        local moveX = dx * moveFactor
+        local moveY = dy * moveFactor
+        local moveZ = dz * moveFactor
+
+        -- Update the object's position
+        MoveTo(objectName, startX + moveX, startY + moveY, startZ + moveZ)
+    end
+
+    -- Debugging output
+    print(string.format("[LUA] %s following position: Target (%.2f, %.2f, %.2f), Distance %.2f, Speed %.2f",
+        objectName, targetX, targetY, targetZ, distance, speed))
+end
+
 
