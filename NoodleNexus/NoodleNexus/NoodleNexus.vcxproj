@@ -137,8 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
-    <ClCompile Include="aLuaScriptsSerial.cpp" />
+    <ClCompile Include="aLuaScriptsSerial.h" />
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
@@ -230,6 +231,8 @@
     <None Include="assets\shaders\vertex01.glsl" />
     <None Include="cObjectMovement.lua" />
     <None Include="fragment02.glsl" />
+    <None Include="LuaMove2Lerp.lua" />
+    <None Include="LuaRotate2Lerp.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

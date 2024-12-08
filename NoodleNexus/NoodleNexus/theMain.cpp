@@ -62,6 +62,7 @@
 #include "aPlayerItemsController.h"
 #include "ModelsLoader.hpp"
 #include "aLuaScript.h"
+#include "aLuaScriptsSerial.h"
 
 
 
@@ -275,16 +276,7 @@ int g_Lua_AddSerialCommand(lua_State* L)
 // AddMeshToScene('plyname.ply', 'friendlyName', x, y, z);
 int g_Lua_AddMeshToScene(lua_State* L)
 {
-    //    std::cout << "g_Lua_AddMeshToScene" << std::endl;
 
-        //{
-        //    sModelDrawInfo galacticaModel;
-        //    ::g_pMeshManager->LoadModelIntoVAO("assets/models/Battlestar_Galactica_Res_0_(444,087 faces)_xyz_n_uv (facing +z, up +y).ply",
-        //        galacticaModel, program);
-        //    std::cout << galacticaModel.meshName << ": " << galacticaModel.numberOfVertices << " vertices loaded" << std::endl;
-        //}
-
-        // AddMeshToScene('plyname.ply', 'friendlyName', x, y, z);
 
     sMesh* pNewMesh = new sMesh();
     pNewMesh->modelFileName = lua_tostring(L, 1);       // 'plyname.ply'
@@ -928,20 +920,14 @@ int main(void)
 
 
 
-    aLuaScript* luaAction = new aLuaScript();
+    //aLuaScript* luaAction = new aLuaScript();
+    //scene->AddActionToObj(luaAction, RacingCar);
+
+    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
     scene->AddActionToObj(luaAction, RacingCar);
-    ////new
-    //Object* RacingCar = scene->GenerateMeshObjectsFromObject("assets/models/Class_Room/desk_xyznuvrbga.ply",
-    //    glm::vec3(0, 100, 0),
-    //    1,
-    //    glm::vec3(0, 0, 0),
-    //    false,
-    //    glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-    //    true,
-    //    scene->sceneObjects);
-    //RacingCar->mesh->textures[0] = "desk.bmp";
-    //RacingCar->isTemporary = true;
-    //RacingCar->mesh->uniqueFriendlyName = "New_Viper_Player";
+    luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3);
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3);
+    luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(10, 100, 0), glm::vec3(200, 100, 0), 4);
 
     LuaScript luaScript; // Declare luaScript at the beginning of your main function
 

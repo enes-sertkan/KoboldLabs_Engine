@@ -69,6 +69,9 @@
     <Filter Include="Commands_Lua\LuaObjectManager">
       <UniqueIdentifier>{c0d8a6d6-96de-494e-bfdf-ed98255a016a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{e35b39c5-57ec-4005-b5b0-17208ef4b7d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -182,7 +185,10 @@
     <ClCompile Include="aLuaScript.h">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="aLuaScriptsSerial.cpp">
+    <ClCompile Include="aLuaScriptsSerial.h">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="aLocTriggersLua.h">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -340,5 +346,7 @@
     <None Include="cObjectMovement.lua">
       <Filter>Commands_Lua\Lua_Brain</Filter>
     </None>
+    <None Include="LuaMove2Lerp.lua" />
+    <None Include="LuaRotate2Lerp.lua" />
   </ItemGroup>
 </Project>

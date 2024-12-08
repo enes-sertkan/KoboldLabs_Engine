@@ -70,26 +70,6 @@ public:
         CallLuaFunction("FollowPosition", start, end, seconds, speed, control);
 
 
-
-        //lua_settop(L, 0);
-        //lua_getglobal(L, "MoveAlongCurve");
-        //if (lua_isfunction(L, -1)) {
-        //          // Frame time
-        //    PushData(start, end, seconds, time, control);
-
-
-        //    // Call the Lua function (12 arguments, no returns)
-        //    if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
-        //        std::cerr << "Lua error in MoveAlongCurve: " << lua_tostring(L, -1) << std::endl;
-        //        lua_pop(L, 1); // Remove error message
-        //    }
-        //}
-        //else {
-        //    std::cerr << "FUUUUUUCK!" << std::endl;
-        //    lua_pop(L, 1); // Remove invalid global
-        //    
-        //}
-
         //lua_settop(L, 0);
         time += deltaTime;
 

@@ -8,10 +8,12 @@
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>
 
+int lua_MoveObject(lua_State* L);
+int lua_RotateTo(lua_State* L);
+int lua_FollowACurve(lua_State* L);
+int lua_FollowObject(lua_State* L);
+int lua_FollowPosition(lua_State* L);
 
-int lua_SetObjectPos(lua_State* L);
-int lua_SetObjectRot(lua_State* L);
-int lua_MoveTo(lua_State* L);
 
 struct LuaScript2Points
 {
@@ -44,9 +46,21 @@ public:
 	bool running = true;
 	bool repeat = true;
 	float time = 0;
+	std::string baseLuaunctionName = "MoveObj";
+
 
 	void Start() override
 	{
+		// Now you can use luaScript to access Lua state and register functions
+		L = luaL_newstate();
+
+
+		if (!L) {
+			std::cout << "Lua state is invalid." << std::endl;
+		}
+		luaL_openlibs(L);
+		time = 0;
+
 		//register and stuff
 	}
 
@@ -55,12 +69,13 @@ public:
 		if (!running) return;
 
 
-			
+
+		UpdateTime();
+		std::cout << time << std::endl;
 
 		bool isEnded = RunLuaScript(currentScriptID);
 
 
-		UpdateTime();
 
 		//Run current script
 
@@ -84,7 +99,7 @@ public:
 
 	void UpdateTime()
 	{
-		time += object->scene->deltaTime;
+		time += 0.016f;//object->scene->deltaTime;
 		CheckAnimEnd();
 		
 	}
@@ -94,6 +109,7 @@ public:
 		if (time > scripts[currentScriptID].seconds)
 			{
 				currentScriptID++;
+				time = 0;
 			
 			}
 
@@ -102,6 +118,7 @@ public:
 			if (repeat)
 			{
 				currentScriptID = 0;
+				time = 0;
 			}
 			else
 			{
@@ -110,7 +127,11 @@ public:
 
 	}
 
-
+	void AddMoveScript(std::string _script, glm::vec3 _startVector, glm::vec3 _endVector, float _duration)
+	{
+		LuaScript2Points moveData = LuaScript2Points(_script,_startVector,_endVector, _duration);
+		scripts.push_back(moveData);
+	}
 
 	void PushData(glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
 	{
@@ -129,12 +150,17 @@ public:
 
 	}
 
-	void CallLuaFunction(std::string functionName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
+	void CallLuaFunction(std::string fileName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
 	{
 
+		luaL_dofile(L, fileName.c_str());
+		lua_register(L, "MoveTo", lua_MoveObject);
+		lua_register(L, "RotateTo", lua_RotateTo);
+		lua_register(L, "FollowObject", lua_FollowObject);
+		lua_register(L, "FollowPosition", lua_FollowPosition);
 
 		lua_settop(L, 0);
-		lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
+		lua_getglobal(L, baseLuaunctionName.c_str());  // Get the Lua function MovObj
 		if (lua_isfunction(L, -1)) {
 
 			PushData(start, end, duration, time, additData);
@@ -142,13 +168,13 @@ public:
 			// Call Lua function (9 arguments, 0 return values)
 			if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
 				// Handle Lua error
-				std::cerr << "Lua error in" << functionName << ": " << lua_tostring(L, -1) << std::endl;
+				std::cerr << "Lua error in" << baseLuaunctionName << ": " << lua_tostring(L, -1) << std::endl;
 				lua_pop(L, 1);  // Remove error message from the stack
 			}
 		}
 		else {
 			lua_pop(L, 1);  // Remove invalid global
-			std::cerr << functionName << " is not a valid function." << std::endl;
+			std::cerr << baseLuaunctionName << " is not a valid function." << std::endl;
 		}
 		lua_settop(L, 0);
 	}
