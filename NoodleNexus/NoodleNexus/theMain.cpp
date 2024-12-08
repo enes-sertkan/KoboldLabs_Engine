@@ -63,6 +63,7 @@
 #include "ModelsLoader.hpp"
 #include "aLuaScript.h"
 #include "aLuaScriptsSerial.h"
+#include "aLocTriggersLua.h"
 
 
 
@@ -920,17 +921,23 @@ int main(void)
 
 
 
-    //aLuaScript* luaAction = new aLuaScript();
-    //scene->AddActionToObj(luaAction, RacingCar);
+    aLuaScript* luaScript = new aLuaScript();
+    luaScript->luaPath = "LuaRotate2Lerp.lua";
+    scene->AddActionToObj(luaScript, RacingCar);
 
     aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
-    scene->AddActionToObj(luaAction, RacingCar);
-    luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3);
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3);
-    luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(10, 100, 0), glm::vec3(200, 100, 0), 4);
+  //  scene->AddActionToObj(luaAction, RacingCar);
+  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
+    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
 
-    LuaScript luaScript; // Declare luaScript at the beginning of your main function
-
+  
+    aLocTrggersLua* triggerAction = new aLocTrggersLua();
+    triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
+    scene->AddActionToObj(triggerAction, RacingCar);
 
 
     scene->Start();

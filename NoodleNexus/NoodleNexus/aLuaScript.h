@@ -22,8 +22,9 @@ public:
 	lua_State* L = nullptr;
     float time = 0.f;
     glm::vec3 end = glm::vec3(10.0f, 5.0f, 15.0f);
+    bool running = true;
 
-
+    //TODO: Function to set up parametrs
 	void Start() override
 	{
 		// Now you can use luaScript to access Lua state and register functions
@@ -35,7 +36,7 @@ public:
 		}
 		luaL_openlibs(L);
 
-		luaL_dofile(L, "cObjectMovement.lua");
+		luaL_dofile(L, luaPath.c_str());
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
         lua_register(L, "FollowObject", lua_FollowObject);
@@ -51,13 +52,14 @@ public:
 
     void Update() override
     {
+        if (!running) return;
         float deltaTime = 0.016f; // Frame time, assuming 60 FPS
-        luaL_dofile(L, "cObjectMovement.lua");
+        luaL_dofile(L, luaPath.c_str());
 
         glm::vec3 control(5, deltaTime, 20.0f); // Control point for the curve
         glm::vec3 start(0.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
         end = object->scene->fCamera->getEyeLocation();
-        float seconds = 5000.0f;                        
+        float seconds = 1.f;                        
         start = object->mesh->positionXYZ;
         float speed = 5.0f;
 
@@ -67,7 +69,7 @@ public:
         //CallLuaFunction("RotateObj", start, end, seconds, time, control);
         //CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
         //CallLuaFunction("FollowObject", start, end, seconds, time, control);
-        CallLuaFunction("FollowPosition", start, end, seconds, speed, control);
+        CallLuaFunction("MoveObj", start, end, seconds, speed, control);
 
 
         //lua_settop(L, 0);

@@ -24,13 +24,13 @@ struct LuaScript2Points
 	float seconds = 0;
 
 
-	LuaScript2Points(std::string _script, glm::vec3 _startVector, glm::vec3 _endVector, float _seconds)
+	LuaScript2Points(std::string _script, glm::vec3 _startVector, glm::vec3 _endVector, float _seconds, glm::vec3 _additData)
 	{
 		script = _script;
 		startVector = _startVector;
 		endVector = _endVector;
 		seconds = _seconds;
-
+		additData = _additData;
 
 	}
 };
@@ -127,9 +127,9 @@ public:
 
 	}
 
-	void AddMoveScript(std::string _script, glm::vec3 _startVector, glm::vec3 _endVector, float _duration)
+	void AddMoveScript(std::string _script, glm::vec3 _startVector, glm::vec3 _endVector, float _duration, glm::vec3 additData)
 	{
-		LuaScript2Points moveData = LuaScript2Points(_script,_startVector,_endVector, _duration);
+		LuaScript2Points moveData = LuaScript2Points(_script,_startVector,_endVector, _duration, additData);
 		scripts.push_back(moveData);
 	}
 

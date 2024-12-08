@@ -231,6 +231,8 @@
     <None Include="assets\shaders\vertex01.glsl" />
     <None Include="cObjectMovement.lua" />
     <None Include="fragment02.glsl" />
+    <None Include="LuaFollowObj.lua" />
+    <None Include="LuaMove2Curve.lua" />
     <None Include="LuaMove2Lerp.lua" />
     <None Include="LuaRotate2Lerp.lua" />
   </ItemGroup>
