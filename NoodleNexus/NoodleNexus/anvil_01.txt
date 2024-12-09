@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> anvil_01
+<filePath> assets/models/edited_models/anvil_01.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

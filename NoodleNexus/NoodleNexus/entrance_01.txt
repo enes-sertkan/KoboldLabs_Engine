@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> entrance_01
+<filePath> assets/models/edited_models/entrance_01.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

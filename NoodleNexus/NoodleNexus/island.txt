@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> island
+<filePath> assets/models/output.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

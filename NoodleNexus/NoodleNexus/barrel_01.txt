@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> barrel_01
+<filePath> assets/models/edited_models/barrel_01.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
