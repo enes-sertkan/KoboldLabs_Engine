@@ -3,7 +3,7 @@
 #include "Action.h";
 #include <glm/vec3.hpp> 
 #include "sObject.h"
-#include "Scene.hpp"
+
 #include <string>
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>

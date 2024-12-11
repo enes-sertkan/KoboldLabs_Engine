@@ -2,11 +2,11 @@
 
 #include "Action.h";
 #include <glm/vec3.hpp> 
-#include "sObject.h"
 #include <string>
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>
-#include "Scene.hpp"
+#include "sObject.h"
+
 
 
 int lua_MoveObject(lua_State* L);
@@ -23,6 +23,7 @@ public:
     float time = 0.f;
     glm::vec3 end = glm::vec3(10.0f, 5.0f, 15.0f);
     bool running = true;
+
 
     //TODO: Function to set up parametrs
 	void Start() override
@@ -58,7 +59,7 @@ public:
 
         glm::vec3 control(5, deltaTime, 20.0f); // Control point for the curve
         glm::vec3 start(0.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
-        end = object->scene->fCamera->getEyeLocation();
+      //  glm::vec3 end = object->scene->fCamera->getEyeLocation();
         float seconds = 1.f;                        
         start = object->mesh->positionXYZ;
         float speed = 5.0f;

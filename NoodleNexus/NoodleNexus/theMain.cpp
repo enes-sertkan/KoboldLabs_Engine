@@ -64,6 +64,7 @@
 #include "aLuaScript.h"
 #include "aLuaScriptsSerial.h"
 #include "aLocTriggersLua.h"
+#include "Animator.h"
 
 
 
@@ -707,6 +708,8 @@ void AddActions(Scene* scene, GLuint program)
 
 int main(void)
 {
+
+
     
 
 //   READING FILES
@@ -778,7 +781,9 @@ int main(void)
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     AddActions(scene, program);
 
-
+    Animator* animator = new Animator();
+    animator->scene = scene;
+    
 
 
 

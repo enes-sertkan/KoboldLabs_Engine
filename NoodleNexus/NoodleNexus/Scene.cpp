@@ -255,8 +255,11 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* ph
 
     textureManager = new cBasicTextureManager();
     
-
+    SetCurrentCameraToID();
     programs.push_back(program);
+
+  //  animator = new Animator();
+   // animator->scene = this;
 }
 // Comparator function
 bool Scene::CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b) {
@@ -319,7 +322,8 @@ void Scene::Start()
     }*/
 
 
-
+    //animator = new Animator();
+    
     
   
     
@@ -338,10 +342,7 @@ void Scene::Start()
 
 void Scene::Update()
 {
-    //for (Object* obj : sceneObjects)
-    //{
-    //    obj->Update();
-    //}
+  
     if (!isFlyCamera)
     {
         MoveCameraToPoint();
@@ -360,7 +361,7 @@ void Scene::Update()
 
     }
 
-
+    
 
   
     UpdateDeltaTime();
@@ -378,8 +379,10 @@ void Scene::MoveCameraToPoint()
 {
    if (cameraPoints.size() == 0) return;
 
-   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPoints[currentCameraIndex].position, 35.f * deltaTime);
-   glm::vec2 newRot = moveTowards2(g_pFlyCamera->getEyeRotation(), cameraPoints[currentCameraIndex].rotation, 50.f * deltaTime);
+   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPoints[currentCameraIndex].position, cameraMoveSpeed * deltaTime);
+   glm::vec2 newRot = moveTowards2(g_pFlyCamera->getEyeRotation(), cameraPoints[currentCameraIndex].rotation, cameraRotateSpeed * deltaTime);
+   
+   
    // Print both the old and new rotation values
    
 
@@ -406,6 +409,7 @@ void Scene::SetCameraToFirstPoint()
     if (cameraPoints.size() == 0) return;
     g_pFlyCamera->setEyeLocation(cameraPoints[1].position);
     g_pFlyCamera->setEyeRotation(cameraPoints[1].rotation.x, cameraPoints[1].rotation.y);
+    SetCurrentCameraToID();
 }
 
 void Scene::NextCameraPoint()
@@ -414,6 +418,17 @@ void Scene::NextCameraPoint()
 
     if (currentCameraIndex >= cameraPoints.size() - 1) currentCameraIndex = -1;
     currentCameraIndex++;
+    SetCurrentCameraToID();
+}
+
+void Scene::SetCurrentCameraToID()
+{
+    currentCameraPoint = cameraPoints[currentCameraIndex];
+}
+
+void Scene::SetCurrentCamera(CameraPoint camPoint)
+{
+    currentCameraPoint = camPoint;
 }
 
 void Scene::RemoveObject(Object* obj)

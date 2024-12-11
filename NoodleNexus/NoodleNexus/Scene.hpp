@@ -24,6 +24,8 @@
 #include <vector>
 #include <iostream>
 #include "CameraPoint.h"
+//#include "Animator.h"
+
 
 
 //This is a class bc we gonna have functions in it later
@@ -38,7 +40,10 @@ private:
 
 
 public:
+	//Animator* animator = nullptr;
 
+	float cameraMoveSpeed=35;
+	float cameraRotateSpeed=50;
 
 	void SortObjectsForDrawing();
 	bool CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b);
@@ -69,6 +74,7 @@ public:
 
 	std::vector<std::string> modelPaths;
 	std::vector<CameraPoint> cameraPoints;
+	CameraPoint currentCameraPoint;
 	GLFWwindow* window = nullptr;
 	cBasicFlyCamera* fCamera = nullptr;
 
@@ -76,6 +82,8 @@ public:
 	void SetCameraToNextPoint();
 	void SetCameraToFirstPoint();
 	void NextCameraPoint();
+	void SetCurrentCameraToID();
+	void SetCurrentCamera(CameraPoint camPoint);
 
 	void RemoveObject(Object* object);
 	
