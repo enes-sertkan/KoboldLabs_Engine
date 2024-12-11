@@ -50,12 +50,29 @@ void cBasicFlyCamera::setEyeLocation(float newX, float newY, float newZ)
 	return;
 }
 
+void cBasicFlyCamera::setEyeRotation(float x, float y)
+{
+	this->m_Pitch_X_axis_rotation = glm::radians(x); // Convert pitch from degrees to radians
+	this->m_Yaw_Y_axis_rotation = glm::radians(y);   // Convert yaw from degrees to radians
+
+
+	return;
+}
+
 
 
 glm::vec3 cBasicFlyCamera::getEyeLocation(void)
 {
 	return this->m_eye;
 }
+
+glm::vec2 cBasicFlyCamera::getEyeRotation(void)
+{
+	return glm::vec2(glm::degrees(this->m_Pitch_X_axis_rotation), glm::degrees(this->m_Yaw_Y_axis_rotation));
+}
+
+
+
 
 glm::vec3 cBasicFlyCamera::getTargetRelativeToCamera(void)
 {
@@ -89,6 +106,7 @@ glm::vec3 cBasicFlyCamera::getTargetLocation(void)
 												   this->m_Pitch_X_axis_rotation,
 												   glm::vec3(1.0f, 0.0f, 0.0f));
 
+
 //	glm::mat3 matFinalOrienation = glm::mat3(1.0f);
 	glm::mat3 matFinalOrienation = glm::mat3(mat_cameraYaw_Y_Axis) * glm::mat3(mat_cameraPitch_X_Axis);
 
@@ -107,6 +125,7 @@ glm::vec3 cBasicFlyCamera::getTargetLocation(void)
 
 void cBasicFlyCamera::rotateLeftRight_Yaw(float yAngleAdjust)
 {
+	if (freezeRotation) return;
 	this->m_Yaw_Y_axis_rotation += (this->m_turnSpeedScaling * yAngleAdjust);
 }
 
@@ -120,6 +139,9 @@ void cBasicFlyCamera::rotateLeftRight_Yaw_NoScaling(float yAngleAdjust)
 // negative (-ve) is "looking down"
 void cBasicFlyCamera::pitchUpDown(float xAngleAdjust)
 {
+	if (freezeRotation) return;
+
+
 	this->m_Pitch_X_axis_rotation += (this->m_turnSpeedScaling * xAngleAdjust);
 
 	// Clamp the pitch to +89 or -89 degrees
@@ -138,6 +160,16 @@ void cBasicFlyCamera::pitchUpDown(float xAngleAdjust)
 	return;
 }
 
+
+void cBasicFlyCamera::FreezePlayerRotation()
+{
+	freezeRotation = true;
+}
+
+void cBasicFlyCamera::UnfreezePlayerRotation()
+{
+	freezeRotation = false;
+}
 
 // The mouse will pass in integer values, passing "1" per "tick" of the mouse wheel.
 // This will likely need to be adjusted per mouse, but who knows?

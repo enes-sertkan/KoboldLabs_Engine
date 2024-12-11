@@ -33,6 +33,23 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         glBindTexture(GL_TEXTURE_2D, textureID_00);
 
         //glBindTextureUnit(0, textureID_00);
+          // Set the texture wrapping mode for S and T coordinates
+
+        GLenum selectedWrapMode;
+        switch (pCurMesh->textureFillType[0])
+        {
+        case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        default:
+            selectedWrapMode = GL_REPEAT;
+            break;
+        }
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
 
         GLint texture00_UL = glGetUniformLocation(program, "texture00");
         glUniform1i(texture00_UL, 0);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
@@ -47,6 +64,24 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         }
         glActiveTexture(GL_TEXTURE0 + 1);
         glBindTexture(GL_TEXTURE_2D, textureID_01);
+
+
+
+        GLenum selectedWrapMode;
+        switch (pCurMesh->textureFillType[1])
+        {
+        case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        default:
+            selectedWrapMode = GL_REPEAT;
+            break;
+        }
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
         GLint texture01_UL = glGetUniformLocation(program, "texture01");
         glUniform1i(texture01_UL, 1);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
     }
@@ -60,6 +95,24 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         }
         glActiveTexture(GL_TEXTURE0 + 2);
         glBindTexture(GL_TEXTURE_2D, textureID_02);
+
+
+        GLenum selectedWrapMode;
+        switch (pCurMesh->textureFillType[2])
+        {
+        case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        default:
+            selectedWrapMode = GL_REPEAT;
+            break;
+        }
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
+
         GLint texture02_UL = glGetUniformLocation(program, "texture02");
         glUniform1i(texture02_UL, 2);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
     }
@@ -73,6 +126,24 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         }
         glActiveTexture(GL_TEXTURE0 + 3);
         glBindTexture(GL_TEXTURE_2D, textureID_03);
+
+
+        GLenum selectedWrapMode;
+        switch (pCurMesh->textureFillType[3])
+        {
+        case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        default:
+            selectedWrapMode = GL_REPEAT;
+            break;
+        }
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
+
         GLint texture03_UL = glGetUniformLocation(program, "texture03");
         glUniform1i(texture03_UL, 3);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
     }
@@ -92,7 +163,7 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
 
 
 
-void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager)
+void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
 {
     
 
@@ -127,26 +198,13 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
     }
 
-    
-    if (pCurMesh->bIsStencilTexture)
-    {
+    float currentTime = glfwGetTime(); // For example, using GLFW
+    GLint timeUniform = glGetUniformLocation(program, "time");
+    glUniform1f(timeUniform, currentTime);
 
 
 
-        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_TRUE);
 
-        glActiveTexture(GL_TEXTURE0 + pCurMesh->stencilTextureID);
-
-        GLuint stencilTextureID = textureManager->getTextureIDFromName(pCurMesh->stencilTexture);
-        glBindTexture(GL_TEXTURE_2D, stencilTextureID);
-
-        GLint stencilTexture_UL = glGetUniformLocation(program, "stencilTexture");
-        glUniform1i(stencilTexture_UL, pCurMesh->stencilTextureID);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
-    }
-    else
-    {
-        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
-    }
 
         pCurMesh->time += 0.1;
         GLint time_UL = glGetUniformLocation(program, "time");
@@ -180,6 +238,9 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
     // uniform bool bUseTextureAsColour;	// If true, then sample the texture
     GLint bUseTextureAsColour_UL = glGetUniformLocation(program, "bUseTextureAsColour");
     glUniform1f(bUseTextureAsColour_UL, (GLfloat)GL_TRUE);
+
+
+
 
     SetUpTextures(pCurMesh, program, textureManager);
 
@@ -269,12 +330,32 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         pCurMesh->objectColourRGBA.b,
         1.0f);
 
+    GLint cameraLocation = glGetUniformLocation(program, "cameraLocation");
+    glUniform3f(cameraLocation,
+        scene->fCamera->getEyeLocation().x+10.f,
+        scene->fCamera->getEyeLocation().y,
+        scene->fCamera->getEyeLocation().z);
+
+
     //transperency
    // if (pCurMesh->transperency < 1)
    // {
        // glDisable(GL_DEPTH_TEST);
         glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+
+
+        if (pCurMesh->uniqueFriendlyName == "trees")
+        glUniform1f(glGetUniformLocation(program, "suckPower"), 25.f);
+        else
+        glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
     //}
+
+
+
+        if (pCurMesh->uniqueFriendlyName == "trees")
+            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
+        else
+            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
     // solid or wireframe, etc.
 //        glPointSize(10.0f);
@@ -331,14 +412,14 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     pDebugSphere->objectColourRGBA = RGBA;
     pDebugSphere->uniformScale = scale;
 
-    DrawMesh(pDebugSphere, program, scene->vaoManager,scene->textureManager);
+    DrawMesh(pDebugSphere, program, scene->vaoManager,scene->textureManager, scene);
 
     pDebugSphere->bIsVisible = false;
 
     return;
 }
 
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager)
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
 {
 
 
@@ -380,7 +461,7 @@ void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasic
     GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
     glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
 
-    DrawMesh(pCurMesh, program, vaoManager, textureManager);
+    DrawMesh(pCurMesh, program, vaoManager, textureManager, scene);
 
     //SkySphere->mesh->bIsVisible = true;
 

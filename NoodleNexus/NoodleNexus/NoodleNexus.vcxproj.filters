@@ -334,6 +334,12 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Commands_Lua\LuaObjectManager</Filter>
     </ClInclude>
+    <ClInclude Include="Animator.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
@@ -348,5 +354,7 @@
     </None>
     <None Include="LuaMove2Lerp.lua" />
     <None Include="LuaRotate2Lerp.lua" />
+    <None Include="LuaFollowObj.lua" />
+    <None Include="LuaMove2Curve.lua" />
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@
 #include "Action.h"
 
 
+
 class Scene;
 
 
@@ -26,6 +27,7 @@ public:
 	bool isCollisionStatic = false;
 	std::vector<std::string> tags;
 	bool isActive = true;
+
 	//GLuint program;
 
 	void Destroy();

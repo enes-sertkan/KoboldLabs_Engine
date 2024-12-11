@@ -8,6 +8,10 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
+
+
+
+
 struct sMesh
 {
 	std::string modelFileName;			// "bunny.ply"
@@ -46,7 +50,7 @@ struct sMesh
 	static const unsigned int MAX_NUM_TEXTURES = 4;
 	std::string textures[MAX_NUM_TEXTURES];
 	float blendRatio[MAX_NUM_TEXTURES];
-
+	int textureFillType[MAX_NUM_TEXTURES];
 
 	unsigned int uniqueID = 0;
 

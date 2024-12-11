@@ -34,6 +34,7 @@ extern bool g_bShowDebugSpheres;
 glm::vec3 g_rgb_from_HTML(unsigned int red, unsigned int green, unsigned int blue);
 
 glm::vec3 moveTowards(const glm::vec3& point, const glm::vec3& endPoint, float speed);
+glm::vec2 moveTowards2(const glm::vec2& point, const glm::vec2& endPoint, float speed);
 
 // HACK: Show "targeting LASER"
 extern bool g_bShowLASERBeam;

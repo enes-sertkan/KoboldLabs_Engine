@@ -23,9 +23,7 @@
 #include <chrono>
 #include <vector>
 #include <iostream>
-
-
-
+#include "CameraPoint.h"
 
 
 //This is a class bc we gonna have functions in it later
@@ -70,7 +68,7 @@ public:
 	PhysicsManager* physicsManager;
 
 	std::vector<std::string> modelPaths;
-	std::vector<Transform*> cameraPositions;
+	std::vector<CameraPoint> cameraPoints;
 	GLFWwindow* window = nullptr;
 	cBasicFlyCamera* fCamera = nullptr;
 

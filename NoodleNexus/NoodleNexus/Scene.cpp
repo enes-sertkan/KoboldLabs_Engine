@@ -342,10 +342,15 @@ void Scene::Update()
     //{
     //    obj->Update();
     //}
-    if(!isFlyCamera)
-    MoveCameraToPoint();
-
-
+    if (!isFlyCamera)
+    {
+        MoveCameraToPoint();
+        fCamera->FreezePlayerRotation();
+    }
+    else
+    {
+        fCamera->UnfreezePlayerRotation();
+    }
     for (Object* obj : sceneObjects)
     {
         if (obj)
@@ -371,32 +376,43 @@ void Scene::AddActionToObj(Action* action, Object* object)
 
 void Scene::MoveCameraToPoint()
 {
-   if (cameraPositions.size() == 0) return;
-   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPositions[currentCameraIndex]->position, 35.f * deltaTime);
+   if (cameraPoints.size() == 0) return;
+
+   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPoints[currentCameraIndex].position, 35.f * deltaTime);
+   glm::vec2 newRot = moveTowards2(g_pFlyCamera->getEyeRotation(), cameraPoints[currentCameraIndex].rotation, 50.f * deltaTime);
+   // Print both the old and new rotation values
+   
+
+   std::cout << "Target Rotation: (" << cameraPoints[currentCameraIndex].rotation.x << ", " << cameraPoints[currentCameraIndex].rotation.y << ")" << std::endl;
+   std::cout << "New Rotation: (" << newRot.x << ", " << newRot.y << ")" << std::endl;
+
    g_pFlyCamera->setEyeLocation(newPos);
+   g_pFlyCamera->setEyeRotation(newRot.x, newRot.y);
 }
 
 void Scene::SetCameraToNextPoint()
 {
-    if (cameraPositions.size() == 0) return;
+    if (cameraPoints.size() == 0) return;
 
-    if (currentCameraIndex >= cameraPositions.size() - 1) currentCameraIndex = -1;
+    if (currentCameraIndex >= cameraPoints.size() - 1) currentCameraIndex = -1;
     currentCameraIndex++;
 
-    g_pFlyCamera->setEyeLocation(cameraPositions[currentCameraIndex]->position);
+    g_pFlyCamera->setEyeLocation(cameraPoints[currentCameraIndex].position);
+    g_pFlyCamera->setEyeRotation(cameraPoints[currentCameraIndex].rotation.x, cameraPoints[currentCameraIndex].rotation.y);
 }
 
 void Scene::SetCameraToFirstPoint()
 {
-    if (cameraPositions.size() == 0) return;
-    g_pFlyCamera->setEyeLocation(cameraPositions[1]->position);
+    if (cameraPoints.size() == 0) return;
+    g_pFlyCamera->setEyeLocation(cameraPoints[1].position);
+    g_pFlyCamera->setEyeRotation(cameraPoints[1].rotation.x, cameraPoints[1].rotation.y);
 }
 
 void Scene::NextCameraPoint()
 {
-      if (cameraPositions.size() == 0) return;
+      if (cameraPoints.size() == 0) return;
 
-    if (currentCameraIndex >= cameraPositions.size() - 1) currentCameraIndex = -1;
+    if (currentCameraIndex >= cameraPoints.size() - 1) currentCameraIndex = -1;
     currentCameraIndex++;
 }
 

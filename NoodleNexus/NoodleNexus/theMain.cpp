@@ -82,8 +82,8 @@ cBasicTextureManager* g_pTextures = NULL;
 cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
-void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager);
+void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 
 
 std::string g_floatToString(float theFloat)
@@ -595,7 +595,8 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
     scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-    scene->sceneObjects[4]->mesh->blendRatio[1] = 0.2;
+    scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+    scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
@@ -981,7 +982,7 @@ int main(void)
         //        pSkySphere->bDoNotLight = true;
 
         SkySphere->mesh->uniformScale = 25.0f;
-        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager);
+        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene);
 //      DRAW LOOP
 //      ------------------------------------------       
         scene->SortObjectsForDrawing();
@@ -990,7 +991,7 @@ int main(void)
   
             sMesh* pCurMesh = object->mesh;
 
-            DrawMesh(pCurMesh, program, scene->vaoManager, scene->textureManager);
+            DrawMesh(pCurMesh, program, scene->vaoManager, scene->textureManager, scene);
 
         }
 

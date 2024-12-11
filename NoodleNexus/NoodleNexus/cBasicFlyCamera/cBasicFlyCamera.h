@@ -11,10 +11,12 @@ public:
 
 	void setEyeLocation(glm::vec3 newEyeLocation);
 	void setEyeLocation(float newX, float newY, float newZ);
+	void setEyeRotation(float x, float y);
 	void setEyeTarget(glm::vec3 newEyeTarget);
 
 	glm::vec3 getEyeLocation(void);
 	glm::vec3 getTargetLocation(void);
+	glm::vec2 getEyeRotation();
 	// Normalized version of getTargetLocation()
 	glm::vec3 getTargetRelativeToCamera(void);
 
@@ -46,9 +48,15 @@ public:
 	// negative (-ve) is "looking down"
 	void pitchUpDown(float xAngleAdjust);
 
+
+	void FreezePlayerRotation();
+	void UnfreezePlayerRotation();
+
 private:
 	float m_Yaw_Y_axis_rotation;
 	float m_Pitch_X_axis_rotation;
+
+	bool freezeRotation = false;
 
 	glm::vec3 m_eye;
 	glm::vec3 m_target;

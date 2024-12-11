@@ -42,6 +42,19 @@ glm::vec3 LoadVector3Data(std::ifstream& file)
 
 }
 
+glm::vec2 LoadVector2Data(std::ifstream& file)
+{
+    std::string token = "";
+    glm::vec2 finalVector;
+
+
+    file >> finalVector.x;
+    file >> finalVector.y;
+
+    return finalVector;
+
+}
+
 glm::vec4 LoadVector4Data(std::ifstream& file)
 {
     std::string token = "";
@@ -272,16 +285,16 @@ Scene* KLFileManager::ReadSceneFile(std::string filePath)
         //LOAD OBJECT FILE
         {
 
-            Transform* cameraTransform = new Transform();
+            CameraPoint cameraPoint;
             while (token != "<--Camera>")
             {
                 sceneFile >> token;
 
-                if (token == "<Position->")   cameraTransform->position = LoadVector3Data(sceneFile);
-                if (token == "<Rotation->")  cameraTransform->rotation = LoadVector3Data(sceneFile);
+                if (token == "<Position->")   cameraPoint.position = LoadVector3Data(sceneFile);
+                if (token == "<Rotation->")  cameraPoint.rotation = LoadVector2Data(sceneFile);
             }
 
-            scene->cameraPositions.push_back(cameraTransform);
+            scene->cameraPoints.push_back(cameraPoint);
 
         }
     }
@@ -403,15 +416,14 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
         }
 
         // Write camera data
-        for (size_t i = 0; i < scene->cameraPositions.size(); ++i) {
-            Transform* cameraTransform = scene->cameraPositions[i];
+        for (size_t i = 0; i < scene->cameraPoints.size(); ++i) {
+            CameraPoint cameraPoint = scene->cameraPoints[i];
             myfile << "<Camera-->\n";
-            myfile << "<Position-> " << cameraTransform->position.x << " "
-                << cameraTransform->position.y << " "
-                << cameraTransform->position.z << "\n";
-            myfile << "<Rotation-> " << cameraTransform->rotation.x << " "
-                << cameraTransform->rotation.y << " "
-                << cameraTransform->rotation.z << "\n";
+            myfile << "<Position-> " << cameraPoint.position.x << " "
+                << cameraPoint.position.y << " "
+                << cameraPoint.position.z << "\n";
+            myfile << "<Rotation-> " << cameraPoint.rotation.x << " "
+                << cameraPoint.rotation.y << "\n";
             myfile << "<--Camera>\n\n";
         }
 
