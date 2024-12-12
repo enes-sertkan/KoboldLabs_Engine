@@ -23,6 +23,7 @@ Asteroid02.txt
 Asteroid03.txt
 Asteroid04.txt
 Asteroid05.txt
+SkySphere.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
@@ -34,7 +35,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 678 -39 0
 <Rotation-> -122 64 168
-<Scale-> 1 0 0
+<Scale-> 1 0 -3.3366e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -44,8 +45,44 @@ selectBox.txt
 <Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1198 -802 48
-<Rotation-> -22 -59 109
+<Position-> 1543 -122 -1843
+<Rotation-> -92 10 241
+<Scale-> 1 7.08835e-39 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 7971 -145 -751
+<Rotation-> -70 -86 160
+<Scale-> 1 1.06029e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 8338 -501 -1049
+<Rotation-> -70 -86 160
+<Scale-> 1 0 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 8319 -850 -682
+<Rotation-> -70 -86 160
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -56,45 +93,9 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -436 -7629 798
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TieFighter
-<Model-> TieFighter
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -241 -7478 441
-<Rotation-> 0 0 0
-<Scale-> 1 0 3.65754e+06
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TieFighter
-<Model-> TieFighter
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -797 -7629 -441
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TieFighter
-<Model-> TieFighter
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -473 -7279 91
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Position-> 8157 -491 -501
+<Rotation-> -70 -86 160
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -104,9 +105,9 @@ selectBox.txt
 <Model-> Falcon
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -132 -8477 453
-<Rotation-> 0 -82 0
-<Scale-> 1 0 0
+<Position-> 9149 -499 -338
+<Rotation-> 3 -171 89
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -116,9 +117,9 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -570 -8952 387
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Position-> 9647 -441 -751
+<Rotation-> 151 -4 -88
+<Scale-> 1 1.1151e-38 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -128,20 +129,8 @@ selectBox.txt
 <Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1125 -13737 48
-<Rotation-> -22 -59 -12
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TieFighter
-<Model-> TieFighter
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -90 -17007 91
-<Rotation-> 0 0 0
+<Position-> 14454 -107 -1049
+<Rotation-> 146 -31 -84
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
@@ -152,9 +141,9 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 323 -17206 441
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Position-> 17653 -124 345
+<Rotation-> -70 -86 160
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -164,8 +153,8 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -410 -17090 441
-<Rotation-> 0 0 0
+<Position-> 17764 -484 -143
+<Rotation-> -70 -86 160
 <Scale-> 1 0 4.36042e+21
 <Visibility-> true
 <Shading-> true
@@ -176,9 +165,21 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 127 -17357 798
-<Rotation-> 0 0 0
-<Scale-> 1 0 1.09954e+27
+<Position-> 17839 -470 595
+<Rotation-> -70 -86 160
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 18000 -830 414
+<Rotation-> -70 -86 160
+<Scale-> 1 1.1151e-38 -3.3366e+18
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -189,9 +190,9 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -305 -180 535
-<Rotation-> 42 -53 -41
-<Scale-> 1 4.03308e-41 3.6505e+06
+<Position-> 18709 -574 14
+<Rotation-> 177 -28 -65
+<Scale-> 1 0 -3.3366e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -201,9 +202,9 @@ selectBox.txt
 <Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1125 -25607 48
-<Rotation-> -22 5 151
-<Scale-> 1 0 9.15816e+08
+<Position-> 26307 -95 -397
+<Rotation-> -122 64 168
+<Scale-> 1 0 1.09954e+27
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -213,9 +214,9 @@ selectBox.txt
 <Model-> Falcon
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1229 -26499 464
-<Rotation-> 0 -82 0
-<Scale-> 1 0 9.15816e+08
+<Position-> 27204 -512 -444
+<Rotation-> -44 -40 128
+<Scale-> 2 1.1151e-38 1.09954e+27
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -225,9 +226,9 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1685 -30504 273
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Position-> 30857 -137 -327
+<Rotation-> -70 -86 160
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -237,9 +238,9 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1073 -30353 441
-<Rotation-> 0 0 0
-<Scale-> 1 0 1.09954e+27
+<Position-> 31228 -326 -683
+<Rotation-> -70 -86 160
+<Scale-> 1 1.1151e-38 -3.3366e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -249,20 +250,8 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1305 -30154 91
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Asteroid01
-<Model-> Asteroid01
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -1496 -29640 535
-<Rotation-> 42 -53 -41
+<Position-> 31043 -482 -77
+<Rotation-> -70 -86 160
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
@@ -273,9 +262,9 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -233 -30469 1381
-<Rotation-> 95 -69 -146
-<Scale-> 1 0 0
+<Position-> 30354 -585 -537
+<Rotation-> 177 -28 -65
+<Scale-> 1 1.1151e-38 -3.32788e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -285,9 +274,9 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1848 -30877 244
-<Rotation-> 95 -69 -146
-<Scale-> 1 0 0
+<Position-> 31206 -399 -826
+<Rotation-> 132 15 -77
+<Scale-> 1 4.80645e-43 -3.31468e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -297,8 +286,20 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -614 -31211 581
-<Rotation-> 15 -33 41
+<Position-> 31875 -612 429
+<Rotation-> -102 -36 222
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 31113 -1405 785
+<Rotation-> -1405 15 785
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -309,9 +310,9 @@ selectBox.txt
 <Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1685 -35344 273
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Position-> 36060 -321 -418
+<Rotation-> -70 -86 160
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -321,8 +322,8 @@ selectBox.txt
 <Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1848 -35583 244
-<Rotation-> 95 -69 -146
+<Position-> 36307 -294 -568
+<Rotation-> 132 15 -77
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -333,8 +334,8 @@ selectBox.txt
 <Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -1125 -40696 48
-<Rotation-> -91 -42 217
+<Position-> 41374 -79 430
+<Rotation-> -40 33 304
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -347,49 +348,44 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> -2.21 0 0
-<Visibility-> true
+<Scale-> 500 1.1151e-38 0
+<Visibility-> false
 <Shading-> true
 <--Object>
 
 <Light-->
-<Position-> 15000 30000 -703.8 1
-<Diffuse-> 1 1 1 1
+<Position-> 27044 40000 -703.76 1
+<Diffuse-> 0.5 0.5 0.7 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0001 1e-05 3.40282e+38
+<Atten-> 0 0.005 0.001 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 180 0 0 0
+<Param1-> 2 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Camera-->
-<Position-> -85 0.5 335
+<Position-> 2159 -39 1487
 <Rotation-> 163 84
 <--Camera>
 
 <Camera-->
-<Position-> -277 2 243
+<Position-> 11473 -39 -361
 <Rotation-> 0 10
 <--Camera>
 
 <Camera-->
-<Position-> -238 6 165
+<Position-> 21250 -883 -1882
 <Rotation-> 250 100
 <--Camera>
 
 <Camera-->
-<Position-> -310 4 17
+<Position-> 29388 -158 518
 <Rotation-> 163 84
 <--Camera>
 
 <Camera-->
-<Position-> -1018 250 192
+<Position-> 34369 -557 -361
 <Rotation-> 50 50
-<--Camera>
-
-<Camera-->
-<Position-> -2148 533 -212
-<Rotation-> 0 0
 <--Camera>
 
 <--Scene>

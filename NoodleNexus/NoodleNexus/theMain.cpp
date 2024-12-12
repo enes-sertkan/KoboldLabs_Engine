@@ -576,110 +576,110 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
 
-    scene->sceneObjects[1]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[1]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
     //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-    scene->sceneObjects[2]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[2]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[3]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[3]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[4]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[4]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[5]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[5]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[6]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[6]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[7]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[7]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[8]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[8]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
-    scene->sceneObjects[8]->mesh->stencilTexture = "fire2.bmp";
+    scene->sceneObjects[8]->mesh->stencilTexture = "scatter.bmp";
     scene->sceneObjects[8]->mesh->blendRatio[0] = 2.5;
 
-    scene->sceneObjects[9]->mesh->textures[0] = "rockfire2bmp";
+    scene->sceneObjects[9]->mesh->textures[0] = "scatter";
     scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
     scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[10]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[10]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[11]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[11]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[13]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[13]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[13]->mesh->transperency = 0.9;
 
-    scene->sceneObjects[14]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[14]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[14]->mesh->transperency = 0.2;
 
-    scene->sceneObjects[15]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[15]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[16]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[16]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[17]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[17]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[18]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[18]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[19]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[19]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[20]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[20]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[21]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[21]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[22]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[22]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[23]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[23]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[24]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[24]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[25]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[25]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[26]->mesh->textures[0] = "fire2.bmp";
+    scene->sceneObjects[26]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 

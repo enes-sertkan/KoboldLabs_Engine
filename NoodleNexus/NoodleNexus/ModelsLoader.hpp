@@ -83,23 +83,23 @@ void CreateModelFiles(KLFileManager* fileManager)
     // Asteroids
     modelInfo.modelName = "Asteroid01";
     modelInfo.meshPath = "assets/models/Asteroids/Asteroid_001_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "Asteroid01.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "Asteroid01.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Asteroid02";
     modelInfo.meshPath = "assets/models/Asteroids/Asteroid_006_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "Asteroid02.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "Asteroid02.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Asteroid03";
     modelInfo.meshPath = "assets/models/Asteroids/Asteroid_010_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "Asteroid03.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "Asteroid03.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Asteroid04";
     modelInfo.meshPath = "assets/models/Asteroids/asteroid_group_xyznuvrbga_01.ply";
-    fileManager->WriteModelFile(&modelInfo, "Asteroid04.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "Asteroid04.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Asteroid05";
     modelInfo.meshPath = "assets/models/Asteroids/asteroid_group_xyznuvrbga_02.ply";
-    fileManager->WriteModelFile(&modelInfo, "Asteroid05.txt", "XYZNUVRBGA");
+    fileManager->WriteModelFile(&modelInfo, "Asteroid05.txt", "XYZNUVRGBA");
 
     //SelectBox
     modelInfo.modelName = "Select_Box";

@@ -2,6 +2,6 @@
 <ModelFile>
 <name> Asteroid04
 <filePath> assets/models/Asteroids/asteroid_group_xyznuvrbga_01.ply
-<fileType> XYZNUVRBGA
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>
