@@ -572,18 +572,17 @@ void AddActions(Scene* scene, GLuint program)
 
 
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
-    scene->sceneObjects[0]->mesh->textures[1] = "cloud.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[0]->mesh->blendRatio[1] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
+    scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
+
 
     scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[1]->mesh->transperency = 0.2;
     scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
-
 
     scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
     scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
@@ -601,8 +600,12 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
-    scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
+    //scene->sceneObjects[5]->mesh->textures[1] = "graphity.bmp";
+    scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[5]->mesh->blendRatio[1] = 2;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
+
 
     scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
     scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
@@ -815,6 +818,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
 
     //Effects
     scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");

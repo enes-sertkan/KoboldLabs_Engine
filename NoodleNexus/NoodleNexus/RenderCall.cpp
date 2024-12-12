@@ -349,11 +349,20 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         else
         glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
     //}
+        if (pCurMesh->uniqueFriendlyName == "Clouds")
+            glUniform1f(glGetUniformLocation(program, "suckPower"), 200.f);
+        else
+            glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
 
 
 
         if (pCurMesh->uniqueFriendlyName == "trees")
             glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
+        else
+            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
+
+        if (pCurMesh->uniqueFriendlyName == "Clouds")
+            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.0065f);
         else
             glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
