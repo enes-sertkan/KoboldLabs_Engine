@@ -8,6 +8,7 @@
 #include "KLFileManager.hpp"
 #include "cVAOManager/cVAOManager.h";
 
+#include "Animator.h"
 //#include "linmath.h"
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
@@ -59,6 +60,8 @@ public:
 	Object* PickNextObject();
 
 	void ChangeMode(std::string mode);
+
+	Animator* animator = nullptr;
 
 private:
 	void UpdateSelectBox();

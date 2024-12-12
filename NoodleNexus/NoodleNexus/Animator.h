@@ -34,17 +34,18 @@ public:
 	float animTime = 0;
 	std::vector<Scene> scenes;
 	int currentSceneId = 0;
-	std::vector<AnimationScene> animScenes;
+	std::vector<AnimationScene*> animScenes;
 	int cameraPointId = 0;
+
 
 	void StopAnimations()
 	{
-		for(aLuaScript* script:animScenes[currentSceneId].singleScripts)
+		for(aLuaScript* script:animScenes[currentSceneId]->singleScripts)
 		{
 			script->running = false;
 		}
 
-		for (aLuaScriptsSerial* script : animScenes[currentSceneId].serialScripts)
+		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
 		{
 			script->running = false;
 		}
@@ -52,20 +53,22 @@ public:
 
 	void StartAnimation()
 	{
-		for (aLuaScript* script : animScenes[currentSceneId].singleScripts)
+		for (aLuaScript* script : animScenes[currentSceneId]->singleScripts)
 		{
 			script->running = true;
 		}
 
-		for (aLuaScriptsSerial* script : animScenes[currentSceneId].serialScripts)
+		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
 		{
 			script->running = true;
 		}
 	}
 
+
+
 	void NextScene()
 	{
-		if (cameraPointId < animScenes[currentSceneId].cameraAnimations.size() - 2) cameraPointId++;
+		NextAnimScene();
 	}
 
 	void PrevScene()
@@ -75,19 +78,22 @@ public:
 
 	void RestartScene()
 	{
-		for (aLuaScript *script : animScenes[currentSceneId].singleScripts)
+		for (aLuaScript *script : animScenes[currentSceneId]->singleScripts)
 		{
 			script->time = 0;
 			script->running = true;
 		}
 
-		for (aLuaScriptsSerial* script : animScenes[currentSceneId].serialScripts)
+		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
 		{
 			script->time = 0;
 			script->running = true;
 		}
 
-		scene->currentCameraPoint = animScenes[currentSceneId].cameraAnimations[0].point;
+		time = 0;
+		animTime = 0;
+
+		scene->currentCameraPoint = animScenes[currentSceneId]->cameraAnimations[0].point;
 	}
 
 	void Update()
@@ -96,23 +102,22 @@ public:
 		animTime += scene->deltaTime;
 
 
-		AnimationScene currentScene = animScenes[currentSceneId];
+		AnimationScene* currentScene = animScenes[currentSceneId];
 
-		if (animTime > currentScene.cameraAnimations[cameraPointId].duration)
+		//if (currentScene.cameraAnimations.size()>0)
+		if (animTime > currentScene->cameraAnimations[cameraPointId].duration)
 		{
-			if(cameraPointId <currentScene.cameraAnimations.size()-2) cameraPointId++;
+			if(cameraPointId <currentScene->cameraAnimations.size()-2) cameraPointId++;
 
-			scene->currentCameraPoint = currentScene.cameraAnimations[cameraPointId].point;
+			scene->currentCameraPoint = currentScene->cameraAnimations[cameraPointId].point;
 
 			animTime = 0;
 		}
 
 
-		if (time > currentScene.duration)
+		if (time > currentScene->duration)
 		{
-			if (currentSceneId < currentScene.cameraAnimations.size() - 2) currentSceneId++;
-
-			time = 0;
+			NextAnimScene();
 
 		}
 
@@ -120,13 +125,49 @@ public:
 
 	void AddAnimScene(std::vector<aLuaScript*> singleScripts, std::vector<aLuaScriptsSerial*> serialScripts, std::vector<CameraAnimation> cameraAnimations, float duration)
 	{
-		AnimationScene animScene;
-		animScene.singleScripts = singleScripts;
-		animScene.serialScripts = serialScripts;
-		animScene.cameraAnimations = cameraAnimations;
-		animScene.duration = duration;
+		AnimationScene* animScene = new AnimationScene();
+		animScene->singleScripts = singleScripts;
+		animScene->serialScripts = serialScripts;
+		animScene->cameraAnimations = cameraAnimations;
+		animScene->duration = duration;
 
 		animScenes.push_back(animScene);
+
+	}
+
+	void NextAnimScene()
+	{
+		
+
+		for (aLuaScript* script : animScenes[currentSceneId]->singleScripts)
+		{
+			script->running = false;
+		}
+
+		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
+		{
+			script->running = false;
+		}
+
+		if (currentSceneId >= animScenes.size() - 2)
+			currentSceneId = 0;
+		else
+			currentSceneId++;
+
+
+
+		for (aLuaScript* script : animScenes[currentSceneId]->singleScripts)
+		{
+			script->running = true;
+		}
+
+		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
+		{
+			script->running = true;
+		}
+
+		time = 0;
+		animTime = 0;
 
 	}
 

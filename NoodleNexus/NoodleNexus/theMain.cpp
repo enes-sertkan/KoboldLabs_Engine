@@ -527,6 +527,10 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
         << ::g_pFlyCamera->getEyeLocation().y << ", "
         << ::g_pFlyCamera->getEyeLocation().z
         << "   ";
+    ssTitle << "Rot: "
+        << ::g_pFlyCamera->getEyeRotation().x << ", "
+        << ::g_pFlyCamera->getEyeRotation().y << "   ";
+
     ssTitle << "light[" << g_selectedLightIndex << "] "
         << lightManager->theLights[g_selectedLightIndex].position.x << ", "
         << lightManager->theLights[g_selectedLightIndex].position.y << ", "
@@ -613,7 +617,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[8]->mesh->stencilTexture = "scatter.bmp";
     scene->sceneObjects[8]->mesh->blendRatio[0] = 2.5;
 
-    scene->sceneObjects[9]->mesh->textures[0] = "scatter";
+    scene->sceneObjects[9]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
     scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
@@ -686,6 +690,7 @@ void AddActions(Scene* scene, GLuint program)
 
 
 }
+
 
 //MAIN
 //-----------------------------------------------------------------------------------------------------------------------------
@@ -765,8 +770,6 @@ int main(void)
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     AddActions(scene, program);
 
-    Animator* animator = new Animator();
-    animator->scene = scene;
     
 
 
@@ -778,7 +781,6 @@ int main(void)
 
 
     glUseProgram(program);
-
 
     scene->textureManager->SetBasePath("assets/textures");
     scene->textureManager->Create2DTextureFromBMPFile("scatter.bmp");
@@ -800,8 +802,24 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
 
+
     //Effects
     scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
+
+
+    //class
+    scene->textureManager->Create2DTextureFromBMPFile("chairs.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
 
 
 
@@ -818,7 +836,7 @@ int main(void)
         "CubeMaps/SpaceBox_bottom4_negY.bmp",
         "CubeMaps/SpaceBox_front5_posZ.bmp",
         "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
-    {
+        {
         std::cout << "Loaded space skybox" << std::endl;
     }
     else
@@ -862,7 +880,7 @@ int main(void)
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
         true,
         scene->sceneObjects);
-    SkySphere->mesh->textures[0] = "smoke1.bmp";
+    SkySphere->mesh->textures[0] = "tyres.bmp";
     SkySphere->isTemporary = true;
 
 
@@ -896,24 +914,92 @@ int main(void)
 
 
 
-    //aLuaScript* luaScript = new aLuaScript();
-    //luaScript->luaPath = "LuaRotate2Lerp.lua";
-    //scene->AddActionToObj(luaScript, RacingCar);
-
-    //aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
-  //  scene->AddActionToObj(luaAction, RacingCar);
-  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
-    //luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
-    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
-    //luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
-    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
+    aLuaScript* luaScript = new aLuaScript();
+    luaScript->luaPath = "LuaRotate2Lerp.lua";
+    scene->AddActionToObj(luaScript, RacingCar);
 
   
-    //aLocTrggersLua* triggerAction = new aLocTrggersLua();
-    //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
-    //scene->AddActionToObj(triggerAction, RacingCar);
+    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
+    scene->AddActionToObj(luaAction, RacingCar);
+  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
+    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
 
+
+    aLuaScriptsSerial* luaAction2 = new aLuaScriptsSerial();
+    scene->AddActionToObj(luaAction2, RacingCar);
+    /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+      luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+    luaAction2->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 200, 50), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
+    luaAction2->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+
+    aLuaScriptsSerial* luaAction3 = new aLuaScriptsSerial();
+    scene->AddActionToObj(luaAction3, RacingCar);
+    /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+      luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+    luaAction3->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 2, glm::vec3(360, 0, 0));
+    luaAction3->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 2, glm::vec3(0, 0, 0));
+
+    aLuaScriptsSerial* luaAction4 = new aLuaScriptsSerial();
+    scene->AddActionToObj(luaAction, RacingCar);
+    /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+      luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+    luaAction4->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 200, 50), glm::vec3(200, 300, 0), 3, glm::vec3(100, 500, 0));
+
+
+    Animator* animator = new Animator();
+    animator->scene = scene;
+
+
+    sceneEditor->animator = animator;
+
+    CameraAnimation camera1;
+    camera1.point.position = glm::vec3(0, 0, 0);
+    camera1.point.rotation = glm::vec2(50, 60);
+    camera1.duration = 10;
+
+
+    std::vector<aLuaScript*> singleScripts;
+    std::vector<aLuaScriptsSerial*> serialScripts;
+    std::vector<CameraAnimation> cameraAnimations;
+
+    serialScripts.push_back(luaAction2);
+    cameraAnimations.push_back(camera1);
+
+  
+
+    CameraAnimation camera2;
+    camera2.point.position = glm::vec3(100, 10, 100);
+    camera2.point.rotation = glm::vec2(50, 60);
+    camera2.duration = 10;
+    std::vector<aLuaScript*> singleScripts2;
+    std::vector<aLuaScriptsSerial*> serialScripts2;
+    std::vector<CameraAnimation> cameraAnimations2;
+
+
+    serialScripts2.push_back(luaAction);
+    cameraAnimations2.push_back(camera2);
+
+
+
+
+
+    std::vector<aLuaScriptsSerial*> serialScripts3;
+    serialScripts3.push_back(luaAction3);
+    serialScripts3.push_back(luaAction4);
+
+
+    serialScripts2.push_back(luaAction2);
+    cameraAnimations2.push_back(camera2);
+
+    animator->AddAnimScene(singleScripts2, serialScripts2, cameraAnimations2,100);
+    animator->AddAnimScene(singleScripts, serialScripts, cameraAnimations, 5);
+    animator->AddAnimScene(singleScripts, serialScripts3, cameraAnimations, 7);
+   
+    animator->RestartScene();
 
     scene->Start();
 
@@ -947,6 +1033,8 @@ int main(void)
         scene->lightManager->updateShaderWithLightInfo();
         sceneEditor->Update();
         scene->Update();
+        animator->Update();
+
 
         SkySphere->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //SkySphere->mesh->positionXYZ.x -= 5.0f;

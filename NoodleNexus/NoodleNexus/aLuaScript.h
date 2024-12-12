@@ -22,7 +22,7 @@ public:
 	lua_State* L = nullptr;
     float time = 0.f;
     glm::vec3 end = glm::vec3(10.0f, 5.0f, 15.0f);
-    bool running = true;
+    bool running = false;
 
 
     //TODO: Function to set up parametrs
@@ -70,7 +70,7 @@ public:
         //CallLuaFunction("RotateObj", start, end, seconds, time, control);
         //CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
         //CallLuaFunction("FollowObject", start, end, seconds, time, control);
-        CallLuaFunction("MoveObj", start, end, seconds, speed, control);
+         CallLuaFunction("MoveObj", start, end, seconds, speed, control);
 
 
         //lua_settop(L, 0);

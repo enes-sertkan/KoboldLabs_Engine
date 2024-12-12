@@ -43,7 +43,7 @@ public:
 
 	std::vector<LuaScript2Points> scripts;
 	int currentScriptID = 0;
-	bool running = true;
+	bool running = false;
 	bool repeat = true;
 	float time = 0;
 	std::string baseLuaunctionName = "MoveObj";
@@ -66,8 +66,8 @@ public:
 
 	void Update() override
 	{
-		if (!running) return;
 
+		if (!running) return;
 
 
 		UpdateTime();

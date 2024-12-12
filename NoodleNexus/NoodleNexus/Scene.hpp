@@ -41,6 +41,7 @@ private:
 
 public:
 	//Animator* animator = nullptr;
+	bool animMode = false;
 
 	float cameraMoveSpeed=35;
 	float cameraRotateSpeed=50;

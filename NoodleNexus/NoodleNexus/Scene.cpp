@@ -379,14 +379,14 @@ void Scene::MoveCameraToPoint()
 {
    if (cameraPoints.size() == 0) return;
 
-   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), cameraPoints[currentCameraIndex].position, cameraMoveSpeed * deltaTime);
-   glm::vec2 newRot = moveTowards2(g_pFlyCamera->getEyeRotation(), cameraPoints[currentCameraIndex].rotation, cameraRotateSpeed * deltaTime);
+   glm::vec3 newPos = moveTowards(g_pFlyCamera->getEyeLocation(), currentCameraPoint.position, cameraMoveSpeed * deltaTime);
+   glm::vec2 newRot = moveTowards2(g_pFlyCamera->getEyeRotation(), currentCameraPoint.rotation, cameraRotateSpeed * deltaTime);
    
    
    // Print both the old and new rotation values
    
 
-   std::cout << "Target Rotation: (" << cameraPoints[currentCameraIndex].rotation.x << ", " << cameraPoints[currentCameraIndex].rotation.y << ")" << std::endl;
+   std::cout << "Target Rotation: (" << currentCameraPoint.rotation.x << ", " << currentCameraPoint.rotation.y << ")" << std::endl;
    std::cout << "New Rotation: (" << newRot.x << ", " << newRot.y << ")" << std::endl;
 
    g_pFlyCamera->setEyeLocation(newPos);

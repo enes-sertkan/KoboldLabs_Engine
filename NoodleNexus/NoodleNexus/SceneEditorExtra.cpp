@@ -70,6 +70,59 @@ bool isAltD(GLFWwindow* window)
 void SceneEditor::HandleInputAsync(GLFWwindow* window)
 {
 
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            animator->RestartScene();
+        }
+       
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            animator->StopAnimations();
+        }
+        
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            animator->StartAnimation();
+        }
+  
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            animator->NextAnimScene();
+        }
+     
+    }
+
+
     float speed = 1;
 
 
