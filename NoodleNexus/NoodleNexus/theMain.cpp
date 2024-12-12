@@ -912,39 +912,40 @@ int main(void)
     //    MoveTo(currentPos, startXYZ, endXYZ, seconds, deltaTime);
     //}
 
+    Object* falcon1 = scene->sceneObjects[0];
 
 
     aLuaScript* luaScript = new aLuaScript();
     luaScript->luaPath = "LuaRotate2Lerp.lua";
-    scene->AddActionToObj(luaScript, RacingCar);
+    scene->AddActionToObj(luaScript, falcon1);
 
   
     aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
-    scene->AddActionToObj(luaAction, RacingCar);
+    scene->AddActionToObj(luaAction, falcon1);
   /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
     luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
+    luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(17, -194, -136), glm::vec3(5484, -155, -136), 5, glm::vec3(100, 500, 0));
+    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
+    //luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
 
 
     aLuaScriptsSerial* luaAction2 = new aLuaScriptsSerial();
-    scene->AddActionToObj(luaAction2, RacingCar);
+    scene->AddActionToObj(luaAction2, falcon1);
     /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
       luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
     luaAction2->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 200, 50), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
     luaAction2->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
 
     aLuaScriptsSerial* luaAction3 = new aLuaScriptsSerial();
-    scene->AddActionToObj(luaAction3, RacingCar);
+    scene->AddActionToObj(luaAction3, falcon1);
     /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
       luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
     luaAction3->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 2, glm::vec3(360, 0, 0));
     luaAction3->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 2, glm::vec3(0, 0, 0));
 
     aLuaScriptsSerial* luaAction4 = new aLuaScriptsSerial();
-    scene->AddActionToObj(luaAction, RacingCar);
+    scene->AddActionToObj(luaAction, falcon1);
     /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
       luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
     luaAction4->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 200, 50), glm::vec3(200, 300, 0), 3, glm::vec3(100, 500, 0));
@@ -995,7 +996,7 @@ int main(void)
     serialScripts2.push_back(luaAction2);
     cameraAnimations2.push_back(camera2);
 
-    animator->AddAnimScene(singleScripts2, serialScripts2, cameraAnimations2,100);
+    animator->AddAnimScene(singleScripts2, serialScripts2, cameraAnimations2,5);
     animator->AddAnimScene(singleScripts, serialScripts, cameraAnimations, 5);
     animator->AddAnimScene(singleScripts, serialScripts3, cameraAnimations, 7);
    
