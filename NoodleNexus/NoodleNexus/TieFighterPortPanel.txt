@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> TieFighterPortPanel
+<filePath> assets/models/Tie_Fighter/parts/Port_Panel_only_31744_verts.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

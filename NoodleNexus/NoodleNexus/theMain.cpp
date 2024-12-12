@@ -571,131 +571,115 @@ void AddActions(Scene* scene, GLuint program)
     //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
-    scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
-    scene->sceneObjects[0]->mesh->textures[1] = "cloud.bmp";
+    scene->sceneObjects[0]->mesh->textures[0] = "scatter.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[0]->mesh->blendRatio[1] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
 
-    scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
+    scene->sceneObjects[1]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[1]->mesh->transperency = 0.2;
-    scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+    //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-
-    scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
+    scene->sceneObjects[2]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
+    scene->sceneObjects[3]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
-    scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
+    scene->sceneObjects[4]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-    scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-    scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
+    scene->sceneObjects[5]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
-    scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
+    scene->sceneObjects[6]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
+    scene->sceneObjects[7]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
+    scene->sceneObjects[8]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[8]->mesh->transperency = 1;
 
     scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
-    scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
-    scene->sceneObjects[8]->mesh->stencilTextureID = 61;
-    scene->sceneObjects[8]->mesh->textureSpeed.x = 0.01f;
+    scene->sceneObjects[8]->mesh->stencilTexture = "fire2.bmp";
+    scene->sceneObjects[8]->mesh->blendRatio[0] = 2.5;
 
-    scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
-    scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
-    scene->sceneObjects[9]->mesh->textures[2] = "Ground.bmp";
+    scene->sceneObjects[9]->mesh->textures[0] = "rockfire2bmp";
     scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
-    scene->sceneObjects[9]->mesh->blendRatio[1] = 0.4;
-    scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
     scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
+    scene->sceneObjects[10]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
+    scene->sceneObjects[11]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[13]->mesh->textures[0] = "cloud.bmp";
+    scene->sceneObjects[13]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[13]->mesh->transperency = 0.9;
 
-    scene->sceneObjects[14]->mesh->textures[0] = "yellow.bmp";
+    scene->sceneObjects[14]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[14]->mesh->transperency = 0.2;
 
-    //class room
-    scene->sceneObjects[15]->mesh->textures[0] = "chairs.bmp";
+    scene->sceneObjects[15]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
+    scene->sceneObjects[16]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
+    scene->sceneObjects[17]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
+    scene->sceneObjects[18]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
+    scene->sceneObjects[19]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
+    scene->sceneObjects[20]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
+    scene->sceneObjects[21]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
+    scene->sceneObjects[22]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
+    scene->sceneObjects[23]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
+    scene->sceneObjects[24]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
+    scene->sceneObjects[25]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
+    scene->sceneObjects[26]->mesh->textures[0] = "fire2.bmp";
     scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 
@@ -797,19 +781,19 @@ int main(void)
 
 
     scene->textureManager->SetBasePath("assets/textures");
-    scene->textureManager->Create2DTextureFromBMPFile("baloon.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("banners.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("barriers.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("garages.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grass_1.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grass_2.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("gravel.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("metal_fence.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("road.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("yellow.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("scatter.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("smoke1.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("blue1.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("blue2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("blue3.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("fire1.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("fire2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("startsexp1.bmp.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("red1.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("red2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("coolexpl.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("fire_PNG6000.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Fireball_4.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cloud.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Ground.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
@@ -820,21 +804,6 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
 
 
-    //class
-    scene->textureManager->Create2DTextureFromBMPFile("chairs.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
-
-
 
 
 
@@ -843,12 +812,12 @@ int main(void)
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/TropicalSunnyDayLeft2048.bmp",
-        "CubeMaps/TropicalSunnyDayRight2048.bmp",
-        "CubeMaps/TropicalSunnyDayUp2048.bmp",
-        "CubeMaps/TropicalSunnyDayDown2048.bmp",
-        "CubeMaps/TropicalSunnyDayFront2048.bmp",
-        "CubeMaps/TropicalSunnyDayBack2048.bmp", true, errorString))
+        "CubeMaps/SpaceBox_left2_negX.bmp",
+        "CubeMaps/SpaceBox_right1_posX.bmp",
+        "CubeMaps/SpaceBox_top3_posY.bmp",
+        "CubeMaps/SpaceBox_bottom4_negY.bmp",
+        "CubeMaps/SpaceBox_front5_posZ.bmp",
+        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }
@@ -893,7 +862,7 @@ int main(void)
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
         true,
         scene->sceneObjects);
-    SkySphere->mesh->textures[0] = "tyres.bmp";
+    SkySphere->mesh->textures[0] = "smoke1.bmp";
     SkySphere->isTemporary = true;
 
 
@@ -927,23 +896,23 @@ int main(void)
 
 
 
-    aLuaScript* luaScript = new aLuaScript();
-    luaScript->luaPath = "LuaRotate2Lerp.lua";
-    scene->AddActionToObj(luaScript, RacingCar);
+    //aLuaScript* luaScript = new aLuaScript();
+    //luaScript->luaPath = "LuaRotate2Lerp.lua";
+    //scene->AddActionToObj(luaScript, RacingCar);
 
-    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
+    //aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
   //  scene->AddActionToObj(luaAction, RacingCar);
   /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
     luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
+    //luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
+    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
+    //luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+    //luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
 
   
-    aLocTrggersLua* triggerAction = new aLocTrggersLua();
-    triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
-    scene->AddActionToObj(triggerAction, RacingCar);
+    //aLocTrggersLua* triggerAction = new aLocTrggersLua();
+    //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
+    //scene->AddActionToObj(triggerAction, RacingCar);
 
 
     scene->Start();

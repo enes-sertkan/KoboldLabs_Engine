@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> FaclonMainRamp
+<filePath> assets/models/Millennium_Falcon/Parts/Main_ramp.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

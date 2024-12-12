@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> TieFighter
+<filePath> assets/models/Tie_Fighter/fighter_xyz_n_uv_rgba_130744_verts.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

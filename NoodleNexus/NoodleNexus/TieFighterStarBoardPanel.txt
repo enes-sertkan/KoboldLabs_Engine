@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> TieFighterStarBoardPanel
+<filePath> assets/models/Tie_Fighter/parts/Starboard_Panel_only_31675_verts.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

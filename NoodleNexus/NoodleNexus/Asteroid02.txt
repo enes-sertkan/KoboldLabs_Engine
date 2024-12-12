@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Asteroid02
+<filePath> assets/models/Asteroids/Asteroid_006_xyznuvrbga.ply
+<fileType> XYZNUVRBGA
+</ModelFile>
+</KoboldLabs>

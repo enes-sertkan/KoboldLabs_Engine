@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> FaclonReadDoor
+<filePath> assets/models/Millennium_Falcon/Parts/Starboard_Read_Door_1.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

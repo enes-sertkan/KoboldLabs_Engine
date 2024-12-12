@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> TieFighterBody
+<filePath> assets/models/Tie_Fighter/parts/Body_Only_67389_verts.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

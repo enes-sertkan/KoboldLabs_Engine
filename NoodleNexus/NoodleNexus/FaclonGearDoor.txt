@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> FaclonGearDoor
+<filePath> assets/models/Millennium_Falcon/Parts/Front_Gear_Door_1.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

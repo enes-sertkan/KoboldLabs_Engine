@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> FaclonBody
+<filePath> assets/models/Millennium_Falcon/Parts/Falcon_Body.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

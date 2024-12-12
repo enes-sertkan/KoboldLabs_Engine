@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> dungeon_left
+<filePath> assets/models/edited_models/dungeon_left.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

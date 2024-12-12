@@ -2,67 +2,61 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-baloons.txt
-banners.txt
-barriers.txt
-garage.txt
-grass01.txt
-grass02.txt
-metal_fence.txt
-road.txt
-rock.txt
-trees.txt
-tyres.txt
-gravel.txt
-skysphere.txt
-godray.txt
-clouds.txt
-chairs.txt
-board.txt
-casier.txt
-ceiling.txt
-clock.txt
-desk.txt
-door.txt
-etagere.txt
-grand_casier.txt
-ground.txt
-teacher_d.txt
-wall_c.txt
+Falcon.txt
+FaclonBody.txt
+FaclonGear.txt
+FaclonGearDoor.txt
+FaclonGearDoor2.txt
+FaclonMainRamp.txt
+FaclonPortRearDoor.txt
+FaclonPortRearDoor2.txt
+FaclonPortRearGear.txt
+FaclonReadDoor.txt
+FaclonReadDoor2.txt
+FaclonStartRearGear.txt
+TieFighter.txt
+TieFighterBody.txt
+TieFighterPortPanel.txt
+TieFighterStarBoardPanel.txt
+Asteroid01.txt
+Asteroid02.txt
+Asteroid03.txt
+Asteroid04.txt
+Asteroid05.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> baloons
-<Model-> baloons
+<Name-> Falcon
+<Model-> Falcon
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 258
-<Rotation-> 0 0 0
-<Scale-> 1 9.31247e-39 0
+<Position-> 678 -39 0
+<Rotation-> -122 64 168
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> banners
-<Model-> banners
+<Name-> Asteroid05
+<Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
-<Rotation-> 0 0 0
-<Scale-> 1 8.7604e-39 0
+<Position-> -1198 -802 48
+<Rotation-> -22 -59 109
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> barriers
-<Model-> barriers
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -436 -7629 798
 <Rotation-> 0 0 0
 <Scale-> 1 0 0
 <Visibility-> true
@@ -70,11 +64,23 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> garage
-<Model-> garage
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -241 -7478 441
+<Rotation-> 0 0 0
+<Scale-> 1 0 3.65754e+06
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -797 -7629 -441
 <Rotation-> 0 0 0
 <Scale-> 1 0 0
 <Visibility-> true
@@ -82,11 +88,59 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> grass01
-<Model-> grass01
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -473 -7279 91
+<Rotation-> 0 0 0
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Falcon
+<Model-> Falcon
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -132 -8477 453
+<Rotation-> 0 -82 0
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -570 -8952 387
+<Rotation-> 0 0 0
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid05
+<Model-> Asteroid05
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1125 -13737 48
+<Rotation-> -22 -59 -12
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -90 -17007 91
 <Rotation-> 0 0 0
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
@@ -94,23 +148,11 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> grass02
-<Model-> grass02
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
-<Rotation-> 0 0 0
-<Scale-> 1 8.00141e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> gravel
-<Model-> gravel
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> 323 -17206 441
 <Rotation-> 0 0 0
 <Scale-> 1 0 0
 <Visibility-> true
@@ -118,11 +160,72 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> metal_fence
-<Model-> metal_fence
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -410 -17090 441
+<Rotation-> 0 0 0
+<Scale-> 1 0 4.36042e+21
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 127 -17357 798
+<Rotation-> 0 0 0
+<Scale-> 1 0 1.09954e+27
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -305 -180 535
+<Rotation-> 42 -53 -41
+<Scale-> 1 4.03308e-41 3.6505e+06
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid05
+<Model-> Asteroid05
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1125 -25607 48
+<Rotation-> -22 5 151
+<Scale-> 1 0 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Falcon
+<Model-> Falcon
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1229 -26499 464
+<Rotation-> 0 -82 0
+<Scale-> 1 0 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1685 -30504 273
 <Rotation-> 0 0 0
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
@@ -130,11 +233,23 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> road
-<Model-> road
+<Name-> TieFighter
+<Model-> TieFighter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -1073 -30353 441
+<Rotation-> 0 0 0
+<Scale-> 1 0 1.09954e+27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1305 -30154 91
 <Rotation-> 0 0 0
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
@@ -142,11 +257,59 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> rock
-<Model-> rock
+<Name-> Asteroid01
+<Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
+<Position-> -1496 -29640 535
+<Rotation-> 42 -53 -41
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -233 -30469 1381
+<Rotation-> 95 -69 -146
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1848 -30877 244
+<Rotation-> 95 -69 -146
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Asteroid01
+<Model-> Asteroid01
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -614 -31211 581
+<Rotation-> 15 -33 41
+<Scale-> 1 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TieFighter
+<Model-> TieFighter
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> -1685 -35344 273
 <Rotation-> 0 0 0
 <Scale-> 1 0 0
 <Visibility-> true
@@ -154,24 +317,24 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> trees
-<Model-> trees
+<Name-> Asteroid01
+<Model-> Asteroid01
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
-<Rotation-> 0 0 0
+<Position-> -1848 -35583 244
+<Rotation-> 95 -69 -146
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> tyres
-<Model-> tyres
+<Name-> Asteroid05
+<Model-> Asteroid05
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -151 -1 265
-<Rotation-> 0 0 0
+<Position-> -1125 -40696 48
+<Rotation-> -91 -42 217
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -184,410 +347,18 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> -2.21 0 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Clouds
-<Model-> Clouds
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -225 551 123
-<Rotation-> -48 -90 -238
-<Scale-> 20 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> GodRay
-<Model-> GodRay
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -7 170 -126
-<Rotation-> -60 6 -258
-<Scale-> 170 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Chairs
-<Model-> Chairs
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> board
-<Model-> board
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> casier
-<Model-> casier
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> ceiling
-<Model-> ceiling
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> clock
-<Model-> clock
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> desk
-<Model-> desk
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> door
-<Model-> door
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> etagere
-<Model-> etagere
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> grand_casier
-<Model-> grand_casier
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> ground
-<Model-> ground
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> teacher_desk
-<Model-> teacher_desk
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> wall_concrete
-<Model-> wall_concrete
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> New_Viper_Player
-<Model-> New_Viper_Player
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> -80.5 12 341.8 1
-<Diffuse-> 1.8 0.7 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.118857 0.0124281 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -1.33407 10.7063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -97 9 19.5 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -95 9 49.5 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0.0399992 -1 0.6 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -136 9 21 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -156 9 23.5 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -176 9 23 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -196 9 23.5 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -218 9 24 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -237 9 23.5 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -264.5 9 24 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 1.4 69999.4 -40048.7 1
+<Position-> 15000 30000 -703.8 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
+<Atten-> 0 0.0001 1e-05 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -433.5 362.5 629.5 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
-<Direction-> 14.76 -3.96 -4.32 0
-<Param1-> 1 61.0996 89.8992 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 67 149.5 380 1
-<Diffuse-> 1 0.85 0.3 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
-<Direction-> 32.5604 -7.2 -8.84 0
-<Param1-> 1 -12.5001 15.5 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 234.5 149.5 485.5 1
-<Diffuse-> 1 0.85 0.3 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.00613204 1.47131e-05 3.40282e+38
-<Direction-> -169.156 11.16 42.2806 0
-<Param1-> 1 61.0996 89.8992 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -82.3201 8 243.96 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -101.32 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -121.32 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -143.32 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -164.82 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -187.32 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -208.82 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> -225.32 8 244.52 1
-<Diffuse-> 1.63 1.16 0.7 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0441365 0.00172158 3.40282e+38
-<Direction-> 0 -1 -0.64 0
-<Param1-> 1 -8.33407 16.2063 0
+<Param1-> 180 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 

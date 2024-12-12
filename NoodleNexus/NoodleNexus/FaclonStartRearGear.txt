@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> FaclonStartRearGear
+<filePath> assets/models/Millennium_Falcon/Parts/Starboard_Rear_Gear.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

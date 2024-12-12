@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Falcon
+<filePath> assets/models/Millennium_Falcon/Falcon_Body_553867_verts.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

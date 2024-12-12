@@ -126,7 +126,7 @@ void main()
 		vec3 texColour01 = texture( texture01, movingUV.st ).rgb;	
 		vec3 texColour02 = texture( texture02, movingUV.st ).rgb;	
 		vec3 texColour03 = texture( texture03, movingUV.st ).rgb;	
-		
+	
 		
 		// All these ratios should add up to 1.0
 		vertexColour.rgb =   (texColour00.rgb * texRatio_0_to_3.x)

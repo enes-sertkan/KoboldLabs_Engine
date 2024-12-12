@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> moon
+<filePath> assets/models/edited_models/UV_Sphere_Cylindrical_UIV_Projection.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
