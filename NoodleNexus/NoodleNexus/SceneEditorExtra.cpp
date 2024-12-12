@@ -73,6 +73,23 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
     float speed = 1;
 
 
+    if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+       
+
+        if (deltaTime > 0.36f)
+        {
+            selectWireMode = !selectWireMode;
+            selectedObject->mesh->bIsWireframe = selectWireMode;
+        }
+    }
+
+
+
+
     //is shift, triple the speed, if not make it 0.5
     if (isShftDown(window))
     {

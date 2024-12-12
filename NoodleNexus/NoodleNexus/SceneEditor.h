@@ -24,7 +24,7 @@ public:
 	Object* selectedObject = nullptr;
 
 	int objIndex=0;
-
+	bool selectWireMode = true;
 	double currentFrameTime, lastFrameTime;
 
 	Object* selectBox;

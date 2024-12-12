@@ -65,6 +65,8 @@ void SceneEditor::UpdateSelectBox()
     {
         selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
         selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+
+    
     }
     if (editMode == "Lights")
     {
@@ -128,8 +130,11 @@ Object* SceneEditor::PickFirstObject()
         selectedObject = nullptr; // Clear the pointer if no objects
         return nullptr;
     }
+    if (selectedObject)
+        if (selectWireMode)  selectedObject->mesh->bIsWireframe = false;
 
     selectedObject = scene->sceneObjects[0];
+    if (selectWireMode)  selectedObject->mesh->bIsWireframe = true;
     return selectedObject;
 }
 
@@ -137,9 +142,13 @@ Object* SceneEditor::PickNextObject()
 {
     if (scene->sceneObjects.empty())
         return nullptr;
+    if(selectWireMode) selectedObject->mesh->bIsWireframe = false;
+  
 
     objIndex = (objIndex + 1) % scene->sceneObjects.size(); // Wrap around
     selectedObject = scene->sceneObjects[objIndex];
+    if (selectWireMode) selectedObject->mesh->bIsWireframe = true;
+
 
     // Ensure we don't select the selectBox again
     if (selectedObject == selectBox)
