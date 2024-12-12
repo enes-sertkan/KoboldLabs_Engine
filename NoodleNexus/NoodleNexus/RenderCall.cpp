@@ -344,27 +344,19 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
 
 
-        if (pCurMesh->uniqueFriendlyName == "trees")
+        if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
         glUniform1f(glGetUniformLocation(program, "suckPower"), 25.f);
         else
         glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
     //}
-        if (pCurMesh->uniqueFriendlyName == "Clouds")
-            glUniform1f(glGetUniformLocation(program, "suckPower"), 200.f);
-        else
-            glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
 
 
 
-        if (pCurMesh->uniqueFriendlyName == "trees")
+        if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
             glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
         else
             glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
-        if (pCurMesh->uniqueFriendlyName == "Clouds")
-            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.0065f);
-        else
-            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
     // solid or wireframe, etc.
 //        glPointSize(10.0f);

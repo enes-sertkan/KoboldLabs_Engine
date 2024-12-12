@@ -572,14 +572,21 @@ void AddActions(Scene* scene, GLuint program)
 
 
     aTextureWiggler* textureWiggler = new aTextureWiggler();
+    textureWiggler->affectedTextures[1] = 1;
+    textureWiggler->maxBlend = 0.25;
     scene->AddActionToObj(textureWiggler, scene->sceneObjects[4]);
+
+
+    aTextureWiggler* textureWiggler02 = new aTextureWiggler();
+    textureWiggler02->affectedTextures[0] = 1;
+    textureWiggler02->maxBlend = 1.0;
+    scene->AddActionToObj(textureWiggler02, scene->sceneObjects[13]);
 
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
     scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
-
 
     scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
@@ -603,11 +610,9 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
-    //scene->sceneObjects[5]->mesh->textures[1] = "graphity.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[5]->mesh->blendRatio[1] = 2;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
+    scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
 
 
     scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
@@ -615,6 +620,8 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+
 
     scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
     scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
@@ -658,7 +665,7 @@ void AddActions(Scene* scene, GLuint program)
 
     //class room
     scene->sceneObjects[15]->mesh->textures[0] = "chairs.bmp";
-    scene->sceneObjects[15]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
