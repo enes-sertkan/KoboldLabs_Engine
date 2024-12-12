@@ -65,7 +65,7 @@
 #include "aLuaScriptsSerial.h"
 #include "aLocTriggersLua.h"
 #include "Animator.h"
-
+#include "aTextureWiggler.h"
 
 
  Scene* currentScene=nullptr;
@@ -570,6 +570,9 @@ void AddActions(Scene* scene, GLuint program)
     //aPlayerItemsController* itemsControllerAction = new aPlayerItemsController();
     //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
+
+    aTextureWiggler* textureWiggler = new aTextureWiggler();
+    scene->AddActionToObj(textureWiggler, scene->sceneObjects[4]);
 
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;

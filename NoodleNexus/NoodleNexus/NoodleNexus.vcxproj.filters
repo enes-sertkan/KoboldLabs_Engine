@@ -191,6 +191,9 @@
     <ClCompile Include="aLocTriggersLua.h">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="aTextureWiggler.h">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
