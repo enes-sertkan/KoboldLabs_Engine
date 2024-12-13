@@ -1,4 +1,4 @@
-function MoveObj(objectName, startX, startY, startZ, targetX, targetY, targetZ, followDistance, maxSpeed, slowDownRange, deltaTime)
+function MoveObj(objectName, startX, startY, startZ, targetX, targetY, targetZ, followDistance, emp0, maxSpeed, slowDownRange, deltaTime)
     -- Calculate the vector from the object to the target position
     local dx = targetX - startX
     local dy = targetY - startY
