@@ -564,7 +564,7 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
+    scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
 
 
     scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
@@ -616,57 +616,57 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[14]->mesh->transperency = 0.2;
 
     //class room
-    scene->sceneObjects[15]->mesh->textures[0] = "chairs.bmp";
+    scene->sceneObjects[15]->mesh->textures[0] = "BodiamCastle.bmp";
     scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
-    scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
+    //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
+    //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
+    //scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
+    //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
+    //scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
+    //scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
+    //scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
+    //scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
+    //scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
+    //scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
+    //scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[16]->mesh->textures[0] = "baloon.bmp";
+    scene->sceneObjects[16]->mesh->blendRatio[0] = 4;
     scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
-    scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
-    scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
-    scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
-    scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
-    scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
-    scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
-    scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
-    scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
-    scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
-    scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
-
-    scene->sceneObjects[27]->mesh->textures[0] = "baloon.bmp";
-    scene->sceneObjects[27]->mesh->blendRatio[0] = 4;
-    scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
 
 
 
@@ -792,18 +792,18 @@ int main(void)
 
 
     //class
-    scene->textureManager->Create2DTextureFromBMPFile("chairs.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("BodiamCastle.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
 
 
 
@@ -886,6 +886,36 @@ int main(void)
     RacingCar->isTemporary = true;
     RacingCar->name = "racing_desk";
 
+    Object* trigger = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(200, 200, 200),
+        0.1,
+        glm::vec3(0, 0, 0),
+        false,
+        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+        true,
+        scene->sceneObjects
+    );
+    trigger->mesh->textures[0] = "desk.bmp";
+    trigger->mesh->uniformScale = 20.f;
+    trigger->isTemporary = true;
+    trigger->name = "triggerObj";
+
+    Object* Move2lerp = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(0, 100, 0),
+        0.1,
+        glm::vec3(0, 0, 0),
+        false,
+        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+        true,
+        scene->sceneObjects
+    );
+    Move2lerp->mesh->textures[0] = "desk.bmp";
+    Move2lerp->mesh->uniformScale = 10.f;
+    Move2lerp->isTemporary = true;
+    Move2lerp->name = "moveObj";
+
     //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
     //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
     //glm::vec3 endXYZ(2000.0f, 0.0f, 0.0f);    // End point
@@ -910,14 +940,26 @@ int main(void)
     //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
     //scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
 
-    aLuaScript* luaScriptTransparency = new aLuaScript();
-    luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 3, glm::vec3(0.5f, 0, 0));
-    scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[10]);
+    //aLuaScript* luaScriptmove2 = new aLuaScript();
+    //luaScriptmove2->AddLuaScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
+    //luaScriptmove2->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
+    //scene->AddActionToObj(luaScriptmove2, Move2lerp);
 
+    //aLuaScript* luaTrigger = new aLuaScript();
+    //luaTrigger->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 1, glm::vec3(0, 0, 0));
+    //scene->AddActionToObj(luaTrigger, trigger);
 
-    aLuaScript* luaScriptTexture = new aLuaScript();
-    luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 1, glm::vec3(1, 0, 90), "Plant.bmp");
-    scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
+    //aLuaScript* luaScriptTransparency = new aLuaScript();
+    //luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(0.99, 0, 0), 15, glm::vec3(0.5f, 0, 0));
+    //scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
+
+    //aLuaScript* luaScriptTexture = new aLuaScript();
+    //luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 1, glm::vec3(1, 0, 90), "Plant.bmp");
+    //scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
+
+    //aLuaScript* luaScriptFolloObj = new aLuaScript();
+    //SoloLuaScript* followScript = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 0.1, glm::vec3(100, 50, 0.016));;
+    //scene->AddActionToObj(luaScriptFolloObj, RacingCar);
 
 
 //    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
@@ -930,9 +972,9 @@ int main(void)
 //    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
 //
 //  
-//    aLocTrggersLua* triggerAction = new aLocTrggersLua();
-//    triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
-////    scene->AddActionToObj(triggerAction, RacingCar);
+    //aLocTrggersLua* triggerAction = new aLocTrggersLua();
+    //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 120, luaTrigger);
+    //scene->AddActionToObj(triggerAction, trigger);
 //
 
     scene->Start();
@@ -956,6 +998,9 @@ int main(void)
         ratio = width / (float)height;
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+ /*       followScript->start = RacingCar->mesh->positionXYZ;
+        followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
 
 
 

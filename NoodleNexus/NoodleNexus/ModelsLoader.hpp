@@ -84,53 +84,54 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "Plane.txt", "XYZNUVRGBA");
 
     // Classroom
-    modelInfo.modelName = "Chairs";
-    modelInfo.meshPath = "assets/models/Class_Room/chairs_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "chairs.txt", "XYZNUVRGBA");
+    //do not forget to make castle Bodiam_Castle.ply
+    modelInfo.modelName = "Castle";
+    modelInfo.meshPath = "assets/models/BodiamCastle.ply";
+    fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "board";
-    modelInfo.meshPath = "assets/models/Class_Room/board_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "board.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "board";
+    //modelInfo.meshPath = "assets/models/Class_Room/board_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "board.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "casier";
-    modelInfo.meshPath = "assets/models/Class_Room/casier_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "casier.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "casier";
+    //modelInfo.meshPath = "assets/models/Class_Room/casier_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "casier.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "ceiling";
-    modelInfo.meshPath = "assets/models/Class_Room/ceiling_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "ceiling";
+    //modelInfo.meshPath = "assets/models/Class_Room/ceiling_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "clock";
-    modelInfo.meshPath = "assets/models/Class_Room/clock_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "clock.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "clock";
+    //modelInfo.meshPath = "assets/models/Class_Room/clock_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "clock.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "desk";
-    modelInfo.meshPath = "assets/models/Class_Room/desk_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "desk.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "desk";
+    //modelInfo.meshPath = "assets/models/Class_Room/desk_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "desk.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "door";
-    modelInfo.meshPath = "assets/models/Class_Room/door_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "door.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "door";
+    //modelInfo.meshPath = "assets/models/Class_Room/door_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "door.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "etagere";
-    modelInfo.meshPath = "assets/models/Class_Room/etagere_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "etagere.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "etagere";
+    //modelInfo.meshPath = "assets/models/Class_Room/etagere_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "etagere.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "ground";
-    modelInfo.meshPath = "assets/models/Class_Room/ground_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "grand_casier.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "ground";
+    //modelInfo.meshPath = "assets/models/Class_Room/ground_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "grand_casier.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "grand_casier";
-    modelInfo.meshPath = "assets/models/Class_Room/grand_casier_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "ground.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "grand_casier";
+    //modelInfo.meshPath = "assets/models/Class_Room/grand_casier_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "ground.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "teacher_desk";
-    modelInfo.meshPath = "assets/models/Class_Room/teacher_desk_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "teacher_d.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "teacher_desk";
+    //modelInfo.meshPath = "assets/models/Class_Room/teacher_desk_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "teacher_d.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "wall_concrete";
-    modelInfo.meshPath = "assets/models/Class_Room/wall_concrete_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "wall_c.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "wall_concrete";
+    //modelInfo.meshPath = "assets/models/Class_Room/wall_concrete_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "wall_c.txt", "XYZNUVRGBA");
 
     //SelectBox
     modelInfo.modelName = "Select_Box";
