@@ -738,11 +738,12 @@ int main(void)
 //   PREPARING ENGINE STUFF
 //   ----------------------
 
-    scene->vaoManager= new cVAOManager();
+    scene->vaoManager = new cVAOManager();
     PhysicsManager* physicsMan = new PhysicsManager();
     PrepareFlyCamera();
 
-
+    cPhysics* g_pPhysicEngine = new cPhysics();
+    g_pPhysicEngine->setVAOManager(scene->vaoManager);
 
 
 //   PREPARING SCENE
@@ -872,49 +873,60 @@ int main(void)
     glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
     Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
-        glm::vec3(0, 100, 0),
-        0.1,
+        "assets/models/Bodiam_Castle.ply",
+        glm::vec3(11, 103, 103),
+        10,
         glm::vec3(0, 0, 0),
         false,
         glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
         true,
         scene->sceneObjects
     );
-    RacingCar->mesh->textures[0] = "desk.bmp";
+    RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
     RacingCar->mesh->uniformScale = 30.f;
     RacingCar->isTemporary = true;
-    RacingCar->name = "racing_desk";
+    RacingCar->name = "Castle";
 
-    Object* trigger = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
-        glm::vec3(200, 200, 200),
-        0.1,
-        glm::vec3(0, 0, 0),
-        false,
-        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-        true,
-        scene->sceneObjects
-    );
-    trigger->mesh->textures[0] = "desk.bmp";
-    trigger->mesh->uniformScale = 20.f;
-    trigger->isTemporary = true;
-    trigger->name = "triggerObj";
+    // This is just for testing to see if the xyz locations correctly map to a gridID and the other way around
+    unsigned long long gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(0.0f, 0.0f, 0.0f, 1000.0f); // 0, 0, 0
+    glm::vec3 minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(500.0f, 500.0f, 500.0f, 1000.0f);              // 0, 0, 0
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-500.0f, -500.0f, -500.0f, 1000.0f);           // 
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(10.0f, 2500.0f, 10.0f, 1000.0f);               // 0, 2, 0
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(2500.0f, 10.0f, 10.0f, 1000.0f);               // 2, 0, 0
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(10.0f, 10.0f, 2500.0f, 1000.0f);               // 0, 0, 2
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(8745.0f, 3723.0f, 2500.0f, 1000.0f);           // 8, 3, 2
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-8745.0f, -3723.0f, -2500.0f, 1000.0f);           // 8, 3, 2
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-999.0f, -999.0f, -999.0f, 1000.0f);           // -1, -1, -1
+    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
 
-    Object* Move2lerp = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
-        glm::vec3(0, 100, 0),
-        0.1,
-        glm::vec3(0, 0, 0),
-        false,
-        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-        true,
-        scene->sceneObjects
-    );
-    Move2lerp->mesh->textures[0] = "desk.bmp";
-    Move2lerp->mesh->uniformScale = 10.f;
-    Move2lerp->isTemporary = true;
-    Move2lerp->name = "moveObj";
+    ::g_pPhysicEngine->generateBroadPhaseGrid(
+        "assets/models/Bodiam_Castle.ply",
+        1000.0f,                            // AABB Cube region size
+        RacingCar->mesh->positionXYZ,
+        RacingCar->mesh->rotationEulerXYZ,
+        RacingCar->mesh->uniformScale);
+
+
+    sMesh* pGalacticaWireframe = new sMesh();
+    pGalacticaWireframe->modelFileName = "assets/models/Bodiam_Castle.ply";
+    pGalacticaWireframe->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.5f, 1.0f);
+    pGalacticaWireframe->positionXYZ = RacingCar->mesh->positionXYZ;
+    pGalacticaWireframe->rotationEulerXYZ = RacingCar->mesh->rotationEulerXYZ;
+    pGalacticaWireframe->uniformScale = RacingCar->mesh->uniformScale;
+    pGalacticaWireframe->bIsWireframe = true;
+    pGalacticaWireframe->bOverrideObjectColour = true;
+    pGalacticaWireframe->bDoNotLight = true;
+    pGalacticaWireframe->bIsVisible = true;
+
+    ::g_vecMeshesToDraw.push_back(pGalacticaWireframe);
 
     //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
     //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
@@ -928,35 +940,33 @@ int main(void)
 
 
 
-    aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
-    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),5, glm::vec3(1500, 150, 30));
-    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),5, glm::vec3(-1500, 150, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
-    scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
+    //aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),5, glm::vec3(1500, 150, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),5, glm::vec3(-1500, 150, 30));
+    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
+    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
+    //scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
 
-    aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
-    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 5, glm::vec3(0, 0, 90));
-    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 5, glm::vec3(0, 0, -90));
-    scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
+    //aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
+    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 5, glm::vec3(0, 0, 90));
+    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 5, glm::vec3(0, 0, -90));
+    //scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
 
-<<<<<<< HEAD
+
     //aLuaScript* luaScriptmove2 = new aLuaScript();
     //luaScriptmove2->AddLuaScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
     //luaScriptmove2->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
     //scene->AddActionToObj(luaScriptmove2, Move2lerp);
-=======
-    aLuaScriptsSerial* luaScriptTransparency = new aLuaScriptsSerial();
-    luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 15, glm::vec3(0.5f, 0, 0));
-    luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(1, 0, 0), glm::vec3(0.11, 0, 0), 15, glm::vec3(0.5f, 0, 0));
-    scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
->>>>>>> 265f5b9657f0eae876ee5829e79d5262dd8e4e19
+
+    //aLuaScriptsSerial* luaScriptTransparency = new aLuaScriptsSerial();
+    //luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 15, glm::vec3(0.5f, 0, 0));
+    //luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(1, 0, 0), glm::vec3(0.11, 0, 0), 15, glm::vec3(0.5f, 0, 0));
+    //scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
+
 
     //aLuaScript* luaTrigger = new aLuaScript();
     //luaTrigger->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 1, glm::vec3(0, 0, 0));
     //scene->AddActionToObj(luaTrigger, trigger);
-
-<<<<<<< HEAD
     //aLuaScript* luaScriptTransparency = new aLuaScript();
     //luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(0.99, 0, 0), 15, glm::vec3(0.5f, 0, 0));
     //scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
@@ -968,16 +978,16 @@ int main(void)
     //aLuaScript* luaScriptFolloObj = new aLuaScript();
     //SoloLuaScript* followScript = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 0.1, glm::vec3(100, 50, 0.016));;
     //scene->AddActionToObj(luaScriptFolloObj, RacingCar);
-=======
-    aLuaScript* luaScriptTexture = new aLuaScript();
-    luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 25, glm::vec3(1, 0, 90), "Plant.bmp");
-    scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
->>>>>>> 265f5b9657f0eae876ee5829e79d5262dd8e4e19
+
+    //aLuaScript* luaScriptTexture = new aLuaScript();
+    //luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 25, glm::vec3(1, 0, 90), "Plant.bmp");
+    //scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
 
 
-    aLuaScript* luaScriptFolloObj = new aLuaScript();
-    SoloLuaScript* followObj = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 1, glm::vec3(50, 7, 0.016));
-    scene->AddActionToObj(luaScriptFolloObj, RacingCar);
+
+    //aLuaScript* luaScriptFolloObj = new aLuaScript();
+    //SoloLuaScript* followObj = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 1, glm::vec3(50, 7, 0.016));
+    //scene->AddActionToObj(luaScriptFolloObj, RacingCar);
 
 
 
@@ -1011,8 +1021,8 @@ int main(void)
 
     while (!glfwWindowShouldClose(window))
     {
-        followObj->start = RacingCar->mesh->positionXYZ;
-        followObj->end = scene->sceneObjects[27]->mesh->positionXYZ;
+        //followObj->start = RacingCar->mesh->positionXYZ;
+        //followObj->end = scene->sceneObjects[27]->mesh->positionXYZ;
         float ratio;
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
