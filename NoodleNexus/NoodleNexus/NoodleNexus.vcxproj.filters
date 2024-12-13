@@ -355,9 +355,17 @@
     <None Include="cObjectMovement.lua">
       <Filter>Commands_Lua\Lua_Brain</Filter>
     </None>
-    <None Include="LuaMove2Lerp.lua" />
-    <None Include="LuaRotate2Lerp.lua" />
-    <None Include="LuaFollowObj.lua" />
-    <None Include="LuaMove2Curve.lua" />
+    <None Include="LuaRotate2Lerp.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="LuaFollowObj.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="LuaMove2Curve.lua">
+      <Filter>Lua</Filter>
+    </None>
+    <None Include="LuaMove2Lerp.lua">
+      <Filter>Lua</Filter>
+    </None>
   </ItemGroup>
 </Project>
