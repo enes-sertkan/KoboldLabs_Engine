@@ -79,7 +79,7 @@ public:
             CallLuaFunction("MoveObj", script->start, script->end, script->duration, script->time, script->control, script->text1);
 
 
-            script->time += object->scene->deltaTime;;
+            script->time += object->scene->deltaTime;
 
 
             //EASY REPEWAT
@@ -139,7 +139,7 @@ public:
         lua_settop(L, 0);
     }
 
-    void AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control)
+    SoloLuaScript* AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control)
     {
         SoloLuaScript* newLuaScript = new SoloLuaScript();
         newLuaScript->scriptPath = newScript;
@@ -150,9 +150,11 @@ public:
 
         luaScripts.push_back(newLuaScript);
 
+        return newLuaScript;
+
     }  
     
-    void AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control, std::string text1)
+    SoloLuaScript* AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control, std::string text1)
     {
         SoloLuaScript* newLuaScript = new SoloLuaScript();
         newLuaScript->scriptPath = newScript;
@@ -164,5 +166,6 @@ public:
 
         luaScripts.push_back(newLuaScript);
 
+        return newLuaScript;
     }
 };

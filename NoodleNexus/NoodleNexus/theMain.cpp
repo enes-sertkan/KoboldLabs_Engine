@@ -898,26 +898,33 @@ int main(void)
 
 
 
-    //aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),15, glm::vec3(1500, 150, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),15, glm::vec3(-1500, 150, 30));
-    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
-    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
-    //scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
+    aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
+    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),5, glm::vec3(1500, 150, 30));
+    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),5, glm::vec3(-1500, 150, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
+    scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
 
-    //aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
-    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
-    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
-    //scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
+    aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
+    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 5, glm::vec3(0, 0, 90));
+    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 5, glm::vec3(0, 0, -90));
+    scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
 
-    aLuaScript* luaScriptTransparency = new aLuaScript();
-    luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 3, glm::vec3(0.5f, 0, 0));
-    scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[10]);
+    aLuaScriptsSerial* luaScriptTransparency = new aLuaScriptsSerial();
+    luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 15, glm::vec3(0.5f, 0, 0));
+    luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(1, 0, 0), glm::vec3(0.11, 0, 0), 15, glm::vec3(0.5f, 0, 0));
+    scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
 
 
     aLuaScript* luaScriptTexture = new aLuaScript();
-    luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 1, glm::vec3(1, 0, 90), "Plant.bmp");
+    luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 25, glm::vec3(1, 0, 90), "Plant.bmp");
     scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
+
+
+    aLuaScript* luaScriptFolloObj = new aLuaScript();
+    SoloLuaScript* followObj = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 1, glm::vec3(50, 7, 0.016));
+    scene->AddActionToObj(luaScriptFolloObj, RacingCar);
+
 
 
 //    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
@@ -950,6 +957,8 @@ int main(void)
 
     while (!glfwWindowShouldClose(window))
     {
+        followObj->start = RacingCar->mesh->positionXYZ;
+        followObj->end = scene->sceneObjects[27]->mesh->positionXYZ;
         float ratio;
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);
