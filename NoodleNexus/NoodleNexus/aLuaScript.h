@@ -6,6 +6,7 @@
 #include <Lua5.4.7/lua.hpp>
 #include <iostream>
 #include "sObject.h"
+#include "Scene.hpp"
 
 
 
@@ -15,13 +16,22 @@ int lua_FollowACurve(lua_State* L);
 int lua_FollowObject(lua_State* L);
 int lua_FollowPosition(lua_State* L);
 
+
+struct SoloLuaScript
+{
+    std::string scriptPath;
+    glm::vec3 start;
+    glm::vec3 end;
+    glm::vec3 control;
+    float duration;
+    float time=0;
+};
+
 class aLuaScript : public Action
 {
 public:
-	std::string luaPath;
+    std::vector<SoloLuaScript*> luaScripts;
 	lua_State* L = nullptr;
-    float time = 0.f;
-    glm::vec3 end = glm::vec3(10.0f, 5.0f, 15.0f);
     bool running = true;
 
 
@@ -37,7 +47,7 @@ public:
 		}
 		luaL_openlibs(L);
 
-		luaL_dofile(L, luaPath.c_str());
+		
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
         lua_register(L, "FollowObject", lua_FollowObject);
@@ -54,34 +64,32 @@ public:
     void Update() override
     {
         if (!running) return;
-        float deltaTime = 0.016f; // Frame time, assuming 60 FPS
-        luaL_dofile(L, luaPath.c_str());
-
-        glm::vec3 control(5, deltaTime, 20.0f); // Control point for the curve
-        glm::vec3 start(0.0f, 20.0f, 15.0f); //= object->startTranform->position;  // Current position
-      //  glm::vec3 end = object->scene->fCamera->getEyeLocation();
-        float seconds = 1.f;                        
-        start = object->mesh->positionXYZ;
-        float speed = 5.0f;
-
-       
-
-        //CallLuaFunction("MoveObj", start, end, seconds, time, control);
-        //CallLuaFunction("RotateObj", start, end, seconds, time, control);
-        //CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
-        //CallLuaFunction("FollowObject", start, end, seconds, time, control);
-        CallLuaFunction("MoveObj", start, end, seconds, speed, control);
 
 
-        //lua_settop(L, 0);
-        time += deltaTime;
-
-
-        //EASY REPEWAT
-        if (time>seconds)
+        for (SoloLuaScript* script : luaScripts)
         {
-            time = 0;
+
+            luaL_dofile(L, script->scriptPath.c_str());
+
+
+            CallLuaFunction("MoveObj", script->start, script->end, script->duration, script->time, script->control);
+
+
+            script->time += object->scene->deltaTime;;
+
+
+            //EASY REPEWAT
+            if (script->time > script->duration)
+            {
+                script->time = 0;
+            }
+
         }
+      
+
+          
+
+      
       
        
     }
@@ -124,4 +132,17 @@ public:
         }
         lua_settop(L, 0);
     }
-};
+
+    void AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control)
+    {
+        SoloLuaScript* newLuaScript = new SoloLuaScript();
+        newLuaScript->scriptPath = newScript;
+        newLuaScript->start = start;
+        newLuaScript->end = end;
+        newLuaScript->duration = duration;
+        newLuaScript->control = control;
+
+        luaScripts.push_back(newLuaScript);
+
+    }
+    };

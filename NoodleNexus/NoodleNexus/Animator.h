@@ -80,13 +80,13 @@ public:
 	{
 		for (aLuaScript *script : animScenes[currentSceneId]->singleScripts)
 		{
-			script->time = 0;
+		//	script->time = 0;
 			script->running = true;
 		}
 
 		for (aLuaScriptsSerial* script : animScenes[currentSceneId]->serialScripts)
 		{
-			script->time = 0;
+		//	script->time = 0;
 			script->running = true;
 		}
 

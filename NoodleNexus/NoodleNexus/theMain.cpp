@@ -127,7 +127,7 @@ int lua_RotateTo(lua_State* L) {
     // Find the object and update its rotation
     for (Object* obj : currentScene->sceneObjects) {
         if (obj->name == objectName) {
-            std::cout << "current Rotation X: " << rotationX << "Y: " << rotationY << "Z: " << rotationZ << std::endl;
+            std::cout << "current Rotation X: " << rotationX << " Y: " << rotationY << " Z: " << rotationZ << std::endl;
             // Apply rotation (Assuming we use Euler angles here)
             obj->mesh->rotationEulerXYZ = glm::vec3(rotationX, rotationY, rotationZ);
             break;
@@ -942,23 +942,24 @@ int main(void)
 
 
     aLuaScript* luaScript = new aLuaScript();
-    luaScript->luaPath = "LuaRotate2Lerp.lua";
+    luaScript->AddLuaScript( "LuaRotate2Lerp.lua", glm::vec3(0,0,0), glm::vec3(360,0,0),10, glm::vec3(0,0,0));
+    luaScript->AddLuaScript( "LuaMove2Lerp.lua", glm::vec3(0,100,0), glm::vec3(0,50,0),0.5, glm::vec3(0,0,0));
     scene->AddActionToObj(luaScript, RacingCar);
 
-    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
-  //  scene->AddActionToObj(luaAction, RacingCar);
-  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
-    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
-    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
-
-  
-    aLocTrggersLua* triggerAction = new aLocTrggersLua();
-    triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
-    scene->AddActionToObj(triggerAction, RacingCar);
-
+//    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
+//  //  scene->AddActionToObj(luaAction, RacingCar);
+//  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
+//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
+//    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
+//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
+//    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
+//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
+//
+//  
+//    aLocTrggersLua* triggerAction = new aLocTrggersLua();
+//    triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
+////    scene->AddActionToObj(triggerAction, RacingCar);
+//
 
     scene->Start();
 
