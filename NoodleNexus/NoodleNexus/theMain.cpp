@@ -144,86 +144,7 @@ glm::vec3 QuadraticBezier(glm::vec3 p0, glm::vec3 p1, glm::vec3 p2, float t) {
     return (1 - t) * (1 - t) * p0 + 2 * (1 - t) * t * p1 + t * t * p2;
 }
 
-// Lua binding function for following a curve
-int lua_FollowACurve(lua_State* L) {
-    // Retrieve arguments from Lua stack
-    const char* objectName = luaL_checkstring(L, 1);  // Object name
-    float startX = luaL_checknumber(L, 2);  // Start point X
-    float startY = luaL_checknumber(L, 3);  // Start point Y
-    float startZ = luaL_checknumber(L, 4);  // Start point Z
-    float controlX = luaL_checknumber(L, 5);  // Control point X
-    float controlY = luaL_checknumber(L, 6);  // Control point Y
-    float controlZ = luaL_checknumber(L, 7);  // Control point Z
-    float endX = luaL_checknumber(L, 8);  // End point X
-    float endY = luaL_checknumber(L, 9);  // End point Y
-    float endZ = luaL_checknumber(L, 10);  // End point Z
-    float seconds = luaL_checknumber(L, 11);  // Duration
-    float deltaTime = luaL_checknumber(L, 12);  // Frame time
 
-    // Calculate time increment based on deltaTime and seconds
-    static float elapsedTime = 0.0f;  // Track elapsed time across frames
-    elapsedTime += deltaTime;
-    float t = elapsedTime / seconds;
-    if (t > 1.0f) t = 1.0f;  // Clamp t to 1.0f to ensure movement stops at end
-
-    // Interpolate position along the curve
-    glm::vec3 start(startX, startY, startZ);
-    glm::vec3 control(controlX, controlY, controlZ);
-    glm::vec3 end(endX, endY, endZ);
-    glm::vec3 newPos = QuadraticBezier(start, control, end, t);
-
-    // Find the object and update its position
-    for (Object* obj : currentScene->sceneObjects) {
-        if (obj->name == objectName) {
-            obj->mesh->positionXYZ = newPos;
-            std::cout << "Updated Position: (" << newPos.x << ", " << newPos.y << ", " << newPos.z << ")\n";
-            break;
-        }
-    }
-
-    // Reset elapsed time if movement is complete
-    if (t >= 1.0f) {
-        elapsedTime = 0.0f;
-    }
-
-    return 0;  // No return values to Lua
-}
-
-int lua_FollowObject(lua_State* L) {
-    const char* followerName = lua_tostring(L, 1);
-    const char* targetName = lua_tostring(L, 2);
-    float followDistance = lua_tonumber(L, 3);
-    float followOffsetX = lua_tonumber(L, 4);
-    float followOffsetY = lua_tonumber(L, 5);
-    float followOffsetZ = lua_tonumber(L, 6);
-    float maxSpeed = lua_tonumber(L, 7);
-    float slowDownRange = lua_tonumber(L, 8);
-    float speedUpRange = lua_tonumber(L, 9);
-    float deltaTime = lua_tonumber(L, 10);
-
-    // Call the Lua function here or use logic as needed
-    // This implementation assumes Lua handles the actual movement.
-
-    return 0;
-}
-
-
-int lua_FollowPosition(lua_State* L) {
-    const char* objectName = lua_tostring(L, 1);
-    float targetX = lua_tonumber(L, 2);
-    float targetY = lua_tonumber(L, 3);
-    float targetZ = lua_tonumber(L, 4);
-    float followDistance = lua_tonumber(L, 5);
-    float maxSpeed = lua_tonumber(L, 6);
-    float slowDownRange = lua_tonumber(L, 7);
-    float deltaTime = lua_tonumber(L, 8);
-
-    // Handle logic in C++ or pass it directly to Lua
-    // Assuming `GetObjectPosition` is available in your C++ code to retrieve the position of the object.
-    // If you have the function implemented, pass the object position to Lua
-
-    return 0;
-}
 
 // Function to change the texture of an object (called from Lua)
 int lua_SetTexture(lua_State* L) {
@@ -233,8 +154,17 @@ int lua_SetTexture(lua_State* L) {
     int textureId = luaL_checkinteger(L, 3);  // Texture ID
     float blendAmount = luaL_checknumber(L, 4);  // Blend amount (float)
 
-    lua_pushstring(L, "Texture applied successfully.");
-    return 1;  // Return 1 value to Lua (success message)
+    for (Object* obj : currentScene->sceneObjects) {
+        if (obj->name == objectName) {
+           
+            obj->mesh->textures[textureId] = textureName;
+            obj->mesh->blendRatio[textureId] = blendAmount;
+            std::cout << "[C++] Texture applied successfully." << std::endl;
+            break;
+        }
+    }
+
+    return 0; 
 }
 
 int lua_SetMeshTransparency(lua_State* L) {
@@ -603,17 +533,7 @@ void AddActions(Scene* scene, GLuint program)
     //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
-    aTextureWiggler* textureWiggler = new aTextureWiggler();
-    textureWiggler->affectedTextures[1] = 1;
-    textureWiggler->maxBlend = 0.25;
-    scene->AddActionToObj(textureWiggler, scene->sceneObjects[4]);
-
-
-    aTextureWiggler* textureWiggler02 = new aTextureWiggler();
-    textureWiggler02->affectedTextures[0] = 1;
-    textureWiggler02->maxBlend = 1.0;
-    scene->AddActionToObj(textureWiggler02, scene->sceneObjects[13]);
-
+ 
     scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
@@ -993,6 +913,12 @@ int main(void)
     aLuaScript* luaScriptTransparency = new aLuaScript();
     luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 3, glm::vec3(0.5f, 0, 0));
     scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[10]);
+
+
+    aLuaScript* luaScriptTexture = new aLuaScript();
+    luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 1, glm::vec3(1, 0, 90), "Plant.bmp");
+    scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
+
 
 //    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
 //  //  scene->AddActionToObj(luaAction, RacingCar);

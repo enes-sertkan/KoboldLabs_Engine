@@ -10,9 +10,6 @@
 
 int lua_MoveObject(lua_State* L);
 int lua_RotateTo(lua_State* L);
-int lua_FollowACurve(lua_State* L);
-int lua_FollowObject(lua_State* L);
-int lua_FollowPosition(lua_State* L);
 
 
 struct LuaScript2Points
@@ -156,8 +153,7 @@ public:
 		luaL_dofile(L, fileName.c_str());
 		lua_register(L, "MoveTo", lua_MoveObject);
 		lua_register(L, "RotateTo", lua_RotateTo);
-		lua_register(L, "FollowObject", lua_FollowObject);
-		lua_register(L, "FollowPosition", lua_FollowPosition);
+
 
 		lua_settop(L, 0);
 		lua_getglobal(L, baseLuaunctionName.c_str());  // Get the Lua function MovObj
