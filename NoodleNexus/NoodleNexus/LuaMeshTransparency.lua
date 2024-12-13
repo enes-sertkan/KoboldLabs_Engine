@@ -1,41 +1,32 @@
-
+-- Quadratic Bézier function
 function QuadraticBezier(t, p0, p1, p2)
     local u = 1 - t
     return u * u * p0 + 2 * u * t * p1 + t * t * p2
 end
 
-function EaseInOut(t)
-    -- Quadratic ease-in-out function
-    if t < 0.5 then
-        return 2 * t * t
-    else
-        return -1 + (4 - 2 * t) * t
-    end
-end
+function MoveObj(objectName, startTransparency, empty1, empty2, endTransparency, empty3, empty4, duration, elapsedTime)
+    print("[LUA] [ChangeTexture] Got:" .. objectName .. ", " .. startTransparency .. ", " .. empty1 .. ", " .. empty2 .. ', ' 
+    .. endTransparency .. ', ' .. empty3 .. ', ' .. empty4 .. ', ' .. duration .. ', ' .. elapsedTime) 
 
-function MoveObj(objectName, transparencyX, transparencyY, iytransparencyZ, p2x, p2y, p2z, duration, elapsedTime, p1x, p1y, p1z)
-    -- Validate elapsedTime and avoid division by zero
+    -- Ensure transparency and object ID are numbers
+    startTransparency = tonumber(startTransparency) or 0.0
+    endTransparency = tonumber(endTransparency) or 0.0
+
+    -- Validate inputs
     if elapsedTime == nil or duration == 0 then
-        print("[LUA] Error: Invalid elapsedTime or duration is zero.")
+        print("[Lua] Error: Invalid elapsedTime or duration is zero.")
         return
     end
 
-    print("[LUA] [MoveAlongCurve] Got:" .. objectName .. ", " .. p0x .. ", " .. p0y .. ", " .. p0z .. ", " .. p2x .. ", " .. p2y .. ", " .. p2z .. ", " .. p1x .. ", " .. p1y .. ", " .. p1z)
+    -- Calculate the interpolation factor (t)
+    local t = math.min(elapsedTime / duration, 1.0) -- Clamp t to [0, 1]
 
-    -- Calculate t as the fraction of elapsed time over the total duration
-    local t = math.min(elapsedTime / duration, 1.0) -- Clamp t to the range [0, 1]
+    -- Interpolate the transparency
+    local currentTransparency = startTransparency + (endTransparency - startTransparency) * t
 
-    -- Apply easing function
-    t = EaseInOut(t)
+    -- Debug information
+    print("[Lua] Adjusting transparency: " ..currentTransparency)
 
-    -- Interpolate position using the Quadratic Bézier curve formula
-    local x = QuadraticBezier(t, p0x, p1x, p2x)
-    local y = QuadraticBezier(t, p0y, p1y, p2y)
-    local z = QuadraticBezier(t, p0z, p1z, p2z)
-
-    -- Debug the new position
-    print(string.format("[LUA] New position for %s is (%.2f, %.2f, %.2f)", objectName, x, y, z))
-
-    -- Move the object to the calculated position
-    MoveTo(objectName, x, y, z)
+    -- Call C++ function to apply the calculated transparency
+    ApplyTransparency(objectName, currentTransparency)  -- Ensure ApplyTransparency is correct
 end

@@ -13,6 +13,7 @@
 int lua_MoveObject(lua_State* L);
 int lua_RotateTo(lua_State* L);
 int lua_SetTexture(lua_State* L);
+int lua_SetMeshTransparency(lua_State* L);
 
 
 
@@ -57,6 +58,7 @@ public:
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
         lua_register(L, "SetTexture", lua_SetTexture);
+        lua_register(L, "ApplyTransparency", lua_SetTexture);
 
 
 

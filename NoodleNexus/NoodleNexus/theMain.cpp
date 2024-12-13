@@ -237,6 +237,38 @@ int lua_SetTexture(lua_State* L) {
     return 1;  // Return 1 value to Lua (success message)
 }
 
+int lua_SetMeshTransparency(lua_State* L) {
+    // Retrieve arguments from the Lua stack
+    const char* objectName = luaL_checkstring(L, 1); // Object name
+    float transparency = luaL_checknumber(L, 2);    // Transparency value
+
+
+    bool found = false;
+    for (Object* obj : currentScene->sceneObjects) {
+        if (obj->name == objectName) {
+            found = true;
+            if (obj->mesh != nullptr) {
+                obj->mesh->transperency = transparency;
+                std::cout << "[C++] Transparency for object " << objectName
+                    << " set to " << transparency << "." << std::endl;
+                lua_pushstring(L, "Mesh transparency updated successfully.");
+                return 1; // Return success
+            }
+            else {
+                std::cerr << "[C++] Error: Mesh for object " << objectName << " is nullptr." << std::endl;
+                lua_pushstring(L, "Mesh transparency update failed: Mesh is nullptr.");
+                return 0; // Return failure
+            }
+        }
+    }
+
+    if (!found) {
+        std::cerr << "[C++] Transparency update failed: Object not found: " << objectName << "." << std::endl;
+        lua_pushstring(L, "Mesh transparency update failed: Object not found.");
+        return 0; // Return failure
+    }
+
+}
 
 
 // This is the function that Lua will call when 
@@ -946,17 +978,21 @@ int main(void)
 
 
 
-    aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
-    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),15, glm::vec3(1500, 150, 30));
-    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),15, glm::vec3(-1500, 150, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
-    scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
+    //aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),15, glm::vec3(1500, 150, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),15, glm::vec3(-1500, 150, 30));
+    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
+    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
+    //scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
 
-    aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
-    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
-    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
-    scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
+    //aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
+    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
+    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
+    //scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
+
+    aLuaScript* luaScriptTransparency = new aLuaScript();
+    luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 3, glm::vec3(0.5f, 0, 0));
+    scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[10]);
 
 //    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
 //  //  scene->AddActionToObj(luaAction, RacingCar);
