@@ -28,5 +28,5 @@ function MoveObj(objectName, startTransparency, empty1, empty2, endTransparency,
     print("[Lua] Adjusting transparency: " ..currentTransparency)
 
     -- Call C++ function to apply the calculated transparency
-    ApplyTransparency(objectName, currentTransparency)  -- Ensure ApplyTransparency is correct
+    DAD(objectName, currentTransparency)  -- Ensure ApplyTransparency is correct
 end
