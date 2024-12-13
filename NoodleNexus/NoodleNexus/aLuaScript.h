@@ -79,7 +79,7 @@ public:
             CallLuaFunction("MoveObj", script->start, script->end, script->duration, script->time, script->control, script->text1);
 
 
-            script->time += object->scene->deltaTime;;
+            script->time += object->scene->deltaTime;
 
 
             //EASY REPEWAT
@@ -151,6 +151,10 @@ public:
         luaScripts.push_back(newLuaScript);
 
         return newLuaScript;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 265f5b9657f0eae876ee5829e79d5262dd8e4e19
     }  
     
     SoloLuaScript* AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control, std::string text1)
@@ -166,6 +170,9 @@ public:
         luaScripts.push_back(newLuaScript);
 
         return newLuaScript;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 265f5b9657f0eae876ee5829e79d5262dd8e4e19
     }
 };
