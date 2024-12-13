@@ -712,6 +712,10 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 
+    scene->sceneObjects[27]->mesh->textures[0] = "baloon.bmp";
+    scene->sceneObjects[27]->mesh->blendRatio[0] = 4;
+    scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
+
 
 
 }
@@ -829,6 +833,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
 
     //Effects
     scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
@@ -941,10 +946,17 @@ int main(void)
 
 
 
-    aLuaScript* luaScript = new aLuaScript();
-    luaScript->AddLuaScript( "LuaRotate2Lerp.lua", glm::vec3(0,0,0), glm::vec3(360,0,0),10, glm::vec3(0,0,0));
-    luaScript->AddLuaScript( "LuaMove2Lerp.lua", glm::vec3(0,100,0), glm::vec3(0,50,0),0.5, glm::vec3(0,0,0));
-    scene->AddActionToObj(luaScript, RacingCar);
+    aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
+    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),15, glm::vec3(1500, 150, 30));
+    luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),15, glm::vec3(-1500, 150, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
+    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
+    scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
+
+    aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
+    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
+    luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
+    scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
 
 //    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
 //  //  scene->AddActionToObj(luaAction, RacingCar);
@@ -962,8 +974,6 @@ int main(void)
 //
 
     scene->Start();
-
-
 
     //  Turn on the blend operation
     glEnable(GL_BLEND);

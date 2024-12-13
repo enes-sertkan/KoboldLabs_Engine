@@ -22,7 +22,7 @@ function MoveObj(objectName, startX, startY, startZ, endPosX, endPosY, endPosZ, 
     local newPosition = LerpVec3(startX, startY, startZ, endPosX, endPosY, endPosZ, t)
 
     -- Apply the movement to the object
-    MoveTo(objectName, newPosition.x, newPosition.y, newPosition.z)
+    RotateTo(objectName, newPosition.x, newPosition.y, newPosition.z)
 end
 
 function EaseInOut(t)

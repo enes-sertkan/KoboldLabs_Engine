@@ -237,6 +237,7 @@
     <None Include="LuaFollowObj.lua" />
     <None Include="LuaMove2Curve.lua" />
     <None Include="LuaMove2Lerp.lua" />
+    <None Include="LuaMeshTransparency.lua" />
     <None Include="LuaRotate2Lerp.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

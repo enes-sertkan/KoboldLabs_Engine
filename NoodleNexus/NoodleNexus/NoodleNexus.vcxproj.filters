@@ -367,5 +367,8 @@
     <None Include="LuaMove2Lerp.lua">
       <Filter>Lua</Filter>
     </None>
+    <None Include="LuaMeshTransparency.lua">
+      <Filter>Lua</Filter>
+    </None>
   </ItemGroup>
 </Project>

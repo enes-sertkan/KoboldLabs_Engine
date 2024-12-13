@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Plane
+<filePath> assets/models/Plane.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
