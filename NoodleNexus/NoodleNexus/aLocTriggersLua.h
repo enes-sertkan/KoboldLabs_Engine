@@ -20,7 +20,7 @@ struct TriggerAndLua
 
 	TriggerAndLua(glm::vec3 center, float sphereRadius , aLuaScript*  scrAction)
 	{
-		triggerCenter = triggerCenter;
+		triggerCenter = center;
 		radius = sphereRadius;
         scriptAction = scrAction;
 	}
@@ -72,6 +72,6 @@ public:
     void AddTrigger(glm::vec3 center, float sphereRadius, aLuaScript* scrAction)
     {
         TriggerAndLua trigger = TriggerAndLua(center,  sphereRadius,  scrAction);
-        triggers.push_back(trigger);
+        triggers.emplace_back(trigger);
     }
 };

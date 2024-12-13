@@ -12,19 +12,25 @@
 
 int lua_MoveObject(lua_State* L);
 int lua_RotateTo(lua_State* L);
-int lua_FollowACurve(lua_State* L);
-int lua_FollowObject(lua_State* L);
-int lua_FollowPosition(lua_State* L);
+int lua_SetTexture(lua_State* L);
+
 
 
 struct SoloLuaScript
 {
+    std::string scriptType;
     std::string scriptPath;
     glm::vec3 start;
     glm::vec3 end;
     glm::vec3 control;
     float duration;
     float time=0;
+
+    std::string text1;
+
+
+
+   
 };
 
 class aLuaScript : public Action
@@ -50,8 +56,7 @@ public:
 		
         lua_register(L, "MoveTo", lua_MoveObject);
         lua_register(L, "RotateTo", lua_RotateTo);
-        lua_register(L, "FollowObject", lua_FollowObject);
-        lua_register(L, "FollowPosition", lua_FollowPosition);
+        lua_register(L, "SetTexture", lua_SetTexture);
 
 
 
@@ -68,28 +73,28 @@ public:
 
         for (SoloLuaScript* script : luaScripts)
         {
-
             luaL_dofile(L, script->scriptPath.c_str());
 
+        
+                CallLuaFunction("MoveObj", script->start, script->end, script->duration, script->time, script->control);
+                
+             
 
-            CallLuaFunction("MoveObj", script->start, script->end, script->duration, script->time, script->control);
+
+           
 
 
-            script->time += object->scene->deltaTime;;
+                script->time += object->scene->deltaTime;;
 
 
-            //EASY REPEWAT
-            if (script->time > script->duration)
-            {
-                script->time = 0;
-            }
-
+                //EASY REPEWAT
+                if (script->time > script->duration)
+                {
+                    script->time = 0;
+                }
+              
+            
         }
-      
-
-          
-
-      
       
        
     }
@@ -113,27 +118,38 @@ public:
 
 
 
+
+
     void CallLuaFunction(std::string functionName, glm::vec3 start, glm::vec3 end, float duration, float time, glm::vec3 additData)
     {
         lua_settop(L, 0);
         lua_getglobal(L, functionName.c_str());  // Get the Lua function MovObj
-        if (lua_isfunction(L, -1)) {
-           
-            PushData(start, end, duration, time, additData);
 
+        if (functionName == "ChangeTexture")
+
+        {
+
+
+        }
+        else
+        {
+            PushData(start, end, duration, time, additData);
+        }
             // Call Lua function (9 arguments, 0 return values)
             if (lua_pcall(L, 12, 0, 0) != LUA_OK) {
                 // Handle Lua error
-                std::cerr << "Lua error in"<< functionName <<": " << lua_tostring(L, -1) << std::endl;
+                std::cerr << "Lua error in" << functionName << ": " << lua_tostring(L, -1) << std::endl;
                 lua_pop(L, 1);  // Remove error message from the stack
             }
-        }
-        else {
-            lua_pop(L, 1);  // Remove invalid global
-            std::cerr << functionName << " is not a valid function." << std::endl;
-        }
-        lua_settop(L, 0);
+
+            else {
+                lua_pop(L, 1);  // Remove invalid global
+                std::cerr << functionName << " is not a valid function." << std::endl;
+            }
+            lua_settop(L, 0);
+        
     }
+    
 
     void AddLuaScript(std::string newScript, glm::vec3 start, glm::vec3 end, float duration, glm::vec3 control)
     {
@@ -147,4 +163,6 @@ public:
         luaScripts.push_back(newLuaScript);
 
     }
+
+
     };
