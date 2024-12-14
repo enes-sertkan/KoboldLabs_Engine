@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
 <name> Castle
-<filePath> assets/models/BodiamCastle.ply
+<filePath> assets/models/Bodiam_Castle.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

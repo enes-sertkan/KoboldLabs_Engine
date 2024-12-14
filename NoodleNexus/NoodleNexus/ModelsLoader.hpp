@@ -86,7 +86,7 @@ void CreateModelFiles(KLFileManager* fileManager)
     // Classroom
     //do not forget to make castle Bodiam_Castle.ply
     modelInfo.modelName = "Castle";
-    modelInfo.meshPath = "assets/models/BodiamCastle.ply";
+    modelInfo.meshPath = "assets/models/Bodiam_Castle.ply";
     fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
 
     //modelInfo.modelName = "board";

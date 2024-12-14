@@ -874,7 +874,7 @@ int main(void)
 
     Object* RacingCar = scene->GenerateMeshObjectsFromObject(
         "assets/models/Bodiam_Castle.ply",
-        glm::vec3(11, 103, 103),
+        glm::vec3(11, -600, 103),
         10,
         glm::vec3(0, 0, 0),
         false,
@@ -909,7 +909,7 @@ int main(void)
 
     ::g_pPhysicEngine->generateBroadPhaseGrid(
         "assets/models/Bodiam_Castle.ply",
-        1000.0f,                            // AABB Cube region size
+        10.0f,                            // AABB Cube region size
         RacingCar->mesh->positionXYZ,
         RacingCar->mesh->rotationEulerXYZ,
         RacingCar->mesh->uniformScale, scene->vaoManager);
