@@ -194,6 +194,9 @@
     <ClCompile Include="aTextureWiggler.h">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="aPlanePhysics.hpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -370,5 +373,6 @@
     <None Include="LuaMeshTransparency.lua">
       <Filter>Lua</Filter>
     </None>
+    <None Include="LuaTextureBlendMove.lua" />
   </ItemGroup>
 </Project>
