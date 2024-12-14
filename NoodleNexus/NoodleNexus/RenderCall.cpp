@@ -14,6 +14,7 @@
 //RenderCall
 
 sMesh* pDebugSphere = NULL;
+sMesh* pDebugCube = NULL;
 
 
 // Texture set up
@@ -416,6 +417,35 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     DrawMesh(pDebugSphere, program, scene->vaoManager,scene->textureManager, scene);
 
     pDebugSphere->bIsVisible = false;
+
+    return;
+}
+
+void DrawDebugCube(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, Scene* scene)
+{
+    // Created the debug sphere, yet?
+    if (!pDebugCube)           // Same as if ( pDebugSphere == NULL )
+    {
+        pDebugCube = new sMesh();
+        pDebugCube->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
+        pDebugCube->positionXYZ = glm::vec3(0.0f, 5.0f, 0.0f);
+        pDebugCube->bIsWireframe = true;
+        pDebugCube->objectColourRGBA = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+        pDebugCube->uniqueFriendlyName = "Debug_Cube";
+        pDebugCube->uniformScale = 10.0f;
+        pDebugCube->bDoNotLight = true;
+    }
+    // At this point the debug sphere is created
+
+    pDebugCube->bIsVisible = true;
+    pDebugCube->positionXYZ = position;
+    pDebugCube->bOverrideObjectColour = true;
+    pDebugCube->objectColourRGBA = RGBA;
+    pDebugCube->uniformScale = scale;
+
+    DrawMesh(pDebugCube, program, scene->vaoManager,scene->textureManager, scene);
+
+    pDebugCube->bIsVisible = false;
 
     return;
 }

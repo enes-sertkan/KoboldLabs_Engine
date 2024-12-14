@@ -56,7 +56,6 @@
 #include "cLuaBrain.hpp"
 #include "LuaScript.h"
 #include "ObjectManager.h"
-#include "aPlanePhysics.hpp"
 
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
@@ -67,8 +66,7 @@
 #include "aLocTriggersLua.h"
 #include "Animator.h"
 #include "aTextureWiggler.h"
-#include "cLowPassFilter.h"
-
+#include "aPlanePhysics.h"
 
  Scene* currentScene=nullptr;
 
@@ -556,16 +554,21 @@ void AddActions(Scene* scene, GLuint program)
 {
 
 
-    Object* playerObject = scene->sceneObjects[15];
+    //Object* playerObject = scene->sceneObjects[1];
 
-    // Add the player camera action (with an offset for camera positioning)
-    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(-15.0f, 20.0f, 0.0f));
-    scene->AddActionToObj(playerCameraAction, playerObject);
+    //// Add the player camera action (with an offset for camera positioning)
+    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    //scene->AddActionToObj(playerCameraAction, playerObject);
 
 
-    aPlanePhysics* planeMovement = new aPlanePhysics();
-    planeMovement->program = program;
-    scene->AddActionToObj(planeMovement, scene->sceneObjects[15]);
+    //aPlayerMovement* playerMovement = new aPlayerMovement();
+    //playerMovement->program = program;
+    //scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
+
+    //RayCastPhysics* phys = new RayCastPhysics;
+    //phys->gravityAcceleration.y = -5;
+    //phys->baseRayCastLength = 10.0;
+    //scene->AddActionToObj(phys, scene->sceneObjects[1]);
 
 
 
@@ -661,9 +664,11 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[14]->mesh->transperency = 0.2;
 
     //class room
+
     scene->sceneObjects[15]->mesh->textures[0] = "baloon.bmp";
     scene->sceneObjects[15]->mesh->blendRatio[0] = 4;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+
 
     //scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
     //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
@@ -708,8 +713,6 @@ void AddActions(Scene* scene, GLuint program)
     //scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
     //scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
     //scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
-
-
 
 
 
@@ -798,9 +801,6 @@ int main(void)
     cPhysics* g_pPhysicEngine = new cPhysics();
     g_pPhysicEngine->setVAOManager(scene->vaoManager);
 
-
-    cLowPassFilter frameTimeFilter;
-    frameTimeFilter.setNumSamples(30000);
 
 
 
@@ -933,6 +933,7 @@ int main(void)
         RacingCar->mesh->uniformScale = 30.f;
         RacingCar->isTemporary = true;
         RacingCar->name = "Castle";
+        RacingCar->mesh->bIsVisible = true;
 
         // This is just for testing to see if the xyz locations correctly map to a gridID and the other way around
         unsigned long long gridIndex = g_pPhysicEngine->calcBP_GridIndex(0.0f, 0.0f, 0.0f, 1000.0f); // 0, 0, 0
@@ -956,24 +957,12 @@ int main(void)
 
         g_pPhysicEngine->generateBroadPhaseGrid(
             "assets/models/Bodiam_Castle.ply",
-            1000.0f,                            // AABB Cube region size
+            500.0f,                            // AABB Cube region size
             RacingCar->mesh->positionXYZ,
             RacingCar->mesh->rotationEulerXYZ,
             RacingCar->mesh->uniformScale, scene->vaoManager);
 
 
-        sMesh* pGalacticaWireframe = new sMesh();
-        pGalacticaWireframe->modelFileName = "assets/models/Bodiam_Castle.ply";
-        pGalacticaWireframe->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.5f, 1.0f);
-        pGalacticaWireframe->positionXYZ = RacingCar->mesh->positionXYZ;
-        pGalacticaWireframe->rotationEulerXYZ = RacingCar->mesh->rotationEulerXYZ;
-        pGalacticaWireframe->uniformScale = RacingCar->mesh->uniformScale;
-        pGalacticaWireframe->bIsWireframe = true;
-        pGalacticaWireframe->bOverrideObjectColour = true;
-        pGalacticaWireframe->bDoNotLight = true;
-        pGalacticaWireframe->bIsVisible = true;
-
-        ::g_vecMeshesToDraw.push_back(pGalacticaWireframe);
 
         // Debug AABB shape
         sMesh* pAABBCube_MinAtOrigin = new sMesh();
@@ -1067,6 +1056,12 @@ int main(void)
     //scene->AddActionToObj(triggerAction, trigger);
 //
 
+    aPlanePhysics* planePhysics = new aPlanePhysics;
+    planePhysics->physMan = g_pPhysicEngine;
+    scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
+
+
+
     scene->Start();
 
     //  Turn on the blend operation
@@ -1095,9 +1090,6 @@ int main(void)
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
 
 
-
-
-        
 
 //      UPDATE
 //      ------------------------------------------
@@ -1141,30 +1133,9 @@ int main(void)
 
 //      DELTA TIME
 //      ------------------------------------------ 
-        //currentFrameTime = glfwGetTime();
-        //double deltaTime = currentFrameTime - lastFrameTime;
-        //lastFrameTime = currentFrameTime;
-
-
-        // Calculate elapsed time
-        // We'll enhance this
         currentFrameTime = glfwGetTime();
-        double tempDeltaTime = currentFrameTime - lastFrameTime;
+        double deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
-
-        // Set a limit on the maximum frame time
-        const double MAX_FRAME_TIME = 1.0 / 60.0;   // 60Hz (16 ms)
-        if (tempDeltaTime > MAX_FRAME_TIME)
-        {
-            tempDeltaTime = MAX_FRAME_TIME;
-        }
-
-        // Add this sample to the low pass filer ("averager")
-        frameTimeFilter.addSample(tempDeltaTime);
-        // 
-        double deltaTime = frameTimeFilter.getAverage();
-
-        //std::cout << "Current Time Frame: " << currentFrameTime << " Temp Delta Time : " << tempDeltaTime << " Delta Time : " << deltaTime << std::endl;
 //      ------------------------------------------ 
 
         
