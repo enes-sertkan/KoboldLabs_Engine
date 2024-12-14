@@ -5,6 +5,7 @@
 #include <glm/vec4.hpp> // glm::vec4
 #include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> 
+#include "cVAOManager/cVAOManager.h";
 
 cPhysics::cBroad_Cube::cBroad_Cube(
 	glm::vec3 minXYZ, glm::vec3 maxXYZ,
@@ -128,7 +129,7 @@ unsigned long long cPhysics::calcBP_GridIndex(
 bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeSize_or_Width,
 	glm::vec3 meshWorldPositionXYZ,
 	glm::vec3 meshWorldOrientationEuler,
-	float uniformScale)
+	float uniformScale, cVAOManager* vao)
 {
 	// 1. Get the mesh (triangle) information
 	// 2. For each triangle, and each vertex, 
@@ -137,17 +138,22 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 	// 4. Add those triangles to that AABB
 
 
+		// These is the triangle information from the origianl model
+	// i.e. it's in Model Space (like in the file)
 
-	if (!this->m_pVAOManager)
+	std::vector<cVAOManager::sTriangle> vecVAOTriangles;
+
+
+
+
+	if (!vao)
 	{
 		// Haven't set the VAO manager pointer, yet
 		return false;
 	}
 
-	// These is the triangle information from the origianl model
-	// i.e. it's in Model Space (like in the file)
-	std::vector<cVAOManager::sTriangle> vecVAOTriangles;
-	if (!this->m_pVAOManager->getTriangleMeshInfo(meshModelName, vecVAOTriangles))
+
+	if (!vao->getTriangleMeshInfo(meshModelName, vecVAOTriangles))
 	{
 		// Can't find mesh
 		return false;

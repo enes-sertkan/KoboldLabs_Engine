@@ -180,7 +180,7 @@ public:
 	bool generateBroadPhaseGrid(std::string meshModelName, float AABBCubeSize_or_Width,
 		glm::vec3 meshWorldPosition,
 		glm::vec3 meshWorldOrientation,
-		float uniformScale);
+		float uniformScale, cVAOManager* vao);
 
 	// Other types soon, likely
 	// struct sPlane

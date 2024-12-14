@@ -742,9 +742,6 @@ int main(void)
     PhysicsManager* physicsMan = new PhysicsManager();
     PrepareFlyCamera();
 
-    cPhysics* g_pPhysicEngine = new cPhysics();
-    g_pPhysicEngine->setVAOManager(scene->vaoManager);
-
 
 //   PREPARING SCENE
 //   ---------------
@@ -754,6 +751,9 @@ int main(void)
     Animator* animator = new Animator();
     animator->scene = scene;
     
+
+    cPhysics* g_pPhysicEngine = new cPhysics();
+    g_pPhysicEngine->setVAOManager(scene->vaoManager);
 
 
 
@@ -912,7 +912,7 @@ int main(void)
         1000.0f,                            // AABB Cube region size
         RacingCar->mesh->positionXYZ,
         RacingCar->mesh->rotationEulerXYZ,
-        RacingCar->mesh->uniformScale);
+        RacingCar->mesh->uniformScale, scene->vaoManager);
 
 
     sMesh* pGalacticaWireframe = new sMesh();
