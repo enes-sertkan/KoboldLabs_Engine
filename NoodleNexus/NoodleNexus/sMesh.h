@@ -7,10 +7,9 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
-
-
-
-
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/euler_angles.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
 struct sMesh
 {
@@ -20,6 +19,7 @@ struct sMesh
 	glm::vec3 positionXYZ;
 	glm::vec3 rotationEulerXYZ;		// 90 degrees around the x axis
 	float uniformScale = 1.0f;				// Same for each axis
+	glm::quat orientation;
 
 	glm::vec4 objectColourRGBA;
 	// If true, it uses the colour above
