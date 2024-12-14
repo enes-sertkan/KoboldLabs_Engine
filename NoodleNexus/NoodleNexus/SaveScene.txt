@@ -30,7 +30,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 239
 <Rotation-> 0 0 0
-<Scale-> 1 1.10545e-38 8.90818e-39
+<Scale-> 1 1.62551e-43 7.07144e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -42,7 +42,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 1.05612e-38
+<Scale-> 1 1.11471e-38 1.07448e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -54,7 +54,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 7.34697e-39
+<Scale-> 1 1.1151e-38 1.04694e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -66,7 +66,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 7.16328e-39 6.15307e-39
+<Scale-> 1 0 7.62246e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -78,7 +78,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 8.44897e-39
+<Scale-> 1 1.1151e-38 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -90,7 +90,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 6.53005e-43 1.04694e-38
+<Scale-> 1 9.1785e-43 5.60212e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -102,7 +102,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.27555e-39
+<Scale-> 1 7.53061e-39 5.96944e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -114,7 +114,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 5.60212e-39
+<Scale-> 1 1.1151e-38 7.98984e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -126,7 +126,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.06531e-38
+<Scale-> 1 0 1.01938e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -174,7 +174,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -205,167 +205,13 @@ selectBox.txt
 <--Object>
 
 <Object-->
-<Name-> Castle
-<Model-> Castle
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> board
-<Model-> board
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> casier
-<Model-> casier
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> ceiling
-<Model-> ceiling
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> clock
-<Model-> clock
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> desk
-<Model-> desk
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> door
-<Model-> door
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> etagere
-<Model-> etagere
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> grand_casier
-<Model-> grand_casier
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> ground
-<Model-> ground
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> teacher_desk
-<Model-> teacher_desk
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> wall_concrete
-<Model-> wall_concrete
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> -80 -0.9 336
-<Rotation-> -90 0 -90
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
 <Name-> Plane
 <Model-> Plane
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
 <Position-> 262 116 101
 <Rotation-> 0 0 0
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 1.11508e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0

@@ -361,6 +361,8 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 						AABBCubeSize_or_Width);
 				// Store the triangle this vertex is in inside the approprirate AABB
 				// Is there already an AABB there
+				if (map_BP_CubeGrid.empty())
+					return false;
 				std::map< unsigned long long /*index*/, cBroad_Cube* >::iterator
 					itAAAB_V0 = this->map_BP_CubeGrid.find(vert_AABB_Index_ID);
 

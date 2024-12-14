@@ -377,6 +377,54 @@ void PrepareFlyCamera()
     ::g_pFlyCamera->setEyeTarget(glm::vec3(0.0f, 0.0f, 0.0f));  // Set target to a specific object (like the player)
 }
 
+void calcBoxXYFromCoord(float x, float y, int& xIndex, int& yIndex, float boxSize)
+{
+    xIndex = (int)(x / boxSize);
+    yIndex = (int)(y / boxSize);
+    return;
+}
+
+void AABBOctTree(void)
+{
+    struct sSquare
+    {
+        //       vector< cTriangles* > vecTriangleInThisSquare
+        glm::vec2 minXY;
+        glm::vec2 maxXY;
+        float width;
+        unsigned int indexColRow;
+    };
+
+    sSquare grid[10][10];
+    float sqaureWidth = 10;
+
+    for (unsigned int x = 0; x < 10; x++)
+    {
+        for (unsigned int y = 0; y < 10; y++)
+        {
+            grid[x][y].width = sqaureWidth;
+            grid[x][y].minXY.x = sqaureWidth * x;
+            grid[x][y].minXY.y = sqaureWidth * y;
+
+            grid[x][y].maxXY.x = sqaureWidth * x + sqaureWidth;
+            grid[x][y].maxXY.y = sqaureWidth * y + sqaureWidth;
+        }
+    }
+
+    int xIndex, yIndex;
+    calcBoxXYFromCoord(5.0f, 15.0f, xIndex, yIndex, sqaureWidth);
+    std::cout << xIndex << ", " << yIndex << std::endl;
+
+
+    calcBoxXYFromCoord(40.0f, 80.0f, xIndex, yIndex, sqaureWidth);
+    std::cout << xIndex << ", " << yIndex << std::endl;
+
+
+
+
+    return;
+}
+
 
 void SetCameraAndProjectionMatrices(float ratio, GLuint program)
 {
@@ -679,7 +727,7 @@ int main(void)
 {
 
 
-    
+    AABBOctTree();
 
 //   READING FILES
 //   -------------
@@ -872,61 +920,76 @@ int main(void)
     SkySphere->mesh->transperency = 1;
     glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
-    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Bodiam_Castle.ply",
-        glm::vec3(11, -600, 103),
-        10,
-        glm::vec3(0, 0, 0),
-        false,
-        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-        true,
-        scene->sceneObjects
-    );
-    RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
-    RacingCar->mesh->uniformScale = 30.f;
-    RacingCar->isTemporary = true;
-    RacingCar->name = "Castle";
+    {
+        Object* RacingCar = scene->GenerateMeshObjectsFromObject(
+            "assets/models/Bodiam_Castle.ply",
+            glm::vec3(11, -600, 103),
+            10,
+            glm::vec3(0, 0, 0),
+            false,
+            glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+            true,
+            scene->sceneObjects
+        );
+        RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
+        RacingCar->mesh->uniformScale = 30.f;
+        RacingCar->isTemporary = true;
+        RacingCar->name = "Castle";
 
-    // This is just for testing to see if the xyz locations correctly map to a gridID and the other way around
-    unsigned long long gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(0.0f, 0.0f, 0.0f, 1000.0f); // 0, 0, 0
-    glm::vec3 minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(500.0f, 500.0f, 500.0f, 1000.0f);              // 0, 0, 0
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-500.0f, -500.0f, -500.0f, 1000.0f);           // 
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(10.0f, 2500.0f, 10.0f, 1000.0f);               // 0, 2, 0
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(2500.0f, 10.0f, 10.0f, 1000.0f);               // 2, 0, 0
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(10.0f, 10.0f, 2500.0f, 1000.0f);               // 0, 0, 2
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(8745.0f, 3723.0f, 2500.0f, 1000.0f);           // 8, 3, 2
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-8745.0f, -3723.0f, -2500.0f, 1000.0f);           // 8, 3, 2
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-    gridIndex = ::g_pPhysicEngine->calcBP_GridIndex(-999.0f, -999.0f, -999.0f, 1000.0f);           // -1, -1, -1
-    minXYZ = ::g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        // This is just for testing to see if the xyz locations correctly map to a gridID and the other way around
+        unsigned long long gridIndex = g_pPhysicEngine->calcBP_GridIndex(0.0f, 0.0f, 0.0f, 1000.0f); // 0, 0, 0
+        glm::vec3 minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(500.0f, 500.0f, 500.0f, 1000.0f);              // 0, 0, 0
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-500.0f, -500.0f, -500.0f, 1000.0f);           // 
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(10.0f, 2500.0f, 10.0f, 1000.0f);               // 0, 2, 0
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(2500.0f, 10.0f, 10.0f, 1000.0f);               // 2, 0, 0
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(10.0f, 10.0f, 2500.0f, 1000.0f);               // 0, 0, 2
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(8745.0f, 3723.0f, 2500.0f, 1000.0f);           // 8, 3, 2
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-8745.0f, -3723.0f, -2500.0f, 1000.0f);           // 8, 3, 2
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-999.0f, -999.0f, -999.0f, 1000.0f);           // -1, -1, -1
+        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
 
-    ::g_pPhysicEngine->generateBroadPhaseGrid(
-        "assets/models/Bodiam_Castle.ply",
-        10.0f,                            // AABB Cube region size
-        RacingCar->mesh->positionXYZ,
-        RacingCar->mesh->rotationEulerXYZ,
-        RacingCar->mesh->uniformScale, scene->vaoManager);
+        g_pPhysicEngine->generateBroadPhaseGrid(
+            "assets/models/Bodiam_Castle.ply",
+            1000.0f,                            // AABB Cube region size
+            RacingCar->mesh->positionXYZ,
+            RacingCar->mesh->rotationEulerXYZ,
+            RacingCar->mesh->uniformScale, scene->vaoManager);
 
 
-    sMesh* pGalacticaWireframe = new sMesh();
-    pGalacticaWireframe->modelFileName = "assets/models/Bodiam_Castle.ply";
-    pGalacticaWireframe->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.5f, 1.0f);
-    pGalacticaWireframe->positionXYZ = RacingCar->mesh->positionXYZ;
-    pGalacticaWireframe->rotationEulerXYZ = RacingCar->mesh->rotationEulerXYZ;
-    pGalacticaWireframe->uniformScale = RacingCar->mesh->uniformScale;
-    pGalacticaWireframe->bIsWireframe = true;
-    pGalacticaWireframe->bOverrideObjectColour = true;
-    pGalacticaWireframe->bDoNotLight = true;
-    pGalacticaWireframe->bIsVisible = true;
+        sMesh* pGalacticaWireframe = new sMesh();
+        pGalacticaWireframe->modelFileName = "assets/models/Bodiam_Castle.ply";
+        pGalacticaWireframe->objectColourRGBA = glm::vec4(0.0f, 0.0f, 0.5f, 1.0f);
+        pGalacticaWireframe->positionXYZ = RacingCar->mesh->positionXYZ;
+        pGalacticaWireframe->rotationEulerXYZ = RacingCar->mesh->rotationEulerXYZ;
+        pGalacticaWireframe->uniformScale = RacingCar->mesh->uniformScale;
+        pGalacticaWireframe->bIsWireframe = true;
+        pGalacticaWireframe->bOverrideObjectColour = true;
+        pGalacticaWireframe->bDoNotLight = true;
+        pGalacticaWireframe->bIsVisible = true;
 
-    ::g_vecMeshesToDraw.push_back(pGalacticaWireframe);
+        ::g_vecMeshesToDraw.push_back(pGalacticaWireframe);
+
+        // Debug AABB shape
+        sMesh* pAABBCube_MinAtOrigin = new sMesh();
+        pAABBCube_MinAtOrigin->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
+        pAABBCube_MinAtOrigin->bIsWireframe = true;
+        pAABBCube_MinAtOrigin->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        pAABBCube_MinAtOrigin->bOverrideObjectColour = true;
+        pAABBCube_MinAtOrigin->bDoNotLight = true;
+        pAABBCube_MinAtOrigin->bIsVisible = false;
+        pAABBCube_MinAtOrigin->uniqueFriendlyName = "AABB_MinXYZ_At_Origin";
+
+        ::g_vecMeshesToDraw.push_back(pAABBCube_MinAtOrigin);
+
+    }
 
     //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
     //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
