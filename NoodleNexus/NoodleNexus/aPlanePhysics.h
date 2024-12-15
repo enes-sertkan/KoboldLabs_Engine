@@ -37,13 +37,13 @@ public:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
     glm::vec3 prevpos;
     glm::vec3 deltaPos;
-    PhysicsData physData;
+    PhysicsDataMovement* physData;
     float AABBSIZE = 200.0f;
 
 
     void Start() override
     {
-        physData.position = object->mesh->positionXYZ;
+        physData = planeMovement->physData;
 
 
 
@@ -195,7 +195,7 @@ public:
         if (!physMan) return;
 
           UpdateMeshCollider();
-        physData.position = object->mesh->positionXYZ;
+   
 
         // The size of the AABBs that we sliced up the Galactical model in the broad phase
 
@@ -204,9 +204,9 @@ public:
         //  of an AABB/Cube that WOULD BE at that location (if there was one...)
         unsigned long long hypotheticalAABB_ID
             = physMan->calcBP_GridIndex(
-                physData.position.x,
-                physData.position.y,
-                physData.position.z, AABBSIZE);
+                physData->position.x,
+                physData->position.y,
+                physData->position.z, AABBSIZE);
 
         // Where would that hypothetical AABB be in space
         glm::vec3 minXYZofHypotheticalCube = physMan->calcBP_MinXYZ_FromID(hypotheticalAABB_ID, AABBSIZE);

@@ -112,7 +112,7 @@ private:
             }
             else
             if (!pTheAABB_Cube->vec_pTriangles.empty())
-            if (phys->rayCastCustom(start, end, pTheAABB_Cube->vec_pTriangles, triangeMesh, false))
+            if (!phys->rayCastCustom(start, end, pTheAABB_Cube->vec_pTriangles, triangeMesh, false))
             {
                 physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
 
