@@ -6,6 +6,7 @@
 #include <glm/mat4x4.hpp> // glm::mat4
 #include <glm/gtc/matrix_transform.hpp> 
 #include "cVAOManager/cVAOManager.h";
+#include <iostream>
 
 cPhysics::cBroad_Cube::cBroad_Cube(
 	glm::vec3 minXYZ, glm::vec3 maxXYZ,
@@ -315,8 +316,8 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 
 			// Copy the tesselated triangles back
 			// (Effectively removes any original "too large" triangles)
-			vec_TessellatedTriangles.clear();
-			vec_TessellatedTriangles = vec_TEMP_TessellatedTriangles;
+			//vec_TessellatedTriangles.clear();
+			//vec_TessellatedTriangles = vec_TEMP_TessellatedTriangles;
 
 			if (vec_TessellatedTriangles.size() > maxNumOfTessellatedTris)
 			{
@@ -331,6 +332,28 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 		for (const cPhysics::sTriangle& curTessTriangle : vec_TessellatedTriangles)
 		{
 
+			cPhysics::sTriangle worldTriangle = curTessTriangle;
+
+
+
+
+			//Make every vertex to world position. 
+			for (unsigned int vertIndex = 0; vertIndex < 3; vertIndex++)
+			{
+				glm::vec4 transformedVertex = matModel * glm::vec4(worldTriangle.vertices[vertIndex], 1.0f);
+
+				if (transformedVertex.w != 0.0f) {
+					transformedVertex /= transformedVertex.w; // Normalize if w is valid
+					worldTriangle.vertices[vertIndex] = glm::vec3(transformedVertex); // Convert back to vec3
+				}
+				else {
+					std::cout << "Wow, w is 0, so this vertex is 0,0,0" << std::endl;
+					// Handle the degenerate case (e.g., log an error, skip, or assign a fallback value)
+					worldTriangle.vertices[vertIndex] = glm::vec3(0.0f, 0.0f, 0.0f); // Example fallback
+				}
+			}
+
+
 			for (unsigned int vertIndex = 0; vertIndex < 3; vertIndex++)
 			{
 
@@ -340,24 +363,24 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 				// 	fvertexWorldLocation = matModel * vec4(finalVert, 1.0);
 
 				// Comparing to the tessellated...
-				glm::vec4 vertexWorldPosition = matModel * glm::vec4(curTessTriangle.vertices[vertIndex], 1.0f);
+				//glm::vec4 vertexWorldPosition = matModel * glm::vec4(curTessTriangle.vertices[vertIndex], 1.0f);
 				// glm::vec4 vertexWorldPosition = matModel * glm::vec4(curTri.vertices[vertIndex], 1.0f);
 				// glm::vec4 vertexWorldPosition = glm::vec4(curTri.vertices[vertIndex], 1.0f);
 
 							// HACK:
 				int huzzah = 1;
-				if (vertexWorldPosition.x > 0.0f &&
-					vertexWorldPosition.y > 0.0f &&
-					vertexWorldPosition.z > 0.0f)
+				if (worldTriangle.vertices[vertIndex].x > 0.0f &&
+					worldTriangle.vertices[vertIndex].y > 0.0f &&
+					worldTriangle.vertices[vertIndex].z > 0.0f)
 				{
 					huzzah = 2;
 				}
 
 				// For each vertex, calculate the AABB index it would be in
 				unsigned long long vert_AABB_Index_ID =
-					this->calcBP_GridIndex(vertexWorldPosition.x,
-						vertexWorldPosition.y,
-						vertexWorldPosition.z,
+					this->calcBP_GridIndex(worldTriangle.vertices[vertIndex].x,
+						worldTriangle.vertices[vertIndex].y,
+						worldTriangle.vertices[vertIndex].z,
 						AABBCubeSize_or_Width);
 				// Store the triangle this vertex is in inside the approprirate AABB
 				// Is there already an AABB there
@@ -386,7 +409,7 @@ bool cPhysics::generateBroadPhaseGrid(std::string meshModelName, float AABBCubeS
 				// ALSO TODO: We want to make sure we don't add this triangle multiple times
 				// (like if the tessellated triangles hit the same box over and over again)
 				// 
-				this->map_BP_CubeGrid[vert_AABB_Index_ID]->vec_pTriangles.push_back(curTri);
+				this->map_BP_CubeGrid[vert_AABB_Index_ID]->vec_pTriangles.push_back(worldTriangle);
 
 			}//for ( unsigned int vertIndex
 

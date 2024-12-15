@@ -935,34 +935,16 @@ int main(void)
         RacingCar->name = "Castle";
         RacingCar->mesh->bIsVisible = true;
 
-        // This is just for testing to see if the xyz locations correctly map to a gridID and the other way around
-        unsigned long long gridIndex = g_pPhysicEngine->calcBP_GridIndex(0.0f, 0.0f, 0.0f, 1000.0f); // 0, 0, 0
-        glm::vec3 minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(500.0f, 500.0f, 500.0f, 1000.0f);              // 0, 0, 0
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-500.0f, -500.0f, -500.0f, 1000.0f);           // 
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(10.0f, 2500.0f, 10.0f, 1000.0f);               // 0, 2, 0
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(2500.0f, 10.0f, 10.0f, 1000.0f);               // 2, 0, 0
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(10.0f, 10.0f, 2500.0f, 1000.0f);               // 0, 0, 2
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(8745.0f, 3723.0f, 2500.0f, 1000.0f);           // 8, 3, 2
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-8745.0f, -3723.0f, -2500.0f, 1000.0f);           // 8, 3, 2
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
-        gridIndex = g_pPhysicEngine->calcBP_GridIndex(-999.0f, -999.0f, -999.0f, 1000.0f);           // -1, -1, -1
-        minXYZ = g_pPhysicEngine->calcBP_MinXYZ_FromID(gridIndex, 1000.0f);
+        std::cout << "Generating Broadfaces." << std::endl;
 
         g_pPhysicEngine->generateBroadPhaseGrid(
             "assets/models/Bodiam_Castle.ply",
-            500.0f,                            // AABB Cube region size
+            250.0f,                            // AABB Cube region size
             RacingCar->mesh->positionXYZ,
             RacingCar->mesh->rotationEulerXYZ,
             RacingCar->mesh->uniformScale, scene->vaoManager);
 
-
+        std::cout << "Generating Broadfaces. DONE." << std::endl;
 
         // Debug AABB shape
         sMesh* pAABBCube_MinAtOrigin = new sMesh();
