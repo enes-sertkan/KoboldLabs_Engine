@@ -666,8 +666,10 @@ void AddActions(Scene* scene, GLuint program)
 
     //class room
 
-    scene->sceneObjects[15]->mesh->textures[0] = "baloon.bmp";
-    scene->sceneObjects[15]->mesh->blendRatio[0] = 4;
+    scene->sceneObjects[15]->mesh->textures[0] = "SHD_UFO_AO.bmp";
+    scene->sceneObjects[15]->mesh->textures[1] = "SHD_UFO_roughness.bmp";
+    scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[15]->mesh->blendRatio[1] = 1;
     scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
 
@@ -834,6 +836,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("SHD_UFO_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("SHD_UFO_roughness.bmp");
 
     //Effects
     scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
@@ -1115,6 +1119,12 @@ int main(void)
         //        pSkySphere->bDoNotLight = true;
 
         SkySphere->mesh->uniformScale = 25.0f;
+
+        scene->lightManager->theLights[1].position.x = scene->sceneObjects[15]->mesh->positionXYZ.x;
+        scene->lightManager->theLights[1].position.y = scene->sceneObjects[15]->mesh->positionXYZ.y;
+        scene->lightManager->theLights[1].position.z = scene->sceneObjects[15]->mesh->positionXYZ.z;
+
+
         DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene);
 //      DRAW LOOP
 //      ------------------------------------------       

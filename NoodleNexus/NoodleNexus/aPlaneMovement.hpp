@@ -8,7 +8,7 @@
 #include "Scene.hpp"
 
 struct PhysicsDataMovement {
-    glm::vec3 position = glm::vec3(0.0f);
+    glm::vec3 position = glm::vec3(-43, 9, 102);
     glm::vec3 velocity = glm::vec3(0.0f);
     float mass = 1000.0f;
 };
@@ -26,7 +26,10 @@ public:
     const float maxPitchDownAngle = -15.0f;  // Maximum pitch down in degrees
     const float maxRollAngle = 60.0f;  // Maximum roll angle in degrees
 
-    //const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
+    float fixedDeltaTime = 1.0f / 60.0f; // Simulation step (1/60th of a second)
+    float accumulator = 0.0f;
+
+    const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
 
     // Speed constants
     const float sideMoveSpeed = 15.0f;  // Speed for lateral movement (adjust as needed)
@@ -35,20 +38,22 @@ public:
     GLuint program;
 
     void Start() override {
-        physData->position = glm::vec3(0.0f, 0.0f, 0.0f); // Ensure position is initialized
+        physData->position = glm::vec3(-43, 9, 102); // Ensure position is initialized
         physData->velocity = glm::vec3(0.0f, 0.0f, 0.0f); // Ensure velocity is initialized
     }
 
     void Update() override {
+        float deltaTime = object->scene->deltaTime;
+        accumulator += deltaTime;  // Accumulate delta time
 
-        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
-        {
-            return; // Do nothing if SHIFT is not pressed
+        // Apply physics updates in fixed time steps
+        while (accumulator >= fixedDeltaTime) {
+            HandleInputs();  // Process input actions
+            ApplyPhysics();  // Update physics
+            UpdateObjectTransform();  // Update object state
+
+            accumulator -= fixedDeltaTime;  // Reduce accumulated time by fixedDeltaTime
         }
-
-        HandleInputs();
-        ApplyPhysics();
-        UpdateObjectTransform();
     }
 
 private:
@@ -56,34 +61,46 @@ private:
     {
         float deltaTime = object->scene->deltaTime;
 
+        // Require LEFT_SHIFT to be pressed for any other input to work
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
+        {
+            return; // Do nothing if SHIFT is not pressed
+        }
+
         // Forward movement (W key) along X axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(acceleration * deltaTime, 0.0f, 0.0f); // Move along X axis
+            physData->velocity += glm::vec3(acceleration * deltaTime, 0.0f, 0.0f); // Move forward on X axis
         }
 
-        // Downward movement (S key) along Y axis
+        // Backward movement (S key) along X axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, -acceleration * deltaTime, 0.0f); // Move down along Y axis
+            physData->velocity += glm::vec3(-acceleration * deltaTime, 0.0f, 0.0f); // Move backward on X axis
         }
 
-        // Upward movement (SPACE key) along Y axis
+        // Downward movement (X key) along Y axis (faster than other movements)
+        if (glfwGetKey(object->scene->window, GLFW_KEY_X) == GLFW_PRESS)
+        {
+            physData->velocity += glm::vec3(0.0f, -2.0f * acceleration * deltaTime, 0.0f); // Move down on Y axis
+        }
+
+        // Upward movement (SPACE key) along Y axis (faster than other movements)
         if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, acceleration * deltaTime, 0.0f); // Move up along Y axis
+            physData->velocity += glm::vec3(0.0f, 2.0f * acceleration * deltaTime, 0.0f); // Move up on Y axis
         }
 
         // Right movement (D key) along Z axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, 0.0f, acceleration * deltaTime); // Move right along Z axis
+            physData->velocity += glm::vec3(0.0f, 0.0f, acceleration * deltaTime); // Move right on Z axis
         }
 
         // Left movement (A key) along Z axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, 0.0f, -acceleration * deltaTime); // Move left along Z axis
+            physData->velocity += glm::vec3(0.0f, 0.0f, -acceleration * deltaTime); // Move left on Z axis
         }
 
         // Deceleration (if no keys are pressed)
@@ -91,16 +108,19 @@ private:
             glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_RELEASE &&
             glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_RELEASE &&
             glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_RELEASE &&
-            glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_RELEASE)
+            glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_RELEASE &&
+            glfwGetKey(object->scene->window, GLFW_KEY_X) == GLFW_RELEASE)
         {
             Deaccelerate();
         }
-        //physData->velocity += gravity * object->scene->deltaTime;
 
+        // Apply gravity: constantly pull down along the Y-axis
+        physData->velocity += gravity * object->scene->deltaTime;
 
         // Clamp speed
         physData->velocity = ClampSpeed();
     }
+
 
 
 
