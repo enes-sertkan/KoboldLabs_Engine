@@ -10,11 +10,15 @@ public:
     float expansionRate = 0.4f;
     float maxScale = 5.0f;
     glm::vec4 explosionColor = glm::vec4(1.0f, 0.5f, 0.0f, 1.0f);
+    Object* objectToStick;
+    glm::vec3 localPos;
 
     void Start() override
     {
-        object->mesh->uniformScale = 0.1f;
+        object->mesh->uniformScale = 1.f;
         object->mesh->objectColourRGBA = explosionColor;
+
+        localPos = object->mesh->positionXYZ - objectToStick->mesh->positionXYZ;
     }
 
     void Update() override
@@ -23,10 +27,15 @@ public:
         if (object->mesh->uniformScale >= maxScale)
         {
             object->isActive = false;
-            object->Destroy();
+       //     object->Destroy();
             return;
         }
 
+
+        if (objectToStick)
+        {
+            object->mesh->positionXYZ = objectToStick->mesh->positionXYZ + localPos;
+        }
         object->mesh->uniformScale += expansionRate * object->scene->deltaTime;
 
     }
