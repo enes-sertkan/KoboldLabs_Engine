@@ -67,6 +67,7 @@
 #include "Animator.h"
 #include "aTextureWiggler.h"
 #include "aPlaneMovement.hpp"
+#include "aPlanePhysics.h"
 
  Scene* currentScene=nullptr;
 
@@ -1064,9 +1065,9 @@ int main(void)
     //scene->AddActionToObj(triggerAction, trigger);
 //
 
-    //aPlanePhysics* planePhysics = new aPlanePhysics;
-    //planePhysics->physMan = g_pPhysicEngine;
-    //scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
+    aPlanePhysics* planePhysics = new aPlanePhysics;
+    planePhysics->physMan = g_pPhysicEngine;
+    scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
 
 
 

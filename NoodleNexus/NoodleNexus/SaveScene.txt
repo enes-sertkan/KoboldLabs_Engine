@@ -30,7 +30,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 309 -1 113
 <Rotation-> 0 0 0
-<Scale-> 1 6.15311e-39 1.00102e-38
+<Scale-> 1 9.27555e-39 9.00003e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -42,7 +42,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 9.95463e-39 9.91837e-39
+<Scale-> 1 9.18371e-39 1.06531e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -54,7 +54,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 6.06123e-39
+<Scale-> 1 8.76577e-39 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -66,7 +66,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 7.53063e-39
+<Scale-> 1 1.1151e-38 7.62246e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -78,7 +78,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 6.33674e-39
+<Scale-> 1 0 1.11122e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -90,7 +90,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.97961e-39
+<Scale-> 1 1.1151e-38 1.01938e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -102,7 +102,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 7.34693e-39
+<Scale-> 1 1.1151e-38 9.27555e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -114,7 +114,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.15306e-39
+<Scale-> 1 0 1.00102e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -126,7 +126,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> -151 -1 265
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 7.62249e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -211,7 +211,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 569 -150 258
 <Rotation-> 0 0 0
-<Scale-> 0.1 0 0
+<Scale-> 0.1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>

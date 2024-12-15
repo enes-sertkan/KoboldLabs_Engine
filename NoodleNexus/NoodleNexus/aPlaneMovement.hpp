@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Scene.hpp"
 
-struct PhysicsData {
+struct PhysicsDataMovement {
     glm::vec3 position = glm::vec3(0.0f);
     glm::vec3 velocity = glm::vec3(0.0f);
     float mass = 1000.0f;
@@ -26,12 +26,12 @@ public:
     const float maxPitchDownAngle = -15.0f;  // Maximum pitch down in degrees
     const float maxRollAngle = 60.0f;  // Maximum roll angle in degrees
 
-    const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
+    //const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
 
     // Speed constants
     const float sideMoveSpeed = 15.0f;  // Speed for lateral movement (adjust as needed)
 
-    PhysicsData* physData = new PhysicsData();
+    PhysicsDataMovement* physData = new PhysicsDataMovement();
     GLuint program;
 
     void Start() override {
@@ -40,6 +40,12 @@ public:
     }
 
     void Update() override {
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
+        {
+            return; // Do nothing if SHIFT is not pressed
+        }
+
         HandleInputs();
         ApplyPhysics();
         UpdateObjectTransform();
@@ -89,7 +95,7 @@ private:
         {
             Deaccelerate();
         }
-        physData->velocity += gravity * object->scene->deltaTime;
+        //physData->velocity += gravity * object->scene->deltaTime;
 
 
         // Clamp speed
