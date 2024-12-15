@@ -66,7 +66,7 @@
 #include "aLocTriggersLua.h"
 #include "Animator.h"
 #include "aTextureWiggler.h"
-#include "aPlanePhysics.h"
+#include "aPlaneMovement.hpp"
 
  Scene* currentScene=nullptr;
 
@@ -554,16 +554,16 @@ void AddActions(Scene* scene, GLuint program)
 {
 
 
-    //Object* playerObject = scene->sceneObjects[1];
+    Object* playerObject = scene->sceneObjects[15];
 
-    //// Add the player camera action (with an offset for camera positioning)
-    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
-    //scene->AddActionToObj(playerCameraAction, playerObject);
+    // Add the player camera action (with an offset for camera positioning)
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject);
 
 
-    //aPlayerMovement* playerMovement = new aPlayerMovement();
-    //playerMovement->program = program;
-    //scene->AddActionToObj(playerMovement, scene->sceneObjects[1]);
+    aPlaneMovement* playerMovement = new aPlaneMovement();
+    playerMovement->program = program;
+    scene->AddActionToObj(playerMovement, scene->sceneObjects[15]);
 
     //RayCastPhysics* phys = new RayCastPhysics;
     //phys->gravityAcceleration.y = -5;
@@ -978,6 +978,32 @@ int main(void)
 
     }
 
+    {
+        //Object* Airplane = scene->GenerateMeshObjectsFromObject(
+        //    "assets/models/Plane.ply",
+        //    glm::vec3(0, 0, 0),
+        //    0.1,
+        //    glm::vec3(0, 0, 0),
+        //    false,
+        //    glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+        //    true,
+        //    scene->sceneObjects
+        //);
+        //Airplane->mesh->textures[0] = "baloon.bmp";
+        //Airplane->mesh->uniformScale = 0.1f;
+        //Airplane->isTemporary = true;
+        //Airplane->name = "Airplane";
+        //Airplane->mesh->bIsVisible = true;
+
+        //// Add a associated physics object to have the phsyics "move" this
+        //cPhysics::sPhysInfo* pViperPhysObject = new  cPhysics::sPhysInfo();
+        //pViperPhysObject->bDoesntMove = true;
+        //pViperPhysObject->position = Airplane->mesh->positionXYZ;
+        //pViperPhysObject->velocity = glm::vec3(0.0f);
+        //pViperPhysObject->pAssociatedDrawingMeshInstance = Airplane->mesh;
+        //g_pPhysicEngine->vecGeneralPhysicsObjects.push_back(pViperPhysObject);
+    }
+
     //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
     //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
     //glm::vec3 endXYZ(2000.0f, 0.0f, 0.0f);    // End point
@@ -1056,9 +1082,9 @@ int main(void)
     //scene->AddActionToObj(triggerAction, trigger);
 //
 
-    aPlanePhysics* planePhysics = new aPlanePhysics;
-    planePhysics->physMan = g_pPhysicEngine;
-    scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
+    //aPlanePhysics* planePhysics = new aPlanePhysics;
+    //planePhysics->physMan = g_pPhysicEngine;
+    //scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
 
 
 

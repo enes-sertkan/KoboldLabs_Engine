@@ -194,7 +194,7 @@
     <ClCompile Include="aTextureWiggler.h">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="aPlanePhysics.hpp">
+    <ClCompile Include="aPlaneMovement.hpp">
       <Filter>Actions</Filter>
     </ClCompile>
   </ItemGroup>

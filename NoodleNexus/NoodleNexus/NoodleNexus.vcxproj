@@ -140,7 +140,7 @@
     <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
-    <ClCompile Include="aPlanePhysics.hpp" />
+    <ClCompile Include="aPlaneMovement.hpp" />
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aTextureWiggler.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
