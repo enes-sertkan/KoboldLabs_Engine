@@ -108,22 +108,6 @@ public:
 
 
 
-            //Make every vertex to world position. 
-            for (unsigned int vertIndex = 0; vertIndex < 3; vertIndex++)
-            {
-                glm::vec4 transformedVertex = matModel * glm::vec4(curTri.vertices[vertIndex], 1.0f);
-
-                if (transformedVertex.w != 0.0f) {
-                    transformedVertex /= transformedVertex.w; // Normalize if w is valid
-                    curTri.vertices[vertIndex] = glm::vec3(transformedVertex); // Convert back to vec3
-                }
-                else {
-                    std::cout << "Wow, w is 0, so this vertex is 0,0,0" << std::endl;
-                    // Handle the degenerate case (e.g., log an error, skip, or assign a fallback value)
-                    curTri.vertices[vertIndex] = glm::vec3(0.0f, 0.0f, 0.0f); // Example fallback
-                }
-
-            }
             
 
             meshCollider.push_back(curTri);
@@ -272,7 +256,7 @@ public:
             for (cPhysics::sTriangle tri : meshColliderWorld)
             {
 
-               // DrawDebugCube(tri.vertices[0], glm::vec4(1, 1, 1, 1), 0.1, object->scene->programs[0], object->scene);
+              DrawDebugCube(tri.vertices[0], glm::vec4(1, 1, 1, 1), 1, object->scene->programs[0], object->scene);
 
                 std::vector<cPhysics::sCollision_RayTriangleInMesh> vec_RayTriangle_Collisions;
 
@@ -280,17 +264,17 @@ public:
                 if (physMan->rayCastCustom(tri.vertices[0], tri.vertices[1], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
                 {  
                     std::cout << "PLANE COLLISION1" << std::endl;
-                    planeMovement->HitSmt();
+                    planeMovement->HitSmt(tri.vertices[0]);
                 }
                 else if (physMan->rayCastCustom(tri.vertices[1], tri.vertices[2], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
                 {
                     std::cout << "PLANE COLLISION2" << std::endl;
-                    planeMovement->HitSmt();
+                    planeMovement->HitSmt(tri.vertices[1]);
                 }
                 else if (physMan->rayCastCustom(tri.vertices[2], tri.vertices[0], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
                 {
                     std::cout << "PLANE COLLISION3" << std::endl;
-                    planeMovement->HitSmt();
+                    planeMovement->HitSmt(tri.vertices[2]);
                 }
 
 
@@ -320,6 +304,7 @@ public:
 
         }
 
+    
     
        
 

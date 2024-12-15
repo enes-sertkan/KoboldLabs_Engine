@@ -28,7 +28,7 @@ public:
 
     float fixedDeltaTime = 1.0f / 60.0f; // Simulation step (1/60th of a second)
     float accumulator = 0.0f;
-
+    bool isGrav = false;
     const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
 
     // Speed constants
@@ -55,14 +55,15 @@ public:
             accumulator -= fixedDeltaTime;  // Reduce accumulated time by fixedDeltaTime
         }
     }
-    void HitSmt()
+    void HitSmt(glm::vec3 pos)
     {
         physData->velocity = -0.5f * physData->velocity;
+        object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.5, glm::vec3(0), true, glm::vec4(1), false, object->sceneObjects);
     }
 private:
     void HandleInputs()
     {
-        float deltaTime = object->scene->deltaTime;
+
 
         // Require LEFT_SHIFT to be pressed for any other input to work
         if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
@@ -73,37 +74,47 @@ private:
         // Forward movement (W key) along X axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(acceleration * deltaTime, 0.0f, 0.0f); // Move forward on X axis
+            physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
         }
 
         // Backward movement (S key) along X axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(-acceleration * deltaTime, 0.0f, 0.0f); // Move backward on X axis
+            physData->velocity += glm::vec3(-acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move backward on X axis
         }
 
         // Downward movement (X key) along Y axis (faster than other movements)
         if (glfwGetKey(object->scene->window, GLFW_KEY_X) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, -2.0f * acceleration * deltaTime, 0.0f); // Move down on Y axis
+            physData->velocity += glm::vec3(0.0f, -2.0f * acceleration * fixedDeltaTime, 0.0f); // Move down on Y axis
         }
 
         // Upward movement (SPACE key) along Y axis (faster than other movements)
         if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, 2.0f * acceleration * deltaTime, 0.0f); // Move up on Y axis
+            physData->velocity += glm::vec3(0.0f, 2.0f * acceleration * fixedDeltaTime, 0.0f); // Move up on Y axis
         }
 
         // Right movement (D key) along Z axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, 0.0f, acceleration * deltaTime); // Move right on Z axis
+            physData->velocity += glm::vec3(0.0f, 0.0f, acceleration * fixedDeltaTime); // Move right on Z axis
         }
 
         // Left movement (A key) along Z axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(0.0f, 0.0f, -acceleration * deltaTime); // Move left on Z axis
+            physData->velocity += glm::vec3(0.0f, 0.0f, -acceleration * fixedDeltaTime); // Move left on Z axis
+        }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_R) == GLFW_PRESS)
+        {
+            isGrav = true;
+        }
+        
+        if (glfwGetKey(object->scene->window, GLFW_KEY_F) == GLFW_PRESS)
+        {
+            isGrav = false;
         }
 
         // Deceleration (if no keys are pressed)
@@ -117,6 +128,9 @@ private:
             Deaccelerate();
         }
 
+
+
+        if( isGrav)
         // Apply gravity: constantly pull down along the Y-axis
         physData->velocity += gravity * object->scene->deltaTime;
 
@@ -129,7 +143,7 @@ private:
 
     void Accelerate(const glm::vec3& direction) {
         glm::vec3 forward = RotateVectorWithQuaternion(orientation, direction);
-        physData->velocity += forward * acceleration * object->scene->deltaTime;
+        physData->velocity += forward * acceleration * fixedDeltaTime;
         ClampSpeed();
     }
 
@@ -150,11 +164,11 @@ private:
 
     void ApplyPhysics() {
         ApplyDrag();
-        physData->position += physData->velocity * object->scene->deltaTime;
+        physData->position += physData->velocity * fixedDeltaTime;
     }
 
     void ApplyDrag() {
-        physData->velocity *= 1.0f - (dragCoefficient * object->scene->deltaTime);
+        physData->velocity *= 1.0f - (dragCoefficient * fixedDeltaTime);
     }
 
     glm::vec3 ClampSpeed()
