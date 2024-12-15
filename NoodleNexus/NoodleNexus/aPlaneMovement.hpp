@@ -78,12 +78,16 @@ public:
     void HitSmt(glm::vec3 pos)
     {
         physData->velocity = 0.f * physData->velocity;
-        Object* explosionSphere = object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.5, glm::vec3(0), true, glm::vec4(1), false, object->sceneObjects);
+        Object* explosionSphere = object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 10, glm::vec3(0), false, glm::vec4(1), true, object->sceneObjects);
+        explosionSphere->mesh->textures[0] = "yellow.bmp";
 
         aExplosion* explodeOnImpact = new aExplosion();
-        explodeOnImpact->expansionRate = 0.5f;
-        explodeOnImpact->maxScale = 10.0f;
+        explodeOnImpact->expansionRate = 5.0f;
+        explodeOnImpact->maxScale = 100.0f;
         object->scene->AddActionToObj(explodeOnImpact, explosionSphere);
+
+        explodeOnImpact->objectToStick = object;
+        explodeOnImpact->Start();
 
         physData->position = prevPosition;
         prevPosTimer = 0;
