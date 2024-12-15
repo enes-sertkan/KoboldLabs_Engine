@@ -42,7 +42,7 @@ private:
 public:
 	//Animator* animator = nullptr;
 
-	float cameraMoveSpeed=35;
+	float cameraMoveSpeed=70;
 	float cameraRotateSpeed=50;
 
 	void SortObjectsForDrawing();

@@ -55,7 +55,10 @@ public:
             accumulator -= fixedDeltaTime;  // Reduce accumulated time by fixedDeltaTime
         }
     }
-
+    void HitSmt()
+    {
+        physData->velocity = -0.5f * physData->velocity;
+    }
 private:
     void HandleInputs()
     {
@@ -180,6 +183,9 @@ private:
     bool IsKeyPressed(int key) {
         return glfwGetKey(object->scene->window, key) == GLFW_PRESS;
     }
+
+
+    
 };
 
 

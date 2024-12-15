@@ -618,6 +618,60 @@ bool cPhysics::rayCast(glm::vec3 start, glm::vec3 end,
 	return true;
 }
 
+bool cPhysics::rayCastCustom(
+	glm::vec3 start,
+	glm::vec3 end,
+	std::vector<sTriangle> vecTriangles,
+	std::vector<sCollision_RayTriangleInMesh> vec_RayTriangle_Collisions,
+	bool bIgnoreBackFacingTriangles /*= true*/
+) {
+	sLine theRay;
+	theRay.startXYZ = start;
+	theRay.endXYZ = end;
+
+	// Clear the vector being passed in
+	vec_RayTriangle_Collisions.clear();
+
+	// Iterate through each triangle in the given vector
+	for (const sTriangle& CurTriangle : vecTriangles) {
+		float u, v, w, t;
+
+		// Check for intersection
+		if (this->bLineSegment_TriangleCollision(theRay, CurTriangle, u, v, w, t)) {
+			// Compute intersection point using barycentric coordinates
+			glm::vec3 intersectionPoint =
+				CurTriangle.vertices[0] * u +
+				CurTriangle.vertices[1] * v +
+				CurTriangle.vertices[2] * w;
+
+			// Check back-facing triangle condition
+			if (bIgnoreBackFacingTriangles) {
+				glm::vec3 rayDirection = glm::normalize(end - start);
+				float dotProd = glm::dot(rayDirection, CurTriangle.normal);
+
+				// Ignore triangle if it's facing away
+				if (dotProd >= 0.0f) {
+					continue;
+				}
+			}
+
+			// Prepare collision information
+			sCollision_RayTriangleInMesh collisionInfo;
+			collisionInfo.theRay = theRay;
+			collisionInfo.vecTriangles.push_back(CurTriangle);
+		//	CurTriangle.intersectionPoint = intersectionPoint;
+
+			// Add collision to the results
+			vec_RayTriangle_Collisions.push_back(collisionInfo);
+		}
+	}
+
+	// Sort the triangles by distance to the start point
+
+	// Return true if there were any collisions, false otherwise
+	return !vec_RayTriangle_Collisions.empty();
+}
+
 // This one adds the collision to the vec_RayTriangle_Collisions
 void cPhysics::rayCast(glm::vec3 start, glm::vec3 end, bool bIgnoreBackFacingTriangles /*= true*/)
 {

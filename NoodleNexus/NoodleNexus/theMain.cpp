@@ -562,9 +562,6 @@ void AddActions(Scene* scene, GLuint program)
     scene->AddActionToObj(playerCameraAction, playerObject);
 
 
-    aPlaneMovement* playerMovement = new aPlaneMovement();
-    playerMovement->program = program;
-    scene->AddActionToObj(playerMovement, scene->sceneObjects[15]);
 
     //RayCastPhysics* phys = new RayCastPhysics;
     //phys->gravityAcceleration.y = -5;
@@ -935,7 +932,7 @@ int main(void)
             scene->sceneObjects
         );
         RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
-        RacingCar->mesh->uniformScale = 30.f;
+        RacingCar->mesh->uniformScale = 75.f;
         RacingCar->isTemporary = true;
         RacingCar->name = "Castle";
         RacingCar->mesh->bIsVisible = true;
@@ -1067,10 +1064,15 @@ int main(void)
     //aLocTrggersLua* triggerAction = new aLocTrggersLua();
     //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 120, luaTrigger);
     //scene->AddActionToObj(triggerAction, trigger);
-//
+ aPlaneMovement* playerMovement = new aPlaneMovement();
+    playerMovement->program = program;
+    scene->AddActionToObj(playerMovement, scene->sceneObjects[15]);
+
 
     aPlanePhysics* planePhysics = new aPlanePhysics;
     planePhysics->physMan = g_pPhysicEngine;
+    planePhysics->planeMovement = playerMovement;
+
     scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
 
 
