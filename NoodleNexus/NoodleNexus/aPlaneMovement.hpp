@@ -23,6 +23,8 @@ public:
     float maxSpeed = 100.0f;
     float acceleration = 15.0f;
     float dragCoefficient = 0.001f;
+    cPhysics::cBroad_Cube* pTheAABB_Cube = nullptr;
+    cPhysics* phys  = nullptr;
 
     // Constants for rotational limits
     const float maxPitchUpAngle = 25.0f;  // Maximum pitch up in degrees
@@ -52,21 +54,23 @@ public:
         float deltaTime = object->scene->deltaTime;
         accumulator += deltaTime;  // Accumulate delta time
 
+        if (prevPosTimer > 3)
+        {
+            prevPosition = object->mesh->positionXYZ;
+            prevPosTimer = 0;
+        }
+        else
+        {
+            prevPosTimer++;
+
+        }
+        HandleInputs();  // Process input actions
+        ApplyPhysics();  // Update physics
+        UpdateObjectTransform();  // Update object state
         // Apply physics updates in fixed time steps
         while (accumulator >= fixedDeltaTime) {
-            if (prevPosTimer > 3)
-            {
-                prevPosition = object->mesh->positionXYZ;
-                prevPosTimer = 0;
-            }
-            else
-            {
-                prevPosTimer++;
-
-            }
-            HandleInputs();  // Process input actions
-            ApplyPhysics();  // Update physics
-            UpdateObjectTransform();  // Update object state
+      
+       
 
             accumulator -= fixedDeltaTime;  // Reduce accumulated time by fixedDeltaTime
         }
@@ -82,6 +86,7 @@ public:
         object->scene->AddActionToObj(explodeOnImpact, explosionSphere);
 
         physData->position = prevPosition;
+        prevPosTimer = 0;
     }
 private:
     void HandleInputs()
@@ -100,8 +105,14 @@ private:
 
             glm::vec3 start = object->mesh->positionXYZ;
             glm::vec3 end = start + glm::vec3(35, 0, 0);
-            std::vector <sCollision_RayTriangleInMesh> triangeMesh;
-            if (!object->scene->physicsManager->RayCast(start, end, triangeMesh, false))
+            std::vector <cPhysics::sCollision_RayTriangleInMesh> triangeMesh;
+            if (!pTheAABB_Cube)
+            {
+                physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
+            }
+            else
+            if (!pTheAABB_Cube->vec_pTriangles.empty())
+            if (phys->rayCastCustom(start, end, pTheAABB_Cube->vec_pTriangles, triangeMesh, false))
             {
                 physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
 

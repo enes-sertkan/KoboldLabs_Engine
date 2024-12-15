@@ -38,7 +38,7 @@ public:
     glm::vec3 prevpos;
     glm::vec3 deltaPos;
     PhysicsData physData;
-    float AABBSIZE = 250.0f;
+    float AABBSIZE = 200.0f;
 
 
     void Start() override
@@ -240,6 +240,7 @@ public:
 
 
             cPhysics::cBroad_Cube* pTheAABB_Cube = it_pCube->second;
+            planeMovement->pTheAABB_Cube = pTheAABB_Cube;
             float size = pTheAABB_Cube->getMaxXYZ().x - pTheAABB_Cube->getMinXYZ().x;
             glm::vec3 center = glm::vec3(pTheAABB_Cube->getMinXYZ().x + size / 2, pTheAABB_Cube->getMinXYZ().y + size / 2, pTheAABB_Cube->getMinXYZ().z + size / 2);
             DrawDebugCube(center, glm::vec4(1, 1, 1, 1), size, object->scene->programs[0], object->scene);
@@ -250,35 +251,30 @@ public:
             int i = 0;
 
 
-
-
-
             for (cPhysics::sTriangle tri : meshColliderWorld)
             {
-
-              DrawDebugCube(tri.vertices[0], glm::vec4(1, 1, 1, 1), 1, object->scene->programs[0], object->scene);
+               
+             // DrawDebugCube(tri.vertices[0], glm::vec4(1, 1, 1, 1), 1, object->scene->programs[0], object->scene);
 
                 std::vector<cPhysics::sCollision_RayTriangleInMesh> vec_RayTriangle_Collisions;
 
-               
-                if (physMan->rayCastCustom(tri.vertices[0], tri.vertices[1], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
-                {  
-                    std::cout << "PLANE COLLISION1" << std::endl;
-                    planeMovement->HitSmt(tri.vertices[0]);
-                }
-                else if (physMan->rayCastCustom(tri.vertices[1], tri.vertices[2], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
+                if (i < 2)
                 {
-                    std::cout << "PLANE COLLISION2" << std::endl;
-                    planeMovement->HitSmt(tri.vertices[1]);
-                }
-                else if (physMan->rayCastCustom(tri.vertices[2], tri.vertices[0], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
-                {
-                    std::cout << "PLANE COLLISION3" << std::endl;
-                    planeMovement->HitSmt(tri.vertices[2]);
-                }
+                    if (physMan->rayCastCustom(tri.vertices[i], tri.vertices[i+1], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
+                    {
+                        std::cout << "PLANE COLLISION1" << std::endl;
+                        planeMovement->HitSmt(tri.vertices[0]);
+                    }
 
+                }else
+                    if (physMan->rayCastCustom(tri.vertices[i], tri.vertices[i-1], pTheAABB_Cube->vec_pTriangles, vec_RayTriangle_Collisions, false))
+                    {
+                        std::cout << "PLANE COLLISION1" << std::endl;
+                        planeMovement->HitSmt(tri.vertices[0]);
+                    }
 
-
+                i++;
+                if (i > 2) i = 0;
 
             }     
 

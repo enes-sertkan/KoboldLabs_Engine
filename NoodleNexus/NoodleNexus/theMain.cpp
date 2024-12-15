@@ -932,7 +932,7 @@ int main(void)
             scene->sceneObjects
         );
         RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
-        RacingCar->mesh->uniformScale = 75.f;
+        RacingCar->mesh->uniformScale = 110.f;
         RacingCar->isTemporary = true;
         RacingCar->name = "Castle";
         RacingCar->mesh->bIsVisible = true;
@@ -941,13 +941,17 @@ int main(void)
 
         g_pPhysicEngine->generateBroadPhaseGrid(
             "assets/models/Bodiam_Castle.ply",
-            250.0f,                            // AABB Cube region size
+            200.0f,                            // AABB Cube region size
             RacingCar->mesh->positionXYZ,
             RacingCar->mesh->rotationEulerXYZ,
             RacingCar->mesh->uniformScale, scene->vaoManager);
 
         std::cout << "Generating Broadfaces. DONE." << std::endl;
 
+        scene->physicsManager->AddTriangleMesh("assets/models/Bodiam_Castle.ply",                          // AABB Cube region size
+            RacingCar->mesh->positionXYZ,
+            RacingCar->mesh->rotationEulerXYZ,
+            RacingCar->mesh->uniformScale);
         // Debug AABB shape
         sMesh* pAABBCube_MinAtOrigin = new sMesh();
         pAABBCube_MinAtOrigin->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
