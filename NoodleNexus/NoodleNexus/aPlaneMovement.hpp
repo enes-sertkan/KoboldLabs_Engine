@@ -6,6 +6,9 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include <iostream>
 #include "Scene.hpp"
+#include "aExplosion.hpp"
+#include "cPhysics.h"
+#include "PhysicsManager.h"
 
 struct PhysicsDataMovement {
     glm::vec3 position = glm::vec3(-43, 9, 102);
@@ -31,6 +34,9 @@ public:
     bool isGrav = false;
     const glm::vec3 gravity = glm::vec3(0.0f, -9.8f, 0.0f);
 
+    glm::vec3 prevPosition;
+    int prevPosTimer = 0;
+
     // Speed constants
     const float sideMoveSpeed = 15.0f;  // Speed for lateral movement (adjust as needed)
 
@@ -48,6 +54,16 @@ public:
 
         // Apply physics updates in fixed time steps
         while (accumulator >= fixedDeltaTime) {
+            if (prevPosTimer > 3)
+            {
+                prevPosition = object->mesh->positionXYZ;
+                prevPosTimer = 0;
+            }
+            else
+            {
+                prevPosTimer++;
+
+            }
             HandleInputs();  // Process input actions
             ApplyPhysics();  // Update physics
             UpdateObjectTransform();  // Update object state
@@ -57,8 +73,15 @@ public:
     }
     void HitSmt(glm::vec3 pos)
     {
-        physData->velocity = -0.5f * physData->velocity;
-        object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.5, glm::vec3(0), true, glm::vec4(1), false, object->sceneObjects);
+        physData->velocity = 0.f * physData->velocity;
+        Object* explosionSphere = object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.5, glm::vec3(0), true, glm::vec4(1), false, object->sceneObjects);
+
+        aExplosion* explodeOnImpact = new aExplosion();
+        explodeOnImpact->expansionRate = 0.5f;
+        explodeOnImpact->maxScale = 10.0f;
+        object->scene->AddActionToObj(explodeOnImpact, explosionSphere);
+
+        physData->position = prevPosition;
     }
 private:
     void HandleInputs()
@@ -74,7 +97,15 @@ private:
         // Forward movement (W key) along X axis
         if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
+
+            glm::vec3 start = object->mesh->positionXYZ;
+            glm::vec3 end = start + glm::vec3(35, 0, 0);
+            std::vector <sCollision_RayTriangleInMesh> triangeMesh;
+            if (!object->scene->physicsManager->RayCast(start, end, triangeMesh, false))
+            {
+                physData->velocity += glm::vec3(acceleration * fixedDeltaTime, 0.0f, 0.0f); // Move forward on X axis
+
+            }
         }
 
         // Backward movement (S key) along X axis

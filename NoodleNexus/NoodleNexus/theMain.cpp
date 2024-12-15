@@ -1064,7 +1064,7 @@ int main(void)
     //aLocTrggersLua* triggerAction = new aLocTrggersLua();
     //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 120, luaTrigger);
     //scene->AddActionToObj(triggerAction, trigger);
- aPlaneMovement* playerMovement = new aPlaneMovement();
+    aPlaneMovement* playerMovement = new aPlaneMovement();
     playerMovement->program = program;
     scene->AddActionToObj(playerMovement, scene->sceneObjects[15]);
 
@@ -1072,8 +1072,10 @@ int main(void)
     aPlanePhysics* planePhysics = new aPlanePhysics;
     planePhysics->physMan = g_pPhysicEngine;
     planePhysics->planeMovement = playerMovement;
-
     scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
+
+
+
 
 
 
