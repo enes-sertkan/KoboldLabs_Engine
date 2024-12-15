@@ -81,6 +81,7 @@ public:
 	void MoveCameraToPoint();
 	void SetCameraToNextPoint();
 	void SetCameraToFirstPoint();
+	void SetCameraToPlayer();
 	void NextCameraPoint();
 	void SetCurrentCameraToID();
 	void SetCurrentCamera(CameraPoint camPoint);

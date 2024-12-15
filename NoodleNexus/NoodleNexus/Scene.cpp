@@ -412,6 +412,13 @@ void Scene::SetCameraToFirstPoint()
     SetCurrentCameraToID();
 }
 
+void Scene::SetCameraToPlayer()
+{
+    if (cameraPoints.size() == 0) return;
+    fCamera->getEyeLocation() = sceneObjects[15]->mesh->positionXYZ;
+    SetCurrentCameraToID();
+}
+
 void Scene::NextCameraPoint()
 {
       if (cameraPoints.size() == 0) return;

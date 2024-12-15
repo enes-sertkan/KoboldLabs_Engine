@@ -140,6 +140,19 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
         }
      
     }
+
+    if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+    {
+        currentFrameTime = glfwGetTime();
+        double deltaTime = currentFrameTime - lastFrameTime;
+        lastFrameTime = currentFrameTime;
+
+        if (deltaTime > 0.36f)
+        {
+            scene->SetCameraToPlayer();
+        }
+
+    }
     if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
     {
         currentFrameTime = glfwGetTime();
