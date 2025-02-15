@@ -72,6 +72,9 @@
     <Filter Include="Lua">
       <UniqueIdentifier>{e35b39c5-57ec-4005-b5b0-17208ef4b7d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Animations">
+      <UniqueIdentifier>{3cd03d44-90e2-46c6-9a71-42f79ff12fbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="aTextureWiggler.h">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyFrameAnims.cpp">
+      <Filter>Engine\Animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +348,9 @@
     </ClInclude>
     <ClInclude Include="CameraPoint.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aKeyFrameAnims.hpp">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
