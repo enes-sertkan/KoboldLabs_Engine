@@ -197,7 +197,7 @@
     <ClCompile Include="aTextureWiggler.h">
       <Filter>Actions</Filter>
     </ClCompile>
-    <ClCompile Include="KeyFrameAnims.cpp">
+    <ClCompile Include="aKeyFrameAnims.cpp">
       <Filter>Engine\Animations</Filter>
     </ClCompile>
   </ItemGroup>

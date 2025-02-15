@@ -162,7 +162,7 @@
     <ClCompile Include="cVAOManager\cVAOManager.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Gun.hpp" />
-    <ClCompile Include="KeyFrameAnims.cpp" />
+    <ClCompile Include="aKeyFrameAnims.cpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
     <ClCompile Include="LuaScript.cpp" />
