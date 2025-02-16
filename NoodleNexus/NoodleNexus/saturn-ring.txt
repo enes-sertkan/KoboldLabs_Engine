@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Saturn_Ring
+<filePath> assets/models/Saturn_Ring.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

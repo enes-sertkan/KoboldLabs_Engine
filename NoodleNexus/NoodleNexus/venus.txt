@@ -2,6 +2,6 @@
 <ModelFile>
 <name> Venus
 <filePath> assets/models/Sphere_radius_1_xyz_N_uv.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

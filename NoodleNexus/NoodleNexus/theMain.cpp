@@ -572,66 +572,62 @@ void AddActions(Scene* scene, GLuint program)
     //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
-    //aTextureWiggler* textureWiggler = new aTextureWiggler();
-    //textureWiggler->affectedTextures[1] = 1;
-    //textureWiggler->maxBlend = 0.25;
-    //scene->AddActionToObj(textureWiggler, scene->sceneObjects[4]);
+    aTextureWiggler* textureWiggler = new aTextureWiggler();
+    textureWiggler->affectedTextures[0] = 1;
+    textureWiggler->maxBlend = 0.7;
+    scene->AddActionToObj(textureWiggler, scene->sceneObjects[0]);
 
 
-    //aTextureWiggler* textureWiggler02 = new aTextureWiggler();
-    //textureWiggler02->affectedTextures[0] = 1;
-    //textureWiggler02->maxBlend = 1.0;
-    //scene->AddActionToObj(textureWiggler02, scene->sceneObjects[13]);
+    aTextureWiggler* textureWiggler02 = new aTextureWiggler();
+    textureWiggler02->affectedTextures[0] = 1;
+    textureWiggler02->maxBlend = 1.0;
+    scene->AddActionToObj(textureWiggler02, scene->sceneObjects[7]);
 
-    scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
+    scene->sceneObjects[0]->mesh->textures[0] = "sun.bmp";
     scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
     scene->sceneObjects[0]->mesh->transperency = 1;
     scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-    scene->sceneObjects[1]->mesh->textures[0] = "yellow.bmp";
+    scene->sceneObjects[1]->mesh->textures[0] = "mercury.bmp";
     scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
     scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
     //scene->sceneObjects[1]->mesh->transperency = 0.2;
     //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-    scene->sceneObjects[2]->mesh->textures[0] = "yellow.bmp";
-    scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[2]->mesh->textures[0] = "venus.bmp";
+    scene->sceneObjects[2]->mesh->blendRatio[0] = 2;
     scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
-    //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[3]->mesh->textures[0] = "earth.bmp";
+    scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
-    //scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
-    //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-    //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
-    //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[4]->mesh->textures[0] = "mars.bmp";
+    scene->sceneObjects[4]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
+    scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
-    //scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
+    scene->sceneObjects[5]->mesh->textures[0] = "jupiter.bmp";
+    scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
 
 
-    //scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
-    //scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
-    //scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
-    //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+    scene->sceneObjects[6]->mesh->textures[0] = "saturn.bmp";
+    scene->sceneObjects[6]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
 
 
-    //scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
-    //scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[8]->mesh->textures[0] = "uranus.bmp";
+    scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
-    //scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[8]->mesh->transperency = 1;
+    scene->sceneObjects[9]->mesh->textures[0] = "neptune.bmp";
+    scene->sceneObjects[9]->mesh->blendRatio[0] = 2;
+    scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[9]->mesh->transperency = 1;
 
     //scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
     //scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
@@ -811,9 +807,15 @@ int main(void)
 
 
     scene->textureManager->SetBasePath("assets/textures");
-    scene->textureManager->Create2DTextureFromBMPFile("baloon.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("yellow.bmp");
-
+    scene->textureManager->Create2DTextureFromBMPFile("sun.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("mercury.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("venus.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("earth.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("mars.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("jupiter.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("saturn.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("uranus.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("neptune.bmp");
     //Effects
 
 
@@ -828,12 +830,12 @@ int main(void)
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/TropicalSunnyDayLeft2048.bmp",
-        "CubeMaps/TropicalSunnyDayRight2048.bmp",
-        "CubeMaps/TropicalSunnyDayUp2048.bmp",
-        "CubeMaps/TropicalSunnyDayDown2048.bmp",
-        "CubeMaps/TropicalSunnyDayFront2048.bmp",
-        "CubeMaps/TropicalSunnyDayBack2048.bmp", true, errorString))
+        "CubeMaps/SpaceBox_right1_posX.bmp",
+        "CubeMaps/SpaceBox_left2_negX.bmp",
+        "CubeMaps/SpaceBox_top3_posY.bmp",
+        "CubeMaps/SpaceBox_bottom4_negY.bmp",
+        "CubeMaps/SpaceBox_front5_posZ.bmp",
+        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }
@@ -934,18 +936,19 @@ int main(void)
     Object* Sun = scene->sceneObjects[0];
 
     std::vector<std::pair<Object*, float>> planets = {
-        {scene->sceneObjects[1],  58.0f},  // Mercury
-        {scene->sceneObjects[2], 108.0f},  // Venus
-        {scene->sceneObjects[3], 150.0f},  // Earth
-        {scene->sceneObjects[4], 228.0f},  // Mars
-        {scene->sceneObjects[5], 778.0f},  // Jupiter
-        {scene->sceneObjects[6], 1430.0f}, // Saturn
-        {scene->sceneObjects[7], 2870.0f}, // Uranus
-        {scene->sceneObjects[8], 4490.0f}  // Neptune
+        {scene->sceneObjects[1],  1500.0f},  // Mercury
+        {scene->sceneObjects[2], 2500.0f},  // Venus
+        {scene->sceneObjects[3], 3500.0f},  // Earth
+        {scene->sceneObjects[4], 4500.0f},  // Mars
+        {scene->sceneObjects[5], 5500.0f},  // Jupiter
+        {scene->sceneObjects[6], 6500.0f}, // Saturn
+        {scene->sceneObjects[7], 6500.0f}, // Saturn_Ring
+        {scene->sceneObjects[8], 7500.0f}, // Uranus
+        {scene->sceneObjects[9], 8500.0f}  // Neptune
     };
 
     std::vector<float> orbitPeriods = {
-        4.0f,  10.0f,  20.0f,  40.0f, 100.0f, 200.0f, 300.0f, 400.0f
+        25.0f,  35.0f,  45.0f,  60.0f, 100.0f, 200.0f, 200.0f, 300.0f, 400.0f
     };
 
     for (size_t i = 0; i < planets.size(); i++) {
@@ -956,25 +959,18 @@ int main(void)
         aKeyframeAnimation* orbit = new aKeyframeAnimation();
         orbit->loop = true;
 
-        orbit->AddKeyframe(0.0f, glm::vec3(radius, 0, 0), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, 0, radius * 0.71f), glm::vec3(0, 0, 45), EaseInOut);
-        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, 0, radius), glm::vec3(0, 0, 90), EaseInOut);
-        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, 0, radius * 0.71f), glm::vec3(0, 0, 135), EaseInOut);
-        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, 0, 0), glm::vec3(0, 0, 180), EaseInOut);
-        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, 0, -radius * 0.71f), glm::vec3(0, 0, 225), EaseInOut);
-        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, 0, -radius), glm::vec3(0, 0, 270), EaseInOut);
-        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, 0, -radius * 0.71f), glm::vec3(0, 0, 315), EaseInOut);
-        orbit->AddKeyframe(period, glm::vec3(radius, 0, 0), glm::vec3(0, 0, 360), EaseInOut);
+        // Add keyframes with Y-axis offset of -1000
+        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), EaseInOut);
+        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, -250, radius), glm::vec3(0, 0, 90), EaseInOut);
+        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), EaseInOut);
+        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, -250, 0), glm::vec3(0, 0, 180), EaseInOut);
+        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), EaseInOut);
+        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, -250, -radius), glm::vec3(0, 0, 270), EaseInOut);
+        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), EaseInOut);
+        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), EaseInOut);
 
         scene->AddActionToObj(orbit, planet);
-
-        //aKeyframeAnimation* rotation = new aKeyframeAnimation();
-        //rotation->loop = true;
-
-        //rotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0));
-        //rotation->AddKeyframe(1.0f, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0));
-
-        //scene->AddActionToObj(rotation, planet);
     }
 
     scene->Start();

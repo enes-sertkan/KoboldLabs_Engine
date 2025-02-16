@@ -2,6 +2,6 @@
 <ModelFile>
 <name> Cube
 <filePath> assets/models/Cube_xyz_n_uv.ply
-<fileType> XYZNUV
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

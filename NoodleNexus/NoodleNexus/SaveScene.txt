@@ -9,6 +9,7 @@ venus.txt
 mars.txt
 jupiter.txt
 saturn.txt
+saturn-ring.txt
 uranus.txt
 neptune.txt
 skysphere.txt
@@ -21,9 +22,9 @@ selectBox.txt
 <Model-> Sun
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 20 0 0
+<Scale-> 600 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -33,9 +34,9 @@ selectBox.txt
 <Model-> Mercury
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 0
+<Scale-> 18 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -45,9 +46,9 @@ selectBox.txt
 <Model-> Venus
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.1151e-38 0
+<Scale-> 30 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -57,12 +58,11 @@ selectBox.txt
 <Model-> Earth
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 0
+<Scale-> 35 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -70,12 +70,11 @@ selectBox.txt
 <Model-> Mars
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 0
+<Scale-> 25 0 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -83,25 +82,36 @@ selectBox.txt
 <Model-> Jupiter
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 7.17465e-43 0
+<Scale-> 150 0 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
-<Name-> Saturn
-<Model-> Saturn
+<Name-> Saturn_Sphere
+<Model-> Saturn_Sphere
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 6.97714e+22
+<Scale-> 100 0 1.55521e+24
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Saturn_Ring
+<Model-> Saturn_Ring
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 0 -250 0
+<Rotation-> 0 0 0
+<Scale-> 100 1.1151e-38 1.55499e+24
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
 <--Object>
 
 <Object-->
@@ -109,12 +119,11 @@ selectBox.txt
 <Model-> Uranus
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 9.15816e+08
+<Scale-> 85 0 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -122,12 +131,11 @@ selectBox.txt
 <Model-> Neptune
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 100 0 0
+<Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 10 0 1.92032e+31
+<Scale-> 75 7.63937e-39 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -144,42 +152,42 @@ selectBox.txt
 <--Object>
 
 <Light-->
-<Position-> 1.4 69999.4 -40048.7 1
-<Diffuse-> 1 1 1 1
+<Position-> 40.5 -250 20.1 1
+<Diffuse-> 1.27 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
+<Atten-> 0 0 0 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
+<Param1-> 2 197.201 201.701 0
 <Param2-> 1 0 0 0
 <--Light>
 
+<Light-->
+<Position-> 0 69999.4 0 1
+<Diffuse-> 2.82 2.73 1 1
+<Specular-> 1 1 1 -7.4
+<Atten-> 0 8.67043e-12 7.14723e-12 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 0 20 35 0
+<Param2-> 0 0 0 0
+<--Light>
+
 <Camera-->
-<Position-> -85 0.5 335
-<Rotation-> 163 84
+<Position-> 2067 1254 -2777
+<Rotation-> 0 0
 <--Camera>
 
 <Camera-->
-<Position-> -277 2 243
-<Rotation-> 0 10
+<Position-> -2067 1254 2777
+<Rotation-> 0 0
 <--Camera>
 
 <Camera-->
-<Position-> -238 6 165
-<Rotation-> 250 100
+<Position-> 3500 3000 -1500
+<Rotation-> 0 0
 <--Camera>
 
 <Camera-->
-<Position-> -310 4 17
-<Rotation-> 163 84
-<--Camera>
-
-<Camera-->
-<Position-> -1018 250 192
-<Rotation-> 50 50
-<--Camera>
-
-<Camera-->
-<Position-> -2148 533 -212
+<Position-> 3500 7000 -1500
 <Rotation-> 0 0
 <--Camera>
 
