@@ -340,32 +340,28 @@ void Scene::Start()
 
 
 
-void Scene::Update()
-{
-  
-    if (!isFlyCamera)
-    {
+void Scene::Update() {
+    if (!isFlyCamera) {
         MoveCameraToPoint();
         fCamera->FreezePlayerRotation();
     }
-    else
-    {
+    else {
         fCamera->UnfreezePlayerRotation();
     }
-    for (Object* obj : sceneObjects)
-    {
-        if (obj)
-            if (actions.size()>0)
-                for (Action* action : obj->actions)
-                    if (action) action->Update();
 
+    for (Object* obj : sceneObjects) {
+        if (obj) {
+            std::cout << "Updating object: " << obj->mesh->uniqueFriendlyName << std::endl;
+            for (Action* action : obj->actions) {
+                if (action) {
+                    std::cout << "Updating action for object: " << obj->mesh->uniqueFriendlyName << std::endl;
+                    action->Update();
+                }
+            }
+        }
     }
 
-    
-
-  
     UpdateDeltaTime();
-
 }
 
 void Scene::AddActionToObj(Action* action, Object* object)

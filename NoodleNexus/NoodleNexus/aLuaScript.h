@@ -70,7 +70,7 @@ public:
         //CallLuaFunction("RotateObj", start, end, seconds, time, control);
         //CallLuaFunction("MoveAlongCurve", start, end, seconds, time, control);
         //CallLuaFunction("FollowObject", start, end, seconds, time, control);
-        CallLuaFunction("MoveObj", start, end, seconds, speed, control);
+        //CallLuaFunction("MoveObj", start, end, seconds, speed, control);
 
 
         //lua_settop(L, 0);

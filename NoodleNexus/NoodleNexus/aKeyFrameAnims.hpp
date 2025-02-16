@@ -7,11 +7,12 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-#include <vector>
+#include <glm/glm.hpp>
+#include "Action.h"
 
 // Define M_PI if it is not already defined
 #ifndef M_PI
-#define M_PI 3.14159265358979323846
+#define M_PI 3.14
 #endif
 
 // Vector2 structure for 2D positions
@@ -39,33 +40,44 @@ inline float easeInSine(float t) { return 1 - cos(t * M_PI / 2); }
 inline float easeOutSine(float t) { return sin(t * M_PI / 2); }
 inline float easeInOutSine(float t) { return -(cos(M_PI * t) - 1) / 2; }
 
-// Keyframe structure
+// Convenience wrapper functions
+inline float EaseIn(float t) { return easeInSine(t); }
+inline float EaseOut(float t) { return easeOutSine(t); }
+inline float EaseInOut(float t) { return easeInOutSine(t); }
+
 struct Keyframe {
-    Vector2 position;
-    float rotation;
+    glm::vec3 position; // Use glm::vec3 for position
+    glm::vec3 rotation; // Use glm::vec3 for rotation (Euler angles)
     float time;
     std::function<float(float)> easingFunction;
 
-    Keyframe(Vector2 pos, float rot, float t, std::function<float(float)> easing = linear)
+    Keyframe(glm::vec3 pos, glm::vec3 rot, float t, std::function<float(float)> easing = linear)
         : position(pos), rotation(rot), time(t), easingFunction(easing) {}
 };
 
-// KeyframeAnimation class
-class aKeyframeAnimation {
+class aKeyframeAnimation : public Action {
 public:
-    aKeyframeAnimation(const std::vector<Keyframe>& keyframes, bool loop = false)
-        : keyframes(keyframes), loop(loop), currentTime(0.0f), currentKeyframeIndex(0) {}
+    aKeyframeAnimation() : currentTime(0.0f), currentKeyframeIndex(0), loop(false) {}
+
+    void AddKeyframe(float time, glm::vec3 position, glm::vec3 rotation, std::function<float(float)> easing = linear) {
+        keyframes.emplace_back(position, rotation, time, easing);
+    }
+
+    void SetEasingFunctionForKeyframe(size_t index, std::function<float(float)> easingFunction) {
+        if (index < keyframes.size()) {
+            keyframes[index].easingFunction = easingFunction;
+        }
+    }
 
     void update(float deltaTime, float timeScale);
-    Vector2 getPosition() const { return currentPosition; }
-    float getRotation() const { return currentRotation; }
+    glm::vec3 getPosition() const { return currentPosition; }
+    glm::vec3 getRotation() const { return currentRotation; }
 
-private:
     std::vector<Keyframe> keyframes;
     size_t currentKeyframeIndex;
     float currentTime;
-    Vector2 currentPosition;
-    float currentRotation;
+    glm::vec3 currentPosition;
+    glm::vec3 currentRotation;
     bool loop;
 };
 
