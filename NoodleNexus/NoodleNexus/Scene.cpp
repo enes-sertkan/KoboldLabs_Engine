@@ -351,10 +351,10 @@ void Scene::Update() {
 
     for (Object* obj : sceneObjects) {
         if (obj) {
-            std::cout << "Updating object: " << obj->mesh->uniqueFriendlyName << std::endl;
+            //std::cout << "Updating object: " << obj->mesh->uniqueFriendlyName << std::endl;
             for (Action* action : obj->actions) {
                 if (action) {
-                    std::cout << "Updating action for object: " << obj->mesh->uniqueFriendlyName << std::endl;
+                    //std::cout << "Updating action for object: " << obj->mesh->uniqueFriendlyName << std::endl;
                     action->Update();
                 }
             }

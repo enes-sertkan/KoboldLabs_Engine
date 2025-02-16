@@ -545,11 +545,11 @@ void AddActions(Scene* scene, GLuint program)
 {
 
 
-    //Object* playerObject = scene->sceneObjects[1];
+    Object* playerObject = scene->sceneObjects[1];
 
     //// Add the player camera action (with an offset for camera positioning)
-    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
-    //scene->AddActionToObj(playerCameraAction, playerObject);
+    aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    scene->AddActionToObj(playerCameraAction, playerObject);
 
 
     //aPlayerMovement* playerMovement = new aPlayerMovement();
@@ -589,15 +589,15 @@ void AddActions(Scene* scene, GLuint program)
     scene->sceneObjects[0]->mesh->transperency = 1;
     scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-    //scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
-    //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[1]->mesh->textures[0] = "yellow.bmp";
+    scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+    scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
     //scene->sceneObjects[1]->mesh->transperency = 0.2;
     //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-    //scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
-    //scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[2]->mesh->textures[0] = "yellow.bmp";
+    scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+    scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
     //scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
     //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
@@ -931,39 +931,54 @@ int main(void)
     //scene->AddActionToObj(triggerAction, RacingCar);
 
 
-    // Create Sun
-    Object* Sun = scene->sceneObjects[1];
+    Object* Sun = scene->sceneObjects[0];
 
-    // Create Earth
-    Object* Earth = scene->sceneObjects[2];
+    std::vector<std::pair<Object*, float>> planets = {
+        {scene->sceneObjects[1],  58.0f},  // Mercury
+        {scene->sceneObjects[2], 108.0f},  // Venus
+        {scene->sceneObjects[3], 150.0f},  // Earth
+        {scene->sceneObjects[4], 228.0f},  // Mars
+        {scene->sceneObjects[5], 778.0f},  // Jupiter
+        {scene->sceneObjects[6], 1430.0f}, // Saturn
+        {scene->sceneObjects[7], 2870.0f}, // Uranus
+        {scene->sceneObjects[8], 4490.0f}  // Neptune
+    };
 
-    // Orbit Animation
-    aKeyframeAnimation* earthOrbit = new aKeyframeAnimation();
-    earthOrbit->loop = true; // Set to loop for continuous orbit
-    earthOrbit->AddKeyframe(0.0f, glm::vec3(30, 0, 0), glm::vec3(0, 0, 0), linear);      // Start at (30, 0, 0)
-    earthOrbit->AddKeyframe(5.0f, glm::vec3(0, -30, 0), glm::vec3(0, 0, 90), EaseOut);   // Move to (0, -30, 0)
-    earthOrbit->AddKeyframe(10.0f, glm::vec3(-30, 0, 0), glm::vec3(0, 0, 180), EaseInOut); // Move to (-30, 0, 0)
-    earthOrbit->AddKeyframe(15.0f, glm::vec3(0, 30, 0), glm::vec3(0, 0, 270), EaseOut);  // Move to (0, 30, 0)
-    earthOrbit->AddKeyframe(20.0f, glm::vec3(30, 0, 0), glm::vec3(0, 0, 360), EaseIn);   // Return to (30, 0, 0)
+    std::vector<float> orbitPeriods = {
+        4.0f,  10.0f,  20.0f,  40.0f, 100.0f, 200.0f, 300.0f, 400.0f
+    };
 
-    scene->AddActionToObj(earthOrbit, Earth);
+    for (size_t i = 0; i < planets.size(); i++) {
+        Object* planet = planets[i].first;
+        float radius = planets[i].second;
+        float period = orbitPeriods[i];
 
-    // Rotation Animation
-    aKeyframeAnimation* earthRotation = new aKeyframeAnimation();
-    earthRotation->loop = true; // Continuous rotation
-    earthRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0));
-    earthRotation->AddKeyframe(1.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 360));
+        aKeyframeAnimation* orbit = new aKeyframeAnimation();
+        orbit->loop = true;
 
-    scene->AddActionToObj(earthRotation, Earth);
+        orbit->AddKeyframe(0.0f, glm::vec3(radius, 0, 0), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, 0, radius * 0.71f), glm::vec3(0, 0, 45), EaseInOut);
+        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, 0, radius), glm::vec3(0, 0, 90), EaseInOut);
+        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, 0, radius * 0.71f), glm::vec3(0, 0, 135), EaseInOut);
+        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, 0, 0), glm::vec3(0, 0, 180), EaseInOut);
+        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, 0, -radius * 0.71f), glm::vec3(0, 0, 225), EaseInOut);
+        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, 0, -radius), glm::vec3(0, 0, 270), EaseInOut);
+        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, 0, -radius * 0.71f), glm::vec3(0, 0, 315), EaseInOut);
+        orbit->AddKeyframe(period, glm::vec3(radius, 0, 0), glm::vec3(0, 0, 360), EaseInOut);
 
-    // Keyframe Event Trigger
-    aKeyframeAnimation* triggerAction = new aKeyframeAnimation();
-    triggerAction->AddKeyframe(10.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0)); // Trigger action at 10s
+        scene->AddActionToObj(orbit, planet);
 
-    scene->AddActionToObj(triggerAction, Earth);
+        //aKeyframeAnimation* rotation = new aKeyframeAnimation();
+        //rotation->loop = true;
 
-    // Start the animation sequence
+        //rotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0));
+        //rotation->AddKeyframe(1.0f, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0));
+
+        //scene->AddActionToObj(rotation, planet);
+    }
+
     scene->Start();
+
 
 
 

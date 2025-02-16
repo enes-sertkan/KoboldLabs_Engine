@@ -1,14 +1,14 @@
 #ifndef AKEYFRAMEANIMATION_HPP
 #define AKEYFRAMEANIMATION_HPP
 
-#include <GLFW/glfw3.h>
 #include <vector>
 #include <functional>
 #include <cmath>
 #include <algorithm>
 #include <iostream>
-#include <glm/glm.hpp>
 #include "Action.h"
+#include <glm/glm.hpp> 
+#include <glm/gtc/matrix_transform.hpp>
 
 // Define M_PI if it is not already defined
 #ifndef M_PI
@@ -69,7 +69,7 @@ public:
         }
     }
 
-    void update(float deltaTime, float timeScale);
+    void Update() override; // Override the Update method from Action
     glm::vec3 getPosition() const { return currentPosition; }
     glm::vec3 getRotation() const { return currentRotation; }
 

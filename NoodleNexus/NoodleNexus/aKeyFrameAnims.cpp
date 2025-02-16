@@ -1,13 +1,14 @@
 #include "aKeyFrameAnims.hpp"
-#include <algorithm>
 #include "Scene.hpp"
 
-Object* object = new Object();
-
-void aKeyframeAnimation::update(float deltaTime, float timeScale) {
-    std::cout << "Updating animation for object: " << object->mesh->uniqueFriendlyName << std::endl;
+void aKeyframeAnimation::Update() {
     if (keyframes.empty()) return;
 
+    // Get deltaTime from the scene or another source
+    float deltaTime = 0.016f; // Example: 60 FPS
+
+    // Apply time scaling
+    float timeScale = 1.0f; // Use appropriate timeScale
     deltaTime *= timeScale;
 
     // Handle loop
@@ -50,6 +51,9 @@ void aKeyframeAnimation::update(float deltaTime, float timeScale) {
     // Interpolate position and rotation
     currentPosition = glm::mix(keyframes[currentKeyframeIndex].position, keyframes[currentKeyframeIndex + 1].position, t);
     currentRotation = glm::mix(keyframes[currentKeyframeIndex].rotation, keyframes[currentKeyframeIndex + 1].rotation, t);
+
+    object->mesh->positionXYZ = currentPosition;
+    object->mesh->rotationEulerXYZ = currentRotation;
 
     std::cout << "Current Position: (" << currentPosition.x << ", " << currentPosition.y << ", " << currentPosition.z << ")\n";
     std::cout << "Current Rotation: (" << currentRotation.x << ", " << currentRotation.y << ", " << currentRotation.z << ")\n";
