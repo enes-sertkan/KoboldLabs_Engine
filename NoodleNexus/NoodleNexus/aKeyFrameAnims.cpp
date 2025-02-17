@@ -56,19 +56,21 @@ void aKeyframeAnimation::Update() {
     }
 
     float t = (currentTime - keyframes[currentKeyframeIndex].time) / (keyframes[currentKeyframeIndex + 1].time - keyframes[currentKeyframeIndex].time);
-    t = std::clamp(t, 0.0f, 1.0f);
+ //   t = std::clamp(t, 0.0f, 1.0f);
     t = keyframes[currentKeyframeIndex].easingFunction(t);
 
     // Interpolate position and rotation
     currentPosition = glm::mix(keyframes[currentKeyframeIndex].position, keyframes[currentKeyframeIndex + 1].position, t);
     currentRotation = glm::mix(keyframes[currentKeyframeIndex].rotation, keyframes[currentKeyframeIndex + 1].rotation, t);
-    currentRotation = glm::mix(keyframes[currentKeyframeIndex].scale, keyframes[currentKeyframeIndex + 1].scale, t);
+    currentScale = glm::mix(keyframes[currentKeyframeIndex].scale, keyframes[currentKeyframeIndex + 1].scale, t);
 
     // Update object's position and rotation if there's a significant change
-    if (currentPosition != object->mesh->positionXYZ || currentRotation != object->mesh->rotationEulerXYZ /*|| currentScale.x != object->mesh->uniformScale*/) {
+    if (currentPosition != object->mesh->positionXYZ || currentRotation != object->mesh->rotationEulerXYZ || currentScale.x != object->mesh->uniformScale) {
         object->mesh->positionXYZ = currentPosition;
         object->mesh->rotationEulerXYZ = currentRotation;
-        //object->mesh->uniformScale = currentScale.x;
+
+        std::cout << "Setting scale to " << currentScale.x << std::endl;
+        object->mesh->uniformScale = currentScale.x;
     }
 }
 

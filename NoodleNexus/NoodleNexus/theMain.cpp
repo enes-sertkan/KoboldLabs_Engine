@@ -987,13 +987,13 @@ int main(void)
     aKeyframeAnimation* sunRotation = new aKeyframeAnimation();
     sunRotation->loop = true;
 
-    float sunRotationPeriod = 15.0f;
+    float sunRotationPeriod = 2.0f;
 
     // Add keyframes for smooth rotation
-    sunRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.25f, glm::vec3(0, 0, 0), glm::vec3(0, 90, 0), glm::vec3(1.0f), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 180, 0), glm::vec3(1.0f), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.75f, glm::vec3(0, 0, 0), glm::vec3(0, 270, 0), glm::vec3(1.0f), EaseInOut);
+    sunRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Sun->mesh->uniformScale), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.25f, glm::vec3(0, 0, 0), glm::vec3(0, 90, 0), glm::vec3(Sun->mesh->uniformScale*3), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 180, 0), glm::vec3(Sun->mesh->uniformScale*3), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.75f, glm::vec3(0, 0, 0), glm::vec3(0, 270, 0), glm::vec3(Sun->mesh->uniformScale), EaseInOut);
     sunRotation->AddKeyframe(sunRotationPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0), glm::vec3(1.0f), EaseInOut);
 
     // Attach rotation animation to the Sun
@@ -1003,16 +1003,7 @@ int main(void)
     aKeyframeAnimation* sunScaling = new aKeyframeAnimation();
     sunScaling->loop = true;
 
-    float sunScalingPeriod = 15.0f;
 
-    sunScaling->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
-    sunScaling->AddKeyframe(sunScalingPeriod * 2.f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.5f), EaseIn);
-    sunScaling->AddKeyframe(sunScalingPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(2.0f), linear);
-    sunScaling->AddKeyframe(sunScalingPeriod * 10.f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.5f), EaseOut);
-    sunScaling->AddKeyframe(sunScalingPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
-
-    // Attach scaling animation to the Sun
-    scene->AddActionToObj(sunScaling, Sun);
 
 
 
@@ -1046,15 +1037,15 @@ int main(void)
         orbit->loop = true;
 
         // Add keyframes with Y-axis offset of -250
-        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
+        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), glm::vec3(planet->mesh->uniformScale), EaseInOut);
         orbit->AddKeyframe(period * 0.25f, glm::vec3(0, -250, radius), glm::vec3(0, 0, 90), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), glm::vec3(planet->mesh->uniformScale), EaseInOut);
         orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, -250, 0), glm::vec3(0, 0, 180), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), glm::vec3(planet->mesh->uniformScale), EaseInOut);
         orbit->AddKeyframe(period * 0.75f, glm::vec3(0, -250, -radius), glm::vec3(0, 0, 270), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), glm::vec3(planet->mesh->uniformScale), EaseInOut);
+        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), glm::vec3(1.0f), EaseInOut);
 
         // Store orbit animation in vector
         orbits.push_back(orbit);

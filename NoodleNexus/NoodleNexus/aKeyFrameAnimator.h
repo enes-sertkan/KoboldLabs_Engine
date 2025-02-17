@@ -48,17 +48,24 @@ inline float EaseInOut(float t) { return easeInOutSine(t); }
 struct Keyframe {
     glm::vec3 position; // Use glm::vec3 for position
     glm::vec3 rotation; // Use glm::vec3 for rotation (Euler angles)
-    glm::vec3 scale;
+    glm::vec3 scale; // Use glm::vec3 for rotation (Euler angles)
     float time;
     std::function<float(float)> easingFunction;
 
-    Keyframe(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale, float t, std::function<float(float)> easing = linear)
-        : position(pos), rotation(rot),scale(scale), time(t), easingFunction(easing) {}
+    Keyframe(glm::vec3 pos, glm::vec3 rot, glm::vec3 sc, float t, std::function<float(float)> easing = linear)
+   {
+    
+        position = pos;
+        rotation = rot;
+        scale = sc;
+        time = t;
+        easingFunction = easing;
+    }
 };
 
-class aKeyframeAnimation : public Action {
+class aKeyframeAnimator : public Action {
 public:
-    aKeyframeAnimation() : currentTime(0.0f), currentKeyframeIndex(0), loop(false), isPlaying(true), timeScale(1.0f) {}
+    aKeyframeAnimator() : currentTime(0.0f), currentKeyframeIndex(0), loop(false) {}
 
     void AddKeyframe(float time, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, std::function<float(float)> easing = linear) {
         keyframes.emplace_back(position, rotation, scale, time, easing);
@@ -73,25 +80,12 @@ public:
     void Update() override; // Override the Update method from Action
     glm::vec3 getPosition() const { return currentPosition; }
     glm::vec3 getRotation() const { return currentRotation; }
-    glm::vec3 getScale() const { return currentScale; }
-
-    // Player control methods
-    void NextSequence();
-    void PreviousSequence();
-    void SetSpeed(float speed);
-    void TogglePause();
-    void ReversePlay();
 
     std::vector<Keyframe> keyframes;
     size_t currentKeyframeIndex;
     float currentTime;
     glm::vec3 currentPosition;
     glm::vec3 currentRotation;
-    glm::vec3 currentScale;
     bool loop;
-    bool isPlaying;
-    bool reversePlay;
-    float timeScale;
 };
-
 #endif // AKEYFRAMEANIMATION_HPP

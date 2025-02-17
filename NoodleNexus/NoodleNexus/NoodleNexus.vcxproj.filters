@@ -200,6 +200,9 @@
     <ClCompile Include="aKeyFrameAnims.cpp">
       <Filter>Engine\Animations</Filter>
     </ClCompile>
+    <ClCompile Include="aKeyAnimator.cpp">
+      <Filter>Engine\Animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -350,6 +353,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aKeyFrameAnims.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aKeyFrameAnimator.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

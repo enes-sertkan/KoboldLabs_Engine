@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aKeyAnimator.cpp" />
     <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
+    <ClInclude Include="aKeyFrameAnimator.h" />
     <ClInclude Include="aKeyFrameAnims.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMoveInDirection.h" />
