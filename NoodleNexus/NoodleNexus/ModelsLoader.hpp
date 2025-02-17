@@ -21,8 +21,8 @@ void CreateModelFiles(KLFileManager* fileManager)
 
     // Solar System
     modelInfo.modelName = "Atom";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "atom.txt", "XYZNUVRGBA");
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "atom.txt", "XYZNUV");
 
     modelInfo.modelName = "Proton";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";

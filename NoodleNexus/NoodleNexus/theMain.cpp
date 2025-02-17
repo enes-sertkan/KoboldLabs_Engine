@@ -980,7 +980,6 @@ int main(void)
     //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
     //scene->AddActionToObj(triggerAction, RacingCar);
 
-// Assuming the Atom, Proton, Neutron, and Electron are the first four objects in the scene
     Object* Atom = scene->sceneObjects[0];
     Object* Proton = scene->sceneObjects[1];
     Object* Neutron = scene->sceneObjects[2];
@@ -1001,50 +1000,58 @@ int main(void)
 
     scene->AddActionToObj(atomRotation, Atom);
 
-    // 2. Move Proton in X and Y axes
+    // 2. Move Proton in a circular orbit around the Atom
     aKeyframeAnimation* protonMovement = new aKeyframeAnimation();
     protonMovement->loop = true;
 
     float protonMovementPeriod = 10.0f;  // You can adjust this period
+    float protonRadius = 100.0f;  // Adjust the radius for Proton's orbit
 
-    protonMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
-    protonMovement->AddKeyframe(protonMovementPeriod * 0.25f, glm::vec3(50, 50, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
-    protonMovement->AddKeyframe(protonMovementPeriod * 0.5f, glm::vec3(100, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
-    protonMovement->AddKeyframe(protonMovementPeriod * 0.75f, glm::vec3(50, -50, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
-    protonMovement->AddKeyframe(protonMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    // Keyframes for circular orbit (using sin and cos to create circular motion)
+    protonMovement->AddKeyframe(0.0f, glm::vec3(protonRadius * cos(0), protonRadius * sin(0), 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.25f, glm::vec3(protonRadius * cos(glm::radians(90.0f)), protonRadius * sin(glm::radians(90.0f)), 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.5f, glm::vec3(protonRadius * cos(glm::radians(180.0f)), protonRadius * sin(glm::radians(180.0f)), 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.75f, glm::vec3(protonRadius * cos(glm::radians(270.0f)), protonRadius * sin(glm::radians(270.0f)), 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod, glm::vec3(protonRadius * cos(0), protonRadius * sin(0), 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
 
     scene->AddActionToObj(protonMovement, Proton);
 
-    // 3. Move Neutron in X and Z axes
+    // 3. Move Neutron in a circular orbit (using X and Z axes)
     aKeyframeAnimation* neutronMovement = new aKeyframeAnimation();
     neutronMovement->loop = true;
 
     float neutronMovementPeriod = 12.0f;  // You can adjust this period
+    float neutronRadius = 100.0f;  // Adjust the radius for Neutron's orbit
 
-    neutronMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
-    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.25f, glm::vec3(50, 0, 50), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
-    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.5f, glm::vec3(100, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
-    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.75f, glm::vec3(50, 0, -50), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
-    neutronMovement->AddKeyframe(neutronMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    // Keyframes for circular orbit (using sin and cos to create circular motion)
+    neutronMovement->AddKeyframe(0.0f, glm::vec3(neutronRadius * cos(0), 0, neutronRadius * sin(0)), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.25f, glm::vec3(neutronRadius * cos(glm::radians(90.0f)), 0, neutronRadius * sin(glm::radians(90.0f))), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.5f, glm::vec3(neutronRadius * cos(glm::radians(180.0f)), 0, neutronRadius * sin(glm::radians(180.0f))), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.75f, glm::vec3(neutronRadius * cos(glm::radians(270.0f)), 0, neutronRadius * sin(glm::radians(270.0f))), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod, glm::vec3(neutronRadius * cos(0), 0, neutronRadius * sin(0)), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
 
     scene->AddActionToObj(neutronMovement, Neutron);
 
-    // 4. Move Electron in Y and Z axes
+    // 4. Move Electron in a circular orbit (using Y and Z axes)
     aKeyframeAnimation* electronMovement = new aKeyframeAnimation();
     electronMovement->loop = true;
 
     float electronMovementPeriod = 8.0f;  // You can adjust this period
+    float electronRadius = 100.0f;  // Adjust the radius for Electron's orbit
 
-    electronMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
-    electronMovement->AddKeyframe(electronMovementPeriod * 0.25f, glm::vec3(0, 50, 50), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
-    electronMovement->AddKeyframe(electronMovementPeriod * 0.5f, glm::vec3(0, 100, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
-    electronMovement->AddKeyframe(electronMovementPeriod * 0.75f, glm::vec3(0, 50, -50), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
-    electronMovement->AddKeyframe(electronMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    // Keyframes for circular orbit (using sin and cos to create circular motion)
+    electronMovement->AddKeyframe(0.0f, glm::vec3(0, electronRadius * cos(0), electronRadius * sin(0)), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.25f, glm::vec3(0, electronRadius * cos(glm::radians(90.0f)), electronRadius * sin(glm::radians(90.0f))), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.5f, glm::vec3(0, electronRadius * cos(glm::radians(180.0f)), electronRadius * sin(glm::radians(180.0f))), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.75f, glm::vec3(0, electronRadius * cos(glm::radians(270.0f)), electronRadius * sin(glm::radians(270.0f))), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod, glm::vec3(0, electronRadius * cos(0), electronRadius * sin(0)), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
 
     scene->AddActionToObj(electronMovement, Electron);
 
     // Start the scene
     scene->Start();
+
+
 
 
 
