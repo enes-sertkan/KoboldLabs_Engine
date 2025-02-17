@@ -20,48 +20,21 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUVRGBA");
 
     // Solar System
-    modelInfo.modelName = "Sun";
+    modelInfo.modelName = "Atom";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "sun.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "atom.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Earth";
+    modelInfo.modelName = "Proton";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "earth.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "proton.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Mercury";
+    modelInfo.modelName = "Neutron";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "mercury.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "neutron.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Venus";
+    modelInfo.modelName = "Electron";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "venus.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Mars";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "mars.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Jupiter";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "jupiter.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Saturn_Sphere";
-    modelInfo.meshPath = "assets/models/Saturn_Sphere.ply";
-    fileManager->WriteModelFile(&modelInfo, "saturn.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Saturn_Ring";
-    modelInfo.meshPath = "assets/models/Saturn_Ring.ply";
-    fileManager->WriteModelFile(&modelInfo, "saturn-ring.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Uranus";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "uranus.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "Neptune";
-    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "neptune.txt", "XYZNUVRGBA");
-
-
-
+    fileManager->WriteModelFile(&modelInfo, "electron.txt", "XYZNUVRGBA");
 
     //SelectBox
     modelInfo.modelName = "Select_Box";

@@ -4,6 +4,21 @@ This scene editor provides a keyboard-controlled interface to adjust the **Posit
 
 ## Controls Overview
 
+Best to run on Release from the code not from the folder.&nbsp;
+
+1 - 5 keypad numbers speed
+9 nexframes
+
+, "comma" prev frame
+
+Space pause and resume
+
+R reverse
+
+N change camera location
+
+WASD moving around map
+
 ### Mode Selection
 
 - **P**: Select the next object in the scene.

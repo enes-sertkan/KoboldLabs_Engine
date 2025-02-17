@@ -629,53 +629,53 @@ void AddActions(Scene* scene, GLuint program)
     aTextureWiggler* textureWiggler02 = new aTextureWiggler();
     textureWiggler02->affectedTextures[0] = 1;
     textureWiggler02->maxBlend = 1.0;
-    scene->AddActionToObj(textureWiggler02, scene->sceneObjects[7]);
+    scene->AddActionToObj(textureWiggler02, scene->sceneObjects[2]);
 
-    scene->sceneObjects[0]->mesh->textures[0] = "sun.bmp";
-    scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[0]->mesh->transperency = 1;
-    scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
+    //scene->sceneObjects[0]->mesh->textures[0] = "sun.bmp";
+    //scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[0]->mesh->transperency = 1;
+    //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-    scene->sceneObjects[1]->mesh->textures[0] = "mercury.bmp";
-    scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
-    scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[1]->mesh->transperency = 0.2;
-    //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+    //scene->sceneObjects[1]->mesh->textures[0] = "mercury.bmp";
+    //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+    //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+    ////scene->sceneObjects[1]->mesh->transperency = 0.2;
+    ////scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-    scene->sceneObjects[2]->mesh->textures[0] = "venus.bmp";
-    scene->sceneObjects[2]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[2]->mesh->textures[0] = "venus.bmp";
+    //scene->sceneObjects[2]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[3]->mesh->textures[0] = "earth.bmp";
-    scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
-    scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[3]->mesh->textures[0] = "earth.bmp";
+    //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+    //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[4]->mesh->textures[0] = "mars.bmp";
-    scene->sceneObjects[4]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
-    scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[4]->mesh->textures[0] = "mars.bmp";
+    //scene->sceneObjects[4]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
+    //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[5]->mesh->textures[0] = "jupiter.bmp";
-    scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
-
-
-    scene->sceneObjects[6]->mesh->textures[0] = "saturn.bmp";
-    scene->sceneObjects[6]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+    //scene->sceneObjects[5]->mesh->textures[0] = "jupiter.bmp";
+    //scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[5]->mesh->textureFillType[0] = 2;
 
 
-    scene->sceneObjects[8]->mesh->textures[0] = "uranus.bmp";
-    scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-    scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[6]->mesh->textures[0] = "saturn.bmp";
+    //scene->sceneObjects[6]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
 
-    scene->sceneObjects[9]->mesh->textures[0] = "neptune.bmp";
-    scene->sceneObjects[9]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[9]->mesh->transperency = 1;
+
+    //scene->sceneObjects[8]->mesh->textures[0] = "uranus.bmp";
+    //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+    //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+
+    //scene->sceneObjects[9]->mesh->textures[0] = "neptune.bmp";
+    //scene->sceneObjects[9]->mesh->blendRatio[0] = 2;
+    //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
+    //scene->sceneObjects[9]->mesh->transperency = 1;
 
     //scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
     //scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
@@ -980,80 +980,72 @@ int main(void)
     //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
     //scene->AddActionToObj(triggerAction, RacingCar);
 
-    // Assume the Sun object is the first in the scene's object list
-    Object* Sun = scene->sceneObjects[0];
+// Assuming the Atom, Proton, Neutron, and Electron are the first four objects in the scene
+    Object* Atom = scene->sceneObjects[0];
+    Object* Proton = scene->sceneObjects[1];
+    Object* Neutron = scene->sceneObjects[2];
+    Object* Electron = scene->sceneObjects[3];
 
-    // Create and set up rotation animation for the Sun
-    aKeyframeAnimation* sunRotation = new aKeyframeAnimation();
-    sunRotation->loop = true;
+    // 1. Rotate Atom (like the Sun)
+    aKeyframeAnimation* atomRotation = new aKeyframeAnimation();
+    atomRotation->loop = true;
 
-    float sunRotationPeriod = 2.0f;
+    float atomRotationPeriod = 15.0f;  // Same as the sun rotation period
 
-    // Add keyframes for smooth rotation
-    sunRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Sun->mesh->uniformScale), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.25f, glm::vec3(0, 0, 0), glm::vec3(0, 90, 0), glm::vec3(Sun->mesh->uniformScale*3), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 180, 0), glm::vec3(Sun->mesh->uniformScale*3), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod * 0.75f, glm::vec3(0, 0, 0), glm::vec3(0, 270, 0), glm::vec3(Sun->mesh->uniformScale), EaseInOut);
-    sunRotation->AddKeyframe(sunRotationPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0), glm::vec3(1.0f), EaseInOut);
+    // Add keyframes for smooth rotation (Atom rotates around center)
+    atomRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Atom->mesh->uniformScale), EaseInOut);
+    atomRotation->AddKeyframe(atomRotationPeriod * 0.25f, glm::vec3(0, 0, 0), glm::vec3(0, 90, 0), glm::vec3(Atom->mesh->uniformScale), EaseInOut);
+    atomRotation->AddKeyframe(atomRotationPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 180, 0), glm::vec3(Atom->mesh->uniformScale), EaseInOut);
+    atomRotation->AddKeyframe(atomRotationPeriod * 0.75f, glm::vec3(0, 0, 0), glm::vec3(0, 270, 0), glm::vec3(Atom->mesh->uniformScale), EaseInOut);
+    atomRotation->AddKeyframe(atomRotationPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0), glm::vec3(Atom->mesh->uniformScale), EaseInOut);
 
-    // Attach rotation animation to the Sun
-    scene->AddActionToObj(sunRotation, Sun);
+    scene->AddActionToObj(atomRotation, Atom);
 
-    // Create and set up scaling animation for the Sun
-    aKeyframeAnimation* sunScaling = new aKeyframeAnimation();
-    sunScaling->loop = true;
+    // 2. Move Proton in X and Y axes
+    aKeyframeAnimation* protonMovement = new aKeyframeAnimation();
+    protonMovement->loop = true;
 
+    float protonMovementPeriod = 10.0f;  // You can adjust this period
 
+    protonMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.25f, glm::vec3(50, 50, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.5f, glm::vec3(100, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod * 0.75f, glm::vec3(50, -50, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
+    protonMovement->AddKeyframe(protonMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Proton->mesh->uniformScale), EaseInOut);
 
+    scene->AddActionToObj(protonMovement, Proton);
 
+    // 3. Move Neutron in X and Z axes
+    aKeyframeAnimation* neutronMovement = new aKeyframeAnimation();
+    neutronMovement->loop = true;
 
+    float neutronMovementPeriod = 12.0f;  // You can adjust this period
 
-    std::vector<std::pair<Object*, float>> planets = {
-        {scene->sceneObjects[1],  1500.0f},  // Mercury
-        {scene->sceneObjects[2], 2500.0f},  // Venus
-        {scene->sceneObjects[3], 3500.0f},  // Earth
-        {scene->sceneObjects[4], 4500.0f},  // Mars
-        {scene->sceneObjects[5], 5500.0f},  // Jupiter
-        {scene->sceneObjects[6], 6500.0f}, // Saturn
-        {scene->sceneObjects[7], 6500.0f}, // Saturn_Ring
-        {scene->sceneObjects[8], 7500.0f}, // Uranus
-        {scene->sceneObjects[9], 8500.0f}  // Neptune
-    };
+    neutronMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.25f, glm::vec3(50, 0, 50), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.5f, glm::vec3(100, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod * 0.75f, glm::vec3(50, 0, -50), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
+    neutronMovement->AddKeyframe(neutronMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Neutron->mesh->uniformScale), EaseInOut);
 
-    std::vector<float> orbitPeriods = {
-        25.0f,  35.0f,  45.0f,  60.0f, 100.0f, 200.0f, 200.0f, 300.0f, 400.0f
-    };
+    scene->AddActionToObj(neutronMovement, Neutron);
 
+    // 4. Move Electron in Y and Z axes
+    aKeyframeAnimation* electronMovement = new aKeyframeAnimation();
+    electronMovement->loop = true;
 
-    // Store orbit animations for all planets
-    std::vector<aKeyframeAnimation*> orbits;
+    float electronMovementPeriod = 8.0f;  // You can adjust this period
 
-    for (size_t i = 0; i < planets.size(); i++) {
-        Object* planet = planets[i].first;
-        float radius = planets[i].second;
-        float period = orbitPeriods[i];
+    electronMovement->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.25f, glm::vec3(0, 50, 50), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.5f, glm::vec3(0, 100, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod * 0.75f, glm::vec3(0, 50, -50), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
+    electronMovement->AddKeyframe(electronMovementPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(Electron->mesh->uniformScale), EaseInOut);
 
-        aKeyframeAnimation* orbit = new aKeyframeAnimation();
-        orbit->loop = true;
+    scene->AddActionToObj(electronMovement, Electron);
 
-        // Add keyframes with Y-axis offset of -250
-        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
-        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), glm::vec3(planet->mesh->uniformScale), EaseInOut);
-        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, -250, radius), glm::vec3(0, 0, 90), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), glm::vec3(planet->mesh->uniformScale), EaseInOut);
-        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, -250, 0), glm::vec3(0, 0, 180), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), glm::vec3(planet->mesh->uniformScale), EaseInOut);
-        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, -250, -radius), glm::vec3(0, 0, 270), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), glm::vec3(planet->mesh->uniformScale), EaseInOut);
-        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), glm::vec3(1.0f), EaseInOut);
-
-        // Store orbit animation in vector
-        orbits.push_back(orbit);
-
-        scene->AddActionToObj(orbit, planet);
-    }
-
+    // Start the scene
     scene->Start();
+
 
 
 
@@ -1138,11 +1130,10 @@ int main(void)
 //      ------------------------------------------ 
         handleKeyboardAsync(window, scene);
         handleMouseAsync(window);
-        for (size_t i = 0; i < orbits.size(); i++)
-        {
-            HandleInput(window, orbits[i]);
-        }
-        HandleInput(window, sunScaling);
+        HandleInput(window, atomRotation);
+        HandleInput(window, protonMovement);
+        HandleInput(window, neutronMovement);
+        HandleInput(window, electronMovement);
 
 
 

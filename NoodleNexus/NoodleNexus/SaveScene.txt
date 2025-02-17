@@ -2,140 +2,65 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-sun.txt
-earth.txt
-mercury.txt
-venus.txt
-mars.txt
-jupiter.txt
-saturn.txt
-saturn-ring.txt
-uranus.txt
-neptune.txt
+atom.txt
+proton.txt
+neutron.txt
+electron.txt
 skysphere.txt
 selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> Sun
-<Model-> Sun
+<Name-> Atom
+<Model-> Atom
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 -250 0
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 600 -4.31602e+08 -4.31602e+08
+<Scale-> 150 1.00102e-38 5.41843e-39
 <Visibility-> true
-<Shading-> true
+<Shading-> false
+<Color-> 1 0 0
 <--Object>
 
 <Object-->
-<Name-> Mercury
-<Model-> Mercury
+<Name-> Proton
+<Model-> Proton
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 -250 0
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 18 -4.31602e+08 -4.31602e+08
+<Scale-> 50 1.10544e-38 2.9389e-39
 <Visibility-> true
-<Shading-> true
+<Shading-> false
+<Color-> 0 0 1
 <--Object>
 
 <Object-->
-<Name-> Venus
-<Model-> Venus
+<Name-> Neutron
+<Model-> Neutron
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 -250 0
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 30 -4.31602e+08 -4.31602e+08
+<Scale-> 75 1.1151e-38 9.82655e-39
 <Visibility-> true
-<Shading-> true
+<Shading-> false
+<Color-> 1 1 0
 <--Object>
 
 <Object-->
-<Name-> Earth
-<Model-> Earth
+<Name-> Electron
+<Model-> Electron
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 0 -250 0
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 35 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Mars
-<Model-> Mars
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 25 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Jupiter
-<Model-> Jupiter
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 150 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Saturn_Sphere
-<Model-> Saturn_Sphere
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 100 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Saturn_Ring
-<Model-> Saturn_Ring
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 100 -4.31602e+08 -4.31602e+08
+<Scale-> 40 7.17465e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
-<--Object>
-
-<Object-->
-<Name-> Uranus
-<Model-> Uranus
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 85 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Neptune
-<Model-> Neptune
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 -250 0
-<Rotation-> 0 0 0
-<Scale-> 75 -4.31602e+08 -4.31602e+08
-<Visibility-> true
-<Shading-> true
 <--Object>
 
 <Object-->
@@ -145,7 +70,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
+<Scale-> 1 0 0
 <Visibility-> false
 <Shading-> true
 <Color-> 0 0 0
