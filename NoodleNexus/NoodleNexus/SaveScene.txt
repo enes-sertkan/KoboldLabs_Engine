@@ -24,7 +24,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 600 0 0
+<Scale-> 600 1.10544e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -48,7 +48,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 30 0 0
+<Scale-> 30 1.10544e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -60,7 +60,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 35 1.11123e-38 0
+<Scale-> 35 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -72,7 +72,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 25 0 0
+<Scale-> 25 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -84,7 +84,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 150 0 0
+<Scale-> 150 0 4.47139e+21
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -96,7 +96,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 100 0 1.55521e+24
+<Scale-> 100 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -108,7 +108,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 100 1.1151e-38 1.55499e+24
+<Scale-> 100 7.63937e-39 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -133,7 +133,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 0 -250 0
 <Rotation-> 0 0 0
-<Scale-> 75 7.63937e-39 0
+<Scale-> 75 1.1151e-38 6.97714e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -152,7 +152,7 @@ selectBox.txt
 <--Object>
 
 <Light-->
-<Position-> 40.5 -250 20.1 1
+<Position-> 40.5 -250 19.86 1
 <Diffuse-> 1.27 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0 0 3.40282e+38
@@ -164,9 +164,19 @@ selectBox.txt
 <Light-->
 <Position-> 0 69999.4 0 1
 <Diffuse-> 2.82 2.73 1 1
-<Specular-> 1 1 1 -7.4
+<Specular-> 1 1 1 1
 <Atten-> 0 8.67043e-12 7.14723e-12 3.40282e+38
 <Direction-> 0 -1 0 0
+<Param1-> 0 20 35 0
+<Param2-> 0 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 0 -69999.4 0 1
+<Diffuse-> 2.82 2.73 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 8.67043e-12 7.14723e-12 3.40282e+38
+<Direction-> 0 1 0 0
 <Param1-> 0 20 35 0
 <Param2-> 0 0 0 0
 <--Light>

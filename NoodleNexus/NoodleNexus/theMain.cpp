@@ -541,6 +541,54 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
+void HandleInput(GLFWwindow* window, aKeyframeAnimation* animation) {
+    if (!animation) return;
+    
+    static bool spacePressed = false;
+    static bool rightPressed = false;
+    static bool leftPressed = false;
+    static bool RPressed = false;
+
+    if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS && !rightPressed) {
+        animation->NextSequence();
+        rightPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_8) == GLFW_RELEASE) {
+        rightPressed = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_COMMA) == GLFW_PRESS && !leftPressed) {
+        animation->PreviousSequence();
+        leftPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_RELEASE) {
+        leftPressed = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS && !RPressed) {
+        animation->ReversePlay();
+        RPressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_RELEASE) {
+        RPressed = false;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && !spacePressed) {
+        animation->TogglePause();
+        spacePressed = true;
+    }
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
+        spacePressed = false;
+    }
+
+    for (int i = GLFW_KEY_1; i <= GLFW_KEY_5; i++) {
+        if (glfwGetKey(window, i) == GLFW_PRESS) {
+            animation->SetSpeed(i - GLFW_KEY_0); // Set speed from 1x to 5x
+        }
+    }
+}
+
+
 void AddActions(Scene* scene, GLuint program)
 {
 
@@ -932,8 +980,42 @@ int main(void)
     //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 50, luaScript);
     //scene->AddActionToObj(triggerAction, RacingCar);
 
-
+    // Assume the Sun object is the first in the scene's object list
     Object* Sun = scene->sceneObjects[0];
+
+    // Create and set up rotation animation for the Sun
+    aKeyframeAnimation* sunRotation = new aKeyframeAnimation();
+    sunRotation->loop = true;
+
+    float sunRotationPeriod = 15.0f;
+
+    // Add keyframes for smooth rotation
+    sunRotation->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.25f, glm::vec3(0, 0, 0), glm::vec3(0, 90, 0), glm::vec3(1.0f), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 180, 0), glm::vec3(1.0f), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod * 0.75f, glm::vec3(0, 0, 0), glm::vec3(0, 270, 0), glm::vec3(1.0f), EaseInOut);
+    sunRotation->AddKeyframe(sunRotationPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 360, 0), glm::vec3(1.0f), EaseInOut);
+
+    // Attach rotation animation to the Sun
+    scene->AddActionToObj(sunRotation, Sun);
+
+    // Create and set up scaling animation for the Sun
+    aKeyframeAnimation* sunScaling = new aKeyframeAnimation();
+    sunScaling->loop = true;
+
+    float sunScalingPeriod = 15.0f;
+
+    sunScaling->AddKeyframe(0.0f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
+    sunScaling->AddKeyframe(sunScalingPeriod * 2.f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.5f), EaseIn);
+    sunScaling->AddKeyframe(sunScalingPeriod * 0.5f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(2.0f), linear);
+    sunScaling->AddKeyframe(sunScalingPeriod * 10.f, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.5f), EaseOut);
+    sunScaling->AddKeyframe(sunScalingPeriod, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f), EaseInOut);
+
+    // Attach scaling animation to the Sun
+    scene->AddActionToObj(sunScaling, Sun);
+
+
+
 
     std::vector<std::pair<Object*, float>> planets = {
         {scene->sceneObjects[1],  1500.0f},  // Mercury
@@ -951,6 +1033,10 @@ int main(void)
         25.0f,  35.0f,  45.0f,  60.0f, 100.0f, 200.0f, 200.0f, 300.0f, 400.0f
     };
 
+
+    // Store orbit animations for all planets
+    std::vector<aKeyframeAnimation*> orbits;
+
     for (size_t i = 0; i < planets.size(); i++) {
         Object* planet = planets[i].first;
         float radius = planets[i].second;
@@ -959,16 +1045,19 @@ int main(void)
         aKeyframeAnimation* orbit = new aKeyframeAnimation();
         orbit->loop = true;
 
-        // Add keyframes with Y-axis offset of -1000
-        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), EaseInOut);
-        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), EaseInOut);
-        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, -250, radius), glm::vec3(0, 0, 90), EaseInOut);
-        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), EaseInOut);
-        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, -250, 0), glm::vec3(0, 0, 180), EaseInOut);
-        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), EaseInOut);
-        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, -250, -radius), glm::vec3(0, 0, 270), EaseInOut);
-        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), EaseInOut);
-        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), EaseInOut);
+        // Add keyframes with Y-axis offset of -250
+        orbit->AddKeyframe(0.0f, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.125f, glm::vec3(radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 45), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.25f, glm::vec3(0, -250, radius), glm::vec3(0, 0, 90), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.375f, glm::vec3(-radius * 0.71f, -250, radius * 0.71f), glm::vec3(0, 0, 135), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.5f, glm::vec3(-radius, -250, 0), glm::vec3(0, 0, 180), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.625f, glm::vec3(-radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 225), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.75f, glm::vec3(0, -250, -radius), glm::vec3(0, 0, 270), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period * 0.875f, glm::vec3(radius * 0.71f, -250, -radius * 0.71f), glm::vec3(0, 0, 315), glm::vec3(0, 0, 0), EaseInOut);
+        orbit->AddKeyframe(period, glm::vec3(radius, -250, 0), glm::vec3(0, 0, 360), glm::vec3(0, 0, 0), EaseInOut);
+
+        // Store orbit animation in vector
+        orbits.push_back(orbit);
 
         scene->AddActionToObj(orbit, planet);
     }
@@ -1058,6 +1147,12 @@ int main(void)
 //      ------------------------------------------ 
         handleKeyboardAsync(window, scene);
         handleMouseAsync(window);
+        for (size_t i = 0; i < orbits.size(); i++)
+        {
+            HandleInput(window, orbits[i]);
+        }
+        HandleInput(window, sunScaling);
+
 
 
 //      SWAP VISUAL BUFFERS
