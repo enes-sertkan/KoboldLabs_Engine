@@ -15,11 +15,11 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
     // Maze
-    modelInfo.modelName = "baloons";
-    modelInfo.meshPath = "assets/models/Race_track/baloons_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "baloons.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Cubalizer";
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "cube02.txt", "XYZNUV");
 
-    modelInfo.modelName = "banners";
+   /* modelInfo.modelName = "banners";
     modelInfo.meshPath = "assets/models/Race_track/banners_xyznuvrbga.ply";
     fileManager->WriteModelFile(&modelInfo, "banners.txt", "XYZNUVRGBA");
 
@@ -61,33 +61,33 @@ void CreateModelFiles(KLFileManager* fileManager)
 
     modelInfo.modelName = "tyres";
     modelInfo.meshPath = "assets/models/Race_track/tyres_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "tyres.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "tyres.txt", "XYZNUVRGBA");*/
 
     // Sky Sphere
     modelInfo.modelName = "SkySphere";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUV");
 
-    //Godray
-    modelInfo.modelName = "GodRay";
-    modelInfo.meshPath = "assets/models/Race_track/godray_xyznuvrgba.ply";
-    fileManager->WriteModelFile(&modelInfo, "godray.txt", "XYZNUVRGBA");
+    ////Godray
+    //modelInfo.modelName = "GodRay";
+    //modelInfo.meshPath = "assets/models/Race_track/godray_xyznuvrgba.ply";
+    //fileManager->WriteModelFile(&modelInfo, "godray.txt", "XYZNUVRGBA");
 
-    //Cloud
-    modelInfo.modelName = "Clouds";
-    modelInfo.meshPath = "assets/models/Race_track/clouds_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "clouds.txt", "XYZNUVRGBA");
+    ////Cloud
+    //modelInfo.modelName = "Clouds";
+    //modelInfo.meshPath = "assets/models/Race_track/clouds_xyznuvrbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "clouds.txt", "XYZNUVRGBA");
 
-    // Plane
-    modelInfo.modelName = "Plane";
-    modelInfo.meshPath = "assets/models/UFO.ply";
-    fileManager->WriteModelFile(&modelInfo, "Plane.txt", "XYZNUVRGBA");
+    //// Plane
+    //modelInfo.modelName = "Plane";
+    //modelInfo.meshPath = "assets/models/UFO.ply";
+    //fileManager->WriteModelFile(&modelInfo, "Plane.txt", "XYZNUVRGBA");
 
-    // Classroom
-    //do not forget to make castle Bodiam_Castle.ply
-    modelInfo.modelName = "Castle";
-    modelInfo.meshPath = "assets/models/Bodiam_Castle.ply";
-    fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
+    //// Classroom
+    ////do not forget to make castle Bodiam_Castle.ply
+    //modelInfo.modelName = "Castle";
+    //modelInfo.meshPath = "assets/models/Bodiam_Castle.ply";
+    //fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
 
     //modelInfo.modelName = "board";
     //modelInfo.meshPath = "assets/models/Class_Room/board_xyznuvrbga.ply";
