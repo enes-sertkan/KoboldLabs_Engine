@@ -117,7 +117,7 @@ bool readPlyFile_XYZ(sModelDrawInfo& modelDrawInfo)
 	// Load the data from the file
 //    sPlyVertex* pPlyVertices = new sPlyVertex[numberOfVertices];
 //	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb[modelDrawInfo.numberOfVertices];
-	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N[modelDrawInfo.numberOfVertices];
+	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N_UV[modelDrawInfo.numberOfVertices];
 
 	// end_header
 	// -0.0369122 0.127512 0.00276757 0.850855 0.5
@@ -230,7 +230,7 @@ bool readPlyFile_XYZ_Normal(sModelDrawInfo& modelDrawInfo)
 
 
 
-	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N[modelDrawInfo.numberOfVertices];
+	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N_UV[modelDrawInfo.numberOfVertices];
 
 	// end_header
 	// -0.0369122 0.127512 0.00276757 0.850855 0.5
@@ -328,7 +328,7 @@ bool readPlyFile_XYZ_Normal_NoUV(sModelDrawInfo& modelDrawInfo) {
 	}
 
 	// Allocate memory for vertex data
-	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N[modelDrawInfo.numberOfVertices];
+	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N_UV[modelDrawInfo.numberOfVertices];
 
 	// Read vertex data
 	for (unsigned index = 0; index != modelDrawInfo.numberOfVertices; index++) {
@@ -417,7 +417,7 @@ bool readPlyFile_XYZ_Normal_RGBA(sModelDrawInfo& modelDrawInfo) {
 	}
 
 	// Allocate memory for vertex data
-	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N[modelDrawInfo.numberOfVertices];
+	modelDrawInfo.pVertices = new sVertex_SHADER_FORMAT_xyz_rgb_N_UV[modelDrawInfo.numberOfVertices];
 
 	// Read vertex data
 	for (unsigned index = 0; index != modelDrawInfo.numberOfVertices; index++) {
@@ -559,7 +559,7 @@ bool cVAOManager::LoadModelIntoVAO(
 //				  (GLvoid*) drawInfo.pVertices,							// pVertices,			//vertices, 
 //				  GL_STATIC_DRAW );
 	glBufferData( GL_ARRAY_BUFFER, 
-				  sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N) * drawInfo.numberOfVertices,	// ::g_NumberOfVertsToDraw,	// sizeof(vertices), 
+				  sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * drawInfo.numberOfVertices,	// ::g_NumberOfVertsToDraw,	// sizeof(vertices), 
 				  (GLvoid*) drawInfo.pVertices,							// pVertices,			//vertices, 
 				  GL_STATIC_DRAW );
 
@@ -599,27 +599,27 @@ bool cVAOManager::LoadModelIntoVAO(
 		                   3,		// vPos
 						   GL_FLOAT, GL_FALSE,
 //						   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),	//  sizeof(float) * 6,		// Stride
-						   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N),	//  sizeof(float) * 6,		// Stride
+						   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),	//  sizeof(float) * 6,		// Stride
 //						   ( void* )offsetof(sVertex_SHADER_FORMAT_xyz_rgb, x) );				// Offset
-						   ( void* )offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, x) );				// Offset
+						   ( void* )offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, x) );				// Offset
 
 	glEnableVertexAttribArray(vcol_location);	// vCol
 	glVertexAttribPointer( vcol_location, 
 		                   3,		// vCol
 						   GL_FLOAT, GL_FALSE,
 //		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N),			//( void* )( sizeof(float) * 3 ));
+		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),			//( void* )( sizeof(float) * 3 ));
 //		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, r));			//( void* )( sizeof(float) * 3 ));
+		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, r));			//( void* )( sizeof(float) * 3 ));
 
 	glEnableVertexAttribArray(vnorm_location);	// vCol
 	glVertexAttribPointer( vnorm_location, 
 		                   3,		// vCol
 						   GL_FLOAT, GL_FALSE,
 //		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-	                       sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N),			//( void* )( sizeof(float) * 3 ));
+	                       sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),			//( void* )( sizeof(float) * 3 ));
 //		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, nx));			//( void* )( sizeof(float) * 3 ));
+		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, nx));			//( void* )( sizeof(float) * 3 ));
 
 
 
@@ -627,8 +627,8 @@ bool cVAOManager::LoadModelIntoVAO(
 	glVertexAttribPointer(vUV_location,
 		2,		// in vec2 vUV;
 		GL_FLOAT, GL_FALSE,
-		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N),
-		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N, u));
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, u));
 
 						   // Now that all the parts are set up, set the VAO to zero
 	glBindVertexArray(0);

@@ -19,7 +19,7 @@
 //	float r, g, b;		// in vec3 vCol;
 //};
 
-struct sVertex_SHADER_FORMAT_xyz_rgb_N
+struct sVertex_SHADER_FORMAT_xyz_rgb_N_UV
 {
 	float x, y, z;		// in vec3 vPos;
 	float r, g, b, a;		// in vec3 vCol;
@@ -48,7 +48,7 @@ struct sModelDrawInfo
 
 	// The "local" (i.e. "CPU side" temporary array)
 //	sVertex_SHADER_FORMAT_xyz_rgb* pVertices;	//  = 0;
-	sVertex_SHADER_FORMAT_xyz_rgb_N* pVertices;	//  = 0;
+	sVertex_SHADER_FORMAT_xyz_rgb_N_UV* pVertices;	//  = 0;
 	// The index buffer (CPU side)
 	unsigned int* pIndices;
 	// 
@@ -64,6 +64,17 @@ public:
 	bool LoadModelIntoVAO(std::string fileName, 
 						  sModelDrawInfo &drawInfo, 
 						  unsigned int shaderProgramID);
+
+	// This is used for the soft body (or anything else, like water)
+	// Takes a mesh and copies it to another VAO, but the vertex array is DYNAMIC
+	bool CloneMeshToDynamicVAO(std::string newMeshName,
+		sModelDrawInfo& drawInfo,
+		unsigned int shaderProgramID);
+
+	bool UpdateDynamicMesh(std::string friendlyName,
+		// Will only look at the vertex info!
+		sModelDrawInfo& updatedDrawInfo,
+		unsigned int shaderProgramID);
 
 	// We don't want to return an int, likely
 	bool FindDrawInfoByModelName(std::string filename,

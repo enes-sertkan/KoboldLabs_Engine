@@ -72,6 +72,15 @@
     <Filter Include="Lua">
       <UniqueIdentifier>{e35b39c5-57ec-4005-b5b0-17208ef4b7d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Containers_Tree">
+      <UniqueIdentifier>{d2a543ab-f3a8-4d6f-8501-e509d23f094a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FBO">
+      <UniqueIdentifier>{69678280-2a78-48f7-815e-60b12c3316d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\PhysicsManager\Verlet_SoftBody">
+      <UniqueIdentifier>{ff0df87d-314b-440e-8126-413f732bb1ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -196,6 +205,30 @@
     </ClCompile>
     <ClCompile Include="aPlaneMovement.hpp">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="cTerrainPathChooser.cpp">
+      <Filter>Containers_Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="cFBO_RGB_depth.cpp">
+      <Filter>FBO</Filter>
+    </ClCompile>
+    <ClCompile Include="cVAOManager_DynamicMesh.cpp">
+      <Filter>Meshes, etc.</Filter>
+    </ClCompile>
+    <ClCompile Include="cSoftBodyVerlet.cpp">
+      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
+    </ClCompile>
+    <ClCompile Include="cPhysics_cSoftBody_Verlet_Threaded.cpp">
+      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
+    </ClCompile>
+    <ClCompile Include="cPhysics_cSoftBody_Verlet.cpp">
+      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
+    </ClCompile>
+    <ClCompile Include="cViperFlagConnector.cpp">
+      <Filter>Engine\PhysicsManager</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderScene.cpp">
+      <Filter>RenderStuff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +378,18 @@
     </ClInclude>
     <ClInclude Include="CameraPoint.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cTerrainPathChooser.hpp">
+      <Filter>Containers_Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="cFBO_RGB_depth.hpp">
+      <Filter>FBO</Filter>
+    </ClInclude>
+    <ClInclude Include="cSoftBodyVerlet.hpp">
+      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
+    </ClInclude>
+    <ClInclude Include="cViperFlagConnector.hpp">
+      <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

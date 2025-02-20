@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Atom
+<filePath> assets/models/Cube_xyz_n_uv.ply
+<fileType> XYZNUV
+</ModelFile>
+</KoboldLabs>

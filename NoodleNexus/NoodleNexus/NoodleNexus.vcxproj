@@ -152,6 +152,7 @@
     <ClCompile Include="cBasicTextureManager.cpp" />
     <ClCompile Include="cCommandFactory.cpp" />
     <ClCompile Include="cCommandGroup.cpp" />
+    <ClCompile Include="cFBO_RGB_depth.cpp" />
     <ClCompile Include="cFollowObject_A.cpp" />
     <ClCompile Include="cLightHelper\cLightHelper.cpp" />
     <ClCompile Include="cLightManager.cpp" />
@@ -160,8 +161,14 @@
     <ClCompile Include="cMoveRelativeTime.cpp" />
     <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cPhysics.cpp" />
+    <ClCompile Include="cPhysics_cSoftBody_Verlet.cpp" />
+    <ClCompile Include="cPhysics_cSoftBody_Verlet_Threaded.cpp" />
+    <ClCompile Include="cSoftBodyVerlet.cpp" />
+    <ClCompile Include="cTerrainPathChooser.cpp" />
     <ClCompile Include="CTextureFromBMP.cpp" />
     <ClCompile Include="cVAOManager\cVAOManager.cpp" />
+    <ClCompile Include="cVAOManager_DynamicMesh.cpp" />
+    <ClCompile Include="cViperFlagConnector.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Gun.hpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
@@ -173,6 +180,7 @@
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
+    <ClCompile Include="RenderScene.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneEditor.cpp" />
     <ClCompile Include="SceneEditorExtra.cpp" />
@@ -199,6 +207,7 @@
     <ClInclude Include="cBasicTextureManager.h" />
     <ClInclude Include="cCommandFactory.hpp" />
     <ClInclude Include="cCommandGroup.hpp" />
+    <ClInclude Include="cFBO_RGB_depth.hpp" />
     <ClInclude Include="cFollowObject_A.hpp" />
     <ClInclude Include="cLightHelper\cLightHelper.h" />
     <ClInclude Include="cLightManager.h" />
@@ -206,10 +215,13 @@
     <ClInclude Include="cLuaBrain.hpp" />
     <ClInclude Include="cMoveRelativeTime.hpp" />
     <ClInclude Include="cPhysics.h" />
+    <ClInclude Include="cSoftBodyVerlet.hpp" />
+    <ClInclude Include="cTerrainPathChooser.hpp" />
     <ClInclude Include="CTextureFromBMP.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
+    <ClInclude Include="cViperFlagConnector.hpp" />
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Laser.hpp" />
