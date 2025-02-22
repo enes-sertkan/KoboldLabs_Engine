@@ -81,6 +81,9 @@
     <Filter Include="Engine\PhysicsManager\Verlet_SoftBody">
       <UniqueIdentifier>{ff0df87d-314b-440e-8126-413f732bb1ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Grid">
+      <UniqueIdentifier>{e9090dde-52b9-4eeb-b783-633cd970ebdf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -229,6 +232,9 @@
     </ClCompile>
     <ClCompile Include="RenderScene.cpp">
       <Filter>RenderStuff</Filter>
+    </ClCompile>
+    <ClCompile Include="GridRenderer.cpp">
+      <Filter>Engine\Grid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +397,9 @@
     <ClInclude Include="cViperFlagConnector.hpp">
       <Filter>Engine\PhysicsManager</Filter>
     </ClInclude>
+    <ClInclude Include="GridRenderer.h">
+      <Filter>Engine\Grid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
@@ -419,5 +428,11 @@
       <Filter>Lua</Filter>
     </None>
     <None Include="LuaTextureBlendMove.lua" />
+    <None Include="infinite_grid.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="infinite_grid.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

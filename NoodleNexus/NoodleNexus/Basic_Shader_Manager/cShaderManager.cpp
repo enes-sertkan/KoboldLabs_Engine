@@ -277,7 +277,7 @@ bool cShaderManager::m_compileShaderFromSource( cShaderManager::cShader &shader,
 bool cShaderManager::createProgramFromFile( 
 	        std::string friendlyName,
 			cShader &vertexShad, 
-			cShader &fragShader )
+			cShader &fragShader)
 {
 	std::string errorText = "";
 

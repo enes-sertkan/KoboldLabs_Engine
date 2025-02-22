@@ -5,6 +5,7 @@
 //#include <GLFW/glfw3.h>
 
 #define GLM_ENABLE_EXPERIMENTAL 
+#define GLFW_INCLUDE_NONE
 #include "Action.h"
 #include "aMoveInDirection.h"
 #include "GLCommon.h"
@@ -56,7 +57,7 @@
 #include "cLuaBrain.hpp"
 #include "LuaScript.h"
 #include "ObjectManager.h"
-
+//#include "GridRenderer.h"
 #include "aRayCastPhysics.h"
 #include "aDrawAim.hpp"
 #include "aPlayerItemsController.h"
@@ -276,7 +277,155 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     return;
 }
 
+//TODO : GRIDS
 
+//GLuint LoadShaders(const char* vertex_file_path, const char* fragment_file_path) {
+//    // Create the shaders
+//    GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+//    GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+//
+//    // Read the Vertex Shader code from the file
+//    std::string VertexShaderCode;
+//    std::ifstream VertexShaderStream(vertex_file_path, std::ios::in);
+//    if (VertexShaderStream.is_open()) {
+//        std::stringstream sstr;
+//        sstr << VertexShaderStream.rdbuf();
+//        VertexShaderCode = sstr.str();
+//        VertexShaderStream.close();
+//    }
+//    else {
+//        printf("Impossible to open %s. Are you in the right directory?\n", vertex_file_path);
+//        return 0;
+//    }
+//
+//    // Read the Fragment Shader code from the file
+//    std::string FragmentShaderCode;
+//    std::ifstream FragmentShaderStream(fragment_file_path, std::ios::in);
+//    if (FragmentShaderStream.is_open()) {
+//        std::stringstream sstr;
+//        sstr << FragmentShaderStream.rdbuf();
+//        FragmentShaderCode = sstr.str();
+//        FragmentShaderStream.close();
+//    }
+//    else {
+//        printf("Impossible to open %s. Are you in the right directory?\n", fragment_file_path);
+//        return 0;
+//    }
+//
+//    GLint Result = GL_FALSE;
+//    int InfoLogLength;
+//
+//    // Compile Vertex Shader
+//    printf("Compiling shader : %s\n", vertex_file_path);
+//    char const* VertexSourcePointer = VertexShaderCode.c_str();
+//    glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
+//    glCompileShader(VertexShaderID);
+//
+//    // Check Vertex Shader
+//    glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &Result);
+//    glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+//    if (InfoLogLength > 0) {
+//        std::vector<char> VertexShaderErrorMessage(InfoLogLength + 1);
+//        glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
+//        printf("%s\n", &VertexShaderErrorMessage[0]);
+//    }
+//
+//    // Compile Fragment Shader
+//    printf("Compiling shader : %s\n", fragment_file_path);
+//    char const* FragmentSourcePointer = FragmentShaderCode.c_str();
+//    glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
+//    glCompileShader(FragmentShaderID);
+//
+//    // Check Fragment Shader
+//    glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &Result);
+//    glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+//    if (InfoLogLength > 0) {
+//        std::vector<char> FragmentShaderErrorMessage(InfoLogLength + 1);
+//        glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+//        printf("%s\n", &FragmentShaderErrorMessage[0]);
+//    }
+//
+//    // Link the program
+//    printf("Linking program\n");
+//    GLuint ProgramID = glCreateProgram();
+//    glAttachShader(ProgramID, VertexShaderID);
+//    glAttachShader(ProgramID, FragmentShaderID);
+//    glLinkProgram(ProgramID);
+//
+//    // Check the program
+//    glGetProgramiv(ProgramID, GL_LINK_STATUS, &Result);
+//    glGetProgramiv(ProgramID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+//    if (InfoLogLength > 0) {
+//        std::vector<char> ProgramErrorMessage(InfoLogLength + 1);
+//        glGetProgramInfoLog(ProgramID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+//        printf("%s\n", &ProgramErrorMessage[0]);
+//    }
+//
+//    glDetachShader(ProgramID, VertexShaderID);
+//    glDetachShader(ProgramID, FragmentShaderID);
+//
+//    glDeleteShader(VertexShaderID);
+//    glDeleteShader(FragmentShaderID);
+//
+//    return ProgramID;
+//}
+//
+//void SetupGridVAO(GLuint& vao, GLuint& vbo) {
+//    // Vertex data for the grid (a single quad covering the entire screen)
+//    const float vertices[] = {
+//        -1.0f, 0.0f, -1.0f,
+//         1.0f, 0.0f, -1.0f,
+//         1.0f, 0.0f,  1.0f,
+//        -1.0f, 0.0f,  1.0f
+//    };
+//
+//    // Indices for the quad
+//    const unsigned int indices[] = {
+//        0, 1, 2,
+//        2, 3, 0
+//    };
+//
+//    // Generate and bind the VAO
+//    glGenVertexArrays(1, &vao);
+//    glBindVertexArray(vao);
+//
+//    // Generate and bind the VBO
+//    glGenBuffers(1, &vbo);
+//    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+//
+//    // Set up vertex attribute pointers
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+//    glEnableVertexAttribArray(0);
+//
+//    // Generate and bind the EBO
+//    GLuint ebo;
+//    glGenBuffers(1, &ebo);
+//    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+//    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+//
+//    // Unbind the VAO
+//    glBindVertexArray(0);
+//}
+//
+//void SetShaderUniforms(GLuint shaderProgram, const glm::mat4& VP, const glm::vec3& cameraPos, float gridSize, float gridCellSize) {
+//    glUseProgram(shaderProgram);
+//
+//    // Pass the VP matrix
+//    GLuint VPUniform = glGetUniformLocation(shaderProgram, "gVP");
+//    glUniformMatrix4fv(VPUniform, 1, GL_FALSE, glm::value_ptr(VP)); // Use glm::value_ptr
+//
+//    // Pass the camera position
+//    GLuint cameraPosUniform = glGetUniformLocation(shaderProgram, "gCameraWorldPos");
+//    glUniform3f(cameraPosUniform, cameraPos.x, cameraPos.y, cameraPos.z);
+//
+//    // Pass the grid size and cell size
+//    GLuint gridSizeUniform = glGetUniformLocation(shaderProgram, "gGridSize");
+//    glUniform1f(gridSizeUniform, gridSize);
+//
+//    GLuint gridCellSizeUniform = glGetUniformLocation(shaderProgram, "gGridCellSize");
+//    glUniform1f(gridCellSizeUniform, gridCellSize);
+//}
 
 
 //TODO: Cut it  from here, but make shure we still have this.
@@ -325,8 +474,14 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     cShaderManager::cShader fragmentShader;
     fragmentShader.fileName = "assets/shaders/fragment01.glsl";
 
+    //cShaderManager::cShader infinite_grid_vs;
+    //infinite_grid_vs.fileName = "assets/shaders/infinite_grid.vs";
+
+    //cShaderManager::cShader infinite_grid_frag;
+    //infinite_grid_vs.fileName = "assets/shaders/infinite_grid.frag";
+
     if (!pShaderManager->createProgramFromFile("shader01",
-                                                 vertexShader, fragmentShader))
+        vertexShader, fragmentShader))
     {
         std::cout << "Error: " << pShaderManager->getLastError() << std::endl;
     }
@@ -336,6 +491,10 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     }
 
     const GLuint program = pShaderManager->getIDFromFriendlyName("shader01");
+
+    //TODO : GRIDS
+    //GLuint gridVAO, gridVBO;
+    //SetupGridVAO(gridVAO, gridVBO);
 
     glUseProgram(program);
 
@@ -579,140 +738,142 @@ void AddActions(Scene* scene, GLuint program)
     //scene->AddActionToObj(itemsControllerAction, scene->sceneObjects[1]);
 
 
- 
-    scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
-    scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
-    scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
-    scene->sceneObjects[0]->mesh->transperency = 1;
-    scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
+    {
 
-    //scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
-    //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[1]->mesh->transperency = 0.2;
-    //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+        scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
+        scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[0]->mesh->transperency = 1;
+        scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-    //scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
-    //scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
+        //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[1]->mesh->transperency = 0.2;
+        //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-    //scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
-    //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
+        //scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
-    //scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
-    //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-    //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
-    //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
+        //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
-    //scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
+        //scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
+        //scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
+        //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
+        //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-
-    //scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
-    //scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
-    //scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
-    //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+        //scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
+        //scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
 
 
-    //scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
-    //scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-
-    //scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
-    //scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[8]->mesh->transperency = 1;
-
-    //scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
-    //scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
-    //scene->sceneObjects[8]->mesh->stencilTextureID = 61;
-    //scene->sceneObjects[8]->mesh->textureSpeed.x = 0.01f;
-
-    //scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
-    //scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
-    //scene->sceneObjects[9]->mesh->textures[2] = "Ground.bmp";
-    //scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
-    //scene->sceneObjects[9]->mesh->blendRatio[1] = 0.4;
-    //scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
-    //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-
-    //scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
-    //scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
-
-    //scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
-    //scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
-    //scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
-
-    //scene->sceneObjects[13]->mesh->textures[0] = "cloud.bmp";
-    //scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[13]->mesh->transperency = 0.9;
-
-    //scene->sceneObjects[14]->mesh->textures[0] = "yellow.bmp";
-    //scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
-    //scene->sceneObjects[14]->mesh->transperency = 0.2;
-
-    //class room
-
-    //scene->sceneObjects[15]->mesh->textures[0] = "SHD_UFO_AO.bmp";
-    //scene->sceneObjects[15]->mesh->textures[1] = "SHD_UFO_roughness.bmp";
-    //scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
-    //scene->sceneObjects[15]->mesh->blendRatio[1] = 1;
-    //scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
+        //scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
+        //scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
+        //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
 
 
-    //scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
-    //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
+        //scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
-    //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
+        //scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[8]->mesh->transperency = 1;
 
-    //scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
-    //scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
+        //scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
+        //scene->sceneObjects[8]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[8]->mesh->textureSpeed.x = 0.01f;
 
-    //scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
-    //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
+        //scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
+        //scene->sceneObjects[9]->mesh->textures[2] = "Ground.bmp";
+        //scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
+        //scene->sceneObjects[9]->mesh->blendRatio[1] = 0.4;
+        //scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
+        //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
-    //scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
+        //scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
-    //scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
+        //scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
-    //scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[13]->mesh->textures[0] = "cloud.bmp";
+        //scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[13]->mesh->transperency = 0.9;
 
-    //scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
-    //scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[14]->mesh->textures[0] = "yellow.bmp";
+        //scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[14]->mesh->transperency = 0.2;
 
-    //scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
-    //scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+        //class room
 
-    //scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
-    //scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[15]->mesh->textures[0] = "SHD_UFO_AO.bmp";
+        //scene->sceneObjects[15]->mesh->textures[1] = "SHD_UFO_roughness.bmp";
+        //scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[15]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-    //scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
-    //scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
-    //scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
+        //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
+        //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
+        //scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
+        //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
+        //scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
+        //scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
+        //scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
+        //scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
+        //scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
+        //scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+
+        //scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
+        //scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+    }
 
 
 
@@ -777,6 +938,13 @@ int main(void)
 //   ----------------
 
     GLuint program = PrepareOpenGL(window);
+
+    //NOTE : GRIDS
+    //GridRenderer gridRenderer;
+    //if (!gridRenderer.Initialize()) {
+    //    std::cerr << "Failed to initialize grid renderer!" << std::endl;
+    //    return EXIT_FAILURE;
+    //}
    
 
     // INIT FBO
@@ -1065,6 +1233,22 @@ int main(void)
 //      ------------------------------------------ 
         handleKeyboardAsync(window, scene);
         handleMouseAsync(window);
+
+
+        //TODO : GRIDS
+
+        {
+            //// Render the grid
+            //glm::mat4 viewMatrix = scene->fCamera->GetViewMatrix();
+            //glm::mat4 projectionMatrix = scene->fCamera->GetProjectionMatrix(16.0f / 9.0f, 45.0f);
+            //glm::mat4 viewProjectionMatrix = projectionMatrix * viewMatrix;
+
+            //// Get the camera position
+            //glm::vec3 cameraPosition = scene->fCamera->getEyeLocation();
+
+            //// Render the grid
+            //gridRenderer.Render(viewProjectionMatrix, cameraPosition);
+        }
 
 
 //      SWAP VISUAL BUFFERS

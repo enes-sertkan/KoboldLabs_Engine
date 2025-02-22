@@ -24,6 +24,16 @@ cBasicFlyCamera::cBasicFlyCamera()
 
 }
 
+// New method to get the view matrix
+glm::mat4 cBasicFlyCamera::GetViewMatrix() {
+	return glm::lookAt(m_eye, m_target, glm::vec3(0.0f, 1.0f, 0.0f));
+}
+
+// New method to get the projection matrix
+glm::mat4 cBasicFlyCamera::GetProjectionMatrix(float aspectRatio, float fov) {
+	return glm::perspective(glm::radians(fov), aspectRatio, 0.1f, 1000.0f);
+}
+
 void cBasicFlyCamera::setEyeLocation(glm::vec3 newEyeLocation)
 {
 	this->m_eye = newEyeLocation;

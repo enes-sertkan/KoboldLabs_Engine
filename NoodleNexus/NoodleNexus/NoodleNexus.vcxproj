@@ -170,6 +170,7 @@
     <ClCompile Include="cVAOManager_DynamicMesh.cpp" />
     <ClCompile Include="cViperFlagConnector.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="GridRenderer.cpp" />
     <ClCompile Include="Gun.hpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
     <ClInclude Include="cViperFlagConnector.hpp" />
+    <ClInclude Include="GridRenderer.h" />
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
     <ClInclude Include="Laser.hpp" />
@@ -248,6 +250,8 @@
     <None Include="assets\shaders\vertex01.glsl" />
     <None Include="cObjectMovement.lua" />
     <None Include="fragment02.glsl" />
+    <None Include="infinite_grid.frag" />
+    <None Include="infinite_grid.vs" />
     <None Include="LuaFollowObj.lua" />
     <None Include="LuaMove2Curve.lua" />
     <None Include="LuaMove2Lerp.lua" />

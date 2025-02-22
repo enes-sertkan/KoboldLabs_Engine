@@ -52,6 +52,10 @@ public:
 	void FreezePlayerRotation();
 	void UnfreezePlayerRotation();
 
+	// New methods for view and projection matrices
+	glm::mat4 GetViewMatrix();
+	glm::mat4 GetProjectionMatrix(float aspectRatio = 16.0f / 9.0f, float fov = 45.0f);
+
 private:
 	float m_Yaw_Y_axis_rotation;
 	float m_Pitch_X_axis_rotation;

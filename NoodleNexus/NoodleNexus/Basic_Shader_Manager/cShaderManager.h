@@ -51,9 +51,9 @@ public:
 
 	bool useShaderProgram( unsigned int ID );
 	bool useShaderProgram( std::string friendlyName );
-	bool createProgramFromFile( std::string friendlyName, 
-		                        cShader &vertexShad, 
-					            cShader &fragShader );
+	bool createProgramFromFile(std::string friendlyName,
+		cShader& vertexShad,
+		cShader& fragShader);
 	void setBasePath( std::string basepath );
 	unsigned int getIDFromFriendlyName( std::string friendlyName );
 
