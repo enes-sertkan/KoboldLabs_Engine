@@ -756,13 +756,6 @@ int main(void)
     if (!glfwInit())
         exit(EXIT_FAILURE);
 
-// INIT FBO
-// --------
-    cFBO_RGB_depth g_FBO; // Global or class member
-    std::string error; //TODO probably unnided. PRob we alredt havve error variable
-    if (!g_FBO.init(1024, 768, error)) {
-        std::cerr << "FBO Error: " << error << std::endl;
-    }
 
 
 
@@ -774,7 +767,7 @@ int main(void)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(1024, 780, "OpenGL Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1024, 780, "KoboldLabs Engine", NULL, NULL);
     
 
 
@@ -785,6 +778,14 @@ int main(void)
 
     GLuint program = PrepareOpenGL(window);
    
+
+    // INIT FBO
+// --------
+    cFBO_RGB_depth* g_FBO = new  cFBO_RGB_depth(); // Global or class member
+    std::string error; //TODO probably unnided. PRob we alredt havve error variable
+    if (!g_FBO->init(1024, 768, error)) {
+        std::cerr << "FBO Error: " << error << std::endl;
+    }
 
 
 //   PREPARING ENGINE STUFF
