@@ -68,7 +68,7 @@
 #include "aTextureWiggler.h"
 #include "aPlaneMovement.hpp"
 #include "aPlanePhysics.h"
-
+#include "cFBO_RGB_depth.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -756,7 +756,13 @@ int main(void)
     if (!glfwInit())
         exit(EXIT_FAILURE);
 
-
+// INIT FBO
+// --------
+    cFBO_RGB_depth g_FBO; // Global or class member
+    std::string error; //TODO probably unnided. PRob we alredt havve error variable
+    if (!g_FBO.init(1024, 768, error)) {
+        std::cerr << "FBO Error: " << error << std::endl;
+    }
 
 
 
@@ -965,121 +971,6 @@ int main(void)
         ::g_vecMeshesToDraw.push_back(pAABBCube_MinAtOrigin);
 
     }
-
-    {
-        //Object* Airplane = scene->GenerateMeshObjectsFromObject(
-        //    "assets/models/Plane.ply",
-        //    glm::vec3(0, 0, 0),
-        //    0.1,
-        //    glm::vec3(0, 0, 0),
-        //    false,
-        //    glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-        //    true,
-        //    scene->sceneObjects
-        //);
-        //Airplane->mesh->textures[0] = "baloon.bmp";
-        //Airplane->mesh->uniformScale = 0.1f;
-        //Airplane->isTemporary = true;
-        //Airplane->name = "Airplane";
-        //Airplane->mesh->bIsVisible = true;
-
-        //// Add a associated physics object to have the phsyics "move" this
-        //cPhysics::sPhysInfo* pViperPhysObject = new  cPhysics::sPhysInfo();
-        //pViperPhysObject->bDoesntMove = true;
-        //pViperPhysObject->position = Airplane->mesh->positionXYZ;
-        //pViperPhysObject->velocity = glm::vec3(0.0f);
-        //pViperPhysObject->pAssociatedDrawingMeshInstance = Airplane->mesh;
-        //g_pPhysicEngine->vecGeneralPhysicsObjects.push_back(pViperPhysObject);
-    }
-
-    //glm::vec3 currentPos(0.0f, 0.0f, 0.0f);  // Initial position
-    //glm::vec3 startXYZ(0.0f, 0.0f, 0.0f);   // Start point
-    //glm::vec3 endXYZ(2000.0f, 0.0f, 0.0f);    // End point
-    //float seconds = 30.0f;                   // Time to reach the target
-    //float deltaTime = 0.016f;               // Simulated frame time (60 FPS)
-
-    //for (int i = 0; i < 300; ++i) {         // Simulate 300 frames (~5 seconds)
-    //    MoveTo(currentPos, startXYZ, endXYZ, seconds, deltaTime);
-    //}
-
-
-
-    //aLuaScriptsSerial* luaScript = new aLuaScriptsSerial();
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, -600, 30), glm::vec3(-350, 400, 30),5, glm::vec3(1500, 150, 30));
-    //luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(-350, -600, 30),5, glm::vec3(-1500, 150, 30));
-    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-1100, 150, 30), glm::vec3(-350, 400, 30),15, glm::vec3(0,0, 30));
-    ////luaScript->AddMoveScript( "LuaMove2Curve.lua", glm::vec3(-350, 400, 30), glm::vec3(700, 150, 30),15, glm::vec3(0,0, 30));
-    //scene->AddActionToObj(luaScript, scene->sceneObjects[27]);
-
-    //aLuaScriptsSerial* luaScript2 = new aLuaScriptsSerial();
-    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 5, glm::vec3(0, 0, 90));
-    //luaScript2->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 5, glm::vec3(0, 0, -90));
-    //scene->AddActionToObj(luaScript2, scene->sceneObjects[27]);
-
-
-    //aLuaScript* luaScriptmove2 = new aLuaScript();
-    //luaScriptmove2->AddLuaScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 180, -360), 15, glm::vec3(0, 0, 90));
-    //luaScriptmove2->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 180, 0), glm::vec3(360, 0, -360), 15, glm::vec3(0, 0, -90));
-    //scene->AddActionToObj(luaScriptmove2, Move2lerp);
-
-    //aLuaScriptsSerial* luaScriptTransparency = new aLuaScriptsSerial();
-    //luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(1, 0, 0), 15, glm::vec3(0.5f, 0, 0));
-    //luaScriptTransparency->AddMoveScript("LuaMeshTransparency.lua", glm::vec3(1, 0, 0), glm::vec3(0.11, 0, 0), 15, glm::vec3(0.5f, 0, 0));
-    //scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
-
-
-    //aLuaScript* luaTrigger = new aLuaScript();
-    //luaTrigger->AddLuaScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 1, glm::vec3(0, 0, 0));
-    //scene->AddActionToObj(luaTrigger, trigger);
-    //aLuaScript* luaScriptTransparency = new aLuaScript();
-    //luaScriptTransparency->AddLuaScript("LuaMeshTransparency.lua", glm::vec3(0.1, 0, 0), glm::vec3(0.99, 0, 0), 15, glm::vec3(0.5f, 0, 0));
-    //scene->AddActionToObj(luaScriptTransparency, scene->sceneObjects[13]);
-
-    //aLuaScript* luaScriptTexture = new aLuaScript();
-    //luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 1, glm::vec3(1, 0, 90), "Plant.bmp");
-    //scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
-
-    //aLuaScript* luaScriptFolloObj = new aLuaScript();
-    //SoloLuaScript* followScript = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 0.1, glm::vec3(100, 50, 0.016));;
-    //scene->AddActionToObj(luaScriptFolloObj, RacingCar);
-
-    //aLuaScript* luaScriptTexture = new aLuaScript();
-    //luaScriptTexture->AddLuaScript("LuaTextureBlendMove.lua", glm::vec3(0, 0, 0), glm::vec3(5, 180, -360), 25, glm::vec3(1, 0, 90), "Plant.bmp");
-    //scene->AddActionToObj(luaScriptTexture, scene->sceneObjects[4]);
-
-
-
-    //aLuaScript* luaScriptFolloObj = new aLuaScript();
-    //SoloLuaScript* followObj = luaScriptFolloObj->AddLuaScript("LuaFollowObj.lua", glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), 1, glm::vec3(50, 7, 0.016));
-    //scene->AddActionToObj(luaScriptFolloObj, RacingCar);
-
-
-
-//    aLuaScriptsSerial* luaAction = new aLuaScriptsSerial();
-//  //  scene->AddActionToObj(luaAction, RacingCar);
-//  /*  luaAction->AddMoveScript("LuaMove2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0,0,0));
-//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(10, 100, 0), 3, glm::vec3(0, 0, 0));*/
-//    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(10, 300, 0), glm::vec3(200, 300, 0), 1, glm::vec3(100, 500, 0));
-//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(0, 0, 0), glm::vec3(360, 0, 0), 0.4, glm::vec3(360, 0, 0)); 
-//    luaAction->AddMoveScript("LuaMove2Curve.lua", glm::vec3(200, 300, 0), glm::vec3(10, 300, 0), 1, glm::vec3(100, 100, 0));
-//    luaAction->AddMoveScript("LuaRotate2Lerp.lua", glm::vec3(360, 0, 0), glm::vec3(0, 0, 0), 0.4, glm::vec3(0, 0, 0));
-//
-//  
-    //aLocTrggersLua* triggerAction = new aLocTrggersLua();
-    //triggerAction->AddTrigger(glm::vec3(100, 100, 0), 120, luaTrigger);
-    //scene->AddActionToObj(triggerAction, trigger);
-    //aPlaneMovement* playerMovement = new aPlaneMovement();
-    //playerMovement->program = program;
-    //scene->AddActionToObj(playerMovement, scene->sceneObjects[15]);
-
-
-    //aPlanePhysics* planePhysics = new aPlanePhysics;
-    //planePhysics->physMan = g_pPhysicEngine;
-    //planePhysics->planeMovement = playerMovement;
-    //scene->AddActionToObj(planePhysics, scene->sceneObjects[15]);
-
-
-
 
 
 
