@@ -89,6 +89,41 @@ glm::vec3 cBasicFlyCamera::getTargetRelativeToCamera(void)
 	return glm::normalize(this->m_target);
 }
 
+glm::vec3 directionToEuler(const glm::vec3& direction) {
+	glm::vec3 eulerRotation;
+
+	// Calculate pitch (rotation around X-axis)
+	eulerRotation.x = glm::degrees(asin(direction.y));
+
+	// Calculate yaw (rotation around Y-axis)
+	eulerRotation.y = glm::degrees(atan2(direction.x, -direction.z));
+
+	// Roll is usually zero unless roll is needed
+	eulerRotation.z = 0.0f;
+
+	return eulerRotation;
+}
+
+Camera* cBasicFlyCamera::getCameraData()
+{
+	glm::vec2 resolution = glm::vec2(1920, 1080);
+
+	// Get Camera Position and Target Position
+	glm::vec3 eyePos = getEyeLocation();
+	glm::vec3 targetPos = getTargetLocation();
+
+	// Compute direction vector
+	glm::vec3 direction = glm::normalize(targetPos - eyePos);
+
+	// Convert direction vector to Euler angles (yaw, pitch)
+	glm::vec3 rotation = directionToEuler(direction);
+
+	// Create Camera with position & calculated rotation
+	Camera* camera = new Camera(eyePos, rotation, resolution, true);
+
+	return camera;
+}
+
 glm::vec3 cBasicFlyCamera::getTargetLocation(void)
 {
 	// For now, this is simple, but will get more complicated

@@ -64,6 +64,7 @@ public:
 
 	std::vector<Object*> sceneObjects;
 	std::vector<Object*> sceneObjectsSorted;
+	std::vector<Camera*> cameras;
 
 	std::vector<Action*> actions;
 

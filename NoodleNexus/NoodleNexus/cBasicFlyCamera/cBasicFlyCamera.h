@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
+#include "../Camera.hpp"
 
 class cBasicFlyCamera
 {
@@ -19,6 +20,8 @@ public:
 	glm::vec2 getEyeRotation();
 	// Normalized version of getTargetLocation()
 	glm::vec3 getTargetRelativeToCamera(void);
+	Camera* getCameraData();
+
 
 	// Do we want an "up" vector as well?
 
