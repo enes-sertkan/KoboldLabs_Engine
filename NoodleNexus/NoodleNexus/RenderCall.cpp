@@ -163,6 +163,16 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
 
 
 
+void DrawCameraViewToTexture(Camera* camera, int framebufferID)
+{
+
+}
+
+void DrawCameraView(Camera* camera, int framebufferID)
+{
+
+}
+
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
 {
