@@ -84,6 +84,9 @@
     <Filter Include="Engine\Grid">
       <UniqueIdentifier>{e9090dde-52b9-4eeb-b783-633cd970ebdf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{169b120f-0c43-401d-9681-259576eca719}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -399,6 +402,9 @@
     </ClInclude>
     <ClInclude Include="GridRenderer.h">
       <Filter>Engine\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>Engine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

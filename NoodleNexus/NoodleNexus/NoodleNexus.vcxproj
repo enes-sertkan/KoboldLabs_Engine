@@ -203,6 +203,7 @@
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
+    <ClInclude Include="Camera.hpp" />
     <ClInclude Include="CameraPoint.h" />
     <ClInclude Include="cBasicFlyCamera\cBasicFlyCamera.h" />
     <ClInclude Include="cBasicTextureManager.h" />
