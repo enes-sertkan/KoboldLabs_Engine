@@ -19,10 +19,10 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "cube02.txt", "XYZNUV");
 
-   /* modelInfo.modelName = "banners";
-    modelInfo.meshPath = "assets/models/Race_track/banners_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "banners.txt", "XYZNUVRGBA");
-
+    modelInfo.modelName = "TV";
+    modelInfo.meshPath = "assets/models/Flat_Plane_xyz_N";
+    fileManager->WriteModelFile(&modelInfo, "tv.txt", "XYZN");
+/*
     modelInfo.modelName = "barriers";
     modelInfo.meshPath = "assets/models/Race_track/barriers_xyznuvrbga.ply";
     fileManager->WriteModelFile(&modelInfo, "barriers.txt", "XYZNUVRGBA");

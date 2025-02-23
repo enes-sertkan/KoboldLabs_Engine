@@ -17,10 +17,10 @@
 extern cBasicTextureManager* g_pTextures;
 extern cVAOManager* g_pMeshManager;
 extern std::vector<sMesh*> g_vecMeshesToDraw;
-Scene* scene = new Scene();
+Scene* FBOScene = new Scene();
 
 // If SetTexturesFromMeshInfo == false, then we have to set them up manually
-void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* g_pMeshManager, cBasicTextureManager* g_pTextures, Scene* scene);
+void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* g_pMeshManager, cBasicTextureManager* g_pTextures, Scene* FBOScene);
 
 
 void RenderScene(
@@ -80,7 +80,7 @@ void RenderScene(
     glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
 
 
-    DrawMesh(pSkySphere, program, g_pMeshManager, g_pTextures, scene);
+    DrawMesh(pSkySphere, program, g_pMeshManager, g_pTextures, FBOScene);
 
     pSkySphere->bIsVisible = false;
 
@@ -96,7 +96,7 @@ void RenderScene(
 
 
 
-    scene->lightManager->updateShaderWithLightInfo();
+    FBOScene->lightManager->updateShaderWithLightInfo();
 
     // Draw everything again, but this time far away things
     for (unsigned int meshIndex = 0; meshIndex != ::g_vecMeshesToDraw.size(); meshIndex++)
@@ -104,7 +104,7 @@ void RenderScene(
         //            sMesh* pCurMesh = ::g_myMeshes[meshIndex];
         sMesh* pCurMesh = ::g_vecMeshesToDraw[meshIndex];
         //            pCurMesh->bDoNotLight = true;
-        DrawMesh(pCurMesh, program, g_pMeshManager, g_pTextures, scene);
+        DrawMesh(pCurMesh, program, g_pMeshManager, g_pTextures, FBOScene);
 
     }//for (unsigned int meshIndex..
 
@@ -170,56 +170,56 @@ void RenderScene(
     {
         cLightHelper TheLightHelper;
 
-        DrawDebugSphere(scene->lightManager->theLights[::g_selectedLightIndex].position,
-            glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program, scene);
+        DrawDebugSphere(FBOScene->lightManager->theLights[::g_selectedLightIndex].position,
+            glm::vec4(1.0f, 1.0f, 1.0f, 1.0f), 0.1f, program, FBOScene);
 
         const float DEBUG_LIGHT_BRIGHTNESS = 0.3f;
 
         const float ACCURACY = 0.1f;       // How many units distance
         float distance_75_percent =
             TheLightHelper.calcApproxDistFromAtten(0.75f, ACCURACY, FLT_MAX,
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-        DrawDebugSphere(scene->lightManager->theLights[::g_selectedLightIndex].position,
+        DrawDebugSphere(FBOScene->lightManager->theLights[::g_selectedLightIndex].position,
             glm::vec4(DEBUG_LIGHT_BRIGHTNESS, 0.0f, 0.0f, 1.0f),
             distance_75_percent,
-            program, scene);
+            program, FBOScene);
 
 
         float distance_50_percent =
             TheLightHelper.calcApproxDistFromAtten(0.5f, ACCURACY, FLT_MAX,
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-        DrawDebugSphere(scene->lightManager->theLights[::g_selectedLightIndex].position,
+        DrawDebugSphere(FBOScene->lightManager->theLights[::g_selectedLightIndex].position,
             glm::vec4(0.0f, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
             distance_50_percent,
-            program, scene);
+            program, FBOScene);
 
         float distance_25_percent =
             TheLightHelper.calcApproxDistFromAtten(0.25f, ACCURACY, FLT_MAX,
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-        DrawDebugSphere(scene->lightManager->theLights[::g_selectedLightIndex].position,
+        DrawDebugSphere(FBOScene->lightManager->theLights[::g_selectedLightIndex].position,
             glm::vec4(0.0f, 0.0f, DEBUG_LIGHT_BRIGHTNESS, 1.0f),
             distance_25_percent,
-            program, scene);
+            program, FBOScene);
 
         float distance_05_percent =
             TheLightHelper.calcApproxDistFromAtten(0.05f, ACCURACY, FLT_MAX,
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
-                scene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.x,   // Const attent
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.y,   // Linear attenuation
+                FBOScene->lightManager->theLights[::g_selectedLightIndex].atten.z);  // Quadratic attenuation
 
-        DrawDebugSphere(scene->lightManager->theLights[::g_selectedLightIndex].position,
+        DrawDebugSphere(FBOScene->lightManager->theLights[::g_selectedLightIndex].position,
             glm::vec4(DEBUG_LIGHT_BRIGHTNESS, DEBUG_LIGHT_BRIGHTNESS, 0.0f, 1.0f),
             distance_05_percent,
-            program, scene);
+            program, FBOScene);
 
     }
     // **********************************************************************************
@@ -254,13 +254,13 @@ void RenderScene(
     if (pBouncy_5_Ball)
     {
         glm::vec3 directionToBal
-            = pBouncy_5_Ball->positionXYZ - glm::vec3(scene->lightManager->theLights[1].position);
+            = pBouncy_5_Ball->positionXYZ - glm::vec3(FBOScene->lightManager->theLights[1].position);
 
         // Normalize to get the direction only
         directionToBal = glm::normalize(directionToBal);
 
         // Point the spot light at the bouncy ball
-        scene->lightManager->theLights[1].direction = glm::vec4(directionToBal, 1.0f);
+        FBOScene->lightManager->theLights[1].direction = glm::vec4(directionToBal, 1.0f);
     }
 
 

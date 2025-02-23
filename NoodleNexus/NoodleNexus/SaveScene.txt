@@ -3,6 +3,7 @@
 <ObjectLoad-->
 Cube.txt
 cube02.txt
+tv.txt
 skysphere.txt
 selectBox.txt
 <--ObjectLoad>

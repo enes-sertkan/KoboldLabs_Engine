@@ -70,6 +70,8 @@
 #include "aPlaneMovement.hpp"
 #include "aPlanePhysics.h"
 #include "cFBO_RGB_depth.hpp"
+#include "RenderScene.cpp"
+#include "cTerrainPathChooser.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -85,6 +87,9 @@ cBasicTextureManager* g_pTextures = NULL;
 cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
+cTerrainPathChooser* g_pTerrainPathChooser = NULL;
+
+
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 
@@ -94,6 +99,26 @@ std::string g_floatToString(float theFloat)
     std::stringstream ssFloat;
     ssFloat << theFloat;
     return ssFloat.str();
+}
+// Offs
+void RenderFBOToScreen(GLuint textureID, GLuint program)
+{
+    // Use a simple shader program for rendering the texture
+    glUseProgram(program);
+
+    // Bind the FBO's texture
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+
+    // Render a full-screen quad
+    glDisable(GL_DEPTH_TEST); // Disable depth testing for the quad
+    glBegin(GL_QUADS);
+    glTexCoord2f(0.0f, 0.0f); glVertex2f(-1.0f, -1.0f);
+    glTexCoord2f(1.0f, 0.0f); glVertex2f(1.0f, -1.0f);
+    glTexCoord2f(1.0f, 1.0f); glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(0.0f, 1.0f); glVertex2f(-1.0f, 1.0f);
+    glEnd();
+    glEnable(GL_DEPTH_TEST); // Re-enable depth testing
 }
 
 
@@ -949,10 +974,18 @@ int main(void)
 
     // INIT FBO
 // --------
-    cFBO_RGB_depth* g_FBO = new  cFBO_RGB_depth(); // Global or class member
-    std::string error; //TODO probably unnided. PRob we alredt havve error variable
-    if (!g_FBO->init(1024, 768, error)) {
-        std::cerr << "FBO Error: " << error << std::endl;
+    // Offs
+    cFBO_RGB_depth FBO_WarehouseView;
+    std::string FBOError;
+    if (!FBO_WarehouseView.init(1920, 1080, FBOError))
+        //    if (!FBO_WarehouseView.init(128, 64, FBOError))
+        //    if (!FBO_WarehouseView.init(3840 * 2, 2180 * 2, FBOError))
+    {
+        std::cout << "Error: FBO.init(): " << FBOError << std::endl;
+    }
+    else
+    {
+        std::cout << "FBO created OK" << std::endl;
     }
 
 
@@ -1070,8 +1103,17 @@ int main(void)
     SceneEditor* sceneEditor = new SceneEditor();
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, scene->vaoManager, scene);
-
-
+    
+    // Traversing the path
+    ::g_pTerrainPathChooser = new cTerrainPathChooser(::g_pMeshManager);
+    // Set the terrain, etc. 
+    // HACK:
+    ::g_pTerrainPathChooser->setTerrainMesh(
+        "assets/models/Simple_MeshLab_terrain_x5_xyz_N_uv.ply",
+        glm::vec3(0.0f, -175.0f, 0.0f));        // Offset of mesh
+    //
+    ::g_pTerrainPathChooser->startXYZ = glm::vec3(-500.0f, -75.0f, -500.0f);
+    ::g_pTerrainPathChooser->destinationXYZ = glm::vec3(+500.0f, -75.0f, +500.0f);
 
 
 //   GENERATING MAZE
@@ -1166,6 +1208,141 @@ int main(void)
         ratio = width / (float)height;
         glViewport(0, 0, width, height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+        // Offs
+        glm::mat4 matProjection = glm::mat4(1.0f);
+        glm::mat4 matView = glm::mat4(1.0f);
+        glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
+        // **************************************************
+        // 
+        // RENDER from the inside of the warehouse
+
+
+        // Point output to the off-screen FBO
+        glBindFramebuffer(GL_FRAMEBUFFER, FBO_WarehouseView.ID);
+
+        // These will ONLY work on the default framebuffer
+//        glViewport(0, 0, width, height);
+//       glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+//        FBO_WarehouseView.clearColourBuffer(0);
+        FBO_WarehouseView.clearBuffers(true, true);
+
+
+        matProjection = glm::perspective(0.6f,
+            ratio,
+            10.0f,
+            100'000.0f);
+
+        glm::vec3 eyeInsideWarehouse = glm::vec3(-197.0f, 14.0f, -72.0f);
+        float xOffset = 10.0f * glm::sin((float)glfwGetTime() / 2.0f);
+        glm::vec3 atInsideWareHouse =
+            eyeInsideWarehouse + glm::vec3(xOffset, 0.0f, 10.0f);
+
+        matView = glm::lookAt(eyeInsideWarehouse, atInsideWareHouse, glm::vec3(0.0f, 1.0f, 0.0f));
+
+        RenderScene(program, matProjection, matView, ratio, eyeInsideWarehouse);
+        // 
+        // **************************************************
+
+
+
+        // **************************************************
+        // 
+        // RENDER normally
+
+        // Point the output to the regular framebuffer (the screen)
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+        // These will ONLY work on the default framebuffer
+        glViewport(0, 0, width, height);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        matView = glm::lookAt(
+            ::g_pFlyCamera->getEyeLocation(),
+            ::g_pFlyCamera->getTargetLocation(),
+            upVector);
+
+        matProjection = glm::perspective(0.6f,
+            ratio,
+            10.0f,
+            100'000.0f);
+
+        // Render the offscreen FBO texture onto where Dua Lipa was...
+        sMesh* pFBOTextureMesh = new sMesh();
+        pFBOTextureMesh->uniqueFriendlyName = "TV";
+        // 
+        // Now apply that off-screen texture (from the FBO) to the canadian flag model
+//        sMesh* pFBOTextureMesh = ::g_pFindMeshByFriendlyName("Canadian_Flag");
+
+        if (pFBOTextureMesh)
+        {
+            pFBOTextureMesh->bIsVisible = true;
+
+            GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
+            glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+
+            GLint matView_UL = glGetUniformLocation(program, "matView");
+            glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
+
+
+
+            // Connect texture unit #0 to the offscreen FBO
+            glActiveTexture(GL_TEXTURE0);
+
+            // The colour texture inside the FBO is just a regular colour texture.
+            // There's nothing special about it.
+            glBindTexture(GL_TEXTURE_2D, FBO_WarehouseView.colourTexture_0_ID);
+            //            glBindTexture(GL_TEXTURE_2D, ::g_pTextures->getTextureIDFromName("dua-lipa-promo.bmp"));
+
+            GLint texture01_UL = glGetUniformLocation(program, "texture00");
+            glUniform1i(texture01_UL, 0);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+
+            GLint texRatio_0_to_3_UL = glGetUniformLocation(program, "texRatio_0_to_3");
+            glUniform4f(texRatio_0_to_3_UL,
+                1.0f,
+                0.0f,
+                0.0f,
+                0.0f);
+
+            // This is for the blurring effect
+            GLint b_Is_FBO_Texture_UL = glGetUniformLocation(program, "b_Is_FBO_Texture");
+            GLint bUseTextureAsColour_UL = glGetUniformLocation(program, "bUseTextureAsColour");
+
+            glUniform1f(b_Is_FBO_Texture_UL, (float)GL_TRUE);
+            glUniform1f(bUseTextureAsColour_UL, (float)GL_FALSE);
+
+            //DrawMesh(pFBOTextureMesh, program, g_pMeshManager, , scene);
+
+            glUniform1f(b_Is_FBO_Texture_UL, (float)GL_FALSE);
+            glUniform1f(bUseTextureAsColour_UL, (float)GL_TRUE);
+
+            pFBOTextureMesh->bIsVisible = false;
+        }
+
+
+        RenderScene(program, matProjection, matView, ratio, ::g_pFlyCamera->getEyeLocation());
+        // 
+        // **************************************************
+
+
+        DrawDebugSphere(::g_pTerrainPathChooser->startXYZ, glm::vec4(1.0f, 0.0f, 0.0f, 1.0f), 10.0f, program, scene);
+        DrawDebugSphere(::g_pTerrainPathChooser->destinationXYZ, glm::vec4(0.0f, 1.0f, 1.0f, 1.0f), 10.0f, program, scene);
+
+        // Draw the paths along the terrain
+        std::vector<glm::vec3> vecPathPoints;
+        //        ::g_pTerrainPathChooser->CalculatePath(vecPathPoints);
+        //        for (glm::vec3 points : vecPathPoints)
+        //        {
+        //            DrawDebugSphere(points, glm::vec4(0.0f, 1.0f, 0.0f, 1.0f), 25.0f, program);
+        //        }
+
+                // **************************************************
+
+                // Load any outstanding models async...
+        //::g_pMeshManager->LoadAsynModels(program);
 
  /*       followScript->start = RacingCar->mesh->positionXYZ;
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
