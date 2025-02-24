@@ -2,9 +2,18 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-cube02.txt
+mainAst.txt
+otherAst.txt
+stuffMainAst.txt
+industrialAst.txt
+console.txt
+cornerConsole.txt
+screen1.txt
+screen2.txt
+screen3.txt
+cScreen1.txt
+cScreen2.txt
 skysphere.txt
-selectBox.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -27,7 +36,7 @@ selectBox.txt
 <StaticCollision-> false
 <Position-> 10 10 10
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0

@@ -14,77 +14,71 @@ void CreateModelFiles(KLFileManager* fileManager)
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
-    // Maze
-    modelInfo.modelName = "Cubalizer";
-    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "cube02.txt", "XYZNUV");
-
-   /* modelInfo.modelName = "banners";
-    modelInfo.meshPath = "assets/models/Race_track/banners_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "banners.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "barriers";
-    modelInfo.meshPath = "assets/models/Race_track/barriers_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "barriers.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "garage";
-    modelInfo.meshPath = "assets/models/Race_track/garage_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "garage.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "grass01";
-    modelInfo.meshPath = "assets/models/Race_track/grass_01_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "grass01.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "grass02";
-    modelInfo.meshPath = "assets/models/Race_track/grass_02_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "grass02.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "gravel";
-    modelInfo.meshPath = "assets/models/Race_track/gravel_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "gravel.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "metal_fence";
-    modelInfo.meshPath = "assets/models/Race_track/metal_fence_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "metal_fence.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "road";
-    modelInfo.meshPath = "assets/models/Race_track/road_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "road.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "rock";
-    modelInfo.meshPath = "assets/models/Race_track/rock_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "rock.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "trees";
-    modelInfo.meshPath = "assets/models/Race_track/trees_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "trees.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "tyres";
-    modelInfo.meshPath = "assets/models/Race_track/tyres_xyznuvrbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "tyres.txt", "XYZNUVRGBA");*/
-
     // Sky Sphere
     modelInfo.modelName = "SkySphere";
     modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUV");
 
-    ////Godray
+    // Asteroid
+    modelInfo.modelName = "MainAsteroid";
+    modelInfo.meshPath = "assets/models/Miner/asteroid_main_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "mainAst.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "OtherAsteroid";
+    modelInfo.meshPath = "assets/models/Miner/asteroid_other_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "otherAst.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "StuffMainAst";
+    modelInfo.meshPath = "assets/models/Miner/stuff_main_asteroid_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "stuffMainAst.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "IndusAsteroid";
+    modelInfo.meshPath = "assets/models/Miner/asteroid_industrial_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "industrialAst.txt", "XYZNUVRGBA");
+
+    // Consoles
+    modelInfo.modelName = "ConsoleStation";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "console.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "CornerConsole";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "cornerConsole.txt", "XYZNUVRGBA");
+
+    // Screens
+    modelInfo.modelName = "Screen1";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_1_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "screen1.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Screen2";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_2_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "screen2.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Screen3";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_3_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "screen3.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "CornerScreen1";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "cScreen1.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "CornerScreen2";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "cScreen2.txt", "XYZNUVRGBA");
+
+    //// Room
     //modelInfo.modelName = "GodRay";
     //modelInfo.meshPath = "assets/models/Race_track/godray_xyznuvrgba.ply";
     //fileManager->WriteModelFile(&modelInfo, "godray.txt", "XYZNUVRGBA");
 
-    ////Cloud
     //modelInfo.modelName = "Clouds";
     //modelInfo.meshPath = "assets/models/Race_track/clouds_xyznuvrbga.ply";
     //fileManager->WriteModelFile(&modelInfo, "clouds.txt", "XYZNUVRGBA");
 
-    //// Plane
     //modelInfo.modelName = "Plane";
     //modelInfo.meshPath = "assets/models/UFO.ply";
     //fileManager->WriteModelFile(&modelInfo, "Plane.txt", "XYZNUVRGBA");
 
-    //// Classroom
-    ////do not forget to make castle Bodiam_Castle.ply
     //modelInfo.modelName = "Castle";
     //modelInfo.meshPath = "assets/models/Bodiam_Castle.ply";
     //fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
