@@ -150,6 +150,16 @@ void Scene::DrawMesh(sMesh* pCurMesh, GLuint program)
 }
 
 
+
+void Scene::AddCamera(glm::vec3 position, glm::vec3 rotation, glm::vec2 res)
+{
+    Camera* newCamera = new Camera(position, rotation, res);
+    newCamera->scene = this;
+    cameras.push_back(newCamera);
+}
+
+
+
 void Scene::DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program)
 {
     // Created the debug sphere, yet?

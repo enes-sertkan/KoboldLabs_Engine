@@ -1124,7 +1124,7 @@ int main(void)
 
     // HACK:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
-
+    scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
     while (!glfwWindowShouldClose(window))
     {
         //followObj->start = RacingCar->mesh->positionXYZ;
@@ -1176,7 +1176,8 @@ int main(void)
         //}
 
 
-        DrawCameraView(scene->fCamera->getCameraData(), 0, 0);
+       // DrawCameraView(scene->fCamera->getCameraData(), 0, 0);
+        DrawCameraView(scene->cameras[0], 0, 0);
 
 
 //      ADDITIONAL DRAW STUFF
