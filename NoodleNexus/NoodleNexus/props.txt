@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> Ceiling
-<filePath> assets/models/Room/Ceilings_xyz_n_uv_rbga.ply
+<name> Props
+<filePath> assets/models/Room/Props_xyz_n_uv_rbga.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

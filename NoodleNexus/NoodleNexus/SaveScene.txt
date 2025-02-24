@@ -16,6 +16,11 @@ cScreen1.txt
 cScreen2.txt
 cScreenRight1.txt
 cScreenRight2.txt
+ceilings.txt
+floors.txt
+walls.txt
+props.txt
+skysphere.tx
 skysphere.txt
 <--ObjectLoad>
 <Scene-->
@@ -27,7 +32,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.10544e-38 0
+<Scale-> 10 1.01397e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -39,7 +44,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.1151e-38 1.62551e-43
+<Scale-> 10 8.76397e-39 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -51,7 +56,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.11508e-38 1.62551e-43
+<Scale-> 10 1.11508e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -111,7 +116,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 10 7.54753e-39 0
+<Scale-> 10 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -123,7 +128,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 10 0 0
+<Scale-> 10 7.08819e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -147,7 +152,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 386 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 0 9.15816e+08
+<Scale-> 10 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -159,7 +164,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 386 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 8.72447e-39 6.70411e-39
+<Scale-> 10 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -171,7 +176,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 236 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 1.1151e-38 9.15816e+08
+<Scale-> 10 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -190,21 +195,69 @@ skysphere.txt
 <--Object>
 
 <Object-->
+<Name-> Ceiling
+<Model-> Ceiling
+<Tags->
+<StaticCollision-> false
+<Position-> 286 2018 -570
+<Rotation-> 0 180 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Floor
+<Model-> Floor
+<Tags->
+<StaticCollision-> false
+<Position-> 286 2018 -570
+<Rotation-> 0 180 0
+<Scale-> 10 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Wall
+<Model-> Wall
+<Tags->
+<StaticCollision-> false
+<Position-> 286 2018 -570
+<Rotation-> 0 180 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Props
+<Model-> Props
+<Tags->
+<StaticCollision-> false
+<Position-> 286 2018 -570
+<Rotation-> 0 180 0
+<Scale-> 10 7.54753e-39 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
 <Name-> SkySphere
 <Model-> SkySphere
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> 10 10 10
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Position-> 286 2018 -570
+<Rotation-> 0 180 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <--Object>
 
 <Light-->
-<Position-> 238 2047 -518.16 1
+<Position-> 238 2047 -518.28 1
 <Diffuse-> 1.97 1.4 0.2 1
-<Specular-> 1 1 1 2.9
+<Specular-> 1 1 1 1
 <Atten-> 0 0.00106692 0.000650256 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 3.6 -6.8 0
@@ -212,7 +265,17 @@ skysphere.txt
 <--Light>
 
 <Light-->
-<Position-> 218.5 2043.5 -596.54 1
+<Position-> 439.5 2054 -782.16 1
+<Diffuse-> 1.59 0.91 0.2 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.00104219 0.000655708 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 188 2043.5 -700.54 1
 <Diffuse-> 0.93 0.44 0.7 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.00288567 0.00157466 3.40282e+38
@@ -224,7 +287,7 @@ skysphere.txt
 <Light-->
 <Position-> 309.5 2049 -450.3 1
 <Diffuse-> 1.93 1.59 0.8 1
-<Specular-> 1 1 1 9.5
+<Specular-> 1 1 1 1
 <Atten-> 0 0.00112134 0.000486438 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 3.6 -6.8 0
@@ -248,6 +311,16 @@ skysphere.txt
 <Atten-> 0 0.0158586 0.00535981 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 0 70000 -1.46 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 20 35 0
 <Param2-> 1 0 0 0
 <--Light>
 

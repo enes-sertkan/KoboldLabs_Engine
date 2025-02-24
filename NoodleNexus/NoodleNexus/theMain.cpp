@@ -827,26 +827,23 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[14]->mesh->stencilTextureID = 61;
         scene->sceneObjects[14]->mesh->textureSpeed.x = 0.1f;
 
-        //class room
+        //Room
 
-        //scene->sceneObjects[15]->mesh->textures[0] = "SHD_UFO_AO.bmp";
-        //scene->sceneObjects[15]->mesh->textures[1] = "SHD_UFO_roughness.bmp";
-        //scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[15]->mesh->blendRatio[1] = 1;
-        //scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[15]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
+        scene->sceneObjects[16]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[16]->mesh->textures[0] = "board.bmp";
-        //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[17]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[17]->mesh->textures[0] = "casier.bmp";
-        //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
-
-        //scene->sceneObjects[18]->mesh->textures[0] = "ceiling.bmp";
-        //scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[18]->mesh->textures[0] = "grass_1.bmp";
+        scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
         //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;

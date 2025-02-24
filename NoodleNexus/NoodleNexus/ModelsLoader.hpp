@@ -78,22 +78,22 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv_Right.ply";
     fileManager->WriteModelFile(&modelInfo, "cScreenRight2.txt", "XYZNUVRGBA");
 
-    //// Room
-    //modelInfo.modelName = "GodRay";
-    //modelInfo.meshPath = "assets/models/Race_track/godray_xyznuvrgba.ply";
-    //fileManager->WriteModelFile(&modelInfo, "godray.txt", "XYZNUVRGBA");
+    // Room
+    modelInfo.modelName = "Ceiling";
+    modelInfo.meshPath = "assets/models/Room/Ceilings_xyz_n_uv_rbga.ply";
+    fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
-    //modelInfo.modelName = "Clouds";
-    //modelInfo.meshPath = "assets/models/Race_track/clouds_xyznuvrbga.ply";
-    //fileManager->WriteModelFile(&modelInfo, "clouds.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Floor";
+    modelInfo.meshPath = "assets/models/Room/Floors_xyz_n_uv_rgba.ply";
+    fileManager->WriteModelFile(&modelInfo, "floors.txt", "XYZNUVRGBA");
 
-    //modelInfo.modelName = "Plane";
-    //modelInfo.meshPath = "assets/models/UFO.ply";
-    //fileManager->WriteModelFile(&modelInfo, "Plane.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Wall";
+    modelInfo.meshPath = "assets/models/Room/Walls_xyz_n_uv_rbga.ply";
+    fileManager->WriteModelFile(&modelInfo, "walls.txt", "XYZNUVRGBA");
 
-    //modelInfo.modelName = "Castle";
-    //modelInfo.meshPath = "assets/models/Bodiam_Castle.ply";
-    //fileManager->WriteModelFile(&modelInfo, "Castle.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Props";
+    modelInfo.meshPath = "assets/models/Room/Props_xyz_n_uv_rbga.ply";
+    fileManager->WriteModelFile(&modelInfo, "props.txt", "XYZNUVRGBA");
 
     //modelInfo.modelName = "board";
     //modelInfo.meshPath = "assets/models/Class_Room/board_xyznuvrbga.ply";
