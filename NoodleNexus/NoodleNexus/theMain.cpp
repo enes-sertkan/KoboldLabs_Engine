@@ -744,14 +744,14 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[0]->mesh->textures[0] = "rock.bmp";
         scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[0]->mesh->transperency = 1;
-        scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
+        //scene->sceneObjects[0]->mesh->transperency = 1;
+        //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
         scene->sceneObjects[1]->mesh->textures[0] = "rock.bmp";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[1]->mesh->transperency = 0.2;
-        scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+        //scene->sceneObjects[1]->mesh->transperency = 0.2;
+        //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
         scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
         scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
@@ -762,24 +762,23 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[4]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
-        scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
+        //scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
         scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
+        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
         scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[5]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
+        //scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
 
 
         scene->sceneObjects[6]->mesh->textures[0] = "WorldMap.bmp";
-        scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
         scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
+        //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+        //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
 
 
         scene->sceneObjects[7]->mesh->textures[0] = "WorldMap.bmp";
@@ -789,7 +788,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[8]->mesh->textures[0] = "WorldMap.bmp";
         scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[8]->mesh->transperency = 1;
+        //scene->sceneObjects[8]->mesh->transperency = 1;
 
         scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
         scene->sceneObjects[8]->mesh->stencilTexture = "graphity.bmp";
