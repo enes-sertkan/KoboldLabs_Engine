@@ -86,7 +86,8 @@ cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
-void DrawCameraView(Camera* camera, int framebufferID, int programID);
+void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
+void DrawCameraView(Camera* camera, int programID);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 
 
@@ -1132,6 +1133,7 @@ int main(void)
     // HACK:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
     scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
+  
     while (!glfwWindowShouldClose(window))
     {
         //followObj->start = RacingCar->mesh->positionXYZ;
@@ -1183,8 +1185,8 @@ int main(void)
         //}
 
 
-       // DrawCameraView(scene->fCamera->getCameraData(), 0, 0);
-        DrawCameraView(scene->cameras[0], 0, 0);
+       DrawCameraView(scene->fCamera->getCameraData(), 0);
+       // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0, 0);
 
 
 //      ADDITIONAL DRAW STUFF

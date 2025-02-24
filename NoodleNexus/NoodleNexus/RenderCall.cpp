@@ -399,7 +399,300 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
    // glEnable(GL_DEPTH_TEST);
 	return;
 }
-void DrawCameraView(Camera* camera, int framebufferID, int programID)
+
+glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const glm::vec3& cameraPosition)
+{
+    // Extract pitch, yaw, and roll from the rotation vector
+    float pitch = cameraRotation.x; // Rotation around the X-axis
+    float yaw = cameraRotation.y;   // Rotation around the Y-axis
+    float roll = cameraRotation.z;  // Rotation around the Z-axis (roll)
+
+    // Calculate the forward vector from pitch and yaw
+    glm::vec3 forward;
+    forward.x = cos(yaw) * cos(pitch);
+    forward.y = sin(pitch);
+    forward.z = sin(yaw) * cos(pitch);
+    forward = glm::normalize(forward);
+
+    // Calculate the right vector
+    glm::vec3 right = glm::normalize(glm::cross(forward, glm::vec3(0.0f, 1.0f, 0.0f)));
+
+    // Calculate the initial up vector
+    glm::vec3 up = glm::normalize(glm::cross(right, forward));
+
+    // Apply roll rotation to the up vector
+    if (roll != 0.0f) {
+        // Create a rotation matrix around the forward vector by the roll angle
+        glm::mat4 rollRotation = glm::rotate(glm::mat4(1.0f), roll, forward);
+        // Rotate the up vector using the roll rotation matrix
+        up = glm::vec3(rollRotation * glm::vec4(up, 1.0f));
+    }
+
+    // Construct the view matrix
+    glm::mat4 matView = glm::lookAt(cameraPosition, cameraPosition + forward, up);
+
+    return matView;
+}
+
+void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
+{
+
+
+    // Is it visible? 
+    if (!pCurMesh->bIsVisible)
+    {
+        // Continue in loops jumps to the end of this loop
+        // (for, while, do)
+        return;
+    }
+
+    GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
+
+
+    if (pCurMesh->bIsStencilTexture)
+    {
+
+
+
+        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_TRUE);
+
+        glActiveTexture(GL_TEXTURE0 + pCurMesh->stencilTextureID);
+
+        GLuint stencilTextureID = textureManager->getTextureIDFromName(pCurMesh->stencilTexture);
+        glBindTexture(GL_TEXTURE_2D, stencilTextureID);
+
+        GLint stencilTexture_UL = glGetUniformLocation(program, "stencilTexture");
+        glUniform1i(stencilTexture_UL, pCurMesh->stencilTextureID);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+    }
+    else
+    {
+        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
+    }
+
+    float currentTime = glfwGetTime(); // For example, using GLFW
+    GLint timeUniform = glGetUniformLocation(program, "time");
+    glUniform1f(timeUniform, currentTime);
+
+
+
+
+
+    pCurMesh->time += 0.1;
+    GLint time_UL = glGetUniformLocation(program, "time");
+    glUniform1f(time_UL, pCurMesh->time);
+
+    GLint speedX_UL = glGetUniformLocation(program, "speedX");
+    glUniform1f(speedX_UL, pCurMesh->textureSpeed.x);
+
+    GLint speedY_UL = glGetUniformLocation(program, "speedY");
+    glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
+
+
+
+    // Use lighting or not
+    // uniform bool bDoNotLight;	
+    GLint bDoNotLight_UL = glGetUniformLocation(program, "bDoNotLight");
+    if (pCurMesh->bDoNotLight)
+    {
+        //glUniform1f(bDoNotLight_UL, 1.0f);  // True
+        glUniform1f(bDoNotLight_UL, (GLfloat)GL_TRUE);  // True
+    }
+    else
+    {
+        //                glUniform1f(bDoNotLight_UL, 0.0f);  // False
+        glUniform1f(bDoNotLight_UL, (GLfloat)GL_FALSE);  // False
+    }
+
+
+    //TODO: Add if
+    // Set up the textures for THIS mesh
+    // uniform bool bUseTextureAsColour;	// If true, then sample the texture
+    GLint bUseTextureAsColour_UL = glGetUniformLocation(program, "bUseTextureAsColour");
+    glUniform1f(bUseTextureAsColour_UL, (GLfloat)GL_TRUE);
+
+
+
+
+    SetUpTextures(pCurMesh, program, textureManager);
+
+    // Could be called the "model" or "world" matrix
+    glm::mat4 matModel = glm::mat4(1.0f);
+
+    // Translation (movement, position, placement...)
+    glm::mat4 matTranslate
+        = glm::translate(glm::mat4(1.0f),
+            glm::vec3(pCurMesh->positionXYZ.x,
+                pCurMesh->positionXYZ.y,
+                pCurMesh->positionXYZ.z));
+
+    // Rotation...
+    // Caculate 3 Euler acix matrices...
+    glm::mat4 matRotateX =
+        glm::rotate(glm::mat4(1.0f),
+            glm::radians(pCurMesh->rotationEulerXYZ.x), // Angle in radians
+            glm::vec3(1.0f, 0.0, 0.0f));
+
+    glm::mat4 matRotateY =
+        glm::rotate(glm::mat4(1.0f),
+            glm::radians(pCurMesh->rotationEulerXYZ.y), // Angle in radians
+            glm::vec3(0.0f, 1.0, 0.0f));
+
+    glm::mat4 matRotateZ =
+        glm::rotate(glm::mat4(1.0f),
+            glm::radians(pCurMesh->rotationEulerXYZ.z), // Angle in radians
+            glm::vec3(0.0f, 0.0, 1.0f));
+
+
+    // Scale
+    glm::mat4 matScale = glm::scale(glm::mat4(1.0f),
+        glm::vec3(pCurMesh->uniformScale,
+            pCurMesh->uniformScale,
+            pCurMesh->uniformScale));
+
+
+    // Calculate the final model/world matrix
+    matModel *= matTranslate;     // matModel = matModel * matTranslate;
+    matModel *= matRotateX;
+    matModel *= matRotateY;
+    matModel *= matRotateZ;
+    matModel *= matScale;
+
+    //           matRoationOnly = matModel * matRotateX * matRotateY * matRotateZ;
+
+
+               //mat4x4_mul(mvp, p, m);
+               //mvp = p * v * m;
+   //            glm::mat4 matMVP = matProjection * matView * matModel;
+
+               //const GLint mvp_location = glGetUniformLocation(program, "MVP");
+               //glUniformMatrix4fv(mvp_location, 
+               //    1,
+               //    GL_FALSE,
+               //    (const GLfloat*)&matMVP);
+
+    const GLint mvp_location = glGetUniformLocation(program, "matModel");
+    glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)&matModel);
+
+    //const GLint mvp_location = glGetUniformLocation(program, "matView");
+    //glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)&matMVP);
+
+    //const GLint mvp_location = glGetUniformLocation(program, "matProjection");
+    //glUniformMatrix4fv(mvp_location, 1, GL_FALSE, (const GLfloat*)&matMVP);
+
+    // uniform bool bUseObjectColour;
+    GLint bUseObjectColour = glGetUniformLocation(program, "bUseObjectColour");
+
+    if (pCurMesh->bOverrideObjectColour)
+    {
+        // bool doesn't really exist, it's a float...
+        glUniform1f(bUseObjectColour, (GLfloat)GL_TRUE);    // or 1.0f
+    }
+    else
+    {
+        glUniform1f(bUseObjectColour, (GLfloat)GL_FALSE);   // or 0.0f
+    }
+
+    // Set the object colour
+    // uniform vec4 objectColour;
+    GLint objectColour_UL = glGetUniformLocation(program, "objectColour");
+    glUniform4f(objectColour_UL,
+        pCurMesh->objectColourRGBA.r,
+        pCurMesh->objectColourRGBA.g,
+        pCurMesh->objectColourRGBA.b,
+        1.0f);
+
+
+
+    ///CAMERA
+
+    //        glm::mat4 m, p, v, mvp;
+    glm::mat4 matProjection = glm::mat4(1.0f);
+
+    matProjection = glm::perspective(0.6f,           // FOV
+        camera->resolution.x/camera->resolution.y,          // Aspect ratio of screen
+        0.1f,           // Near plane
+        1000000.0f);       // Far plane
+
+   
+
+    // Construct the view matrix
+    glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
+
+
+
+    const GLint matView_UL = glGetUniformLocation(program, "matView");
+    glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
+
+    const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
+    glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+
+
+
+
+    GLint cameraLocation = glGetUniformLocation(program, "cameraLocation");
+    glUniform3f(cameraLocation,
+        camera->position.x,
+        camera->position.y,
+        camera->position.z);
+
+
+    //transperency
+   // if (pCurMesh->transperency < 1)
+   // {
+       // glDisable(GL_DEPTH_TEST);
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+
+
+    if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
+        glUniform1f(glGetUniformLocation(program, "suckPower"), 25.f);
+    else
+        glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
+    //}
+
+
+
+    if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
+        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
+    else
+        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
+
+
+    // solid or wireframe, etc.
+//        glPointSize(10.0f);
+    if (pCurMesh->bIsWireframe)
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+    else
+    {
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
+
+    //        glDrawArrays(GL_TRIANGLES, 0, 3);
+//            glDrawArrays(GL_TRIANGLES, 0, numberOfVertices_TO_DRAW);
+
+    sModelDrawInfo meshToDrawInfo;
+    if (vaoManager->FindDrawInfoByModelName(pCurMesh->modelFileName, meshToDrawInfo))
+    {
+        // Found the model
+        glBindVertexArray(meshToDrawInfo.VAO_ID); 		// enable VAO(and everything else)
+        //https://registry.khronos.org/OpenGL-Refpages/gl4/html/glDrawElements.xhtml
+        glDrawElements(GL_TRIANGLES,
+            meshToDrawInfo.numberOfIndices,
+            GL_UNSIGNED_INT,
+            (void*)0);
+
+        glBindVertexArray(0); 			//disable VAO(and everything else)
+    }
+
+    // glEnable(GL_DEPTH_TEST);
+    return;
+}
+
+
+
+
+void DrawCameraView(Camera* camera, int programID)
 {
     Scene* scene = camera->scene;
     scene->SortObjectsForDrawing();
@@ -408,10 +701,43 @@ void DrawCameraView(Camera* camera, int framebufferID, int programID)
 
         sMesh* pCurMesh = object->mesh;
 
-        DrawMesh(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, scene);
+        DrawMeshWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
+        DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
 
     }
 
+}
+
+void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID)
+{
+    // Bind the target framebuffer
+    glBindFramebuffer(GL_FRAMEBUFFER, framebufferID);
+
+    // Set viewport to match the target size
+    glViewport(0, 0, camera->resolution.x, camera->resolution.y);
+
+    // Clear buffers if requested
+   // if (clearColor || clearDepth) {
+    GLbitfield clearFlags = 0;
+    clearFlags |= GL_COLOR_BUFFER_BIT;
+    clearFlags |= GL_DEPTH_BUFFER_BIT;
+    glClear(clearFlags);
+    // }
+    DrawCameraView(camera, programID);
+  
+     // Unbind the framebuffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    //// If a texture ID is provided, display it on the screen
+    //if (textureID != 0) {
+    //    glActiveTexture(GL_TEXTURE0);
+    //    glBindTexture(GL_TEXTURE_2D, textureID);
+    //    screenShader.use();
+    //    screenShader.setInt("screenTexture", 0);
+    //    glBindVertexArray(quadVAO);
+    //    glDrawArrays(GL_TRIANGLES, 0, 6);
+    //}
+  
 }
 
 void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, Scene* scene)
