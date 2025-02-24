@@ -27,11 +27,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<<<<<<< HEAD
-<Scale-> 10 1.1151e-38 0
-=======
-<Scale-> 10 1.02351e-38 1.62551e-43
->>>>>>> 161b478bc733be4f0b923ec4e9e7249859c91057
+<Scale-> 10 1.10544e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -43,7 +39,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.10544e-38 1.62551e-43
+<Scale-> 10 1.1151e-38 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -67,7 +63,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 10 1.1151e-38 0
+<Scale-> 10 1.1151e-38 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -77,9 +73,9 @@ skysphere.txt
 <Model-> ConsoleStation
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 10 0 0
+<Scale-> 10 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -89,7 +85,7 @@ skysphere.txt
 <Model-> CornerConsole
 <Tags->
 <StaticCollision-> false
-<Position-> 386 2018 -602
+<Position-> 386 2018 -620
 <Rotation-> 0 180 0
 <Scale-> 10 0 0
 <Visibility-> true
@@ -101,7 +97,7 @@ skysphere.txt
 <Model-> CornerConsoleRight
 <Tags->
 <StaticCollision-> false
-<Position-> 276 2018 -602
+<Position-> 236 2018 -620
 <Rotation-> 0 180 0
 <Scale-> 10 0 0
 <Visibility-> true
@@ -113,9 +109,9 @@ skysphere.txt
 <Model-> Screen1
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 10 1.1151e-38 0
+<Scale-> 10 7.54753e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -125,7 +121,7 @@ skysphere.txt
 <Model-> Screen2
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 286 2018 -570
 <Rotation-> 0 180 0
 <Scale-> 10 0 0
 <Visibility-> true
@@ -137,7 +133,7 @@ skysphere.txt
 <Model-> Screen3
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 286 2018 -570
 <Rotation-> 0 180 0
 <Scale-> 10 0 0
 <Visibility-> true
@@ -149,9 +145,9 @@ skysphere.txt
 <Model-> CornerScreen1
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 386 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 6.44597e-44 1.3978e+38
+<Scale-> 10 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -161,9 +157,9 @@ skysphere.txt
 <Model-> CornerScreen2
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 386 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 0 0
+<Scale-> 10 8.72447e-39 6.70411e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -173,9 +169,9 @@ skysphere.txt
 <Model-> CornerScreenRight1
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 236 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 0 0
+<Scale-> 10 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -186,9 +182,9 @@ skysphere.txt
 <Model-> CornerScreenRight2
 <Tags->
 <StaticCollision-> false
-<Position-> 286 2018 -552
+<Position-> 236 2018 -620
 <Rotation-> 0 180 0
-<Scale-> 10 0 0
+<Scale-> 10 7.54753e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -203,16 +199,55 @@ skysphere.txt
 <Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> 0 70000 -0.62 1
-<Diffuse-> 1 1 1 1
+<Position-> 238 2047 -518.16 1
+<Diffuse-> 1.97 1.4 0.2 1
+<Specular-> 1 1 1 2.9
+<Atten-> 0 0.00106692 0.000650256 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 218.5 2043.5 -596.54 1
+<Diffuse-> 0.93 0.44 0.7 1
 <Specular-> 1 1 1 1
-<Atten-> 0 3.85558e-10 3.3417e-10 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
+<Atten-> 0 0.00288567 0.00157466 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 309.5 2049 -450.3 1
+<Diffuse-> 1.93 1.59 0.8 1
+<Specular-> 1 1 1 9.5
+<Atten-> 0 0.00112134 0.000486438 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 368.5 2044.5 -517.8 1
+<Diffuse-> 3.41 3.36 0.5 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.00616465 0.00204265 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 391.5 2077.5 -603.3 1
+<Diffuse-> 5.47003 3.42 0.5 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.0158586 0.00535981 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 3.6 -6.8 0
 <Param2-> 1 0 0 0
 <--Light>
 
