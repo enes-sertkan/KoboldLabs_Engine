@@ -406,6 +406,9 @@
     <ClInclude Include="Camera.hpp">
       <Filter>Engine\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="aCameraSwitch.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

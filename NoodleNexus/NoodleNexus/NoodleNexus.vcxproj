@@ -190,6 +190,7 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aCameraSwitch.hpp" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />

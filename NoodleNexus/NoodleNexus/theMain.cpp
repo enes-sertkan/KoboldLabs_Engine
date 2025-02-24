@@ -872,8 +872,8 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[18]->mesh->textures[0] = "rust.bmp";
-        scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[18]->mesh->textures[0] = "dmageAsph.bmp";
+        scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[19]->mesh->textures[0] = "clock.bmp";
