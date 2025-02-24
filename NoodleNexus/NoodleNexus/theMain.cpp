@@ -774,7 +774,7 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
 
 
-        scene->sceneObjects[6]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[6]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
         scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
         //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
@@ -791,7 +791,7 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[8]->mesh->transperency = 1;
 
         scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[8]->mesh->stencilTexture = "graphity.bmp";
+        scene->sceneObjects[8]->mesh->stencilTexture = "WorldMap.bmp";
         scene->sceneObjects[8]->mesh->stencilTextureID = 61;
         scene->sceneObjects[8]->mesh->textureSpeed.x = 0.1f;
 
@@ -803,20 +803,20 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
-        //scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[10]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[11]->mesh->textures[0] = "tyres.bmp";
-        //scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[11]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[13]->mesh->textures[0] = "cloud.bmp";
-        //scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[13]->mesh->transperency = 0.9;
+        scene->sceneObjects[13]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[13]->mesh->transperency = 0.9;
 
-        //scene->sceneObjects[14]->mesh->textures[0] = "yellow.bmp";
+        //scene->sceneObjects[14]->mesh->textures[0] = "WorldMap.bmp";
         //scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
         //scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[14]->mesh->transperency = 0.2;

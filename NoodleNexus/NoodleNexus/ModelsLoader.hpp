@@ -45,6 +45,10 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "cornerConsole.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "CornerConsoleRight";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv._Right.ply";
+    fileManager->WriteModelFile(&modelInfo, "cornerConsoleRight.txt", "XYZNUVRGBA");
+
     // Screens
     modelInfo.modelName = "Screen1";
     modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_1_xyz_n_rgba_uv.ply";
@@ -65,6 +69,14 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.modelName = "CornerScreen2";
     modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "cScreen2.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "CornerScreenRight1";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv_Right.ply";
+    fileManager->WriteModelFile(&modelInfo, "cScreenRight1.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "CornerScreenRight2";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv_Right.ply";
+    fileManager->WriteModelFile(&modelInfo, "cScreenRight2.txt", "XYZNUVRGBA");
 
     //// Room
     //modelInfo.modelName = "GodRay";

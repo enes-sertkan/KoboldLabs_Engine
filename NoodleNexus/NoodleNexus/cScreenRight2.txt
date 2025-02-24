@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> CornerScreenRight2
+<filePath> assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv_Right.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
