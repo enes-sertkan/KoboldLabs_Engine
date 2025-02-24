@@ -27,7 +27,11 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
+<<<<<<< HEAD
 <Scale-> 10 1.1151e-38 0
+=======
+<Scale-> 10 1.02351e-38 1.62551e-43
+>>>>>>> 161b478bc733be4f0b923ec4e9e7249859c91057
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -196,7 +200,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 10 10 10
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
