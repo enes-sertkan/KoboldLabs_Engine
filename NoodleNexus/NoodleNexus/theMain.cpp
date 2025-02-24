@@ -741,68 +741,68 @@ void AddActions(Scene* scene, GLuint program)
 
     {
 
-        scene->sceneObjects[0]->mesh->textures[0] = "baloon.bmp";
+        scene->sceneObjects[0]->mesh->textures[0] = "rock.bmp";
         scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[0]->mesh->transperency = 1;
         scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        //scene->sceneObjects[1]->mesh->textures[0] = "banners.bmp";
-        //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[1]->mesh->transperency = 0.2;
-        //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
+        scene->sceneObjects[1]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[1]->mesh->transperency = 0.2;
+        scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-        //scene->sceneObjects[2]->mesh->textures[0] = "barriers.bmp";
-        //scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[3]->mesh->textures[0] = "garages.bmp";
-        //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[3]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[4]->mesh->textures[0] = "grass_1.bmp";
-        //scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
-        //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-        //scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
-        //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[4]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        scene->sceneObjects[4]->mesh->textures[1] = "Plant.bmp";
+        scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[4]->mesh->textureFillType[1] = 3;
+        scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[5]->mesh->textures[0] = "grass_2.bmp";
-        //scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
-
-
-        //scene->sceneObjects[6]->mesh->textures[0] = "gravel.bmp";
-        //scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
-        //scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
-        //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
+        scene->sceneObjects[5]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        scene->sceneObjects[5]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[5]->mesh->textureFillType[0] = 3;
 
 
-        //scene->sceneObjects[7]->mesh->textures[0] = "metal_fence.bmp";
-        //scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[6]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[6]->mesh->textures[1] = "Pebbles_island.bmp";
+        scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2;
+        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[0]->mesh->textureFillType[1] = 2;
 
-        //scene->sceneObjects[8]->mesh->textures[0] = "road.bmp";
-        //scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[8]->mesh->transperency = 1;
 
-        //scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[8]->mesh->stencilTexture = "kobold_stencil.bmp";
-        //scene->sceneObjects[8]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[8]->mesh->textureSpeed.x = 0.01f;
+        scene->sceneObjects[7]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[9]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[8]->mesh->textures[0] = "WorldMap.bmp";
+        scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[8]->mesh->transperency = 1;
+
+        scene->sceneObjects[8]->mesh->bIsStencilTexture = true;
+        scene->sceneObjects[8]->mesh->stencilTexture = "graphity.bmp";
+        scene->sceneObjects[8]->mesh->stencilTextureID = 61;
+        scene->sceneObjects[8]->mesh->textureSpeed.x = 0.1f;
+
+        scene->sceneObjects[9]->mesh->textures[0] = "WorldMap.bmp";
         //scene->sceneObjects[9]->mesh->textures[1] = "Pebbles_small.bmp";
         //scene->sceneObjects[9]->mesh->textures[2] = "Ground.bmp";
-        //scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
+        scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
         //scene->sceneObjects[9]->mesh->blendRatio[1] = 0.4;
         //scene->sceneObjects[9]->mesh->blendRatio[2] = 0.4;
-        //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[10]->mesh->textures[0] = "trees.bmp";
         //scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
@@ -989,49 +989,18 @@ int main(void)
 
 
     scene->textureManager->SetBasePath("assets/textures");
-    scene->textureManager->Create2DTextureFromBMPFile("baloon.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("banners.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("barriers.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("garages.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("grass_1.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("grass_2.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("gravel.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("metal_fence.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("road.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("trees.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("tyres.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("yellow.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("cloud.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Ground.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_island.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Plant.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("SHD_UFO_AO.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("SHD_UFO_roughness.bmp");
-
-    //Effects
-    scene->textureManager->Create2DTextureFromBMPFile("kobold_stencil.bmp");
-
-
-    //class
-    scene->textureManager->Create2DTextureFromBMPFile("BodiamCastle.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("board.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("casiers.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("ceiling.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("clock.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("desk.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("door.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("etagere.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("grand_casier.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("ground.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("teacher_d.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
-
-
-
+    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Emmision.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
@@ -1039,12 +1008,12 @@ int main(void)
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/TropicalSunnyDayLeft2048.bmp",
-        "CubeMaps/TropicalSunnyDayRight2048.bmp",
-        "CubeMaps/TropicalSunnyDayUp2048.bmp",
-        "CubeMaps/TropicalSunnyDayDown2048.bmp",
-        "CubeMaps/TropicalSunnyDayFront2048.bmp",
-        "CubeMaps/TropicalSunnyDayBack2048.bmp", true, errorString))
+        "CubeMaps/SpaceBox_left2_negX.bmp",
+        "CubeMaps/SpaceBox_right1_posX.bmp",
+        "CubeMaps/SpaceBox_top3_posY.bmp",
+        "CubeMaps/SpaceBox_bottom4_negY.bmp",
+        "CubeMaps/SpaceBox_front5_posZ.bmp",
+        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }

@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> console
-<filePath> assets/models/Ply/SM_Prop_Console_05_xyz_n_rgba_uv.ply
+<name> ConsoleStation
+<filePath> assets/models/Room/SM_Env_Consoles_01_xyz_n_rgba_uv.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

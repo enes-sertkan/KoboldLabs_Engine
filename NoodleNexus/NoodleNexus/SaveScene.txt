@@ -18,8 +18,44 @@ skysphere.txt
 <Scene-->
 
 <Object-->
-<Name-> Cubalizer
-<Model-> Cubalizer
+<Name-> MainAsteroid
+<Model-> MainAsteroid
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.02351e-38 1.62551e-43
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> OtherAsteroid
+<Model-> OtherAsteroid
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.02351e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> StuffMainAst
+<Model-> StuffMainAst
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> IndusAsteroid
+<Model-> IndusAsteroid
 <Tags->
 <StaticCollision-> false
 <Position-> 0 0 0
@@ -27,6 +63,91 @@ skysphere.txt
 <Scale-> 10 0 0
 <Visibility-> true
 <Shading-> true
+<--Object>
+
+<Object-->
+<Name-> ConsoleStation
+<Model-> ConsoleStation
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> CornerConsole
+<Model-> CornerConsole
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.01397e-38 1.62551e-43
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen1
+<Model-> Screen1
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 1.62551e-43
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen2
+<Model-> Screen2
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen3
+<Model-> Screen3
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> CornerScreen1
+<Model-> CornerScreen1
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> CornerScreen2
+<Model-> CornerScreen2
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 10 1.11508e-38 -1.10874e-17
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -53,38 +174,8 @@ skysphere.txt
 <--Light>
 
 <Camera-->
-<Position-> -85 0.5 335
+<Position-> -7000 1000 10000
 <Rotation-> 163 84
-<--Camera>
-
-<Camera-->
-<Position-> -808 239 -226
-<Rotation-> 180 10
-<--Camera>
-
-<Camera-->
-<Position-> -277 2 243
-<Rotation-> 0 10
-<--Camera>
-
-<Camera-->
-<Position-> -238 6 165
-<Rotation-> 250 100
-<--Camera>
-
-<Camera-->
-<Position-> -310 4 17
-<Rotation-> 163 84
-<--Camera>
-
-<Camera-->
-<Position-> -1018 250 192
-<Rotation-> 50 50
-<--Camera>
-
-<Camera-->
-<Position-> -2148 533 -212
-<Rotation-> 0 0
 <--Camera>
 
 <--Scene>
