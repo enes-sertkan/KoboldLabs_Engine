@@ -747,18 +747,25 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[1]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[1]->mesh->textures[1] = "metalScratch.bmp";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[1]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[1]->mesh->transperency = 0.2;
-        //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
         scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
-        scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[2]->mesh->textures[1] = "metalScratch.bmp";
+        scene->sceneObjects[2]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[2]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[2]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[3]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[3]->mesh->textures[1] = "rust.bmp";
         scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[3]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[4]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
@@ -779,9 +786,10 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[6]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
         scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[6]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[0]->mesh->textureFillType[1] = 1;
+        scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
+        // Front Screen 1
         scene->sceneObjects[7]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
@@ -790,11 +798,18 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[7]->mesh->stencilTextureID = 61;
         scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
 
-        scene->sceneObjects[8]->mesh->textures[0] = "grass_2.bmp";
-        scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
+        // Front Window
+        scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[8]->mesh->textures[0] = "metalScratch.bmp";
+        scene->sceneObjects[8]->mesh->textures[0] = "fingerprint.bmp";
+        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[8]->mesh->transperency = 1;
+        scene->sceneObjects[8]->mesh->transperency = 0.4;
 
+        // Front Screen 2
         scene->sceneObjects[9]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
@@ -803,6 +818,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[9]->mesh->stencilTextureID = 61;
         scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
+        // Left Screen
         scene->sceneObjects[10]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
@@ -811,14 +827,29 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[10]->mesh->stencilTextureID = 61;
         scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
-        scene->sceneObjects[11]->mesh->textures[0] = "WorldMap.bmp";
+        // Left Window
+        scene->sceneObjects[11]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
         scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
+        scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[11]->mesh->transperency = 0.4;
 
+
+        // Right Window
         scene->sceneObjects[13]->mesh->textures[0] = "uv_mapper.bmp";
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[13]->mesh->textures[0] = "Pebbles_small.bmp";
+        scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[13]->mesh->transperency = 0.4;
 
+
+        // Right Screen
         scene->sceneObjects[14]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
@@ -829,19 +860,19 @@ void AddActions(Scene* scene, GLuint program)
 
         //Room
 
-        scene->sceneObjects[15]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[15]->mesh->textures[0] = "metalScratch.bmp";
         scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[16]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[16]->mesh->textures[0] = "metalScratch.bmp";
         scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[17]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[17]->mesh->textures[0] = "metalScratch.bmp";
         scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[18]->mesh->textures[0] = "grass_1.bmp";
+        scene->sceneObjects[18]->mesh->textures[0] = "rust.bmp";
         scene->sceneObjects[18]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
@@ -993,9 +1024,9 @@ int main(void)
     scene->textureManager->SetBasePath("assets/textures");
     scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grass_1.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("grass_2.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("gravel.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("dmageAsph.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
@@ -1004,6 +1035,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
