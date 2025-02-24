@@ -228,6 +228,7 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* ph
 
     window = newWindow;
 
+    newFlyCamera->scene = this;
     fCamera = newFlyCamera;
 
     vaoManager = meshManager;

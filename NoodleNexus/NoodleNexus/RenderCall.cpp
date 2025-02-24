@@ -166,12 +166,11 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
 void DrawCameraViewToTexture(Camera* camera, int framebufferID)
 {
 
-}
 
-void DrawCameraView(Camera* camera, int framebufferID)
-{
 
 }
+
+
 
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
@@ -400,7 +399,20 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
    // glEnable(GL_DEPTH_TEST);
 	return;
 }
+void DrawCameraView(Camera* camera, int framebufferID, int programID)
+{
+    Scene* scene = camera->scene;
+    scene->SortObjectsForDrawing();
+    for (Object* object : scene->sceneObjectsSorted)
+    {
 
+        sMesh* pCurMesh = object->mesh;
+
+        DrawMesh(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, scene);
+
+    }
+
+}
 
 void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, Scene* scene)
 {

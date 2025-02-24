@@ -24,6 +24,7 @@
 #include <vector>
 #include <iostream>
 #include "CameraPoint.h"
+#include "Camera.hpp"
 //#include "Animator.h"
 
 
@@ -44,6 +45,8 @@ public:
 
 	float cameraMoveSpeed=200;
 	float cameraRotateSpeed=50;
+
+	
 
 	void SortObjectsForDrawing();
 	bool CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b);

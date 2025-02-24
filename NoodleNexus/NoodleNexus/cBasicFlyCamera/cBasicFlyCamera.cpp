@@ -120,7 +120,7 @@ Camera* cBasicFlyCamera::getCameraData()
 
 	// Create Camera with position & calculated rotation
 	Camera* camera = new Camera(eyePos, rotation, resolution, true);
-
+	camera->scene = scene;
 	return camera;
 }
 

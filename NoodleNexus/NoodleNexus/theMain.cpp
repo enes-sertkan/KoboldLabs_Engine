@@ -86,6 +86,7 @@ cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
+void DrawCameraView(Camera* camera, int framebufferID, int programID);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 
 
@@ -1196,16 +1197,18 @@ int main(void)
         DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene);
 //      DRAW LOOP
 //      ------------------------------------------       
-        scene->SortObjectsForDrawing();
-        for (Object* object:scene->sceneObjectsSorted)
-        {
+        //scene->SortObjectsForDrawing();
+        //for (Object* object:scene->sceneObjectsSorted)
+        //{
   
-            sMesh* pCurMesh = object->mesh;
+        //    sMesh* pCurMesh = object->mesh;
 
-            DrawMesh(pCurMesh, program, scene->vaoManager, scene->textureManager, scene);
+        //    DrawMesh(pCurMesh, program, scene->vaoManager, scene->textureManager, scene);
 
-        }
+        //}
 
+
+        DrawCameraView(scene->fCamera->getCameraData(), 0, 0);
 
 
 //      ADDITIONAL DRAW STUFF

@@ -5,9 +5,13 @@
 #include <glm/vec3.hpp>
 #include "../Camera.hpp"
 
+class Scene;
+
 class cBasicFlyCamera
 {
 public:
+	Scene* scene;
+
 	cBasicFlyCamera();
 
 	void setEyeLocation(glm::vec3 newEyeLocation);

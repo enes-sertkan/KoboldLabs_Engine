@@ -1,4 +1,5 @@
 #ifndef _CAMERA_HPP_
+#pragma once
 
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
@@ -7,10 +8,15 @@
 #include <glm/gtc/matrix_transform.hpp> 
 #include <glm/gtx/euler_angles.hpp>
 
+class Scene;
+
+
 struct Camera {
     glm::vec3 position;   // Camera position in world space
     glm::vec3 rotation;   // Euler angles (pitch, yaw, roll) in degrees
     glm::vec2 resolution;
+
+    Scene* scene;
 
 
     float fov;
