@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> MainAsteroid
+<filePath> assets/models/Miner/asteroid_main_xyz_n_rgba_uv.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
