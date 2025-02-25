@@ -71,6 +71,7 @@
 #include "aPlanePhysics.h"
 #include "cFBO_RGB_depth.hpp"
 #include "aCameraToTexture.h"
+#include "aScreenTextureSwitch.h"
  Scene* currentScene=nullptr;
 
 
@@ -742,7 +743,31 @@ void AddActions(Scene* scene, GLuint program)
 
 
 
+    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
+    screenSwitcher->AddTexture("camera1");
+    screenSwitcher->AddTexture("camera2");
+    screenSwitcher->AddTexture("camera3");
+    screenSwitcher->AddTexture("camera4");
+    screenSwitcher->AddTexture("camera5");
+    screenSwitcher->AddTexture("binaries.bmp");
+    screenSwitcher->AddTexture("uv_mapper.bmp");
+
+    //FRONT SCREEN
+    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[7]);
+
+
+    ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
+
+    screenSwitcher2->AddTexture("camera3");
+    screenSwitcher2->AddTexture("binaries.bmp");
+    screenSwitcher2->AddTexture("camera1");
+    screenSwitcher2->AddTexture("camera2");
+    screenSwitcher2->AddTexture("camera5");
+    screenSwitcher2->AddTexture("camera4");
+    screenSwitcher2->AddTexture("uv_mapper.bmp");
+
+    scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[10]);
     //Object* playerObject = scene->sceneObjects[15];
 
     //// Add the player camera action (with an offset for camera positioning)
@@ -820,7 +845,7 @@ void AddActions(Scene* scene, GLuint program)
 
         // Front Screen 1
         scene->sceneObjects[7]->mesh->textures[0] = "camera3";
-        scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[7]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
         scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
@@ -840,7 +865,7 @@ void AddActions(Scene* scene, GLuint program)
 
         // Front Screen 2
         scene->sceneObjects[9]->mesh->textures[0] = "camera2";
-        scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
+        scene->sceneObjects[9]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
         //scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
@@ -849,7 +874,7 @@ void AddActions(Scene* scene, GLuint program)
 
         // Left Screen
         scene->sceneObjects[10]->mesh->textures[0] = "camera1";
-        scene->sceneObjects[10]->mesh->blendRatio[0] = 2.5;
+        scene->sceneObjects[10]->mesh->blendRatio[0] =9;
         scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
         //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
@@ -879,12 +904,8 @@ void AddActions(Scene* scene, GLuint program)
 
         // Right Screen
         scene->sceneObjects[14]->mesh->textures[0] = "camera4";
-        scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[14]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[14]->mesh->stencilTexture = "tech.bmp";
-        scene->sceneObjects[14]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[14]->mesh->textureSpeed.x = 0.1f;
 
         //Room
 

@@ -143,6 +143,7 @@
     <ClCompile Include="aLuaScriptsSerial.h" />
     <ClCompile Include="aPlaneMovement.hpp" />
     <ClCompile Include="aPlayerMovement.h" />
+    <ClCompile Include="aScreenTextureSwitch.h" />
     <ClCompile Include="aTextureWiggler.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="PlyFileLoaders.cpp" />
     <ClCompile Include="RenderCall.cpp" />
     <ClCompile Include="RenderScene.cpp" />
+    <ClCompile Include="RotateInLimits.h" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneEditor.cpp" />
     <ClCompile Include="SceneEditorExtra.cpp" />
