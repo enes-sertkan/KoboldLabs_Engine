@@ -20,7 +20,6 @@ ceilings.txt
 floors.txt
 walls.txt
 props.txt
-skysphere.tx
 skysphere.txt
 <--ObjectLoad>
 <Scene-->
@@ -30,9 +29,9 @@ skysphere.txt
 <Model-> MainAsteroid
 <Tags->
 <StaticCollision-> false
-<Position-> 0 0 0
+<Position-> 1 0 -6
 <Rotation-> 0 0 0
-<Scale-> 1 8.76397e-39 0
+<Scale-> 1 8.76397e-39 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -44,7 +43,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.02351e-38 0
+<Scale-> 1 1.1151e-38 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -56,7 +55,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.02351e-38 0
+<Scale-> 1 1.11508e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -68,7 +67,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.02351e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -80,7 +79,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 30 205 -60
 <Rotation-> 0 180 0
-<Scale-> 1 1.11508e-38 1.62551e-43
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -92,7 +91,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 40 205 -65
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -104,7 +103,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 25 205 -65
 <Rotation-> 0 180 0
-<Scale-> 1 6.44597e-44 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -116,7 +115,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 30 205 -60
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -128,7 +127,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 30 205 -60
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 2.66663e-37
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -152,6 +151,18 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 40 205 -65
 <Rotation-> 0 180 0
+<Scale-> 1 6.44597e-44 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 40 205 -65
+<Rotation-> 0 180 0
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
@@ -164,9 +175,10 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 40 205 -65
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -176,10 +188,9 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 25 205 -65
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -189,7 +200,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 25 205 -65
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -237,7 +248,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 30 205 -60
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -252,6 +263,7 @@ skysphere.txt
 <Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -259,11 +271,64 @@ skysphere.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 4 1.1151e-38 0
+<Position-> 1352 100 -439
+<Rotation-> 0 180 0
+<Scale-> 1 1.11508e-38 0
 <Visibility-> true
 <Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 130 -115 60
+<Rotation-> 0 180 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> -639 103 -465
+<Rotation-> 0 180 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 471 -500 -130
+<Rotation-> 0 180 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 776 144 -500
+<Rotation-> 0 180 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -273,7 +338,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0

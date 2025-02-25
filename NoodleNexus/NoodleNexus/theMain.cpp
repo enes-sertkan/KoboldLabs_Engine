@@ -715,9 +715,31 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    Object* cameraObj = scene->sceneObjects[19];
-    CameraToTexture* textureCamera = new CameraToTexture();
-    scene->AddActionToObj(textureCamera, cameraObj);
+    Object* cameraObj1 = scene->sceneObjects[19];
+    Object* cameraObj2 = scene->sceneObjects[20];
+    Object* cameraObj3 = scene->sceneObjects[21];
+    Object* cameraObj4 = scene->sceneObjects[22];
+    Object* cameraObj5 = scene->sceneObjects[23];
+
+    CameraToTexture* textureCamera1 = new CameraToTexture();
+    CameraToTexture* textureCamera2 = new CameraToTexture();
+    CameraToTexture* textureCamera3 = new CameraToTexture();
+    CameraToTexture* textureCamera4 = new CameraToTexture();
+    CameraToTexture* textureCamera5 = new CameraToTexture();
+
+    textureCamera1->textureName = "camera1";
+    textureCamera2->textureName = "camera2";
+    textureCamera3->textureName = "camera3";
+    textureCamera4->textureName = "camera4";
+    textureCamera5->textureName = "camera5";
+
+    scene->AddActionToObj(textureCamera1, cameraObj1);
+    scene->AddActionToObj(textureCamera2, cameraObj2);
+    scene->AddActionToObj(textureCamera3, cameraObj3);
+    scene->AddActionToObj(textureCamera4, cameraObj4);
+    scene->AddActionToObj(textureCamera5, cameraObj5);
+
+
 
 
 
@@ -797,15 +819,13 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
         // Front Screen 1
-        //scene->sceneObjects[7]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[7]->mesh->textures[0] = "camera3";
         scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[7]->mesh->blendRatio[1] = 3;
-        scene->sceneObjects[7]->mesh->blendRatio[2] = 3;
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
-        //scene->sceneObjects[7]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
+        scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
+        scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
+        scene->sceneObjects[7]->mesh->stencilTextureID = 61;
+        scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
 
         // Front Window
         scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
@@ -819,22 +839,22 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[8]->mesh->transperency = 0.4;
 
         // Front Screen 2
-        scene->sceneObjects[9]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[9]->mesh->textures[0] = "camera2";
         scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
-        scene->sceneObjects[9]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
+        //scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
+        //scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
+        //scene->sceneObjects[9]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
         // Left Screen
         scene->sceneObjects[10]->mesh->textures[0] = "camera1";
-        scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[10]->mesh->blendRatio[0] = 2.5;
+        scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
-  /*      scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
-        scene->sceneObjects[10]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;*/
+        //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
+        //scene->sceneObjects[10]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
         // Left Window
         scene->sceneObjects[11]->mesh->textures[0] = "uv_mapper.bmp";
@@ -858,7 +878,7 @@ void AddActions(Scene* scene, GLuint program)
 
 
         // Right Screen
-        scene->sceneObjects[14]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[14]->mesh->textures[0] = "camera4";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[14]->mesh->bIsStencilTexture = true;
@@ -885,9 +905,9 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
 
-        scene->sceneObjects[19]->mesh->textures[0] = "camera1";
-        scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[19]->mesh->textures[0] = "camera1";
+        //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
         //scene->sceneObjects[20]->mesh->blendRatio[0] = 2;

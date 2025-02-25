@@ -20,6 +20,7 @@ class CameraToTexture : public Action
 private:
 
 public:
+	std::string textureName;
 	cFBO_RGB_depth myFBO;
 
 
@@ -30,7 +31,7 @@ public:
 		std::string error;
 
 		// Initialize with desired resolution
-		if (!myFBO.init(1024, 768, error, "camera1", object->scene->textureManager)) {
+		if (!myFBO.init(1024, 768, error, textureName, object->scene->textureManager)) {
 		//	std::cerr << "FBO Error: " << error << std::endl;
 		}
 	
