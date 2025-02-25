@@ -702,7 +702,7 @@ void DrawCameraView(Camera* camera, int programID)
         sMesh* pCurMesh = object->mesh;
 
         DrawMeshWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
-        DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
+      //  DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
 
     }
 
@@ -710,33 +710,23 @@ void DrawCameraView(Camera* camera, int programID)
 
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID)
 {
-    // Bind the target framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, framebufferID);
+    // Store previous framebuffer and viewport
+    GLint prevFBO;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &prevFBO);
+    GLint viewport[4];
+    glGetIntegerv(GL_VIEWPORT, viewport);
 
-    // Set viewport to match the target size
+    // Bind FBO and set viewport
+    glBindFramebuffer(GL_FRAMEBUFFER, framebufferID);
     glViewport(0, 0, camera->resolution.x, camera->resolution.y);
 
-    // Clear buffers if requested
-   // if (clearColor || clearDepth) {
-    GLbitfield clearFlags = 0;
-    clearFlags |= GL_COLOR_BUFFER_BIT;
-    clearFlags |= GL_DEPTH_BUFFER_BIT;
-    glClear(clearFlags);
-    // }
+    // Clear and render
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     DrawCameraView(camera, programID);
-  
-     // Unbind the framebuffer
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    //// If a texture ID is provided, display it on the screen
-    //if (textureID != 0) {
-    //    glActiveTexture(GL_TEXTURE0);
-    //    glBindTexture(GL_TEXTURE_2D, textureID);
-    //    screenShader.use();
-    //    screenShader.setInt("screenTexture", 0);
-    //    glBindVertexArray(quadVAO);
-    //    glDrawArrays(GL_TRIANGLES, 0, 6);
-    //}
+    // Restore previous state
+    glBindFramebuffer(GL_FRAMEBUFFER, prevFBO);
+    glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
   
 }
 
@@ -798,7 +788,7 @@ void DrawDebugCube(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint progr
     return;
 }
 
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
 
 
@@ -840,7 +830,7 @@ void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasic
     GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
     glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
 
-    DrawMesh(pCurMesh, program, vaoManager, textureManager, scene);
+    DrawMeshWithCamera(pCurMesh, program, vaoManager, textureManager, camera);
 
     //SkySphere->mesh->bIsVisible = true;
 

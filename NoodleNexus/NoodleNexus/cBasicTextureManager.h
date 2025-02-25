@@ -26,6 +26,7 @@ public:
 
 	// returns 0 on error
 	GLuint getTextureIDFromName(std::string textureFileName);
+	void ConnectTextureIDToName(GLuint textureID ,std::string textureName);
 
 	void SetBasePath(std::string basepath);
 

@@ -4,6 +4,7 @@
 #include <string>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "cBasicTextureManager.h"
 
 class cFBO_RGB_depth
 {
@@ -13,6 +14,8 @@ public:
 		colourTexture_0_ID(0),
 		depthTexture_ID(0),
 		width(-1), height(-1) {};
+
+	cBasicTextureManager* textureManager = nullptr;;
 
 	GLuint ID;						// = 0;
 	GLuint colourTexture_0_ID;		// = 0;
@@ -27,10 +30,10 @@ public:
 	GLint height;
 
 	// Inits the FBP
-	bool init(int width, int height, std::string& error);
+	bool init(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* textureManager);
 	bool shutdown(void);
 	// Calls shutdown(), then init()
-	bool reset(int width, int height, std::string& error);
+	bool reset(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* textureManager);
 
 	void clearBuffers(bool bClearColour = true, bool bClearDepth = true);
 

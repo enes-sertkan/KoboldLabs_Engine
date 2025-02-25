@@ -70,6 +70,7 @@
 #include "aPlaneMovement.hpp"
 #include "aPlanePhysics.h"
 #include "cFBO_RGB_depth.hpp"
+#include "aCameraToTexture.h"
  Scene* currentScene=nullptr;
 
 
@@ -88,7 +89,7 @@ cCommandFactory* g_pCommandFactory = NULL;
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
 void DrawCameraView(Camera* camera, int programID);
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
+void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera);
 
 
 std::string g_floatToString(float theFloat)
@@ -714,6 +715,10 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
+    Object* cameraObj = scene->sceneObjects[0];
+    CameraToTexture* textureCamera = new CameraToTexture();
+    scene->AddActionToObj(textureCamera, cameraObj);
+
 
 
     //Object* playerObject = scene->sceneObjects[15];
@@ -742,23 +747,23 @@ void AddActions(Scene* scene, GLuint program)
 
     {
 
-        scene->sceneObjects[0]->mesh->textures[0] = "rock.bmp";
-        scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[0]->mesh->textures[0] = "camera1";
+        scene->sceneObjects[0]->mesh->blendRatio[0] = 10;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[1]->mesh->textures[0] = "camera1";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[1]->mesh->transperency = 0.2;
         //scene->sceneObjects[1]->mesh->textureSpeed.x = 1;
 
-        scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[2]->mesh->textures[0] = "camera1";
         scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[3]->mesh->textures[0] = "metal.bmp";
+        scene->sceneObjects[3]->mesh->textures[0] = "camera1";
         scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
@@ -769,7 +774,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[5]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        scene->sceneObjects[5]->mesh->textures[0] = "camera1.bmp";
         scene->sceneObjects[5]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[5]->mesh->blendRatio[1] = 1;
@@ -783,26 +788,18 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[0]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[7]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[7]->mesh->textures[0] = "camera1";
         scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
-        scene->sceneObjects[7]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
+
 
         scene->sceneObjects[8]->mesh->textures[0] = "grass_2.bmp";
         scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[8]->mesh->transperency = 1;
 
-        scene->sceneObjects[9]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[9]->mesh->textures[0] = "camera1";
         scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
-        scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[9]->mesh->stencilTexture = "WorldMap.bmp";
-        scene->sceneObjects[9]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
+
 
         scene->sceneObjects[10]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
@@ -954,13 +951,6 @@ int main(void)
     //}
    
 
-    // INIT FBO
-// --------
-    cFBO_RGB_depth* g_FBO = new  cFBO_RGB_depth(); // Global or class member
-    std::string error; //TODO probably unnided. PRob we alredt havve error variable
-    if (!g_FBO->init(1024, 768, error)) {
-        std::cerr << "FBO Error: " << error << std::endl;
-    }
 
 
 //   PREPARING ENGINE STUFF
@@ -982,9 +972,6 @@ int main(void)
 
     cPhysics* g_pPhysicEngine = new cPhysics();
     g_pPhysicEngine->setVAOManager(scene->vaoManager);
-
-
-
 
 
 //   PREPARING SOMETHING ELSE (TODO: Try to put it away into functions)
@@ -1047,6 +1034,7 @@ int main(void)
     SceneEditor* sceneEditor = new SceneEditor();
 
     sceneEditor->Start("selectBox.txt",fileManager, program, window, scene->vaoManager, scene);
+
 
 
 
@@ -1118,6 +1106,8 @@ int main(void)
 
     }
 
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+  
 
 
     scene->Start();
@@ -1138,26 +1128,29 @@ int main(void)
     {
         //followObj->start = RacingCar->mesh->positionXYZ;
         //followObj->end = scene->sceneObjects[27]->mesh->positionXYZ;
-        float ratio;
-        int width, height;
-        glfwGetFramebufferSize(window, &width, &height);
-        ratio = width / (float)height;
-        glViewport(0, 0, width, height);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //float ratio;
+        //int width, height;
+        //glfwGetFramebufferSize(window, &width, &height);
+        //ratio = width / (float)height;
+        //glViewport(0, 0, width, height);
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
  /*       followScript->start = RacingCar->mesh->positionXYZ;
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
 
 
-
 //      UPDATE
 //      ------------------------------------------
-        SetCameraAndProjectionMatrices(ratio, program);
+       // SetCameraAndProjectionMatrices(ratio, program);
         scene->lightManager->updateShaderWithLightInfo();
         sceneEditor->Update();
         scene->Update();
 
-        SkySphere->mesh->positionXYZ = scene->fCamera->getEyeLocation();
+        scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
+        scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
+
+
+        SkySphere->mesh->positionXYZ = scene->fCamera->getCameraData()->position;
         //SkySphere->mesh->positionXYZ.x -= 5.0f;
 
 
@@ -1171,7 +1164,7 @@ int main(void)
         scene->lightManager->theLights[1].position.z = scene->sceneObjects[15]->mesh->positionXYZ.z;*/
 
 
-        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene);
+        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene->fCamera->getCameraData());
 //      DRAW LOOP
 //      ------------------------------------------       
         //scene->SortObjectsForDrawing();
@@ -1185,7 +1178,8 @@ int main(void)
         //}
 
 
-       DrawCameraView(scene->fCamera->getCameraData(), 0);
+       DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,1);
+       DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,0);
        // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0, 0);
 
 

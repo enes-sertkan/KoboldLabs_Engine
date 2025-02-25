@@ -3,6 +3,12 @@
 #include "Action.h";
 #include <glm/vec3.hpp> 
 #include "sObject.h"
+#include "cFBO_RGB_depth.hpp"
+#include "Camera.hpp"
+void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
+
+
+
 
 //#include "sObject.h"
 
@@ -14,16 +20,26 @@ class CameraToTexture : public Action
 private:
 
 public:
+	cFBO_RGB_depth myFBO;
 
-	Object* object = nullptr;
+
 	virtual void Start()
 	{
 	//Create and allocate texture
 
+		std::string error;
+
+		// Initialize with desired resolution
+		if (!myFBO.init(1024, 768, error, "camera1", object->scene->textureManager)) {
+		//	std::cerr << "FBO Error: " << error << std::endl;
+		}
 	
 	}
 	virtual void Update()
 	{
+		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1024.f, 768.f));
+		camera->scene = object->scene;
+		//DrawCameraViewToFramebufer(camera, 0, myFBO.ID);
 		//printf("WOW, you are UPDATING\n");
 	}
 

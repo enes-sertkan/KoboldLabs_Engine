@@ -40,6 +40,14 @@ void cBasicTextureManager::m_appendErrorString(std::string nextErrorText)
 	return;
 }
 
+
+void cBasicTextureManager::ConnectTextureIDToName(GLuint textureID, std::string textureName)
+{
+	CTextureFromBMP* newTexture = new CTextureFromBMP();
+	newTexture->setTextureNumber(textureID);
+	this->m_map_TexNameToTexture[textureName] = newTexture;
+}
+
 GLuint cBasicTextureManager::getTextureIDFromName(std::string textureFileName)
 {
 	std::map< std::string, CTextureFromBMP* >::iterator itTexture

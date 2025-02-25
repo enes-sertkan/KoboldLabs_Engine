@@ -92,6 +92,7 @@ public:
 	bool getIs2DTexture(void);
 	//
 	GLuint getTextureNumber(void);
+	void setTextureNumber(GLuint number);
 	//GLenum getTextureUnit(void);
 
 	C24BitBMPpixel getPixelAtRowColumn(unsigned int row, unsigned int column);
