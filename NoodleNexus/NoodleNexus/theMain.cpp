@@ -1106,7 +1106,7 @@ int main(void)
 
     }
 
-    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
   
 
 
@@ -1146,8 +1146,8 @@ int main(void)
         sceneEditor->Update();
         scene->Update();
 
-        scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
-        scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
+        //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
+        //scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
 
 
         SkySphere->mesh->positionXYZ = scene->fCamera->getCameraData()->position;
@@ -1178,7 +1178,7 @@ int main(void)
         //}
 
 
-       DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,1);
+      // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,1);
        DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,0);
        // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0, 0);
 

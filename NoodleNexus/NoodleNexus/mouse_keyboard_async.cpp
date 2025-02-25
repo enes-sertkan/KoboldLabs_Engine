@@ -92,8 +92,8 @@ void handleMouseAsync(GLFWwindow* window)
 
 void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
 {
-    const float CAMERA_MOVE_SPEED = 0.1f;
-    const float CAMERA_TURN_SPEED = 0.1f;
+    const float CAMERA_MOVE_SPEED = 1.f;
+    const float CAMERA_TURN_SPEED = 0.6f;
 
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
@@ -242,26 +242,6 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
         }
 
         // Use the arrow keys to turn and pitch the camera
-
-        // Left pitches negative (rotate around Y a negative value)
-        if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-        {
-            scene->cameras[0]->rotation.x += 0.1f;
-        }
-        if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-        {
-            scene->cameras[0]->rotation.x -= 0.1f;
-        }
-
-         // Left pitches negative (rotate around Y a negative value)
-        if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-        {
-            scene->cameras[0]->rotation.y += 0.1f;
-        }
-        if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-        {
-            scene->cameras[0]->rotation.y -= 0.1f;
-        }
 
     }//if (areAllModifiersUp(window)
 
