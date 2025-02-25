@@ -70,6 +70,7 @@
 #include "aPlaneMovement.hpp"
 #include "aPlanePhysics.h"
 #include "cFBO_RGB_depth.hpp"
+#include "aCameraSwitch.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -713,6 +714,14 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
+    Object* screen = scene->sceneObjects[7];
+    aCameraSwitch* flickering = new aCameraSwitch(
+        scene->sceneObjects[7],
+        { "binary.bmp", "uv_mapper.bmp", "fingerprint.bmp" },  // Correct: Pass a vector of textures
+        1.0f
+    );
+
+    scene->AddActionToObj(flickering , screen);
 
 
     //Object* playerObject = scene->sceneObjects[15];
@@ -790,13 +799,15 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
         // Front Screen 1
-        scene->sceneObjects[7]->mesh->textures[0] = "uv_mapper.bmp";
+        //scene->sceneObjects[7]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[7]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[7]->mesh->blendRatio[1] = 3;
+        scene->sceneObjects[7]->mesh->blendRatio[2] = 3;
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
-        scene->sceneObjects[7]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
+        //scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
+        //scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
+        //scene->sceneObjects[7]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
 
         // Front Window
         scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
@@ -814,16 +825,16 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[9]->mesh->blendRatio[0] = 2.5;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[9]->mesh->stencilTexture = "WorldMap.bmp";
+        scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
         scene->sceneObjects[9]->mesh->stencilTextureID = 61;
         scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
         // Left Screen
-        scene->sceneObjects[10]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[10]->mesh->textures[0] = "wall_c.bmp";
         scene->sceneObjects[10]->mesh->blendRatio[0] = 3;
         scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[10]->mesh->stencilTexture = "WorldMap.bmp";
+        scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
         scene->sceneObjects[10]->mesh->stencilTextureID = 61;
         scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
@@ -835,7 +846,6 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[11]->mesh->transperency = 0.4;
-
 
         // Right Window
         scene->sceneObjects[13]->mesh->textures[0] = "uv_mapper.bmp";
@@ -854,7 +864,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[14]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[14]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[14]->mesh->stencilTexture = "WorldMap.bmp";
+        scene->sceneObjects[14]->mesh->stencilTexture = "tech.bmp";
         scene->sceneObjects[14]->mesh->stencilTextureID = 61;
         scene->sceneObjects[14]->mesh->textureSpeed.x = 0.1f;
 
@@ -1036,6 +1046,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
@@ -1148,6 +1160,7 @@ int main(void)
 
 
 
+
     scene->Start();
 
     //  Turn on the blend operation
@@ -1175,8 +1188,6 @@ int main(void)
 
  /*       followScript->start = RacingCar->mesh->positionXYZ;
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
-
-
 
 //      UPDATE
 //      ------------------------------------------
