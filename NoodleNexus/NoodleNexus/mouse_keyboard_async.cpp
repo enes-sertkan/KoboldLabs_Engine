@@ -92,8 +92,8 @@ void handleMouseAsync(GLFWwindow* window)
 
 void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
 {
-    const float CAMERA_MOVE_SPEED = 0.1f;
-    const float CAMERA_TURN_SPEED = 0.1f;
+    const float CAMERA_MOVE_SPEED = 1.f;
+    const float CAMERA_TURN_SPEED = 0.6f;
 
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
@@ -243,26 +243,6 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
 
         // Use the arrow keys to turn and pitch the camera
 
-        //// Left pitches negative (rotate around Y a negative value)
-        //if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
-        //{
-        //    ::g_pFlyCamera->rotateLeftRight_Yaw( CAMERA_TURN_SPEED );
-        //}
-        //if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-        //{
-        //    ::g_pFlyCamera->rotateLeftRight_Yaw( -CAMERA_TURN_SPEED );
-        //}
-
-        // // Left pitches negative (rotate around Y a negative value)
-        //if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-        //{
-        //    ::g_pFlyCamera->pitchUpDown( -CAMERA_TURN_SPEED );
-        //}
-        //if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-        //{
-        //    ::g_pFlyCamera->pitchUpDown( CAMERA_TURN_SPEED );
-        //}
-
     }//if (areAllModifiersUp(window)
 
     return;
@@ -291,12 +271,12 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
         // Move left or right? 
         if ( deltaMousePosition.x != 0 )
         {
-            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x );
+            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x * 0.01f);
         }
         // Mouse move Up or down? 
         if ( deltaMousePosition.y != 0 )
         {
-            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y);
+            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y*0.01f);
         }
     }//if ( g_MouseState.bIsLeftMouseButtonDown )
 

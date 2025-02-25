@@ -1,8 +1,8 @@
 #include "cFBO_RGB_depth.hpp"
-
+#include "cBasicTextureManager.h"
 
 // Calls shutdown(), then init()
-bool cFBO_RGB_depth::reset(int width, int height, std::string& error)
+bool cFBO_RGB_depth::reset(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* textureManager)
 {
 	if (!this->shutdown())
 	{
@@ -10,7 +10,7 @@ bool cFBO_RGB_depth::reset(int width, int height, std::string& error)
 		return false;
 	}
 
-	return this->init(width, height, error);
+	return this->init(width, height, error, textureName, textureManager);
 }
 
 bool cFBO_RGB_depth::shutdown(void)
@@ -24,7 +24,7 @@ bool cFBO_RGB_depth::shutdown(void)
 }
 
 
-bool cFBO_RGB_depth::init(int width, int height, std::string& error)
+bool cFBO_RGB_depth::init(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* textureManager)
 {
 	this->width = width;
 	this->height = height;
@@ -73,6 +73,8 @@ bool cFBO_RGB_depth::init(int width, int height, std::string& error)
 	glFramebufferTexture(GL_FRAMEBUFFER,
 		GL_COLOR_ATTACHMENT0,			// Colour goes to #0
 		this->colourTexture_0_ID, 0);
+
+	textureManager->ConnectTextureIDToName(this->colourTexture_0_ID, textureName);
 
 
 	//	glFramebufferTexture(GL_FRAMEBUFFER,

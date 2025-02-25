@@ -45,6 +45,11 @@ GLuint CTextureFromBMP::getTextureNumber(void)
 	return this->m_textureNumber;
 }
 
+void CTextureFromBMP::setTextureNumber(GLuint number)
+{
+	this->m_textureNumber = number;
+}
+
 std::string CTextureFromBMP::getTextureName(void)
 {
 	return this->m_textureName;
