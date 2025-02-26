@@ -3,56 +3,79 @@
 #include "Action.h"
 #include "cVAOManager/cVAOManager.h"
 #include "cSoftBodyVerlet.hpp"
+#include <string>
 
 class Object;
 
 class SoftBody : public Action {
 private:
-    cSoftBodyVerlet* m_pSoftBody = nullptr;
-    cVAOManager* m_pVAOManager = nullptr;
-    std::string m_meshName;
-
+   
 public:
-    SoftBody(cSoftBodyVerlet* softBody, cVAOManager* vaoManager, const std::string& meshName)
-        : m_pSoftBody(softBody), m_pVAOManager(vaoManager), m_meshName(meshName) {}
+    cSoftBodyVerlet* softBody = nullptr;
+    std::string originalMeshName;
+    std::string SBMeshName;
 
     void Start() override {
-        if (!m_pSoftBody || !m_pVAOManager) return;
-
-        // Create a new dynamic mesh for the soft body
+        softBody = new cSoftBodyVerlet();
+        originalMeshName = object->mesh->modelFileName;
         sModelDrawInfo drawInfo;
-        if (!m_pVAOManager->FindDrawInfoByModelName(m_meshName, drawInfo)) {
-            return;  // Mesh not found
-        }
+        object->scene->vaoManager->FindDrawInfoByModelName(originalMeshName, drawInfo);
+        SBMeshName = originalMeshName + "SB";
+        object->scene->vaoManager->CloneMeshToDynamicVAO(SBMeshName, drawInfo, object->scene->programs[0]);
+    
+        softBody->CreateSoftBody(drawInfo);   
 
-        // Associate the soft body with the VAO mesh
-        m_pSoftBody->matching_VAO_MeshName = m_meshName;
+       
+        object->mesh->modelFileName = SBMeshName;
     }
 
     void Update() override {
-        if (!m_pSoftBody || !m_pVAOManager) return;
+    
 
-        // Update soft body physics
-        m_pSoftBody->UpdateNormals();
+        UpdateSoftBody(object->scene->deltaTime);
+        UpdateSoftBodyMeshes(object->scene->programs[0]);
+    }
 
-        // Retrieve the dynamic mesh data
-        sModelDrawInfo drawInfo;
-        if (!m_pVAOManager->FindDrawInfoByModelName(m_meshName, drawInfo)) {
-            return;
-        }
 
-        // Update mesh vertex positions and normals
-        for (unsigned int i = 0; i < drawInfo.numberOfVertices; ++i) {
-            drawInfo.pVertices[i].x = m_pSoftBody->vec_pParticles[i]->position.x;
-            drawInfo.pVertices[i].y = m_pSoftBody->vec_pParticles[i]->position.y;
-            drawInfo.pVertices[i].z = m_pSoftBody->vec_pParticles[i]->position.z;
 
-            drawInfo.pVertices[i].nx = m_pSoftBody->vec_pParticles[i]->pModelVertex->nx;
-            drawInfo.pVertices[i].ny = m_pSoftBody->vec_pParticles[i]->pModelVertex->ny;
-            drawInfo.pVertices[i].nz = m_pSoftBody->vec_pParticles[i]->pModelVertex->nz;
-        }
+    void UpdateSoftBody(double deltaTime) {
+      
 
-        // Update the dynamic mesh in the VAO
-        m_pVAOManager->UpdateDynamicMesh(m_meshName, drawInfo, 0);
+            if (softBody!=nullptr) return;
+
+            // Apply Verlet integration steps
+            softBody->VerletUpdate(deltaTime);
+            softBody->ApplyCollision(deltaTime);
+            softBody->SatisfyConstraints();
+        
+    }
+
+    void UpdateSoftBodyMeshes(unsigned int shaderProgramID) {
+      
+            if (!softBody) return;
+
+            // Update normals
+            softBody->UpdateNormals();
+
+            // Find mesh in VAO
+            sModelDrawInfo softBodyDrawMeshLocalCopy;
+
+            if (!object->scene->vaoManager->FindDrawInfoByModelName(SBMeshName, softBodyDrawMeshLocalCopy))
+                return;
+
+            // Update mesh vertex positions and normals
+            for (unsigned int i = 0; i < softBodyDrawMeshLocalCopy.numberOfVertices; ++i) {
+                softBodyDrawMeshLocalCopy.pVertices[i].x = softBody->vec_pParticles[i]->position.x;
+                softBodyDrawMeshLocalCopy.pVertices[i].y = softBody->vec_pParticles[i]->position.y;
+                softBodyDrawMeshLocalCopy.pVertices[i].z = softBody->vec_pParticles[i]->position.z;
+
+                softBodyDrawMeshLocalCopy.pVertices[i].nx = softBody->vec_pParticles[i]->pModelVertex->nx;
+                softBodyDrawMeshLocalCopy.pVertices[i].ny = softBody->vec_pParticles[i]->pModelVertex->ny;
+                softBodyDrawMeshLocalCopy.pVertices[i].nz = softBody->vec_pParticles[i]->pModelVertex->nz;
+            }
+
+            // Update VAO mesh
+            object->scene->vaoManager->UpdateDynamicMesh(softBody->matching_VAO_MeshName, softBodyDrawMeshLocalCopy, shaderProgramID);
+        
     }
 };

@@ -21,7 +21,7 @@ bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInit
 	// Copy the model info
 	this->m_ModelVertexInfo = ModelInfo;
 
-	this->matching_VAO_MeshName = ModelInfo.modelName;
+	this->matching_VAO_MeshName = ModelInfo.meshPath;
 
 	// Copy the vertices and indices as well
 	// The cModelDrawInfo has pointers to the originally loaded vertices.

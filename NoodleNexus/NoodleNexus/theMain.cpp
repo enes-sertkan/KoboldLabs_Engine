@@ -717,11 +717,11 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    //cSoftBodyVerlet* mySoftbody = new cSoftBodyVerlet();
-    //cVAOManager* myVAOManager = new cVAOManager();
-    //sModelDrawInfo* myModelInfo = new sModelDrawInfo();
-    //Object* softObject = scene->sceneObjects[19];
+    SoftBody* softBody = new SoftBody();
 
+    Object* softObject = scene->sceneObjects[0];
+
+    scene->AddActionToObj(softBody, softObject);
 
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
