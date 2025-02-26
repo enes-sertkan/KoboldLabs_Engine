@@ -72,6 +72,7 @@
 #include "cFBO_RGB_depth.hpp"
 #include "aCameraToTexture.h"
 #include "aScreenTextureSwitch.h"
+#include "aSoftBodyAction.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -716,7 +717,21 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    //Object* cameraObj1 = scene->sceneObjects[19];
+    //cSoftBodyVerlet* mySoftbody = new cSoftBodyVerlet();
+    //cVAOManager* myVAOManager = new cVAOManager();
+    //sModelDrawInfo* myModelInfo = new sModelDrawInfo();
+    //Object* softObject = scene->sceneObjects[19];
+
+
+    //// Ensure "Mountain" exists in the VAO Manager before using it
+    //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
+
+    //// Correct constructor usage
+    //SoftBody* softBodyAction = new SoftBody(mySoftbody, myVAOManager, "Mountain");
+
+    //scene->AddActionToObj(softBodyAction, softObject);
+
+
     //Object* cameraObj2 = scene->sceneObjects[20];
     //Object* cameraObj3 = scene->sceneObjects[21];
     //Object* cameraObj4 = scene->sceneObjects[22];

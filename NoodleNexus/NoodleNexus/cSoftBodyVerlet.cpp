@@ -166,7 +166,7 @@ void cSoftBodyVerlet::UpdateNormals(void)
 	}
 
 
-	for (unsigned int triIndex = 0; triIndex != this->m_ModelVertexInfo.numberOfIndices; triIndex += 3)
+	for (unsigned int triIndex = 0; triIndex != this->m_ModelVertexInfo.numberOfTriangles; triIndex++)
 	{
 		// Indices are sets of 3, one per 
 		unsigned int vertAIndex = this->m_ModelVertexInfo.pIndices[triIndex + 0];
@@ -255,38 +255,17 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		//
 		//		oldx = temp;
 
-		if (!pCurrentParticle->bIsFixed_DontUpdate)
-		{
-			// You can limit how much movement is happening here
-			//	by comparing the distance between the old and current position.
-			// Remember that you don't have a velocity, but you do have 
-			//	it indirectly (difference between two positions)
+				// This is the actual Verlet integration step (notice there isn't a velocity)
+		pCurrentParticle->position += (current_pos - old_pos)
+			+ (this->acceleration * (float)(deltaTime * deltaTime));
 
-			glm::vec3 deltaPosition = current_pos - old_pos;
+		pCurrentParticle->old_position = current_pos;
 
-			//			// If the movement is "too far", then clamp it to some maximum
-			//			if (glm::length(deltaPosition) > 0.05f)
-			//			{
-			//				// Adjust it
-			//				deltaPosition = glm::normalize(deltaPosition) * 0.01f;
-			//			}
-
-						// This is the actual Verlet integration step (notice there isn't a velocity)
-			pCurrentParticle->position += deltaPosition
-				+ (this->acceleration * (float)(deltaTime * deltaTime));
-
-			//			pCurrentParticle->position += (current_pos - old_pos)
-			//				+ (this->acceleration * (float)(deltaTime * deltaTime));
+		// Check if there is a LARGE different between old and new positions
 
 
-			pCurrentParticle->old_position = current_pos;
-
-			// Check if there is a LARGE different between old and new positions
-
-
-			this->cleanZeros(pCurrentParticle->position);
-			this->cleanZeros(pCurrentParticle->old_position);
-		}
+		this->cleanZeros(pCurrentParticle->position);
+		this->cleanZeros(pCurrentParticle->old_position);
 	}
 
 	return;
@@ -338,69 +317,49 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime)
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
-	const unsigned int MAX_GLOBAL_ITERATIONS = 3;
+	const unsigned int NUM_ITERATIONS = 1;
 
-	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
+	for (unsigned int iteration = 0; iteration != NUM_ITERATIONS; iteration++)
 	{
 		// This is ONE pass of the constraint resolution
 		for (sConstraint* pCurConstraint : this->vec_pConstraints)
 		{
-			// Ripped or broken
-			if (!pCurConstraint->bIsActive)
+			if (pCurConstraint->bIsActive)
 			{
-				continue;
-			}
-			// How many iterations for THIS constraint
-			if (iteration > pCurConstraint->maxIterations)
-			{
-				continue;
-			}
-
-			// Constraint (edge) IS active, etc. 
-			cSoftBodyVerlet::sParticle* pX1 = pCurConstraint->pParticleA;
-			cSoftBodyVerlet::sParticle* pX2 = pCurConstraint->pParticleB;
-
-			glm::vec3 delta = pX2->position - pX1->position;
-
-			float deltaLength = glm::length(delta);
-
-			// TODO: 
-			// Do we break this when it's "too far apart"
-			if (pCurConstraint->bIsBreakable)
-			{
-				if (deltaLength >= pCurConstraint->breakingDistance)
-				{
-					// Disable this contraint the next time
-					// i.e. "it's ripped" or broken
-					pCurConstraint->bIsActive;
-					continue;
-				}
-			}
 
 
-			float diff = (deltaLength - pCurConstraint->restLength) / deltaLength;
+				cSoftBodyVerlet::sParticle* pX1 = pCurConstraint->pParticleA;
+				cSoftBodyVerlet::sParticle* pX2 = pCurConstraint->pParticleB;
 
-			// If we were having this 'tear' or break apart, 
-			//	you could check some maximum length and if it's 'too long'
-			//	then the constraint 'breaks'
-			// Handle this by:
-			// - Setting a bool (where it doesn't check the constraint any more)
-			// - Remove the constraint (but removing from a vector is sketchy...)
+				glm::vec3 delta = pX2->position - pX1->position;
+
+				float deltaLength = glm::length(delta);
+
+
+				float diff = (deltaLength - pCurConstraint->restLength) / deltaLength;
+
+				// If we were having this 'tear' or break apart, 
+				//	you could check some maximum length and if it's 'too long'
+				//	then the constraint 'breaks'
+				// Handle this by:
+				// - Setting a bool (where it doesn't check the constraint any more)
+				// - Remove the constraint (but removing from a vector is sketchy...)
 
 //				if ( diff > 0.1f )
 //				{
 //					pCurConstraint->bIsActive = false;
 //				}
 
-			// Making this non-one, will change how quickly the objects move together
-			// For example, making this < 1.0 will make it "bouncier"
-			float tightnessFactor = 1.0f;
+				// Making this non-one, will change how quickly the objects move together
+				// For example, making this < 1.0 will make it "bouncier"
+				float tightnessFactor = 1.0f;
 
-			pX1->position += delta * 0.5f * diff * tightnessFactor;
-			pX2->position -= delta * 0.5f * diff * tightnessFactor;
+				pX1->position += delta * 0.5f * diff * tightnessFactor;
+				pX2->position -= delta * 0.5f * diff * tightnessFactor;
 
-			this->cleanZeros(pX1->position);
-			this->cleanZeros(pX2->position);
+				this->cleanZeros(pX1->position);
+				this->cleanZeros(pX2->position);
+			}//if (pCurConstraint->bIsActive)
 
 		}//for (sConstraint* pCurConstraint...
 	}//for ( unsigned int iteration

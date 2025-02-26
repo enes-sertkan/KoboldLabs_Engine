@@ -163,7 +163,6 @@
     <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cPhysics_cSoftBody_Verlet.cpp" />
-    <ClCompile Include="cPhysics_cSoftBody_Verlet_Threaded.cpp" />
     <ClCompile Include="cSoftBodyVerlet.cpp" />
     <ClCompile Include="cTerrainPathChooser.cpp" />
     <ClCompile Include="CTextureFromBMP.cpp" />
@@ -204,6 +203,7 @@
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
+    <ClInclude Include="aSoftBodyAction.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
     <ClInclude Include="Camera.hpp" />
@@ -248,6 +248,7 @@
     <ClInclude Include="sObject.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UsableItem.hpp" />
+    <ClInclude Include="VerletPhysics.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

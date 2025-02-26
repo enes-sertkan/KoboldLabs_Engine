@@ -12,9 +12,9 @@ skysphere.txt
 <Model-> Mountain
 <Tags->
 <StaticCollision-> false
-<Position-> 0 0 0
+<Position-> 26 -7 10
 <Rotation-> 270 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -26,7 +26,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 286 2018 -570
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0

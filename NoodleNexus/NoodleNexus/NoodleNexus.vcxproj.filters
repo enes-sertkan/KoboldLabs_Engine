@@ -224,9 +224,6 @@
     <ClCompile Include="cSoftBodyVerlet.cpp">
       <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
     </ClCompile>
-    <ClCompile Include="cPhysics_cSoftBody_Verlet_Threaded.cpp">
-      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
-    </ClCompile>
     <ClCompile Include="cPhysics_cSoftBody_Verlet.cpp">
       <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
     </ClCompile>
@@ -414,6 +411,12 @@
     </ClInclude>
     <ClInclude Include="aCameraToTexture.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aSoftBodyAction.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="VerletPhysics.hpp">
+      <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
