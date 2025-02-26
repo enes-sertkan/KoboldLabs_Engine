@@ -1168,6 +1168,8 @@ int main(void)
 
 
     SkySphere->mesh->transperency = 1;
+
+    scene->skybox = SkySphere;
     glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
     {

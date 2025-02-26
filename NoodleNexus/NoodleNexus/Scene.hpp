@@ -46,7 +46,7 @@ public:
 	float cameraMoveSpeed=200;
 	float cameraRotateSpeed=50;
 
-	
+	Object* skybox = nullptr;
 
 	void SortObjectsForDrawing();
 	bool CompareObjectsBasedOnDistanecToCamera(Object* a, Object* b);
