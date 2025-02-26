@@ -225,6 +225,17 @@ public:
 		// Called every time we want a collision detection step
 	void StepTick(double deltaTime);
 
+	//cSoftBodyVerlet* createSoftBodyFromMesh(std::string meshFriendlyName, glm::mat4 matModel, std::string& error);
+
+	//// This will call integrationStep() and satisfyConstraints() on all the soft bodies
+	//void updateSoftBodies(double deltaTime);
+
+	//// Update the information from the soft bodies to the VAO's 
+	////	information of the vertices
+	//void updateSoftBodyMeshes(unsigned int shaderProgramID);
+
+	//cSoftBodyVerlet* pFindSoftBodyByFriendlyName(std::string friendlyName);
+
 
 	////	bool DoesRayCollide(glm::vec3 rayStart, glm::vec3 rayEnd);
 	////	bool DoesRayCollide(glm::vec3 rayStart, glm::vec3 rayEnd, vec_pMeshesIHit);

@@ -742,7 +742,7 @@ void AddActions(Scene* scene, GLuint program)
 
 
 
-
+    //FRONT SCREEN 1
     ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
     screenSwitcher->AddTexture("camera1");
@@ -753,10 +753,11 @@ void AddActions(Scene* scene, GLuint program)
     screenSwitcher->AddTexture("binaries.bmp");
     screenSwitcher->AddTexture("uv_mapper.bmp");
 
-    //FRONT SCREEN
+    
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[7]);
 
 
+    //FRONT SCREEN 2
     ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
 
     screenSwitcher2->AddTexture("camera3");
@@ -767,7 +768,35 @@ void AddActions(Scene* scene, GLuint program)
     screenSwitcher2->AddTexture("camera4");
     screenSwitcher2->AddTexture("uv_mapper.bmp");
 
-    scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[10]);
+    scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[9]);
+
+    // LEFT SCREEN
+    ScreenTextureSwitch* screenSwitcher3 = new ScreenTextureSwitch();
+
+    screenSwitcher3->AddTexture("camera3");
+    screenSwitcher3->AddTexture("binaries.bmp");
+    screenSwitcher3->AddTexture("camera1");
+    screenSwitcher3->AddTexture("camera2");
+    screenSwitcher3->AddTexture("camera5");
+    screenSwitcher3->AddTexture("camera4");
+    screenSwitcher3->AddTexture("uv_mapper.bmp");
+
+    scene->AddActionToObj(screenSwitcher3, scene->sceneObjects[10]);
+
+    // RIGHT SCREEN
+    ScreenTextureSwitch* screenSwitcher4 = new ScreenTextureSwitch();
+
+    screenSwitcher4->AddTexture("camera3");
+    screenSwitcher4->AddTexture("binaries.bmp");
+    screenSwitcher4->AddTexture("camera1");
+    screenSwitcher4->AddTexture("camera2");
+    screenSwitcher4->AddTexture("camera5");
+    screenSwitcher4->AddTexture("camera4");
+    screenSwitcher4->AddTexture("uv_mapper.bmp");
+
+    scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[14]);
+
+
     //Object* playerObject = scene->sceneObjects[15];
 
     //// Add the player camera action (with an offset for camera positioning)
@@ -844,7 +873,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
         // Front Screen 1
-        scene->sceneObjects[7]->mesh->textures[0] = "camera3";
+        scene->sceneObjects[7]->mesh->textures[0] = "gibberish.bmp";
         scene->sceneObjects[7]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
@@ -864,7 +893,7 @@ void AddActions(Scene* scene, GLuint program)
         scene->sceneObjects[8]->mesh->transperency = 0.4;
 
         // Front Screen 2
-        scene->sceneObjects[9]->mesh->textures[0] = "camera2";
+        scene->sceneObjects[9]->mesh->textures[0] = "gibberish.bmp";
         scene->sceneObjects[9]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
@@ -873,8 +902,8 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
         // Left Screen
-        scene->sceneObjects[10]->mesh->textures[0] = "camera1";
-        scene->sceneObjects[10]->mesh->blendRatio[0] =9;
+        scene->sceneObjects[10]->mesh->textures[0] = "gibberish.bmp";
+        scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
         //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
@@ -903,7 +932,7 @@ void AddActions(Scene* scene, GLuint program)
 
 
         // Right Screen
-        scene->sceneObjects[14]->mesh->textures[0] = "camera4";
+        scene->sceneObjects[14]->mesh->textures[0] = "gibberish";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
 
@@ -1076,6 +1105,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
 
     std::cout << "Skybox Texture Load Start" << std::endl;
 

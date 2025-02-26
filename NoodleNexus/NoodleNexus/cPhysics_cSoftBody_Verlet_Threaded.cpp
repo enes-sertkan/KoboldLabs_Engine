@@ -3,6 +3,7 @@
 //#include "cPhysics.h"
 //
 //#include <Windows.h>
+//#include "cSoftBodyVerlet.hpp"
 //// or #include <process.h>   if you are using _beginthreadex() instead of CreateThread(), etc.
 //
 //

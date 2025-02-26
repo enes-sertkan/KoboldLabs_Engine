@@ -239,6 +239,12 @@
     <ClCompile Include="GridRenderer.cpp">
       <Filter>Engine\Grid</Filter>
     </ClCompile>
+    <ClCompile Include="aScreenTextureSwitch.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateInLimits.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -436,11 +442,13 @@
     <None Include="LuaMeshTransparency.lua">
       <Filter>Lua</Filter>
     </None>
-    <None Include="LuaTextureBlendMove.lua" />
     <None Include="infinite_grid.frag">
       <Filter>Shaders</Filter>
     </None>
     <None Include="infinite_grid.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="LuaTextureBlendMove.lua">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
