@@ -20,80 +20,80 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUV");
 
     // Asteroid
-    modelInfo.modelName = "MainAsteroid";
-    modelInfo.meshPath = "assets/models/Miner/asteroid_main_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "mainAst.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Mountain";
+    modelInfo.meshPath = "assets/models/Mountain2.ply";
+    fileManager->WriteModelFile(&modelInfo, "mountain.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "OtherAsteroid";
-    modelInfo.meshPath = "assets/models/Miner/asteroid_other_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "otherAst.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "OtherAsteroid";
+    //modelInfo.meshPath = "assets/models/Miner/asteroid_other_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "otherAst.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "StuffMainAst";
-    modelInfo.meshPath = "assets/models/Miner/stuff_main_asteroid_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "stuffMainAst.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "StuffMainAst";
+    //modelInfo.meshPath = "assets/models/Miner/stuff_main_asteroid_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "stuffMainAst.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "IndusAsteroid";
-    modelInfo.meshPath = "assets/models/Miner/asteroid_industrial_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "industrialAst.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "IndusAsteroid";
+    //modelInfo.meshPath = "assets/models/Miner/asteroid_industrial_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "industrialAst.txt", "XYZNUVRGBA");
 
-    // Consoles
-    modelInfo.modelName = "ConsoleStation";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "console.txt", "XYZNUVRGBA");
+    //// Consoles
+    //modelInfo.modelName = "ConsoleStation";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "console.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerConsole";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "cornerConsole.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerConsole";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cornerConsole.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerConsoleRight";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv._Right.ply";
-    fileManager->WriteModelFile(&modelInfo, "cornerConsoleRight.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerConsoleRight";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv._Right.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cornerConsoleRight.txt", "XYZNUVRGBA");
 
-    // Screens
-    modelInfo.modelName = "Screen1";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_1_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "screen1.txt", "XYZNUVRGBA");
+    //// Screens
+    //modelInfo.modelName = "Screen1";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_1_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "screen1.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Screen2";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_2_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "screen2.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "Screen2";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_2_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "screen2.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Screen3";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_3_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "screen3.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "Screen3";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_01_screen_3_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "screen3.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerScreen1";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "cScreen1.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerScreen1";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cScreen1.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerScreen2";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "cScreen2.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerScreen2";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cScreen2.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerScreenRight1";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv_Right.ply";
-    fileManager->WriteModelFile(&modelInfo, "cScreenRight1.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerScreenRight1";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_1_xyz_n_rgba_uv_Right.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cScreenRight1.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "CornerScreenRight2";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv_Right.ply";
-    fileManager->WriteModelFile(&modelInfo, "cScreenRight2.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "CornerScreenRight2";
+    //modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_screen_2_xyz_n_rgba_uv_Right.ply";
+    //fileManager->WriteModelFile(&modelInfo, "cScreenRight2.txt", "XYZNUVRGBA");
 
-    // Room
-    modelInfo.modelName = "Ceiling";
-    modelInfo.meshPath = "assets/models/Room/Ceilings_xyz_n_uv_rbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
+    //// Room
+    //modelInfo.modelName = "Ceiling";
+    //modelInfo.meshPath = "assets/models/Room/Ceilings_xyz_n_uv_rbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Floor";
-    modelInfo.meshPath = "assets/models/Room/Floors_xyz_n_uv_rgba.ply";
-    fileManager->WriteModelFile(&modelInfo, "floors.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "Floor";
+    //modelInfo.meshPath = "assets/models/Room/Floors_xyz_n_uv_rgba.ply";
+    //fileManager->WriteModelFile(&modelInfo, "floors.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Wall";
-    modelInfo.meshPath = "assets/models/Room/Walls_xyz_n_uv_rbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "walls.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "Wall";
+    //modelInfo.meshPath = "assets/models/Room/Walls_xyz_n_uv_rbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "walls.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Props";
-    modelInfo.meshPath = "assets/models/Room/Props_xyz_n_uv_rbga.ply";
-    fileManager->WriteModelFile(&modelInfo, "props.txt", "XYZNUVRGBA");
+    //modelInfo.modelName = "Props";
+    //modelInfo.meshPath = "assets/models/Room/Props_xyz_n_uv_rbga.ply";
+    //fileManager->WriteModelFile(&modelInfo, "props.txt", "XYZNUVRGBA");
 
     //modelInfo.modelName = "board";
     //modelInfo.meshPath = "assets/models/Class_Room/board_xyznuvrbga.ply";

@@ -716,85 +716,85 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    Object* cameraObj1 = scene->sceneObjects[19];
-    Object* cameraObj2 = scene->sceneObjects[20];
-    Object* cameraObj3 = scene->sceneObjects[21];
-    Object* cameraObj4 = scene->sceneObjects[22];
-    Object* cameraObj5 = scene->sceneObjects[23];
+    //Object* cameraObj1 = scene->sceneObjects[19];
+    //Object* cameraObj2 = scene->sceneObjects[20];
+    //Object* cameraObj3 = scene->sceneObjects[21];
+    //Object* cameraObj4 = scene->sceneObjects[22];
+    //Object* cameraObj5 = scene->sceneObjects[23];
 
-    CameraToTexture* textureCamera1 = new CameraToTexture();
-    CameraToTexture* textureCamera2 = new CameraToTexture();
-    CameraToTexture* textureCamera3 = new CameraToTexture();
-    CameraToTexture* textureCamera4 = new CameraToTexture();
-    CameraToTexture* textureCamera5 = new CameraToTexture();
+    //CameraToTexture* textureCamera1 = new CameraToTexture();
+    //CameraToTexture* textureCamera2 = new CameraToTexture();
+    //CameraToTexture* textureCamera3 = new CameraToTexture();
+    //CameraToTexture* textureCamera4 = new CameraToTexture();
+    //CameraToTexture* textureCamera5 = new CameraToTexture();
 
-    textureCamera1->textureName = "camera1";
-    textureCamera2->textureName = "camera2";
-    textureCamera3->textureName = "camera3";
-    textureCamera4->textureName = "camera4";
-    textureCamera5->textureName = "camera5";
+    //textureCamera1->textureName = "camera1";
+    //textureCamera2->textureName = "camera2";
+    //textureCamera3->textureName = "camera3";
+    //textureCamera4->textureName = "camera4";
+    //textureCamera5->textureName = "camera5";
 
-    scene->AddActionToObj(textureCamera1, cameraObj1);
-    scene->AddActionToObj(textureCamera2, cameraObj2);
-    scene->AddActionToObj(textureCamera3, cameraObj3);
-    scene->AddActionToObj(textureCamera4, cameraObj4);
-    scene->AddActionToObj(textureCamera5, cameraObj5);
-
-
-
-    //FRONT SCREEN 1
-    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
-
-    screenSwitcher->AddTexture("camera1");
-    screenSwitcher->AddTexture("camera2");
-    screenSwitcher->AddTexture("camera3");
-    screenSwitcher->AddTexture("camera4");
-    screenSwitcher->AddTexture("camera5");
-    screenSwitcher->AddTexture("binaries.bmp");
-    screenSwitcher->AddTexture("uv_mapper.bmp");
-
-    
-    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[7]);
+    //scene->AddActionToObj(textureCamera1, cameraObj1);
+    //scene->AddActionToObj(textureCamera2, cameraObj2);
+    //scene->AddActionToObj(textureCamera3, cameraObj3);
+    //scene->AddActionToObj(textureCamera4, cameraObj4);
+    //scene->AddActionToObj(textureCamera5, cameraObj5);
 
 
-    //FRONT SCREEN 2
-    ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
 
-    screenSwitcher2->AddTexture("camera3");
-    screenSwitcher2->AddTexture("binaries.bmp");
-    screenSwitcher2->AddTexture("camera1");
-    screenSwitcher2->AddTexture("camera2");
-    screenSwitcher2->AddTexture("camera5");
-    screenSwitcher2->AddTexture("camera4");
-    screenSwitcher2->AddTexture("uv_mapper.bmp");
+    ////FRONT SCREEN 1
+    //ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
-    scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[9]);
+    //screenSwitcher->AddTexture("camera1");
+    //screenSwitcher->AddTexture("camera2");
+    //screenSwitcher->AddTexture("camera3");
+    //screenSwitcher->AddTexture("camera4");
+    //screenSwitcher->AddTexture("camera5");
+    //screenSwitcher->AddTexture("binaries.bmp");
+    //screenSwitcher->AddTexture("uv_mapper.bmp");
 
-    // LEFT SCREEN
-    ScreenTextureSwitch* screenSwitcher3 = new ScreenTextureSwitch();
+    //
+    //scene->AddActionToObj(screenSwitcher, scene->sceneObjects[7]);
 
-    screenSwitcher3->AddTexture("camera3");
-    screenSwitcher3->AddTexture("binaries.bmp");
-    screenSwitcher3->AddTexture("camera1");
-    screenSwitcher3->AddTexture("camera2");
-    screenSwitcher3->AddTexture("camera5");
-    screenSwitcher3->AddTexture("camera4");
-    screenSwitcher3->AddTexture("uv_mapper.bmp");
 
-    scene->AddActionToObj(screenSwitcher3, scene->sceneObjects[10]);
+    ////FRONT SCREEN 2
+    //ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
 
-    // RIGHT SCREEN
-    ScreenTextureSwitch* screenSwitcher4 = new ScreenTextureSwitch();
+    //screenSwitcher2->AddTexture("camera3");
+    //screenSwitcher2->AddTexture("binaries.bmp");
+    //screenSwitcher2->AddTexture("camera1");
+    //screenSwitcher2->AddTexture("camera2");
+    //screenSwitcher2->AddTexture("camera5");
+    //screenSwitcher2->AddTexture("camera4");
+    //screenSwitcher2->AddTexture("uv_mapper.bmp");
 
-    screenSwitcher4->AddTexture("camera3");
-    screenSwitcher4->AddTexture("binaries.bmp");
-    screenSwitcher4->AddTexture("camera1");
-    screenSwitcher4->AddTexture("camera2");
-    screenSwitcher4->AddTexture("camera5");
-    screenSwitcher4->AddTexture("camera4");
-    screenSwitcher4->AddTexture("uv_mapper.bmp");
+    //scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[9]);
 
-    scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[14]);
+    //// LEFT SCREEN
+    //ScreenTextureSwitch* screenSwitcher3 = new ScreenTextureSwitch();
+
+    //screenSwitcher3->AddTexture("camera3");
+    //screenSwitcher3->AddTexture("binaries.bmp");
+    //screenSwitcher3->AddTexture("camera1");
+    //screenSwitcher3->AddTexture("camera2");
+    //screenSwitcher3->AddTexture("camera5");
+    //screenSwitcher3->AddTexture("camera4");
+    //screenSwitcher3->AddTexture("uv_mapper.bmp");
+
+    //scene->AddActionToObj(screenSwitcher3, scene->sceneObjects[10]);
+
+    //// RIGHT SCREEN
+    //ScreenTextureSwitch* screenSwitcher4 = new ScreenTextureSwitch();
+
+    //screenSwitcher4->AddTexture("camera3");
+    //screenSwitcher4->AddTexture("binaries.bmp");
+    //screenSwitcher4->AddTexture("camera1");
+    //screenSwitcher4->AddTexture("camera2");
+    //screenSwitcher4->AddTexture("camera5");
+    //screenSwitcher4->AddTexture("camera4");
+    //screenSwitcher4->AddTexture("uv_mapper.bmp");
+
+    //scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[14]);
 
 
     //Object* playerObject = scene->sceneObjects[15];
@@ -824,135 +824,135 @@ void AddActions(Scene* scene, GLuint program)
 
     {
 
-        scene->sceneObjects[0]->mesh->textures[0] = "rock.bmp";
+        scene->sceneObjects[0]->mesh->textures[0] = "mountain.bmp";
         scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "metal.bmp";
-        scene->sceneObjects[1]->mesh->textures[1] = "metalScratch.bmp";
-        scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[1]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[1]->mesh->textures[0] = "metal.bmp";
+        //scene->sceneObjects[1]->mesh->textures[1] = "metalScratch.bmp";
+        //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[1]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
-        scene->sceneObjects[2]->mesh->textures[1] = "metalScratch.bmp";
-        scene->sceneObjects[2]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[2]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[2]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
+        //scene->sceneObjects[2]->mesh->textures[1] = "metalScratch.bmp";
+        //scene->sceneObjects[2]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[2]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[2]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[3]->mesh->textures[0] = "metal.bmp";
-        scene->sceneObjects[3]->mesh->textures[1] = "rust.bmp";
-        scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[3]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[3]->mesh->textures[0] = "metal.bmp";
+        //scene->sceneObjects[3]->mesh->textures[1] = "rust.bmp";
+        //scene->sceneObjects[3]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[3]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[4]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
-        scene->sceneObjects[4]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
-        scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[4]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        //scene->sceneObjects[4]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
+        //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[5]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
-        scene->sceneObjects[5]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
-        scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[5]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
-        scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[5]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        //scene->sceneObjects[5]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
+        //scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[5]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
+        //scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[6]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
-        scene->sceneObjects[6]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
-        scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[6]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[6]->mesh->textures[0] = "SpaceInteriors_Texture.bmp";
+        //scene->sceneObjects[6]->mesh->textures[1] = "SpaceInteriors_Emmision.bmp";
+        //scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[6]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
-        // Front Screen 1
-        scene->sceneObjects[7]->mesh->textures[0] = "gibberish.bmp";
-        scene->sceneObjects[7]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
-        scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
-        scene->sceneObjects[7]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
+        //// Front Screen 1
+        //scene->sceneObjects[7]->mesh->textures[0] = "gibberish.bmp";
+        //scene->sceneObjects[7]->mesh->blendRatio[0] = 9;
+        //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
+        //scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
+        //scene->sceneObjects[7]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
 
-        // Front Window
-        scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
-        scene->sceneObjects[8]->mesh->textures[0] = "metalScratch.bmp";
-        scene->sceneObjects[8]->mesh->textures[0] = "fingerprint.bmp";
-        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[8]->mesh->transperency = 0.4;
+        //// Front Window
+        //scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
+        //scene->sceneObjects[8]->mesh->textures[0] = "metalScratch.bmp";
+        //scene->sceneObjects[8]->mesh->textures[0] = "fingerprint.bmp";
+        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[8]->mesh->transperency = 0.4;
 
-        // Front Screen 2
-        scene->sceneObjects[9]->mesh->textures[0] = "gibberish.bmp";
-        scene->sceneObjects[9]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
-        //scene->sceneObjects[9]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
+        //// Front Screen 2
+        //scene->sceneObjects[9]->mesh->textures[0] = "gibberish.bmp";
+        //scene->sceneObjects[9]->mesh->blendRatio[0] = 9;
+        //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
+        ////scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
+        ////scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
+        ////scene->sceneObjects[9]->mesh->stencilTextureID = 61;
+        ////scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
-        // Left Screen
-        scene->sceneObjects[10]->mesh->textures[0] = "gibberish.bmp";
-        scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
-        //scene->sceneObjects[10]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
+        //// Left Screen
+        //scene->sceneObjects[10]->mesh->textures[0] = "gibberish.bmp";
+        //scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
+        //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+        ////scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
+        ////scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
+        ////scene->sceneObjects[10]->mesh->stencilTextureID = 61;
+        ////scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
-        // Left Window
-        scene->sceneObjects[11]->mesh->textures[0] = "uv_mapper.bmp";
-        scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
-        scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
-        scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[11]->mesh->transperency = 0.4;
+        //// Left Window
+        //scene->sceneObjects[11]->mesh->textures[0] = "uv_mapper.bmp";
+        //scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
+        //scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
+        //scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[11]->mesh->transperency = 0.4;
 
-        // Right Window
-        scene->sceneObjects[13]->mesh->textures[0] = "uv_mapper.bmp";
-        scene->sceneObjects[13]->mesh->textures[0] = "Pebbles_small.bmp";
-        scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[13]->mesh->transperency = 0.4;
+        //// Right Window
+        //scene->sceneObjects[13]->mesh->textures[0] = "uv_mapper.bmp";
+        //scene->sceneObjects[13]->mesh->textures[0] = "Pebbles_small.bmp";
+        //scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
+        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
+        //scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[13]->mesh->transperency = 0.4;
 
 
-        // Right Screen
-        scene->sceneObjects[14]->mesh->textures[0] = "gibberish";
-        scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
+        //// Right Screen
+        //scene->sceneObjects[14]->mesh->textures[0] = "gibberish";
+        //scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
+        //scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
 
-        //Room
+        ////Room
 
-        scene->sceneObjects[15]->mesh->textures[0] = "metalScratch.bmp";
-        scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[15]->mesh->textures[0] = "metalScratch.bmp";
+        //scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[16]->mesh->textures[0] = "metalScratch.bmp";
-        scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[16]->mesh->textures[0] = "metalScratch.bmp";
+        //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[17]->mesh->textures[0] = "metalScratch.bmp";
-        scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[17]->mesh->textures[0] = "metalScratch.bmp";
+        //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+        //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[18]->mesh->textures[0] = "dmageAsph.bmp";
-        scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[18]->mesh->textures[0] = "dmageAsph.bmp";
+        //scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
 
 
         //scene->sceneObjects[19]->mesh->textures[0] = "camera1";
@@ -1089,35 +1089,36 @@ int main(void)
     glUseProgram(program);
 
     scene->textureManager->SetBasePath("assets/textures");
-    scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("graphity.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("mountain.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("B1snow.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("dmageAsph.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Emmision.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Emmision.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
+
 
     std::cout << "Skybox Texture Load Start" << std::endl;
 
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/SpaceBox_left2_negX.bmp",
-        "CubeMaps/SpaceBox_right1_posX.bmp",
-        "CubeMaps/SpaceBox_top3_posY.bmp",
-        "CubeMaps/SpaceBox_bottom4_negY.bmp",
-        "CubeMaps/SpaceBox_front5_posZ.bmp",
-        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
+        "Ryfjallet/negx.bmp",
+        "Ryfjallet/posx.bmp",
+        "Ryfjallet/posy.bmp",
+        "Ryfjallet/negy.bmp",
+        "Ryfjallet/posz.bmp",
+        "Ryfjallet/negz.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }
