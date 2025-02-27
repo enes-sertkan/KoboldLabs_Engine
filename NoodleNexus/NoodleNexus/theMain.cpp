@@ -1132,12 +1132,12 @@ int main(void)
     // lookings
     std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "Ryfjallet/negx.bmp",
-        "Ryfjallet/posx.bmp",
-        "Ryfjallet/posy.bmp",
-        "Ryfjallet/negy.bmp",
-        "Ryfjallet/posz.bmp",
-        "Ryfjallet/negz.bmp", true, errorString))
+        "CubeMaps/SpaceBox_left2_negX.bmp",
+        "CubeMaps/SpaceBox_right1_posX.bmp",
+        "CubeMaps/SpaceBox_top3_posY.bmp",
+        "CubeMaps/SpaceBox_bottom4_negY.bmp",
+        "CubeMaps/SpaceBox_front5_posZ.bmp",
+        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
     {
         std::cout << "Loaded space skybox" << std::endl;
     }
@@ -1145,6 +1145,22 @@ int main(void)
     {
         std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
     }
+
+    /*std::string errorString;
+    if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
+        "CubeMaps/TropicalSunnyDayLeft2048.bmp",
+        "CubeMaps/TropicalSunnyDayRight2048.bmp",
+        "CubeMaps/TropicalSunnyDayUp2048.bmp",
+        "CubeMaps/TropicalSunnyDayDown2048.bmp",
+        "CubeMaps/TropicalSunnyDayFront2048.bmp",
+        "CubeMaps/TropicalSunnyDayBack2048.bmp", true, errorString))
+    {
+        std::cout << "Loaded space skybox" << std::endl;
+    }
+    else
+    {
+        std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
+    }*/
 
     std::cout << "Skybox Texture Load End" << std::endl;
     // Enable depth buffering (z buffering)
