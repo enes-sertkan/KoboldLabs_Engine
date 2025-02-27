@@ -53,6 +53,7 @@ struct sMesh
 
 	unsigned int uniqueID = 0;
 
+	bool drawBothFaces = false;
 	std::string getState(void);
 	bool loadState(std::string newState);
 

@@ -437,7 +437,10 @@ glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const
 
 void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
-
+    if (pCurMesh->drawBothFaces)
+    {
+        glDisable(GL_CULL_FACE);
+    }
 
     // Is it visible? 
     if (!pCurMesh->bIsVisible)
@@ -684,6 +687,11 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
             (void*)0);
 
         glBindVertexArray(0); 			//disable VAO(and everything else)
+    }
+
+    if (pCurMesh->drawBothFaces)
+    {
+        glEnable(GL_CULL_FACE);
     }
 
     // glEnable(GL_DEPTH_TEST);

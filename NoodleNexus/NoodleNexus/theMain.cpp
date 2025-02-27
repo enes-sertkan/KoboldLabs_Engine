@@ -724,6 +724,7 @@ void AddActions(Scene* scene, GLuint program)
     softBody->acceleration.x = -1;
     //softBody->acceleration.z = -0.3;
     softBody->yPosToLock = -0.1f;
+    softObject->mesh->drawBothFaces = true;
     // . . . . . . . . .
     scene->AddActionToObj(softBody, softObject);
     
