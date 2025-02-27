@@ -27,7 +27,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 12 5 15
 <Rotation-> 90 0 0
-<Scale-> 10 1.1151e-38 0
+<Scale-> 10 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -46,10 +46,10 @@ skysphere.txt
 <--Object>
 
 <Light-->
-<Position-> -129 116 4.26 1
+<Position-> -185 -76.5 -121.52 1
 <Diffuse-> 5.15002 2.99 0.5 1
 <Specular-> 1 1 1 1
-<Atten-> 0 1.50525e-05 1.29376e-05 3.40282e+38
+<Atten-> 0 0.000120465 9.83078e-05 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 3.6 -6.8 0
 <Param2-> 1 0 0 0

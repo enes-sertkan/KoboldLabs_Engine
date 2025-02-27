@@ -232,23 +232,22 @@ float cSoftBodyVerlet::calcDistanceBetween(sParticle* pPartA, sParticle* pPartB)
 
 void cSoftBodyVerlet::LockParticlesOnY(float yPos, bool lower)
 {
-	if (lower)
-		for (sParticle* particle : vec_pParticles)
+	for (sParticle* particle : vec_pParticles)
+	{
+		if (lower)
 		{
-		
 			if (particle->position.y < yPos)
 			{
-				std::cout << "Partcile Locked" << std::endl;
+				std::cout << "Particle Locked at Y: " << particle->position.y << std::endl;
 				particle->bIsFixed_DontUpdate = true;
-				continue;
 			}
-		}else	{
-		for (sParticle* particle : vec_pParticles)
+		}
+		else
 		{
 			if (particle->position.y > yPos)
 			{
+				std::cout << "Particle Locked at Y: " << particle->position.y << std::endl;
 				particle->bIsFixed_DontUpdate = true;
-				continue;
 			}
 		}
 	}
