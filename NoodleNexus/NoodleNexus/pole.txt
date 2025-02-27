@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Pole
+<filePath> assets/models/pole.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

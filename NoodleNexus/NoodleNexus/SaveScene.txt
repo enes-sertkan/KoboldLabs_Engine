@@ -4,6 +4,7 @@
 Cube.txt
 mountain.txt
 flag.txt
+pole.txt
 skysphere.txt
 <--ObjectLoad>
 <Scene-->
@@ -25,11 +26,24 @@ skysphere.txt
 <Model-> Flag
 <Tags->
 <StaticCollision-> false
-<Position-> 12 5 15
-<Rotation-> 90 0 0
+<Position-> 20 20 20
+<Rotation-> -90 0 0
 <Scale-> 10 0 0
 <Visibility-> true
 <Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Pole
+<Model-> Pole
+<Tags->
+<StaticCollision-> false
+<Position-> 20 20 20
+<Rotation-> -90 0 0
+<Scale-> 10 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -39,14 +53,14 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -407 2018 -1242
 <Rotation-> 0 180 0
-<Scale-> 1 1.35252e-35 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> -185 -76.5 -121.52 1
+<Position-> -185 -76.5 -121.68 1
 <Diffuse-> 5.15002 2.99 0.5 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.000120465 9.83078e-05 3.40282e+38
