@@ -850,10 +850,10 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "furry.bmp";
+        scene->sceneObjects[1]->mesh->textures[0] = "mountain.bmp";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 10;
         //scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[1]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[1]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";

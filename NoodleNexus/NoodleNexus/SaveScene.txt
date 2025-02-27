@@ -39,7 +39,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -407 2018 -1242
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.35252e-35 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
