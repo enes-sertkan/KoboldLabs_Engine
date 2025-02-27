@@ -719,10 +719,14 @@ void AddActions(Scene* scene, GLuint program)
 {
     SoftBody* softBody = new SoftBody();
 
-    //Object* softObject = scene->sceneObjects[1];
-
-    //scene->AddActionToObj(softBody, softObject);
-
+    Object* softObject = scene->sceneObjects[1];
+    softBody->acceleration.y = 1;
+    softBody->acceleration.x = -1;
+   // softBody->acceleration.z = -0.3;
+    softBody->yPosToLock = -0.3f;
+    // . . . . . . . . .
+    scene->AddActionToObj(softBody, softObject);
+    
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
 

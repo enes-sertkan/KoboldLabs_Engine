@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
 <name> Flag
-<filePath> assets/models/Plane_with_tube_hole.ply
-<fileType> XYZNUV
+<filePath> assets/models/flag_new.ply
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

@@ -25,9 +25,9 @@ skysphere.txt
 <Model-> Flag
 <Tags->
 <StaticCollision-> false
-<Position-> 12 0 8
-<Rotation-> 0 0 0
-<Scale-> 0.5 0 0
+<Position-> 12 5 15
+<Rotation-> 90 0 0
+<Scale-> 10 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>

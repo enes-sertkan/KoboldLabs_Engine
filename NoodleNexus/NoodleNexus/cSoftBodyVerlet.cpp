@@ -1,8 +1,8 @@
+#pragma once
 #include "cSoftBodyVerlet.hpp"
 
-#if _DEBUG 
 #include <iostream>
-#endif
+
 
 cSoftBodyVerlet::cSoftBodyVerlet()
 {
@@ -228,6 +228,31 @@ void cSoftBodyVerlet::UpdateNormals(void)
 float cSoftBodyVerlet::calcDistanceBetween(sParticle* pPartA, sParticle* pPartB)
 {
 	return glm::distance(pPartA->position, pPartB->position);
+}
+
+void cSoftBodyVerlet::LockParticlesOnY(float yPos, bool lower)
+{
+	if (lower)
+		for (sParticle* particle : vec_pParticles)
+		{
+		
+			if (particle->position.y < yPos)
+			{
+				std::cout << "Partcile Locked" << std::endl;
+				particle->bIsFixed_DontUpdate = true;
+				continue;
+			}
+		}else	{
+		for (sParticle* particle : vec_pParticles)
+		{
+			if (particle->position.y > yPos)
+			{
+				particle->bIsFixed_DontUpdate = true;
+				continue;
+			}
+		}
+	}
+
 }
 
 

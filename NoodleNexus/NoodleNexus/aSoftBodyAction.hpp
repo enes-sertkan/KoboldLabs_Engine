@@ -14,6 +14,8 @@ public:
     cSoftBodyVerlet* softBody = nullptr;
     std::string originalMeshName;
     std::string SBMeshName;
+    glm::vec3 acceleration;
+    float yPosToLock;
 
     void Start() override {
         softBody = new cSoftBodyVerlet();
@@ -27,7 +29,9 @@ public:
 
        
         object->mesh->modelFileName = SBMeshName;
-        softBody->acceleration.x = -10;
+        softBody->acceleration = acceleration;
+
+        softBody->LockParticlesOnY(yPosToLock, true);
     }
 
     void Update() override {
@@ -79,4 +83,7 @@ public:
             object->scene->vaoManager->UpdateDynamicMesh(softBody->matching_VAO_MeshName, softBodyDrawMeshLocalCopy, shaderProgramID);
         
     }
+
+
+
 };

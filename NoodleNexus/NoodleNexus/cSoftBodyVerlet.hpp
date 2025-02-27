@@ -68,7 +68,7 @@ public:
 		sParticle* pParticleA = NULL;
 		sParticle* pParticleB = NULL;
 		// How far away they are supposed to be 'at rest'
-		float restLength = 0.0f;
+		float restLength = 1.0f;
 
 		unsigned int maxIterations = 1;
 
@@ -108,7 +108,7 @@ public:
 	// Max update time is 60Hz
 	const double MAX_DELTATIME = 1.0 / 60.0;
 
-
+	void LockParticlesOnY(float xPos, bool lower);
 
 	// This just gets the average of all the points (based on location)
 	glm::vec3 getGeometricCentrePoint(void);
