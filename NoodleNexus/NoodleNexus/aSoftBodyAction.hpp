@@ -15,6 +15,7 @@ public:
     std::string originalMeshName;
     std::string SBMeshName;
     glm::vec3 acceleration;
+    bool wind = false;
     float yPosToLock;
 
     void Start() override {
@@ -36,6 +37,30 @@ public:
 
     void Update() override {
     
+        if (glfwGetKey(object->scene->window, GLFW_KEY_T) == GLFW_PRESS)
+        {
+            wind = true;
+        }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_Y) == GLFW_PRESS)
+        {
+            wind = false;
+        }
+
+
+        if (wind)
+        {
+            softBody->acceleration.y = 0.1;
+            softBody->acceleration.x = -0.5;
+            softBody->acceleration.z = -0.05;
+        }
+        else
+
+        {
+            softBody->acceleration.y = 0;
+            softBody->acceleration.x = 0;
+            softBody->acceleration.z = -0.5;
+        }
 
         UpdateSoftBody(object->scene->deltaTime);
         UpdateSoftBodyMeshes(object->scene->programs[0]);
