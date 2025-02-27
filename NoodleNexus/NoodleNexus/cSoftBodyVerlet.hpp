@@ -68,9 +68,9 @@ public:
 		sParticle* pParticleA = NULL;
 		sParticle* pParticleB = NULL;
 		// How far away they are supposed to be 'at rest'
-		float restLength = 1.0f;
+		float restLength = 2.0f;
 
-		unsigned int maxIterations = 1;
+		unsigned int maxIterations = 5;
 
 		// if false, this isnt' checked
 		// Like if the constraint is 'broken'

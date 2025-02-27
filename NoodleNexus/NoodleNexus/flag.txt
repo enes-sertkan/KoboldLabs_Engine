@@ -2,6 +2,6 @@
 <ModelFile>
 <name> Flag
 <filePath> assets/models/flag.ply
-<fileType> XYZNUVRGBA
+<fileType> XYZNUV
 </ModelFile>
 </KoboldLabs>

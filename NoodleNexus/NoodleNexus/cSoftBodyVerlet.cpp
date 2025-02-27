@@ -415,8 +415,10 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			// Making this non-one, will change how quickly the objects move together
 			// For example, making this < 1.0 will make it "bouncier"
 			float tightnessFactor = 1.0f;
-
+			if (!pX1->bIsFixed_DontUpdate)
 			pX1->position += delta * 0.5f * diff * tightnessFactor;
+
+			if (!pX2->bIsFixed_DontUpdate)
 			pX2->position -= delta * 0.5f * diff * tightnessFactor;
 
 			this->cleanZeros(pX1->position);
