@@ -49,6 +49,9 @@ public:
 		glm::vec3 old_position = glm::vec3(0.0f);
 		// Pointer back to the model vertex info
 		sVertex* pModelVertex = NULL;					// See typedef above...
+		//
+		// If "fixed" then don't update with Verlet step
+		bool bIsFixed_DontUpdate = false;
 	};
 
 	void cleanZeros(glm::vec3& value);
@@ -67,11 +70,18 @@ public:
 		// How far away they are supposed to be 'at rest'
 		float restLength = 0.0f;
 
-		unsigned int numIterations = 1;
+		unsigned int maxIterations = 1;
 
 		// if false, this isnt' checked
 		// Like if the constraint is 'broken'
 		bool bIsActive = true;
+
+		// Maybe a maximum distance between vertices:
+		// If it was stiff cloth, maybe set this to just longer than the rest length.
+		// It it's really "springy" (like spandex?) then set this to a lot longer.
+		float breakingDistance = FLT_MAX;
+		bool bIsBreakable = false;
+
 		// This is interesting, too
 		// From: I Spent a Week Making an AI's Video Game Idea - YouTube
 		// https://www.youtube.com/watch?v=PGk0rnyTa1U&ab_channel=SebastianLague
@@ -108,3 +118,4 @@ public:
 
 
 };
+

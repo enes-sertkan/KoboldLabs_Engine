@@ -27,6 +27,7 @@ public:
 
        
         object->mesh->modelFileName = SBMeshName;
+        softBody->acceleration.x = -10;
     }
 
     void Update() override {
@@ -41,7 +42,7 @@ public:
     void UpdateSoftBody(double deltaTime) {
       
 
-            if (softBody!=nullptr) return;
+          //  if (softBody!=nullptr) return;
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
