@@ -25,7 +25,7 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "mountain.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "Flag";
-    modelInfo.meshPath = "assets/models/flag_new.ply";
+    modelInfo.meshPath = "assets/models/flag.ply";
     fileManager->WriteModelFile(&modelInfo, "flag.txt", "XYZNUVRGBA");
 
     //modelInfo.modelName = "StuffMainAst";
