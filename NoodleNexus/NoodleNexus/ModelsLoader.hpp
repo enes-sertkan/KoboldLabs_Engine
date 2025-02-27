@@ -24,9 +24,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Mountain2.ply";
     fileManager->WriteModelFile(&modelInfo, "mountain.txt", "XYZNUVRGBA");
 
-    //modelInfo.modelName = "OtherAsteroid";
-    //modelInfo.meshPath = "assets/models/Miner/asteroid_other_xyz_n_rgba_uv.ply";
-    //fileManager->WriteModelFile(&modelInfo, "otherAst.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Flag";
+    modelInfo.meshPath = "assets/models/Plane_with_tube_hole.ply";
+    fileManager->WriteModelFile(&modelInfo, "flag.txt", "XYZNUV");
 
     //modelInfo.modelName = "StuffMainAst";
     //modelInfo.meshPath = "assets/models/Miner/stuff_main_asteroid_xyz_n_rgba_uv.ply";

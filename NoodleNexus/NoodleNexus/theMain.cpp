@@ -719,9 +719,9 @@ void AddActions(Scene* scene, GLuint program)
 {
     SoftBody* softBody = new SoftBody();
 
-    Object* softObject = scene->sceneObjects[0];
+    //Object* softObject = scene->sceneObjects[1];
 
-    scene->AddActionToObj(softBody, softObject);
+    //scene->AddActionToObj(softBody, softObject);
 
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
@@ -839,18 +839,17 @@ void AddActions(Scene* scene, GLuint program)
 
     {
 
-        scene->sceneObjects[0]->mesh->textures[0] = "mountain.bmp";
+        scene->sceneObjects[0]->mesh->textures[0] = "mountain.bmp"; 
         scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        //scene->sceneObjects[1]->mesh->textures[0] = "metal.bmp";
-        //scene->sceneObjects[1]->mesh->textures[1] = "metalScratch.bmp";
-        //scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[1]->mesh->textures[0] = "Canadian_Flag_Texture.bmp";
+        scene->sceneObjects[1]->mesh->blendRatio[0] = 3;
         //scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
         //scene->sceneObjects[1]->mesh->textureFillType[1] = 1;
-        //scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
 
         //scene->sceneObjects[2]->mesh->textures[0] = "metal.bmp";
         //scene->sceneObjects[2]->mesh->textures[1] = "metalScratch.bmp";
@@ -1105,9 +1104,9 @@ int main(void)
 
     scene->textureManager->SetBasePath("assets/textures");
     scene->textureManager->Create2DTextureFromBMPFile("mountain.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("B1snow.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("dmageAsph.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Canadian_Flag_Texture.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("onep.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("furry.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
