@@ -38,23 +38,23 @@ void MazeGenerator::generateMaze() {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
 
-            if (cell == 'X' || cell == '.' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
+            if (cell == '.' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
                 PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 //PlaceModelOnGrid("assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
-                //if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
-                //    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                //}
+                if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
+                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col , 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                }
                 if (col > 0 && maze[row][col - 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
-                //if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
-                //    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                //}
+                if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
+                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                }
 
                 // Door placement logic (optional, as in your example)
                 if (cell == '3') {
@@ -145,20 +145,24 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         break;
     case RIGHT:
         position.x += scale * 5.0f / 2.0f;
+        position.z += scale * 5.0f / 2.0f;
         rotation.y = -90.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         break;
     case LEFT:
         position.x -= scale * 5.0f / 2.0f;
+        position.z -= scale * 5.0f / 2.0f;
         rotation.y = -270.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         break;
     case UP:
         position.z += scale * 5.0f / 2.0f;
+        position.x -= scale * 5.0f / 2.0f;
         rotation.y = 180.0f;
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
+        position.x += scale * 5.0f / 2.0f;
         break;
     case DOORleft:
         position.z -= scale * 5.0f / 2.0f;

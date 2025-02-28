@@ -23,9 +23,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/flag_new2.ply";
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUV");
 
-    modelInfo.modelName = "Console";
-    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "brickWall.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "cubeWall";
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv_rgba.ply";
+    fileManager->WriteModelFile(&modelInfo, "cubekWall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "OtherWall";
     modelInfo.meshPath = "assets/models/Wall.ply";
