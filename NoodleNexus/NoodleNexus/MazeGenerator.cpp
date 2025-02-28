@@ -108,7 +108,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
             "assets/models/extras/SM_Prop_Chair_01_xyz_n_rgba_uv.ply"
         };
         path = smallObjectPaths[rand() % smallObjectPaths.size()];
-        scale *= 0.5f;  // Smaller scale for small objects
+        scale *= 1.f;  // Smaller scale for small objects
         color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
         break;
     }
@@ -118,8 +118,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
             "assets/models/extras/SM_Prop_Console_05_xyz_n_rgba_uv.ply",
             "assets/models/extras/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply"
         };
-        path = mediumObjectPaths[rand() % mediumObjectPaths.size()];
-        scale *= 0.75f;  // Medium scale for medium objects
+        path = 1.f;  // Medium scale for medium objects
         color = glm::vec4(0.7f, 0.7f, 0.7f, 1.0f);
         break;
     }
@@ -194,7 +193,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Generate the object with the applied scale to actually affect the mesh size
     Object* obj = scene->GenerateMeshObjectsFromObject(
-        path, position, scale * objectScale.x, rotation,false, glm::vec4(1.0, 1.0, 1.0, 1.0f), false, scene->sceneObjects);
+        path, position, scale * objectScale.x, rotation,false, glm::vec4(1.0, 0.2, 0.2, 1.0f), true, scene->sceneObjects);
 
 
     if (obj == nullptr) {
@@ -204,7 +203,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;
-    obj->mesh->textures[0] = "Canadian_Flag_Texture.bmp";
+    obj->mesh->textures[0] = "Pebbles_small.bmp";
     obj->mesh->blendRatio[0] = 1;
     obj->mesh->textureFillType[0] = 1;
     // Set visibility for invisible walls

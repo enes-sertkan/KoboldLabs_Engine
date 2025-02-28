@@ -20,8 +20,8 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUV");
 
     modelInfo.modelName = "wall";
-    modelInfo.meshPath = "assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
+    modelInfo.meshPath = "assets/models/flag_new2.ply";
+    fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUV");
 
     modelInfo.modelName = "Console";
     modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";

@@ -71,13 +71,12 @@ uniform float speedY;      // Speed in the Y direction
 
 
 
-
 void main()
 {
 
  vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
 
- vec4 baseTexture = texture(texture00, fUV);
+
 
 	// discard transparency
 	// uniform sampler2D stencilTexture;
@@ -108,6 +107,7 @@ void main()
 	
 
 
+
 	vec3 vertexColour = fColour;
 	if ( bUseObjectColour )
 	{
@@ -135,24 +135,23 @@ void main()
 		                   + (texColour03.rgb * texRatio_0_to_3.w);
 				
 		// Use #2 texture to modulate the 1st texture		
-//		vertexColour.rgb =   (texColour03.rgb * texColour02.r) 
+//		vertexColour.rgb =   (texColour03.rgb * texColour02.r) bUseStencilTexture
 //		                   + (texColour00.rgb * (1.0f - texColour02.r));
 						   
 					   
 	} 
-
-    // Use lighting?
-	if ( !bDoNotLight )
+	
+	// Use lighting?
+	if ( bDoNotLight )
 	{
 		finalPixelColour.rgb = objectColour.rgb;
 		finalPixelColour.a = 1.0f;
 		return;
 	}
+	
+	
 
-
-
-//	vec3 fvertexNormal = vec3(0.0f, 1.0f, 0.0f);
-	vec4 vertexSpecular = vec4(1.0f, 1.0f, 1.0f, 1.0f);	
+	vec4 vertexSpecular = vec4(0.0f, 0.0f, 0.0f, 0.0f);	
 
 
 	vec4 pixelColour = calculateLightContrib( vertexColour.rgb, 
@@ -330,8 +329,8 @@ vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal,
 		
 		
 					
-		finalObjectColour.rgb += (vertexMaterialColour.rgb * lightDiffuseContrib.rgb)
-								  + (vertexSpecular.rgb  * lightSpecularContrib.rgb );
+		finalObjectColour.rgb += (vertexMaterialColour.rgb * lightDiffuseContrib.rgb);
+								  //+ (vertexSpecular.rgb  * lightSpecularContrib.rgb );
 
 	}//for(intindex=0...
 	

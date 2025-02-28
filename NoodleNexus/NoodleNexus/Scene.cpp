@@ -470,6 +470,7 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->mesh = Meshes;
 
     // Initialize mesh properties
+    object->mesh->uniqueFriendlyName = filePath;
     object->mesh->modelFileName = filePath;
     object->mesh->positionXYZ = posXYZ;
     object->mesh->rotationEulerXYZ = rotXYZ;

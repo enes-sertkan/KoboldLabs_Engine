@@ -1027,6 +1027,7 @@ int main(void)
     KLFileManager* fileManager = new KLFileManager();
 
     CreateModelFiles(fileManager);
+    CreateModelFiles(fileManager);
 
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
@@ -1270,7 +1271,9 @@ int main(void)
     // HACK:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
     scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
-  
+
+
+   Object* oobj =  scene->GenerateMeshObjectsFromObject("assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply", glm::vec3(0.f), 7.f, glm::vec3(0.f), false, glm::vec4(1.f), true, scene->sceneObjects);
     while (!glfwWindowShouldClose(window))
     {
         //followObj->start = RacingCar->mesh->positionXYZ;
