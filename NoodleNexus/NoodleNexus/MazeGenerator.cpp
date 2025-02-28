@@ -220,3 +220,18 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
 }
 
+bool MazeGenerator::IsWall(int x, int y) const {
+    if (x < 0 || y < 0 || x >= maze[0].size() || y >= maze.size())
+        return true;
+    return maze[y][x] == 'X';
+}
+
+glm::vec3 MazeGenerator::GridToWorld(int x, int y) const {
+    const float TILE_SIZE = 1.0f * 7.0f; // Match your scaling factor
+    return glm::vec3(x * TILE_SIZE, 0, y * TILE_SIZE);
+}
+
+char MazeGenerator::GetMazePoint(int x, int y) {
+    return maze[x][y];
+}
+

@@ -1191,6 +1191,12 @@ int main(void)
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/DungeonX.txt", scene, scene->lightManager);
     mazeGenerator->generateMaze();
 
+    //for (int i = 0; i < 100; i++)
+    //{
+    //    
+    //    std::cout << "Maze position: " << mazeGenerator->GetMazePoint(i, 0) << std::endl;
+    //}
+
     Object* SkySphere = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply",
         glm::vec3(0, 0, 0),
         1,

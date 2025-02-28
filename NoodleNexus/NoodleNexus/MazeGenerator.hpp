@@ -33,6 +33,10 @@ public:
     MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager
     void generateMaze();
 
+    bool IsWall(int x, int y) const;
+    glm::vec3 GridToWorld(int x, int y) const;
+    char GetMazePoint(int x, int y);
+
 private:
     void loadMaze(const std::string& filePath);
     void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
