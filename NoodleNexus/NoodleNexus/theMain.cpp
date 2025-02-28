@@ -850,7 +850,7 @@ void AddActions(Scene* scene, GLuint program)
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "mountain.bmp";
+        scene->sceneObjects[1]->mesh->textures[0] = "Pebbles_small.bmp";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 10;
         //scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
         //scene->sceneObjects[1]->mesh->textureFillType[0] = 1;
@@ -1292,6 +1292,7 @@ int main(void)
         scene->lightManager->updateShaderWithLightInfo();
         sceneEditor->Update();
         scene->Update();
+        
 
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;

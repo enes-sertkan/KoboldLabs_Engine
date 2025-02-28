@@ -23,8 +23,8 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "BrickWall";
-    modelInfo.meshPath = "assets/models/BrickWall.ply";
+    modelInfo.modelName = "Console";
+    modelInfo.meshPath = "assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "brickWall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "OtherWall";

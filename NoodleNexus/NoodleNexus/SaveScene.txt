@@ -31,7 +31,19 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 208 200 200
 <Rotation-> 270 0 0
-<Scale-> 1 1.06828e-38 0
+<Scale-> 1 1.02351e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Console
+<Model-> Console
+<Tags->
+<StaticCollision-> false
+<Position-> 208 200 200
+<Rotation-> 0 0 0
+<Scale-> 10 9.29919e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -43,9 +55,10 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -407 2018 -1242
 <Rotation-> 0 180 0
-<Scale-> 1 1.10544e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
+<Color-> 0 0 0
 <--Object>
 
 <Light-->

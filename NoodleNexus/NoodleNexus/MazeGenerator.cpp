@@ -39,8 +39,8 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
 
             if (cell == 'X' || cell == '.' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
-               /* PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));*/
+                PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //PlaceModelOnGrid("assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
@@ -152,7 +152,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     case LEFT:
         position.x -= scale * 5.0f / 2.0f;
         rotation.y = -270.0f;
-        color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
+        color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         break;
     case UP:
         position.z += scale * 5.0f / 2.0f;
@@ -194,7 +194,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Generate the object with the applied scale to actually affect the mesh size
     Object* obj = scene->GenerateMeshObjectsFromObject(
-        path, position, scale * objectScale.x, rotation,false, color, true, scene->sceneObjects);
+        path, position, scale * objectScale.x, rotation,false, glm::vec4(1.0, 1.0, 1.0, 1.0f), false, scene->sceneObjects);
 
 
     if (obj == nullptr) {
@@ -204,14 +204,15 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;
-
+    obj->mesh->textures[0] = "Canadian_Flag_Texture.bmp";
+    obj->mesh->blendRatio[0] = 1;
+    obj->mesh->textureFillType[0] = 1;
     // Set visibility for invisible walls
     if (!isVisible) {
         obj->mesh->bIsVisible = false;
     }
 
-   /* obj->mesh->textures[0] = "Puzzle_parts.bmp";
-    obj->mesh->blendRatio[0] = 1;*/
+
     // Add to physics manager with the applied scale
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
 }

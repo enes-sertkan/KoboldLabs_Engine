@@ -437,6 +437,11 @@ glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const
 
 void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
+    if (glm::distance(camera->position, pCurMesh->positionXYZ) > 1000)
+    {
+        return;
+    }
+
     if (pCurMesh->drawBothFaces)
     {
         glDisable(GL_CULL_FACE);

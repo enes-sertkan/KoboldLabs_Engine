@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> BrickWall
-<filePath> assets/models/BrickWall.ply
+<name> Console
+<filePath> assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>
