@@ -198,14 +198,12 @@
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
-    <ClInclude Include="aMinotaur.hpp" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
-    <ClInclude Include="aTheseus.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
     <ClInclude Include="Camera.hpp" />

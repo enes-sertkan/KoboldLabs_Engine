@@ -418,12 +418,6 @@
     <ClInclude Include="VerletPhysics.hpp">
       <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
     </ClInclude>
-    <ClInclude Include="aTheseus.hpp">
-      <Filter>Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="aMinotaur.hpp">
-      <Filter>Actions</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
