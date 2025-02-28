@@ -31,7 +31,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 208 200 200
 <Rotation-> 270 0 0
-<Scale-> 1 1.02337e-38 0
+<Scale-> 1 9.94707e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -43,7 +43,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 20 20 20
 <Rotation-> 0 0 0
-<Scale-> 10 0 0
+<Scale-> 10 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -55,61 +55,9 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -407 2018 -1242
 <Rotation-> 0 180 0
-<Scale-> 1 6.26324e-39 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.09583e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0.356813 0.058777 2.60936
-<Rotation-> 0.356813 0.058777 0
-<Scale-> -1 6.86636e-43 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
 <Color-> 0 0 0
 <--Object>
 
@@ -118,26 +66,81 @@ skysphere.txt
 <Model-> assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
 <Tags->
 <StaticCollision-> false
-<Position-> 62.3549 6.27102e+22 4.86174e+30
-<Rotation-> 4.35843e+27 4.5442e+30 0
-<Scale-> 0 0 0
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Light-->
-<Position-> 254.5 20.5 43.5 1
-<Diffuse-> 1 1 1 1
+<Position-> -450 50 312 1
+<Diffuse-> 1.57 1.55 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000120465 9.83078e-05 3.40282e+38
+<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 4234 50 312 1
+<Diffuse-> 1.57 1.55 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 4234 50 5330 1
+<Diffuse-> 1.57 1.55 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> -235 50 5330 1
+<Diffuse-> 1.57 1.55 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 200 3000 200 1
+<Diffuse-> 1.57 1.55 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Camera-->
-<Position-> -1050 800 1800
+<Position-> -450 500 312
 <Rotation-> 163 84
+<--Camera>
+
+<Camera-->
+<Position-> 4234 500 4613
+<Rotation-> 90 0
+<--Camera>
+
+<Camera-->
+<Position-> 4234 500 312
+<Rotation-> 90 0
+<--Camera>
+
+<Camera-->
+<Position-> -235 500 4628
+<Rotation-> 90 0
 <--Camera>
 
 <Camera-->

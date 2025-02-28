@@ -203,7 +203,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;
-    obj->mesh->textures[0] = "Pebbles_small.bmp";
+    obj->mesh->textures[0] = "rock.bmp";
     obj->mesh->blendRatio[0] = 1;
     obj->mesh->textureFillType[0] = 1;
     // Set visibility for invisible walls

@@ -1113,7 +1113,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Canadian_Flag_Texture.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("onep.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
