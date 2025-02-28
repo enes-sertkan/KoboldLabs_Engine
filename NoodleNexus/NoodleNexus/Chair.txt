@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
 <name> Chair
-<filePath> assets/models/Ply/SM_Prop_SwivelChair_04_xyz_n_rgba_uv.ply
+<filePath> assets/models/extras/SM_Prop_SwivelChair_04_xyz_n_rgba_uv.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

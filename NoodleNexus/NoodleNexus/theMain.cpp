@@ -717,16 +717,16 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    SoftBody* softBody = new SoftBody();
+    //SoftBody* softBody = new SoftBody();
 
-    Object* softObject = scene->sceneObjects[1];
-    softBody->acceleration.y = 0.1;
-    softBody->acceleration.x = -1;
-    //softBody->acceleration.z = -0.3;
-    softBody->yPosToLock = -0.35f;
-    softObject->mesh->drawBothFaces = true;
-    // . . . . . . . . .
-    scene->AddActionToObj(softBody, softObject);
+    //Object* softObject = scene->sceneObjects[1];
+    //softBody->acceleration.y = 0.1;
+    //softBody->acceleration.x = -1;
+    ////softBody->acceleration.z = -0.3;
+    //softBody->yPosToLock = -0.35f;
+    //softObject->mesh->drawBothFaces = true;
+    //// . . . . . . . . .
+    //scene->AddActionToObj(softBody, softObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
@@ -844,7 +844,7 @@ void AddActions(Scene* scene, GLuint program)
 
     {
 
-        scene->sceneObjects[0]->mesh->textures[0] = "mountain.bmp"; 
+        scene->sceneObjects[0]->mesh->textures[0] = "Pebbles_small.bmp"; 
         scene->sceneObjects[0]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[0]->mesh->bOverrideObjectColour = false;
         //scene->sceneObjects[0]->mesh->transperency = 1;
@@ -1111,7 +1111,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("mountain.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Canadian_Flag_Texture.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("onep.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("furry.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
@@ -1130,23 +1130,23 @@ int main(void)
     std::cout << "Skybox Texture Load Start" << std::endl;
 
     // lookings
-    std::string errorString;
-    if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
-        "CubeMaps/SpaceBox_left2_negX.bmp",
-        "CubeMaps/SpaceBox_right1_posX.bmp",
-        "CubeMaps/SpaceBox_top3_posY.bmp",
-        "CubeMaps/SpaceBox_bottom4_negY.bmp",
-        "CubeMaps/SpaceBox_front5_posZ.bmp",
-        "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
-    {
-        std::cout << "Loaded space skybox" << std::endl;
-    }
-    else
-    {
-        std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
-    }
+    //std::string errorString;
+    //if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
+    //    "CubeMaps/SpaceBox_left2_negX.bmp",
+    //    "CubeMaps/SpaceBox_right1_posX.bmp",
+    //    "CubeMaps/SpaceBox_top3_posY.bmp",
+    //    "CubeMaps/SpaceBox_bottom4_negY.bmp",
+    //    "CubeMaps/SpaceBox_front5_posZ.bmp",
+    //    "CubeMaps/SpaceBox_back6_negZ.bmp", true, errorString))
+    //{
+    //    std::cout << "Loaded space skybox" << std::endl;
+    //}
+    //else
+    //{
+    //    std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
+    //}
 
-    /*std::string errorString;
+    std::string errorString;
     if (scene->textureManager->CreateCubeTextureFromBMPFiles("Space",
         "CubeMaps/TropicalSunnyDayLeft2048.bmp",
         "CubeMaps/TropicalSunnyDayRight2048.bmp",
@@ -1160,7 +1160,7 @@ int main(void)
     else
     {
         std::cout << "ERROR: Didn't load space skybox because: " << errorString << std::endl;
-    }*/
+    }
 
     std::cout << "Skybox Texture Load End" << std::endl;
     // Enable depth buffering (z buffering)
@@ -1187,9 +1187,8 @@ int main(void)
 
 //   GENERATING MAZE
 //   ---------------
-    //MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
-  
-    //mazeGenerator->generateMaze();
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/DungeonX.txt", scene, scene->lightManager);
+    mazeGenerator->generateMaze();
 
     Object* SkySphere = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply",
         glm::vec3(0, 0, 0),

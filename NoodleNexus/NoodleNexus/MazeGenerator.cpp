@@ -24,7 +24,7 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     while (std::getline(file, line)) {
         std::vector<char> row;
         for (char c : line) {
-            if (c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6') {
+            if (c == 'X' || c == '.' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6') {
                 row.push_back(c);
             }
         }
@@ -38,23 +38,23 @@ void MazeGenerator::generateMaze() {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
 
-            if (cell == '1' || cell == '2' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/Ply/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+            if (cell == 'X' || cell == '.' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
+               /* PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));*/
 
                 // Place surrounding walls
-                if (row > 0 && maze[row - 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                if (row > 0 && maze[row - 1][col] == 'X') {
+                    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
-                if (row < maze.size() - 1 && maze[row + 1][col] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
+                //    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //}
+                if (col > 0 && maze[row][col - 1] == 'X') {
+                    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
-                if (col > 0 && maze[row][col - 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                }
-                if (col < maze[row].size() - 1 && maze[row][col + 1] == '0') {
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                }
+                //if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
+                //    PlaceModelOnGrid("assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //}
 
                 // Door placement logic (optional, as in your example)
                 if (cell == '3') {
@@ -74,7 +74,7 @@ void MazeGenerator::generateMaze() {
                     else {
                         continue;
                     }
-                    PlaceModelOnGrid("assets/models/Ply/SM_Env_Door_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, doorDirection, true);
+                    PlaceModelOnGrid("assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, doorDirection, true);
                 }
 
                 // Place random objects in '1' cells
@@ -103,9 +103,9 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     switch (type) {
     case SMALLobj: {
         std::vector<std::string> smallObjectPaths = {
-            "assets/models/Ply/SM_Prop_Plant_01_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_Bed_02_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_Chair_01_xyz_n_rgba_uv.ply"
+            "assets/models/extras/SM_Prop_Plant_01_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_Bed_02_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_Chair_01_xyz_n_rgba_uv.ply"
         };
         path = smallObjectPaths[rand() % smallObjectPaths.size()];
         scale *= 0.5f;  // Smaller scale for small objects
@@ -114,9 +114,9 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     }
     case MEDIUMobj: {
         std::vector<std::string> mediumObjectPaths = {
-            "assets/models/Ply/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_Console_05_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply"
+            "assets/models/extras/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_Console_05_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply"
         };
         path = mediumObjectPaths[rand() % mediumObjectPaths.size()];
         scale *= 0.75f;  // Medium scale for medium objects
@@ -125,9 +125,9 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     }
     case BIGobj: {
         std::vector<std::string> bigObjectPaths = {
-            "assets/models/Ply/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
-            "assets/models/Ply/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
+            "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
+            "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
         };
         path = bigObjectPaths[rand() % bigObjectPaths.size()];
         scale *= 1.2f;  // Larger scale for big objects
@@ -203,6 +203,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     }
 
     obj->isTemporary = true;
+    obj->mesh->drawBothFaces = true;
 
     // Set visibility for invisible walls
     if (!isVisible) {

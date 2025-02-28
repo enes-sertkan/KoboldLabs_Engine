@@ -70,9 +70,6 @@ uniform float speedX;      // Speed in the X direction
 uniform float speedY;      // Speed in the Y direction
 
 
-// === Uniform to Enable/Disable Glitch Per Model ===
-uniform bool bApplyGlitchEffect;  // TRUE = glitch effect, FALSE = normal render
-uniform sampler2D staticTexture;  // Add this line to your uniforms
 
 
 void main()
@@ -143,46 +140,14 @@ void main()
 						   
 					   
 	} 
-	
-// === Conditional Glitch Effect ===
-    if (bApplyGlitchEffect)
-    {
-        // === Flickering Effect ===
-        float flickerStrength = (sin(time * speedX) * 0.3) + 0.7;
-        vec2 flickerOffset = vec2(0.0, clamp(flickerStrength * sin(time * 2.0), -0.1, 0.1));
-        vec4 flickeredTexture = texture(texture00, fUV + flickerOffset);
-
-        // === Static Noise Effect ===
-        float noiseIntensity = abs(sin(time * speedY)) * 0.5;  // Periodic noise overlay (0 - 0.5)
-        vec2 noiseOffset = vec2(fract(time * 0.3), fract(time * 0.2));
-        vec4 noiseTexture = texture(staticTexture, fUV + noiseOffset);
-
-        // === Blend Flickering & Noise ===
-        vec4 finalScreenTexture = mix(flickeredTexture, noiseTexture, noiseIntensity);
-
-        // === Discard Glitched Pixels (like stencil logic) ===
-        float corruptionLevel = noiseIntensity * flickerStrength;
-        if (corruptionLevel > 0.8)
-        {
-            discard;  // Hide highly corrupted pixels (glitch effect)
-        }
-
-        // Output glitched texture
-        finalPixelColour = finalScreenTexture;
-    }
-    else
-    {
-        // === Normal Rendering for Non-Glitched Models ===
-        finalPixelColour = vec4(vertexColour, 1.0);
-    }
 
     // Use lighting?
-    if (!bDoNotLight)
-    {
-        vec4 vertexSpecular = vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        vec4 pixelColour = calculateLightContrib(vertexColour.rgb, fvertexNormal.xyz, fvertexWorldLocation.xyz, vertexSpecular);
-        finalPixelColour = pixelColour;
-    }
+	if ( !bDoNotLight )
+	{
+		finalPixelColour.rgb = objectColour.rgb;
+		finalPixelColour.a = 1.0f;
+		return;
+	}
 
 
 

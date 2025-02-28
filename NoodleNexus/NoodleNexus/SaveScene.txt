@@ -2,48 +2,38 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-mountain.txt
-flag.txt
-pole.txt
+Hangar.txt
+wall.txt
+brickWall.txt
+oWall.txt
+rotatedWall.txt
+floor.txt
+ceiling.txt
+door.txt
+Chair.txt
+Bed.txt
+console.txt
+SLadder.txt
+Cdesk.txt
+printer.txt
+treadmill.txt
+stairs.txt
+Plants.txt
+Sphere.txt
 skysphere.txt
 <--ObjectLoad>
 <Scene-->
 
 <Object-->
-<Name-> Mountain
-<Model-> Mountain
+<Name-> Cube
+<Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> -12 -7 9
+<Position-> 208 200 200
 <Rotation-> 270 0 0
-<Scale-> 6.87006 1.10544e-38 0
+<Scale-> 1 1.06828e-38 0
 <Visibility-> true
 <Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Flag
-<Model-> Flag
-<Tags->
-<StaticCollision-> false
-<Position-> 20 20 20
-<Rotation-> -90 0 0
-<Scale-> 10 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Pole
-<Model-> Pole
-<Tags->
-<StaticCollision-> false
-<Position-> 20 20 20
-<Rotation-> -90 0 0
-<Scale-> 10 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -53,14 +43,13 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -407 2018 -1242
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.10544e-38 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> -185 -76.5 -121.84 1
+<Position-> -178.66 -76.5 -160.04 1
 <Diffuse-> 5.15002 2.99 0.5 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.000120465 9.83078e-05 3.40282e+38
@@ -70,12 +59,12 @@ skysphere.txt
 <--Light>
 
 <Light-->
-<Position-> 0 70000 -1.46 1
+<Position-> 0 5000 0 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 8.21323e-10 6.6396e-10 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 20 35 0
+<Direction-> 0 0 0 0
+<Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
@@ -85,7 +74,7 @@ skysphere.txt
 <--Camera>
 
 <Camera-->
-<Position-> 12 19 80
+<Position-> 1000 1000 500
 <Rotation-> 90 0
 <--Camera>
 

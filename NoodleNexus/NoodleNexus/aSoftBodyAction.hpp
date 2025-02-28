@@ -15,7 +15,7 @@ public:
     std::string originalMeshName;
     std::string SBMeshName;
     glm::vec3 acceleration;
-    bool wind = false;
+    bool wind = true;
     float yPosToLock;
 
     void Start() override {

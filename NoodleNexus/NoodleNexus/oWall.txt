@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> Mountain
-<filePath> assets/models/Mountain2.ply
+<name> OtherWall
+<filePath> assets/models/Wall.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>
