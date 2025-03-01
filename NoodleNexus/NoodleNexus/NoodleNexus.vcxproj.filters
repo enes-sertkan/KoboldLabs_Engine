@@ -242,6 +242,9 @@
     <ClCompile Include="RotateInLimits.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="aBaseMazeCharacter.h">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -417,6 +420,9 @@
     </ClInclude>
     <ClInclude Include="VerletPhysics.hpp">
       <Filter>Engine\PhysicsManager\Verlet_SoftBody</Filter>
+    </ClInclude>
+    <ClInclude Include="aMinotaur.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

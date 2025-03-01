@@ -73,6 +73,7 @@
 #include "aCameraToTexture.h"
 #include "aScreenTextureSwitch.h"
 #include "aSoftBodyAction.hpp"
+#include "aBaseMazeCharacter.h"
  Scene* currentScene=nullptr;
 
 
@@ -717,6 +718,15 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/DungeonX.txt", scene, scene->lightManager);
+    mazeGenerator->generateMaze();
+
+    BazeMazeCharacter* chararcter = new BazeMazeCharacter();
+    chararcter->mazePosition.x = 5;
+    chararcter->mazePosition.y = 5;
+    chararcter->maze = mazeGenerator;
+    scene->AddActionToObj(chararcter, scene->sceneObjects[0]);
+
     //SoftBody* softBody = new SoftBody();
 
     //Object* softObject = scene->sceneObjects[1];
@@ -1188,9 +1198,7 @@ int main(void)
 
 //   GENERATING MAZE
 //   ---------------
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/DungeonX.txt", scene, scene->lightManager);
-    mazeGenerator->generateMaze();
-
+    
     //for (int i = 0; i < 100; i++)
     //{
     //    

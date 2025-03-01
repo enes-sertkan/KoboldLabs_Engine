@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aBaseMazeCharacter.h" />
     <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
@@ -198,6 +199,7 @@
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
+    <ClInclude Include="aMinotaur.h" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
