@@ -35,17 +35,27 @@ public:
     glm::vec3 GridToWorld(int x, int y) const;
     char GetMazePoint(int x, int y);
 
+    void PlaceFood(int count = 50);
+    std::vector<Object*> foods;
+
+    void PlaceWater(int count = 100);
+    std::vector<Object*> waters;
+
 
     BazeMazeCharacter* minoChar = nullptr;
     BazeMazeCharacter* thesChar = nullptr;
 private:
     void loadMaze(const std::string& filePath);
-    void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
+    Object* PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
     void PlaceRandomObjects();
-    void PlaceCharacters();
+
+    std::vector<std::vector<bool>> occupiedPositions;
+    bool IsPositionOccupied(int row, int col) const;
+    void MarkPositionOccupied(int row, int col);
     //void PlaceRandomSizedObject(int row, int col, Direction type)  // New method to place a light
 
     std::vector<std::vector<char>> maze;
+
     Scene* scene = nullptr;
     int lightIndex = 0;  // Index to keep track of lights
 };

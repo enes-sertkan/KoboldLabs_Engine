@@ -35,6 +35,14 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Chars/MinoV.ply";
     fileManager->WriteModelFile(&modelInfo, "theseus.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "Food";
+    modelInfo.meshPath = "assets/models/Food/MelonE.ply";
+    fileManager->WriteModelFile(&modelInfo, "melonE.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Water";
+    modelInfo.meshPath = "assets/models/Food/WaterE.ply";
+    fileManager->WriteModelFile(&modelInfo, "waterE.txt", "XYZNUVRGBA");
+
     modelInfo.modelName = "door";
     modelInfo.meshPath = "assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "door.txt", "XYZNUVRGBA");

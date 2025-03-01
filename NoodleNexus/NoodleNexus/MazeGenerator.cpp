@@ -35,9 +35,11 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
 }
 
 void MazeGenerator::generateMaze() {
+
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
+            occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
             if (cell == '.' || cell == 'T' || cell == 'M' || cell == '5' || cell == '6') {
                 PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
@@ -88,12 +90,19 @@ void MazeGenerator::generateMaze() {
                 else if (cell == 'F') {
                     PlaceModelOnGrid("", row, col, 1.0f * 7.0f, FOOD, true);
                 }
+                else if (cell == 'W') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, WATER, true);
+                }
+
+                
             }
         }
     }
+    PlaceFood(50);
+    PlaceWater(100);
 }
 
-void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible, glm::vec4 color) {
+Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible, glm::vec4 color) {
     glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f);
     glm::vec3 rotation(0.0f);
     glm::vec3 objectScale(1, 1, 1);
@@ -119,14 +128,25 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         break;
     }
     case FOOD: {
-        std::vector<std::string> bigObjectPaths = {
-            "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
-        };
-        path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        scale *= 1.2f;  // Larger scale for big objects
-        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        //std::vector<std::string> bigObjectPaths = {
+        //    "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
+        //    "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
+        //    "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
+        //};
+        //path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        //scale *= 1.2f;  // Larger scale for big objects
+        //color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        break;
+    }
+    case WATER: {
+        //std::vector<std::string> bigObjectPaths = {
+        //    "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
+        //    "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
+        //    "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
+        //};
+        //path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        //scale *= 1.2f;  // Larger scale for big objects
+        //color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
         break;
     }
     case CENTER:
@@ -162,7 +182,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;
-        return;
+        return nullptr;
     }
 
     // Generate the object with the applied scale to actually affect the mesh size
@@ -172,7 +192,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     if (obj == nullptr) {
         std::cerr << "Failed to create object for type: " << type << std::endl;
-        return;
+        return nullptr;
     }
 
     if (type == MINOTAUR)
@@ -207,6 +227,8 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     // Add to physics manager with the applied scale
     scene->physicsManager->AddTriangleMesh(path, position, rotation, scale);
+
+    return obj;
 }
 
 bool MazeGenerator::IsWall(int x, int y) const {
@@ -224,3 +246,78 @@ char MazeGenerator::GetMazePoint(int x, int y) {
     return maze[x][y];
 }
 
+bool MazeGenerator::IsPositionOccupied(int row, int col) const {
+    if (row < 0 || col < 0 || row >= occupiedPositions.size() || col >= occupiedPositions[0].size())
+        return true; // Out of bounds is considered occupied
+    return occupiedPositions[row][col];
+}
+
+// Mark a position as occupied
+void MazeGenerator::MarkPositionOccupied(int row, int col) {
+    if (row >= 0 && col >= 0 && row < occupiedPositions.size() && col < occupiedPositions[0].size())
+        occupiedPositions[row][col] = true;
+}
+
+void MazeGenerator::PlaceFood(int count) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
+    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
+
+    for (int i = 0; i < count; ++i) {
+        int foodRow, foodCol;
+
+        // Find a valid position for food
+        do {
+            foodRow = disRow(gen);
+            foodCol = disCol(gen);
+        } while (IsWall(foodRow, foodCol) || IsPositionOccupied(foodRow, foodCol)); // Ensure the position is not a wall or occupied
+
+        // Place the food object
+        Object* food = PlaceModelOnGrid("assets/models/Food/WaterE.ply", foodRow, foodCol, 1.0f * 7.0f, FOOD, true);
+        food->mesh->textures[0] = "rock.bmp";
+        food->mesh->blendRatio[0] = 2;
+        food->mesh->bOverrideObjectColour = false;
+
+        std::cout << "Pos of food Col " << foodCol << std::endl;
+        std::cout << "Pos of food Row " << foodRow << std::endl;
+
+        // Add the food object to the foods vector
+        if (food != nullptr) {
+            foods.push_back(food);
+            MarkPositionOccupied(foodRow, foodCol); // Mark the position as occupied
+        }
+    }
+}
+
+void MazeGenerator::PlaceWater(int count) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
+    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
+
+    for (int i = 0; i < count; ++i) {
+        int waterRow, waterCol;
+
+        // Find a valid position for water
+        do {
+            waterRow = disRow(gen);
+            waterCol = disCol(gen);
+        } while (IsWall(waterRow, waterCol) || IsPositionOccupied(waterRow, waterCol)); // Ensure the position is not a wall or occupied
+
+        // Place the water object
+        Object* water = PlaceModelOnGrid("assets/models/Food/MelonE.ply", waterRow, waterCol, 1.0f * 7.0f, FOOD, true);
+        water->mesh->textures[0] = "rock.bmp";
+        water->mesh->blendRatio[0] = 2;
+        water->mesh->bOverrideObjectColour = false;
+
+        std::cout << "Pos of water Col " << waterCol << std::endl;
+        std::cout << "Pos of water Row " << waterRow << std::endl;
+
+        // Add the water object to the waters vector
+        if (water != nullptr) {
+            waters.push_back(water);
+            MarkPositionOccupied(waterRow, waterCol); // Mark the position as occupied
+        }
+    }
+}

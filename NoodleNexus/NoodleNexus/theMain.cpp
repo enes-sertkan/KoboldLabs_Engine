@@ -1287,7 +1287,6 @@ int main(void)
     scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
 
 
-   Object* oobj =  scene->GenerateMeshObjectsFromObject("assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply", glm::vec3(0.f), 7.f, glm::vec3(0.f), false, glm::vec4(1.f), true, scene->sceneObjects);
     while (!glfwWindowShouldClose(window))
     {
         //followObj->start = RacingCar->mesh->positionXYZ;
