@@ -21,6 +21,7 @@ public:
 	glm::vec3 targetWorldPosition;
 	MazeGenerator* maze = nullptr;
 	CharDirection curWanderingDirection;
+	int health = 100;
 
 
 
@@ -150,6 +151,8 @@ public:
 	void HandleEncounter()
 	{
 		//Do logic for when they meet.
+		maze->thesChar->health -= 100;
+		object->Destroy();
 
 	}
 };
