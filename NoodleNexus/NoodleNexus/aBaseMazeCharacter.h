@@ -31,10 +31,10 @@ public:
 		int curY = mazePosition.y;
 		switch (direction)
 		{
-		case CUP:  return TryMovingToMazePoint(curX, curY+1); break;
-		case CDOWN:  return TryMovingToMazePoint(curX, curY-1); break;
-		case CLEFT:  return TryMovingToMazePoint(curX-1, curY); break;
-		case CRIGHT: return TryMovingToMazePoint(curX+1, curY); break;
+		case CUP: object->mesh->rotationEulerXYZ.y = 0; return TryMovingToMazePoint(curX, curY + 1); break;
+		case CDOWN: object->mesh->rotationEulerXYZ.y = 180; return TryMovingToMazePoint(curX, curY-1); break;
+		case CLEFT:  object->mesh->rotationEulerXYZ.y = 270;  return TryMovingToMazePoint(curX-1, curY); break;
+		case CRIGHT: object->mesh->rotationEulerXYZ.y = 90; return TryMovingToMazePoint(curX+1, curY); break;
 
 		default:
 		
@@ -49,6 +49,13 @@ public:
 
 
 		if (maze->IsWall(y, x)) return false;
+
+
+
+		if ((x == maze->thesChar->mazePosition.x) && (y == maze->thesChar->mazePosition.y)) HandleEncounter(); return false;
+		if ((x == maze->minoChar->mazePosition.x) && (y == maze->minoChar->mazePosition.y)) HandleEncounter(); return false;
+
+
 		std::cout << "TRY MOVE()" << std::endl;
 			mazePosition.x = x;
 			mazePosition.y = y;
@@ -135,11 +142,16 @@ public:
 
 	void DefaultWanderingTick()
 	{
+		speed = 250.f;
 		if (!Move(curWanderingDirection))
 			PickNewDirection();
 	}
 
+	void HandleEncounter()
+	{
+		//Do logic for when they meet.
 
+	}
 };
 
 

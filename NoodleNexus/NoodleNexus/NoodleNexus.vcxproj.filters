@@ -424,6 +424,9 @@
     <ClInclude Include="aMinotaur.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Theseus.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

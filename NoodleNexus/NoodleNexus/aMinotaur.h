@@ -22,16 +22,19 @@ public:
 
 	virtual void Update()
 	{
-
+	//	RageTick();
+		//speed = 150.f;
+	
 		if (MoveToTargetPositionUpdate())
 		{
-
-			//if (maze.theChar is closeenough)
-			//do RageTick()
-
-
-			DefaultWanderingTick();
-
+			if (glm::distance(maze->minoChar->mazePosition, maze->thesChar->mazePosition) <= 10)
+			{
+				RageTick();
+			}
+			else
+			{
+			 DefaultWanderingTick();
+			}
 		}
 
 
@@ -40,9 +43,47 @@ public:
 
 
 	void RageTick()
+	{	
+		PickNewDirectionRage();
+		speed = 400.f;
+		if (!Move(curWanderingDirection))
+			PickNewDirectionRage();
+	}
+
+	void PickNewDirectionRage()
 	{
-		//Decide what direction to go
-		//Use Move(direction) direction is CharDIrection
+		glm::vec2 minoPos = maze->minoChar->mazePosition;
+		glm::vec2 theoPos = maze->thesChar->mazePosition;
+
+		//if distance on x bigger then distance
+		//Mega stupid solution with * to remove minuses
+		if ((minoPos.x - theoPos.x)* (minoPos.x - theoPos.x) > (minoPos.y - theoPos.y)* (minoPos.y - theoPos.y))
+		{
+			if (minoPos.x < theoPos.x) 
+			{
+				curWanderingDirection = CRIGHT;
+			}
+
+			if (minoPos.x > theoPos.x)
+			{
+				curWanderingDirection = CLEFT;
+			}
+		}
+
+		else
+
+		{
+			if (minoPos.y < theoPos.y)
+			{
+				curWanderingDirection = CUP;
+			}
+
+			if (minoPos.y > theoPos.y)
+			{
+				curWanderingDirection = CDOWN;
+			}
+
+		}
 	}
 };
 
