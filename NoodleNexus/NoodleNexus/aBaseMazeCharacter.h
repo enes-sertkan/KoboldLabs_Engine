@@ -20,36 +20,40 @@ public:
 	glm::vec3 mazePosition;
 	glm::vec3 targetWorldPosition;
 	MazeGenerator* maze = nullptr;
-	
-	void Move(CharDirection direction)
+	CharDirection curWanderingDirection;
+
+
+
+	bool Move(CharDirection direction)
 	{
 		std::cout << "MOVE()" << std::endl;
 		int curX = mazePosition.x;
 		int curY = mazePosition.y;
 		switch (direction)
 		{
-		case CUP:  TryMovingToMazePoint(curX, curY+1); break;
-		case CDOWN:  TryMovingToMazePoint(curX, curY-1); break;
-		case CLEFT:  TryMovingToMazePoint(curX-1, curY); break;
-		case CRIGHT:  TryMovingToMazePoint(curX+1, curY); break;
+		case CUP:  return TryMovingToMazePoint(curX, curY+1); break;
+		case CDOWN:  return TryMovingToMazePoint(curX, curY-1); break;
+		case CLEFT:  return TryMovingToMazePoint(curX-1, curY); break;
+		case CRIGHT: return TryMovingToMazePoint(curX+1, curY); break;
 
 		default:
-			std::cout << "FUCK DEFAULT()" << std::endl;
+		
 			break;
+			return false;
 		}
 	}
 
-	void TryMovingToMazePoint(int x, int y)
+	bool TryMovingToMazePoint(int x, int y)
 	{
 		std::cout << "Trying to move to" << mazePosition.x << " " << mazePosition.y << " and tile is" << maze->GetMazePoint(mazePosition.x, mazePosition.y) << std::endl;
 
 
-		if (maze->IsWall(y, x)) return;
+		if (maze->IsWall(y, x)) return false;
 		std::cout << "TRY MOVE()" << std::endl;
 			mazePosition.x = x;
 			mazePosition.y = y;
 			targetWorldPosition = maze->GridToWorld(x, y);
-		
+			return true;
 	}
 	//Moves to the target based on speed
 	//returns if reaches position
@@ -87,15 +91,17 @@ public:
 	virtual void Start()
 	{
 		targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
+	}
 	
 
-	}
+	
 	virtual void Update()
 	{
 		
 		if (MoveToTargetPositionUpdate())
-			HandleControls();
+			DefaultWanderingTick();
 		
+
 
 	}
 
@@ -121,6 +127,19 @@ public:
 			Move(CDOWN);
 		}
 	}
+	void PickNewDirection()
+	{
+		int pickDir = rand() % 4;
+		curWanderingDirection = static_cast<CharDirection>(pickDir);
+	}
+
+	void DefaultWanderingTick()
+	{
+		if (!Move(curWanderingDirection))
+			PickNewDirection();
+	}
+
+
 };
 
 

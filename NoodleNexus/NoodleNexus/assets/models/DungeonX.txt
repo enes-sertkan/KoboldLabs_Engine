@@ -2,10 +2,10 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 XXXXX...XXXXXXX.........X.......X...................XXXXX...............X...........X.................X.........XXX
 XXXXX.X.XXXXXXX.X.......X.XXXXX.X.XXXXXXXXXXXXXXX.X.XXXXX.XXXXX.XXX.XXXXX.XXXXXXXXX.X.XXX.XXXXXXXXXXX.X...XXX...XXX
 X.....X.......X.X.........X.....X.X...XXXXXXXXXXX.X.....X.....X.X.X.X...X...XXXXXXX...X...X.........X.X.....X.....X
-X.....X.......X.XXXXXXXXXXX.....X.X...XXXXXXXXXXX.X.....X.....X.X.X.X...X...XXXXXXX.XXX...X.XXXXXXXXX.XXXXXXX.XXX.X
+X..M..X.......X.XXXXXXXXXXX.....X.X...XXXXXXXXXXX.X.....X.....X.X.X.X...X...XXXXXXX.XXX...X.XXXXXXXXX.XXXXXXX.XXX.X
 X.....X.......X.......X...X.....X.X...X.......XXX.X.....X.....X...X.....X...X.....X...X...X.X.......X...........X.X
 XXXXXXXXXXX.XXXXXXXXX.X...X.....X.X...X.....X.XXX.X.....XXX.XXXXXXX.X...X...X.XXX.X...X...X.X.......XXXXX.......X.X
-X.......XXX...........X.........X.X...X.....X...X.X.....X...X.....X.X...X...X...X.X...X...X.....M...XXXXX.......X.X
+X.......XXX...........X.........X.X...X.....X...X.X.....X...X.....X.X...X...X...X.X...X...X.........XXXXX.......X.X
 X.XXXXX.XXXXXXXXXXXXXXX...X.....X.XXX.X.....XXX.X.X.....X...X.X...X.XXXXX.XXXXX.XXX...X.XXX.X.......XXXXX.......X.X
 X.X...X.X...X.........X...X.....X.....X.......X.X...........X.X.....XXXXX.X.......X...X...X.X...........X.......X.X
 X.X.XXX.X...X...XXX.X.X...XXXXXXXXXXX.XXXXXXXXX.XXX.XXXXXXX.X.X...X.XXXXX.X.X.....X...XXX.X.X.......XXX.X.......X.X
@@ -13,7 +13,7 @@ X...X...X...X...XXX.X.X...X.........X.XXXXX...X.X.....XXXXX.X.X...X.....X.X.X...
 X.XXX.XXX.X.XXX.XXX.XXX.XXX.XXXXX...X.XXXXX.X.X.X.....XXXXX.X.X...X.....X.X.X.....XXXXXXX.X.XXXXX.XXXXXXXXXXXXX.X.X
 X.X.......X.X...XXX.....X...................X...X.....XXXXX.X.....X.........X.....X.....X...XXXXX.X.......X.....X.X
 XXX.......X.X...XXX.....X.XXXXXXXXXXXXX.XXXXXXXXX.....XXXXX.XXXXXXXXXXXXX.XXX.....X.X...XXXXXXXXX.X.XXX...X.XXXXX.X
-X.........X.....X.......X.XXXXXXXXXXX.......XXXXX.....XXXXX.X.......X.......X.....X.X...........X.X.X.X...X...X...X
+X....T....X.....X.......X.XXXXXXXXXXX.......XXXXX.....XXXXX.X.......X.......X.....X.X...........X.X.X.X...X...X...X
 X.X.......X.X...X.X.....X.XXXXXXXXXXX.......XXXXX.....XXXXX.X.......X.......XXXXXXX.XXXXX.......X.X.X.X...XXX.XXX.X
 X.X.......X.X...X.X.....X.....X.............X.........XXXXX.X...............X...........X.......X.X.......X.......X
 X.XXXXXXXXXXXXX.X.X.....X.....X.....XXXXXXX.X.XXXXXXXXXXXXX.X.......XXX.X.XXXXXXXXXXXXX.XXXXX.XXX.X.XXXXX.XXX.XXXXX
@@ -137,7 +137,7 @@ X.XXX.....X.........X.X.....X.......XXX.....X.X...X...X.....X.......X.....X.....
 X.XXX.....X.XXXXXXXXX.XXXXXXX.XXXXXXXXX.....X.XXX.XXX.X.....X...X.X.X.....X.X...X.X.XXX.X.XXXXXXX.....XXXXXXXXX...X
 X.XXX.....X.XXXXX.......XXXXX.XXXXXXXXX.....X.X.......X.....X...X.X.X.....X.X...X.....X.X.....XXX.....X...........X
 X.XXX.....X.XXXXX.......XXXXX.XXXXXXXXXXXXXXX.X.......X.XXXXXXXXXXX.XXXXX.X.X...XXXXX.X.X.....XXX.....X.XXXXXXXXXXX
-X...........XXX.....T.........X...X...........X.......X...X...X.....X.....X.X...X...X.X.X.....XXX.....X...X.......X
+X...........XXX...............X...X...........X.......X...X...X.....X.....X.X...X...X.X.X.....XXX.....X...X.......X
 X...X.....XXXXX.X.......X.....X...X.XXXXXXXXXXX.......X...X.X.X...XXX.....X.X...X...XXX.XXXXX.XXXXXXX.XXX.X.......X
 X...X.....X...X.X.......X.....X...X.X.....XXXXX...........X.X.X...XXX.....X.X...X.......X.X...XXXXX.......X.......X
 X...X.XXXXX...X.X.......X.X.XXX...X.X.....XXXXXXX.X.XXX.XXX.X.X.XXXXXXXXX.XXXXXXXXX.XXXXX.X...XXXXX.......X.......X

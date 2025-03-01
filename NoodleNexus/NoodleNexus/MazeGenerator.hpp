@@ -1,7 +1,5 @@
 // MazeGenerator.hpp
-
-#ifndef MAZEGENERATOR_HPP
-#define MAZEGENERATOR_HPP
+#pragma once
 
 #include <string>
 #include <vector>
@@ -9,6 +7,9 @@
 #include <glm/vec4.hpp>
 #include "Scene.hpp"
 #include "cLightManager.h" // Include the light manager
+
+class BazeMazeCharacter;
+class MinotaurChar;
 
 // Enum for different object types
 enum Direction {
@@ -34,6 +35,9 @@ public:
     glm::vec3 GridToWorld(int x, int y) const;
     char GetMazePoint(int x, int y);
 
+
+    BazeMazeCharacter* minoChar = nullptr;
+    BazeMazeCharacter* thesChar = nullptr;
 private:
     void loadMaze(const std::string& filePath);
     void PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
@@ -45,5 +49,3 @@ private:
     Scene* scene = nullptr;
     int lightIndex = 0;  // Index to keep track of lights
 };
-
-#endif // MAZEGENERATOR_HPP

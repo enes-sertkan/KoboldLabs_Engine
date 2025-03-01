@@ -5,7 +5,7 @@
 #include "PhysicsManager.h"
 #include <glm/gtc/matrix_transform.hpp> // For glm::radians
 #include <random>
-#include "aBaseMazeCharacter.h"
+#include "aMinotaur.h"
 
 
 // Constructor
@@ -177,11 +177,12 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
     if (type == MINOTAUR)
     {
-        BazeMazeCharacter* minotaur = new BazeMazeCharacter();
+        MinotaurChar* minotaur = new MinotaurChar();
         minotaur->mazePosition.x = col;
         minotaur->mazePosition.y = row;
         minotaur->maze = this;
         scene->AddActionToObj(minotaur, obj);
+        minoChar = minotaur;
     }
     else if (type == THESEUS)
     {
@@ -190,6 +191,7 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         theseus->mazePosition.y = row;
         theseus->maze = this;
         scene->AddActionToObj(theseus, obj);
+        thesChar = theseus;
     }
 
     obj->isTemporary = true;
