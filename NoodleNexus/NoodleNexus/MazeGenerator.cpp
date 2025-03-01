@@ -5,6 +5,7 @@
 #include "PhysicsManager.h"
 #include <glm/gtc/matrix_transform.hpp> // For glm::radians
 #include <random>
+#include "aBaseMazeCharacter.h"
 
 
 // Constructor
@@ -24,7 +25,7 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     while (std::getline(file, line)) {
         std::vector<char> row;
         for (char c : line) {
-            if (c == 'X' || c == '.' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6') {
+            if (c == 'X' || c == '.' || c == 'T' || c == 'M' || c == '4' || c == '5' || c == '6') {
                 row.push_back(c);
             }
         }
@@ -38,7 +39,7 @@ void MazeGenerator::generateMaze() {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
 
-            if (cell == '.' || cell == '3' || cell == '4' || cell == '5' || cell == '6') {
+            if (cell == '.' || cell == 'T' || cell == 'M' || cell == '5' || cell == '6') {
                 PlaceModelOnGrid("assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 //PlaceModelOnGrid("assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, CENTERup, false, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
@@ -57,42 +58,40 @@ void MazeGenerator::generateMaze() {
                 }
 
                 // Door placement logic (optional, as in your example)
-                if (cell == '3') {
-                    Direction doorDirection;
-                    if (col > 0 && maze[row][col - 1] == '1') {
-                        doorDirection = DOORleft;
-                    }
-                    else if (col < maze[row].size() - 1 && maze[row][col + 1] == '1') {
-                        doorDirection = DOORright;
-                    }
-                    else if (row > 0 && maze[row - 1][col] == '1') {
-                        doorDirection = DOORup;
-                    }
-                    else if (row < maze.size() - 1 && maze[row + 1][col] == '1') {
-                        doorDirection = DOORdown;
-                    }
-                    else {
-                        continue;
-                    }
-                    PlaceModelOnGrid("assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, doorDirection, true);
-                }
+                //if (cell == 'T') {
+                //    Direction doorDirection;
+                //    if (col > 0 && maze[row][col - 1] == '1') {
+                //        doorDirection = DOORleft;
+                //    }
+                //    else if (col < maze[row].size() - 1 && maze[row][col + 1] == '1') {
+                //        doorDirection = DOORright;
+                //    }
+                //    else if (row > 0 && maze[row - 1][col] == '1') {
+                //        doorDirection = DOORup;
+                //    }
+                //    else if (row < maze.size() - 1 && maze[row + 1][col] == '1') {
+                //        doorDirection = DOORdown;
+                //    }
+                //    else {
+                //        continue;
+                //    }
+                //    PlaceModelOnGrid("assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply", row, col, 1.0f * 7.0f, doorDirection, true);
+                //}
 
                 // Place random objects in '1' cells
-                if (cell == '4') {
-                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, SMALLobj, true);
+                if (cell == 'M') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, MINOTAUR, true);
                 }
-                else if (cell == '5') {
-                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, MEDIUMobj, true);
+                else if (cell == 'T') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, THESEUS, true);
                 }
-                else if (cell == '6') {
-                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, BIGobj, true);
+                else if (cell == 'F') {
+                    PlaceModelOnGrid("", row, col, 1.0f * 7.0f, FOOD, true);
                 }
             }
         }
     }
 }
-
-
 
 void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction type, bool isVisible, glm::vec4 color) {
     glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f);
@@ -101,28 +100,25 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
 
 
     switch (type) {
-    case SMALLobj: {
+    case MINOTAUR: {
         std::vector<std::string> smallObjectPaths = {
-            "assets/models/extras/SM_Prop_Plant_01_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_Bed_02_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_Chair_01_xyz_n_rgba_uv.ply"
+            "assets/models/Chars/MinoE.ply"
         };
         path = smallObjectPaths[rand() % smallObjectPaths.size()];
         scale *= 1.f;  // Smaller scale for small objects
         color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
         break;
     }
-    case MEDIUMobj: {
+    case THESEUS: {
         std::vector<std::string> mediumObjectPaths = {
-            "assets/models/extras/SM_Prop_ControlDesk_01_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_Console_05_xyz_n_rgba_uv.ply",
-            "assets/models/extras/SM_Prop_StepLadder_01_xyz_n_rgba_uv.ply"
+            "assets/models/Chars/MinoV.ply"
         };
-        path = 1.f;  // Medium scale for medium objects
-        color = glm::vec4(0.7f, 0.7f, 0.7f, 1.0f);
+        path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
+        scale *= 1.f;  // Smaller scale for small objects
+        color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
         break;
     }
-    case BIGobj: {
+    case FOOD: {
         std::vector<std::string> bigObjectPaths = {
             "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
             "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
@@ -164,32 +160,6 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
         position.z -= scale * 5.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
         break;
-    case DOORleft:
-        position.z -= scale * 5.0f / 2.0f;
-        position.y -= scale * 1.5f;
-        position.x -= scale * 0.5f;
-        rotation.y = 0.0f;
-        scale = 7.0f * 1.6f;
-        break;
-    case DOORright:
-        position.z -= scale * 5.0f / 2.0f;
-        position.y -= scale * 1.5f;
-        position.x -= scale * -2.5f;
-        rotation.y = 180.0f;
-        scale = 7.0f * 1.6f;
-        break;
-    case DOORup:
-        position.z += scale * 5.0f / 2.0f;
-        position.y -= scale * 1.5f;
-        rotation.y = 90.0f;
-        scale = 7.0f * 1.6f;
-        break;
-    case DOORdown:
-        position.z -= scale * 5.0f / 2.0f;
-        position.y -= scale * 1.5f;
-        rotation.y = -90.0f;
-        scale = 7.0f * 1.6f;
-        break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;
         return;
@@ -203,6 +173,23 @@ void MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, float s
     if (obj == nullptr) {
         std::cerr << "Failed to create object for type: " << type << std::endl;
         return;
+    }
+
+    if (type == MINOTAUR)
+    {
+        BazeMazeCharacter* minotaur = new BazeMazeCharacter();
+        minotaur->mazePosition.x = col;
+        minotaur->mazePosition.y = row;
+        minotaur->maze = this;
+        scene->AddActionToObj(minotaur, obj);
+    }
+    else if (type == THESEUS)
+    {
+        BazeMazeCharacter* theseus = new BazeMazeCharacter();
+        theseus->mazePosition.x = col;
+        theseus->mazePosition.y = row;
+        theseus->maze = this;
+        scene->AddActionToObj(theseus, obj);
     }
 
     obj->isTemporary = true;

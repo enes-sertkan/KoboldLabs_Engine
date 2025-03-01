@@ -2,7 +2,8 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-Hangar.txt
+minotaur.txt
+theseus.txt
 wall.txt
 cubekWall.txt
 oWall.txt
@@ -31,7 +32,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -16 0 29
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.06828e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -43,7 +44,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.10204e-38 0
 <Visibility-> true
 <Shading-> false
 <--Object>
@@ -55,7 +56,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 9.94707e-39 0
+<Scale-> 5.21649e-11 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -68,7 +69,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
+<Scale-> 5.21649e-11 6.33682e-39 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -81,7 +82,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 0 1.02326e-38 0
+<Scale-> 0 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -94,7 +95,267 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
+<Scale-> 5.21649e-11 7.80523e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.11123e-38 -6.9138e+30
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 9.29241e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 6.17e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 9.27555e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.1151e-38 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 6.37084e-39 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -144,74 +405,9 @@ skysphere.txt
 <Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
 <Tags->
 <StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
+<Scale-> 5.21649e-11 6.37084e-39 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -224,306 +420,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 6.48758e+07
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 6.37084e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
+<Scale-> 0 6.37084e-39 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -549,7 +446,111 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
+<Scale-> 5.21649e-11 7.98986e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 6.33682e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 6.37084e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 0 1.1151e-38 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -575,7 +576,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
+<Scale-> 5.21649e-11 6.37084e-39 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -588,7 +589,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
+<Scale-> 5.21649e-11 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -614,7 +615,46 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 6.37084e-39 0
+<Scale-> 5.21649e-11 6.33682e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
+<Scale-> 5.21649e-11 1.11123e-38 9.15816e+08
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -1.94134e+25 4.16186e-43 -1.94134e+25
+<Rotation-> 4.16186e-43 -1.93447e+22 4.16186e-43
+<Scale-> -1.93447e+22 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Model-> <Model->assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -6.60388e-31 7.09057e-43 -6.71602e-28
+<Rotation-> 7.09057e-43 1.4013e-45 0
+<Scale-> 1.82169e-43 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -625,9 +665,9 @@ skysphere.txt
 <Model-> assets/models/Room/SM_Env_Consoles_Corner_01_xyz_n_rgba_uv.ply
 <Tags->
 <StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 6.00975e+28 4.3601e+27 1.78472e+31
-<Scale-> 5.21649e-11 1.1151e-38 0
+<Position-> 0 0 0
+<Rotation-> 0 3.64338e-43 0
+<Scale-> 2.8026e-45 0 -1.0634e-38
 <Visibility-> true
 <Shading-> true
 <--Object>

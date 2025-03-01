@@ -11,7 +11,6 @@ enum CharDirection {
 	CRIGHT
 };
 
-
 class BazeMazeCharacter : public Action
 {
 private:

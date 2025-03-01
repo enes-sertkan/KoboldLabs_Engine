@@ -27,13 +27,13 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv_rgba.ply";
     fileManager->WriteModelFile(&modelInfo, "cubekWall.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "OtherWall";
-    modelInfo.meshPath = "assets/models/Wall.ply";
-    fileManager->WriteModelFile(&modelInfo, "oWall.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Minotaur";
+    modelInfo.meshPath = "assets/models/Chars/MinoE.ply";
+    fileManager->WriteModelFile(&modelInfo, "minotaur.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "rotatedWall";
-    modelInfo.meshPath = "assets/models/extras/SM_Env_Wall_02_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "rotatedWall.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Theseus";
+    modelInfo.meshPath = "assets/models/Chars/MinoV.ply";
+    fileManager->WriteModelFile(&modelInfo, "theseus.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "door";
     modelInfo.meshPath = "assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply";
