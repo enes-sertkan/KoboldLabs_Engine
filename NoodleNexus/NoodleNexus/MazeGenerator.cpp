@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp> // For glm::radians
 #include <random>
 #include "aMinotaur.h"
+#include "Theseus.h"
 
 
 // Constructor
@@ -206,7 +207,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
     }
     else if (type == THESEUS)
     {
-        BazeMazeCharacter* theseus = new BazeMazeCharacter();
+        TheseusChar* theseus = new TheseusChar();
         theseus->mazePosition.x = col;
         theseus->mazePosition.y = row;
         theseus->maze = this;

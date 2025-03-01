@@ -46,21 +46,23 @@ public:
 
 	bool TryMovingToMazePoint(int x, int y)
 	{
-		std::cout << "Trying to move to" << mazePosition.x << " " << mazePosition.y << " and tile is" << maze->GetMazePoint(mazePosition.x, mazePosition.y) << std::endl;
+		//std::cout << "Trying to move to" << mazePosition.x << " " << mazePosition.y << " and tile is" << maze->GetMazePoint(mazePosition.x, mazePosition.y) << std::endl;
 
 
 		if (maze->IsWall(y, x)) return false;
 
 
 
-		if ((x == maze->thesChar->mazePosition.x) && (y == maze->thesChar->mazePosition.y)) HandleEncounter(); return false;
-		if ((x == maze->minoChar->mazePosition.x) && (y == maze->minoChar->mazePosition.y)) HandleEncounter(); return false;
+		if ((x == maze->thesChar->mazePosition.x) && (y == maze->thesChar->mazePosition.y)) {HandleEncounter(); return false;}
+		if ((x == maze->minoChar->mazePosition.x) && (y == maze->minoChar->mazePosition.y)) { HandleEncounter(); return false; }
 
 
-		std::cout << "TRY MOVE()" << std::endl;
+		//std::cout << "TRY MOVE()" << std::endl;
 			mazePosition.x = x;
 			mazePosition.y = y;
 			targetWorldPosition = maze->GridToWorld(x, y);
+			DamageOnWalk();
+			std::cout << "Current health: " << health << std::endl;
 			return true;
 	}
 	//Moves to the target based on speed
@@ -146,14 +148,27 @@ public:
 		speed = 250.f;
 		if (!Move(curWanderingDirection))
 			PickNewDirection();
+		else
+		{
+			
+		}
 	}
 
 	void HandleEncounter()
 	{
 		//Do logic for when they meet.
-		maze->thesChar->health -= 100;
-		object->Destroy();
+		if (maze->thesChar->health > 50)
+			maze->minoChar->object->Destroy();
+		else
+			maze->thesChar->object->Destroy();
+;
+		//object->Destroy();
 
+	}
+
+	void DamageOnWalk()
+	{
+		health--;
 	}
 };
 

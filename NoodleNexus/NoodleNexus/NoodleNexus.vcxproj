@@ -248,6 +248,7 @@
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />
     <ClInclude Include="sObject.h" />
+    <ClInclude Include="StupidPathFinder.h" />
     <ClInclude Include="Theseus.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UsableItem.hpp" />

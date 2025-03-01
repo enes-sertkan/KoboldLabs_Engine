@@ -22,6 +22,7 @@ public:
 
 	virtual void Update()
 	{
+	
 	//	RageTick();
 		//speed = 150.f;
 	

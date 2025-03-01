@@ -44,6 +44,13 @@ public:
 
     BazeMazeCharacter* minoChar = nullptr;
     BazeMazeCharacter* thesChar = nullptr;
+
+    glm::vec2 WorldToGrid(const glm::vec3& worldPos) const {
+        const float TILE_SIZE = 1.0f * 7.0f * 5.0f; // Match GridToWorld scaling
+        int gridCol = static_cast<int>(worldPos.x / TILE_SIZE);
+        int gridRow = static_cast<int>(worldPos.z / TILE_SIZE);
+        return glm::vec2(gridCol, gridRow);
+    }
 private:
     void loadMaze(const std::string& filePath);
     Object* PlaceModelOnGrid(std::string path, int row, int col, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
@@ -58,4 +65,7 @@ private:
 
     Scene* scene = nullptr;
     int lightIndex = 0;  // Index to keep track of lights
+
+   
+
 };
