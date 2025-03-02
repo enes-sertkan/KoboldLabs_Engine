@@ -107,25 +107,28 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
     glm::vec3 position(col * scale * 5.0f, 0.0f, row * scale * 5.0f);
     glm::vec3 rotation(0.0f);
     glm::vec3 objectScale(1, 1, 1);
-
+    std::string texture;
+    bool isOverrideColor = false;
 
     switch (type) {
     case MINOTAUR: {
         std::vector<std::string> smallObjectPaths = {
-            "assets/models/Chars/MinoE.ply"
+            "assets/models/Chars/MinoV.ply"
         };
         path = smallObjectPaths[rand() % smallObjectPaths.size()];
         scale *= 1.f;  // Smaller scale for small objects
         color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
+        texture = "KnigthV.bmp";
         break;
     }
     case THESEUS: {
         std::vector<std::string> mediumObjectPaths = {
-            "assets/models/Chars/MinoV.ply"
+            "assets/models/Chars/TheseusV.ply"
         };
         path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
         scale *= 1.f;  // Smaller scale for small objects
-        color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
+        color = glm::vec4(0.6f, 0.7f, 0.6f, 1.0f);
+        texture = "KnigthV.bmp";
         break;
     }
     case FOOD: {
@@ -154,32 +157,32 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
-        break;
-    case CENTERup:
-        position.y += scale * 5.0f;
-        color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        texture = "rock.bmp";
         break;
     case RIGHT:
         position.x += scale * 5.0f / 2.0f;
         position.z += scale * 5.0f / 2.0f;
         rotation.y = -90.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
+        texture = "metal.bmp";
         break;
     case LEFT:
         position.x -= scale * 5.0f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         rotation.y = -270.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
+        texture = "metal.bmp";
         break;
     case UP:
         position.z += scale * 5.0f / 2.0f;
         position.x -= scale * 5.0f / 2.0f;
         rotation.y = 180.0f;
+        texture = "metal.bmp";
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
+        texture = "metal.bmp";
         break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;
@@ -217,9 +220,11 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
 
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;
-    obj->mesh->textures[0] = "rock.bmp";
+    obj->mesh->textures[0] = texture;
     obj->mesh->blendRatio[0] = 1;
     obj->mesh->textureFillType[0] = 1;
+    obj->mesh->objectColourRGBA = color;
+    obj->mesh->bOverrideObjectColour = isOverrideColor;
     // Set visibility for invisible walls
     if (!isVisible) {
         obj->mesh->bIsVisible = false;
@@ -275,10 +280,9 @@ void MazeGenerator::PlaceFood(int count) {
         } while (IsWall(foodRow, foodCol) || IsPositionOccupied(foodRow, foodCol)); // Ensure the position is not a wall or occupied
 
         // Place the food object
-        Object* food = PlaceModelOnGrid("assets/models/Food/WaterE.ply", foodRow, foodCol, 1.0f * 7.0f, FOOD, true);
-        food->mesh->textures[0] = "rock.bmp";
-        food->mesh->blendRatio[0] = 2;
-        food->mesh->bOverrideObjectColour = false;
+        Object* food = PlaceModelOnGrid("assets/models/Food/BananaV.ply", foodRow, foodCol, 1.0f * 7.0f, FOOD, true);
+        food->mesh->objectColourRGBA = glm::vec4(0.3f, 0.5f, 0.7f, 1.0f);
+        food->mesh->bOverrideObjectColour = true;
 
         std::cout << "Pos of food Col " << foodCol << std::endl;
         std::cout << "Pos of food Row " << foodRow << std::endl;
@@ -307,8 +311,8 @@ void MazeGenerator::PlaceWater(int count) {
         } while (IsWall(waterRow, waterCol) || IsPositionOccupied(waterRow, waterCol)); // Ensure the position is not a wall or occupied
 
         // Place the water object
-        Object* water = PlaceModelOnGrid("assets/models/Food/MelonE.ply", waterRow, waterCol, 1.0f * 7.0f, FOOD, true);
-        water->mesh->textures[0] = "rock.bmp";
+        Object* water = PlaceModelOnGrid("assets/models/Food/WaterV.ply", waterRow, waterCol, 1.0f * 7.0f, FOOD, true);
+        water->mesh->textures[0] = "Water.bmp";
         water->mesh->blendRatio[0] = 2;
         water->mesh->bOverrideObjectColour = false;
 

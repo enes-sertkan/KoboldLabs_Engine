@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> MinotaurE
-<filePath> assets/models/Chars/MinoE.ply
+<name> WaterV
+<filePath> assets/models/Food/WaterV.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

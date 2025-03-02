@@ -27,21 +27,37 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv_rgba.ply";
     fileManager->WriteModelFile(&modelInfo, "cubekWall.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Minotaur";
+    modelInfo.modelName = "MinotaurE";
     modelInfo.meshPath = "assets/models/Chars/MinoE.ply";
     fileManager->WriteModelFile(&modelInfo, "minotaur.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Theseus";
-    modelInfo.meshPath = "assets/models/Chars/MinoV.ply";
+    modelInfo.modelName = "TheseusE";
+    modelInfo.meshPath = "assets/models/Chars/TheseusE.ply";
     fileManager->WriteModelFile(&modelInfo, "theseus.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Food";
+    modelInfo.modelName = "FoodE";
     modelInfo.meshPath = "assets/models/Food/MelonE.ply";
     fileManager->WriteModelFile(&modelInfo, "melonE.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Water";
+    modelInfo.modelName = "WaterE";
     modelInfo.meshPath = "assets/models/Food/WaterE.ply";
     fileManager->WriteModelFile(&modelInfo, "waterE.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "MinotaurV";
+    modelInfo.meshPath = "assets/models/Chars/MinoV.ply";
+    fileManager->WriteModelFile(&modelInfo, "minotaurV.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "TheseusV";
+    modelInfo.meshPath = "assets/models/Chars/TheseusV.ply";
+    fileManager->WriteModelFile(&modelInfo, "theseusV.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "FoodV";
+    modelInfo.meshPath = "assets/models/Food/BananaV.ply";
+    fileManager->WriteModelFile(&modelInfo, "bananaV.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "WaterV";
+    modelInfo.meshPath = "assets/models/Food/WaterV.ply";
+    fileManager->WriteModelFile(&modelInfo, "waterV.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "door";
     modelInfo.meshPath = "assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply";

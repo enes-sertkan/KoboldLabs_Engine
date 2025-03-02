@@ -1124,10 +1124,10 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("onep.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("wall_c.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("KnigthV.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Water.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Emmision.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");

@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> Theseus
-<filePath> assets/models/Chars/MinoV.ply
+<name> TheseusE
+<filePath> assets/models/Chars/TheseusE.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

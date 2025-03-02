@@ -1,6 +1,6 @@
 <KoboldLabs>
 <ModelFile>
-<name> Food
+<name> FoodE
 <filePath> assets/models/Food/MelonE.ply
 <fileType> XYZNUVRGBA
 </ModelFile>

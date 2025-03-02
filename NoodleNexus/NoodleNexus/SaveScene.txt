@@ -6,6 +6,10 @@ minotaur.txt
 theseus.txt
 waterE.txt
 melonE.txt
+minotaurV.txt
+theseusV.txt
+waterV.txt
+bananaV.txt
 wall.txt
 cubekWall.txt
 oWall.txt
@@ -34,7 +38,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -16 0 29
 <Rotation-> 0 0 0
-<Scale-> 9 1.04995e-38 0
+<Scale-> 9 1.06828e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -46,7 +50,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <--Object>
