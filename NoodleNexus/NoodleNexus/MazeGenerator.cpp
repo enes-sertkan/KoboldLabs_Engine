@@ -128,8 +128,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
         };
         path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
         scale *= 1.f;  // Smaller scale for small objects
-        color = glm::vec4(0.6f, 0.7f, 0.6f, 1.0f);
-        texture = "KnigthV.bmp";
+        isOverrideColor = true;
+        color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
         break;
     }
     case FOOD: {
