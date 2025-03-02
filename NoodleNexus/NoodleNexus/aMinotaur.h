@@ -35,6 +35,7 @@ public:
 			}
 			else
 			{
+				object->mesh->objectColourRGBA = glm::vec4(1, 1, 1, 1);
 			 DefaultWanderingTick();
 			}
 		}

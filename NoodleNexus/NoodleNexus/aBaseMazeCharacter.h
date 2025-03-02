@@ -62,7 +62,7 @@ public:
 			mazePosition.y = y;
 			targetWorldPosition = maze->GridToWorld(x, y);
 			DamageOnWalk();
-			std::cout << "Current health: " << health << std::endl;
+		//	std::cout << "Current health: " << health << std::endl;
 			return true;
 	}
 	//Moves to the target based on speed

@@ -50,6 +50,8 @@ public:
 	virtual void Update()
 	{
 
+		object->mesh->bOverrideObjectColour = (1.f, health / 100, 0.f);
+
 		HandleFindFood();
 		HandleFindWater();
 
