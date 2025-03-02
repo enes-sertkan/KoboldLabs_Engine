@@ -718,7 +718,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/DungeonX.txt", scene, scene->lightManager);
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/MazeE.txt", scene, scene->lightManager);
     mazeGenerator->generateMaze();
 
     BazeMazeCharacter* chararcter = new BazeMazeCharacter();

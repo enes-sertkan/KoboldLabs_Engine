@@ -112,7 +112,7 @@ skysphere.txt
 <--Camera>
 
 <Camera-->
-<Position-> 1000 2000 500
+<Position-> 2000 3000 2300
 <Rotation-> 90 0
 <--Camera>
 
@@ -128,11 +128,6 @@ skysphere.txt
 
 <Camera-->
 <Position-> -235 500 4628
-<Rotation-> 90 0
-<--Camera>
-
-<Camera-->
-<Position-> 1000 2000 500
 <Rotation-> 90 0
 <--Camera>
 
