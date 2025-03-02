@@ -59,7 +59,7 @@ public:
 		
 		if (!MoveToTargetPositionUpdate()) return;
 
-
+		std::cout << "Current health: " << health << std::endl;
 		
 		if (health < 75)
 			SearchForFood();
