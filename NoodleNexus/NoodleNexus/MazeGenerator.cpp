@@ -48,16 +48,16 @@ void MazeGenerator::generateMaze() {
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/bigWall.ply", row, col, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col , 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/bigWall.ply", row, col , 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/bigWall.ply", row, col, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/Cube_xyz_n_uv_rgba.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/bigWall.ply", row, col, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
                 // Door placement logic (optional, as in your example)
@@ -113,12 +113,13 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
     switch (type) {
     case MINOTAUR: {
         std::vector<std::string> smallObjectPaths = {
-            "assets/models/Chars/MinoV.ply"
+            "assets/models/Chars/MinoE.ply"
         };
         path = smallObjectPaths[rand() % smallObjectPaths.size()];
         scale *= 1.f;  // Smaller scale for small objects
+        isOverrideColor = true;
         color = glm::vec4(0.6f, 0.6f, 0.6f, 1.0f);
-        texture = "KnigthV.bmp";
+        //texture = "KnigthV.bmp";
         break;
     }
     case THESEUS: {
@@ -157,7 +158,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, floa
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        texture = "rock.bmp";
+        texture = "metalScratch.bmp";
         break;
     case RIGHT:
         position.x += scale * 5.0f / 2.0f;

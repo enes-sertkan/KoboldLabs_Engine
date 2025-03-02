@@ -30,6 +30,7 @@ public:
 		{
 			if (glm::distance(maze->minoChar->mazePosition, maze->thesChar->mazePosition) <= 10)
 			{
+				object->mesh->objectColourRGBA = glm::vec4(0.9, 0.0, 0.0, 1);
 				RageTick();
 			}
 			else

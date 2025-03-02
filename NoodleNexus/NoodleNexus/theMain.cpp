@@ -1128,8 +1128,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("KnigthV.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Water.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Emmision.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("SpaceInteriors_Texture.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> BigWall
+<filePath> assets/models/bigWall.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

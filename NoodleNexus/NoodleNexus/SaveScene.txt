@@ -2,6 +2,7 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
+bigWall.txt
 minotaur.txt
 theseus.txt
 waterE.txt
@@ -38,7 +39,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -16 0 29
 <Rotation-> 0 0 0
-<Scale-> 9 1.06828e-38 0
+<Scale-> 9 1.10544e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -50,7 +51,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <--Object>
@@ -111,6 +112,11 @@ skysphere.txt
 <--Camera>
 
 <Camera-->
+<Position-> 1000 2000 500
+<Rotation-> 90 0
+<--Camera>
+
+<Camera-->
 <Position-> 4234 500 4613
 <Rotation-> 90 0
 <--Camera>
@@ -126,7 +132,7 @@ skysphere.txt
 <--Camera>
 
 <Camera-->
-<Position-> 1000 1000 500
+<Position-> 1000 2000 500
 <Rotation-> 90 0
 <--Camera>
 

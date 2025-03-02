@@ -113,6 +113,8 @@ void main()
 	{
 		vertexColour = objectColour.rgb;
 	}
+	else
+	{
 	
 	if ( bUseTextureAsColour )
 	{
@@ -140,6 +142,8 @@ void main()
 						   
 					   
 	} 
+
+	}
 	
 	// Use lighting?
 	if ( bDoNotLight )
