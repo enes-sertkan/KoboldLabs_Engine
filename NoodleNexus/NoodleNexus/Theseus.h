@@ -49,6 +49,7 @@ public:
 
 	virtual void Update()
 	{
+		speed = 180.f;
 
 		object->mesh->bOverrideObjectColour = (1.f, health / 100, 0.f);
 

@@ -24,7 +24,7 @@ public:
 	{
 	
 	//	RageTick();
-		//speed = 150.f;
+		speed = 300.f;
 	
 		if (MoveToTargetPositionUpdate())
 		{
@@ -48,7 +48,7 @@ public:
 	void RageTick()
 	{	
 		PickNewDirectionRage();
-		speed = 400.f;
+		speed = 500.f;
 		if (!Move(curWanderingDirection))
 			PickNewDirectionRage();
 	}
