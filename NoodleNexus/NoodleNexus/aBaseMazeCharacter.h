@@ -27,7 +27,7 @@ public:
 
 	bool Move(CharDirection direction)
 	{
-		std::cout << "MOVE()" << std::endl;
+		//std::cout << "MOVE()" << std::endl;
 		int curX = mazePosition.x;
 		int curY = mazePosition.y;
 		switch (direction)

@@ -3,6 +3,7 @@
 
 #include "aBaseMazeCharacter.h"
 #include <vector>
+#include <limits>
 #include "StupidPathFinder.h"
 
 class Object;
@@ -121,15 +122,29 @@ public:
 
 		pathFinder->maze = maze;
 
-		
-		
-		glm::vec2 targetPos = maze->WorldToGrid(FindClosestFoodOrWater(object->mesh->positionXYZ)->mesh->positionXYZ);  //maze->WorldToGrid(maze->foods[3]->mesh->positionXYZ); maze->minoChar->mazePosition;
+		std::vector<glm::vec2> path;
+		path.clear();
+		while (path.size() == 0 && (maze->waters.size() > 0 || maze->foods.size() > 0))
+		{
+			Object* target = FindClosestFoodOrWater(object->mesh->positionXYZ);
+			glm::vec2 targetPos = maze->WorldToGrid(target->mesh->positionXYZ);  //maze->WorldToGrid(maze->foods[3]->mesh->positionXYZ); maze->minoChar->mazePosition;
 
-		std::vector<glm::vec2> path = pathFinder->FindPath(mazePosition, targetPos);
+			path = pathFinder->FindPath(mazePosition, targetPos);
 
-		currentPath = path;
-		onPath = true;
+			if (path.size() == 0)
+			{
+				maze->foods.erase(std::remove(maze->foods.begin(), maze->foods.end(), target), maze->foods.end());
+				maze->waters.erase(std::remove(maze->waters.begin(), maze->waters.end(), target), maze->waters.end());
+			}
 
+		}
+
+		if (path.size() > 0)
+		{
+			currentPath = path;
+
+			onPath = true;
+		}
 	}
 
 	Object* FindClosestFood(const glm::vec3& currentWorldPos) {

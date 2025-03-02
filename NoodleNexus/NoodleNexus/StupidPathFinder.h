@@ -1,116 +1,190 @@
 #pragma once
 #include "MazeGenerator.hpp"
 #include <algorithm>
+#include <vector>
+
+#define NOMINMAX
+#include <Windows.h>
+#include <process.h>
 
 class StupidPathFinder
 {
 public:
+    glm::vec2 movementDirections[4] = { glm::vec2(1, 0), glm::vec2(-1, 0), glm::vec2(0, 1), glm::vec2(0, -1) };
+    MazeGenerator* maze;
 
-	glm::vec2 movementDirections[4] = { glm::vec2(1, 0), glm::vec2(-1, 0), glm::vec2(0, 1), glm::vec2(0, -1) };
+    CRITICAL_SECTION cs;
+    HANDLE foundEvent;
+    HANDLE timeoutEvent;
+    volatile bool pathFound;
+    volatile bool timeoutTriggered;
+    std::vector<glm::vec2> foundPath;
+    volatile long pathsChecked;
 
-	std::vector<glm::vec2> path;
-	glm::vec2 targetPos;
-	glm::vec2 currentTile;
+    StupidPathFinder() : pathFound(false), timeoutTriggered(false), pathsChecked(0) {
+        InitializeCriticalSection(&cs);
+        foundEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+        timeoutEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+    }
 
-	MazeGenerator* maze;
+    ~StupidPathFinder() {
+        DeleteCriticalSection(&cs);
+        CloseHandle(foundEvent);
+        CloseHandle(timeoutEvent);
+    }
 
+    struct ThreadParams {
+        StupidPathFinder* finder;
+        glm::vec2 startPos;
+        glm::vec2 targetPos;
+        unsigned int seed;
+    };
 
+    static inline int thread_rand(unsigned int* seed) {
+        *seed = (*seed * 1103515245 + 12345) % 2147483648;
+        return (int)*seed;
+    }
 
-	std::vector<glm::vec2> FindPath(glm::vec2 startPos, glm::vec2 _targetPos)
-	{
-		std::cout << "Searching for path" << std::endl;
-		std::vector<glm::vec2> currentPath;
-		currentPath.clear();
-		int pathNum = 0;
-		while (currentPath.empty())
-		{
-			pathNum++;
-			targetPos = _targetPos;
-			currentPath = LookForPath(startPos);
-			
-		}
-		std::cout << "Path Searh Ammount: " << pathNum <<" Size: "<<currentPath.size()<< std::endl;
-		return currentPath;
-	}
+    std::vector<glm::vec2> FindPath(glm::vec2 startPos, glm::vec2 targetPos) {
+        std::cout << "Searching for path with threads" << std::endl;
 
-	std::vector<glm::vec2> LookForPath(glm::vec2 startPos)
-	{
-		std::vector<glm::vec2> currentPath;
-		currentPath.clear(); // Clear previous path
-		glm::vec2 curPos = startPos;
-		if (CheckTile(curPos.x, curPos.y)) // Check start position
-			return currentPath;
+        EnterCriticalSection(&cs);
+        pathFound = false;
+        timeoutTriggered = false;
+        foundPath.clear();
+        pathsChecked = 0;
+        LeaveCriticalSection(&cs);
+        ResetEvent(foundEvent);
+        ResetEvent(timeoutEvent);
 
+        const int numThreads = 50;
+        HANDLE threads[numThreads];
 
-		do
-		{
+        for (int i = 0; i < numThreads; ++i) {
+            ThreadParams* params = new ThreadParams;
+            params->finder = this;
+            params->startPos = startPos;
+            params->targetPos = targetPos;
+            params->seed = GetTickCount() + i;
 
-			std::vector<glm::vec2> possibleTiles = FindPossibleTiles(curPos.x, curPos.y, currentPath);
-			if (possibleTiles.empty())
-			{
-				std::cout << "Tried Path. Size: " << currentPath.size() << std::endl;
-				return possibleTiles;
-			}
+            unsigned threadID;
+            threads[i] = (HANDLE)_beginthreadex(NULL, 0, ThreadFunc, params, 0, &threadID);
+            if (threads[i] == NULL) {
+                delete params;
+                std::cerr << "Failed to create thread " << i << std::endl;
+            }
+        }
 
+        HANDLE waitEvents[2] = { foundEvent, timeoutEvent };
+        DWORD waitResult = WaitForMultipleObjects(2, waitEvents, FALSE, INFINITE);
 
-			int tileID = rand() % possibleTiles.size();
+        if (waitResult == WAIT_OBJECT_0 + 1) { // Timeout triggered
+            EnterCriticalSection(&cs);
+            foundPath.clear();
+            LeaveCriticalSection(&cs);
+        }
 
-			if (CheckTile(possibleTiles[tileID].x, possibleTiles[tileID].y))
-			{
-				currentPath.push_back(glm::vec2(possibleTiles[tileID].x, possibleTiles[tileID].y));
-				return currentPath;
-			}
+        WaitForMultipleObjects(numThreads, threads, TRUE, INFINITE);
 
+        for (int i = 0; i < numThreads; ++i) {
+            CloseHandle(threads[i]);
+        }
 
-			currentPath.push_back(glm::vec2(possibleTiles[tileID].x, possibleTiles[tileID].y));
+        std::cout << "Total paths checked: " << pathsChecked << std::endl;
+        return foundPath;
+    }
 
+    static unsigned __stdcall ThreadFunc(void* param) {
+        ThreadParams* params = (ThreadParams*)param;
+        StupidPathFinder* finder = params->finder;
+        unsigned int seed = params->seed;
 
-			curPos.x = possibleTiles[tileID].x;
-			curPos.y = possibleTiles[tileID].y;
+        while (true) {
+            EnterCriticalSection(&finder->cs);
+            bool found = finder->pathFound;
+            bool timeout = finder->timeoutTriggered;
+            LeaveCriticalSection(&finder->cs);
 
-			} while (true);
-		
+            if (found || timeout) {
+                break;
+            }
 
-	}
+            std::vector<glm::vec2> path = finder->LookForPath(params->startPos, params->targetPos, &seed);
 
+            if (!path.empty() && path.back().x == params->targetPos.x && path.back().y == params->targetPos.y) {
+                EnterCriticalSection(&finder->cs);
+                if (!finder->pathFound) {
+                    finder->pathFound = true;
+                    finder->foundPath = path;
+                    SetEvent(finder->foundEvent);
+                }
+                LeaveCriticalSection(&finder->cs);
+                break;
+            } else {
+                long newChecks = InterlockedIncrement(&finder->pathsChecked);
+                if (newChecks >= 110000) {
+                    EnterCriticalSection(&finder->cs);
+                    if (!finder->timeoutTriggered) {
+                        finder->timeoutTriggered = true;
+                        SetEvent(finder->timeoutEvent);
+                    }
+                    LeaveCriticalSection(&finder->cs);
+                }
+                seed = thread_rand(&seed);
+            }
+        }
 
-	std::vector<glm::vec2> FindPossibleTiles(int x, int y, std::vector<glm::vec2> currentPath)
-	{
-		std::vector<glm::vec2> possibleTiles;
-		for(glm::vec2 dir:movementDirections)
-		{
-			if (IsTileCheckable(x + dir.x, y + dir.y,currentPath))
-				possibleTiles.push_back(glm::vec2(x + dir.x, y + dir.y));
-		}
+        delete params;
+        return 0;
+    }
 
-		return possibleTiles;
-	}
+    std::vector<glm::vec2> LookForPath(glm::vec2 startPos, glm::vec2 targetPos, unsigned int* seed) {
+        std::vector<glm::vec2> currentPath;
+        currentPath.clear();
+        glm::vec2 curPos = startPos;
 
-	bool CheckTile(int x, int y)
-	{
-	
+        if (CheckTile(curPos.x, curPos.y, targetPos)) {
+            currentPath.push_back(curPos);
+            return currentPath;
+        }
 
-		if (targetPos.x == x && targetPos.y == y)
-		{
-			return true;
-		}
+        do {
+            std::vector<glm::vec2> possibleTiles = FindPossibleTiles(curPos.x, curPos.y, currentPath);
+            if (possibleTiles.empty()) {
+                return std::vector<glm::vec2>();
+            }
 
+            int tileID = thread_rand(seed) % possibleTiles.size();
+            glm::vec2 nextTile = possibleTiles[tileID];
 
+            if (CheckTile(nextTile.x, nextTile.y, targetPos)) {
+                currentPath.push_back(nextTile);
+                return currentPath;
+            }
 
-		return false;
-	}
+            currentPath.push_back(nextTile);
+            curPos = nextTile;
+        } while (true);
+    }
 
-	bool IsTileCheckable(int x, int y, std::vector<glm::vec2> currentPath)
-	{
-		if (maze->IsWall(y, x)) return false;
+    bool CheckTile(int x, int y, glm::vec2 targetPos) {
+        return (targetPos.x == x && targetPos.y == y);
+    }
 
-		if (std::find(currentPath.begin(), currentPath.end(), glm::vec2(x,y)) != currentPath.end()) {
-			return false;
-		}
+    std::vector<glm::vec2> FindPossibleTiles(int x, int y, std::vector<glm::vec2> currentPath) {
+        std::vector<glm::vec2> possibleTiles;
+        for (glm::vec2 dir : movementDirections) {
+            if (IsTileCheckable(x + dir.x, y + dir.y, currentPath))
+                possibleTiles.push_back(glm::vec2(x + dir.x, y + dir.y));
+        }
+        return possibleTiles;
+    }
 
-		return true; // Added return
-	}
-
-
+    bool IsTileCheckable(int x, int y, std::vector<glm::vec2> currentPath) {
+        if (maze->IsWall(y, x)) return false;
+        if (std::find(currentPath.begin(), currentPath.end(), glm::vec2(x, y)) != currentPath.end()) {
+            return false;
+        }
+        return true;
+    }
 };
-
