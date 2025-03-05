@@ -20,15 +20,15 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "skysphere.txt", "XYZNUV");
 
     modelInfo.modelName = "wall";
-    modelInfo.meshPath = "assets/models/flag_new2.ply";
-    fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUV");
+    modelInfo.meshPath = "assets/models/objects/wall01.ply";
+    fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "BigWall";
-    modelInfo.meshPath = "assets/models/bigWall.ply";
+    modelInfo.meshPath = "assets/models/objects/floor.ply";
     fileManager->WriteModelFile(&modelInfo, "bigWall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "cubeWall";
-    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv_rgba.ply";
+    modelInfo.meshPath = "assets/models/objects/wall01side.ply";
     fileManager->WriteModelFile(&modelInfo, "cubekWall.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "MinotaurE";

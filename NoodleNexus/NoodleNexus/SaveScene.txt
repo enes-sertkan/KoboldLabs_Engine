@@ -39,7 +39,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -16 0 29
 <Rotation-> 0 0 0
-<Scale-> 9 1.10544e-38 0
+<Scale-> 9 1.12475e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -57,8 +57,8 @@ skysphere.txt
 <--Object>
 
 <Light-->
-<Position-> -450 50 312 1
-<Diffuse-> 1.57 1.55 1 1
+<Position-> 200 3000 199.98 1
+<Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
 <Direction-> 0 1 0 0
@@ -67,40 +67,50 @@ skysphere.txt
 <--Light>
 
 <Light-->
-<Position-> 4234 50 312 1
-<Diffuse-> 1.57 1.55 1 1
+<Position-> 150 56 66 1
+<Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 4234 50 5330 1
-<Diffuse-> 1.57 1.55 1 1
+<Position-> 150 56 203 1
+<Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> -235 50 5330 1
-<Diffuse-> 1.57 1.55 1 1
+<Position-> 387 56 203 1
+<Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 200 3000 200 1
-<Diffuse-> 1.57 1.55 1 1
+<Position-> 648 56 66 1
+<Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 648 56 203 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0

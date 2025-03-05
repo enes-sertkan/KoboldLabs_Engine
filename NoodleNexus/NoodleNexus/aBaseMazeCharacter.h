@@ -53,8 +53,8 @@ public:
 
 
 
-		if ((x == maze->thesChar->mazePosition.x) && (y == maze->thesChar->mazePosition.y)) {HandleEncounter(); return false;}
-		if ((x == maze->minoChar->mazePosition.x) && (y == maze->minoChar->mazePosition.y)) { HandleEncounter(); return false; }
+		/*if ((x == maze->thesChar->mazePosition.x) && (y == maze->thesChar->mazePosition.y)) {HandleEncounter(); return false;}
+		if ((x == maze->minoChar->mazePosition.x) && (y == maze->minoChar->mazePosition.y)) { HandleEncounter(); return false; }*/
 
 
 		//std::cout << "TRY MOVE()" << std::endl;

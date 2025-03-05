@@ -51,7 +51,7 @@ public:
 	{
 		speed = 180.f;
 
-		object->mesh->bOverrideObjectColour = (1.f, health / 100, 0.f);
+		object->mesh->objectColourRGBA = glm::vec4(0, health / 100, 1.f, 1.f);
 
 		HandleFindFood();
 		HandleFindWater();
@@ -66,6 +66,7 @@ public:
 			SearchForFood();
 		else
 			DefaultWanderingTick();
+
 			
 	
 	}	
@@ -76,6 +77,13 @@ public:
 			MoveToNextPathPoint();
 		else
 			FindPathToFood();
+
+		if (health < 0)
+		{
+			std::cout << "Theseus is Dead" << health << std::endl;
+			object->Destroy();
+
+		}
 
 
 

@@ -46,7 +46,7 @@ public:
     }
 
     std::vector<glm::vec2> FindPath(glm::vec2 startPos, glm::vec2 targetPos) {
-        std::cout << "Searching for path with threads" << std::endl;
+        std::cout << "Searching with threading for possible paths" << std::endl;
 
         EnterCriticalSection(&cs);
         pathFound = false;
@@ -90,7 +90,7 @@ public:
             CloseHandle(threads[i]);
         }
 
-        std::cout << "Total paths checked: " << pathsChecked << std::endl;
+        std::cout << "Total # of paths checked: " << pathsChecked << std::endl;
         return foundPath;
     }
 

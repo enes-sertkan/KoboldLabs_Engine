@@ -718,7 +718,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
 void AddActions(Scene* scene, GLuint program)
 {
-    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/MazeE.txt", scene, scene->lightManager);
+    MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     mazeGenerator->generateMaze();
 
     BazeMazeCharacter* chararcter = new BazeMazeCharacter();
@@ -1121,9 +1121,9 @@ int main(void)
     scene->textureManager->SetBasePath("assets/textures");
     scene->textureManager->Create2DTextureFromBMPFile("mountain.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Canadian_Flag_Texture.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("onep.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Wall_Simple_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("rock.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Floor_Albedo.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("KnigthV.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");

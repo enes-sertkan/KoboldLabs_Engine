@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
 <name> wall
-<filePath> assets/models/flag_new2.ply
-<fileType> XYZNUV
+<filePath> assets/models/objects/wall01.ply
+<fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>
