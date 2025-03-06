@@ -721,11 +721,11 @@ void AddActions(Scene* scene, GLuint program)
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     mazeGenerator->generateMaze();
 
-    BazeMazeCharacter* chararcter = new BazeMazeCharacter();
-    chararcter->mazePosition.x = 5;
-    chararcter->mazePosition.y = 5;
-    chararcter->maze = mazeGenerator;
-    scene->AddActionToObj(chararcter, scene->sceneObjects[0]);
+    //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
+    //chararcter->mazePosition.x = 5;
+    //chararcter->mazePosition.y = 5;
+    //chararcter->maze = mazeGenerator;
+    //scene->AddActionToObj(chararcter, scene->sceneObjects[0]);
 
     //SoftBody* softBody = new SoftBody();
 
@@ -747,27 +747,27 @@ void AddActions(Scene* scene, GLuint program)
     //scene->AddActionToObj(softBodyAction, softObject);
 
 
-    Object* cameraObj2 = scene->sceneObjects[7];
-    Object* cameraObj3 = scene->sceneObjects[8];
-    Object* cameraObj4 = scene->sceneObjects[9];
-    //Object* cameraObj5 = scene->sceneObjects[23];
+    //Object* cameraObj2 = scene->sceneObjects[7];
+    //Object* cameraObj3 = scene->sceneObjects[8];
+    //Object* cameraObj4 = scene->sceneObjects[9];
+    ////Object* cameraObj5 = scene->sceneObjects[23];
 
-    //CameraToTexture* textureCamera1 = new CameraToTexture();
-    CameraToTexture* textureCamera2 = new CameraToTexture();
-    CameraToTexture* textureCamera3 = new CameraToTexture();
-    CameraToTexture* textureCamera4 = new CameraToTexture();
-    //CameraToTexture* textureCamera5 = new CameraToTexture();
+    ////CameraToTexture* textureCamera1 = new CameraToTexture();
+    //CameraToTexture* textureCamera2 = new CameraToTexture();
+    //CameraToTexture* textureCamera3 = new CameraToTexture();
+    //CameraToTexture* textureCamera4 = new CameraToTexture();
+    ////CameraToTexture* textureCamera5 = new CameraToTexture();
 
-    //textureCamera1->textureName = "camera1";
-    textureCamera2->textureName = "camera1";
-    textureCamera3->textureName = "camera2";
-    textureCamera4->textureName = "camera3";
-    //textureCamera5->textureName = "camera5";
+    ////textureCamera1->textureName = "camera1";
+    //textureCamera2->textureName = "camera1";
+    //textureCamera3->textureName = "camera2";
+    //textureCamera4->textureName = "camera3";
+    ////textureCamera5->textureName = "camera5";
 
-    //scene->AddActionToObj(textureCamera1, cameraObj1);
-    scene->AddActionToObj(textureCamera2, cameraObj2);
-    scene->AddActionToObj(textureCamera3, cameraObj3);
-    scene->AddActionToObj(textureCamera4, cameraObj4);
+    ////scene->AddActionToObj(textureCamera1, cameraObj1);
+    //scene->AddActionToObj(textureCamera2, cameraObj2);
+    //scene->AddActionToObj(textureCamera3, cameraObj3);
+    //scene->AddActionToObj(textureCamera4, cameraObj4);
     //scene->AddActionToObj(textureCamera5, cameraObj5);
 
 
@@ -1206,53 +1206,53 @@ int main(void)
     SkySphere->mesh->transperency = 1;
 
     scene->skybox = SkySphere;
-    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
+    //glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
-    {
-        Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-            "assets/models/Bodiam_Castle.ply",
-            glm::vec3(11, -600, 103),
-            10,
-            glm::vec3(0, 0, 0),
-            false,
-            glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-            true,
-            scene->sceneObjects
-        );
-        RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
-        RacingCar->mesh->uniformScale = 110.f;
-        RacingCar->isTemporary = true;
-        RacingCar->name = "Castle";
-        RacingCar->mesh->bIsVisible = true;
+    //{
+    //    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
+    //        "assets/models/Bodiam_Castle.ply",
+    //        glm::vec3(11, -600, 103),
+    //        10,
+    //        glm::vec3(0, 0, 0),
+    //        false,
+    //        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
+    //        true,
+    //        scene->sceneObjects
+    //    );
+    //    RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
+    //    RacingCar->mesh->uniformScale = 110.f;
+    //    RacingCar->isTemporary = true;
+    //    RacingCar->name = "Castle";
+    //    RacingCar->mesh->bIsVisible = true;
 
-        std::cout << "Generating Broadfaces." << std::endl;
+    //    std::cout << "Generating Broadfaces." << std::endl;
 
-        g_pPhysicEngine->generateBroadPhaseGrid(
-            "assets/models/Bodiam_Castle.ply",
-            200.0f,                            // AABB Cube region size
-            RacingCar->mesh->positionXYZ,
-            RacingCar->mesh->rotationEulerXYZ,
-            RacingCar->mesh->uniformScale, scene->vaoManager);
+    //    g_pPhysicEngine->generateBroadPhaseGrid(
+    //        "assets/models/Bodiam_Castle.ply",
+    //        200.0f,                            // AABB Cube region size
+    //        RacingCar->mesh->positionXYZ,
+    //        RacingCar->mesh->rotationEulerXYZ,
+    //        RacingCar->mesh->uniformScale, scene->vaoManager);
 
-        std::cout << "Generating Broadfaces. DONE." << std::endl;
+    //    std::cout << "Generating Broadfaces. DONE." << std::endl;
 
-        scene->physicsManager->AddTriangleMesh("assets/models/Bodiam_Castle.ply",                          // AABB Cube region size
-            RacingCar->mesh->positionXYZ,
-            RacingCar->mesh->rotationEulerXYZ,
-            RacingCar->mesh->uniformScale);
-        // Debug AABB shape
-        sMesh* pAABBCube_MinAtOrigin = new sMesh();
-        pAABBCube_MinAtOrigin->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
-        pAABBCube_MinAtOrigin->bIsWireframe = true;
-        pAABBCube_MinAtOrigin->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        pAABBCube_MinAtOrigin->bOverrideObjectColour = true;
-        pAABBCube_MinAtOrigin->bDoNotLight = true;
-        pAABBCube_MinAtOrigin->bIsVisible = false;
-        pAABBCube_MinAtOrigin->uniqueFriendlyName = "AABB_MinXYZ_At_Origin";
+    //    scene->physicsManager->AddTriangleMesh("assets/models/Bodiam_Castle.ply",                          // AABB Cube region size
+    //        RacingCar->mesh->positionXYZ,
+    //        RacingCar->mesh->rotationEulerXYZ,
+    //        RacingCar->mesh->uniformScale);
+    //    // Debug AABB shape
+    //    sMesh* pAABBCube_MinAtOrigin = new sMesh();
+    //    pAABBCube_MinAtOrigin->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
+    //    pAABBCube_MinAtOrigin->bIsWireframe = true;
+    //    pAABBCube_MinAtOrigin->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+    //    pAABBCube_MinAtOrigin->bOverrideObjectColour = true;
+    //    pAABBCube_MinAtOrigin->bDoNotLight = true;
+    //    pAABBCube_MinAtOrigin->bIsVisible = false;
+    //    pAABBCube_MinAtOrigin->uniqueFriendlyName = "AABB_MinXYZ_At_Origin";
 
-        ::g_vecMeshesToDraw.push_back(pAABBCube_MinAtOrigin);
+    //    ::g_vecMeshesToDraw.push_back(pAABBCube_MinAtOrigin);
 
-    }
+    //}
 
     glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
   

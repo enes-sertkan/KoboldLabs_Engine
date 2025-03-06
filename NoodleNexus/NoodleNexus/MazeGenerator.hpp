@@ -35,10 +35,10 @@ public:
     glm::vec3 GridToWorld(int x, int y) const;
     char GetMazePoint(int x, int y);
 
-    void PlaceFood(int count = 50);
+    //void PlaceFood(int count = 50);
     std::vector<Object*> foods;
 
-    void PlaceWater(int count = 100);
+    //void PlaceWater(int count = 100);
     std::vector<Object*> waters;
 
 

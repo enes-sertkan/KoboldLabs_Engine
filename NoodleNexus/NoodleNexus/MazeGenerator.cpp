@@ -103,8 +103,8 @@ void MazeGenerator::generateMaze() {
             }
         }
     }
-    PlaceFood(50);
-    PlaceWater(100);
+    //PlaceFood(50);
+    //PlaceWater(100);
 }
 
 Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction type, bool isVisible, glm::vec4 color) {
@@ -274,70 +274,70 @@ void MazeGenerator::MarkPositionOccupied(int row, int col) {
         occupiedPositions[row][col] = true;
 }
 
-void MazeGenerator::PlaceFood(int count) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
-    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
-    std::uniform_int_distribution<> disFloor(0);
-
-    for (int i = 0; i < count; ++i) {
-        int foodRow, foodCol, foodFloor;
-
-        // Find a valid position for food
-        do {
-            foodRow = disRow(gen);
-            foodCol = disCol(gen);
-            foodFloor = disFloor(gen);
-        } while (IsWall(foodRow, foodCol) || IsPositionOccupied(foodRow, foodCol)); // Ensure the position is not a wall or occupied
-
-        // Place the food object
-        Object* food = PlaceModelOnGrid("assets/models/Food/Melon2.ply", foodRow, foodCol, foodFloor, 1.0f * 7.0f, FOOD, true);
-        food->mesh->objectColourRGBA = glm::vec4(1.0f, 0.5f, 0.7f, 1.0f);
-        food->mesh->bOverrideObjectColour = true;
-
-        std::cout << "Pos of food Col " << foodCol << std::endl;
-        std::cout << "Pos of food Row " << foodRow << std::endl;
-
-        // Add the food object to the foods vector
-        if (food != nullptr) {
-            foods.push_back(food);
-            MarkPositionOccupied(foodRow, foodCol); // Mark the position as occupied
-        }
-    }
-}
-
-void MazeGenerator::PlaceWater(int count) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
-    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
-    std::uniform_int_distribution<> disFloor(0);
-
-    for (int i = 0; i < count; ++i) {
-        int waterRow, waterCol, waterFloor;
-
-        // Find a valid position for water
-        do {
-            waterRow = disRow(gen);
-            waterCol = disCol(gen);
-            waterCol = disCol(gen);
-            waterFloor = disCol(gen);
-        } while (IsWall(waterRow, waterCol) || IsPositionOccupied(waterRow, waterCol)); // Ensure the position is not a wall or occupied
-
-        // Place the water object
-        Object* water = PlaceModelOnGrid("assets/models/Food/WaterE.ply", waterRow, waterCol, waterFloor, 1.0f * 7.0f, FOOD, true);
-        water->mesh->textures[0] = "Water.bmp";
-        water->mesh->blendRatio[0] = 2;
-        water->mesh->bOverrideObjectColour = false;
-
-        std::cout << "Pos of water Col " << waterCol << std::endl;
-        std::cout << "Pos of water Row " << waterRow << std::endl;
-
-        // Add the water object to the waters vector
-        if (water != nullptr) {
-            waters.push_back(water);
-            MarkPositionOccupied(waterRow, waterCol); // Mark the position as occupied
-        }
-    }
-}
+//void MazeGenerator::PlaceFood(int count) {
+//    std::random_device rd;
+//    std::mt19937 gen(rd());
+//    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
+//    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
+//    std::uniform_int_distribution<> disFloor(0);
+//
+//    for (int i = 0; i < count; ++i) {
+//        int foodRow, foodCol, foodFloor;
+//
+//        // Find a valid position for food
+//        do {
+//            foodRow = disRow(gen);
+//            foodCol = disCol(gen);
+//            foodFloor = disFloor(gen);
+//        } while (IsWall(foodRow, foodCol) || IsPositionOccupied(foodRow, foodCol)); // Ensure the position is not a wall or occupied
+//
+//        // Place the food object
+//        Object* food = PlaceModelOnGrid("assets/models/Food/Melon2.ply", foodRow, foodCol, foodFloor, 1.0f * 7.0f, FOOD, true);
+//        food->mesh->objectColourRGBA = glm::vec4(1.0f, 0.5f, 0.7f, 1.0f);
+//        food->mesh->bOverrideObjectColour = true;
+//
+//        std::cout << "Pos of food Col " << foodCol << std::endl;
+//        std::cout << "Pos of food Row " << foodRow << std::endl;
+//
+//        // Add the food object to the foods vector
+//        if (food != nullptr) {
+//            foods.push_back(food);
+//            MarkPositionOccupied(foodRow, foodCol); // Mark the position as occupied
+//        }
+//    }
+//}
+//
+//void MazeGenerator::PlaceWater(int count) {
+//    std::random_device rd;
+//    std::mt19937 gen(rd());
+//    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
+//    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
+//    std::uniform_int_distribution<> disFloor(0);
+//
+//    for (int i = 0; i < count; ++i) {
+//        int waterRow, waterCol, waterFloor;
+//
+//        // Find a valid position for water
+//        do {
+//            waterRow = disRow(gen);
+//            waterCol = disCol(gen);
+//            waterCol = disCol(gen);
+//            waterFloor = disCol(gen);
+//        } while (IsWall(waterRow, waterCol) || IsPositionOccupied(waterRow, waterCol)); // Ensure the position is not a wall or occupied
+//
+//        // Place the water object
+//        Object* water = PlaceModelOnGrid("assets/models/Food/WaterE.ply", waterRow, waterCol, waterFloor, 1.0f * 7.0f, FOOD, true);
+//        water->mesh->textures[0] = "Water.bmp";
+//        water->mesh->blendRatio[0] = 2;
+//        water->mesh->bOverrideObjectColour = false;
+//
+//        std::cout << "Pos of water Col " << waterCol << std::endl;
+//        std::cout << "Pos of water Row " << waterRow << std::endl;
+//
+//        // Add the water object to the waters vector
+//        if (water != nullptr) {
+//            waters.push_back(water);
+//            MarkPositionOccupied(waterRow, waterCol); // Mark the position as occupied
+//        }
+//    }
+//}
