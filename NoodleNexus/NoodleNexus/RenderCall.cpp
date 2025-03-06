@@ -442,6 +442,42 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         return;
     }
 
+    {
+        // Check if the object is in front of the camera
+        glm::vec3 cameraRotation = camera->rotation;
+
+        float pitch = cameraRotation.x;
+        float yaw = cameraRotation.y;
+        // Roll is not used for calculating the forward vector
+
+        glm::vec3 forward;
+        forward.x = cos(pitch) * cos(yaw);
+        forward.y = sin(pitch);
+        forward.z = cos(pitch) * sin(yaw);
+
+        forward = glm::normalize(forward);
+
+        // Calculate the vector from the camera to the object
+        glm::vec3 toObject = pCurMesh->positionXYZ - camera->position;
+
+        // Calculate the dot product to determine if the object is in front of the camera
+        float dotProduct = glm::dot(forward, toObject);
+
+
+        // Determine your threshold: objects must be within maxAngle from the forward vector
+        // For a 30° half-angle (60° total FOV), the cosine is about 0.866.
+        float fovThreshold = glm::cos(glm::radians(0.1f));
+
+        // Cull the object if it falls outside the desired cone
+        if (dotProduct < fovThreshold) {
+            //std::cout << "dot product: " << dotProduct << std::endl;
+            //std::cout << "fov Threshold: " << fovThreshold << std::endl;
+            return; // Object is outside the narrower visible area
+        }
+
+    }
+
+
     if (pCurMesh->drawBothFaces)
     {
         glDisable(GL_CULL_FACE);
@@ -496,6 +532,19 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     GLint speedY_UL = glGetUniformLocation(program, "speedY");
     glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
 
+
+
+    GLint bNightMode = glGetUniformLocation(program, "bNightMode");
+    if (camera->nightMode)
+    {
+        //glUniform1f(bDoNotLight_UL, 1.0f);  // True
+        glUniform1f(bNightMode, (GLfloat)GL_TRUE);  // True
+    }
+    else
+    {
+        //                glUniform1f(bDoNotLight_UL, 0.0f);  // False
+        glUniform1f(bNightMode, (GLfloat)GL_FALSE);  // False
+    }
 
 
     // Use lighting or not

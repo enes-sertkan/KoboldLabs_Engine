@@ -74,6 +74,7 @@
 #include "aScreenTextureSwitch.h"
 #include "aSoftBodyAction.hpp"
 #include "aBaseMazeCharacter.h"
+#include "aMainCamera.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -699,9 +700,9 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 
     std::stringstream ssTitle;
     ssTitle << "Camera: "
-        << ::g_pFlyCamera->getEyeLocation().x << ", "
-        << ::g_pFlyCamera->getEyeLocation().y << ", "
-        << ::g_pFlyCamera->getEyeLocation().z
+        << ::g_pFlyCamera->getCameraData()->position.x << ", "
+        << ::g_pFlyCamera->getCameraData()->position.y << ", "
+        << ::g_pFlyCamera->getCameraData()->position.z
         << "   ";
     ssTitle << "light[" << g_selectedLightIndex << "] "
         << lightManager->theLights[g_selectedLightIndex].position.x << ", "
@@ -716,10 +717,20 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
-void AddActions(Scene* scene, GLuint program)
+void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
-  //  mazeGenerator->generateMaze();
+
+
+    Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
+    obj->mesh->textures[0] = "main_camera";
+    obj->mesh->blendRatio[0] = 1.f;
+    MainCamera* mainCamera = new MainCamera();
+    
+    scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
+    obj->isTemporary = true;
+
+    mazeGenerator->generateMaze();
 
     //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
     //chararcter->mazePosition.x = 5;
@@ -1086,8 +1097,16 @@ int main(void)
 
 //   PREPARING SCENE
 //   ---------------
+    Scene* cameraScene = new Scene();
+
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
-    AddActions(scene, program);
+   // cameraScene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
+    cameraScene->textureManager = scene->textureManager;
+    cameraScene->programs = scene->programs;
+    cameraScene->vaoManager = scene->vaoManager;
+
+
+    AddActions(scene, cameraScene, program);
 
     Animator* animator = new Animator();
     animator->scene = scene;
@@ -1269,11 +1288,11 @@ int main(void)
 
     // HACK:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
-    scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
-
-    scene->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f), 5, glm::vec3(0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f),false,scene->sceneObjects);
 
 
+
+   Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
+   mainCamera->nightMode = true;
 
 
 
@@ -1333,7 +1352,7 @@ int main(void)
 
 
       // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,1);
-       DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0,0);
+       DrawCameraViewToFramebufer(cameraScene->cameras[0], 0, 0);
        // DrawCameraViewToFramebufer(scene->fCamera->getCameraData(), 0, 0);
 
 

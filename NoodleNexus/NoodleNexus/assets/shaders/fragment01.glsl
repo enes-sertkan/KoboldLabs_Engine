@@ -9,6 +9,7 @@ uniform vec4 objectColour;			// Override colour
 uniform bool bUseObjectColour;
 uniform vec4 eyeLocation;			// Where the camera is
 uniform bool bDoNotLight;			// if true, skips lighting
+uniform bool bNightMode;
 // 0.0 to 1.0 (invisible to solid)
 // Controls the alpha channel
 uniform float wholeObjectTransparencyAlpha;
@@ -148,13 +149,13 @@ void main()
 	// Use lighting?
 	if ( bDoNotLight )
 	{
-		finalPixelColour.rgb = objectColour.rgb;
+		finalPixelColour.rgb = vertexColour.rgb;
 		finalPixelColour.a = 1.0f;
-		return;
+		
 	}
+	else
+	{
 	
-	
-
 	vec4 vertexSpecular = vec4(0.0f, 0.0f, 0.0f, 0.0f);	
 
 
@@ -162,9 +163,15 @@ void main()
 	                                          fvertexNormal.xyz, 
 	                                          fvertexWorldLocation.xyz, 
 											  vertexSpecular );
+	finalPixelColour = pixelColour;
+}
+	
+		
+
+	
 
 											
-	finalPixelColour = pixelColour;
+	
 	// Set the alpha channel
 	finalPixelColour.a = wholeObjectTransparencyAlpha;	
 	
@@ -179,7 +186,18 @@ void main()
 //	
 //	finalPixelColour.rgb += reflectColour.rgb * 0.3f
 //	                       + refractColour.rgb * 0.3f;
-						   
+			
+			
+	if ( bNightMode )
+	{
+		
+		finalPixelColour.r=finalPixelColour.r* 0.7;
+		finalPixelColour.b=finalPixelColour.b* 0.7;
+		finalPixelColour.g=finalPixelColour.g* 2;
+		finalPixelColour.a = 1.0f;
+	
+	}
+	
 	return;
 
 

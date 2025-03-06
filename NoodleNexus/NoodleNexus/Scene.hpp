@@ -69,7 +69,7 @@ public:
 	std::vector<Object*> sceneObjectsSorted;
 	std::vector<Camera*> cameras;
 
-	void AddCamera(glm::vec3 startPosition, glm::vec3 startRotation, glm::vec2 res);
+	Camera* AddCamera(glm::vec3 startPosition, glm::vec3 startRotation, glm::vec2 res);
 
 
 	std::vector<Action*> actions;

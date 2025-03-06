@@ -245,6 +245,9 @@
     <ClCompile Include="aBaseMazeCharacter.h">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="aMainCamera.hpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -426,6 +429,9 @@
     </ClInclude>
     <ClInclude Include="Theseus.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="StupidPathFinder.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

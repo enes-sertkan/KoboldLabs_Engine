@@ -151,11 +151,12 @@ void Scene::DrawMesh(sMesh* pCurMesh, GLuint program)
 
 
 
-void Scene::AddCamera(glm::vec3 position, glm::vec3 rotation, glm::vec2 res)
+Camera* Scene::AddCamera(glm::vec3 position, glm::vec3 rotation, glm::vec2 res)
 {
     Camera* newCamera = new Camera(position, rotation, res);
     newCamera->scene = this;
     cameras.push_back(newCamera);
+    return newCamera;
 }
 
 

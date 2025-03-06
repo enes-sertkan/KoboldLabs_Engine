@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Screen_quad
+<filePath> assets/models/screen_quad.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

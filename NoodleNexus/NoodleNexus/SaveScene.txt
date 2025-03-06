@@ -19,6 +19,7 @@ stairs.txt
 Plants.txt
 Sphere.txt
 skysphere.txt
+screen_quad.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -29,7 +30,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 21 0 115
 <Rotation-> 0 0 0
-<Scale-> 9 1.06828e-38 1.06531e-38
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -41,7 +42,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 127 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 1.06828e-38 9.09186e-39
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -53,7 +54,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 82 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 1.05391e+21
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -65,7 +66,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 104 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -77,7 +78,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 127 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -89,7 +90,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 82 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -101,7 +102,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 104 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -111,9 +112,9 @@ skysphere.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 152 56 79
+<Position-> 150 56 78
 <Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -126,7 +127,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 150 56 203
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -139,7 +140,7 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> 387 56 203
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -152,10 +153,88 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 1.06223e+21
+<Scale-> 1 -4.31602e+08 -4.31602e+08
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/screen_quad.ply
+<Model-> <Model->assets/models/screen_quad.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Visibility-> true
+<Shading-> false
+<Color-> 0 1 0
 <--Object>
 
 <Light-->
