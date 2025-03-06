@@ -2,25 +2,15 @@
 <SceneFile>
 <ObjectLoad-->
 Cube.txt
-bigWall.txt
-minotaur.txt
-theseus.txt
-waterE.txt
-melonE.txt
+wall.txt
+floor.txt
+sideWall.txt
+comp.txt
+screen.txt
 minotaurV.txt
 theseusV.txt
 waterV.txt
 bananaV.txt
-wall.txt
-cubekWall.txt
-oWall.txt
-rotatedWall.txt
-floor.txt
-ceiling.txt
-door.txt
-Chair.txt
-Bed.txt
-console.txt
 SLadder.txt
 Cdesk.txt
 printer.txt
@@ -37,11 +27,122 @@ skysphere.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> -16 0 29
+<Position-> 21 0 115
 <Rotation-> 0 0 0
-<Scale-> 9 1.12475e-38 0
+<Scale-> 9 1.10544e-38 0
 <Visibility-> true
 <Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 127 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 82 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 104 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen
+<Model-> Screen
+<Tags->
+<StaticCollision-> false
+<Position-> 127 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen
+<Model-> Screen
+<Tags->
+<StaticCollision-> false
+<Position-> 82 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen
+<Model-> Screen
+<Tags->
+<StaticCollision-> false
+<Position-> 104 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 152 56 79
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 150 56 203
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Cube
+<Model-> Cube
+<Tags->
+<StaticCollision-> false
+<Position-> 387 56 203
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -51,26 +152,27 @@ skysphere.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
+<Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> 200 3000 199.98 1
+<Position-> 200 3000 199.54 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.000936359 7.00755e-08 3.40282e+38
+<Atten-> 0 0.00243385 1.83967e-07 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 150 56 66 1
+<Position-> 152 56 79 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
+<Atten-> 0 0.0617644 4.62235e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
@@ -117,27 +219,17 @@ skysphere.txt
 <--Light>
 
 <Camera-->
-<Position-> -450 500 312
+<Position-> 152 56 79
 <Rotation-> 163 84
 <--Camera>
 
 <Camera-->
-<Position-> 2000 3000 2300
+<Position-> 150 56 203
 <Rotation-> 90 0
 <--Camera>
 
 <Camera-->
-<Position-> 4234 500 4613
-<Rotation-> 90 0
-<--Camera>
-
-<Camera-->
-<Position-> 4234 500 312
-<Rotation-> 90 0
-<--Camera>
-
-<Camera-->
-<Position-> -235 500 4628
+<Position-> 387 56 203
 <Rotation-> 90 0
 <--Camera>
 

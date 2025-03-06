@@ -1,7 +1,7 @@
 <KoboldLabs>
 <ModelFile>
-<name> cubeWall
-<filePath> assets/models/objects/wall01side.ply
+<name> Screen
+<filePath> assets/models/objects/screen.ply
 <fileType> XYZNUVRGBA
 </ModelFile>
 </KoboldLabs>

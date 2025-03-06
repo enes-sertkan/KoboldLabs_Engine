@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> SideWall
+<filePath> assets/models/objects/wall01side.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

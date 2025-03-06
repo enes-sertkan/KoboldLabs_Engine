@@ -23,17 +23,25 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/objects/wall01.ply";
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "BigWall";
+    modelInfo.modelName = "Floor";
     modelInfo.meshPath = "assets/models/objects/floor.ply";
-    fileManager->WriteModelFile(&modelInfo, "bigWall.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "cubeWall";
+    modelInfo.modelName = "SideWall";
     modelInfo.meshPath = "assets/models/objects/wall01side.ply";
-    fileManager->WriteModelFile(&modelInfo, "cubekWall.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "sideWall.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Comp";
+    modelInfo.meshPath = "assets/models/objects/comp1.ply";
+    fileManager->WriteModelFile(&modelInfo, "comp.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Screen";
+    modelInfo.meshPath = "assets/models/objects/screen.ply";
+    fileManager->WriteModelFile(&modelInfo, "screen.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "MinotaurE";
     modelInfo.meshPath = "assets/models/Chars/MinoE.ply";
-    fileManager->WriteModelFile(&modelInfo, "minotaur.txt", "XYZNUVRGBA");
+    fileManager->WriteModelFile(&modelInfo, "gg.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "TheseusE";
     modelInfo.meshPath = "assets/models/Chars/TheseusE.ply";
@@ -66,10 +74,6 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.modelName = "door";
     modelInfo.meshPath = "assets/models/extras/SM_Env_Door_01_xyz_n_rgba_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "door.txt", "XYZNUVRGBA");
-
-    modelInfo.modelName = "floor";
-    modelInfo.meshPath = "assets/models/extras/SM_Env_Floor_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "ceiling";
     modelInfo.meshPath = "assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Comp
+<filePath> assets/models/objects/comp1.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
