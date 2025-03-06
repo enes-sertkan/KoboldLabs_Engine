@@ -719,7 +719,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 void AddActions(Scene* scene, GLuint program)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
-    mazeGenerator->generateMaze();
+  //  mazeGenerator->generateMaze();
 
     //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
     //chararcter->mazePosition.x = 5;
@@ -1023,7 +1023,6 @@ int main(void)
     KLFileManager* fileManager = new KLFileManager();
 
     CreateModelFiles(fileManager);
-    CreateModelFiles(fileManager);
 
     // Read the scene from the file (assuming the file exists)
     Scene* scene = fileManager->ReadSceneFile("SaveScene.txt");
@@ -1271,6 +1270,11 @@ int main(void)
     // HACK:
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
     scene->AddCamera(glm::vec3(0.f), glm::vec3(0.f), glm::vec2(1920.f, 1080.f));
+
+    scene->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f), 5, glm::vec3(0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f),false,scene->sceneObjects);
+
+
+
 
 
     while (!glfwWindowShouldClose(window))

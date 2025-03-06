@@ -2,7 +2,7 @@
 
 // This is the 3D drawing information
 //	to draw a single mesh (single PLY file)
-
+#define GLM_ENABLE_EXPERIMENTAL 
 #include <string>
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>

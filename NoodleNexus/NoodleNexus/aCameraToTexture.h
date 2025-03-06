@@ -38,7 +38,7 @@ public:
 	}
 	virtual void Update()
 	{
-		std::cout << object->mesh->positionXYZ.x << " " << std::endl;
+	//	std::cout << object->mesh->positionXYZ.x << " " << std::endl;
 		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1024.f, 768.f));
 		camera->scene = object->scene;
 		DrawCameraViewToFramebufer(camera, 0, myFBO.ID);

@@ -125,4 +125,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     fileManager->WriteModelFile(&modelInfo, "selectBox.txt", "XYZNUV");
 
+    //Screen Quaad
+    modelInfo.modelName = "Screen_quad";
+    modelInfo.meshPath = "assets/models/screen_quad.ply";
+    fileManager->WriteModelFile(&modelInfo, "screen_quad.txt", "XYZNUVRGBA");
+
 }
