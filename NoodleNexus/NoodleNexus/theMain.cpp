@@ -725,6 +725,8 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
     Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     obj->mesh->textures[0] = "main_camera";
     obj->mesh->blendRatio[0] = 1.f;
+    obj->mesh->textures[1] = "screen_broken.bmp";
+    obj->mesh->blendRatio[1] = 1.0f;
     MainCamera* mainCamera = new MainCamera();
     
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
@@ -1098,12 +1100,14 @@ int main(void)
 //   PREPARING SCENE
 //   ---------------
     Scene* cameraScene = new Scene();
+    Scene* secutityRoom = new Scene();
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
    // cameraScene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     cameraScene->textureManager = scene->textureManager;
     cameraScene->programs = scene->programs;
     cameraScene->vaoManager = scene->vaoManager;
+
 
 
     AddActions(scene, cameraScene, program);
@@ -1134,6 +1138,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Water.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("screen_broken.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CrossHair.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
@@ -1224,6 +1230,7 @@ int main(void)
     SkySphere->mesh->transperency = 1;
 
     scene->skybox = SkySphere;
+    cameraScene->skybox = scene->skybox;
     //glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
 
     //{
@@ -1292,7 +1299,7 @@ int main(void)
 
 
    Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
-   mainCamera->nightMode = true;
+  // mainCamera->nightMode = true;
 
 
 

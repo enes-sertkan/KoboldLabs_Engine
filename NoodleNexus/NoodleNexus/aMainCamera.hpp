@@ -32,7 +32,7 @@ public:
 		std::string error;
 
 		// Initialize with desired resolution
-		if (!myFBO.init(1024, 768, error, textureName, object->scene->textureManager)) {
+		if (!myFBO.init(1920, 1080, error, textureName, object->scene->textureManager)) {
 			//	std::cerr << "FBO Error: " << error << std::endl;
 		}
 

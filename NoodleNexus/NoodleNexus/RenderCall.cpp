@@ -441,7 +441,8 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     {
         return;
     }
-
+    
+    if (pCurMesh!=camera->scene->skybox->mesh)
     {
         // Check if the object is in front of the camera
         glm::vec3 cameraRotation = camera->rotation;
