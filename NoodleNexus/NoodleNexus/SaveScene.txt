@@ -27,7 +27,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 371 0 30
 <Rotation-> 0 0 0
-<Scale-> 9 1.06025e-38 0
+<Scale-> 9 1.62551e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -38,6 +38,18 @@ screen_quad.txt
 <Tags->
 <StaticCollision-> false
 <Position-> 169 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 192 23 13
 <Rotation-> 0 0 0
 <Scale-> 9 4.3558e-41 0
 <Visibility-> true
@@ -49,18 +61,6 @@ screen_quad.txt
 <Model-> Comp
 <Tags->
 <StaticCollision-> false
-<Position-> 192 23 13
-<Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
 <Position-> 215 23 13
 <Rotation-> 0 0 0
 <Scale-> 9 1.69557e-43 0
@@ -99,7 +99,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 215 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -111,7 +111,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 373 56 23
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -137,10 +137,226 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 536 56 247
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> Reactor
+<Model-> Reactor
+<Tags->
+<StaticCollision-> false
+<Position-> 328 23 8
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Reactor
+<Model-> Reactor
+<Tags->
+<StaticCollision-> false
+<Position-> 294 21 405
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Reactor
+<Model-> Reactor
+<Tags->
+<StaticCollision-> false
+<Position-> 326 22 405
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tube
+<Model-> Tube
+<Tags->
+<StaticCollision-> false
+<Position-> 257 20 64
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tube
+<Model-> Tube
+<Tags->
+<StaticCollision-> false
+<Position-> 229 20 487
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tube
+<Model-> Tube
+<Tags->
+<StaticCollision-> false
+<Position-> 242 20 473
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeGlass
+<Model-> TubeGlass
+<Tags->
+<StaticCollision-> false
+<Position-> 257 20 64
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeGlass
+<Model-> TubeGlass
+<Tags->
+<StaticCollision-> false
+<Position-> 229 20 487
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeGlass
+<Model-> TubeGlass
+<Tags->
+<StaticCollision-> false
+<Position-> 242 20 473
+<Rotation-> 0 0 0
+<Scale-> 9 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeBroken
+<Model-> TubeBroken
+<Tags->
+<StaticCollision-> false
+<Position-> 254 21 486
+<Rotation-> 0 0 0
+<Scale-> 9 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeBroken
+<Model-> TubeBroken
+<Tags->
+<StaticCollision-> false
+<Position-> 269 20 476
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeBroken
+<Model-> TubeBroken
+<Tags->
+<StaticCollision-> false
+<Position-> 287 22 4
+<Rotation-> 0 0 0
+<Scale-> 9 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Shard
+<Model-> Shard
+<Tags->
+<StaticCollision-> false
+<Position-> 254 21 486
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Shards
+<Model-> Shards
+<Tags->
+<StaticCollision-> false
+<Position-> 269 20 476
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Shards
+<Model-> Shards
+<Tags->
+<StaticCollision-> false
+<Position-> 287 22 4
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Table
+<Model-> Table
+<Tags->
+<StaticCollision-> false
+<Position-> 246 19 14
+<Rotation-> 0 0 0
+<Scale-> 9 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Table
+<Model-> Table
+<Tags->
+<StaticCollision-> false
+<Position-> 203 18 74
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 -3.73326e+27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Table
+<Model-> Table
+<Tags->
+<StaticCollision-> false
+<Position-> 254 18 508
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
 <--Object>
 
 <Object-->
@@ -148,16 +364,16 @@ screen_quad.txt
 <Model-> SkySphere
 <Tags-> <StaticCollision-> false
 <StaticCollision-> false
-<Position-> -302 2018 -1194
+<Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> 200 3000 199.32 1
+<Position-> 200 3000 199.18 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.00243385 1.83967e-07 3.40282e+38

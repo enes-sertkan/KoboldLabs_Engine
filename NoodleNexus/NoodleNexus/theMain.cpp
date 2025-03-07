@@ -926,91 +926,100 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
         ////scene->sceneObjects[9]->mesh->stencilTextureID = 61;
         ////scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
 
-        //// Left Screen
-        //scene->sceneObjects[10]->mesh->textures[0] = "gibberish.bmp";
-        //scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
-        //scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
-        ////scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
-        ////scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
-        ////scene->sceneObjects[10]->mesh->stencilTextureID = 61;
-        ////scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
+        // Left Screen
+        scene->sceneObjects[10]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+        scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
+        scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+        //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
+        //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
+        //scene->sceneObjects[10]->mesh->stencilTextureID = 61;
+        //scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
-        //// Left Window
-        //scene->sceneObjects[11]->mesh->textures[0] = "uv_mapper.bmp";
-        //scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
-        //scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
-        //scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
-        //scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[11]->mesh->transperency = 0.4;
+        // Left Window
+        scene->sceneObjects[11]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+        scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
+        scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+        scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
+        scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
+        scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
-        //// Right Window
-        //scene->sceneObjects[13]->mesh->textures[0] = "uv_mapper.bmp";
-        //scene->sceneObjects[13]->mesh->textures[0] = "Pebbles_small.bmp";
-        //scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
-        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[13]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
-        //scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[13]->mesh->transperency = 0.4;
+        scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
+        scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
 
-
-        //// Right Screen
-        //scene->sceneObjects[14]->mesh->textures[0] = "gibberish";
-        //scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
-        //scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
-
-        ////Room
-
-        //scene->sceneObjects[15]->mesh->textures[0] = "metalScratch.bmp";
-        //scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
-
-        //scene->sceneObjects[16]->mesh->textures[0] = "metalScratch.bmp";
-        //scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
-
-        //scene->sceneObjects[17]->mesh->textures[0] = "metalScratch.bmp";
-        //scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
-
-        //scene->sceneObjects[18]->mesh->textures[0] = "dmageAsph.bmp";
-        //scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+        // Right Window
+        scene->sceneObjects[13]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+        scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
+        scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
 
 
-        //scene->sceneObjects[19]->mesh->textures[0] = "camera1";
-        //scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+        // Right Screen
+        scene->sceneObjects[14]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
+        scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[20]->mesh->textures[0] = "desk.bmp";
-        //scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+        //Room
 
-        //scene->sceneObjects[21]->mesh->textures[0] = "door.bmp";
-        //scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[15]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[22]->mesh->textures[0] = "etagere.bmp";
-        //scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[16]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[16]->mesh->transperency = 0.2;
 
-        //scene->sceneObjects[23]->mesh->textures[0] = "grand_casier.bmp";
-        //scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[17]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[17]->mesh->transperency = 0.2;
 
-        //scene->sceneObjects[24]->mesh->textures[0] = "ground.bmp";
-        //scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[18]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[18]->mesh->transperency = 0.2;
 
-        //scene->sceneObjects[25]->mesh->textures[0] = "teacher_d.bmp";
-        //scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[19]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[26]->mesh->textures[0] = "wall_c.bmp";
-        //scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
-        //scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[22]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[22]->mesh->transperency = 0.2;
+
+        scene->sceneObjects[23]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[23]->mesh->transperency = 0.2;
+
+        scene->sceneObjects[24]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[24]->mesh->transperency = 0.2;
+
+        scene->sceneObjects[25]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[26]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
     }
 
 

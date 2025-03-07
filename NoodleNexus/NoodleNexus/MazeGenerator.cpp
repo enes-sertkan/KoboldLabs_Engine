@@ -44,7 +44,7 @@ void MazeGenerator::generateMaze() {
 
             if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
@@ -133,49 +133,49 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     bool isOverrideColor = false;
 
     switch (type) {
-    case TUBES: {
-        std::vector<std::string> mediumObjectPaths = {
-            "assets/models/objects/tube.ply"
-            //"assets/models/objects/tubeGlass.ply"
-        };
-        path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
-        scale *= 1.f;  // Smaller scale for small objects
-        isOverrideColor = true;
-        color = glm::vec4(0.7, 0.6, 0.3, 1.0f);
-        texture = "Frame_Tube_AlbedoTransparency.bmp";
-        break;
-    }
-    case REACTORS: {
-        std::vector<std::string> bigObjectPaths = {
-            "assets/models/objects/reactor.ply"
-        };
-        path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        scale *= 1.2f;  // Larger scale for big objects
-        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-        texture = "Reactor_AlbedoTransparency.bmp";
-        break;
-    }
-    case TABLE: {
-        std::vector<std::string> bigObjectPaths = {
-            "assets/models/objects/table.ply",
-        };
-        path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        scale *= 1.2f;  // Larger scale for big objects
-        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-        texture = "Operating_Table_AlbedoTransparency.bmp";
-        break;
-    }
-    case BROKENTUBES: {
-        std::vector<std::string> bigObjectPaths = {
-            "assets/models/objects/tubeBroken.ply",
-            //"assets/models/objects/shards.ply",
-        };
-        path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        scale *= 1.2f;  // Larger scale for big objects
-        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-        texture = "Frame_Tube_AlbedoTransparency.bmp";
-        break;
-    }
+    //case TUBES: {
+    //    std::vector<std::string> mediumObjectPaths = {
+    //        "assets/models/objects/tube.ply"
+    //        //"assets/models/objects/tubeGlass.ply"
+    //    };
+    //    path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
+    //    scale *= 1.f;  // Smaller scale for small objects
+    //    isOverrideColor = true;
+    //    color = glm::vec4(0.7, 0.6, 0.3, 1.0f);
+    //    texture = "Frame_Tube_AlbedoTransparency.bmp";
+    //    break;
+    //}
+    //case REACTORS: {
+    //    std::vector<std::string> bigObjectPaths = {
+    //        "assets/models/objects/reactor.ply"
+    //    };
+    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
+    //    scale *= 1.2f;  // Larger scale for big objects
+    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+    //    texture = "Reactor_AlbedoTransparency.bmp";
+    //    break;
+    //}
+    //case TABLE: {
+    //    std::vector<std::string> bigObjectPaths = {
+    //        "assets/models/objects/table.ply",
+    //    };
+    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
+    //    scale *= 1.2f;  // Larger scale for big objects
+    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+    //    texture = "Operating_Table_AlbedoTransparency.bmp";
+    //    break;
+    //}
+    //case BROKENTUBES: {
+    //    std::vector<std::string> bigObjectPaths = {
+    //        "assets/models/objects/tubeBroken.ply",
+    //        //"assets/models/objects/shards.ply",
+    //    };
+    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
+    //    scale *= 1.2f;  // Larger scale for big objects
+    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+    //    texture = "Frame_Tube_AlbedoTransparency.bmp";
+    //    break;
+    //}
     case CENTER:
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
