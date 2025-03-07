@@ -739,7 +739,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
 
-    Object* wall = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/wall01.ply", glm::vec3(0.f, 0.f, 0.f), 1, glm::vec3(0.f, 90.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+    Object* wall = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/wall01.ply", glm::vec3(0.f, -2.f, -4.f), 2, glm::vec3(0.f, 90.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
     wall->mesh->textures[0] = "Wall_Simple_AlbedoTransparency.bmp";
     wall->mesh->blendRatio[0] = 1.0f;
 
