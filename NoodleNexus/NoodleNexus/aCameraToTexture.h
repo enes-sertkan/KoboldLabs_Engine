@@ -47,26 +47,6 @@ public:
 
 
 
-		// Left pitches negative (rotate around Y a negative value)
-		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS)
-		{
-			object->mesh->rotationEulerXYZ.x += 0.1f;
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-		{
-			object->mesh->rotationEulerXYZ.x -= 0.1f;
-		}
-
-		// Left pitches negative (rotate around Y a negative value)
-		if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS)
-		{
-			object->mesh->rotationEulerXYZ.y += 0.1f;
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS)
-		{
-			object->mesh->rotationEulerXYZ.y -= 0.1f;
-		}
-
 	}
 
 };

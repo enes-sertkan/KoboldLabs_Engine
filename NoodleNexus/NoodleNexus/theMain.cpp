@@ -717,7 +717,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
-void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
+void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
 
@@ -725,9 +725,20 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
     Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     obj->mesh->textures[0] = "main_camera";
     obj->mesh->blendRatio[0] = 1.f;
-    //obj->mesh->textures[1] = "screen_broken.bmp";
-    //obj->mesh->blendRatio[1] = 1.0f;
-    MainCamera* mainCamera = new MainCamera();
+    obj->mesh->textures[1] = "screen_broken.bmp";
+    obj->mesh->blendRatio[1] = 0.2f;
+    MainCamera* mainCamera = new MainCamera(); 
+    
+   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+    wierd->mesh->textures[0] = "screen_broken.bmp";
+    wierd->mesh->blendRatio[0] = 1.0f;
+
+
+    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 5, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+    securutyCamera->mesh->textures[0] = "screen_broken.bmp";
+    securutyCamera->mesh->blendRatio[0] = 1.0f;
+
+
     
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
     obj->isTemporary = true;
@@ -760,24 +771,24 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
     //scene->AddActionToObj(softBodyAction, softObject);
 
 
-    //Object* cameraObj2 = scene->sceneObjects[7];
+    Object* cameraObj2 = scene->sceneObjects[7];
     //Object* cameraObj3 = scene->sceneObjects[8];
     //Object* cameraObj4 = scene->sceneObjects[9];
     ////Object* cameraObj5 = scene->sceneObjects[23];
 
-    ////CameraToTexture* textureCamera1 = new CameraToTexture();
+    CameraToTexture* textureCamera1 = new CameraToTexture();
     //CameraToTexture* textureCamera2 = new CameraToTexture();
     //CameraToTexture* textureCamera3 = new CameraToTexture();
     //CameraToTexture* textureCamera4 = new CameraToTexture();
     ////CameraToTexture* textureCamera5 = new CameraToTexture();
 
-    ////textureCamera1->textureName = "camera1";
+    textureCamera1->textureName = "securityCamera";
     //textureCamera2->textureName = "camera1";
     //textureCamera3->textureName = "camera2";
     //textureCamera4->textureName = "camera3";
     ////textureCamera5->textureName = "camera5";
 
-    ////scene->AddActionToObj(textureCamera1, cameraObj1);
+    securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
     //scene->AddActionToObj(textureCamera2, cameraObj2);
     //scene->AddActionToObj(textureCamera3, cameraObj3);
     //scene->AddActionToObj(textureCamera4, cameraObj4);
@@ -886,6 +897,9 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
         scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[4]->mesh->stencilTexture = "binaries.bmp";
+        scene->sceneObjects[4]->mesh->stencilTextureID = 61;
+        scene->sceneObjects[4]->mesh->textureSpeed.x = 0.1f;
 
         scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
@@ -925,8 +939,7 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
         ////scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
         ////scene->sceneObjects[9]->mesh->stencilTextureID = 61;
         ////scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
-
-        // Left Screen
+ // Left Screen
         scene->sceneObjects[10]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
         scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
@@ -1106,17 +1119,21 @@ int main(void)
 //   PREPARING SCENE
 //   ---------------
     Scene* cameraScene = new Scene();
-    Scene* secutityRoom = new Scene();
+    Scene* secutityRoomScene = new Scene();
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
    // cameraScene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     cameraScene->textureManager = scene->textureManager;
     cameraScene->programs = scene->programs;
     cameraScene->vaoManager = scene->vaoManager;
+    cameraScene->fCamera = g_pFlyCamera;
 
+    secutityRoomScene->textureManager = scene->textureManager;
+    secutityRoomScene->programs = scene->programs;
+    secutityRoomScene->vaoManager = scene->vaoManager;
+    secutityRoomScene->fCamera = g_pFlyCamera;
 
-
-    AddActions(scene, cameraScene, program);
+    AddActions(scene, cameraScene, secutityRoomScene, program);
 
     Animator* animator = new Animator();
     animator->scene = scene;
@@ -1140,19 +1157,24 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Floor_Albedo.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Water.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("screen_broken.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("CrossHair.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
+    //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Glass_Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Reactor_AlbedoTransparency.bmp");
-
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
 
     std::cout << "Skybox Texture Load Start" << std::endl;
 
@@ -1237,59 +1259,15 @@ int main(void)
 
     scene->skybox = SkySphere;
     cameraScene->skybox = scene->skybox;
-    //glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"),  SkySphere->mesh->transperency);
-
-    //{
-    //    Object* RacingCar = scene->GenerateMeshObjectsFromObject(
-    //        "assets/models/Bodiam_Castle.ply",
-    //        glm::vec3(11, -600, 103),
-    //        10,
-    //        glm::vec3(0, 0, 0),
-    //        false,
-    //        glm::vec4(0.5f, 0.5f, 0.5f, 1.0f),
-    //        true,
-    //        scene->sceneObjects
-    //    );
-    //    RacingCar->mesh->textures[0] = "BodiamCastle.bmp";
-    //    RacingCar->mesh->uniformScale = 110.f;
-    //    RacingCar->isTemporary = true;
-    //    RacingCar->name = "Castle";
-    //    RacingCar->mesh->bIsVisible = true;
-
-    //    std::cout << "Generating Broadfaces." << std::endl;
-
-    //    g_pPhysicEngine->generateBroadPhaseGrid(
-    //        "assets/models/Bodiam_Castle.ply",
-    //        200.0f,                            // AABB Cube region size
-    //        RacingCar->mesh->positionXYZ,
-    //        RacingCar->mesh->rotationEulerXYZ,
-    //        RacingCar->mesh->uniformScale, scene->vaoManager);
-
-    //    std::cout << "Generating Broadfaces. DONE." << std::endl;
-
-    //    scene->physicsManager->AddTriangleMesh("assets/models/Bodiam_Castle.ply",                          // AABB Cube region size
-    //        RacingCar->mesh->positionXYZ,
-    //        RacingCar->mesh->rotationEulerXYZ,
-    //        RacingCar->mesh->uniformScale);
-    //    // Debug AABB shape
-    //    sMesh* pAABBCube_MinAtOrigin = new sMesh();
-    //    pAABBCube_MinAtOrigin->modelFileName = "assets/models/Cube_xyz_n_uv.ply";
-    //    pAABBCube_MinAtOrigin->bIsWireframe = true;
-    //    pAABBCube_MinAtOrigin->objectColourRGBA = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    //    pAABBCube_MinAtOrigin->bOverrideObjectColour = true;
-    //    pAABBCube_MinAtOrigin->bDoNotLight = true;
-    //    pAABBCube_MinAtOrigin->bIsVisible = false;
-    //    pAABBCube_MinAtOrigin->uniqueFriendlyName = "AABB_MinXYZ_At_Origin";
-
-    //    ::g_vecMeshesToDraw.push_back(pAABBCube_MinAtOrigin);
-
-    //}
+    secutityRoomScene->skybox = scene->skybox;
+   
 
     glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
   
 
 
     scene->Start();
+    secutityRoomScene->Start();
 
     //  Turn on the blend operation
     glEnable(GL_BLEND);
@@ -1305,6 +1283,7 @@ int main(void)
 
 
    Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
+  // Camera* securutyCamera=  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // mainCamera->nightMode = true;
 
 
@@ -1329,7 +1308,9 @@ int main(void)
        // SetCameraAndProjectionMatrices(ratio, program);
         scene->lightManager->updateShaderWithLightInfo();
         sceneEditor->Update();
+
         scene->Update();
+        secutityRoomScene->Update();
         
 
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
