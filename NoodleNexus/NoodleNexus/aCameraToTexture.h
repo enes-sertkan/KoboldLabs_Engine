@@ -31,7 +31,7 @@ public:
 		std::string error;
 
 		// Initialize with desired resolution
-		if (!myFBO.init(1024, 768, error, textureName, object->scene->textureManager)) {
+		if (!myFBO.init(1920, 1080, error, textureName, object->scene->textureManager)) {
 		//	std::cerr << "FBO Error: " << error << std::endl;
 		}
 	
@@ -39,7 +39,7 @@ public:
 	virtual void Update()
 	{
 	//	std::cout << object->mesh->positionXYZ.x << " " << std::endl;
-		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1024.f, 768.f));
+		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1920, 1080));
 		camera->scene = object->scene;
 		DrawCameraViewToFramebufer(camera, 0, myFBO.ID);
 		//printf("WOW, you are UPDATING\n");

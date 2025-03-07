@@ -724,13 +724,13 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
-    obj->mesh->textures[0] = "securityCamera";
+    obj->mesh->textures[0] = "main_camera";
     obj->mesh->blendRatio[0] = 1.f;
-    obj->mesh->textures[1] = "screen_broken.bmp";
-    obj->mesh->blendRatio[1] = 0.2f;
+  //  obj->mesh->textures[1] = "screen_broken.bmp";
+  //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
     
-   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f),true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
     wierd->mesh->textures[0] = "screen_broken.bmp";
     wierd->mesh->blendRatio[0] = 1.0f;
 
@@ -817,31 +817,52 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     //FRONT SCREEN 2
-    ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
+   // ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
 
-    screenSwitcher2->AddTexture("camera3");
-    screenSwitcher2->AddTexture("camera1");
-    screenSwitcher2->AddTexture("camera2");
+//    screenSwitcher2->AddTexture("securityCamera");
 
-    scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[4]);
+
+  //  scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[4]);
+
+    scene->sceneObjects[4]->mesh->textures[0] = "Pebbles_small.bmp";
+    scene->sceneObjects[4]->mesh->blendRatio[0] = 0.5f;
+
+     scene->sceneObjects[4]->mesh->textures[1] = "screen_broken.bmp";
+    scene->sceneObjects[4]->mesh->blendRatio[1] = 0.2f;
+    scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
+    scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
+     scene->sceneObjects[5]->mesh->textures[1] = "screen_broken.bmp";
+    scene->sceneObjects[5]->mesh->blendRatio[1] = 0.2f;
+    scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+
+    scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
+    scene->sceneObjects[4]->mesh->textureFillType[0] = 0;
+    scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
+     scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
+    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2f;
+    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+
+    // scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
+    //scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
+    // scene->sceneObjects[6]->mesh->textures[0] = "securityCamera";
+    //scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
 
     // LEFT SCREEN
-    ScreenTextureSwitch* screenSwitcher3 = new ScreenTextureSwitch();
+    //ScreenTextureSwitch* screenSwitcher3 = new ScreenTextureSwitch();
 
-    screenSwitcher3->AddTexture("camera3");
-    screenSwitcher3->AddTexture("camera1");
-    screenSwitcher3->AddTexture("camera2");
+    //screenSwitcher3->AddTexture("securityCamera");
 
-    scene->AddActionToObj(screenSwitcher3, scene->sceneObjects[5]);
+    //scene->AddActionToObj(screenSwitcher3, scene->sceneObjects[5]);
 
-    // RIGHT SCREEN
-    ScreenTextureSwitch* screenSwitcher4 = new ScreenTextureSwitch();
+    //// RIGHT SCREEN
+    //ScreenTextureSwitch* screenSwitcher4 = new ScreenTextureSwitch();
 
-    screenSwitcher4->AddTexture("camera3");
-    screenSwitcher4->AddTexture("camera1");
-    screenSwitcher4->AddTexture("camera2");
+    //screenSwitcher4->AddTexture("securityCamera");
 
-    scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[6]);
+
+//    scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[6]);
 
 
     //Object* playerObject = scene->sceneObjects[15];
@@ -898,15 +919,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[4]->mesh->textures[0] = "uv_mapper.bmp";
+     /*   scene->sceneObjects[4]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
         scene->sceneObjects[4]->mesh->stencilTexture = "binaries.bmp";
         scene->sceneObjects[4]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[4]->mesh->textureSpeed.x = 0.1f;
+        scene->sceneObjects[4]->mesh->textureSpeed.x = 0.1f;*/
 
-        scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
+      /*  scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
@@ -914,7 +935,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[6]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;*/
 
         //// Front Screen 1
         //scene->sceneObjects[7]->mesh->textures[0] = "gibberish.bmp";

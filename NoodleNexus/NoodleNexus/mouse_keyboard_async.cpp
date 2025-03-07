@@ -203,27 +203,27 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
         {
             // Go forward
 //            ::g_cameraEye.z -= CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveForward( CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveForward( CAMERA_MOVE_SPEED*4 );
         }
 
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
         {
             // Go back
 //            ::g_cameraEye.z += CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveForward( -CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveForward( -CAMERA_MOVE_SPEED * 4);
         }
 
         if ( glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS )
         {
             // Go left
 //           ::g_cameraEye.x -= CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveLeftRight( CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveLeftRight( CAMERA_MOVE_SPEED * 4);
         }
         if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         {
             // Go right
 //            ::g_cameraEye.x += CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveLeftRight( -CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveLeftRight( -CAMERA_MOVE_SPEED * 4);
         }
 
 
@@ -232,13 +232,13 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
         {
             // Go down
 //            ::g_cameraEye.y -= CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveUpDown( -CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveUpDown( -CAMERA_MOVE_SPEED/5 );
         }
         if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
         {
             // Go up
 //            ::g_cameraEye.y += CAMERA_MOVE_SPEED;
-            ::g_pFlyCamera->moveUpDown( CAMERA_MOVE_SPEED );
+            ::g_pFlyCamera->moveUpDown( CAMERA_MOVE_SPEED/5 );
         }
 
         // Use the arrow keys to turn and pitch the camera
