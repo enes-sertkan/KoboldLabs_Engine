@@ -30,7 +30,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 21 0 115
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.04995e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -42,7 +42,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 127 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -54,7 +54,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 82 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -66,7 +66,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 104 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -78,7 +78,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 127 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -90,7 +90,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 82 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -102,7 +102,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 104 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -114,7 +114,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 150 56 78
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -127,7 +127,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 150 56 203
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -140,7 +140,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 387 56 203
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -153,7 +153,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -302 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
@@ -166,7 +166,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -179,7 +179,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 1.69557e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -192,7 +192,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -205,7 +205,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -218,7 +218,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 1.69557e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
@@ -231,7 +231,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -4.31602e+08 -4.31602e+08 -4.31602e+08
 <Rotation-> -4.31602e+08 -4.31602e+08 -4.31602e+08
-<Scale-> -4.31602e+08 -4.31602e+08 -4.31602e+08
+<Scale-> -4.31602e+08 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 1 0
