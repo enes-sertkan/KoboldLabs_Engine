@@ -26,7 +26,7 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     while (std::getline(file, line)) {
         std::vector<char> row;
         for (char c : line) {
-            if (c == 'X' || c == '.' || c == 'T' || c == 'M' || c == '4' || c == '5' || c == '6') {
+            if (c == 'X' || c == '.' || c == 'T' || c == 'M' || c == 'B' || c == 'R' || c == 'V') {
                 row.push_back(c);
             }
         }
@@ -42,7 +42,7 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'T' || cell == 'M' || cell == '5' || cell == '6') {
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
@@ -63,6 +63,24 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                     PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
+
+                //// VENTS
+                //if (row > 0 && maze[row - 1][col] == 'V') {
+                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT down
+
+                //}
+                //if (row < maze.size() - 1 && maze[row + 1][col] == 'V') {
+                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT up
+
+                //}
+                //if (col > 0 && maze[row][col - 1] == 'V') {
+                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT left
+
+                //}
+                //if (col < maze[row].size() - 1 && maze[row][col + 1] == 'V') {
+                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT right
+
+                //}
 
                 // Door placement logic (optional, as in your example)
                 //if (cell == 'T') {
@@ -87,16 +105,16 @@ void MazeGenerator::generateMaze() {
 
                 // Place random objects in '1' cells
                 if (cell == 'M') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, MINOTAUR, true);
+                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TABLE, true);
                 }
                 else if (cell == 'T') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, THESEUS, true);
+                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TUBES, true);
                 }
-                else if (cell == 'F') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, FOOD, true);
+                else if (cell == 'B') {
+                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, BROKENTUBES, true);
                 }
-                else if (cell == 'W') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, WATER, true);
+                else if (cell == 'R') {
+                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, REACTORS, true);
                 }
 
                 
@@ -115,47 +133,47 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     bool isOverrideColor = false;
 
     switch (type) {
-    case MINOTAUR: {
-        std::vector<std::string> smallObjectPaths = {
-            "assets/models/Chars/MinoE.ply"
-        };
-        path = smallObjectPaths[rand() % smallObjectPaths.size()];
-        scale *= 1.f;  // Smaller scale for small objects
-        isOverrideColor = true;
-        color = glm::vec4(0.2, 0.5, 0.1, 1.0f);
-        //texture = "KnigthV.bmp";
-        break;
-    }
-    case THESEUS: {
+    case TUBES: {
         std::vector<std::string> mediumObjectPaths = {
-            "assets/models/Chars/TheseusE.ply"
+            "assets/models/objects/tube.ply"
+            //"assets/models/objects/tubeGlass.ply"
         };
         path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
         scale *= 1.f;  // Smaller scale for small objects
         isOverrideColor = true;
         color = glm::vec4(0.7, 0.6, 0.3, 1.0f);
+        texture = "Frame_Tube_AlbedoTransparency.bmp";
         break;
     }
-    case FOOD: {
-        //std::vector<std::string> bigObjectPaths = {
-        //    "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
-        //    "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
-        //    "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
-        //};
-        //path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        //scale *= 1.2f;  // Larger scale for big objects
-        //color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+    case REACTORS: {
+        std::vector<std::string> bigObjectPaths = {
+            "assets/models/objects/reactor.ply"
+        };
+        path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        scale *= 1.2f;  // Larger scale for big objects
+        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        texture = "Reactor_AlbedoTransparency.bmp";
         break;
     }
-    case WATER: {
-        //std::vector<std::string> bigObjectPaths = {
-        //    "assets/models/extras/SM_Prop_3DPrinter_01_xyz_n_rgba_uv.ply",
-        //    "assets/models/extras/SM_Prop_Treadmill_01_xyz_n_rgba_uv.ply",
-        //    "assets/models/extras/SM_Prop_Stairs_01_xyz_n_rgba_uv.ply"
-        //};
-        //path = bigObjectPaths[rand() % bigObjectPaths.size()];
-        //scale *= 1.2f;  // Larger scale for big objects
-        //color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+    case TABLE: {
+        std::vector<std::string> bigObjectPaths = {
+            "assets/models/objects/table.ply",
+        };
+        path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        scale *= 1.2f;  // Larger scale for big objects
+        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        texture = "Operating_Table_AlbedoTransparency.bmp";
+        break;
+    }
+    case BROKENTUBES: {
+        std::vector<std::string> bigObjectPaths = {
+            "assets/models/objects/tubeBroken.ply",
+            //"assets/models/objects/shards.ply",
+        };
+        path = bigObjectPaths[rand() % bigObjectPaths.size()];
+        scale *= 1.2f;  // Larger scale for big objects
+        color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
+        texture = "Frame_Tube_AlbedoTransparency.bmp";
         break;
     }
     case CENTER:
@@ -194,6 +212,11 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.x += scale * 5.0f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         break;
+    //case VENTS:
+    //    position.z -= scale * 5.0f / 2.0f;
+    //    position.x += scale * 5.0f / 2.0f;
+    //    texture = "Vent_Big_AlbedoTransparency.bmp";
+    //    break;
     default:
         std::cerr << "Unknown ObjectType." << std::endl;
         return nullptr;
@@ -209,24 +232,24 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         return nullptr;
     }
 
-    if (type == MINOTAUR)
-    {
-        MinotaurChar* minotaur = new MinotaurChar();
-        minotaur->mazePosition.x = col;
-        minotaur->mazePosition.y = row;
-        minotaur->maze = this;
-        scene->AddActionToObj(minotaur, obj);
-        minoChar = minotaur;
-    }
-    else if (type == THESEUS)
-    {
-        TheseusChar* theseus = new TheseusChar();
-        theseus->mazePosition.x = col;
-        theseus->mazePosition.y = row;
-        theseus->maze = this;
-        scene->AddActionToObj(theseus, obj);
-        thesChar = theseus;
-    }
+    //if (type == MINOTAUR)
+    //{
+    //    MinotaurChar* minotaur = new MinotaurChar();
+    //    minotaur->mazePosition.x = col;
+    //    minotaur->mazePosition.y = row;
+    //    minotaur->maze = this;
+    //    scene->AddActionToObj(minotaur, obj);
+    //    minoChar = minotaur;
+    //}
+    //else if (type == THESEUS)
+    //{
+    //    TheseusChar* theseus = new TheseusChar();
+    //    theseus->mazePosition.x = col;
+    //    theseus->mazePosition.y = row;
+    //    theseus->maze = this;
+    //    scene->AddActionToObj(theseus, obj);
+    //    thesChar = theseus;
+    //}
 
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;

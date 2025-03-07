@@ -20,10 +20,11 @@ enum Direction {
     CENTER,
     CENTERup,
     LIGHT,
-    MINOTAUR,
-    THESEUS,
-    WATER,
-    FOOD
+    VENTS,
+    TUBES,
+    REACTORS,
+    TABLE,
+    BROKENTUBES
 };
 
 class MazeGenerator {

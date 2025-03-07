@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Reactor
+<filePath> assets/models/objects/reactor.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

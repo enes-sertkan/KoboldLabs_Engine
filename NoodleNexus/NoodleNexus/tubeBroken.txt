@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> TubeBroken
+<filePath> assets/models/objects/tubeBroken.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Vent
+<filePath> assets/models/objects/vent.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

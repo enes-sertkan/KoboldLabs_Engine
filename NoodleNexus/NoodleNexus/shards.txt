@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Shards
+<filePath> assets/models/objects/shards.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

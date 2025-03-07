@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Table
+<filePath> assets/models/objects/table.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

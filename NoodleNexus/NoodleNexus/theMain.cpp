@@ -725,8 +725,8 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
     Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     obj->mesh->textures[0] = "main_camera";
     obj->mesh->blendRatio[0] = 1.f;
-    obj->mesh->textures[1] = "screen_broken.bmp";
-    obj->mesh->blendRatio[1] = 1.0f;
+    //obj->mesh->textures[1] = "screen_broken.bmp";
+    //obj->mesh->blendRatio[1] = 1.0f;
     MainCamera* mainCamera = new MainCamera();
     
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
@@ -886,9 +886,6 @@ void AddActions(Scene* scene, Scene* sceneCam,  GLuint program)
         scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[4]->mesh->stencilTexture = "binaries.bmp";
-        scene->sceneObjects[4]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[4]->mesh->textureSpeed.x = 0.1f;
 
         scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
@@ -1134,18 +1131,18 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Floor_Albedo.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("Water.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("rust.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("screen_broken.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("CrossHair.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Glass_Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Reactor_AlbedoTransparency.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
