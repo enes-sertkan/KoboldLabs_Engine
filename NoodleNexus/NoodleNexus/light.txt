@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Light
+<filePath> assets/models/objects/light.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

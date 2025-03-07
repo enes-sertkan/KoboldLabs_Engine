@@ -1033,6 +1033,18 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
         scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[28]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+        scene->sceneObjects[28]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[28]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[29]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+        scene->sceneObjects[29]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[29]->mesh->bOverrideObjectColour = false;
+
+        scene->sceneObjects[30]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+        scene->sceneObjects[30]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[30]->mesh->bOverrideObjectColour = false;
     }
 
 
@@ -1163,7 +1175,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("metalScratch.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("screen_broken.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("CrossHair.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("WorldMap.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Lockdown_Light_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");

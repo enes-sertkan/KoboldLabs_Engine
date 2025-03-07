@@ -63,9 +63,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/objects/table.ply";
     fileManager->WriteModelFile(&modelInfo, "table.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "Vent";
-    modelInfo.meshPath = "assets/models/objects/vent.ply";
-    fileManager->WriteModelFile(&modelInfo, "vent.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Light";
+    modelInfo.meshPath = "assets/models/objects/light.ply";
+    fileManager->WriteModelFile(&modelInfo, "light.txt", "XYZNUVRGBA");
 
     modelInfo.modelName = "WaterV";
     modelInfo.meshPath = "assets/models/objects/WaterV.ply";
