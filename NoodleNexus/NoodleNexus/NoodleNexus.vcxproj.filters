@@ -433,6 +433,9 @@
     <ClInclude Include="StupidPathFinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aRotate.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

@@ -75,6 +75,7 @@
 #include "aSoftBodyAction.hpp"
 #include "aBaseMazeCharacter.h"
 #include "aMainCamera.hpp"
+#include "aRotate.h"
  Scene* currentScene=nullptr;
 
 
@@ -730,16 +731,17 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
   //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
     
-   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f),true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f),true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     wierd->mesh->textures[0] = "screen_broken.bmp";
     wierd->mesh->blendRatio[0] = 1.0f;
+    aRotate* rotateAction = new aRotate();
+    securityRoomScene->AddActionToObj(rotateAction, wierd);
 
-
-    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 5, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 5, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
 
-    Object* wall = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/wall01.ply", glm::vec3(0.f, -2.f, -4.f), 2, glm::vec3(0.f, 90.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
+    Object* wall = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/wall01side.ply", glm::vec3(0.f, -5.f, -7.5f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
     wall->mesh->textures[0] = "Wall_Simple_AlbedoTransparency.bmp";
     wall->mesh->blendRatio[0] = 1.0f;
 
@@ -750,6 +752,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     mazeGenerator->generateMaze();
 
+    securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
     //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
     //chararcter->mazePosition.x = 5;
     //chararcter->mazePosition.y = 5;
@@ -824,7 +827,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
   //  scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[4]);
 
-    scene->sceneObjects[4]->mesh->textures[0] = "Pebbles_small.bmp";
+    scene->sceneObjects[4]->mesh->textures[0] = "cam_top.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 0.5f;
 
      scene->sceneObjects[4]->mesh->textures[1] = "screen_broken.bmp";
@@ -833,8 +836,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
     scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
-     scene->sceneObjects[5]->mesh->textures[1] = "screen_broken.bmp";
-    scene->sceneObjects[5]->mesh->blendRatio[1] = 0.2f;
+     scene->sceneObjects[5]->mesh->textures[1] = "cam_top.bmp";
+    scene->sceneObjects[5]->mesh->blendRatio[1] = 1.f;
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
@@ -1156,10 +1159,15 @@ int main(void)
 
 //   PREPARING SCENE
 //   ---------------
+ 
     Scene* cameraScene = new Scene();
     Scene* secutityRoomScene = new Scene();
+    secutityRoomScene->lightManager = new cLightManager();
+    secutityRoomScene->lightManager,
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
+    //HACK FOR LIGHTING
+    secutityRoomScene->lightManager->loadUniformLocations(scene->programs[0]);
    // cameraScene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     cameraScene->textureManager = scene->textureManager;
     cameraScene->programs = scene->programs;
@@ -1213,6 +1221,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Reactor_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("cam_top.bmp");
 
     std::cout << "Skybox Texture Load Start" << std::endl;
 

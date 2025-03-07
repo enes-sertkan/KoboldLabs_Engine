@@ -66,15 +66,11 @@ void main()
 
 	// Calculatte the vertex normal
 	// Don't wank scaling or translation
-	//fvertexNormal = matRoationOnly * vec4(vNormal, 1.0);
-	mat4 matInvTransModel = inverse(transpose(matModel));
-	// Just in case
-	
-	vec3 vNormNormalize = normalize(vNormal.xyz);
-	fvertexNormal = matInvTransModel * vec4(vNormNormalize, 1.0);
-	// Just in case
-	fvertexNormal.xyz = normalize(vNormNormalize);
-	
+	// Compute the normal matrix from the model matrix (using a mat3 is enough)
+	mat3 normalMatrix = mat3(inverse(transpose(matModel)));
+	// Transform the normal and re-normalize it
+	vec3 transformedNormal = normalize(normalMatrix * vNormal);
+	fvertexNormal = vec4(transformedNormal, 0.0);
 	fColour = vCol;
 	fUV = vUV;			// Sent UVs to fragment shader
 }
