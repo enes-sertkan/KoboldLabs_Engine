@@ -731,8 +731,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
   //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
     
-   Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f),true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
-    wierd->mesh->textures[0] = "screen_broken.bmp";
+    Object* wierd = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/frog.ply", glm::vec3(5.f, 0.f, 0.f), 1, glm::vec3(0.f),true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    wierd->mesh->textures[0] = "frog_diffuse.bmp";
     wierd->mesh->blendRatio[0] = 1.0f;
     aRotate* rotateAction = new aRotate();
     securityRoomScene->AddActionToObj(rotateAction, wierd);
@@ -780,43 +780,43 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     Object* cameraObj2 = scene->sceneObjects[7];
-    //Object* cameraObj3 = scene->sceneObjects[8];
-    //Object* cameraObj4 = scene->sceneObjects[9];
+    Object* cameraObj3 = scene->sceneObjects[8];
+    Object* cameraObj4 = scene->sceneObjects[9];
     ////Object* cameraObj5 = scene->sceneObjects[23];
 
     CameraToTexture* textureCamera1 = new CameraToTexture();
-    //CameraToTexture* textureCamera2 = new CameraToTexture();
-    //CameraToTexture* textureCamera3 = new CameraToTexture();
-    //CameraToTexture* textureCamera4 = new CameraToTexture();
+    CameraToTexture* textureCamera2 = new CameraToTexture();
+    CameraToTexture* textureCamera3 = new CameraToTexture();
+    CameraToTexture* textureCamera4 = new CameraToTexture();
     ////CameraToTexture* textureCamera5 = new CameraToTexture();
 
     textureCamera1->textureName = "securityCamera";
-    //textureCamera2->textureName = "camera1";
-    //textureCamera3->textureName = "camera2";
-    //textureCamera4->textureName = "camera3";
+    textureCamera2->textureName = "camera1";
+    textureCamera3->textureName = "camera2";
+    textureCamera4->textureName = "camera3";
     ////textureCamera5->textureName = "camera5";
 
     securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
-    //scene->AddActionToObj(textureCamera2, cameraObj2);
-    //scene->AddActionToObj(textureCamera3, cameraObj3);
-    //scene->AddActionToObj(textureCamera4, cameraObj4);
+    scene->AddActionToObj(textureCamera2, cameraObj2);
+    scene->AddActionToObj(textureCamera3, cameraObj3);
+    scene->AddActionToObj(textureCamera4, cameraObj4);
     //scene->AddActionToObj(textureCamera5, cameraObj5);
 
 
 
     ////FRONT SCREEN 1
-    //ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
+    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
-    //screenSwitcher->AddTexture("camera1");
-    //screenSwitcher->AddTexture("camera2");
-    //screenSwitcher->AddTexture("camera3");
+    screenSwitcher->AddTexture("camera1");
+    screenSwitcher->AddTexture("camera2");
+    screenSwitcher->AddTexture("camera3");
     //screenSwitcher->AddTexture("camera4");
     //screenSwitcher->AddTexture("camera5");
     //screenSwitcher->AddTexture("binaries.bmp");
     //screenSwitcher->AddTexture("uv_mapper.bmp");
 
     //
-    //scene->AddActionToObj(screenSwitcher, scene->sceneObjects[7]);
+    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
 
 
     //FRONT SCREEN 2
@@ -1211,7 +1211,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("CrossHair.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Lockdown_Light_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("frog_diffuse.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");

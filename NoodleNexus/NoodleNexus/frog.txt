@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Frog
+<filePath> assets/models/objects/frog.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
