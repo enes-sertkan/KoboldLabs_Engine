@@ -55,19 +55,19 @@ public:
         }
 
 
-        if (wind)
-        {
-            softBody->acceleration.y = 0.1;
-            softBody->acceleration.x = -0.5;
-            softBody->acceleration.z = -0.05;
-        }
-        else
+        //if (wind)
+        //{
+        //    softBody->acceleration.y = 0.1;
+        //    softBody->acceleration.x = -0.5;
+        //    softBody->acceleration.z = -0.05;
+        //}
+        //else
 
-        {
-            softBody->acceleration.y = 0;
-            softBody->acceleration.x = 0;
-            softBody->acceleration.z = -0.5;
-        }
+        //{
+        //    softBody->acceleration.y = 0;
+        //    softBody->acceleration.x = 0;
+        //    softBody->acceleration.z = -0.5;
+        //}
 
         UpdateSoftBody(object->scene->deltaTime);
         UpdateSoftBodyMeshes(object->scene->programs[0]);

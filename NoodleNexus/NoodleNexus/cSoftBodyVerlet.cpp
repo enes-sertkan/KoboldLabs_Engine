@@ -342,7 +342,7 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
-	const unsigned int MAX_GLOBAL_ITERATIONS = 4;
+	const unsigned int MAX_GLOBAL_ITERATIONS = 20;
 
 	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
 	{

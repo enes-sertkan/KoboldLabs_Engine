@@ -66,15 +66,15 @@ public:
 
         // Vertical collision check for floor and ceiling.
         // If the particle is below the floor (y = 22), push it up.
-        if (particlePos.y < 22.0f)
-        {
-            correction.y = 22.0f - particlePos.y;
-        }
-        // If above the ceiling (y = 62), push it down.
-        else if (particlePos.y > 62.0f)
-        {
-            correction.y = 62.0f - particlePos.y;
-        }
+        //if (particlePos.y < 0.0f)
+        //{
+        //    correction.y = 0.0f - particlePos.y;
+        //}
+        //// If above the ceiling (y = 62), push it down.
+        //else if (particlePos.y > 100.0f)
+        //{
+        //    correction.y = 100.0f - particlePos.y;
+        //}
 
         return correction;
 	}

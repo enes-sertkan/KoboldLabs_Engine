@@ -75,9 +75,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/objects/slime.ply";
     fileManager->WriteModelFile(&modelInfo, "slime.txt", "XYZNUVRGBA");
 
-    modelInfo.modelName = "ceiling";
-    modelInfo.meshPath = "assets/models/extras/SM_Env_Ceiling_01_xyz_n_rgba_uv.ply";
-    fileManager->WriteModelFile(&modelInfo, "ceiling.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Sphere";
+    modelInfo.meshPath = "assets/models/Sphere_radius_1_xyz_N_uv.ply";
+    fileManager->WriteModelFile(&modelInfo, "sphere.txt", "XYZNUVRGBA");
 
     //Props
     //small
