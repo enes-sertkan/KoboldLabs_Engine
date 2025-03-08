@@ -1,6 +1,7 @@
 #pragma once
 #include "cSoftBodyVerlet.hpp"
 
+
 #include <iostream>
 
 
@@ -299,29 +300,12 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 	return;
 }
 
-void cSoftBodyVerlet::ApplyCollision(double deltaTime)
+void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision)
 {
 	// HACK: Stop any particles that go below the "ground"
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
-		if (pCurrentParticle->position.y < -20.5f)
-		{
-			// HACK: The plane we had is at 0, -50, 0
-			pCurrentParticle->position.y = -20.5f;
-		}
-
-		if (pCurrentParticle->position.x < -20.5f)
-		{
-			// HACK: The plane we had is at 0, -50, 0
-			pCurrentParticle->position.x = -20.5f;
-
-
-			if (pCurrentParticle->position.z < -20.5f)
-			{
-				// HACK: The plane we had is at 0, -50, 0
-				pCurrentParticle->position.z = -20.5f;
-			}
-		}
+		pCurrentParticle->position += sbCollision->ProcessMazeCollision(pCurrentParticle->position);
 	}
 
 	//	this->vec_pParticles[5'000]->position = glm::vec3(0.0f, 30.0f, 0.0f);
@@ -329,26 +313,26 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime)
 		// Collide with a sphere at 20 units above the origin
 		//	with a radius of 5 units.
 		// Check to see if this particle is inside this sphere...
-	for (sParticle* pCurrentParticle : vec_pParticles)
-	{
-		// Slightly off centre... 
-		glm::vec3 sphereCentre = glm::vec3(-1.0f, -30.0f, 1.0f);
-		float sphereRadius = 15.0f;
+//	for (sParticle* pCurrentParticle : vec_pParticles)
+	//{
+	//	// Slightly off centre... 
+	//	glm::vec3 sphereCentre = glm::vec3(-1.0f, -30.0f, 1.0f);
+	//	float sphereRadius = 15.0f;
 
-		float distanceToSphere = glm::distance(pCurrentParticle->position,
-			sphereCentre);
-		if (distanceToSphere < sphereRadius)
-		{
-			// it's 'inside' the sphere
-			// Shift or slide the point along the ray from the centre of the sphere
-			glm::vec3 particleToCentreRay = pCurrentParticle->position - sphereCentre;
-			// Normalize to get the direction
-			particleToCentreRay = glm::normalize(particleToCentreRay);
-			// 
-			pCurrentParticle->position = (particleToCentreRay * sphereRadius) + sphereCentre;
+	//	float distanceToSphere = glm::distance(pCurrentParticle->position,
+	//		sphereCentre);
+	//	if (distanceToSphere < sphereRadius)
+	//	{
+	//		// it's 'inside' the sphere
+	//		// Shift or slide the point along the ray from the centre of the sphere
+	//		glm::vec3 particleToCentreRay = pCurrentParticle->position - sphereCentre;
+	//		// Normalize to get the direction
+	//		particleToCentreRay = glm::normalize(particleToCentreRay);
+	//		// 
+	//		pCurrentParticle->position = (particleToCentreRay * sphereRadius) + sphereCentre;
 
-		}
-	}//for (sParticle* pCurrentParticle
+	//	}
+	//}//for (sParticle* pCurrentParticle
 
 
 

@@ -761,13 +761,14 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     SoftBody* softBody = new SoftBody();
 
-    Object* softObject = scene->sceneObjects[32];
+    Object* softObject = scene->sceneObjects[1];
     softBody->acceleration.y = 0.1;
     softBody->acceleration.x = -1;
     //softBody->acceleration.z = -0.3;
     softBody->yPosToLock = -0.35f;
     softObject->mesh->drawBothFaces = true;
     // . . . . . . . . .
+    softBody->SetMazeToSBCollision(mazeGenerator);
     scene->AddActionToObj(softBody, softObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it

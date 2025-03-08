@@ -4,7 +4,8 @@
 #include "cVAOManager/cVAOManager.h"
 #include "cSoftBodyVerlet.hpp"
 #include <string>
-
+#include "cSoftBodyCollisions.h"
+#include "MazeGenerator.hpp"
 class Object;
 
 class SoftBody : public Action {
@@ -17,6 +18,12 @@ public:
     glm::vec3 acceleration;
     bool wind = true;
     float yPosToLock;
+    SoftBodyCollision* sbCollision = new SoftBodyCollision();
+
+    void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
+    {
+        sbCollision->mazeGenerator = mazeGenerator;
+    }
 
     void Start() override {
         softBody = new cSoftBodyVerlet();
@@ -75,7 +82,7 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
-            softBody->ApplyCollision(deltaTime);
+            softBody->ApplyCollision(deltaTime, sbCollision);
             softBody->SatisfyConstraints();
         
     }

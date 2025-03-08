@@ -436,6 +436,9 @@
     <ClInclude Include="aRotate.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="cSoftBodyCollisions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

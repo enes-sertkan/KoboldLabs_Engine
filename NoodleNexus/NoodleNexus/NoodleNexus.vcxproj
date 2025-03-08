@@ -224,6 +224,7 @@
     <ClInclude Include="cLuaBrain.hpp" />
     <ClInclude Include="cMoveRelativeTime.hpp" />
     <ClInclude Include="cPhysics.h" />
+    <ClInclude Include="cSoftBodyCollisions.h" />
     <ClInclude Include="cSoftBodyVerlet.hpp" />
     <ClInclude Include="cTerrainPathChooser.hpp" />
     <ClInclude Include="CTextureFromBMP.h" />

@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
 #include <vector>
+#include "cSoftBodyCollisions.h"
 
 //#include "cVAOManager/sModelDrawInfo.h"
 #include "cVAOManager/cVAOManager.h"	// for: sModelDrawInfo	
@@ -35,7 +36,7 @@ public:
 	void VerletUpdate(double deltaTime);
 
 	// This is for the ground, hitting something, etc.
-	void ApplyCollision(double deltaTime);
+	void ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision);
 
 	void SatisfyConstraints(void);
 
