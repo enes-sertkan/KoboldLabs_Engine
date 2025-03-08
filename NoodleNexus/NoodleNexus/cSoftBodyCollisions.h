@@ -63,6 +63,20 @@ public:
             correction = glm::vec3(0.0f, 0.0f, distTop);  // push forwards (positive z)
         }
 
+        //FOR FLOOR AND CEILING
+        if (particlePos.y < 22.0f)
+        {
+            correction.y = 22.0f - particlePos.y;
+        }
+        // If above the ceiling (y = 62), push it down.
+        else if (particlePos.y > 62.0f)
+        {
+            correction.y = 62.0f - particlePos.y;
+        }
+
+
+
+
         return correction;
 	}
 
