@@ -768,6 +768,16 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     // . . . . . . . . .
     softBody->SetMazeToSBCollision(mazeGenerator);
     scene->AddActionToObj(softBody, softObject);
+
+
+
+    SoftBody* ropeBody = new SoftBody();
+    ropeBody->acceleration.y = -40;
+    ropeBody->acceleration.x = -5;
+    ropeBody->SetMazeToSBCollision(mazeGenerator);
+    Object* ropeObject = scene->sceneObjects[32];
+    ropeBody->SetMazeToSBCollision(mazeGenerator);
+    scene->AddActionToObj(ropeBody, ropeObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);

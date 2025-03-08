@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Rope
+<filePath> assets/models/Rope.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

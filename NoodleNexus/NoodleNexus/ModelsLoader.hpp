@@ -135,4 +135,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/IcoSphere.ply";
     fileManager->WriteModelFile(&modelInfo, "ISphere.txt", "XYZNUVRGBA");
 
+    //Ico Sphere
+    modelInfo.modelName = "Rope";
+    modelInfo.meshPath = "assets/models/Rope.ply";
+    fileManager->WriteModelFile(&modelInfo, "Rope.txt", "XYZNUVRGBA");
+
 }
