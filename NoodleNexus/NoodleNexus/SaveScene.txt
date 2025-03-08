@@ -403,7 +403,7 @@ screen_quad.txt
 <Model-> Slime
 <Tags->
 <StaticCollision-> false
-<Position-> 205 22 20
+<Position-> 205 25 60
 <Rotation-> 3 0 2
 <Scale-> 9 0 0
 <Visibility-> true

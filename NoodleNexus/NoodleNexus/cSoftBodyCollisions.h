@@ -9,7 +9,7 @@ class SoftBodyCollision
 public:
 	MazeGenerator* mazeGenerator = nullptr;
 
-	glm::vec3 ProcessMazeCollision(glm::vec3& particlePos)
+	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
         glm::vec3 correction(0.0f);
 
