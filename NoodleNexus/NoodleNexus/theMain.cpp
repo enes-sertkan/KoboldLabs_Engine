@@ -759,16 +759,16 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     //chararcter->maze = mazeGenerator;
     //scene->AddActionToObj(chararcter, scene->sceneObjects[0]);
 
-    //SoftBody* softBody = new SoftBody();
+    SoftBody* softBody = new SoftBody();
 
-    //Object* softObject = scene->sceneObjects[1];
-    //softBody->acceleration.y = 0.1;
-    //softBody->acceleration.x = -1;
-    ////softBody->acceleration.z = -0.3;
-    //softBody->yPosToLock = -0.35f;
-    //softObject->mesh->drawBothFaces = true;
-    //// . . . . . . . . .
-    //scene->AddActionToObj(softBody, softObject);
+    Object* softObject = scene->sceneObjects[32];
+    softBody->acceleration.y = 0.1;
+    softBody->acceleration.x = -1;
+    //softBody->acceleration.z = -0.3;
+    softBody->yPosToLock = -0.35f;
+    softObject->mesh->drawBothFaces = true;
+    // . . . . . . . . .
+    scene->AddActionToObj(softBody, softObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
@@ -1061,6 +1061,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[30]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
         scene->sceneObjects[30]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[30]->mesh->bOverrideObjectColour = false;
+        
+        scene->sceneObjects[32]->mesh->textures[0] = "slime.bmp";
+        scene->sceneObjects[32]->mesh->blendRatio[0] = 2;
+        scene->sceneObjects[32]->mesh->bOverrideObjectColour = false;
     }
 
 
@@ -1200,7 +1204,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("uv_mapper.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("frog_diffuse.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("tech.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("slime.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");

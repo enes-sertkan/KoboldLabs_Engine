@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Slime
+<filePath> assets/models/objects/slime.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

@@ -16,6 +16,7 @@ reactor.txt
 table.txt
 light.txt
 Sphere.txt
+slime.txt
 skysphere.txt
 screen_quad.txt
 <--ObjectLoad>
@@ -28,7 +29,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 178 0 -163
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.62551e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -40,7 +41,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 169 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -52,7 +53,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 192 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -64,7 +65,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -76,7 +77,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 170 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 -4.31602e+08 -4.31602e+08
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -88,7 +89,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 193 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 -4.31602e+08 -4.31602e+08
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -100,7 +101,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9.5 -4.31602e+08 -4.31602e+08
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -112,7 +113,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 187 33 486
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -125,7 +126,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 145 56 245
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -138,7 +139,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 536 56 247
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -151,7 +152,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 328 23 8
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -163,7 +164,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 294 21 405
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -175,7 +176,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 326 22 405
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -187,7 +188,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 257 20 64
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -199,7 +200,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 229 20 487
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -211,7 +212,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 242 20 473
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -223,7 +224,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 257 20 64
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -235,7 +236,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 229 20 487
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -247,7 +248,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 242 20 473
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -259,7 +260,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 254 21 486
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -271,7 +272,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 269 20 476
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -283,7 +284,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 287 22 4
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -295,7 +296,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 254 21 486
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -307,7 +308,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 269 20 476
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -319,7 +320,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 287 22 4
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -331,7 +332,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 246 19 14
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -343,7 +344,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 203 18 74
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -355,7 +356,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 254 18 508
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -367,7 +368,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 157 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -379,7 +380,7 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> 180 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -389,11 +390,24 @@ screen_quad.txt
 <Model-> Light
 <Tags->
 <StaticCollision-> false
-<Position-> 205 55 8
-<Rotation-> 0 0 0
-<Scale-> 9 -4.31602e+08 -4.31602e+08
+<Position-> 327 55 489
+<Rotation-> 0 -95 -1
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Slime
+<Model-> Slime
+<Tags->
+<StaticCollision-> false
+<Position-> 205 22 20
+<Rotation-> 3 0 2
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -403,14 +417,13 @@ screen_quad.txt
 <StaticCollision-> false
 <Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 -4.31602e+08 -4.31602e+08
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> 200 3000 197.52 1
+<Position-> 200 3000 197.5 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.0035 1.5 3.40282e+38
