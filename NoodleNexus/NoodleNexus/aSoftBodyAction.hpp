@@ -82,7 +82,7 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
-            softBody->ApplyCollision(deltaTime, sbCollision);
+            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ);
             softBody->SatisfyConstraints();
         
     }

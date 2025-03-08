@@ -300,12 +300,13 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 	return;
 }
 
-void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision)
+void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition)
 {
 	// HACK: Stop any particles that go below the "ground"
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
-		pCurrentParticle->position += sbCollision->ProcessMazeCollision(pCurrentParticle->position);
+		glm::vec3 worldPosition = pCurrentParticle->position + worldPosition;
+		pCurrentParticle->position += sbCollision->ProcessMazeCollision(worldPosition);
 	}
 
 	//	this->vec_pParticles[5'000]->position = glm::vec3(0.0f, 30.0f, 0.0f);
