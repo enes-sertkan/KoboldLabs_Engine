@@ -11,59 +11,61 @@ public:
 
 	glm::vec3 ProcessMazeCollision(glm::vec3& particlePos)
 	{
-        // Make sure we have a valid mazeGenerator.
-        if (!mazeGenerator) {
-            return glm::vec3(0.0f);
-        }
+        glm::vec3 correction(0.0f);
 
-        // Convert the particle's world position to grid coordinates.
-        glm::vec2 gridPos = mazeGenerator->WorldToGrid(particlePos);
-        int gridX = static_cast<int>(gridPos.x);
-        int gridY = static_cast<int>(gridPos.y);
-
-        // If this grid cell is not a wall, then no collision response is needed.
-        if (!mazeGenerator->IsWall(gridX, gridY))
+        // Horizontal collision check with maze walls.
+        if (mazeGenerator)
         {
-            return glm::vec3(0.0f);
+            // Convert the world position to grid coordinates.
+            glm::vec2 gridPos = mazeGenerator->WorldToGrid(particlePos);
+            int gridX = static_cast<int>(gridPos.x);
+            int gridY = static_cast<int>(gridPos.y);
+
+            // If the grid cell is a wall, compute the horizontal correction.
+            if (mazeGenerator->IsWall(gridX, gridY))
+            {
+                // The TILE_SIZE is assumed to be 35.0f (i.e. 1.0 * 7.0 * 5.0)
+                const float TILE_SIZE = 35.0f;
+
+                // Determine cell boundaries in world space.
+                float cellMinX = gridX * TILE_SIZE;
+                float cellMaxX = (gridX + 1) * TILE_SIZE;
+                float cellMinZ = gridY * TILE_SIZE;
+                float cellMaxZ = (gridY + 1) * TILE_SIZE;
+
+                // Calculate distances from the particle position to each side of the cell.
+                float distLeft = particlePos.x - cellMinX;
+                float distRight = cellMaxX - particlePos.x;
+                float distBack = particlePos.z - cellMinZ;
+                float distFront = cellMaxZ - particlePos.z;
+
+                // Determine which side has the smallest penetration.
+                float minDist = distLeft;
+                correction.x = -distLeft;  // push left
+
+                if (distRight < minDist)
+                {
+                    minDist = distRight;
+                    correction.x = distRight;  // push right
+                    correction.z = 0.0f;
+                }
+                if (distBack < minDist)
+                {
+                    minDist = distBack;
+                    correction.x = 0.0f;
+                    correction.z = -distBack;  // push backward (negative z)
+                }
+                if (distFront < minDist)
+                {
+                    minDist = distFront;
+                    correction.x = 0.0f;
+                    correction.z = distFront;  // push forward (positive z)
+                }
+            }
         }
 
-        // Assume the TILE_SIZE is defined as in WorldToGrid (1.0f * 7.0f * 5.0f = 35.0f)
-        //THATS REALLY BAD TODO FIX
-        const float TILE_SIZE = 35.0f;
-
-        // Calculate the boundaries of the cell in world coordinates.
-        float cellMinX = gridX * TILE_SIZE;
-        float cellMaxX = (gridX + 1) * TILE_SIZE;
-        float cellMinZ = gridY * TILE_SIZE;
-        float cellMaxZ = (gridY + 1) * TILE_SIZE;
-
-        // Determine distances from the particle position to each cell boundary.
-        float distLeft = particlePos.x - cellMinX;
-        float distRight = cellMaxX - particlePos.x;
-        float distBottom = particlePos.z - cellMinZ;
-        float distTop = cellMaxZ - particlePos.z;
-
-        // Determine the smallest penetration distance and choose the correction direction.
-        float minDist = distLeft;
-        glm::vec3 correction(-distLeft, 0.0f, 0.0f);  // push left
-
-        if (distRight < minDist)
-        {
-            minDist = distRight;
-            correction = glm::vec3(distRight, 0.0f, 0.0f);  // push right
-        }
-        if (distBottom < minDist)
-        {
-            minDist = distBottom;
-            correction = glm::vec3(0.0f, 0.0f, -distBottom);  // push backwards (negative z)
-        }
-        if (distTop < minDist)
-        {
-            minDist = distTop;
-            correction = glm::vec3(0.0f, 0.0f, distTop);  // push forwards (positive z)
-        }
-
-        //FOR FLOOR AND CEILING
+        // Vertical collision check for floor and ceiling.
+        // If the particle is below the floor (y = 22), push it up.
         if (particlePos.y < 22.0f)
         {
             correction.y = 22.0f - particlePos.y;
@@ -73,9 +75,6 @@ public:
         {
             correction.y = 62.0f - particlePos.y;
         }
-
-
-
 
         return correction;
 	}
