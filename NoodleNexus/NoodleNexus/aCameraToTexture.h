@@ -40,6 +40,7 @@ public:
 	{
 	//	std::cout << object->mesh->positionXYZ.x << " " << std::endl;
 		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1920, 1080));
+		camera->drawDistance = 150;
 		camera->scene = object->scene;
 		DrawCameraViewToFramebufer(camera, 0, myFBO.ID);
 		//printf("WOW, you are UPDATING\n");

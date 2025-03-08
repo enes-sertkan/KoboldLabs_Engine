@@ -786,21 +786,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     CameraToTexture* textureCamera1 = new CameraToTexture();
     CameraToTexture* textureCamera2 = new CameraToTexture();
-    //CameraToTexture* textureCamera3 = new CameraToTexture();
-    //CameraToTexture* textureCamera4 = new CameraToTexture();
-    ////CameraToTexture* textureCamera5 = new CameraToTexture();
+
 
     textureCamera1->textureName = "securityCamera";
     textureCamera2->textureName = "camera1";
-    //textureCamera3->textureName = "camera2";
-    //textureCamera4->textureName = "camera3";
-    ////textureCamera5->textureName = "camera5";
 
     securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
     scene->AddActionToObj(textureCamera2, cameraObj2);
-    //scene->AddActionToObj(textureCamera3, cameraObj3);
-    //scene->AddActionToObj(textureCamera4, cameraObj4);
-    //scene->AddActionToObj(textureCamera5, cameraObj5);
+
+
 
 
 
@@ -808,23 +802,12 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
     screenSwitcher->AddTexture("camera1");
-    //screenSwitcher->AddTexture("camera2");
-    //screenSwitcher->AddTexture("camera3");
-    //screenSwitcher->AddTexture("camera4");
-    //screenSwitcher->AddTexture("camera5");
-    //screenSwitcher->AddTexture("binaries.bmp");
-    //screenSwitcher->AddTexture("uv_mapper.bmp");
+    screenSwitcher->AddTexture("securityCamera");
+    screenSwitcher->AddTextureLayer2("cam_top.bmp");
+    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
 
-    //
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
 
-    // screen 1
-    ScreenTextureSwitch* screenSwitcher1 = new ScreenTextureSwitch();
-
-    screenSwitcher1->AddTexture("camera1");
-
-    //
-    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[6]);
 
 
     //FRONT SCREEN 2
@@ -835,24 +818,20 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
   //  scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[4]);
 
-    scene->sceneObjects[4]->mesh->textures[0] = "cam_top.bmp";
-    scene->sceneObjects[4]->mesh->blendRatio[0] = 0.5f;
-    scene->sceneObjects[4]->mesh->textureFillType[0] = 0;
-     scene->sceneObjects[4]->mesh->textures[1] = "screen_broken.bmp";
-    scene->sceneObjects[4]->mesh->blendRatio[1] = 0.2f;
-    scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+ 
 
-    scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
-    scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
-     scene->sceneObjects[5]->mesh->textures[1] = "cam_top.bmp";
-    scene->sceneObjects[5]->mesh->blendRatio[1] = 1.f;
-    scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+   scene->sceneObjects[5]->mesh->textures[0] = "tv_glitch.bmp";
+   scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
+   scene->sceneObjects[5]->mesh->textureSpeed.x = 10;
+   scene->sceneObjects[5]->mesh->textures[1] = "screen_broken.bmp";
+   scene->sceneObjects[5]->mesh->blendRatio[1] = 0.75f;
+   scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
-    scene->sceneObjects[6]->mesh->textureFillType[0] = 0;
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
+    
      scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
-    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2f;
+    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.75f;
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
     // scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
@@ -1230,6 +1209,9 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Reactor_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("cam_top2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("tv_glitch.bmp");
+
 
     std::cout << "Skybox Texture Load Start" << std::endl;
 

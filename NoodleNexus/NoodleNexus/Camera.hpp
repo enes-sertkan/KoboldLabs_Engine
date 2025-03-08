@@ -23,6 +23,7 @@ struct Camera {
     float nearClip;
     float farClip;
     bool isPerspective;
+    float drawDistance= 750.f;
 
     // Constructor
     Camera(glm::vec3 startPosition, glm::vec3 startRotation, glm::vec2 res, bool perspective = true)

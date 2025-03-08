@@ -8,6 +8,7 @@ class Object;
 class ScreenTextureSwitch : public Action {
 public:
     std::vector<std::string> cameraTextures;
+    std::vector<std::string> layer2Textures;
 
 
      void AddTexture(std::string texture)
@@ -16,6 +17,12 @@ public:
 
     }
 
+     void AddTextureLayer2(std::string texture)
+     {
+         layer2Textures.push_back(texture);
+
+     }
+
 
     virtual  void Start() {
        
@@ -23,6 +30,12 @@ public:
         if (!cameraTextures.empty()) {
             currentTextureIndex = 0;
             object->mesh->textures[0] = cameraTextures[currentTextureIndex];
+            object->mesh->bOverrideObjectColour = false;
+            if (!layer2Textures.empty())
+            {
+                object->mesh->textures[1] = layer2Textures[currentTextureIndex];
+                object->mesh->blendRatio[1] = 1.f;
+            }
         }
     }
 
@@ -37,7 +50,12 @@ public:
             timeSinceLastSwitch = 0.0f;
             currentTextureIndex = (currentTextureIndex + 1) % cameraTextures.size();
             object->mesh->textures[0] = cameraTextures[currentTextureIndex];
-            
+
+            if (layer2Textures.size() >= currentTextureIndex)
+            {
+                object->mesh->textures[1] = layer2Textures[currentTextureIndex];
+
+            }
         }
 
 
@@ -52,7 +70,7 @@ public:
 
 private:
   // List of camera view textures
-    float switchInterval=3.5;  // Time in seconds before switching views
+    float switchInterval=1.5;  // Time in seconds before switching views
     float timeSinceLastSwitch=0;
     int currentTextureIndex=0;
 
