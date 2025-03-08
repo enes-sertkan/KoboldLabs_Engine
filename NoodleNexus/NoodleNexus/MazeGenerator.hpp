@@ -47,7 +47,7 @@ public:
     BazeMazeCharacter* thesChar = nullptr;
 
     glm::vec2 WorldToGrid(const glm::vec3& worldPos) const {
-        const float TILE_SIZE = 1.0f * 7.0f * 5.0f; // Match GridToWorld scaling
+        const float TILE_SIZE = 1.0f * 7.0f * 4.0f; // Match GridToWorld scaling
         int gridCol = static_cast<int>(worldPos.x / TILE_SIZE);
         int gridRow = static_cast<int>(worldPos.z / TILE_SIZE);
         return glm::vec2(gridCol, gridRow);

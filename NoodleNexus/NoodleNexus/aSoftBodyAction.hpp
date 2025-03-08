@@ -34,7 +34,7 @@ public:
         object->scene->vaoManager->CloneMeshToDynamicVAO(SBMeshName, drawInfo, object->scene->programs[0]);
     
         softBody->CreateSoftBody(drawInfo);   
-
+        softBody->CreateRandomBracing(300, 0.8f);
        
         object->mesh->modelFileName = SBMeshName;
         softBody->acceleration = acceleration;
@@ -44,16 +44,29 @@ public:
 
     void Update() override {
     
-        if (glfwGetKey(object->scene->window, GLFW_KEY_T) == GLFW_PRESS)
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS)
         {
-            wind = true;
+            softBody->acceleration.x = 10.f;
+            softBody->acceleration.z = 0.f;
+        
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+        {
+            softBody->acceleration.x = -10.f;
+            softBody->acceleration.z = 0.f;
         }
 
-        if (glfwGetKey(object->scene->window, GLFW_KEY_Y) == GLFW_PRESS)
+        // Left pitches negative (rotate around Y a negative value)
+        if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS)
         {
-            wind = false;
+            softBody->acceleration.z = 10.f;
+            softBody->acceleration.x = 0.f;
         }
-
+        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS)
+        {
+            softBody->acceleration.z = -10.f;
+            softBody->acceleration.x = 0.f;
+        }
 
         //if (wind)
         //{

@@ -473,7 +473,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         if (dotProduct < fovThreshold) {
             //std::cout << "dot product: " << dotProduct << std::endl;
             //std::cout << "fov Threshold: " << fovThreshold << std::endl;
-            return; // Object is outside the narrower visible area
+          //  return; // Object is outside the narrower visible area
         }
 
     }
