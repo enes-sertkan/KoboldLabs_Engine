@@ -25,7 +25,7 @@ public:
             // If the grid cell is a wall, compute the horizontal correction.
             if (mazeGenerator->IsWall(gridY, gridX))
             {
-                std::cout << "inside the wall gridX: " << gridX << " gridY: " << gridY << std::endl;
+                //std::cout << "inside the wall gridX: " << gridX << " gridY: " << gridY << std::endl;
                 // The TILE_SIZE is assumed to be 35.0f (i.e. 1.0 * 7.0 * 5.0)
              
 

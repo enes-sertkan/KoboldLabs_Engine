@@ -110,6 +110,8 @@ public:
 	// Max update time is 60Hz
 	const double MAX_DELTATIME = 1.0 / 60.0;
 
+	void LockParticlesOnX(float xPos, bool lower);
+	void LockParticlesOnZ(float xPos, bool lower);
 	void LockParticlesOnY(float xPos, bool lower);
 
 	// This just gets the average of all the points (based on location)

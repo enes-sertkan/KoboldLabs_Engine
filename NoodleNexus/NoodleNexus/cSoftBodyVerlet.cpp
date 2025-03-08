@@ -285,6 +285,30 @@ void cSoftBodyVerlet::LockParticlesOnY(float yPos, bool lower)
 
 }
 
+void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
+{
+	for (sParticle* particle : vec_pParticles)
+	{
+		if (lower)
+		{
+			if (particle->position.z < yPos)
+			{
+				std::cout << "Particle Locked at Z: " << particle->position.z << std::endl;
+				particle->bIsFixed_DontUpdate = true;
+			}
+		}
+		else
+		{
+			if (particle->position.z > yPos)
+			{
+				std::cout << "Particle Locked at Z: " << particle->position.z << std::endl;
+				particle->bIsFixed_DontUpdate = true;
+			}
+		}
+	}
+
+}
+
 
 
 void cSoftBodyVerlet::VerletUpdate(double deltaTime)

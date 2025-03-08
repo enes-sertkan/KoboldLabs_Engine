@@ -776,7 +776,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->acceleration.x = -5;
     ropeBody->SetMazeToSBCollision(mazeGenerator);
     Object* ropeObject = scene->sceneObjects[32];
-    ropeBody->SetMazeToSBCollision(mazeGenerator);
+    //error
+    //ropeBody->softBody->LockParticlesOnZ(1, true);
     scene->AddActionToObj(ropeBody, ropeObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
@@ -864,10 +865,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 //    scene->AddActionToObj(screenSwitcher4, scene->sceneObjects[6]);
 
 
-    //Object* playerObject = scene->sceneObjects[15];
+    //Object* playerObject = scene->sceneObjects[31];
 
     //// Add the player camera action (with an offset for camera positioning)
-    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(0.0f, 10.0f, 0.0f));
+    //aPlayerCamera* playerCameraAction = new aPlayerCamera(::g_pFlyCamera, glm::vec3(-10.0f, 20.0f, 0.0f));
     //scene->AddActionToObj(playerCameraAction, playerObject);
 
 
@@ -1318,6 +1319,10 @@ int main(void)
 
     scene->Start();
     secutityRoomScene->Start();
+
+    SoftBody
+    ropeBody->SetMazeToSBCollision(mazeGenerator);
+
 
     //  Turn on the blend operation
     glEnable(GL_BLEND);
