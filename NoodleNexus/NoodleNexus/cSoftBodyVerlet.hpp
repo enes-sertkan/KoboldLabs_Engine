@@ -36,7 +36,7 @@ public:
 	void VerletUpdate(double deltaTime);
 
 	// This is for the ground, hitting something, etc.
-	void ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition);
+	void ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale);
 
 	void SatisfyConstraints(void);
 
