@@ -780,26 +780,26 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     Object* cameraObj2 = scene->sceneObjects[7];
-    Object* cameraObj3 = scene->sceneObjects[8];
-    Object* cameraObj4 = scene->sceneObjects[9];
+    //Object* cameraObj3 = scene->sceneObjects[8];
+    //Object* cameraObj4 = scene->sceneObjects[9];
     ////Object* cameraObj5 = scene->sceneObjects[23];
 
     CameraToTexture* textureCamera1 = new CameraToTexture();
     CameraToTexture* textureCamera2 = new CameraToTexture();
-    CameraToTexture* textureCamera3 = new CameraToTexture();
-    CameraToTexture* textureCamera4 = new CameraToTexture();
+    //CameraToTexture* textureCamera3 = new CameraToTexture();
+    //CameraToTexture* textureCamera4 = new CameraToTexture();
     ////CameraToTexture* textureCamera5 = new CameraToTexture();
 
     textureCamera1->textureName = "securityCamera";
     textureCamera2->textureName = "camera1";
-    textureCamera3->textureName = "camera2";
-    textureCamera4->textureName = "camera3";
+    //textureCamera3->textureName = "camera2";
+    //textureCamera4->textureName = "camera3";
     ////textureCamera5->textureName = "camera5";
 
     securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
     scene->AddActionToObj(textureCamera2, cameraObj2);
-    scene->AddActionToObj(textureCamera3, cameraObj3);
-    scene->AddActionToObj(textureCamera4, cameraObj4);
+    //scene->AddActionToObj(textureCamera3, cameraObj3);
+    //scene->AddActionToObj(textureCamera4, cameraObj4);
     //scene->AddActionToObj(textureCamera5, cameraObj5);
 
 
@@ -808,8 +808,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
     screenSwitcher->AddTexture("camera1");
-    screenSwitcher->AddTexture("camera2");
-    screenSwitcher->AddTexture("camera3");
+    //screenSwitcher->AddTexture("camera2");
+    //screenSwitcher->AddTexture("camera3");
     //screenSwitcher->AddTexture("camera4");
     //screenSwitcher->AddTexture("camera5");
     //screenSwitcher->AddTexture("binaries.bmp");
@@ -817,6 +817,14 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     //
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+
+    // screen 1
+    ScreenTextureSwitch* screenSwitcher1 = new ScreenTextureSwitch();
+
+    screenSwitcher1->AddTexture("camera1");
+
+    //
+    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[6]);
 
 
     //FRONT SCREEN 2
@@ -829,7 +837,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     scene->sceneObjects[4]->mesh->textures[0] = "cam_top.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[0] = 0.5f;
-
+    scene->sceneObjects[4]->mesh->textureFillType[0] = 0;
      scene->sceneObjects[4]->mesh->textures[1] = "screen_broken.bmp";
     scene->sceneObjects[4]->mesh->blendRatio[1] = 0.2f;
     scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
@@ -841,7 +849,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
     scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
-    scene->sceneObjects[4]->mesh->textureFillType[0] = 0;
+    scene->sceneObjects[6]->mesh->textureFillType[0] = 0;
     scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
      scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
     scene->sceneObjects[6]->mesh->blendRatio[1] = 0.2f;
