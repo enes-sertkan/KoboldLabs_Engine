@@ -32,7 +32,7 @@ public:
         object->mesh->modelFileName = SBMeshName;
         softBody->acceleration = acceleration;
 
-        softBody->LockParticlesOnY(yPosToLock, true);
+        //softBody->LockParticlesOnY(yPosToLock, true);
     }
 
     void Update() override {
