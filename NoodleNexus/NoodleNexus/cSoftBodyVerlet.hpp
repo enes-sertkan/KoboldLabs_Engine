@@ -23,6 +23,7 @@ public:
 
 	void UpdateNormals(void);
 
+	void CreateConstraintsBetweenCloseVertices(float maxDistance);
 
 	// Create random constraints within the object to 'brace' the shape
 	// These are invisible, though
@@ -71,7 +72,7 @@ public:
 		// How far away they are supposed to be 'at rest'
 		float restLength = 2.0f;
 
-		unsigned int maxIterations = 5;
+		unsigned int maxIterations = 3;
 
 		// if false, this isnt' checked
 		// Like if the constraint is 'broken'

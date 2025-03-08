@@ -39,6 +39,8 @@ public:
         object->mesh->modelFileName = SBMeshName;
         softBody->acceleration = acceleration;
 
+        softBody->CreateConstraintsBetweenCloseVertices(0.01f);
+
         //softBody->LockParticlesOnY(yPosToLock, true);
     }
 
@@ -95,8 +97,9 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
-            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
             softBody->SatisfyConstraints();
+            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
+           
         
     }
 

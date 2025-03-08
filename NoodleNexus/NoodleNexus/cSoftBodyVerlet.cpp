@@ -16,6 +16,36 @@ cSoftBodyVerlet::~cSoftBodyVerlet()
 }
 
 
+void cSoftBodyVerlet::CreateConstraintsBetweenCloseVertices(float maxDistance)
+{
+	size_t numParticles = vec_pParticles.size();
+	for (size_t i = 0; i < numParticles; ++i)
+	{
+		for (size_t j = i + 1; j < numParticles; ++j)
+		{
+			// Compute distance between the two particles
+			float distance = glm::distance(vec_pParticles[i]->position, vec_pParticles[j]->position);
+
+			// If the distance is less than the threshold, create a constraint
+			if (distance < maxDistance)
+			{
+				sConstraint* newConstraint = new sConstraint();
+				newConstraint->pParticleA = vec_pParticles[i];
+				newConstraint->pParticleB = vec_pParticles[j];
+				newConstraint->restLength = 0.f; // Set the rest length to the current distance
+				newConstraint->bIsActive = true;  // Make sure the constraint is active
+				// You might also want to set other properties (like maxIterations, bIsBreakable, etc.)
+
+				vec_pConstraints.push_back(newConstraint);
+			}
+			
+		}
+	}
+	//vec_pConstraints[vec_pConstraints.size() - 1]->bIsActive = true;
+	//vec_pConstraints[vec_pConstraints.size() - 1]->pParticleA->bIsFixed_DontUpdate = true;
+	//vec_pConstraints[vec_pConstraints.size() - 1]->pParticleB->bIsFixed_DontUpdate = true;
+}
+
 // This is for loading the original model
 bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInitalTransform /*=glm::mat4(1.0f)*/)
 {
@@ -284,8 +314,9 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		{
 
 			// This is the actual Verlet integration step (notice there isn't a velocity)
-			pCurrentParticle->position += (current_pos - old_pos)
-				+ (this->acceleration * (float)(deltaTime * deltaTime));
+			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
+			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor;
+			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
 
 			pCurrentParticle->old_position = current_pos;
 
@@ -306,7 +337,15 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
 		glm::vec3 particleWorldPosition = scale * pCurrentParticle->position + worldPosition;
-		pCurrentParticle->position += sbCollision->ProcessMazeCollision(particleWorldPosition);
+		glm::vec3 posChange = sbCollision->ProcessMazeCollision(particleWorldPosition)/ scale; 
+
+		pCurrentParticle->position += posChange;
+		
+	/*	if (posChange!=glm::vec3(0.f))
+		{
+			pCurrentParticle->old_position = pCurrentParticle->position;
+
+		}*/
 	}
 
 	//	this->vec_pParticles[5'000]->position = glm::vec3(0.0f, 30.0f, 0.0f);
@@ -383,28 +422,31 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			}
 
 
+			if (pCurConstraint->restLength == 0)
+			{
+				glm::vec3 averagePos = (pX1->position + pX2->position) * 0.5f;
+				pX1->position = averagePos;
+				pX2->position = averagePos;
+				this->cleanZeros(pX1->position);
+				this->cleanZeros(pX2->position);
+				continue;
+			}
+
 			float diff = (deltaLength - pCurConstraint->restLength) / deltaLength;
+			float exponent = 1.5f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
+			float nonLinearDiff = (diff >= 0.0f ? pow(diff, exponent) : -pow(-diff, exponent));
 
-			// If we were having this 'tear' or break apart, 
-			//	you could check some maximum length and if it's 'too long'
-			//	then the constraint 'breaks'
-			// Handle this by:
-			// - Setting a bool (where it doesn't check the constraint any more)
-			// - Remove the constraint (but removing from a vector is sketchy...)
 
-//				if ( diff > 0.1f )
-//				{
-//					pCurConstraint->bIsActive = false;
-//				}
+
 
 			// Making this non-one, will change how quickly the objects move together
 			// For example, making this < 1.0 will make it "bouncier"
-			float tightnessFactor = 1.0f;
+			float tightnessFactor = 1.f;
 			if (!pX1->bIsFixed_DontUpdate)
-			pX1->position += delta * 0.5f * diff * tightnessFactor;
+			pX1->position += delta * 0.5f * nonLinearDiff * tightnessFactor;
 
 			if (!pX2->bIsFixed_DontUpdate)
-			pX2->position -= delta * 0.5f * diff * tightnessFactor;
+			pX2->position -= delta * 0.5f * nonLinearDiff * tightnessFactor;
 
 			this->cleanZeros(pX1->position);
 			this->cleanZeros(pX2->position);
@@ -460,7 +502,7 @@ void cSoftBodyVerlet::cleanZeros(glm::vec3& value)
 //		{
 //			int stop = 0;
 //		}
-//
+//z
 //		CVector& x1 = this->m_vec_x[indexA];
 //		CVector& x2 = this->m_vec_x[indexB];
 //		CVector delta = x2 - x1;

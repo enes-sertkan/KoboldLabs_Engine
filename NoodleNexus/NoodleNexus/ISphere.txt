@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> ISphere
+<filePath> assets/models/IcoSphere.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
