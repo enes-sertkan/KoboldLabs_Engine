@@ -773,11 +773,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     SoftBody* ropeBody = new SoftBody();
     ropeBody->acceleration.y = -40;
-    ropeBody->acceleration.x = -5;
+    ropeBody->acceleration.x = -40;
     ropeBody->SetMazeToSBCollision(mazeGenerator);
+
     Object* ropeObject = scene->sceneObjects[32];
     //error
-    //ropeBody->softBody->LockParticlesOnZ(1, true);
+    ropeBody->isLockOnZ = true;
+    ropeBody->zLockPos = -0.1f;
+    ropeBody->checkGreaterZLock = false;
+
     scene->AddActionToObj(ropeBody, ropeObject);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
@@ -1320,9 +1324,7 @@ int main(void)
     scene->Start();
     secutityRoomScene->Start();
 
-    SoftBody
-    ropeBody->SetMazeToSBCollision(mazeGenerator);
-
+ 
 
     //  Turn on the blend operation
     glEnable(GL_BLEND);

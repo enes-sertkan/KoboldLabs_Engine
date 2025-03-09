@@ -16,6 +16,9 @@ public:
     std::string originalMeshName;
     std::string SBMeshName;
     glm::vec3 acceleration;
+    bool isLockOnZ = false;
+    float zLockPos = 0.f;
+    bool checkGreaterZLock = true;
     bool wind = true;
     float yPosToLock;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
@@ -34,6 +37,7 @@ public:
         object->scene->vaoManager->CloneMeshToDynamicVAO(SBMeshName, drawInfo, object->scene->programs[0]);
     
         softBody->CreateSoftBody(drawInfo);   
+        if (!isLockOnZ)//BAD CODE BAD CODE
         softBody->CreateRandomBracing(300, 0.8f);
        
         object->mesh->modelFileName = SBMeshName;
@@ -41,6 +45,8 @@ public:
 
         softBody->CreateConstraintsBetweenCloseVertices(0.01f);
 
+        if (isLockOnZ)
+            softBody->LockParticlesOnY(zLockPos, checkGreaterZLock);
         //softBody->LockParticlesOnY(yPosToLock, true);
     }
 
