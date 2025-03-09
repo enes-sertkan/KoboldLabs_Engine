@@ -457,7 +457,7 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			}
 
 			float diff = (deltaLength - pCurConstraint->restLength) / deltaLength;
-			float exponent = 1.5f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
+			float exponent = 2.f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
 			float nonLinearDiff = (diff >= 0.0f ? pow(diff, exponent) : -pow(-diff, exponent));
 
 
