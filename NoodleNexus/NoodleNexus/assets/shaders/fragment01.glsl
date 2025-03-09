@@ -71,6 +71,9 @@ uniform float speedX;      // Speed in the X direction
 uniform float speedY;      // Speed in the Y direction
 
 
+uniform float zoomPower;      // Power of zoom on texture
+
+
 
 vec4 compositeOver(vec4 bottom, vec4 top) {
 
@@ -88,6 +91,14 @@ void main()
 {
 
  vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
+
+vec2 center = vec2(0.5);
+float scale = 1.0 + zoomPower;
+movingUV = (movingUV - center) / scale + center;
+
+
+
+
 
 
 
@@ -137,17 +148,7 @@ void main()
 	//I don't think we'll need blending in the future.
 	//but if we'l need it, we'll wigure it out.
 
-//		uniform sampler2D texture00;
-//		uniform sampler2D texture01;
-//		uniform sampler2D texture02;
-//		uniform sampler2D texture03;
-//		uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
-	
-	//	vec3 texColour00 = texture( texture00, movingUV.st ).rgb;
-//		vec3 texColour01 = texture( texture01, movingUV.st ).rgb;	
-	//	vec3 texColour02 = texture( texture02, movingUV.st ).rgb;	
-//		vec3 texColour03 = texture( texture03, movingUV.st ).rgb;	
-		
+
 
 		vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
 		vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
@@ -161,20 +162,13 @@ void main()
 		layeredColor = compositeOver(layeredColor, tex3);
 		vertexColour = layeredColor.rgb;
 
-		// All these ratios should add up to 1.0
-		//vertexColour.rgb =   (texColour00.rgb * texRatio_0_to_3.x)
-		//                   + (texColour01.rgb * texRatio_0_to_3.y)
-		//                   + (texColour02.rgb * texRatio_0_to_3.z)
-		 //                  + (texColour03.rgb * texRatio_0_to_3.w);
-				
-		// Use #2 texture to modulate the 1st texture		
-//		vertexColour.rgb =   (texColour03.rgb * texColour02.r) bUseStencilTexture
-//		                   + (texColour00.rgb * (1.0f - texColour02.r));
 						   
 					   
 	} 
 
 	}
+
+
 	
 	// Use lighting?
 	if ( bDoNotLight )

@@ -23,7 +23,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 // WE call these (not GLFW)
-void handleKeyboardAsync(GLFWwindow* window, Scene* scene);
+void handleKeyboardAsync(GLFWwindow* window,Object* screen_quad,  Scene* scene);
 void handleMouseAsync(GLFWwindow* window);
 
 // Can call this from anything that has this header file

@@ -90,7 +90,7 @@ void handleMouseAsync(GLFWwindow* window)
     return;
 }
 
-void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
+void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
 {
     const float CAMERA_MOVE_SPEED = 1.f;
     const float CAMERA_TURN_SPEED = 0.6f;
@@ -105,12 +105,30 @@ void handleKeyboardAsync(GLFWwindow* window , Scene* scene)
     {
         scene->isFlyCamera = true;
     }
+    if (screen_quad!=nullptr)
+    if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+    {
+        if (screen_quad->mesh->zoomPower >= 1.f)
+            screen_quad->mesh->zoomPower = 1.f;
+        else
+            screen_quad->mesh->zoomPower += scene->deltaTime;
 
+    }
+    else
+    {
+        if (screen_quad->mesh->zoomPower <= 0.f)
+            screen_quad->mesh->zoomPower = 0.f;
+        else
+            screen_quad->mesh->zoomPower -= scene->deltaTime;
+    }
 
     if ( isShiftDown(window) )
     {
         // Keys move the target
     }
+
+
+
 
     if (isControlDown(window) ) 
     {

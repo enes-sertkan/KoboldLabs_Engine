@@ -22,7 +22,7 @@ private:
 public:
 	std::string textureName;
 	cFBO_RGB_depth myFBO;
-
+	float drawistance = 15.f;
 
 	virtual void Start()
 	{
@@ -40,7 +40,7 @@ public:
 	{
 	//	std::cout << object->mesh->positionXYZ.x << " " << std::endl;
 		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1920, 1080));
-		camera->drawDistance = 10;
+		camera->drawDistance = drawistance;
 		camera->scene = object->scene;
 		DrawCameraViewToFramebufer(camera, 0, myFBO.ID);
 		//printf("WOW, you are UPDATING\n");

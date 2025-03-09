@@ -721,15 +721,17 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
+Object* screen_quad = nullptr;
+
 void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
 
 
-    Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
-    obj->mesh->textures[0] = "main_camera";
-    obj->mesh->blendRatio[0] = 1.f;
+    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
+    screen_quad->mesh->textures[0] = "main_camera";
+    screen_quad->mesh->blendRatio[0] = 1.f;
   //  obj->mesh->textures[1] = "screen_broken.bmp";
   //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
@@ -766,7 +768,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     //Object* securityLight = securityRoomScene->SetLight(scene->lightManager, 0, glm::vec4(0.f, 10.f, 0.f, 1.f), glm::vec4(1, 1, 1, 1), glm::vec3(1, 1, 1), glm::vec4(0, -1, 0, 0), glm::vec3(1, 0, 0), 1);
     
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
-    obj->isTemporary = true;
+    screen_quad->isTemporary = true;
 
     mazeGenerator->generateMaze();
     mazeSecurity->generateMaze();
@@ -826,7 +828,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     CameraToTexture* textureCamera2 = new CameraToTexture();
     CameraToTexture* textureCamera3 = new CameraToTexture();
 
-
+    textureCamera1->drawistance = 100.f;
     textureCamera1->textureName = "securityCamera";
     textureCamera2->textureName = "camera1";
     textureCamera3->textureName = "securityCamera2";
@@ -1460,7 +1462,7 @@ int main(void)
 
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
-        handleKeyboardAsync(window, scene);
+        handleKeyboardAsync(window,screen_quad, scene);
         handleMouseAsync(window);
 
 

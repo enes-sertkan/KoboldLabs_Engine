@@ -533,6 +533,8 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     GLint speedY_UL = glGetUniformLocation(program, "speedY");
     glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
 
+    GLint zoomPower_UL = glGetUniformLocation(program, "zoomPower");
+    glUniform1f(zoomPower_UL, pCurMesh->zoomPower);
 
 
     GLint bNightMode = glGetUniformLocation(program, "bNightMode");
