@@ -828,7 +828,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     CameraToTexture* textureCamera2 = new CameraToTexture();
     CameraToTexture* textureCamera3 = new CameraToTexture();
 
-    textureCamera1->drawistance = 100.f;
+    textureCamera1->drawistance = 50.f;
+    textureCamera2->drawistance = 100.f;
+    textureCamera3->drawistance = 500.f;
     textureCamera1->textureName = "securityCamera";
     textureCamera2->textureName = "camera1";
     textureCamera3->textureName = "securityCamera2";
