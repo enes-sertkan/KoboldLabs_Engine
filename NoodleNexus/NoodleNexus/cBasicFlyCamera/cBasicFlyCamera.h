@@ -10,6 +10,7 @@ class Scene;
 class cBasicFlyCamera
 {
 public:
+	bool nightMode = false;
 	Scene* scene;
 
 	cBasicFlyCamera();

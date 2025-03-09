@@ -852,7 +852,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     screenSwitcher->AddTexture("securityCamera2");
     screenSwitcher->AddTextureLayer2("cam_top.bmp");
     screenSwitcher->AddTextureLayer2("cam_top2.bmp");
-    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
+    screenSwitcher->AddTextureLayer2("cam_top3.bmp");
 
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
 
@@ -1262,6 +1262,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top2.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("cam_top3.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tv_glitch.bmp");
 
 
@@ -1347,8 +1348,7 @@ int main(void)
     SkySphere->mesh->transperency = 1;
 
     scene->skybox = SkySphere;
-    cameraScene->skybox = scene->skybox;
-    secutityRoomScene->skybox = scene->skybox;
+
    
 
     glClearColor(0.0f, 0.0f, 0.2f, 1.0f);

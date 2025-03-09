@@ -122,6 +122,17 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
             screen_quad->mesh->zoomPower -= scene->deltaTime;
     }
 
+
+
+    if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+    {
+        scene->fCamera->nightMode = true;
+    }
+    else
+    {
+        scene->fCamera->nightMode = false;
+    }
+
     if ( isShiftDown(window) )
     {
         // Keys move the target
