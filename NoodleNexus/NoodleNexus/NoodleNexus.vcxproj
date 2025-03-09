@@ -207,6 +207,7 @@
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRotate.h" />
+    <ClInclude Include="aRotationWithMinutes.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />

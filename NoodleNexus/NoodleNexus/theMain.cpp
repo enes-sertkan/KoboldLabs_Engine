@@ -77,6 +77,8 @@
 #include "aMainCamera.hpp"
 #include "aRotate.h"
 #include "aConnectSoftBodToObj.hpp"
+#include "aRotationWithMinutes.hpp"
+
  Scene* currentScene=nullptr;
 
 
@@ -722,7 +724,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
-    MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, scene->lightManager);
+    MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
 
 
     Object* obj = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
@@ -738,9 +740,24 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aRotate* rotateAction = new aRotate();
     securityRoomScene->AddActionToObj(rotateAction, wierd);
 
+    Object* tube = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/frog.ply", glm::vec3(250.f, 25.f, 113.f), 10, glm::vec3(0.f), true, glm::vec4(0.f, 0.5f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    tube->mesh->textures[0] = "frog_diffuse.bmp";
+    tube->mesh->blendRatio[0] = 1.0f;
+    aRotate* rotateActionTube = new aRotate();
+    securityRoomScene->AddActionToObj(rotateActionTube, wierd);
+
     Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 5, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
+
+    Object* securutyCamera2 = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(41.f, 40.0f, 20.f), 10, glm::vec3(0.f, 0.5f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    securutyCamera2->mesh->textures[0] = "screen_broken.bmp";
+    securutyCamera2->mesh->blendRatio[0] = 1.0f;
+    //aRotationWithMinutes* rotateCam2 = new aRotationWithMinutes();
+    //rotateCam2->minRotation;
+    //rotateCam2->minRotation;
+
+    //securityRoomScene->AddActionToObj(rotateAction, securutyCamera2);
 
     Object* wall = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/wall01side.ply", glm::vec3(0.f, -5.f, -7.5f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, securityRoomScene->sceneObjects);
     wall->mesh->textures[0] = "Wall_Simple_AlbedoTransparency.bmp";
@@ -752,6 +769,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     obj->isTemporary = true;
 
     mazeGenerator->generateMaze();
+    mazeSecurity->generateMaze();
 
     securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
     //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
@@ -806,12 +824,16 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     CameraToTexture* textureCamera1 = new CameraToTexture();
     CameraToTexture* textureCamera2 = new CameraToTexture();
+    CameraToTexture* textureCamera3 = new CameraToTexture();
 
 
     textureCamera1->textureName = "securityCamera";
     textureCamera2->textureName = "camera1";
+    textureCamera3->textureName = "securityCamera2";
+
 
     securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
+    securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
     scene->AddActionToObj(textureCamera2, cameraObj2);
 
 
@@ -823,7 +845,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     screenSwitcher->AddTexture("camera1");
     screenSwitcher->AddTexture("securityCamera");
+    screenSwitcher->AddTexture("securityCamera2");
     screenSwitcher->AddTextureLayer2("cam_top.bmp");
+    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
     screenSwitcher->AddTextureLayer2("cam_top2.bmp");
 
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
@@ -1174,7 +1198,6 @@ int main(void)
     Scene* cameraScene = new Scene();
     Scene* secutityRoomScene = new Scene();
     secutityRoomScene->lightManager = new cLightManager();
-    secutityRoomScene->lightManager,
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
     //HACK FOR LIGHTING
@@ -1189,6 +1212,7 @@ int main(void)
     secutityRoomScene->programs = scene->programs;
     secutityRoomScene->vaoManager = scene->vaoManager;
     secutityRoomScene->fCamera = g_pFlyCamera;
+    secutityRoomScene->physicsManager = scene->physicsManager;
 
     AddActions(scene, cameraScene, secutityRoomScene, program);
 
