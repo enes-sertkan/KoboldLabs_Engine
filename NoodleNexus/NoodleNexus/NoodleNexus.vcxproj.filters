@@ -87,6 +87,9 @@
     <Filter Include="Engine\Camera">
       <UniqueIdentifier>{169b120f-0c43-401d-9681-259576eca719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LabAttack">
+      <UniqueIdentifier>{63756d3f-9034-4161-8f88-8e74a946071a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -247,6 +250,12 @@
     </ClCompile>
     <ClCompile Include="aMainCamera.hpp">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="LabAttackFactory.cpp">
+      <Filter>LabAttack</Filter>
+    </ClCompile>
+    <ClCompile Include="aLACharacter.h">
+      <Filter>LabAttack</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -443,6 +452,12 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="aRotationWithMinutes.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="LabAttackFactory.h">
+      <Filter>LabAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="aBullet.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,27 +7,26 @@
 class aProjectileMovement : public Action
 {
 public:
-    glm::vec3 direction;
-    float speed = 1.0f;
-    float acceleration = 0.1f;
+    glm::vec3 speed;
+   
 
     void Start() override
     {
         // Initialize starting position and direction
-        direction = glm::normalize(direction);
+        //direction = glm::normalize(direction);
 
     }
 
 
     void ApplyAcceleration()
     {
-        speed += acceleration * object->scene->deltaTime;
+     //   speed += acceleration * object->scene->deltaTime;
     }
 
 
     void ApplySpeed()
     {
-        object->mesh->positionXYZ += direction * speed * object->scene->deltaTime;
+        object->mesh->positionXYZ +=  speed * object->scene->deltaTime;
 
     }
 

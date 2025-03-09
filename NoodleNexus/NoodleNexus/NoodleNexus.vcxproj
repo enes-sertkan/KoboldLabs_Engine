@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aBaseMazeCharacter.h" />
+    <ClCompile Include="aLACharacter.h" />
     <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Gun.hpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
+    <ClCompile Include="LabAttackFactory.cpp" />
     <ClCompile Include="LuaScript.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
@@ -193,6 +195,7 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aBullet.h" />
     <ClInclude Include="aCameraToTexture.h" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="aConnectSoftBodToObj.hpp" />
@@ -237,6 +240,7 @@
     <ClInclude Include="GridRenderer.h" />
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="LabAttackFactory.h" />
     <ClInclude Include="Laser.hpp" />
     <ClInclude Include="LuaScript.h" />
     <ClInclude Include="MazeGenerator.hpp" />
