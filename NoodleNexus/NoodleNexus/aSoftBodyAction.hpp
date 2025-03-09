@@ -138,6 +138,20 @@ public:
         
     }
 
+     glm::vec3 GetParticlePosition(int particleID)
+    {
+        if (softBody->vec_pParticles.size() < particleID)
+        {
+            std::cout << "There is no particle with id of " << particleID << std::endl;
+            return glm::vec3(0);
+
+        }
+
+        glm::vec3 worldPosition = object->mesh->uniformScale * softBody->vec_pParticles[particleID]->position + object->mesh->positionXYZ;
+        return worldPosition;
+
+    }
+
 
 
 };

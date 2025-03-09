@@ -76,6 +76,7 @@
 #include "aBaseMazeCharacter.h"
 #include "aMainCamera.hpp"
 #include "aRotate.h"
+#include "aConnectSoftBodToObj.hpp"
  Scene* currentScene=nullptr;
 
 
@@ -783,6 +784,11 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->checkGreaterZLock = false;
 
     scene->AddActionToObj(ropeBody, ropeObject);
+
+    ConnSoftToObj* connector = new ConnSoftToObj();
+    connector->softbody = ropeBody;
+
+    scene->AddActionToObj(connector, scene->sceneObjects[33]);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);

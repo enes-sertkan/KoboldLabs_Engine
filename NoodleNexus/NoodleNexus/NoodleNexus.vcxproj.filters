@@ -439,6 +439,9 @@
     <ClInclude Include="cSoftBodyCollisions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aConnectSoftBodToObj.hpp">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
