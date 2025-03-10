@@ -93,7 +93,7 @@ void handleMouseAsync(GLFWwindow* window)
 void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
 {
     const float CAMERA_MOVE_SPEED = 1.f;
-    const float CAMERA_TURN_SPEED = 0.6f;
+    const float CAMERA_TURN_SPEED = 10.f;
 
 
     if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS)
@@ -283,13 +283,14 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
 // Set with glfwSetCursorPosCallback(window, cursor_position_callback);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 //    std::cout << "mouse x,y: " << xpos << ", " << ypos << std::endl;
     
     g_MouseState.currentPositionXY.x = (int)xpos;
     g_MouseState.currentPositionXY.y = (int)-ypos;
 
-    if ( g_MouseState.bIsLeftMouseButtonDown )
-    {
+  //  if ( g_MouseState.bIsLeftMouseButtonDown )
+  //  {
         // If the Left mouse key is down, 
         //  figure out the differene between the current mouse postion and the last one
 
@@ -300,14 +301,14 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
         // Move left or right? 
         if ( deltaMousePosition.x != 0 )
         {
-            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x * 0.01f);
+            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x * 1.f);
         }
         // Mouse move Up or down? 
         if ( deltaMousePosition.y != 0 )
         {
-            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y*0.01f);
+            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y*1.f);
         }
-    }//if ( g_MouseState.bIsLeftMouseButtonDown )
+  //  }//if ( g_MouseState.bIsLeftMouseButtonDown )
 
 
     // Update the last one

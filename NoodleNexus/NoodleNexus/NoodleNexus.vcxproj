@@ -195,10 +195,12 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aAvoiderEnemy.h" />
     <ClInclude Include="aBullet.h" />
     <ClInclude Include="aCameraToTexture.h" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="aConnectSoftBodToObj.hpp" />
+    <ClInclude Include="aCreepEnemy.h" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
     <ClInclude Include="aExhaustTrail.hpp" />
@@ -208,11 +210,14 @@
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Animator.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
+    <ClInclude Include="aPlayerShooting.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRotate.h" />
     <ClInclude Include="aRotationWithMinutes.hpp" />
+    <ClInclude Include="aShooterEnemy.h" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
+    <ClInclude Include="aWandererEnemy.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
     <ClInclude Include="Camera.hpp" />

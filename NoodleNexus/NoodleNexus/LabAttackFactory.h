@@ -9,16 +9,9 @@
 #include "aProjectileMovement.hpp"
 
 
-// Forward declarations for enemy and bullet classes
-class Creep;
-class Avoider;
-class Shooter;
-class Wanderer;
-class PlayerBullet;
-class EnemyBullet;
-
 class LabAttackFactory {
 public:
+    Object* player = nullptr;
 
     // Constructor with default initial pool sizes
     LabAttackFactory(int creepPoolSize = 10, int avoiderPoolSize = 10, int shooterPoolSize = 10, int wandererPoolSize = 10,
@@ -28,20 +21,10 @@ public:
 
 
     Scene* scene = nullptr;
-    // Call this once (or as needed) to preallocate object pools
-    void InitializePools();
-
-    // Set pool sizes (if you want to adjust them later)
-    void SetCreepPoolSize(int size);
-    void SetAvoiderPoolSize(int size);
-    void SetShooterPoolSize(int size);
-    void SetWandererPoolSize(int size);
-    void SetPlayerBulletPoolSize(int size);
-    void SetEnemyBulletPoolSize(int size);
 
     // Spawn functions:
     // For enemies, only a position is needed.
-    Object* SpawnCreep(const glm::vec3& position);
+    Object* SpawnCreep(const glm::vec3 position);
     Object* SpawnAvoider(const glm::vec3& position);
     Object* SpawnShooter(const glm::vec3& position);
     Object* SpawnWanderer(const glm::vec3& position);
@@ -50,22 +33,16 @@ public:
     Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed);
     Object* SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed);
 
-    // Return objects to the pool (for recycling)
-    void ReturnCreep(Creep* creep);
-    void ReturnAvoider(Avoider* avoider);
-    void ReturnShooter(Shooter* shooter);
-    void ReturnWanderer(Wanderer* wanderer);
-    void ReturnPlayerBullet(PlayerBullet* bullet);
-    void ReturnEnemyBullet(EnemyBullet* bullet);
 
+    std::vector<Object*>         m_creepPool;
+    std::vector<Object*>       m_avoiderPool;
+    std::vector<Object*>       m_shooterPool;
+    std::vector<Object*>      m_wandererPool;
+    std::vector<Object*>  m_playerBulletPool;
+    std::vector<Object*>   m_enemyBulletPool;
 private:
     // Object pools for each type.
-    std::vector<Creep*>         m_creepPool;
-    std::vector<Avoider*>       m_avoiderPool;
-    std::vector<Shooter*>       m_shooterPool;
-    std::vector<Wanderer*>      m_wandererPool;
-    std::vector<PlayerBullet*>  m_playerBulletPool;
-    std::vector<EnemyBullet*>   m_enemyBulletPool;
+   
 
     // Current sizes (or capacities) for the pools
     int m_creepPoolSize;
@@ -75,17 +52,6 @@ private:
     int m_playerBulletPoolSize;
     int m_enemyBulletPoolSize;
 
-    // Helper functions to create new objects (when pool is empty or to expand the pool)
-    Creep* CreateCreep();
-    Avoider* CreateAvoider();
-    Shooter* CreateShooter();
-    Wanderer* CreateWanderer();
-    PlayerBullet* CreatePlayerBullet();
-    EnemyBullet* CreateEnemyBullet();
-
-    // Template helper function to expand any pool by a given additional count.
-    template<typename T>
-    void ExpandPool(std::vector<T*>& pool, int additionalCount);
 };
 
-#endif // LAB_ATTACK_FACTORY_HPP
+#endif 

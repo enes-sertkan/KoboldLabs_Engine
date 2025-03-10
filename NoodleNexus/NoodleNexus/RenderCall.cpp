@@ -404,9 +404,9 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const glm::vec3& cameraPosition)
 {
     // Extract pitch, yaw, and roll from the rotation vector
-    float pitch = cameraRotation.x; // Rotation around the X-axis
-    float yaw = cameraRotation.y;   // Rotation around the Y-axis
-    float roll = cameraRotation.z;  // Rotation around the Z-axis (roll)
+    float pitch = glm::radians(cameraRotation.x);
+    float yaw = glm::radians(cameraRotation.y);
+    float roll = glm::radians(cameraRotation.z);
 
     // Calculate the forward vector from pitch and yaw
     glm::vec3 forward;

@@ -16,10 +16,7 @@ public:
 	} 
 	virtual void Update()
 	{
-		object->mesh->rotationEulerXYZ.y += 50 * object->scene->deltaTime;
+		object->mesh->rotationEulerXYZ.y += 100 * object->scene->deltaTime;
 	}
 
 };
-
-
-#pragma once

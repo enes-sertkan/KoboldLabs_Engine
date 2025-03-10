@@ -460,6 +460,21 @@
     <ClInclude Include="aBullet.h">
       <Filter>Actions</Filter>
     </ClInclude>
+    <ClInclude Include="aPlayerShooting.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aCreepEnemy.h">
+      <Filter>LabAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="aShooterEnemy.h">
+      <Filter>LabAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="aAvoiderEnemy.h">
+      <Filter>LabAttack</Filter>
+    </ClInclude>
+    <ClInclude Include="aWandererEnemy.h">
+      <Filter>LabAttack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

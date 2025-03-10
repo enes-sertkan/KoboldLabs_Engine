@@ -31,7 +31,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 913 0 -218
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.62551e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -43,7 +43,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 169 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 1.06025e-38 0
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -55,7 +55,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 192 23 13
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -67,7 +67,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9 0 0
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -79,7 +79,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 170 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 0 0
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -91,7 +91,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 193 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 0 0
+<Scale-> 9.5 8.29569e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -103,7 +103,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9.5 1.1151e-38 0
+<Scale-> 9.5 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -115,7 +115,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 187 33 486
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.11123e-38 -1.69098e-33
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -128,7 +128,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 145 56 245
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.62551e-43 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -141,7 +141,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 536 56 247
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -154,7 +154,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 328 23 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -166,7 +166,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 294 21 405
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -178,7 +178,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 326 22 405
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 6.70411e-39
+<Scale-> 9 1.1151e-38 7.09635e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -190,7 +190,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 257 20 64
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
+<Scale-> 9 1.1151e-38 4.46463e+30
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -201,6 +201,18 @@ Rope.txt
 <Tags->
 <StaticCollision-> false
 <Position-> 229 20 487
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tube
+<Model-> Tube
+<Tags->
+<StaticCollision-> false
+<Position-> 242 20 473
 <Rotation-> 0 0 0
 <Scale-> 9 0 0
 <Visibility-> true
@@ -208,25 +220,13 @@ Rope.txt
 <--Object>
 
 <Object-->
-<Name-> Tube
-<Model-> Tube
-<Tags->
-<StaticCollision-> false
-<Position-> 242 20 473
-<Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
 <Name-> TubeGlass
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
 <Position-> 257 20 64
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
+<Scale-> 9 1.11123e-38 2.93929e+29
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -238,7 +238,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 229 20 487
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 0 7.09635e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -250,7 +250,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 242 20 473
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 7.09635e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -262,7 +262,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 254 21 486
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.1151e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -274,7 +274,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 269 20 476
 <Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -286,7 +286,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 287 22 4
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 1.13075e+24
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -298,7 +298,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 254 21 486
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -310,7 +310,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 269 20 476
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -322,7 +322,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 287 22 4
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
+<Scale-> 9 1.11123e-38 7.15399e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -334,7 +334,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 246 19 14
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.1151e-38 7.09635e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -358,7 +358,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 254 18 508
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -370,7 +370,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 157 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -382,7 +382,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 180 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -394,7 +394,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 327 55 489
 <Rotation-> 0 -95 -1
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -406,7 +406,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 25 60
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.1151e-38 7.09635e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -418,7 +418,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 60 60
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
@@ -448,6 +448,1746 @@ Rope.txt
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 4.22853e-05
+<Rotation-> 3.01044e+29 1.18662e+27 4.10314e-41
+<Scale-> 2.79814e+30 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 4.25237e-05
+<Rotation-> 2.7691e+20 1.38174e-08 1.01417e-38
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -2.54842e+25 4.54021e-43 -2.37611e+25
+<Rotation-> 4.54021e-43 -2.27282e+25 4.54021e-43
+<Scale-> -2.46435e+25 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 3.09542e+32
+<Scale-> 2.15892e+29 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.66108e-07
+<Rotation-> 7.13627e+31 1.01383e-38 1.41531e-43
+<Scale-> 2.79819e+30 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 2.65773e-06
+<Rotation-> 2.7691e+20 3.45434e-09 0
+<Scale-> 2.79819e+30 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 4.60727e-06 8.94028e-43 4.60734e-06
+<Rotation-> 8.94028e-43 4.60763e-06 8.94028e-43
+<Scale-> 4.60741e-06 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 0.000170095
+<Rotation-> 2.7691e+20 1.38174e-08 0
+<Scale-> 2.79819e+30 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 2.81527e+20
+<Scale-> 5.21648e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 -1.71528e-33
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.40978e+28 9.35094e+26 7.06851e+28
+<Rotation-> 2.93867e+29 1.03247e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 3.09542e+32
+<Scale-> 2.15892e+29 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.21654e-11 1.11123e-38 6.68383e+22
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.66108e-07
+<Rotation-> 3.01044e+29 1.18662e+27 4.10314e-41
+<Scale-> 0 1.11123e-38 6.74148e+22
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
+<Scale-> 5.60382e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 9.5149e+14 9.51496e+14 9.51496e+14
+<Rotation-> 9.51496e+14 9.51496e+14 8.11322e-39
+<Scale-> 2.79814e+30 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.45006e-29 7.56701e-43 3.09067e-29
+<Rotation-> 7.56701e-43 3.07529e-29 7.56701e-43
+<Scale-> 3.5018e-29 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.66108e-07
+<Rotation-> 1.72409e+25 1.94426e+31 4.35216e+27
+<Scale-> 0.00344005 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.17597e+27
+<Scale-> 5.21657e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.21654e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 2.81527e+20
+<Scale-> 5.21648e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 8.90821e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 4.25237e-05
+<Rotation-> 1.72409e+25 7.20648e+31 1.01419e-38
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 9.5149e+14 9.51496e+14 9.51496e+14
+<Rotation-> 9.51496e+14 8.11322e-39 4.10314e-41
+<Scale-> 2.15892e+29 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.17597e+27
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0.0823725 6.95044e-43 0.0549877
+<Rotation-> 6.95044e-43 0.0677757 6.95044e-43
+<Scale-> 0.0807852 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/tube.ply
+<Model-> <Model->assets/models/objects/tube.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 4.48598e+21 1.77487e+28 2.82976e+20
+<Scale-> 1.16145e+27 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 3.09542e+32
+<Scale-> 2.15892e+29 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 3.09542e+32
+<Scale-> 2.15892e+29 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.21654e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21645e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.21657e-11 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.5123e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.5123e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.06309e-05
+<Rotation-> 1.72409e+25 7.20648e+31 1.01419e-38
+<Scale-> 2.15902e+29 4.3558e-41 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 4.55929e+30
+<Scale-> 2.15902e+29 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.17597e+27
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -3.31587e-17 9.8231e-43 -3.06773e-17
+<Rotation-> 9.8231e-43 -2.93891e-17 9.8231e-43
+<Scale-> -3.57727e-17 1.09286e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/tube.ply
+<Model-> <Model->assets/models/objects/tube.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 4.25237e-05
+<Rotation-> 2.7691e+20 1.38174e-08 3.94606e-41
+<Scale-> 0 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.40978e+28 9.35094e+26 7.06851e+28
+<Rotation-> 2.93867e+29 1.03247e-38 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model-><Tags->
+<Model-> <Model-><Tags->
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.66108e-07
+<Rotation-> 2.7691e+20 1.38174e-08 4.08955e-41
+<Scale-> 0 1.06699e-38 0
+<Visibility-> true
+<Shading-> false
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/slime.ply
+<Model-> <Model->assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 2.59544e-09
+<Rotation-> 2.7691e+20 3.45434e-09 0
+<Scale-> 0 1.06699e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/wall01.ply
+<Model-> <Model->assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 6.64432e-07
+<Rotation-> 7.43325e+28 1.84672e+25 3.96161e-41
+<Scale-> 5.21657e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 4.25237e-05
+<Rotation-> 2.7691e+20 3.45434e-09 4.08955e-41
+<Scale-> 2.79819e+30 9.95848e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/objects/tube.ply
+<Model-> <Model->assets/models/objects/tube.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 1.66108e-07
+<Rotation-> 7.13627e+31 1.01383e-38 3.96161e-41
+<Scale-> 2.79814e+30 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.69557e-43 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.10544e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.10544e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 1.10544e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.72908e+28
+<Scale-> 5.60382e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.10544e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> 
+<Tags->
+<StaticCollision-> false
+<Position-> 3.96042e-11 3.9604e-11 3.9604e-11
+<Rotation-> 3.9604e-11 3.9604e-11 8.09809e-39
+<Scale-> 2.79814e+30 4.59107e-41 0
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/objects/slime.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 2.58089e-09
+<Rotation-> 1.72409e+25 1.94426e+31 1.41531e-43
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/objects/wall01.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 0.000170095
+<Rotation-> 2.7691e+20 1.38174e-08 1.01417e-38
+<Scale-> 2.79814e+30 4.59107e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.5 0.6 0.5
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 6.01379e+07 7.36518e+31 7.98746e+17
+<Rotation-> 4.62279e+30 1.84655e+25 3.96161e-41
+<Scale-> 0 0 0
+<Visibility-> true
+<Shading-> true
+<Color-> 1 0.1 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/objects/tube.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.26141e-27 8.29569e-43 -4.1459e-27
+<Rotation-> 8.29569e-43 -3.99865e-27 8.29569e-43
+<Scale-> -4.74283e-27 8.29569e-43 4.35664e-41
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.17597e+27
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 2.1589e+29 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 3.09542e+32
+<Scale-> 2.15892e+29 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 32.1186
+<Scale-> 5.21654e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.21654e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 52.8686
+<Scale-> 5.21654e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 6.21264e+26
+<Scale-> 5.21657e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 -0.466797
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 6.50492e+28 2.15892e+29 1.62861e+32
+<Scale-> 2.15892e+29 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.7 0.6 0
 <--Object>
 
 <Light-->

@@ -78,6 +78,8 @@
 #include "aRotate.h"
 #include "aConnectSoftBodToObj.hpp"
 #include "aRotationWithMinutes.hpp"
+#include "aPlayerShooting.hpp"
+#include "LabAttackFactory.h"
 
  Scene* currentScene=nullptr;
 
@@ -765,8 +767,29 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     wall->mesh->textures[0] = "Wall_Simple_AlbedoTransparency.bmp";
     wall->mesh->blendRatio[0] = 1.0f;
 
+    Object* player = scene->GenerateMeshObjectsFromObject("", glm::vec3(205.f, 40.f, 60.f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+    aPlayerMovement* playerMovement = new aPlayerMovement();
+    aPlayerShooting* playerShooting = new aPlayerShooting();
+
+    scene->AddActionToObj(playerMovement, player);
+    scene->AddActionToObj(playerShooting, player);
+
+
+
+
+    LabAttackFactory* LAFactory = new LabAttackFactory();
+    LAFactory->scene = scene;
+    LAFactory->player = player;
+    LAFactory->SpawnCreep(glm::vec3(305.f, 22.f, 100.f));
+    LAFactory->SpawnShooter(glm::vec3(350.f, 40.f, 100.f));
+    LAFactory->SpawnAvoider(glm::vec3(320.f, 40.f, 50.f));
+    LAFactory->SpawnWanderer(glm::vec3(150.f, 20.f, 70.f));
     //Object* securityLight = securityRoomScene->SetLight(scene->lightManager, 0, glm::vec4(0.f, 10.f, 0.f, 1.f), glm::vec4(1, 1, 1, 1), glm::vec3(1, 1, 1), glm::vec4(0, -1, 0, 0), glm::vec3(1, 0, 0), 1);
-    
+
+
+    playerShooting->factory = LAFactory;
+
+
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
     screen_quad->isTemporary = true;
 
@@ -1376,7 +1399,7 @@ int main(void)
    Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // Camera* securutyCamera=  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // mainCamera->nightMode = true;
-
+   glfwMaximizeWindow(window);
 
 
     while (!glfwWindowShouldClose(window))
