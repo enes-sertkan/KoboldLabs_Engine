@@ -248,6 +248,9 @@
     <ClCompile Include="aMainCamera.hpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="cSodtBodyCollisions.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -444,6 +447,9 @@
     </ClInclude>
     <ClInclude Include="aRotationWithMinutes.hpp">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="UVWave.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

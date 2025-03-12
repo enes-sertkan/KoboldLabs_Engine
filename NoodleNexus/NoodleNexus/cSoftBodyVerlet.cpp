@@ -315,6 +315,8 @@ void cSoftBodyVerlet::CalculateBaseVolume()
 	volume = GetVolume()*1.2;
 }
 
+
+
 float cSoftBodyVerlet::GetVolume()
 {
 	// Here, "volume" is really the average distance from the geometric center.
@@ -442,7 +444,12 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 		glm::vec3 posChange = sbCollision->ProcessMazeCollision(particleWorldPosition)/ scale; 
 
 		pCurrentParticle->position += posChange;
+		particleWorldPosition += posChange;
+
 		
+		posChange = sbCollision->ProcessCollisionToOtherSoftBodies(particleWorldPosition);
+		pCurrentParticle->position += posChange;
+
 	/*	if (posChange!=glm::vec3(0.f))
 		{
 			pCurrentParticle->old_position = pCurrentParticle->position;
@@ -563,6 +570,7 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 	
 	
 	}//for ( unsigned int iteration
+	if (useVolume)
 	for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
 	{
 		ApplyVolumeCorrection();

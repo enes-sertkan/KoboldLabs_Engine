@@ -22,6 +22,6 @@ public:
 
     virtual void Update()
     {
-        object->mesh->positionXYZ = softbody->GetParticlePosition(20);
+        object->mesh->positionXYZ = softbody->GetParticlePosition(30);
     }
 };

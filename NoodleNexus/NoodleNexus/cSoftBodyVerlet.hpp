@@ -8,6 +8,8 @@
 //#include "cVAOManager/sModelDrawInfo.h"
 #include "cVAOManager/cVAOManager.h"	// for: sModelDrawInfo	
 
+
+class SoftBodyCollision;
 class cSoftBodyVerlet
 {
 public:
@@ -34,6 +36,9 @@ public:
 	//	soft body simulation state (at the current moment)
 //	bool UpdateDrawInfo(void);
 	void CalculateBaseVolume();
+
+
+
 	float GetVolume();
 	void ApplyVolumeCorrection();
 
@@ -126,5 +131,6 @@ public:
 
 	float volume;
 
+	bool useVolume = false;
 };
 

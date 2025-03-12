@@ -20,6 +20,8 @@ public:
     float zLockPos = 0.f;
     bool checkGreaterZLock = true;
     bool wind = true;
+    bool useVolume = false;
+
     float yPosToLock;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
@@ -47,6 +49,10 @@ public:
 
         if (isLockOnZ)
             softBody->LockParticlesOnY(zLockPos, checkGreaterZLock);
+      
+        
+        softBody->useVolume = useVolume;
+        
         //softBody->LockParticlesOnY(yPosToLock, true);
         softBody->CalculateBaseVolume();
     }
@@ -95,6 +101,10 @@ public:
         UpdateSoftBodyMeshes(object->scene->programs[0]);
     }
 
+    void AddSoftBodyToCollisions(SoftBody* softBody)
+    {
+        sbCollision->otherSoftBodies.push_back(softBody);
+    }
 
 
     void UpdateSoftBody(double deltaTime) {
@@ -106,6 +116,7 @@ public:
             softBody->VerletUpdate(deltaTime);
     
             softBody->SatisfyConstraints();
+
    
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
             glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;

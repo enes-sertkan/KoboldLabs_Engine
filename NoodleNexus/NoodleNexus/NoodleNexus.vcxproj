@@ -165,6 +165,7 @@
     <ClCompile Include="cObject.cpp" />
     <ClCompile Include="cPhysics.cpp" />
     <ClCompile Include="cPhysics_cSoftBody_Verlet.cpp" />
+    <ClCompile Include="cSodtBodyCollisions.cpp" />
     <ClCompile Include="cSoftBodyVerlet.cpp" />
     <ClCompile Include="cTerrainPathChooser.cpp" />
     <ClCompile Include="CTextureFromBMP.cpp" />

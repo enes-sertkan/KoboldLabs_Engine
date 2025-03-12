@@ -1,13 +1,23 @@
 #pragma once
+#include "cSoftBodyVerlet.hpp"
+
 #include "MazeGenerator.hpp"
 #include <glm/vec3.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+class SoftBody;
 
 class SoftBodyCollision
 {
 public:
+
+    float particleAffectionRange = 100;
+    
+
 	MazeGenerator* mazeGenerator = nullptr;
+    std::vector<SoftBody*> otherSoftBodies;
+
+    glm::vec3 ProcessCollisionToOtherSoftBodies(glm::vec3 particlePos);
 
 	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
