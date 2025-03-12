@@ -162,6 +162,29 @@ movingUV = (movingUV - center) / scale + center;
 		layeredColor = compositeOver(layeredColor, tex3);
 		vertexColour = layeredColor.rgb;
 
+// ------------------------------------------------------------------------
+//      Chromatic Abberation
+// ------------------------------------------------------------------------
+//		vec2 uv = movingUV.st;
+//      float shift = 0.01 * sin(time); // Chromatic shift factor
+
+//    vec4 r = texture(texture00, uv + vec2(shift, 0.0));
+//    vec4 g = texture(texture00, uv);
+//    vec4 b = texture(texture00, uv - vec2(shift, 0.0));
+
+//    vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x); // Apply RGB shift
+
+//    vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
+//    vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
+//    vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
+
+    // Composite textures
+//    vec4 layeredColor = compositeOver(tex0, tex1);
+//    layeredColor = compositeOver(layeredColor, tex2);
+//    layeredColor = compositeOver(layeredColor, tex3);
+    
+ //   vertexColour = layeredColor.rgb;
+
 						   
 					   
 	} 
