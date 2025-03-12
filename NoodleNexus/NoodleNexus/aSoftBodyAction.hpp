@@ -104,10 +104,12 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
-         
+    
             softBody->SatisfyConstraints();
-            softBody->ApplyVolumeCorrection();
+   
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
+            glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;
+            std::cout << center.x << " " << center.y << " " << center.z << std::endl;
            
         
     }

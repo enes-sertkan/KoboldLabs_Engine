@@ -783,7 +783,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     SoftBody* softBody = new SoftBody();
 
     Object* softObject = scene->sceneObjects[31];
-    softBody->acceleration.y = -40;
+    softBody->acceleration.y = -15;
     softObject->mesh->drawBothFaces = true;
 
     // . . . . . . . . .

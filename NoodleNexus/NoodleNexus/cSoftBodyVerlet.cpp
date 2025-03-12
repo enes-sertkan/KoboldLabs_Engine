@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cSoftBodyVerlet.hpp"
 
 
@@ -127,7 +127,7 @@ bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInit
 	// Note: we are stepping through the array by 3s (3 vertices per triangle)
 	for (unsigned int index = 0; index < this->m_ModelVertexInfo.numberOfIndices; index += 3)
 	{
-		// Example: ply file has “3 733 1026 736” for this triangle.
+		// Example: ply file has â€œ3 733 1026 736â€ for this triangle.
 		// pIndices would have:
 		// 
 		//	 733	this->m_ModelVertexInfo.pIndices[ index + 0 ]
@@ -311,38 +311,81 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
-	volume = GetVolume();
+	// Store the base "volume" as the average radius at the start
+	volume = GetVolume()*1.2;
 }
 
 float cSoftBodyVerlet::GetVolume()
 {
-	float _volume = 0;
-	glm::vec3 geoCwnter = getGeometricCentrePoint();
+	// Here, "volume" is really the average distance from the geometric center.
+	if (vec_pParticles.empty())
+		return 0.0f;
+
+	glm::vec3 geoCenter = getGeometricCentrePoint();
+	float sum = 0.0f;
+
 	for (sParticle* particle : vec_pParticles)
 	{
-		if (glm::any(glm::isnan(particle->position))) {
+		if (glm::any(glm::isnan(particle->position)))
+		{
 			std::cout << "Particle has NaN position!" << std::endl;
 		}
-		float distance = glm::distance(particle->position, geoCwnter);
-		_volume += distance;
+		sum += glm::distance(particle->position, geoCenter);
 	}
-	return _volume;
+	return sum / static_cast<float>(vec_pParticles.size());
 }
+
 void cSoftBodyVerlet::ApplyVolumeCorrection()
 {
-	float currentVolume = GetVolume();
-	float volumeDelta = (currentVolume - volume)*2.1 / vec_pParticles.size();
-	if (fabs(volumeDelta) < 0.0001f) return;  // Prevent small movements
+	// Compute the current average radius
+	float currentAvgRadius = GetVolume();
+
+	// "Error" is the difference between current and base average radius
+	float error = currentAvgRadius - volume;
+
+	// Define a tolerance so that very small differences are ignored (here, 0.1% of base)
+	float tolerance = 0.001f * volume;
+	if (fabs(error) < tolerance)
+		return;  // Skip minor corrections
 
 	glm::vec3 geoCenter = getGeometricCentrePoint();
 
+	// Compute corrections for each particle
+	std::vector<glm::vec3> corrections;
+	corrections.reserve(vec_pParticles.size());
+	glm::vec3 totalCorrection(0.0f);
+
 	for (sParticle* particle : vec_pParticles)
 	{
-		glm::vec3 direction = particle->position - geoCenter;
-		if (glm::length(direction) > 0.0001f) {
-			direction = glm::normalize(direction);
-			particle->position -= glm::sign(volumeDelta) * direction * fabs(volumeDelta);
+		glm::vec3 dir = particle->position - geoCenter;
+		float len = glm::length(dir);
+		glm::vec3 correction(0.0f);
+
+		// Avoid division by zero if particle is exactly at the center
+		if (len > 0.0001f)
+		{
+			dir.y *= 2;
+			dir = glm::normalize(dir);
+			// If currentAvgRadius is greater than base (error > 0), we need to pull particles inward.
+			// If error is negative, we need to push particles outward.
+			correction = -dir * error;
 		}
+
+		corrections.push_back(correction);
+		totalCorrection += correction;
+	}
+
+	// Compute average correction to cancel net translation
+	glm::vec3 avgCorrection = totalCorrection / static_cast<float>(vec_pParticles.size());
+
+	// Use a damping factor to apply corrections gradually
+	float dampingFactor = 1.f;
+
+	for (size_t i = 0; i < vec_pParticles.size(); i++)
+	{
+		// Subtract the average correction so that the center remains fixed
+		glm::vec3 finalCorrection = (corrections[i] - avgCorrection) * dampingFactor;
+		vec_pParticles[i]->position += finalCorrection;
 	}
 }
 
@@ -373,7 +416,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		{
 
 			// This is the actual Verlet integration step (notice there isn't a velocity)
-			const float dampingFactor = 0.1f; // Experiment with values between 0.9 and 1.0
+			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
 			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor;
 			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
 
@@ -441,7 +484,11 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
-	const unsigned int MAX_GLOBAL_ITERATIONS = 3;
+	const unsigned int MAX_GLOBAL_ITERATIONS = 7;
+	const unsigned int VOLUME_CORRECTIONITERATIONS = 50;
+
+
+
 
 	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
 	{
@@ -493,10 +540,10 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			}
 
 			float diff = (deltaLength - pCurConstraint->restLength) / deltaLength;
-			float exponent = 2.f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
+			float exponent = 1.f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
 			float nonLinearDiff = (diff >= 0.0f ? pow(diff, exponent) : -pow(-diff, exponent));
 
-			  ApplyVolumeCorrection();
+			
 
 
 			// Making this non-one, will change how quickly the objects move together
@@ -513,16 +560,20 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 
 		}//for (sConstraint* pCurConstraint.
 		
-		
+	
 	
 	}//for ( unsigned int iteration
+	for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
+	{
+		ApplyVolumeCorrection();
+	}
 
 	return;
 }
 
 void cSoftBodyVerlet::cleanZeros(glm::vec3& value)
 {
-	// 1.192092896e–07F 
+	// 1.192092896eâ€“07F 
 	const float minFloat = 1.192092896e-07f;
 	if ((value.x < minFloat) && (value.x > -minFloat))
 	{
