@@ -309,7 +309,42 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 
 }
 
+void cSoftBodyVerlet::CalculateBaseVolume()
+{
+	volume = GetVolume();
+}
 
+float cSoftBodyVerlet::GetVolume()
+{
+	float _volume = 0;
+	glm::vec3 geoCwnter = getGeometricCentrePoint();
+	for (sParticle* particle : vec_pParticles)
+	{
+		if (glm::any(glm::isnan(particle->position))) {
+			std::cout << "Particle has NaN position!" << std::endl;
+		}
+		float distance = glm::distance(particle->position, geoCwnter);
+		_volume += distance;
+	}
+	return _volume;
+}
+void cSoftBodyVerlet::ApplyVolumeCorrection()
+{
+	float currentVolume = GetVolume();
+	float volumeDelta = (currentVolume - volume)*2.1 / vec_pParticles.size();
+	if (fabs(volumeDelta) < 0.0001f) return;  // Prevent small movements
+
+	glm::vec3 geoCenter = getGeometricCentrePoint();
+
+	for (sParticle* particle : vec_pParticles)
+	{
+		glm::vec3 direction = particle->position - geoCenter;
+		if (glm::length(direction) > 0.0001f) {
+			direction = glm::normalize(direction);
+			particle->position -= glm::sign(volumeDelta) * direction * fabs(volumeDelta);
+		}
+	}
+}
 
 void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 {
@@ -338,7 +373,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		{
 
 			// This is the actual Verlet integration step (notice there isn't a velocity)
-			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
+			const float dampingFactor = 0.1f; // Experiment with values between 0.9 and 1.0
 			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor;
 			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
 
@@ -406,10 +441,11 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
-	const unsigned int MAX_GLOBAL_ITERATIONS = 20;
+	const unsigned int MAX_GLOBAL_ITERATIONS = 3;
 
 	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
 	{
+	
 		// This is ONE pass of the constraint resolution
 		for (sConstraint* pCurConstraint : this->vec_pConstraints)
 		{
@@ -460,7 +496,7 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			float exponent = 2.f; // Tune this value; >1 makes small deviations even smaller, and large deviations larger.
 			float nonLinearDiff = (diff >= 0.0f ? pow(diff, exponent) : -pow(-diff, exponent));
 
-
+			  ApplyVolumeCorrection();
 
 
 			// Making this non-one, will change how quickly the objects move together
@@ -475,7 +511,10 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 			this->cleanZeros(pX1->position);
 			this->cleanZeros(pX2->position);
 
-		}//for (sConstraint* pCurConstraint...
+		}//for (sConstraint* pCurConstraint.
+		
+		
+	
 	}//for ( unsigned int iteration
 
 	return;

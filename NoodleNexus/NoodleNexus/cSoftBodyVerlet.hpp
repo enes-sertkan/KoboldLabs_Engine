@@ -33,6 +33,10 @@ public:
 	// This will update the draw info vertex information from the 
 	//	soft body simulation state (at the current moment)
 //	bool UpdateDrawInfo(void);
+	void CalculateBaseVolume();
+	float GetVolume();
+	void ApplyVolumeCorrection();
+
 
 	void VerletUpdate(double deltaTime);
 
@@ -120,6 +124,7 @@ public:
 	// This would  take into account the mass, so would "look" more accurate, maybe?
 	glm::vec3 getCentreOfMass(void);
 
+	float volume;
 
 };
 

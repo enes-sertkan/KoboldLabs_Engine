@@ -38,7 +38,7 @@ public:
     
         softBody->CreateSoftBody(drawInfo);   
         if (!isLockOnZ)//BAD CODE BAD CODE
-        softBody->CreateRandomBracing(300, 0.8f);
+        //softBody->CreateRandomBracing(300, 0.8f);
        
         object->mesh->modelFileName = SBMeshName;
         softBody->acceleration = acceleration;
@@ -48,6 +48,7 @@ public:
         if (isLockOnZ)
             softBody->LockParticlesOnY(zLockPos, checkGreaterZLock);
         //softBody->LockParticlesOnY(yPosToLock, true);
+        softBody->CalculateBaseVolume();
     }
 
     void Update() override {
@@ -103,7 +104,9 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
+         
             softBody->SatisfyConstraints();
+            softBody->ApplyVolumeCorrection();
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
            
         

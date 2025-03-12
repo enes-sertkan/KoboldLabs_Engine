@@ -37,6 +37,10 @@ struct sLight
 	                // yzw are TBD
 };
 
+struct sWave {
+    vec4 data; // x = uv.x, y = uv.y, z = active flag, w = time
+};
+
 const int NUMBEROFLIGHTS = 40;
 uniform sLight theLights[NUMBEROFLIGHTS]; 
 // uniform vec4 thelights[0].position;
@@ -74,6 +78,8 @@ uniform float speedY;      // Speed in the Y direction
 uniform float zoomPower;      // Power of zoom on texture
 
 
+uniform sWave waves[10];
+
 
 vec4 compositeOver(vec4 bottom, vec4 top) {
 
@@ -92,10 +98,63 @@ void main()
 
  vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
 
-vec2 center = vec2(0.5);
-float scale = 1.0 + zoomPower;
-movingUV = (movingUV - center) / scale + center;
+//vec2 center = vec2(0.5);
+//float scale = 1.0 + zoomPower;
+//movingUV = (movingUV - center) / scale + center;
 
+// movingUV.x += sin(movingUV.y * 10.0 + zoomPower) * 0.05;
+
+//WAVES
+
+
+for (int i = 0; i < 10; i++) {
+    // Unpack the wave data from the uniform array
+    vec2 waveOrigin = waves[i].data.xy;
+    bool isActive = (waves[i].data.z > 0.5);
+    float waveTime = waves[i].data.w;
+
+    // Only process active waves
+    if (isActive)
+    {
+        // Compute the distance from this wave's origin
+        float dist = length(movingUV - waveOrigin);
+
+        // Define wave properties.
+        // Here we're using zoomPower to compute the radius, but you could also use waveTime.
+        float waveRadius = waveTime * 0.3;  // For example, an expanding radius based on zoomPower
+        float thickness = 0.02;              // Thickness of the wave
+        float fade = smoothstep(thickness, 0.0, abs(dist - waveRadius));
+
+        // Compute the displacement for this wave.
+        vec2 displacement = normalize(movingUV - waveOrigin) * fade * 0.02;
+        
+        // Accumulate the displacement.
+        movingUV += displacement;
+    }
+}
+
+
+//SINGLE WAVE
+    // Origin of the shockwave (can be set dynamically)
+    vec2 waveOrigin = vec2(0.5, 0.5);
+
+    // Distance from the wave origin
+    float dist = length(movingUV - waveOrigin);
+
+    // Define wave properties
+    float waveRadius = zoomPower * 0.3;  // Expanding radius over time
+    float thickness = 0.02;          // Thickness of the wave
+    float fade = smoothstep(thickness, 0.0, abs(dist - waveRadius));
+
+    // Apply radial distortion outward only where the wave exists
+    vec2 displacement = normalize(movingUV - waveOrigin) * fade * 0.02;
+    movingUV += displacement;
+
+	//ZOOOM
+ 
+   // float dist = length(movingUV - 0.5);
+  // movingUV.x += sin(dist * 20.0 - zoomPower * 2.0) * 0.01;
+   // movingUV.y += cos(dist * 20.0 - zoomPower * 2.0) * 0.01;
 
 
 
