@@ -312,7 +312,7 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*1.2;
+	volume = GetVolume()*1.25;
 }
 
 
@@ -499,6 +499,12 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 
 	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
 	{
+		if (useVolume)
+			for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
+			{
+				ApplyVolumeCorrection();
+			}
+
 	
 		// This is ONE pass of the constraint resolution
 		for (sConstraint* pCurConstraint : this->vec_pConstraints)
@@ -570,12 +576,7 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 	
 	
 	}//for ( unsigned int iteration
-	if (useVolume)
-	for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
-	{
-		ApplyVolumeCorrection();
-	}
-
+	
 	return;
 }
 

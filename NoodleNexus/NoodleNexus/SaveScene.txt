@@ -29,31 +29,7 @@ Rope.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 786 0 -20
-<Rotation-> 0 0 0
-<Scale-> 9 1.62551e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
-<Position-> 169 23 13
-<Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
-<Position-> 192 23 13
+<Position-> 988 0 29
 <Rotation-> 0 0 0
 <Scale-> 9 0 0
 <Visibility-> true
@@ -65,9 +41,33 @@ Rope.txt
 <Model-> Comp
 <Tags->
 <StaticCollision-> false
+<Position-> 169 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 192 23 13
+<Rotation-> 0 0 0
+<Scale-> 9 1.62551e-43 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -79,7 +79,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 170 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 1.62551e-43 0
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -91,7 +91,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 193 22 12.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 6.5861e-43 0
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -103,7 +103,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 325 23 499
 <Rotation-> 0 -90 0
-<Scale-> 9.5 1.11123e-38 0
+<Scale-> 9.5 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -128,7 +128,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 145 56 245
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 7.63937e-39 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -141,7 +141,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 536 56 247
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.02108e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -154,7 +154,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 328 23 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -190,7 +190,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 257 20 64
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -202,7 +202,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 229 20 487
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -213,18 +213,6 @@ Rope.txt
 <Tags->
 <StaticCollision-> false
 <Position-> 242 20 473
-<Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 257 20 64
 <Rotation-> 0 0 0
 <Scale-> 9 4.3558e-41 0
 <Visibility-> true
@@ -236,9 +224,21 @@ Rope.txt
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
+<Position-> 257 20 64
+<Rotation-> 0 0 0
+<Scale-> 9 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeGlass
+<Model-> TubeGlass
+<Tags->
+<StaticCollision-> false
 <Position-> 229 20 487
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -250,7 +250,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 242 20 473
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -298,7 +298,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 254 21 486
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
+<Scale-> 9 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -310,7 +310,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 269 20 476
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -358,7 +358,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 254 18 508
 <Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -382,7 +382,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 180 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -394,7 +394,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 327 55 489
 <Rotation-> 0 -95 -1
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -406,7 +406,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 30 60
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -431,7 +431,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 40 60
 <Rotation-> 0 0 0
-<Scale-> 5 1.1151e-38 0
+<Scale-> 5 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.6 0.4
@@ -451,7 +451,7 @@ Rope.txt
 <--Object>
 
 <Light-->
-<Position-> 53 3000 378.5 1
+<Position-> 216.48 3000 404 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.0035 1.5 3.40282e+38

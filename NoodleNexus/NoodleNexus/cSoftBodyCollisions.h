@@ -11,7 +11,7 @@ class SoftBodyCollision
 {
 public:
 
-    float particleAffectionRange = 100;
+    float particleAffectionRange = 2;
     
 
 	MazeGenerator* mazeGenerator = nullptr;
@@ -21,7 +21,11 @@ public:
 
 	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
+
         const float TILE_SIZE = 1.0f * 7.0f * 4.0f;
+        particlePos.x += TILE_SIZE / 3.f;
+        particlePos.z += TILE_SIZE / 1.45f;
+
         glm::vec3 correction(0.0f);
 
         // Horizontal collision check with maze walls.

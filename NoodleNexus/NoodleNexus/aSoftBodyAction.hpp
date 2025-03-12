@@ -57,48 +57,40 @@ public:
         softBody->CalculateBaseVolume();
     }
 
-    void Update() override {
+    void MoveTopPart()
+    {
+
+    }
+
     
-        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS)
-        {
-            softBody->acceleration.x = 10.f;
-            softBody->acceleration.z = 0.f;
-        
-        }
-        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS)
-        {
-            softBody->acceleration.x = -10.f;
-            softBody->acceleration.z = 0.f;
-        }
-
-        // Left pitches negative (rotate around Y a negative value)
-        if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS)
-        {
-            softBody->acceleration.z = 10.f;
-            softBody->acceleration.x = 0.f;
-        }
-        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS)
-        {
-            softBody->acceleration.z = -10.f;
-            softBody->acceleration.x = 0.f;
-        }
-
-        //if (wind)
-        //{
-        //    softBody->acceleration.y = 0.1;
-        //    softBody->acceleration.x = -0.5;
-        //    softBody->acceleration.z = -0.05;
-        //}
-        //else
-
-        //{
-        //    softBody->acceleration.y = 0;
-        //    softBody->acceleration.x = 0;
-        //    softBody->acceleration.z = -0.5;
-        //}
-
+    void Update() override {
+        // Update any other soft body logic here, e.g. Verlet integration,
+        // constraint satisfaction, collisions, etc.
         UpdateSoftBody(object->scene->deltaTime);
         UpdateSoftBodyMeshes(object->scene->programs[0]);
+
+
+        // Check each arrow key independently:
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+            // Apply a leftward force (negative X) only to particles above the center.
+            glm::vec3 force = glm::vec3(-1.f * object->scene->deltaTime, 0.0f, 0.0f);
+            ApplyForceAboveCenter(force);
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+            // Apply a rightward force (positive X).
+            glm::vec3 force = glm::vec3(1.f * object->scene->deltaTime, 0.0f, 0.0f);
+            ApplyForceAboveCenter(force);
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS) {
+            // Apply a forward force (positive Z).
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, 1.f * object->scene->deltaTime);
+            ApplyForceAboveCenter(force);
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+            // Apply a backward force (negative Z).
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, -1.f * object->scene->deltaTime);
+            ApplyForceAboveCenter(force);
+        }
     }
 
     void AddSoftBodyToCollisions(SoftBody* softBody)
@@ -168,6 +160,19 @@ public:
 
     }
 
-
+    void ApplyForceAboveCenter(glm::vec3 force)
+    {
+        force*=0.1f;
+        for (cSoftBodyVerlet::sParticle* particle : softBody->vec_pParticles)
+        {
+            glm::vec3 center = softBody->getGeometricCentrePoint();
+            // Check if the particle is above the given center point (based on y-axis)
+            if (particle->position.y > center.y)
+            {
+                // Apply the force to this particle (you might also multiply by deltaTime if needed)
+                particle->position += force;
+            }
+        }
+    }
 
 };
