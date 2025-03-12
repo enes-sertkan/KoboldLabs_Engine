@@ -12,13 +12,14 @@
 class aLinearProjectileMovement : public aProjectileMovement
 {
 public:
- 
+
+    glm::vec3 target;
 
 
 
     void Update() override
     {
-        
+
         ApplyAcceleration();
 
         ApplySpeed();

@@ -15,13 +15,14 @@ class ProjectileWeapon : public UsableItem
 {
 public:
     glm::vec3 target;
+    Object* obj = new Object();
 
     void Use() override
     {
         std::cout << "Firing projectile!" << std::endl;
 
         // Create projectile object
-        Object* projectile = scene->GenerateMeshObjectsFromObject("ProjectileModelPath", position, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.2, 0.6, 0.4, 1), true, scene);
+        Object* projectile = scene->GenerateMeshObjectsFromObject("ProjectileModelPath", position, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.2, 0.6, 0.4, 1), true, obj->scene );
 
         // Attach actions to the projectile
         aLinearProjectileMovement* movement = new aLinearProjectileMovement();

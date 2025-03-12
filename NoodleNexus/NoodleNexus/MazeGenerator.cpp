@@ -44,7 +44,7 @@ void MazeGenerator::generateMaze() {
 
             if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                //PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
@@ -194,23 +194,23 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.x += scale * 5.0f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "metalScratch.bmp";
         break;
     case LEFT:
         position.x -= scale * 3.0f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "metalScratch.bmp";
         break;
     case UP:
         position.z += scale * 3.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "metalScratch.bmp";
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "metalScratch.bmp";
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;

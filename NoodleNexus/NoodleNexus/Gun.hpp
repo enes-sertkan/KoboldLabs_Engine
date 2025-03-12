@@ -26,19 +26,19 @@ public:
 
 
           
-            Object* projectile = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", position, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.1, 0.1, 0.1, 1), true, scene->sceneObjects);
+            Object* projectile = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", position, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.5, 0.1, 0.1, 1), false, scene->sceneObjects);
             projectile->isTemporary = true;
 
 
             // Attach movement, trail, and explosion actions
-      /*      aLinearProjectileMovement* movement = new aLinearProjectileMovement();
+            aLinearProjectileMovement* movement = new aLinearProjectileMovement();
             movement->direction = direction;
             movement->speed = 35.f;
             movement->acceleration = 20.f;
-            scene->AddActionToObj(movement, projectile);*/
+            scene->AddActionToObj(movement, projectile);
 
-           /* aExhaustTrail* exhaust = new aExhaustTrail();
-            scene->AddActionToObj(exhaust, projectile);*/
+            aExhaustTrail* exhaust = new aExhaustTrail();
+            scene->AddActionToObj(exhaust, projectile);
 
             aExplodeOnRayCollision* explodeOnRayCollision = new aExplodeOnRayCollision();
             explodeOnRayCollision->rayDirection = direction;
@@ -53,10 +53,10 @@ public:
 
 
             RayCastPhysics* phys = new RayCastPhysics;
-            phys->gravityAcceleration.y = -2;
+            phys->gravityAcceleration.y = -1;
             phys->baseRayCastLength = 5.0;
             phys->speed = direction * 6.f;
-            phys->bounciness = 0.8f;
+            phys->bounciness = 1.5f;
             scene->AddActionToObj(phys, projectile);
 
     

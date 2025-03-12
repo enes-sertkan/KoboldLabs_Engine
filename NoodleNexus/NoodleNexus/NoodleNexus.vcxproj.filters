@@ -87,6 +87,9 @@
     <Filter Include="Engine\Camera">
       <UniqueIdentifier>{169b120f-0c43-401d-9681-259576eca719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AIProject">
+      <UniqueIdentifier>{d9a530f1-d1f8-43f8-8531-1f9388e3857b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -444,6 +447,27 @@
     </ClInclude>
     <ClInclude Include="aRotationWithMinutes.hpp">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemy1AI.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemyAI.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayer.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemy2AI.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemy3AI.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemy4AI.hpp">
+      <Filter>Header Files\AIProject</Filter>
+    </ClInclude>
+    <ClInclude Include="aEnemySpawner.hpp">
+      <Filter>Header Files\AIProject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

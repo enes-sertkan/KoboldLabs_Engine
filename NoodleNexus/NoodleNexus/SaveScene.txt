@@ -29,130 +29,19 @@ Rope.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 913 0 -218
+<Position-> 896 0 -831
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 6.74025e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Comp
-<Model-> Comp
+<Name-> Slime
+<Model-> Slime
 <Tags->
 <StaticCollision-> false
-<Position-> 169 23 13
-<Rotation-> 0 0 0
-<Scale-> 9 1.06025e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
-<Position-> 192 23 13
-<Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
-<Position-> 325 23 499
-<Rotation-> 0 -90 0
-<Scale-> 9 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 170 22 12.5
-<Rotation-> 0 0 0
-<Scale-> 9.5 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 193 22 12.5
-<Rotation-> 0 0 0
-<Scale-> 9.5 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 325 23 499
-<Rotation-> 0 -90 0
-<Scale-> 9.5 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags->
-<StaticCollision-> false
-<Position-> 187 33 486
-<Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags->
-<StaticCollision-> false
-<Position-> 145 56 245
-<Rotation-> 0 0 0
-<Scale-> 9 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags->
-<StaticCollision-> false
-<Position-> 536 56 247
-<Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Reactor
-<Model-> Reactor
-<Tags->
-<StaticCollision-> false
-<Position-> 328 23 8
+<Position-> 205 25 60
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
 <Visibility-> true
@@ -160,11 +49,11 @@ Rope.txt
 <--Object>
 
 <Object-->
-<Name-> Reactor
-<Model-> Reactor
+<Name-> Frog
+<Model-> Frog
 <Tags->
 <StaticCollision-> false
-<Position-> 294 21 405
+<Position-> 328 22 26
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
 <Visibility-> true
@@ -172,20 +61,32 @@ Rope.txt
 <--Object>
 
 <Object-->
-<Name-> Reactor
-<Model-> Reactor
+<Name-> Frog
+<Model-> Frog
 <Tags->
 <StaticCollision-> false
-<Position-> 326 22 405
+<Position-> 301 21 111
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 6.70411e-39
+<Scale-> 9 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Tube
-<Model-> Tube
+<Name-> Frog
+<Model-> Frog
+<Tags->
+<StaticCollision-> false
+<Position-> 213 22 125
+<Rotation-> 0 0 0
+<Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Frog
+<Model-> Frog
 <Tags->
 <StaticCollision-> false
 <Position-> 257 20 64
@@ -200,9 +101,9 @@ Rope.txt
 <Model-> Tube
 <Tags->
 <StaticCollision-> false
-<Position-> 229 20 487
+<Position-> 165 20 44
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -212,7 +113,19 @@ Rope.txt
 <Model-> Tube
 <Tags->
 <StaticCollision-> false
-<Position-> 242 20 473
+<Position-> 164 20 57
+<Rotation-> 0 0 0
+<Scale-> 9 0 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeGlass
+<Model-> TubeGlass
+<Tags->
+<StaticCollision-> false
+<Position-> 165 20 43
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
 <Visibility-> true
@@ -224,55 +137,7 @@ Rope.txt
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
-<Position-> 257 20 64
-<Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 229 20 487
-<Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 242 20 473
-<Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeBroken
-<Model-> TubeBroken
-<Tags->
-<StaticCollision-> false
-<Position-> 254 21 486
-<Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeBroken
-<Model-> TubeBroken
-<Tags->
-<StaticCollision-> false
-<Position-> 269 20 476
+<Position-> 352 20 71
 <Rotation-> 0 0 0
 <Scale-> 9 1.69557e-43 0
 <Visibility-> true
@@ -284,9 +149,33 @@ Rope.txt
 <Model-> TubeBroken
 <Tags->
 <StaticCollision-> false
-<Position-> 287 22 4
+<Position-> 365 21 63
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeBroken
+<Model-> TubeBroken
+<Tags->
+<StaticCollision-> false
+<Position-> 192 20 91
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> TubeBroken
+<Model-> TubeBroken
+<Tags->
+<StaticCollision-> false
+<Position-> 287 22 4
+<Rotation-> 0 0 0
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -296,7 +185,7 @@ Rope.txt
 <Model-> Shard
 <Tags->
 <StaticCollision-> false
-<Position-> 254 21 486
+<Position-> 332 21 176
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
 <Visibility-> true
@@ -308,7 +197,7 @@ Rope.txt
 <Model-> Shards
 <Tags->
 <StaticCollision-> false
-<Position-> 269 20 476
+<Position-> 353 20 157
 <Rotation-> 0 0 0
 <Scale-> 9 1.1151e-38 0
 <Visibility-> true
@@ -346,7 +235,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 203 18 74
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -356,9 +245,9 @@ Rope.txt
 <Model-> Table
 <Tags->
 <StaticCollision-> false
-<Position-> 254 18 508
+<Position-> 386 18 148
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -370,7 +259,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 157 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -382,59 +271,9 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 180 55 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 9 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Light
-<Model-> Light
-<Tags->
-<StaticCollision-> false
-<Position-> 327 55 489
-<Rotation-> 0 -95 -1
-<Scale-> 9 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Slime
-<Model-> Slime
-<Tags->
-<StaticCollision-> false
-<Position-> 205 25 60
-<Rotation-> 0 0 0
-<Scale-> 9 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Rope
-<Model-> Rope
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 205 60 60
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Sphere
-<Model-> Sphere
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 205 40 60
-<Rotation-> 0 0 0
-<Scale-> 5 0 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.3 0.6 0.4
 <--Object>
 
 <Object-->
@@ -444,14 +283,229 @@ Rope.txt
 <StaticCollision-> false
 <Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
-<Color-> 0 0 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 1.77532e+28 4.06152e+12
+<Rotation-> 3.09903e+32 3.78959e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 6.9178e+22 6.04903e+28
+<Rotation-> 4.86135e+30 3.6232e-41 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 6.95108e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 6.9178e+22 6.04903e+28
+<Rotation-> 4.86135e+30 3.78954e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 5.18898e+33
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 7.87198e+31 14.3404
+<Rotation-> 1.15701e+27 1.05114e-38 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 1.15771e+27 6.8398e+25 4.19856e+12
+<Rotation-> 1.88865e+31 7.15381e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.39005e-29
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 6.9178e+22 6.04903e+28
+<Rotation-> 4.86135e+30 7.15376e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 6.9178e+22 6.04903e+28
+<Rotation-> 4.86135e+30 1.05112e-38 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.39005e-29
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 1.15771e+27 6.8398e+25 4.19856e+12
+<Rotation-> 1.88865e+31 7.15381e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.39005e-29
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 5.60519e-45 9.5359
+<Scale-> 2.8026e-45 0 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 5.60519e-45 1.15637e+22
+<Scale-> 2.8026e-45 0 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 5.60519e-45 9.26026e-33
+<Scale-> 2.8026e-45 0 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 5.60519e-45 -1.9327e+34
+<Scale-> 2.8026e-45 0 1.14841e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.78457e+25
+<Scale-> 5.55719e-11 1.1151e-38 1.1485e-27
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 1.77532e+28 4.06152e+12
+<Rotation-> 3.09903e+32 4.06904e+31 1.78457e+25
+<Scale-> 5.55719e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.18194e+22 1.77532e+28 4.06152e+12
+<Rotation-> 3.09903e+32 3.78959e+22 15.5868
+<Scale-> 2.67984e+20 1.11508e-38 1.4013e-45
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -3.67478e-40 1.15557e-40 0
+<Rotation-> 1.55466e+07 -3.67478e-40 1.15557e-40
+<Scale-> 0 2.94991e-24 -3.67478e-40
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.3639e-39 1.59014e+34 1.62727e-19
+<Rotation-> 2.86794e-38 3.90371e-40 0
+<Scale-> 8.60128e+09 1.79998e-38 3.35816e-39
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/EnemyModel.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -4.4684e+19 1.46937e-39 -4.58358e+19
+<Rotation-> 1.47476e-39 -4.69876e+19 1.47619e-39
+<Scale-> -4.641e+19 1.47763e-39 4.19068e-40
+<Visibility-> true
+<Shading-> true
 <--Object>
 
 <Light-->
-<Position-> 59.5 3000 379 1
+<Position-> 59.5 3000 378.64 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.0035 1.5 3.40282e+38

@@ -38,7 +38,7 @@ protected:
     virtual void OnImpact()
     {
         /*object->scene->DrawRay(startPoint, endPoint, program, glm::vec4(100.f, 1.f, 1.f, 1.f), false, 0.1f);*/
-        Object* explosion = object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_xyz_n_uv.ply", object->mesh->positionXYZ, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.1, 0.1, 0.1, 1), true, object->scene->sceneObjects);
+        Object* explosion = object->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", object->mesh->positionXYZ, 1.0f, glm::vec3(0.0f, 0.0f, 0.0f), false, glm::vec4(0.1, 0.1, 0.1, 1), true, object->scene->sceneObjects);
         explosion->isTemporary = true;
 
         aExplosion* explosioning = new aExplosion();

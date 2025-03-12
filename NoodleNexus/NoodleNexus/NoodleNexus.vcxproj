@@ -198,12 +198,18 @@
     <ClInclude Include="aConnectSoftBodToObj.hpp" />
     <ClInclude Include="Action.h" />
     <ClInclude Include="aDestroyOnPos.h" />
+    <ClInclude Include="aEnemy1AI.hpp" />
+    <ClInclude Include="aEnemy2AI.hpp" />
+    <ClInclude Include="aEnemy3AI.hpp" />
+    <ClInclude Include="aEnemy4AI.hpp" />
+    <ClInclude Include="aEnemyAI.hpp" />
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMinotaur.h" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="aPlayer.hpp" />
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRotate.h" />
@@ -234,6 +240,7 @@
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
     <ClInclude Include="cViperFlagConnector.hpp" />
+    <ClInclude Include="aEnemySpawner.hpp" />
     <ClInclude Include="GridRenderer.h" />
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="KLFileManager.hpp" />

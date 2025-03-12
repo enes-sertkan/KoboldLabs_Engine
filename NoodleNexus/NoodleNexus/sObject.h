@@ -35,6 +35,16 @@ public:
 	std::vector<Action*> actions;
 	std::vector<Object*> sceneObjects;
 
+	// Function to get an action of a specific type
+	template <typename T>
+	T* GetActionOfType() {
+		for (auto action : actions) {
+			if (dynamic_cast<T*>(action) != nullptr) {
+				return dynamic_cast<T*>(action);
+			}
+		}
+		return nullptr; // Action not found
+	}
 	//void Start()
 	//{
 	//	for (Action* action : actions)
