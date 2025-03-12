@@ -10,6 +10,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+#include "UVWave.h"
 
 struct sMesh
 {
@@ -58,6 +59,21 @@ struct sMesh
 	bool drawBothFaces = false;
 	std::string getState(void);
 	bool loadState(std::string newState);
+
+
+	UVWave waves[10];
+	void spawnWave(glm::vec2 uvPos) {
+		// Loop through the wave array.
+		for (unsigned int i = 0; i < 10; ++i) {
+			// Only replace an inactive wave.
+			if (!waves[i].active) {
+			    waves[i].uv = uvPos;    // Set the new UV position
+			    waves[i].time = 0.0f;     // Reset the time value
+				waves[i].active = true;   // Mark the wave as active
+				return;  // Only spawn one wave, then exit.
+			}
+		}
+	}
 
 //	sMesh* pChildMeshes[100];
 };

@@ -442,8 +442,8 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         return;
     }
     
-    if (pCurMesh!=camera->scene->skybox->mesh)
-    {
+  //  if (pCurMesh!=camera->scene->skybox->mesh)
+ //   {
         // Check if the object is in front of the camera
         glm::vec3 cameraRotation = camera->rotation;
 
@@ -474,7 +474,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
             //std::cout << "dot product: " << dotProduct << std::endl;
             //std::cout << "fov Threshold: " << fovThreshold << std::endl;
           //  return; // Object is outside the narrower visible area
-        }
+    //    }
 
     }
 
@@ -717,6 +717,30 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     else
         glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
+
+    for (int i = 0; i < 10; i++) {
+        // Pack uv into x and y, active flag into z (as 1.0/0.0), and time into w.
+        float activeValue = pCurMesh->waves[i].active ? 1.0f : 0.0f;
+        glm::vec4 waveData(pCurMesh->waves[i].uv.x, pCurMesh ->waves[i].uv.y, activeValue, pCurMesh->waves[i].time);
+
+        // Construct the uniform name, e.g., "waves[0].data"
+        std::string uniformName = "waves[" + std::to_string(i) + "].data";
+        GLint location = glGetUniformLocation(program, uniformName.c_str());
+        if (location != -1) {
+            glUniform4f(location, waveData.x, waveData.y, waveData.z, waveData.w);
+        }
+        if (activeValue) pCurMesh->waves[i].time+= 0.1;
+        if (pCurMesh->waves[i].time > 4.f)
+        {
+            pCurMesh->waves[i].active = false;
+            //pCurMesh->waves[i].time = 0.f;
+            //// Generate a random UV position in the range [0, 1] for both u and v.
+            //pCurMesh->waves[i].uv = glm::vec2(
+            //    static_cast<float>(rand()) / static_cast<float>(RAND_MAX),
+            //    static_cast<float>(rand()) / static_cast<float>(RAND_MAX)
+            //);
+        }
+    }
 
     // solid or wireframe, etc.
 //        glPointSize(10.0f);

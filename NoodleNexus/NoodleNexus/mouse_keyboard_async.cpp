@@ -108,18 +108,20 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
     if (screen_quad!=nullptr)
     if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
     {
-        if (screen_quad->mesh->zoomPower >= 1.f)
-            screen_quad->mesh->zoomPower = 1.f;
-        else
-            screen_quad->mesh->zoomPower += scene->deltaTime;
+
+        screen_quad->mesh->spawnWave(glm::vec2(static_cast<float>(rand()) / static_cast<float>(RAND_MAX), static_cast<float>(rand()) / static_cast<float>(RAND_MAX)));
+        //if (screen_quad->mesh->zoomPower >= 1.f)
+        //    screen_quad->mesh->zoomPower = 1.f;
+        //else
+        //    screen_quad->mesh->zoomPower += scene->deltaTime;
 
     }
     else
     {
-        if (screen_quad->mesh->zoomPower <= 0.f)
-            screen_quad->mesh->zoomPower = 0.f;
-        else
-            screen_quad->mesh->zoomPower -= scene->deltaTime;
+        //if (screen_quad->mesh->zoomPower <= 0.f)
+        //    screen_quad->mesh->zoomPower = 0.f;
+        //else
+        //    screen_quad->mesh->zoomPower -= scene->deltaTime;
     }
 
 

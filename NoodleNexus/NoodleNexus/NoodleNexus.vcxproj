@@ -258,6 +258,7 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="UsableItem.hpp" />
     <ClInclude Include="VerletPhysics.hpp" />
+    <ClInclude Include="UVWave.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl" />

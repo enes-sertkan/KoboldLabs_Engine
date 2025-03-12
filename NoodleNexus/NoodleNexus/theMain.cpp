@@ -803,12 +803,12 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->zLockPos = -0.1f;
     ropeBody->checkGreaterZLock = false;
 
-    scene->AddActionToObj(ropeBody, ropeObject);
+  //  scene->AddActionToObj(ropeBody, ropeObject);
 
-    ConnSoftToObj* connector = new ConnSoftToObj();
-    connector->softbody = ropeBody;
+  //  ConnSoftToObj* connector = new ConnSoftToObj();
+  //  connector->softbody = ropeBody;
 
-    scene->AddActionToObj(connector, scene->sceneObjects[33]);
+  //  scene->AddActionToObj(connector, scene->sceneObjects[33]);
     
     //// Ensure "Mountain" exists in the VAO Manager before using it
     //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
