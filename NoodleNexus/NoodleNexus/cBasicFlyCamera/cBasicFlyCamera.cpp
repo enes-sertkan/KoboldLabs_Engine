@@ -251,7 +251,7 @@ void cBasicFlyCamera::moveForward(float distanceToMove)
 	// i.e. we are moving "toward" the target
 	// Calculate the forward vector from pitch and yaw
 
-	glm::vec3 rotation = getCameraData()->rotation;
+	glm::vec3 rotation = glm::radians(getCameraData()->rotation);
 	float pitch = rotation.x; // Rotation around the X-axis
 	float yaw = rotation.y;   // Rotation around the Y-axis
 	float roll = rotation.z;  // Rotation around the Z-axis (roll)
@@ -273,24 +273,8 @@ void cBasicFlyCamera::moveLeftRight(float distanceToMove)
 {
 	float scaledDistance = distanceToMove * this->m_movementSpeed*0.1f;
 
-	// HACK:
-//	this->m_eye += glm::vec3(scaledDistance, 0.0f, 0.0f);
 
-	// Similar to the "forward" and "back" 
-	//// but we are moving in a direction along the x axis
-	//// (perpendicular to the "forward" or "target"
-	//// 
-
-	//glm::mat4 mat_cameraYaw_Y_Axis = glm::rotate(glm::mat4(1.0f),
-	//											 this->m_Yaw_Y_axis_rotation,
-	//											 glm::vec3(0.0f, 1.0f, 0.0f));
-
-	//glm::vec3 moveSideWaysDirection  = glm::mat3(mat_cameraYaw_Y_Axis) * cBasicFlyCamera::m_RIGHT_SIDE_OF_CAMERA;
-
-	//// Like this, but "sideways" this->m_eye += (this->m_target * scaledDistance);
-
-
-	glm::vec3 rotation = getCameraData()->rotation;
+	glm::vec3 rotation = glm::radians(getCameraData()->rotation);
 	float pitch = rotation.x; // Rotation around the X-axis
 	float yaw = rotation.y;   // Rotation around the Y-axis
 	float roll = rotation.z;  // Rotation around the Z-axis (roll)

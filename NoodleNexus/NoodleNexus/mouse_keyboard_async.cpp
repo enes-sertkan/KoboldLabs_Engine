@@ -302,12 +302,12 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
         // Move left or right? 
         if ( deltaMousePosition.x != 0 )
         {
-            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x * 0.01f);
+            ::g_pFlyCamera->rotateLeftRight_Yaw( (float)deltaMousePosition.x * 1.f);
         }
         // Mouse move Up or down? 
         if ( deltaMousePosition.y != 0 )
         {
-            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y*0.01f);
+            ::g_pFlyCamera->pitchUpDown((float)deltaMousePosition.y*1.f);
         }
     }//if ( g_MouseState.bIsLeftMouseButtonDown )
 
