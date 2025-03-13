@@ -47,7 +47,7 @@ void cSoftBodyVerlet::CreateConstraintsBetweenCloseVertices(float maxDistance)
 }
 
 // This is for loading the original model
-bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInitalTransform /*=glm::mat4(1.0f)*/)
+bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInitalTransform, int constIterations, float restLengthMultiplier)
 {
 	// Copy the model info
 	this->m_ModelVertexInfo = ModelInfo;
@@ -141,17 +141,20 @@ bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInit
 		sConstraint* pEdge1 = new sConstraint();
 		pEdge1->pParticleA = pParticle1;
 		pEdge1->pParticleB = pParticle2;
-		pEdge1->restLength = this->calcDistanceBetween(pEdge1->pParticleA, pEdge1->pParticleB);
+		pEdge1->restLength = this->calcDistanceBetween(pEdge1->pParticleA, pEdge1->pParticleB)* restLengthMultiplier;
+		pEdge1->maxIterations = constIterations;
 
 		sConstraint* pEdge2 = new sConstraint();
 		pEdge2->pParticleA = pParticle2;
 		pEdge2->pParticleB = pParticle3;
-		pEdge2->restLength = this->calcDistanceBetween(pEdge2->pParticleA, pEdge2->pParticleB);
+		pEdge2->restLength = this->calcDistanceBetween(pEdge2->pParticleA, pEdge2->pParticleB)* restLengthMultiplier;
+		pEdge2->maxIterations = constIterations;
 
 		sConstraint* pEdge3 = new sConstraint();
 		pEdge3->pParticleA = pParticle3;
 		pEdge3->pParticleB = pParticle1;
-		pEdge3->restLength = this->calcDistanceBetween(pEdge3->pParticleA, pEdge3->pParticleB);
+		pEdge3->restLength = this->calcDistanceBetween(pEdge3->pParticleA, pEdge3->pParticleB)* restLengthMultiplier;
+		pEdge3->maxIterations = constIterations;
 
 		this->vec_pConstraints.push_back(pEdge1);
 		this->vec_pConstraints.push_back(pEdge2);
@@ -312,7 +315,7 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*1.25;
+	volume = GetVolume()*4;
 }
 
 
@@ -359,6 +362,7 @@ void cSoftBodyVerlet::ApplyVolumeCorrection()
 
 	for (sParticle* particle : vec_pParticles)
 	{
+		
 		glm::vec3 dir = particle->position - geoCenter;
 		float len = glm::length(dir);
 		glm::vec3 correction(0.0f);
@@ -366,7 +370,8 @@ void cSoftBodyVerlet::ApplyVolumeCorrection()
 		// Avoid division by zero if particle is exactly at the center
 		if (len > 0.0001f)
 		{
-			dir.y *= 2;
+			dir.y *= 1.5;
+			//dir.y *= 2;
 			dir = glm::normalize(dir);
 			// If currentAvgRadius is greater than base (error > 0), we need to pull particles inward.
 			// If error is negative, we need to push particles outward.
@@ -418,8 +423,8 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		{
 
 			// This is the actual Verlet integration step (notice there isn't a velocity)
-			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
-			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor;
+			const float dampingFactor = 1.f; // Experiment with values between 0.9 and 1.0
+			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor; 
 			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
 
 			pCurrentParticle->old_position = current_pos;
@@ -491,7 +496,7 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
-	const unsigned int MAX_GLOBAL_ITERATIONS = 7;
+	const unsigned int MAX_GLOBAL_ITERATIONS = 5;
 	const unsigned int VOLUME_CORRECTIONITERATIONS = 50;
 
 

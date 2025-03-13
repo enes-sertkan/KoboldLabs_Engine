@@ -21,6 +21,8 @@ public:
     bool checkGreaterZLock = true;
     bool wind = true;
     bool useVolume = false;
+    int constIterations = 3;
+    float restLengthMultiplier = 1.f;
 
     float yPosToLock;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
@@ -71,24 +73,24 @@ public:
 
 
         // Check each arrow key independently:
-        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             // Apply a leftward force (negative X) only to particles above the center.
-            glm::vec3 force = glm::vec3(-1.f * object->scene->deltaTime, 0.0f, 0.0f);
-            ApplyForceAboveCenter(force);
-        }
-        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-            // Apply a rightward force (positive X).
-            glm::vec3 force = glm::vec3(1.f * object->scene->deltaTime, 0.0f, 0.0f);
+            glm::vec3 force = glm::vec3(-2.f * object->scene->deltaTime, 0.0f, 0.0f);
             ApplyForceAboveCenter(force);
         }
         if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS) {
-            // Apply a forward force (positive Z).
-            glm::vec3 force = glm::vec3(0.0f, 0.0f, 1.f * object->scene->deltaTime);
+            // Apply a rightward force (positive X).
+            glm::vec3 force = glm::vec3(2.f * object->scene->deltaTime, 0.0f, 0.0f);
             ApplyForceAboveCenter(force);
         }
-        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+            // Apply a forward force (positive Z).
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, 2.f * object->scene->deltaTime);
+            ApplyForceAboveCenter(force);
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
             // Apply a backward force (negative Z).
-            glm::vec3 force = glm::vec3(0.0f, 0.0f, -1.f * object->scene->deltaTime);
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, -2.f * object->scene->deltaTime);
             ApplyForceAboveCenter(force);
         }
     }
@@ -171,6 +173,10 @@ public:
             {
                 // Apply the force to this particle (you might also multiply by deltaTime if needed)
                 particle->position += force;
+            }
+            else
+            {
+                particle->position += force/2.f;
             }
         }
     }

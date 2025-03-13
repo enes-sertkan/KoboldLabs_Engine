@@ -18,7 +18,7 @@ public:
 
 	// This is for loading the original model
 	// The 2nd param is the identy matrix 
-	bool CreateSoftBody(sModelDrawInfo ModelDrawInfo, glm::mat4 matInitalTransform = glm::mat4(1.0f));
+	bool CreateSoftBody(sModelDrawInfo ModelDrawInfo, glm::mat4 matInitalTransform = glm::mat4(1.0f), int constIterations = 7, float restLengthMultiplier = 1.f);
 
 	// Will update the vertex information to match the particles
 	void UpdateVertexPositions(void);
@@ -81,7 +81,7 @@ public:
 		// How far away they are supposed to be 'at rest'
 		float restLength = 2.0f;
 
-		unsigned int maxIterations = 3;
+		unsigned int maxIterations = 7;
 
 		// if false, this isnt' checked
 		// Like if the constraint is 'broken'
