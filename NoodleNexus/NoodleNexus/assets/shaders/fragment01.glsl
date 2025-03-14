@@ -92,6 +92,23 @@ vec4 compositeOver(vec4 bottom, vec4 top) {
     return vec4(outColor, outAlpha);
 }
 
+//vec2 vortexEffect(vec2 uv, float strength, float speed)
+//{
+//    vec2 centeredUV = uv - 0.5;  // Center the UV coordinates
+//   float angle = atan(centeredUV.y, centeredUV.x);  // Get the angle
+//    float radius = length(centeredUV);  // Get the distance from center
+
+//   float twist = strength * sin(time * speed + radius * 10.0);  // Create a time-based twist
+//    angle += twist;  // Apply the twist
+
+//    vec2 newUV;
+//    newUV.x = cos(angle) * radius;
+//    newUV.y = sin(angle) * radius;
+
+//    return newUV + 0.5;  // Shift back to UV space
+//}
+
+
 
 void main()
 {
@@ -103,6 +120,8 @@ void main()
 //movingUV = (movingUV - center) / scale + center;
 
 // movingUV.x += sin(movingUV.y * 10.0 + zoomPower) * 0.05;
+//movingUV = vortexEffect(movingUV, 0.2, 2.0);
+
 
 //WAVES
 
@@ -209,40 +228,40 @@ for (int i = 0; i < 10; i++) {
 
 
 
-		vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
-		vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
-		vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
-		vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
+//		vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
+//		vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
+//		vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
+//		vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
 
 		
 		// Composite textures sequentially: tex0 is the base
-		vec4 layeredColor = compositeOver(tex0, tex1);
-		layeredColor = compositeOver(layeredColor, tex2);
-		layeredColor = compositeOver(layeredColor, tex3);
-		vertexColour = layeredColor.rgb;
+//		vec4 layeredColor = compositeOver(tex0, tex1);
+//		layeredColor = compositeOver(layeredColor, tex2);
+//		layeredColor = compositeOver(layeredColor, tex3);
+//		vertexColour = layeredColor.rgb;
 
 // ------------------------------------------------------------------------
 //      Chromatic Abberation
 // ------------------------------------------------------------------------
-//		vec2 uv = movingUV.st;
-//      float shift = 0.01 * sin(time); // Chromatic shift factor
+		vec2 uv = movingUV.st;
+      float shift = 0.01 * sin(time); // Chromatic shift factor
 
-//    vec4 r = texture(texture00, uv + vec2(shift, 0.0));
-//    vec4 g = texture(texture00, uv);
-//    vec4 b = texture(texture00, uv - vec2(shift, 0.0));
+    vec4 r = texture(texture00, uv + vec2(shift, 0.0));
+    vec4 g = texture(texture00, uv);
+    vec4 b = texture(texture00, uv - vec2(shift, 0.0));
 
-//    vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x); // Apply RGB shift
+    vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x); // Apply RGB shift
 
-//    vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
-//    vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
-//    vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
+    vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
+    vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
+    vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
 
     // Composite textures
-//    vec4 layeredColor = compositeOver(tex0, tex1);
-//    layeredColor = compositeOver(layeredColor, tex2);
-//    layeredColor = compositeOver(layeredColor, tex3);
+    vec4 layeredColor = compositeOver(tex0, tex1);
+    layeredColor = compositeOver(layeredColor, tex2);
+    layeredColor = compositeOver(layeredColor, tex3);
     
- //   vertexColour = layeredColor.rgb;
+    vertexColour = layeredColor.rgb;
 
 						   
 					   
