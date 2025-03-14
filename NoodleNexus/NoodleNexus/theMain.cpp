@@ -78,6 +78,7 @@
 #include "aRotate.h"
 #include "aConnectSoftBodToObj.hpp"
 #include "aRotationWithMinutes.hpp"
+#include "aWavesEffect.h"
 
  Scene* currentScene=nullptr;
 
@@ -755,6 +756,17 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* securutyCamera2 = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(41.f, 40.0f, 20.f), 10, glm::vec3(0.f, 0.5f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera2->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera2->mesh->blendRatio[0] = 1.0f;
+
+
+
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(205.f,22.f,50.f), 10.f, glm::vec3(0.f, 0.f, 90.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    puddle->mesh->textures[0] = "screen_broken.bmp";
+    puddle->mesh->blendRatio[0] = 1.0f;
+
+    aWavesEffect* waveEffect = new aWavesEffect();
+    
+    scene->AddActionToObj(waveEffect, puddle);
+
     //aRotationWithMinutes* rotateCam2 = new aRotationWithMinutes();
     //rotateCam2->minRotation;
     //rotateCam2->minRotation;

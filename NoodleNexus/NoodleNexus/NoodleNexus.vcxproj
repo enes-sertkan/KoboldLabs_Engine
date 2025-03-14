@@ -147,6 +147,7 @@
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aScreenTextureSwitch.h" />
     <ClCompile Include="aTextureWiggler.h" />
+    <ClCompile Include="aWavesEffect.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
     <ClCompile Include="bPhysics_BroadPhase.cpp" />
