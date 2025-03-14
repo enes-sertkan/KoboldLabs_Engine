@@ -14,34 +14,36 @@ public:
     Camera* mainCamera = nullptr;
     CameraToTexture* cameraController = nullptr;
     float fovAdjustmentFactor = 0.1f;
-
+    float cameraHeight = 0.1f;
     Object* mirrorObject = nullptr;
 
     virtual void Update() {
-        mainCamera = object->scene->fCamera->getCameraData();
-        if (!mainCamera || !cameraController) return;
+        // Ensure we have a valid reflection camera and mirror object.
+        if (!mirrorObject)
+            return;
 
-        // Reflect position across mirror plane (Y-axis)
-        glm::vec3 mainPos = mainCamera->position;
-        glm::vec3 reflectedPos = glm::vec3(
-            mainPos.x,
-            2.0f * mirrorCenter.y - mainPos.y, // Proper reflection formula
-            mainPos.z
-        );
+        // Calculate the position for the reflection camera.
+        // Place it directly above the mirror center at a fixed height.
+        glm::vec3 camPos = mirrorCenter + glm::vec3(0.0f, cameraHeight, 0.0f);
 
-        // Apply reflected position to reflection camera
-        object->mesh->positionXYZ = reflectedPos;
+        // Update the reflection camera's position and orientation.
+        // Here, we want it to look straight down.
+        Camera* reflCamData = object->scene->fCamera->getCameraData();
+        if (!reflCamData) return;
 
-        // Reflect main camera's rotation (invert pitch)
-        glm::vec3 mainRot = mainCamera->rotation;
-        object->mesh->rotationEulerXYZ = CalculateLookAtRotation(reflectedPos, mirrorCenter);
-        
-        object->mesh->rotationEulerXYZ.z += 180;
+        reflCamData->position = camPos;
+        // Set rotation so it looks directly downward:
+        // pitch = -90 degrees, yaw = 0, roll = 0.
+        object->mesh->rotationEulerXYZ = glm::vec3(-90.0f, 0.0f, 0.0f);
+        //reflCamData->FOV = fov;
 
-         float distance = glm::length(mainPos - reflectedPos);
-        float adjustedFOV = 60.f * (1.0f + fovAdjustmentFactor / (distance + 0.001f));
-        cameraController->FOV = 60.f;// adjustedFOV;
-      //  RotateMeshTowardsPlayer(mirrorObject->mesh->positionXYZ, mainCamera->position);
+        // Update the reflection camera's view matrix (or equivalent).
+       
+        float distance = glm::length(camPos - mirrorCenter);
+        float adjustedFOV = 100.f * (1.0f + fovAdjustmentFactor / (distance + 0.001f));
+        cameraController->FOV = 100.f;// adjustedFOV;;
+
+        std::cout <<"Camera Position: "<< camPos.x << " " << camPos.y << " " << camPos.z << std::endl;
     }
 
     void RotateMeshTowardsPlayer(const glm::vec3 reflectedPos, const glm::vec3 playerPos) {

@@ -876,7 +876,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     mirrorReflection->cameraController = textureCamera2;
     mirrorReflection->fovAdjustmentFactor = 20.f;
     mirrorReflection->mirrorObject = puddle;
-  //  scene->AddActionToObj(mirrorReflection, cameraObj2);
+    mirrorReflection->cameraHeight = 0.f;
+   scene->AddActionToObj(mirrorReflection, cameraObj2);
 
 
 
@@ -919,7 +920,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->sceneObjects[6]->mesh->bOverrideObjectColour = false; 
 
 
-     puddle->mesh->textures[1] = "securityCamera";
+     puddle->mesh->textures[1] = "camera1";
      puddle->mesh->blendRatio[1] = 1.0f;
      puddle->mesh->bOverrideObjectColour = false;
 
