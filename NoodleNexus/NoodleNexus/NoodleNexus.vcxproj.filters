@@ -87,6 +87,9 @@
     <Filter Include="Engine\Camera">
       <UniqueIdentifier>{169b120f-0c43-401d-9681-259576eca719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\AllInlcudes">
+      <UniqueIdentifier>{a2eb000f-4529-4b58-8aa4-0ecfb122398e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="aWavesEffect.h">
       <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AllInlcludes.hpp">
+      <Filter>Engine\AllInlcudes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

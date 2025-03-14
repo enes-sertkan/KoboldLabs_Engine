@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aBaseMazeCharacter.h" />
+    <ClCompile Include="AllInlcludes.hpp" />
     <ClCompile Include="aLocTriggersLua.h" />
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
