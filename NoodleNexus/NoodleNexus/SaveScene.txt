@@ -31,7 +31,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 1114 0 161
 <Rotation-> 0 0 0
-<Scale-> 9 1.10544e-38 7.34695e-39
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -41,9 +41,9 @@ Rope.txt
 <Model-> Comp
 <Tags->
 <StaticCollision-> false
-<Position-> 169 23 13
+<Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 8.90816e-39
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -53,9 +53,9 @@ Rope.txt
 <Model-> Comp
 <Tags->
 <StaticCollision-> false
-<Position-> 192 23 13
+<Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 4.9592e-39
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -65,9 +65,9 @@ Rope.txt
 <Model-> Comp
 <Tags->
 <StaticCollision-> false
-<Position-> 325 23 499
+<Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.02108e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -77,11 +77,12 @@ Rope.txt
 <Model-> Screen
 <Tags->
 <StaticCollision-> false
-<Position-> 170 22 12.5
+<Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 0 0
+<Scale-> 1 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -89,9 +90,9 @@ Rope.txt
 <Model-> Screen
 <Tags->
 <StaticCollision-> false
-<Position-> 193 22 12.5
+<Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 9.5 7.8753e-43 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -101,9 +102,9 @@ Rope.txt
 <Model-> Screen
 <Tags->
 <StaticCollision-> false
-<Position-> 325 23 499
+<Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 9.5 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -113,9 +114,9 @@ Rope.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 187 33 486
+<Position-> 29 5 67
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -126,9 +127,9 @@ Rope.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 145 56 245
+<Position-> 63 6 67
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 9.15816e+08
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -139,9 +140,9 @@ Rope.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 536 56 247
+<Position-> 50 6 11
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 9.15816e+08
+<Scale-> 1 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -152,9 +153,9 @@ Rope.txt
 <Model-> Reactor
 <Tags->
 <StaticCollision-> false
-<Position-> 328 23 8
+<Position-> 47 3 2
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -164,9 +165,9 @@ Rope.txt
 <Model-> Reactor
 <Tags->
 <StaticCollision-> false
-<Position-> 294 21 405
+<Position-> 45 3 58
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -176,9 +177,9 @@ Rope.txt
 <Model-> Reactor
 <Tags->
 <StaticCollision-> false
-<Position-> 326 22 405
+<Position-> 42 3 57
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -188,9 +189,9 @@ Rope.txt
 <Model-> Tube
 <Tags->
 <StaticCollision-> false
-<Position-> 257 20 64
+<Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -200,9 +201,9 @@ Rope.txt
 <Model-> Tube
 <Tags->
 <StaticCollision-> false
-<Position-> 229 20 487
+<Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -212,9 +213,9 @@ Rope.txt
 <Model-> Tube
 <Tags->
 <StaticCollision-> false
-<Position-> 242 20 473
+<Position-> 40 3 68
 <Rotation-> 0 0 0
-<Scale-> 9 4.3558e-41 9.15816e+08
+<Scale-> 1 1.69557e-43 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -224,9 +225,9 @@ Rope.txt
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
-<Position-> 257 20 64
+<Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -236,9 +237,9 @@ Rope.txt
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
-<Position-> 229 20 487
+<Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 9 0 0
+<Scale-> 1 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -248,9 +249,9 @@ Rope.txt
 <Model-> TubeGlass
 <Tags->
 <StaticCollision-> false
-<Position-> 242 20 473
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -260,9 +261,9 @@ Rope.txt
 <Model-> TubeBroken
 <Tags->
 <StaticCollision-> false
-<Position-> 254 21 486
+<Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 9 1.69557e-43 9.15816e+08
+<Scale-> 1 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -272,9 +273,9 @@ Rope.txt
 <Model-> TubeBroken
 <Tags->
 <StaticCollision-> false
-<Position-> 269 20 476
+<Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -284,9 +285,9 @@ Rope.txt
 <Model-> TubeBroken
 <Tags->
 <StaticCollision-> false
-<Position-> 287 22 4
+<Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -296,9 +297,9 @@ Rope.txt
 <Model-> Shard
 <Tags->
 <StaticCollision-> false
-<Position-> 254 21 486
+<Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -308,9 +309,9 @@ Rope.txt
 <Model-> Shards
 <Tags->
 <StaticCollision-> false
-<Position-> 269 20 476
+<Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -320,9 +321,9 @@ Rope.txt
 <Model-> Shards
 <Tags->
 <StaticCollision-> false
-<Position-> 287 22 4
+<Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -332,9 +333,9 @@ Rope.txt
 <Model-> Table
 <Tags->
 <StaticCollision-> false
-<Position-> 246 19 14
+<Position-> 38 3 11
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -344,9 +345,9 @@ Rope.txt
 <Model-> Table
 <Tags->
 <StaticCollision-> false
-<Position-> 203 18 74
+<Position-> 39 3 68
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -356,9 +357,9 @@ Rope.txt
 <Model-> Table
 <Tags->
 <StaticCollision-> false
-<Position-> 254 18 508
+<Position-> 41 3 8
 <Rotation-> 0 0 0
-<Scale-> 9 1.1151e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -368,9 +369,9 @@ Rope.txt
 <Model-> Light
 <Tags->
 <StaticCollision-> false
-<Position-> 157 55 8
+<Position-> 23 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 9.15816e+08
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -380,9 +381,9 @@ Rope.txt
 <Model-> Light
 <Tags->
 <StaticCollision-> false
-<Position-> 180 55 8
+<Position-> 26 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 9 1.11123e-38 0
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -392,9 +393,9 @@ Rope.txt
 <Model-> Light
 <Tags->
 <StaticCollision-> false
-<Position-> 327 55 489
+<Position-> 46 8 72
 <Rotation-> 0 -95 -1
-<Scale-> 9 1.11123e-38 0
+<Scale-> 1 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -406,7 +407,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 50 60
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -431,7 +432,7 @@ Rope.txt
 <StaticCollision-> false
 <Position-> 205 40 60
 <Rotation-> 0 0 0
-<Scale-> 5 0 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.6 0.4
@@ -455,35 +456,9 @@ Rope.txt
 <Model-> <Model->assets/models/screen_quad.ply
 <Tags->
 <StaticCollision-> false
-<Position-> 3.96042e-11 4.91537e-11 3.96041e-11
-<Rotation-> 4.91539e-11 3.9604e-11 8.11322e-39
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/screen_quad.ply
-<Model-> <Model->assets/models/screen_quad.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 3.96042e-11 4.91537e-11 3.96041e-11
-<Rotation-> 4.91539e-11 3.9604e-11 8.11322e-39
-<Scale-> 0 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/screen_quad.ply
-<Model-> <Model->assets/models/screen_quad.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 6.01379e+07 7.36518e+31 1.65177e-07
-<Rotation-> 3.01044e+29 1.18662e+27 4.10314e-41
-<Scale-> 2.4641e-17 1.1151e-38 0
+<Position-> 6.01379e+07 7.36518e+31 4.25237e-05
+<Rotation-> 2.7691e+20 1.38174e-08 1.01417e-38
+<Scale-> 5.21648e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -494,15 +469,85 @@ Rope.txt
 <Model-> assets/models/screen_quad.ply
 <Tags->
 <StaticCollision-> false
-<Position-> 9.51496e+14 3.96042e-11 3.9604e-11
-<Rotation-> 9.50771e+14 3.96042e-11 8.11322e-39
-<Scale-> 5.51234e-11 1.1151e-38 0
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 4.55929e+30
+<Scale-> 2.15902e+29 4.3558e-41 4.48416e-44
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Light-->
-<Position-> 216.48 3000 404 1
+<Position-> 8 6.5 82.2201 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.24383 1.78883e-05 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 17.5 7.5 43 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.179112 1.45151e-05 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 42 15 6.5 1
+<Diffuse-> 1 1 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 6.00394 0.000467712 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 0 0 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 24.5 9.5 8 1
+<Diffuse-> -0.0999993 2 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.199769 1.46559e-05 3.40282e+38
+<Direction-> 0 1 0 0
+<Param1-> 0 -9.7 -3.7 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 23 9 2 1
+<Diffuse-> 1.63 1.03 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.348695 0.000370222 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 6.5 20.7 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 26 9 2 1
+<Diffuse-> 1.63 1.03 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.631829 0.000670835 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 6.5 20.7 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 45.5 8.5 72 1
+<Diffuse-> 1.63 1.03 1 1
+<Specular-> 1 1 1 1
+<Atten-> 0 0.554443 0.000588672 3.40282e+38
+<Direction-> 0 -1 0 0
+<Param1-> 1 6.5 20.7 0
+<Param2-> 1 0 0 0
+<--Light>
+
+<Light-->
+<Position-> 217.48 3000 403.64 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.0035 1.5 3.40282e+38
@@ -512,28 +557,28 @@ Rope.txt
 <--Light>
 
 <Light-->
-<Position-> 248.5 72.5 73 1
+<Position-> 31 10.5 11 1
 <Diffuse-> 0.73 0.140001 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0198689 2.02683e-05 3.40282e+38
+<Atten-> 0 0.0410803 4.19061e-05 3.40282e+38
 <Direction-> 0 -1 0 0
 <Param1-> 1 -2.4 11.7 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 249 42.5 73 1
-<Diffuse-> 1.19 -1.29 1 1
+<Position-> 30.5 8 11 1
+<Diffuse-> 1.05 -1.44 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0570239 4.18393e-06 3.40282e+38
+<Atten-> 0 0.253185 1.83926e-05 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 -2.6 -63.2996 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 233.5 72.5 482 1
-<Diffuse-> -0.23 0.650001 1 1
+<Position-> 38 9.5 73 1
+<Diffuse-> -0.23 0.630001 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.0198689 2.02683e-05 3.40282e+38
 <Direction-> 0 -1 0 0
@@ -542,7 +587,7 @@ Rope.txt
 <--Light>
 
 <Light-->
-<Position-> 233.5 42.5 482 1
+<Position-> 37 8 72.5 1
 <Diffuse-> -0.889999 0.579999 1 1
 <Specular-> 1 1 1 1
 <Atten-> 0 0.1133 8.31302e-06 3.40282e+38
@@ -552,132 +597,62 @@ Rope.txt
 <--Light>
 
 <Light-->
-<Position-> 220.5 72.5 496 1
+<Position-> 39 10 69 1
 <Diffuse-> -0.919999 1.42 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0360957 3.60958e-05 3.40282e+38
+<Atten-> 0 0.0581944 5.87765e-05 3.40282e+38
 <Direction-> 0 -1 0 0
-<Param1-> 1 -4 13.4 0
+<Param1-> 1 -6.4 13.6 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 220.5 42 496 1
+<Position-> 41 8.5 63 1
 <Diffuse-> 1.42 0.829999 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.212069 1.52533e-05 3.40282e+38
+<Atten-> 0 0.176975 1.1512e-05 3.40282e+38
 <Direction-> 0 1 0 0
-<Param1-> 0 -2.6 -63.2996 0
+<Param1-> 0 -2.7 -63.2996 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 369 56 22 1
+<Position-> 42 10 7 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0617644 4.62235e-06 3.40282e+38
+<Atten-> 0 0.0995781 7.60206e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 144.5 51.5 246 1
+<Position-> 63.5 11 52.5 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0398656 3.01331e-06 3.40282e+38
+<Atten-> 0 0.0753644 5.75351e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 537.5 53.5 245 1
+<Position-> 12.5 8 31 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0532008 3.98146e-06 3.40282e+38
+<Atten-> 0 0.127702 9.55703e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
 <Light-->
-<Position-> 300 50 60 1
+<Position-> 42 8 42 1
 <Diffuse-> 1 1 1 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
+<Atten-> 0 0.114463 8.23194e-06 3.40282e+38
 <Direction-> 0 1 0 0
 <Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 417 50 473 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 370 50 522 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 266 50 499 1
-<Diffuse-> 1 1 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0368152 2.75519e-06 3.40282e+38
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 179 62.5 42.5 1
-<Diffuse-> -0.0999993 2 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.10359 7.59978e-06 3.40282e+38
-<Direction-> 0 1 0 0
-<Param1-> 0 -9.7 -3.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 157 69 15.5 1
-<Diffuse-> 1.63 1.03 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0202541 2.19389e-05 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 180.5 62.5 13 1
-<Diffuse-> 1.63 1.03 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0202541 2.19389e-05 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 205 62.5 13 1
-<Diffuse-> 1.63 1.03 1 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.0202541 2.19389e-05 3.40282e+38
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
 <Param2-> 1 0 0 0
 <--Light>
 

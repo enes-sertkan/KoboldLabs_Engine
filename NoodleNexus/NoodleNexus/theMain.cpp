@@ -835,42 +835,42 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     //scene->AddActionToObj(softBodyAction, softObject);
 
 
-    Object* cameraObj2 = scene->sceneObjects[7];
-    //Object* cameraObj3 = scene->sceneObjects[8];
-    //Object* cameraObj4 = scene->sceneObjects[9];
-    ////Object* cameraObj5 = scene->sceneObjects[23];
+    //Object* cameraObj2 = scene->sceneObjects[7];
+    ////Object* cameraObj3 = scene->sceneObjects[8];
+    ////Object* cameraObj4 = scene->sceneObjects[9];
+    //////Object* cameraObj5 = scene->sceneObjects[23];
 
-    CameraToTexture* textureCamera1 = new CameraToTexture();
-    CameraToTexture* textureCamera2 = new CameraToTexture();
-    CameraToTexture* textureCamera3 = new CameraToTexture();
+    //CameraToTexture* textureCamera1 = new CameraToTexture();
+    //CameraToTexture* textureCamera2 = new CameraToTexture();
+    //CameraToTexture* textureCamera3 = new CameraToTexture();
 
-    textureCamera1->drawistance = 50.f;
-    textureCamera2->drawistance = 100.f;
-    textureCamera3->drawistance = 500.f;
-    textureCamera1->textureName = "securityCamera";
-    textureCamera2->textureName = "camera1";
-    textureCamera3->textureName = "securityCamera2";
-
-
-    securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
-    securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
-    scene->AddActionToObj(textureCamera2, cameraObj2);
+    //textureCamera1->drawistance = 50.f;
+    //textureCamera2->drawistance = 100.f;
+    //textureCamera3->drawistance = 500.f;
+    //textureCamera1->textureName = "securityCamera";
+    //textureCamera2->textureName = "camera1";
+    //textureCamera3->textureName = "securityCamera2";
 
 
+    //securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
+    //securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
+    //scene->AddActionToObj(textureCamera2, cameraObj2);
 
 
 
-    ////FRONT SCREEN 1
-    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
-    screenSwitcher->AddTexture("camera1");
-    screenSwitcher->AddTexture("securityCamera");
-    screenSwitcher->AddTexture("securityCamera2");
-    screenSwitcher->AddTextureLayer2("cam_top.bmp");
-    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
-    screenSwitcher->AddTextureLayer2("cam_top3.bmp");
 
-    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+    //////FRONT SCREEN 1
+    //ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
+
+    //screenSwitcher->AddTexture("camera1");
+    //screenSwitcher->AddTexture("securityCamera");
+    //screenSwitcher->AddTexture("securityCamera2");
+    //screenSwitcher->AddTextureLayer2("cam_top.bmp");
+    //screenSwitcher->AddTextureLayer2("cam_top2.bmp");
+    //screenSwitcher->AddTextureLayer2("cam_top3.bmp");
+
+    //scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
 
 
 

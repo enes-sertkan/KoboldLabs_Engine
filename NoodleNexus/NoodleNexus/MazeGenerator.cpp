@@ -43,25 +43,25 @@ void MazeGenerator::generateMaze() {
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
             if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
-                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                // PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f * 7.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f * 7.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f * 7.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f * 7.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
                 //// VENTS
