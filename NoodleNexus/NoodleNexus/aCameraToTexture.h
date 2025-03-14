@@ -23,6 +23,7 @@ public:
 	std::string textureName;
 	cFBO_RGB_depth myFBO;
 	float drawistance = 15.f;
+	float FOV = 60.f;
 
 	virtual void Start()
 	{
@@ -39,7 +40,8 @@ public:
 	virtual void Update()
 	{
 	//	std::cout << object->mesh->positionXYZ.x << " " << std::endl;
-		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(1920, 1080));
+		Camera* camera = new Camera( object->mesh->positionXYZ, object->mesh->rotationEulerXYZ, glm::vec2(2000, 2000));
+		camera->fov = FOV;
 		camera->drawDistance = drawistance;
 		camera->scene = object->scene;
 		DrawCameraViewToFramebufer(camera, 0, myFBO.ID);

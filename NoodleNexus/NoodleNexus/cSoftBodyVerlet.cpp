@@ -315,7 +315,7 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*4;
+	volume = GetVolume()*3;
 }
 
 
@@ -423,7 +423,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		{
 
 			// This is the actual Verlet integration step (notice there isn't a velocity)
-			const float dampingFactor = 1.f; // Experiment with values between 0.9 and 1.0
+			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
 			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor; 
 			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
 
@@ -501,16 +501,16 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 
 
 
+	if (useVolume)
+		for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
+		{
+			ApplyVolumeCorrection();
+		}
+
 
 	for (unsigned int iteration = 0; iteration != MAX_GLOBAL_ITERATIONS; iteration++)
 	{
-		if (useVolume)
-			for (unsigned int iteration = 0; iteration != VOLUME_CORRECTIONITERATIONS; iteration++)
-			{
-				ApplyVolumeCorrection();
-			}
-
-	
+		
 		// This is ONE pass of the constraint resolution
 		for (sConstraint* pCurConstraint : this->vec_pConstraints)
 		{

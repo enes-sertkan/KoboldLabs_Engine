@@ -670,7 +670,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     //        glm::mat4 m, p, v, mvp;
     glm::mat4 matProjection = glm::mat4(1.0f);
 
-    matProjection = glm::perspective(0.6f,           // FOV
+    matProjection = glm::perspective(glm::radians(camera->fov),           // FOV
         camera->resolution.x/camera->resolution.y,          // Aspect ratio of screen
         0.1f,           // Near plane
         1000000.0f);       // Far plane
@@ -730,7 +730,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         if (location != -1) {
             glUniform4f(location, waveData.x, waveData.y, waveData.z, waveData.w);
         }
-        if (activeValue) pCurMesh->waves[i].time+= 0.1;
+        if (activeValue) pCurMesh->waves[i].time+= 0.02;
         if (pCurMesh->waves[i].time > 4.f)
         {
             pCurMesh->waves[i].active = false;

@@ -144,6 +144,7 @@
     <ClCompile Include="aLuaScript.h" />
     <ClCompile Include="aLuaScriptsSerial.h" />
     <ClCompile Include="aMainCamera.hpp" />
+    <ClCompile Include="aMirrorReflection.h" />
     <ClCompile Include="aPlaneMovement.hpp" />
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aScreenTextureSwitch.h" />

@@ -22,7 +22,7 @@ public:
 	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
 
-        const float TILE_SIZE = 1.0f * 7.0f * 4.0f;
+        const float TILE_SIZE = 1.0f * 4.0f;
         particlePos.x += TILE_SIZE / 3.f;
         particlePos.z += TILE_SIZE / 1.45f;
 
@@ -82,9 +82,9 @@ public:
 
         // Vertical collision check for floor and ceiling.
         // If the particle is below the floor (y = 22), push it up.
-        if (particlePos.y < 22.f)
+        if (particlePos.y < 3.f)
         {
-            correction.y = 22.f - particlePos.y;
+            correction.y = 3.f - particlePos.y;
         }
         // If above the ceiling (y = 62), push it down.
         else if (particlePos.y > 62.0f)

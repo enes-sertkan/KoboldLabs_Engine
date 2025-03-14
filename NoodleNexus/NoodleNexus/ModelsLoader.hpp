@@ -139,5 +139,10 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.modelName = "Rope";
     modelInfo.meshPath = "assets/models/Rope.ply";
     fileManager->WriteModelFile(&modelInfo, "Rope.txt", "XYZNUVRGBA");
+    
+
+    modelInfo.modelName = "Plane_1x1";
+    modelInfo.meshPath = "assets/models/plene_1x1.ply";
+    fileManager->WriteModelFile(&modelInfo, "Plane_1x1.txt", "XYZNUVRGBA");
 
 }

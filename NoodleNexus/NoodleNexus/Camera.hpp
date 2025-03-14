@@ -19,7 +19,7 @@ struct Camera {
     Scene* scene;
 
 
-    float fov;
+    float fov=60.f;
     float nearClip;
     float farClip;
     bool isPerspective;

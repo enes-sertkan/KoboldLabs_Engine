@@ -68,7 +68,7 @@ struct sMesh
 			// Only replace an inactive wave.
 			if (!waves[i].active) {
 			    waves[i].uv = uvPos;    // Set the new UV position
-			    waves[i].time = 0.0f;     // Reset the time value
+			    waves[i].time = 0.5f;     // Reset the time value
 				waves[i].active = true;   // Mark the wave as active
 				return;  // Only spawn one wave, then exit.
 			}

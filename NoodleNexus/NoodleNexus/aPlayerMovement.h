@@ -29,8 +29,8 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float walkSpeed=30.f;
-	float runSpeed = 80.f;
+	float walkSpeed = 5.f;
+	float runSpeed = 10.f;
 	float speed = walkSpeed;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
@@ -47,80 +47,70 @@ public:
 
 	void Move(Direction direction)
 	{
-		glm::vec3 forward = object->scene->fCamera->getTargetRelativeToCamera();
-		forward.y = 0;
-		
+		// Get the camera's rotation (pitch, yaw) in degrees
+		glm::vec2 eyeRotation = object->scene->fCamera->getEyeRotation();
+		std::cout << eyeRotation.x << " " << eyeRotation.y << std::endl;
+		// Convert yaw (the second component) to radians.
+		float yaw = glm::radians(eyeRotation.y);
+
+		// Compute the forward direction from the yaw (ignoring pitch for movement)
+		// When yaw = 0, forward should be (0,0,1)
+		glm::vec3 forward(sin(yaw), 0.0f, cos(yaw));
 		forward = glm::normalize(forward);
-		glm::vec3 left = glm::cross(up, forward);
-		glm::vec3 position;
-		position = object->mesh->positionXYZ; 
+
+		// Calculate the left direction (perpendicular to forward in the XZ plane)
+		glm::vec3 up(0.0f, 1.0f, 0.0f);
+		glm::vec3 left = glm::normalize(glm::cross(up, forward));
+
+		// Get the current position (for collision purposes)
+		glm::vec3 position = object->mesh->positionXYZ;
 		std::vector<sCollision_RayTriangleInMesh> collisions;
-	/*	DrawRayS(position, position + forward * speed * 2.f, program);
-		DrawRayS(position, position - forward * speed * 2.f, program);
-		DrawRayS(position, position + left * speed * 2.f, program);
-		DrawRayS(position, position - left * speed * 2.f, program);*/
 
 		switch (direction)
 		{
-			
-		case aPlayerMovement::FORWARD:
-			if (object->scene->physicsManager->RayCast(position, position + forward*speed * 1.5f * object->scene->deltaTime, collisions, false))
+		case FORWARD:
+			if (object->scene->physicsManager->RayCast(position, position + forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				//std::cout << "COLLISION";
-			break;
-			}
-			object->mesh->positionXYZ.x += forward.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z += forward.z * speed * object->scene->deltaTime;
-			break;
-
-		case aPlayerMovement::BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed* 1.5f * object->scene->deltaTime, collisions, false))
-			{
-			//	std::cout << "COLLISION";
-				// 
 				break;
 			}
-
-			object->mesh->positionXYZ.x -= forward.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z -= forward.z * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ -= left * speed * object->scene->deltaTime;
 			break;
-		case aPlayerMovement::LEFT:
+		case BACK:
+			if (object->scene->physicsManager->RayCast(position, position - forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			{
+				break;
+			}
+			object->mesh->positionXYZ += left * speed * object->scene->deltaTime;
+			break;
+		case LEFT:
 			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				//std::cout << "COLLISION";
-				// 
 				break;
 			}
-
-
-			object->mesh->positionXYZ.x += left.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z += left.z * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ += forward * speed * object->scene->deltaTime;
 			break;
-		case aPlayerMovement::RIGHT:
+		case RIGHT:
 			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				//std::cout << "COLLISION";
-				// 
 				break;
 			}
-
-
-			object->mesh->positionXYZ.x -= left.x * speed * object->scene->deltaTime;
-			object->mesh->positionXYZ.z -= left.z * speed * object->scene->deltaTime;
+			object->mesh->positionXYZ -= forward * speed * object->scene->deltaTime;
 			break;
-
 		default:
 			break;
 		}
-
 	}
 
-	
+	void Start() override
+	{
+		object->scene->isFlyCamera = false;
+	}
 
 	void Update() override
 	{
-		
-		if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return
+		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
+
+	//	if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return
 
 
 		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
@@ -131,24 +121,24 @@ public:
 
 
 
-			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
-			{
-				Move(FORWARD);
-			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
-			{
-				Move(BACK);
-			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
-			{
-				Move(LEFT);
-			}
-			if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
-			{
-				Move(RIGHT);
-			}
+		if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			Move(FORWARD);
+		}
+		if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			Move(BACK);
+		}
+		if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			Move(LEFT);
+		}
+		if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			Move(RIGHT);
+		}
 
-		
+
 	}
 
 };

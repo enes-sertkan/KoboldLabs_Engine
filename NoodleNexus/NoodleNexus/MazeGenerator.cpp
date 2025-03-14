@@ -44,7 +44,7 @@ void MazeGenerator::generateMaze() {
 
             if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-               // PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f * 7.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {

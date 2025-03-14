@@ -7,7 +7,81 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 #define GLFW_INCLUDE_NONE
 
-#include "AllInlcludes.hpp"
+#include "Action.h"
+#include "aMoveInDirection.h"
+#include "GLCommon.h"
+
+//#include "linmath.h"
+#include <glm/glm.hpp>
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/gtc/matrix_transform.hpp> 
+// glm::translate, glm::rotate, glm::scale, glm::perspective
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+//#include <glm/gtc/magnitude.hpp> // Magnitude calculations
+#include <glm/gtx/norm.hpp>  // Normalize, length
+
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdio.h>
+
+#include <iostream>     // "input output" stream
+#include <fstream>      // "file" stream
+#include <sstream>      // "string" stream ("string builder" in Java c#, etc.)
+#include <string>
+#include <vector>
+#include <thread>
+#include <chrono>
+
+//void ReadPlyModelFromFile(std::string plyFileName);
+#include "PlyFileLoaders.h"
+#include "Basic_Shader_Manager/cShaderManager.h"
+#include "sMesh.h"
+#include "cVAOManager/cVAOManager.h"
+#include "sharedThings.h"       // Fly camera
+#include "cPhysics.h"
+#include "cLightManager.h"
+#include <windows.h>    // Includes ALL of windows... MessageBox
+#include "cLightHelper/cLightHelper.h"
+#include "KLFileManager.hpp"
+#include "PhysicsManager.h"
+#include "SceneEditor.h"
+#include "Scene.hpp"
+#include "cBasicFlyCamera/cBasicFlyCamera.h" 
+#include "sObject.h"
+#include "aPlayerCamera.hpp"  // Include the header for aPlayerCamera class
+#include "aPlayerMovement.h"
+#include "MazeGenerator.hpp"
+#include "cCommandFactory.hpp"
+#include "cCommandGroup.hpp"
+#include "cLuaBrain.hpp"
+#include "LuaScript.h"
+#include "ObjectManager.h"
+//#include "GridRenderer.h"
+#include "aRayCastPhysics.h"
+#include "aDrawAim.hpp"
+#include "aPlayerItemsController.h"
+#include "ModelsLoader.hpp"
+#include "aLuaScript.h"
+#include "aLuaScriptsSerial.h"
+#include "aLocTriggersLua.h"
+#include "Animator.h"
+#include "aTextureWiggler.h"
+#include "aPlaneMovement.hpp"
+#include "aPlanePhysics.h"
+#include "cFBO_RGB_depth.hpp"
+#include "aCameraToTexture.h"
+#include "aScreenTextureSwitch.h"
+#include "aSoftBodyAction.hpp"
+#include "aBaseMazeCharacter.h"
+#include "aMainCamera.hpp"
+#include "aRotate.h"
+#include "aConnectSoftBodToObj.hpp"
+#include "aRotationWithMinutes.hpp"
+#include "aWavesEffect.h"
+#include "aMirrorReflection.h"
+
 
  Scene* currentScene=nullptr;
 
@@ -678,7 +752,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aRotate* rotateActionTube = new aRotate();
     securityRoomScene->AddActionToObj(rotateActionTube, wierd);
 
-    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 5, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
 
@@ -688,13 +762,24 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(205.f,22.f,50.f), 10.f, glm::vec3(0.f, 0.f, 90.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),4.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
 
     aWavesEffect* waveEffect = new aWavesEffect();
-    
+   // waveEffect->offset = glm::vec2(0.5, 0.5);
     scene->AddActionToObj(waveEffect, puddle);
+    puddle->isTemporary = true;
+    
+    Object* player = scene->GenerateMeshObjectsFromObject("", glm::vec3(20.f, 5.f, 7.f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+    aPlayerMovement* playerMovement = new aPlayerMovement();
+    player->isTemporary = true;
+  // aPlayerShooting* playerShooting = new aPlayerShooting();
+
+    scene->AddActionToObj(playerMovement, player);
+
+    waveEffect->player = player;
+    //scene->AddActionToObj(playerShooting, player);
 
     //aRotationWithMinutes* rotateCam2 = new aRotationWithMinutes();
     //rotateCam2->minRotation;
@@ -755,58 +840,64 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 //    scene->AddActionToObj(connector, scene->sceneObjects[33]);
     
-    //// Ensure "Mountain" exists in the VAO Manager before using it
-    //myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
+    // Ensure "Mountain" exists in the VAO Manager before using it
+   // myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
 
-    //// Correct constructor usage
-    //SoftBody* softBodyAction = new SoftBody(mySoftbody, myVAOManager, "Mountain");
+    // Correct constructor usage
+   // SoftBody* softBodyAction = new SoftBody(mySoftbody, myVAOManager, "Mountain");
 
-    //scene->AddActionToObj(softBodyAction, softObject);
-
-
-    //Object* cameraObj2 = scene->sceneObjects[7];
-    ////Object* cameraObj3 = scene->sceneObjects[8];
-    ////Object* cameraObj4 = scene->sceneObjects[9];
-    //////Object* cameraObj5 = scene->sceneObjects[23];
-
-    //CameraToTexture* textureCamera1 = new CameraToTexture();
-    //CameraToTexture* textureCamera2 = new CameraToTexture();
-    //CameraToTexture* textureCamera3 = new CameraToTexture();
-
-    //textureCamera1->drawistance = 50.f;
-    //textureCamera2->drawistance = 100.f;
-    //textureCamera3->drawistance = 500.f;
-    //textureCamera1->textureName = "securityCamera";
-    //textureCamera2->textureName = "camera1";
-    //textureCamera3->textureName = "securityCamera2";
+ //   scene->AddActionToObj(softBodyAction, softObject);
 
 
-    //securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
-    //securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
-    //scene->AddActionToObj(textureCamera2, cameraObj2);
+    Object* cameraObj2 = scene->sceneObjects[7];
+    //Object* cameraObj3 = scene->sceneObjects[8];
+    //Object* cameraObj4 = scene->sceneObjects[9];
+    ////Object* cameraObj5 = scene->sceneObjects[23];
+
+    CameraToTexture* textureCamera1 = new CameraToTexture();
+    CameraToTexture* textureCamera2 = new CameraToTexture();
+    CameraToTexture* textureCamera3 = new CameraToTexture();
+
+    textureCamera1->drawistance = 50.f;
+    textureCamera2->drawistance = 100.f;
+    textureCamera3->drawistance = 500.f;
+    textureCamera1->textureName = "securityCamera";
+    textureCamera2->textureName = "camera1";
+    textureCamera3->textureName = "securityCamera2";
 
 
+    securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
+    securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
+    scene->AddActionToObj(textureCamera2, cameraObj2);
 
-
-
-    //////FRONT SCREEN 1
-    //ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
-
-    //screenSwitcher->AddTexture("camera1");
-    //screenSwitcher->AddTexture("securityCamera");
-    //screenSwitcher->AddTexture("securityCamera2");
-    //screenSwitcher->AddTextureLayer2("cam_top.bmp");
-    //screenSwitcher->AddTextureLayer2("cam_top2.bmp");
-    //screenSwitcher->AddTextureLayer2("cam_top3.bmp");
-
-    //scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+    //MIRROR
+    aMirrorReflection* mirrorReflection = new aMirrorReflection();
+    mirrorReflection->mirrorCenter = puddle->mesh->positionXYZ;
+    mirrorReflection->cameraController = textureCamera2;
+    mirrorReflection->fovAdjustmentFactor = 20.f;
+    mirrorReflection->mirrorObject = puddle;
+  //  scene->AddActionToObj(mirrorReflection, cameraObj2);
 
 
 
-    //FRONT SCREEN 2
-   // ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
+    ////FRONT SCREEN 1
+    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
 
-//    screenSwitcher2->AddTexture("securityCamera");
+    screenSwitcher->AddTexture("camera1");
+    screenSwitcher->AddTexture("securityCamera");
+    screenSwitcher->AddTexture("securityCamera2");
+    screenSwitcher->AddTextureLayer2("cam_top.bmp");
+    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
+    screenSwitcher->AddTextureLayer2("cam_top3.bmp");
+
+    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+
+
+
+  ////  FRONT SCREEN 2
+  //  ScreenTextureSwitch* screenSwitcher2 = new ScreenTextureSwitch();
+
+  //  screenSwitcher2->AddTexture("securityCamera");
 
 
   //  scene->AddActionToObj(screenSwitcher2, scene->sceneObjects[4]);
@@ -825,7 +916,12 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     
      scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
     scene->sceneObjects[6]->mesh->blendRatio[1] = 0.75f;
-    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
+    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false; 
+
+
+     puddle->mesh->textures[1] = "securityCamera";
+     puddle->mesh->blendRatio[1] = 1.0f;
+     puddle->mesh->bOverrideObjectColour = false;
 
     // scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
     //scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;

@@ -357,8 +357,8 @@ void Scene::Update()
   
     if (!isFlyCamera)
     {
-        MoveCameraToPoint();
-        fCamera->FreezePlayerRotation();
+     //   MoveCameraToPoint();
+     //   fCamera->FreezePlayerRotation();
     }
     else
     {

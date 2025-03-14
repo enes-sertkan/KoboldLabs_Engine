@@ -75,22 +75,22 @@ public:
         // Check each arrow key independently:
         if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             // Apply a leftward force (negative X) only to particles above the center.
-            glm::vec3 force = glm::vec3(-2.f * object->scene->deltaTime, 0.0f, 0.0f);
+            glm::vec3 force = glm::vec3(-6.f * object->scene->deltaTime, 0.0f, 0.0f);
             ApplyForceAboveCenter(force);
         }
         if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS) {
             // Apply a rightward force (positive X).
-            glm::vec3 force = glm::vec3(2.f * object->scene->deltaTime, 0.0f, 0.0f);
+            glm::vec3 force = glm::vec3(6.f * object->scene->deltaTime, 0.0f, 0.0f);
             ApplyForceAboveCenter(force);
         }
         if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
             // Apply a forward force (positive Z).
-            glm::vec3 force = glm::vec3(0.0f, 0.0f, 2.f * object->scene->deltaTime);
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, 6.f * object->scene->deltaTime);
             ApplyForceAboveCenter(force);
         }
         if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
             // Apply a backward force (negative Z).
-            glm::vec3 force = glm::vec3(0.0f, 0.0f, -2.f * object->scene->deltaTime);
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, -6.f * object->scene->deltaTime);
             ApplyForceAboveCenter(force);
         }
     }
@@ -164,19 +164,46 @@ public:
 
     void ApplyForceAboveCenter(glm::vec3 force)
     {
-        force*=0.1f;
+        force *= 0.1f;
+
+        // Find the most top particle (the one with the highest y-position)
+        cSoftBodyVerlet::sParticle* topmostParticle = nullptr;
+        float maxY = -FLT_MAX;  // Initialize to a very low value to find the maximum
+
         for (cSoftBodyVerlet::sParticle* particle : softBody->vec_pParticles)
         {
-            glm::vec3 center = softBody->getGeometricCentrePoint();
-            // Check if the particle is above the given center point (based on y-axis)
-            if (particle->position.y > center.y)
+            if (particle->position.y > maxY)
             {
-                // Apply the force to this particle (you might also multiply by deltaTime if needed)
-                particle->position += force;
+                maxY = particle->position.y;
+                topmostParticle = particle;
             }
-            else
+        }
+
+        if (topmostParticle)
+        {
+            // Calculate the distance from the center to the topmost particle
+            glm::vec3 center = softBody->getGeometricCentrePoint();
+            float distanceToTopmost = glm::length(topmostParticle->position - center);
+
+            // Apply force to all particles based on their distance to the topmost particle
+            for (cSoftBodyVerlet::sParticle* particle : softBody->vec_pParticles)
             {
-                particle->position += force/2.f;
+                // Calculate the distance from this particle to the center
+                float distanceToParticle = glm::length(particle->position - center);
+
+                // Apply the force divided by the distance to the topmost particle
+                float forceFactor = (distanceToTopmost != 0) ? (distanceToTopmost / distanceToParticle) : 1.0f;
+                glm::vec3 forceApplied = force / forceFactor;
+
+                // Apply the force depending on whether the particle is above or below the center
+                if (particle->position.y > center.y)
+                {
+                    particle->position += forceApplied;
+                }
+                else
+                {
+                   // particle->position += forceApplied / 2.f;  // Apply less force for particles below the center
+                }
             }
         }
     }
