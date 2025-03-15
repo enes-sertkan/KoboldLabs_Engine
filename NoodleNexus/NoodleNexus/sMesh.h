@@ -51,6 +51,13 @@ struct sMesh
 	std::string textures[MAX_NUM_TEXTURES];
 	float blendRatio[MAX_NUM_TEXTURES];
 	int textureFillType[MAX_NUM_TEXTURES];
+	std::string AOtexture;
+	std::string STTexture;
+	float metal=0;
+	float smoothness=0.1;
+	bool useMetalTexture = false;
+	bool useSmoothTexture = false;
+
 
 	unsigned int uniqueID = 0;
 

@@ -124,63 +124,27 @@ void MazeGenerator::generateMaze() {
     //PlaceFood(50);
     //PlaceWater(100);
 }
-
+bool aobool = false;
 Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction type, bool isVisible, glm::vec4 color) {
     glm::vec3 position(col * scale * 4.0f, floor * scale * 3.0f, row * scale * 4.0f);
     glm::vec3 rotation(0.0f);
     glm::vec3 objectScale(1, 1, 1);
     std::string texture;
     bool isOverrideColor = false;
-
+    bool useAO = false;
+    std::string textureAO="";
+    std::string textureST="";
     switch (type) {
-    //case TUBES: {
-    //    std::vector<std::string> mediumObjectPaths = {
-    //        "assets/models/objects/tube.ply"
-    //        //"assets/models/objects/tubeGlass.ply"
-    //    };
-    //    path = mediumObjectPaths[rand() % mediumObjectPaths.size()];  // Medium scale for medium objects
-    //    scale *= 1.f;  // Smaller scale for small objects
-    //    isOverrideColor = true;
-    //    color = glm::vec4(0.7, 0.6, 0.3, 1.0f);
-    //    texture = "Frame_Tube_AlbedoTransparency.bmp";
-    //    break;
-    //}
-    //case REACTORS: {
-    //    std::vector<std::string> bigObjectPaths = {
-    //        "assets/models/objects/reactor.ply"
-    //    };
-    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
-    //    scale *= 1.2f;  // Larger scale for big objects
-    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-    //    texture = "Reactor_AlbedoTransparency.bmp";
-    //    break;
-    //}
-    //case TABLE: {
-    //    std::vector<std::string> bigObjectPaths = {
-    //        "assets/models/objects/table.ply",
-    //    };
-    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
-    //    scale *= 1.2f;  // Larger scale for big objects
-    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-    //    texture = "Operating_Table_AlbedoTransparency.bmp";
-    //    break;
-    //}
-    //case BROKENTUBES: {
-    //    std::vector<std::string> bigObjectPaths = {
-    //        "assets/models/objects/tubeBroken.ply",
-    //        //"assets/models/objects/shards.ply",
-    //    };
-    //    path = bigObjectPaths[rand() % bigObjectPaths.size()];
-    //    scale *= 1.2f;  // Larger scale for big objects
-    //    color = glm::vec4(0.8f, 0.8f, 0.8f, 1.0f);
-    //    texture = "Frame_Tube_AlbedoTransparency.bmp";
-    //    break;
-    //}
+    
     case CENTER:
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         texture = "Floor_Albedo.bmp";
+        useAO = true;
+     //   aobool = !aobool;
+        textureAO = "WallAO.bmp";
+      //  textureST = "Operating_Table_MetallicSmoothness.bmp";
         break;
     case CENTERup:
         position.z += 1.5f * scale;
@@ -188,6 +152,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.y += 6.0f * scale;
         rotation.x = 180;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        textureAO = "WallAO.bmp";
         texture = "Floor_Albedo.bmp";
         break;
     case RIGHT:
@@ -195,22 +160,26 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
+        textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case LEFT:
         position.x -= scale * 3.0f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
+        textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case UP:
         position.z += scale * 3.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
+        textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case DOWN:
         position.z -= scale * 5.0f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
+        textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;
@@ -258,7 +227,12 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     obj->mesh->textureFillType[0] = 1;
     obj->mesh->objectColourRGBA = color;
     obj->mesh->bOverrideObjectColour = isOverrideColor;
-    // Set visibility for invisible walls
+
+    obj->mesh->AOtexture = textureAO;
+    obj->mesh->STTexture = textureST;
+    obj->mesh->metal=1.f;
+   // obj->mesh->useAO = useAO;
+   // Set visibility for invisible walls
     if (!isVisible) {
         obj->mesh->bIsVisible = false;
     }

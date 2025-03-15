@@ -733,7 +733,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
 
 
-    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
+    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
     screen_quad->mesh->blendRatio[0] = 1.f;
   //  obj->mesh->textures[1] = "screen_broken.bmp";
@@ -765,6 +765,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),4.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
+
+    puddle->mesh->smoothness = 0.99f;
+    puddle->mesh->metal = 0.99f;
 
     aWavesEffect* waveEffect = new aWavesEffect();
    // waveEffect->offset = glm::vec2(0.5, 0.5);
@@ -800,7 +803,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     mazeSecurity->generateMaze();
 
     securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
-    //BazeMazeCharacter* chararcter = new BazeMazeCharacter();
+    //BazeMazeCharacter* chararcter = new BazeMazefCharacter();
     //chararcter->mazePosition.x = 5;
     //chararcter->mazePosition.y = 5;
     //chararcter->maze = mazeGenerator;
@@ -809,6 +812,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     SoftBody* softBody = new SoftBody();
 
     Object* softObject = scene->sceneObjects[31];
+    softObject->mesh->metal = 0.8f;
+    softObject->mesh->smoothness = 0.7f;
     softBody->acceleration.y = -15;
     softObject->mesh->drawBothFaces = true;
     softBody->constIterations = 15;
@@ -829,11 +834,11 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* ropeObject = scene->sceneObjects[32];
     softObject->mesh->drawBothFaces = true;
     //error
-    //ropeBody->isLockOnZ = true;
-    ropeBody->zLockPos = -30.f;
-    ropeBody->checkGreaterZLock = true;
+    ropeBody->isLockOnZ = true;
+    ropeBody->zLockPos = -0.3f;
+    ropeBody->checkGreaterZLock = false;
     ropeBody->AddSoftBodyToCollisions(softBody);
- //   scene->AddActionToObj(ropeBody, ropeObject);
+    scene->AddActionToObj(ropeBody, ropeObject);
 
     ConnSoftToObj* connector = new ConnSoftToObj();
     connector->softbody = ropeBody;
@@ -1063,6 +1068,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[12]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[12]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+
         scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
 
@@ -1077,12 +1085,16 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
         // Right Screen
         scene->sceneObjects[14]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[14]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[14]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
 
         //Room
 
         scene->sceneObjects[15]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[15]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[15]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
 
@@ -1102,14 +1114,20 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[18]->mesh->transperency = 0.2;
 
         scene->sceneObjects[19]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[19]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[19]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[20]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[20]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+        scene->sceneObjects[21]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+        scene->sceneObjects[21]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
 
@@ -1129,14 +1147,20 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[24]->mesh->transperency = 0.2;
 
         scene->sceneObjects[25]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+        scene->sceneObjects[25]->mesh->AOtexture= "Operating_Table_AO.bmp";
         scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[26]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[26]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+        scene->sceneObjects[26]->mesh->AOtexture = "Operating_Table_AO.bmp";
         scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+        scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+        scene->sceneObjects[27]->mesh->AOtexture = "Operating_Table_AO.bmp";
         scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
 
@@ -1282,6 +1306,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Wall_Simple_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Pebbles_small.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Floor_Albedo.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("WallAO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Wall_Simple_MetallicSmoothness.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("fingerprint.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ceilling.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("MinoE.bmp");
@@ -1297,11 +1323,17 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("slime.bmp");
     //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("TubeAO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Glass_Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Frame_Tube_MetallicSmoothness.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Reactor_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_MetallicSmoothness.bmp");
+
     scene->textureManager->Create2DTextureFromBMPFile("cam_top.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top2.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top3.bmp");

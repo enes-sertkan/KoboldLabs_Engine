@@ -1,5 +1,9 @@
 #version 330
 // (Pixel) Fragment fragment
+
+#define PI 3.14159265359
+
+
 in vec3 fColour;			// Actual 3D model colour (from vertex buffer)
 in vec4 fvertexWorldLocation;
 in vec4 fvertexNormal;
@@ -48,8 +52,8 @@ uniform sLight theLights[NUMBEROFLIGHTS];
 
 // Inspired by Mike Bailey's Graphic Shader, chapter 6
 // (you should read it. Yes, you)
-vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal, 
-                            vec3 vertexWorldPos, vec4 vertexSpecular );
+vec4 calculateLightContrib(vec3 vertexMaterialColor, vec3 vertexNormal, vec3 vertexWorldPos, 
+                            vec4 vertexSpecular, float roughness, float metallic, vec3 F0);
 
 // Allows us to lookup the RGB colour from a 2D texture
 // Give it the UV and it returns the colour at that UV location
@@ -57,6 +61,19 @@ uniform sampler2D texture00;
 uniform sampler2D texture01;
 uniform sampler2D texture02;
 uniform sampler2D texture03;
+
+uniform sampler2D textureAO;
+uniform bool useAO;
+
+
+uniform	sampler2D textureST;
+uniform bool useST;
+
+
+uniform	float metallic;
+uniform	float smoothness;
+
+
 uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
 //uniform float texRatio[4];
 uniform bool bUseTextureAsColour;	// If true, then sample the texture
@@ -281,17 +298,37 @@ for (int i = 0; i < 10; i++) {
 	else
 	{
 	
-	vec4 vertexSpecular = vec4(0.0f, 0.0f, 0.0f, 0.0f);	
+	vec4 vertexSpecular = vec4(1.0f, 1.0f, 1.0f, 1.0f);	
+
+float finalMetalic = metallic;
+float finalSmoothness = smoothness;
 
 
-	vec4 pixelColour = calculateLightContrib( vertexColour.rgb, 
-	                                          fvertexNormal.xyz, 
-	                                          fvertexWorldLocation.xyz, 
-											  vertexSpecular );
-	finalPixelColour = pixelColour;
+    if (useST)
+    {
+    // Sample the texture for metallic and roughness information
+vec4 stTexture = texture(textureST, movingUV.st);
+
+
+// Extract values for smoothness and metallic (assuming they are in the R and G channels respectively)
+finalMetalic = stTexture.r;   // Assuming metallic is stored in the red channel
+finalSmoothness = stTexture.g; // Assuming roughness is stored in the green channel
+}
+
+float roughness =1-finalSmoothness; 
+roughness = max(roughness, 0.1);
+
+// Compute F0: for non-metals, F0 is typically 0.04, and for metals, it's the albedo.
+// mix() blends these based on the 'metallic' value.
+
+		vec3 F0 = mix(vec3(0.04), vertexColour, metallic);
+
+// Now compute the lighting contribution using the new PBR function:
+finalPixelColour = calculateLightContrib(vertexColour, fvertexNormal.xyz, fvertexWorldLocation.xyz, 
+                                          vertexSpecular, roughness, finalMetalic, F0);
 }
 	
-		
+        
 
 	
 
@@ -323,165 +360,147 @@ for (int i = 0; i < 10; i++) {
 	
 	}
 	
+	if (useAO)
+	{
+	float ao = texture(textureAO, movingUV).r;
+	finalPixelColour.rgb *= ao;
+	}
 	return;
 
 
 }
+///PBR
 
 
-// Inspired by Mike Bailey's Graphic Shader, chapter 6
-// (you should read it. Yes, you)
-vec4 calculateLightContrib( vec3 vertexMaterialColour, vec3 vertexNormal, 
-                            vec3 vertexWorldPos, vec4 vertexSpecular )
-{
-	vec3 norm = normalize(vertexNormal);
-	
-	vec4 finalObjectColour = vec4( 0.0f, 0.0f, 0.0f, 1.0f );
-	
-	for ( int index = 0; index < NUMBEROFLIGHTS; index++ )
-	{	
-		// ********************************************************
-		// is light "on"
-		if ( theLights[index].param2.x == 0.0f )
-		{	// it's off
-			continue;
-		}
-		
-		// Cast to an int (note with c'tor)
-		int intLightType = int(theLights[index].param1.x);
-		
-		// We will do the directional light here... 
-		// (BEFORE the attenuation, since sunlight has no attenuation, really)
-		if ( intLightType == DIRECTIONAL_LIGHT_TYPE )		// = 2
-		{
-			// This is supposed to simulate sunlight. 
-			// SO: 
-			// -- There's ONLY direction, no position
-			// -- Almost always, there's only 1 of these in a scene
-			// Cheapest light to calculate. 
+// Microfacet distribution function (GGX)
+float D_GGX(float NoH, float roughness) {
+    float a = roughness * roughness;
+    float a2 = a * a;
+    float denom = (NoH * NoH) * (a2 - 1.0) + 1.0;
+    return a2 / (PI * denom * denom);
+}
 
-			vec3 lightContrib = theLights[index].diffuse.rgb;
-			
-			// Get the dot product of the light and normalize
-			float dotProduct = dot( -theLights[index].direction.xyz,  
-									   normalize(norm.xyz) );	// -1 to 1
+// Geometry function (Smith)
+float G_Smith(float NoV, float NoL, float roughness) {
+    float k = roughness / 2.0;
+    return (NoV / (NoV * (1.0 - k) + k)) * (NoL / (NoL * (1.0 - k) + k));
+}
 
-			dotProduct = max( 0.0f, dotProduct );		// 0 to 1
-		
-			lightContrib *= dotProduct;		
-			
-			finalObjectColour.rgb += (vertexMaterialColour.rgb * theLights[index].diffuse.rgb * lightContrib); 
-									 //+ (materialSpecular.rgb * lightSpecularContrib.rgb);
-			// NOTE: There isn't any attenuation, like with sunlight.
-			// (This is part of the reason directional lights are fast to calculate)
+// Cook-Torrance specular calculation
+// Now takes normal, viewDir, and lightDir as explicit parameters.
+vec3 cookTorranceSpecular(vec3 normal, vec3 viewDir, vec3 lightDir, float roughness, vec3 F0) {
+    vec3 halfwayDir = normalize(viewDir + lightDir);
+    float NoL = max(dot(normal, lightDir), 0.0);
+    float NoV = max(dot(normal, viewDir), 0.0);
+    float NoH = max(dot(normal, halfwayDir), 0.0);
+
+    // Microfacet distribution
+    float D = D_GGX(NoH, roughness);
+    // Geometry term
+    float G = G_Smith(NoV, NoL, roughness);
+    // Fresnel term using Schlick's approximation
+    vec3 F = F0 + (vec3(1.0) - F0) * pow(1.0 - max(dot(halfwayDir, viewDir), 0.0), 5.0);
+
+    // Prevent division by zero with a small offset
+    return (D * G * F) / (4.0 * NoL * NoV + 0.001);
+}
+
+// Lambert diffuse calculation now accepts the material albedo.
+vec3 lambertDiffuse(vec3 lightDir, vec3 normal, vec3 albedo) {
+    return max(dot(normal, lightDir), 0.0) * albedo / PI;
+}
 
 
-			return finalObjectColour;		
-		}
-		
-		// Assume it's a point light 
-		// intLightType = 0
-		
-		// Contribution for this light
-		vec3 vLightToVertex = theLights[index].position.xyz - vertexWorldPos.xyz;
-		float distanceToLight = length(vLightToVertex);	
-		vec3 lightVector = normalize(vLightToVertex);
-		float dotProduct = dot(lightVector, vertexNormal.xyz);	 
-		
-		// Cut off the light after the distance cut off 
-		if ( distanceToLight > theLights[index].atten.w )
-		{
-			finalObjectColour = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-			return finalObjectColour;
-		}
-		
-		dotProduct = max( 0.0f, dotProduct );	
-		
-		vec3 lightDiffuseContrib = dotProduct * theLights[index].diffuse.rgb;
-			
+// --- Lighting Type Functions ---
 
-		// Specular 
-		vec3 lightSpecularContrib = vec3(0.0f);
-			
-		vec3 reflectVector = reflect( -lightVector, normalize(norm.xyz) );
+// Directional Light: No attenuation.
+vec3 calculateDirectionalLightPBR(int index, vec3 norm, vec3 vertexMaterialColor, 
+                                  vec3 viewDir, float roughness, vec3 F0) {
+    vec3 lightDir = normalize(-theLights[index].direction.xyz);
+    vec3 diffuse = lambertDiffuse(lightDir, norm, vertexMaterialColor);
+    vec3 specular = cookTorranceSpecular(norm, viewDir, lightDir, roughness, F0);
+    return (diffuse + specular) * theLights[index].diffuse.rgb;
+}
 
-		// Get eye or view vector
-		// The location of the vertex in the world to your eye
-		vec3 eyeVector = normalize(eyeLocation.xyz - vertexWorldPos.xyz);
+// Point Light: With attenuation.
+vec3 calculatePointLightPBR(int index, vec3 norm, vec3 vertexMaterialColor, 
+                            vec3 vertexWorldPos, vec3 viewDir, float roughness, vec3 F0) {
+    vec3 lightPos = theLights[index].position.xyz;
+    vec3 lightDir = normalize(lightPos - vertexWorldPos);
+    float dist = length(lightPos - vertexWorldPos);
+    // If beyond the cutoff distance, skip this light.
+    if (dist > theLights[index].atten.w) return vec3(0.0);
 
-		// To simplify, we are NOT using the light specular value, just the object’s.
-		float objectSpecularPower = vertexSpecular.w; 
-		
-//		lightSpecularContrib = pow( max(0.0f, dot( eyeVector, reflectVector) ), objectSpecularPower )
-//			                   * vertexSpecular.rgb;	//* theLights[lightIndex].Specular.rgb
-		lightSpecularContrib = pow( max(0.0f, dot( eyeVector, reflectVector) ), objectSpecularPower )
-			                   * theLights[index].specular.rgb;
-							   
-		// Attenuation
-		float attenuation = 1.0f / 
-				( theLights[index].atten.x + 										
-				  theLights[index].atten.y * distanceToLight +						
-				  theLights[index].atten.z * distanceToLight*distanceToLight );  	
-				  
-		// total light contribution is Diffuse + Specular
-		lightDiffuseContrib *= attenuation;
-		lightSpecularContrib *= attenuation;
-		
-		
-		// But is it a spot light
-		if ( intLightType == SPOT_LIGHT_TYPE )		// = 1
-		{	
-		
 
-			// Yes, it's a spotlight
-			// Calcualate light vector (light to vertex, in world)
-			vec3 vertexToLight = vertexWorldPos.xyz - theLights[index].position.xyz;
+    // Attenuation: 1/(constant + linear * d + quadratic * d²)
+    float attenuation = 1.0 / (theLights[index].atten.x +
+                                 theLights[index].atten.y * dist +
+                                 theLights[index].atten.z * (dist * dist));
 
-			vertexToLight = normalize(vertexToLight);
+    vec3 diffuse = lambertDiffuse(lightDir, norm, vertexMaterialColor);
 
-			float currentLightRayAngle
-					= dot( vertexToLight.xyz, theLights[index].direction.xyz );
-					
-			currentLightRayAngle = max(0.0f, currentLightRayAngle);
+    vec3 specular = cookTorranceSpecular(norm, viewDir, lightDir, roughness, F0);
 
-			//vec4 param1;	
-			// x = lightType, y = inner angle, z = outer angle, w = TBD
+    return (diffuse + specular) * attenuation * theLights[index].diffuse.rgb;
+}
 
-			// Is this inside the cone? 
-			float outerConeAngleCos = cos(radians(theLights[index].param1.z));
-			float innerConeAngleCos = cos(radians(theLights[index].param1.y));
-							
-			// Is it completely outside of the spot?
-			if ( currentLightRayAngle < outerConeAngleCos )
-			{
-				// Nope. so it's in the dark
-				lightDiffuseContrib = vec3(0.0f, 0.0f, 0.0f);
-				lightSpecularContrib = vec3(0.0f, 0.0f, 0.0f);
-			}
-			else if ( currentLightRayAngle < innerConeAngleCos )
-			{
-				// Angle is between the inner and outer cone
-				// (this is called the penumbra of the spot light, by the way)
-				// 
-				// This blends the brightness from full brightness, near the inner cone
-				//	to black, near the outter cone
-				float penumbraRatio = (currentLightRayAngle - outerConeAngleCos) / 
-									  (innerConeAngleCos - outerConeAngleCos);
-									  
-				lightDiffuseContrib *= penumbraRatio;
-				lightSpecularContrib *= penumbraRatio;
-			}
-						
-		}// if ( intLightType == 1 )
-		
-		
-					
-		finalObjectColour.rgb += (vertexMaterialColour.rgb * lightDiffuseContrib.rgb);
-								  //+ (vertexSpecular.rgb  * lightSpecularContrib.rgb );
+// Spot Light: Similar to point light, but with additional cone falloff.
+vec3 calculateSpotLightPBR(int index, vec3 norm, vec3 vertexMaterialColor, 
+                           vec3 vertexWorldPos, vec3 viewDir, float roughness, vec3 F0) {
+    vec3 lightPos = theLights[index].position.xyz;
+    vec3 lightDir = normalize(lightPos - vertexWorldPos);
+    float dist = length(lightPos - vertexWorldPos);
+    if (dist > theLights[index].atten.w) return vec3(0.0);
+    float attenuation = 1.0 / (theLights[index].atten.x +
+                                 theLights[index].atten.y * dist +
+                                 theLights[index].atten.z * (dist * dist));
+    
+    // Compute spotlight cone factor.
+    vec3 spotDir = normalize(theLights[index].direction.xyz);
+    // Note: 'lightDir' is from light to fragment, so -lightDir aligns with the light's forward direction.
+    float currentLightRayAngle = dot(-lightDir, spotDir);
+    // Outer cone and inner cone (in degrees) stored in param1.z and param1.y respectively.
+    float outerConeAngleCos = cos(radians(theLights[index].param1.z));
+    float innerConeAngleCos = cos(radians(theLights[index].param1.y));
+    
+    // If outside outer cone, no contribution.
+    if (currentLightRayAngle < outerConeAngleCos)
+        return vec3(0.0);
+    // Between outer and inner cone: apply penumbra smoothing.
+    else if (currentLightRayAngle < innerConeAngleCos) {
+        float penumbraRatio = (currentLightRayAngle - outerConeAngleCos) /
+                              (innerConeAngleCos - outerConeAngleCos);
+        attenuation *= penumbraRatio;
+    }
+    
+    vec3 diffuse = lambertDiffuse(lightDir, norm, vertexMaterialColor);
+    vec3 specular = cookTorranceSpecular(norm, viewDir, lightDir, roughness, F0);
+    return (diffuse + specular) * attenuation * theLights[index].diffuse.rgb;
+}
 
-	}//for(intindex=0...
-	
-	finalObjectColour.a = 1.0f;
-	
-	return finalObjectColour;
+// --- Main PBR Lighting Function ---
+vec4 calculateLightContrib(vec3 vertexMaterialColor, vec3 vertexNormal, vec3 vertexWorldPos, 
+                            vec4 vertexSpecular, float roughness, float metallic, vec3 F0) {
+    // Normalize the input normal.
+    vec3 norm = normalize(vertexNormal);
+    // Compute view direction (from fragment to camera).
+    vec3 viewDir = normalize(eyeLocation.xyz - vertexWorldPos);
+    vec3 finalColor = vec3(0.0);
+    
+    // Loop over each light.
+    for (int index = 0; index < NUMBEROFLIGHTS; index++) {
+        // Skip light if turned off.
+        if (theLights[index].param2.x == 0.0) continue;
+        
+        int lightType = int(theLights[index].param1.x);
+        if (lightType == DIRECTIONAL_LIGHT_TYPE) {
+            finalColor += calculateDirectionalLightPBR(index, norm, vertexMaterialColor, viewDir, roughness, F0);
+        } else if (lightType == POINT_LIGHT_TYPE) {
+            finalColor += calculatePointLightPBR(index, norm, vertexMaterialColor, vertexWorldPos, viewDir, roughness, F0);
+        } else if (lightType == SPOT_LIGHT_TYPE) {
+            finalColor += calculateSpotLightPBR(index, norm, vertexMaterialColor, vertexWorldPos, viewDir, roughness, F0);
+        }
+    }
+    
+    return vec4(finalColor, 1.0);
 }

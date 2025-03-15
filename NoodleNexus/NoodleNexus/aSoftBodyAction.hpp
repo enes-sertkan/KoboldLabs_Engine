@@ -115,8 +115,8 @@ public:
    
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
           
-            glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;
-            std::cout << center.x << " " << center.y << " " << center.z << std::endl;
+          //  glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;
+            //std::cout << center.x << " " << center.y << " " << center.z << std::endl;
            
         
     }
@@ -133,7 +133,7 @@ public:
 
             if (!object->scene->vaoManager->FindDrawInfoByModelName(SBMeshName, softBodyDrawMeshLocalCopy))
                 return;
-            std::cout << softBodyDrawMeshLocalCopy.pVertices[1].nx << std::endl;
+            //std::cout << softBodyDrawMeshLocalCopy.pVertices[1].nx << std::endl;
             // Update mesh vertex positions and normals
             for (unsigned int i = 0; i < softBodyDrawMeshLocalCopy.numberOfVertices; ++i) {
                 softBodyDrawMeshLocalCopy.pVertices[i].x = softBody->vec_pParticles[i]->position.x;

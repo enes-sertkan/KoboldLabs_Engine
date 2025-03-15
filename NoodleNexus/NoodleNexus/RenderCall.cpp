@@ -149,6 +149,103 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         glUniform1i(texture03_UL, 3);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
     }
 
+
+
+    {
+        GLuint textureID_AO = textureManager->getTextureIDFromName(pCurMesh->AOtexture);
+        if (textureID_AO == 0)
+        {
+            textureID_AO = MissingTexture_ID;
+
+        }
+        glActiveTexture(GL_TEXTURE0 + 4);
+        glBindTexture(GL_TEXTURE_2D, textureID_AO);
+
+    
+
+        GLenum selectedWrapMode;
+        selectedWrapMode = GL_REPEAT;
+        //switch (pCurMesh->textureFillType[2])
+        //{
+        //case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        //case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        //case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        //default:
+        //    selectedWrapMode = GL_REPEAT;
+        //    break;
+        //}
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
+
+        GLint textureAO_UL = glGetUniformLocation(program, "textureAO");
+        glUniform1i(textureAO_UL, 4);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+        GLint bUseAO = glGetUniformLocation(program, "useAO");
+        if (pCurMesh->AOtexture!="")
+        {
+            //glUniform1f(bDoNotLight_UL, 1.0f);  // True
+            glUniform1f(bUseAO, (GLfloat)GL_TRUE);  // True
+        }
+        else
+        {
+            //                glUniform1f(bDoNotLight_UL, 0.0f);  // False
+            glUniform1f(bUseAO, (GLfloat)GL_FALSE);  // False
+        }
+    }
+
+
+    {
+        GLuint textureID_ST = textureManager->getTextureIDFromName(pCurMesh->STTexture);
+        if (textureID_ST == 0)
+        {
+            textureID_ST = MissingTexture_ID;
+
+        }
+        glActiveTexture(GL_TEXTURE0 + 5);
+        glBindTexture(GL_TEXTURE_2D, textureID_ST);
+
+        GLint metalicUniform = glGetUniformLocation(program, "metallic");
+        glUniform1f(metalicUniform, pCurMesh->metal);
+
+        GLint smoothUniform = glGetUniformLocation(program, "smoothness");
+        glUniform1f(smoothUniform, pCurMesh->smoothness);
+
+
+        GLenum selectedWrapMode;
+        selectedWrapMode = GL_REPEAT;
+        //switch (pCurMesh->textureFillType[2])
+        //{
+        //case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        //case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        //case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        //default:
+        //    selectedWrapMode = GL_REPEAT;
+        //    break;
+        //}
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
+
+        GLint textureST_UL = glGetUniformLocation(program, "textureST");
+        glUniform1i(textureST_UL, 5);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+        GLint bUseST = glGetUniformLocation(program, "useST");
+        if (pCurMesh->STTexture != "")
+        {
+            //glUniform1f(bDoNotLight_UL, 1.0f);  // True
+            glUniform1f(bUseST, (GLfloat)GL_TRUE);  // True
+        }
+        else
+        {
+            //                glUniform1f(bDoNotLight_UL, 0.0f);  // False
+            glUniform1f(bUseST, (GLfloat)GL_FALSE);  // False
+        }
+    }
+
+
     // Now the ratios
     // uniform vec4 texRatio_0_to_3;
     GLint texRatio_0_to_3_UL = glGetUniformLocation(program, "texRatio_0_to_3");
@@ -443,6 +540,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         return;
     }
     
+  
   //  if (pCurMesh!=camera->scene->skybox->mesh)
  //   {
         // Check if the object is in front of the camera
