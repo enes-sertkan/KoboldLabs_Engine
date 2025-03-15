@@ -6,8 +6,9 @@
 #include <string>
 #include "cSoftBodyCollisions.h"
 #include "MazeGenerator.hpp"
+#include "cVAOManager/cVAOManager.h"	// for: sModelDrawInfo	
 class Object;
-
+typedef sVertex_SHADER_FORMAT_xyz_rgb_N_UV sVertex;
 class SoftBody : public Action {
 private:
    
@@ -71,7 +72,7 @@ public:
         UpdateSoftBody(object->scene->deltaTime);
         UpdateSoftBodyMeshes(object->scene->programs[0]);
 
-
+        DebugDrawNormals();
         // Check each arrow key independently:
         if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             // Apply a leftward force (negative X) only to particles above the center.
@@ -113,6 +114,7 @@ public:
 
    
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
+          
             glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;
             std::cout << center.x << " " << center.y << " " << center.z << std::endl;
            
@@ -131,18 +133,19 @@ public:
 
             if (!object->scene->vaoManager->FindDrawInfoByModelName(SBMeshName, softBodyDrawMeshLocalCopy))
                 return;
-
+            std::cout << softBodyDrawMeshLocalCopy.pVertices[1].nx << std::endl;
             // Update mesh vertex positions and normals
             for (unsigned int i = 0; i < softBodyDrawMeshLocalCopy.numberOfVertices; ++i) {
                 softBodyDrawMeshLocalCopy.pVertices[i].x = softBody->vec_pParticles[i]->position.x;
                 softBodyDrawMeshLocalCopy.pVertices[i].y = softBody->vec_pParticles[i]->position.y;
                 softBodyDrawMeshLocalCopy.pVertices[i].z = softBody->vec_pParticles[i]->position.z;
 
-                softBodyDrawMeshLocalCopy.pVertices[i].nx = softBody->vec_pParticles[i]->pModelVertex->nx;
-                softBodyDrawMeshLocalCopy.pVertices[i].ny = softBody->vec_pParticles[i]->pModelVertex->ny;
-                softBodyDrawMeshLocalCopy.pVertices[i].nz = softBody->vec_pParticles[i]->pModelVertex->nz;
+                softBodyDrawMeshLocalCopy.pVertices[i].nx = softBody->m_ModelVertexInfo.pVertices[i].nx;
+                softBodyDrawMeshLocalCopy.pVertices[i].ny = softBody->m_ModelVertexInfo.pVertices[i].ny;
+                softBodyDrawMeshLocalCopy.pVertices[i].nz = softBody->m_ModelVertexInfo.pVertices[i].nz;
             }
 
+          
             // Update VAO mesh
             object->scene->vaoManager->UpdateDynamicMesh(softBody->matching_VAO_MeshName, softBodyDrawMeshLocalCopy, shaderProgramID);
         
@@ -208,4 +211,18 @@ public:
         }
     }
 
+
+
+    void DebugDrawNormals(float scale = 1.0f)
+    {
+        for (unsigned int i = 0; i < softBody->m_ModelVertexInfo.numberOfVertices; ++i)
+        {
+            sVertex v =softBody->m_ModelVertexInfo.pVertices[i];
+            glm::vec3 start(v.x, v.y, v.z);
+            glm::vec3 end = start + glm::vec3(v.nx, v.ny, v.nz) * scale;
+
+            // Use your debug drawing system here, e.g.:
+           object->scene->DrawRay(start, end,object->scene->programs[0],glm::vec4(1),false,1);
+        }
+    }
 };

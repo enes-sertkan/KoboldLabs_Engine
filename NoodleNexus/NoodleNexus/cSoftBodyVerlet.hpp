@@ -67,7 +67,7 @@ public:
 
 	void cleanZeros(glm::vec3& value);
 
-
+	void DebugDrawNormals(float scale = 1.0f);
 	float calcDistanceBetween(sParticle* pPartA, sParticle* pPartB);
 
 	// These are the "rods" or "springs" between vertices

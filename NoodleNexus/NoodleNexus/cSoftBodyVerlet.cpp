@@ -184,80 +184,71 @@ void cSoftBodyVerlet::UpdateVertexPositions(void)
 
 	return;
 }
-
 void cSoftBodyVerlet::UpdateNormals(void)
 {
-	// Go through each triagle and calculate the normals. 
-	// Accumulate those normals at each vertex.
-	// Normalize the normals
-
-	// Clear the existing normals because they are invalid
-	for (unsigned int vertIndex = 0; vertIndex != this->m_ModelVertexInfo.numberOfVertices; vertIndex++)
+	// Clear existing normals
+	for (unsigned int vertIndex = 0; vertIndex < m_ModelVertexInfo.numberOfVertices; vertIndex++)
 	{
-		this->m_ModelVertexInfo.pVertices[vertIndex].nx = 0.0f;
-		this->m_ModelVertexInfo.pVertices[vertIndex].ny = 0.0f;
-		this->m_ModelVertexInfo.pVertices[vertIndex].nz = 0.0f;
+		m_ModelVertexInfo.pVertices[vertIndex].nx = 0.0f;
+		m_ModelVertexInfo.pVertices[vertIndex].ny = 0.0f;
+		m_ModelVertexInfo.pVertices[vertIndex].nz = 0.0f;
 	}
 
-
-	for (unsigned int triIndex = 0; triIndex != this->m_ModelVertexInfo.numberOfIndices; triIndex += 3)
+	// Accumulate normals from triangles
+	for (unsigned int triIndex = 0; triIndex < m_ModelVertexInfo.numberOfIndices; triIndex += 3)
 	{
-		// Indices are sets of 3, one per 
-		unsigned int vertAIndex = this->m_ModelVertexInfo.pIndices[triIndex + 0];
-		unsigned int vertBIndex = this->m_ModelVertexInfo.pIndices[triIndex + 1];
-		unsigned int vertCIndex = this->m_ModelVertexInfo.pIndices[triIndex + 2];
+		unsigned int vertAIndex = m_ModelVertexInfo.pIndices[triIndex + 0];
+		unsigned int vertBIndex = m_ModelVertexInfo.pIndices[triIndex + 1];
+		unsigned int vertCIndex = m_ModelVertexInfo.pIndices[triIndex + 2];
 
-		// note the references so that when we update this, it will update the mesh
-		// (otherwise we'll be updating a copy of it)
-		sVertex& vertexA = this->m_ModelVertexInfo.pVertices[vertAIndex];
-		sVertex& vertexB = this->m_ModelVertexInfo.pVertices[vertBIndex];
-		sVertex& vertexC = this->m_ModelVertexInfo.pVertices[vertCIndex];
+		// Use particle positions instead of vertex positions
+		glm::vec3 posA = vec_pParticles[vertAIndex]->position;
+		glm::vec3 posB = vec_pParticles[vertBIndex]->position;
+		glm::vec3 posC = vec_pParticles[vertCIndex]->position;
 
-		glm::vec3 vertA = glm::vec3(vertexA.x, vertexA.y, vertexA.z);
-		glm::vec3 vertB = glm::vec3(vertexB.x, vertexB.y, vertexB.z);
-		glm::vec3 vertC = glm::vec3(vertexC.x, vertexC.y, vertexC.z);
+		// Calculate triangle edges
+		glm::vec3 edgeAB = posB - posA;
+		glm::vec3 edgeAC = posC - posA;
 
-		glm::vec3 triangleEdgeAtoB = vertB - vertA;
-		glm::vec3 triangleEdgeAtoC = vertC - vertA;
+		// Skip degenerate triangles
+		if (glm::length(edgeAB) < 0.0001f || glm::length(edgeAC) < 0.0001f) {
+			continue;
+		}
 
-		glm::vec3 theNormal = glm::cross(triangleEdgeAtoB, triangleEdgeAtoC);
-		theNormal = glm::normalize(theNormal);
+		// Calculate face normal (cross product of edges)
+		glm::vec3 faceNormal = glm::cross(edgeAB, edgeAC);
+		faceNormal = glm::normalize(faceNormal);
 
-		// Add (accumulate) this normal to the three vertices
-		vertexA.nx += theNormal.x;
-		vertexA.ny += theNormal.y;
-		vertexA.nz += theNormal.z;
+		// Accumulate face normal to each vertex
+		m_ModelVertexInfo.pVertices[vertAIndex].nx += faceNormal.x;
+		m_ModelVertexInfo.pVertices[vertAIndex].ny += faceNormal.y;
+		m_ModelVertexInfo.pVertices[vertAIndex].nz += faceNormal.z;
 
-		vertexB.nx += theNormal.x;
-		vertexB.ny += theNormal.y;
-		vertexB.nz += theNormal.z;
+		m_ModelVertexInfo.pVertices[vertBIndex].nx += faceNormal.x;
+		m_ModelVertexInfo.pVertices[vertBIndex].ny += faceNormal.y;
+		m_ModelVertexInfo.pVertices[vertBIndex].nz += faceNormal.z;
 
-		vertexC.nx += theNormal.x;
-		vertexC.ny += theNormal.y;
-		vertexC.nz += theNormal.z;
-	}// for ( unsigned int triIndex = 0
-
-	// ENTER CRITICAL SECTION
-
-	// Now normalize the accumulated normals
-	for (unsigned int vertIndex = 0; vertIndex != this->m_ModelVertexInfo.numberOfVertices; vertIndex++)
-	{
-		glm::vec3 theNomral = glm::vec3(this->m_ModelVertexInfo.pVertices[vertIndex].nx,
-			this->m_ModelVertexInfo.pVertices[vertIndex].ny,
-			this->m_ModelVertexInfo.pVertices[vertIndex].nz);
-
-		theNomral = glm::normalize(theNomral);
-
-		this->m_ModelVertexInfo.pVertices[vertIndex].nx = theNomral.x;
-		this->m_ModelVertexInfo.pVertices[vertIndex].ny = theNomral.y;
-		this->m_ModelVertexInfo.pVertices[vertIndex].nz = theNomral.z;
+		m_ModelVertexInfo.pVertices[vertCIndex].nx += faceNormal.x;
+		m_ModelVertexInfo.pVertices[vertCIndex].ny += faceNormal.y;
+		m_ModelVertexInfo.pVertices[vertCIndex].nz += faceNormal.z;
 	}
 
-	// LEAVE CRITICAL SECTION
+	// Normalize accumulated normals
+	for (unsigned int vertIndex = 0; vertIndex < m_ModelVertexInfo.numberOfVertices; vertIndex++)
+	{
+		glm::vec3 normal = glm::vec3(
+			m_ModelVertexInfo.pVertices[vertIndex].nx,
+			m_ModelVertexInfo.pVertices[vertIndex].ny,
+			m_ModelVertexInfo.pVertices[vertIndex].nz
+		);
 
-	return;
+		normal = glm::normalize(normal);
+
+		m_ModelVertexInfo.pVertices[vertIndex].nx = normal.x;
+		m_ModelVertexInfo.pVertices[vertIndex].ny = normal.y;
+		m_ModelVertexInfo.pVertices[vertIndex].nz = normal.z;
+	}
 }
-
 
 float cSoftBodyVerlet::calcDistanceBetween(sParticle* pPartA, sParticle* pPartB)
 {
@@ -728,3 +719,5 @@ void cSoftBodyVerlet::CreateRandomBracing(unsigned int numberOfBraces,
 
 	return;
 }
+
+

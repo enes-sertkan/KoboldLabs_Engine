@@ -67,7 +67,7 @@ void main()
 	// Calculatte the vertex normal
 	// Don't wank scaling or translation
 	// Compute the normal matrix from the model matrix (using a mat3 is enough)
-	mat3 normalMatrix = mat3(inverse(transpose(matModel)));
+	mat3 normalMatrix = mat3(transpose(inverse(matModel)));
 	// Transform the normal and re-normalize it
 	vec3 transformedNormal = normalize(normalMatrix * vNormal);
 	fvertexNormal = vec4(transformedNormal, 0.0);

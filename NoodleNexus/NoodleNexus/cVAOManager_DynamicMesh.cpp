@@ -114,6 +114,27 @@ bool cVAOManager::UpdateDynamicMesh(
 	sModelDrawInfo& updatedDrawInfo,
 	unsigned int shaderProgramID)
 {
+
+
+
+
+	// Bind the VAO first to ensure attribute pointers are correct
+	glBindVertexArray(updatedDrawInfo.VAO_ID);
+
+	// Bind the vertex buffer
+	glBindBuffer(GL_ARRAY_BUFFER, updatedDrawInfo.VertexBufferID);
+
+	// Update ENTIRE buffer including positions, normals, and other attributes
+	glBufferSubData(GL_ARRAY_BUFFER,
+		0,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * updatedDrawInfo.numberOfVertices,
+		updatedDrawInfo.pVertices);
+
+	// Unbind to prevent accidental modifications
+	glBindVertexArray(0);
+	return true;
+
+
 	// We are UPDATING the information on an EXISTING buffer, not creating a new one
 	// https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml
 
