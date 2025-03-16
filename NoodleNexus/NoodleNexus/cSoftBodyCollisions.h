@@ -23,8 +23,8 @@ public:
 	{
 
         const float TILE_SIZE = 1.0f * 4.0f;
-        particlePos.x += TILE_SIZE / 3.f;
-        particlePos.z += TILE_SIZE / 1.45f;
+        particlePos.x += TILE_SIZE / 2.7f;
+        particlePos.z += TILE_SIZE / 1.6f;
 
         glm::vec3 correction(0.0f);
 

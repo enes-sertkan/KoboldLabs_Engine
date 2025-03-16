@@ -156,28 +156,28 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         texture = "Floor_Albedo.bmp";
         break;
     case RIGHT:
-        position.x += scale * 5.0f / 2.0f;
-        position.z -= scale * 5.0f / 2.0f;
+        position.x += scale * 5.f/ 2.0f;
+        position.z -= scale * 5.f / 2.0f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case LEFT:
-        position.x -= scale * 3.0f / 2.0f;
+        position.x -= scale * 3.9f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case UP:
-        position.z += scale * 3.0f / 2.0f;
+        position.z += scale * 3.9f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;
     case DOWN:
-        position.z -= scale * 5.0f / 2.0f;
-        position.x += scale * 5.0f / 2.0f;
+        position.z -= scale * 5.f / 2.0f;
+        position.x += scale * 5.f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         break;

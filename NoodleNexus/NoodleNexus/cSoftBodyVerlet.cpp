@@ -361,7 +361,7 @@ void cSoftBodyVerlet::ApplyVolumeCorrection()
 		// Avoid division by zero if particle is exactly at the center
 		if (len > 0.0001f)
 		{
-			dir.y *= 1.5;
+			dir.y *= 1.2;
 			//dir.y *= 2;
 			dir = glm::normalize(dir);
 			// If currentAvgRadius is greater than base (error > 0), we need to pull particles inward.
