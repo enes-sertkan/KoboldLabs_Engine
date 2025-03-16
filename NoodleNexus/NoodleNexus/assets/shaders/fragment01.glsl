@@ -1,373 +1,255 @@
 #version 330
-// (Pixel) Fragment fragment
+// (Pixel) Fragment Shader
 
 #define PI 3.14159265359
 
+// === Input Attributes (from Vertex Shader) ===
+in vec3 fColour;              // Base colour (from vertex buffer)
+in vec4 fvertexWorldLocation; // Vertex world position
+in vec4 fvertexNormal;        // Vertex normal in world space
+in vec2 fUV;                  // Texture coordinates (UV)
+in vec3 fTangent;             // Tangent in world space
+in vec3 fBitangent;           // Bitangent in world space
 
-in vec3 fColour;			// Actual 3D model colour (from vertex buffer)
-in vec4 fvertexWorldLocation;
-in vec4 fvertexNormal;
-in vec2 fUV;				// Texture (UV) coordinates
-
-uniform vec4 objectColour;			// Override colour 
+// === Uniforms for Object & Lighting ===
+uniform vec4 objectColour;    // Override colour 
 uniform bool bUseObjectColour;
-uniform vec4 eyeLocation;			// Where the camera is
-uniform bool bDoNotLight;			// if true, skips lighting
-uniform bool bNightMode;
-// 0.0 to 1.0 (invisible to solid)
-// Controls the alpha channel
-uniform float wholeObjectTransparencyAlpha;
+uniform vec4 eyeLocation;     // Camera (eye) location
+uniform bool bDoNotLight;     // If true, skip lighting
+uniform bool bNightMode;      // Night mode flag
+uniform float wholeObjectTransparencyAlpha; // Alpha channel for entire object
 
-// Written to the framebuffer (backbuffer)
-out vec4 finalPixelColour;	// RGB_A
+// === Output ===
+out vec4 finalPixelColour;    // Final fragment colour (RGBA)
 
+// === Light Types ===
 const int POINT_LIGHT_TYPE = 0;
 const int SPOT_LIGHT_TYPE = 1;
 const int DIRECTIONAL_LIGHT_TYPE = 2;
 
-
-struct sLight
-{
-	vec4 position;			
-	vec4 diffuse;	
-	vec4 specular;	// rgb = highlight colour, w = power
-	vec4 atten;		// x = constant, y = linear, z = quadratic, w = DistanceCutOff
-	vec4 direction;	// Spot, directional lights
-	vec4 param1;	// x = lightType, y = inner angle, z = outer angle, w = TBD
-	                // 0 = pointlight
-					// 1 = spot light
-					// 2 = directional light
-	vec4 param2;	// x = 0 for off, 1 for on
-	                // yzw are TBD
+// === Light Structure ===
+struct sLight {
+    vec4 position;         // Light position (for point/spot)
+    vec4 diffuse;          // Diffuse colour
+    vec4 specular;         // Specular colour (rgb = highlight, w = power)
+    vec4 atten;            // Attenuation: x = constant, y = linear, z = quadratic, w = cutoff distance
+    vec4 direction;        // Light direction (for spot/directional)
+    vec4 param1;           // x = light type, y = inner cone angle, z = outer cone angle, w = TBD
+    vec4 param2;           // x = on/off flag, yzw = TBD
 };
 
 struct sWave {
-    vec4 data; // x = uv.x, y = uv.y, z = active flag, w = time
+    vec4 data;  // x = uv.x, y = uv.y, z = active flag, w = time
 };
 
 const int NUMBEROFLIGHTS = 40;
-uniform sLight theLights[NUMBEROFLIGHTS]; 
-// uniform vec4 thelights[0].position;
-// uniform vec4 thelights[1].position;
+uniform sLight theLights[NUMBEROFLIGHTS];
 
-// Inspired by Mike Bailey's Graphic Shader, chapter 6
-// (you should read it. Yes, you)
+// === Function Prototype for PBR Lighting ===
 vec4 calculateLightContrib(vec3 vertexMaterialColor, vec3 vertexNormal, vec3 vertexWorldPos, 
-                            vec4 vertexSpecular, float roughness, float metallic, vec3 F0);
+                           vec4 vertexSpecular, float roughness, float metallic, vec3 F0);
 
-// Allows us to lookup the RGB colour from a 2D texture
-// Give it the UV and it returns the colour at that UV location
+// === Texture Samplers ===
 uniform sampler2D texture00;
 uniform sampler2D texture01;
 uniform sampler2D texture02;
 uniform sampler2D texture03;
-
-uniform sampler2D textureAO;
+uniform sampler2D textureAO;         // Ambient Occlusion
 uniform bool useAO;
-
-
-uniform	sampler2D textureST;
+uniform sampler2D textureST;         // Metallic & Smoothness texture
 uniform bool useST;
+uniform sampler2D textureNM;         // Normal map
+uniform bool useNM;
 
+// === Material Uniforms ===
+uniform float metallic;              // Default metallic value
+uniform float smoothness;            // Default smoothness value (if no texture)
 
-uniform	float metallic;
-uniform	float smoothness;
+// === Texture Blend Ratios ===
+uniform vec4 texRatio_0_to_3;        // Blend ratios for texture layers
+uniform bool bUseTextureAsColour;    // If true, use textures for colour
 
-
-uniform vec4 texRatio_0_to_3;	// x index 0, y index 1, etc/
-//uniform float texRatio[4];
-uniform bool bUseTextureAsColour;	// If true, then sample the texture
-
-// Skybox (or reflection, refraction, etc.)
+// === Skybox / Stencil ===
 uniform samplerCube skyBoxTextureSampler;
 uniform bool bIsSkyBoxObject;
-//
-
-// For discard stencil example
 uniform sampler2D stencilTexture;
 uniform bool bUseStencilTexture;
 
-uniform float time;        // Current time in seconds
-uniform float speedX;      // Speed in the X direction
-uniform float speedY;      // Speed in the Y direction
+// === Time / Animation Uniforms ===
+uniform float time;       // Current time in seconds
+uniform float speedX;     // UV speed X
+uniform float speedY;     // UV speed Y
+uniform float zoomPower;  // Zoom effect on texture
 
-
-uniform float zoomPower;      // Power of zoom on texture
-
-
+// === Wave Uniforms ===
 uniform sWave waves[10];
 
 
+// === Utility Function: Composite Two Colours ===
 vec4 compositeOver(vec4 bottom, vec4 top) {
-
-   if (all(equal(top.rgb, vec3(0.0)))) {
+    if (all(equal(top.rgb, vec3(0.0)))) {
         return bottom;
     }
-
     vec3 outColor = top.rgb * top.a + bottom.rgb * (1.0 - top.a);
     float outAlpha = top.a + bottom.a * (1.0 - top.a);
     return vec4(outColor, outAlpha);
 }
 
-//vec2 vortexEffect(vec2 uv, float strength, float speed)
-//{
-//    vec2 centeredUV = uv - 0.5;  // Center the UV coordinates
-//   float angle = atan(centeredUV.y, centeredUV.x);  // Get the angle
-//    float radius = length(centeredUV);  // Get the distance from center
-
-//   float twist = strength * sin(time * speed + radius * 10.0);  // Create a time-based twist
-//    angle += twist;  // Apply the twist
-
-//    vec2 newUV;
-//    newUV.x = cos(angle) * radius;
-//    newUV.y = sin(angle) * radius;
-
-//    return newUV + 0.5;  // Shift back to UV space
-//}
+// === Normal Mapping Helper ===
 
 
 
-void main()
-{
-
- vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
-
-//vec2 center = vec2(0.5);
-//float scale = 1.0 + zoomPower;
-//movingUV = (movingUV - center) / scale + center;
-
-// movingUV.x += sin(movingUV.y * 10.0 + zoomPower) * 0.05;
-//movingUV = vortexEffect(movingUV, 0.2, 2.0);
-
-
-//WAVES
+vec3 getTBNNormal(vec3 fNormal, vec3 fTangent, vec3 fBitangent, sampler2D normalMap, vec2 uv) {
+    // Sample normal map (values in [0,1])
+    vec3 normalMapSample = texture(normalMap, uv).rgb;
+    // Remap to [-1, 1]
+    normalMapSample = normalMapSample * 2.0 - 1.0;
+    // Construct TBN matrix
+    mat3 TBN = mat3(normalize(fTangent), normalize(fBitangent), normalize(fNormal));
+    // Transform to world space and normalize
+    return normalize(TBN * normalMapSample);
+}
 
 
+// === Main Fragment Shader Function ===
+void main() {
+      vec3 finalNormal = fvertexNormal.xyz;
+    // --- Section 1: Wave Effects & UV Animation ---
+    vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
+    
+// Process multiple waves
 for (int i = 0; i < 10; i++) {
-    // Unpack the wave data from the uniform array
     vec2 waveOrigin = waves[i].data.xy;
     bool isActive = (waves[i].data.z > 0.5);
     float waveTime = waves[i].data.w;
-
-    // Only process active waves
-    if (isActive)
-    {
-        // Compute the distance from this wave's origin
+    if (isActive) {
         float dist = length(movingUV - waveOrigin);
-
-        // Define wave properties.
-        // Here we're using zoomPower to compute the radius, but you could also use waveTime.
-        float waveRadius = waveTime * 0.3;  // For example, an expanding radius based on zoomPower
-        float thickness = 0.02;              // Thickness of the wave
+        float waveRadius = waveTime * 0.3; // Expanding radius
+        float thickness = 0.02;
         float fade = smoothstep(thickness, 0.0, abs(dist - waveRadius));
-
-        // Compute the displacement for this wave.
         vec2 displacement = normalize(movingUV - waveOrigin) * fade * 0.02;
         
-        // Accumulate the displacement.
+        // Apply displacement to UVs
         movingUV += displacement;
+        
+        // Now, modify the normals in the same way:
+        vec3 normalDisplacement = normalize(vec3(displacement, 0.0)) * fade * 0.02;
+
+        // Assuming normal is a vec3 representing the normal vector
+       // finalNormal += normalDisplacement; // Add displacement to the normal
+        
+        // Normalize the modified normal to keep it a unit vector
+       // finalNormal = normalize(finalNormal);
     }
 }
-
-
-//SINGLE WAVE
-    // Origin of the shockwave (can be set dynamically)
-    vec2 waveOrigin = vec2(0.5, 0.5);
-
-    // Distance from the wave origin
-    float dist = length(movingUV - waveOrigin);
-
-    // Define wave properties
-    float waveRadius = zoomPower * 0.3;  // Expanding radius over time
-    float thickness = 0.02;          // Thickness of the wave
-    float fade = smoothstep(thickness, 0.0, abs(dist - waveRadius));
-
-    // Apply radial distortion outward only where the wave exists
-    vec2 displacement = normalize(movingUV - waveOrigin) * fade * 0.02;
-    movingUV += displacement;
-
-	//ZOOOM
- 
-   // float dist = length(movingUV - 0.5);
-  // movingUV.x += sin(dist * 20.0 - zoomPower * 2.0) * 0.01;
-   // movingUV.y += cos(dist * 20.0 - zoomPower * 2.0) * 0.01;
-
-
-
-
-
-
-	// discard transparency
-	// uniform sampler2D stencilTexture;
-	// uniform bool bUseStencilTexture;
-	if ( bUseStencilTexture )
-	{
-		float stencilColour = texture( stencilTexture, movingUV.st ).r;
-		//
-		if ( stencilColour < 0.5f )	// Is it "black enough"
-		{
-			discard;	// don't draw this pixel
-		}
-	}
-
-
-	// For the skybox object
-	if ( bIsSkyBoxObject )
-	{
-		//finalPixelColour.rgb = fvertexNormal.xyz;
-		//uniform samplerCube skyBoxTextureSampler;
-		// Note: We are passing the NORMALS (a ray to hit the inside
-		// 	of the cube) and NOT the texture coordinates
-		finalPixelColour.rgb = texture( skyBoxTextureSampler, fvertexNormal.xyz ).rgb;
-		finalPixelColour.a = 1.0f;
-		return;
-	}
-	
-	
-
-
-
-	vec3 vertexColour = fColour;
-	if ( bUseObjectColour )
-	{
-		vertexColour = objectColour.rgb;
-	}
-	else
-	{
-	
-	if ( bUseTextureAsColour )
-	{
-
-
-	//I'm gonna make it so textures gonna be on top if each other.
-	//I don't think we'll need blending in the future.
-	//but if we'l need it, we'll wigure it out.
-
-
-
-		vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
-		vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
-		vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
-		vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
-
-		
-		// Composite textures sequentially: tex0 is the base
-		vec4 layeredColor = compositeOver(tex0, tex1);
-		layeredColor = compositeOver(layeredColor, tex2);
-		layeredColor = compositeOver(layeredColor, tex3);
-		vertexColour = layeredColor.rgb;
-
-// ------------------------------------------------------------------------
-//      Chromatic Abberation
-// ------------------------------------------------------------------------
-//		vec2 uv = movingUV.st;
-//		float shift = 0.01 * sin(time); // Chromatic shift factor
-
-//		vec4 r = texture(texture00, uv + vec2(shift, 0.0));
-//		vec4 g = texture(texture00, uv);
-//		vec4 b = texture(texture00, uv - vec2(shift, 0.0));
-
-//		vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x); // Apply RGB shift
-
-//		vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
-//		vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
-//		vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
-
-		// Composite textures
-//		vec4 layeredColor = compositeOver(tex0, tex1);
-//		layeredColor = compositeOver(layeredColor, tex2);
-//		layeredColor = compositeOver(layeredColor, tex3);
     
-//		vertexColour = layeredColor.rgb;
+   
 
-						   
-					   
-	} 
-
-	}
-
-
-	
-	// Use lighting?
-	if ( bDoNotLight )
-	{
-		finalPixelColour.rgb = vertexColour.rgb;
-		finalPixelColour.a = 1.0f;
-		
-	}
-	else
-	{
-	
-	vec4 vertexSpecular = vec4(1.0f, 1.0f, 1.0f, 1.0f);	
-
-float finalMetalic = metallic;
-float finalSmoothness = smoothness;
-
-
-    if (useST)
-    {
-    // Sample the texture for metallic and roughness information
-vec4 stTexture = texture(textureST, movingUV.st);
-
-
-// Extract values for smoothness and metallic (assuming they are in the R and G channels respectively)
-finalMetalic = stTexture.r;   // Assuming metallic is stored in the red channel
-finalSmoothness = stTexture.g; // Assuming roughness is stored in the green channel
-}
-
-float roughness =1-finalSmoothness; 
-roughness = max(roughness, 0.1);
-
-// Compute F0: for non-metals, F0 is typically 0.04, and for metals, it's the albedo.
-// mix() blends these based on the 'metallic' value.
-
-		vec3 F0 = mix(vec3(0.04), vertexColour, metallic);
-
-// Now compute the lighting contribution using the new PBR function:
-finalPixelColour = calculateLightContrib(vertexColour, fvertexNormal.xyz, fvertexWorldLocation.xyz, 
-                                          vertexSpecular, roughness, finalMetalic, F0);
-}
-	
+    // --- Section 2: Stencil & Skybox Handling ---
+    if (bUseStencilTexture) {
+        float stencilColour = texture(stencilTexture, movingUV.st).r;
+        if (stencilColour < 0.5f)
+            discard;
+    }
+    if (bIsSkyBoxObject) {
+        finalPixelColour.rgb = texture(skyBoxTextureSampler, fvertexNormal.xyz).rgb;
+        finalPixelColour.a = 1.0f;
+        return;
+    }
+    
+    // --- Section 3: Base Vertex Colour Determination ---
+    vec3 vertexColour = fColour;
+    if (bUseObjectColour) {
+        vertexColour = objectColour.rgb;
+    } else if (bUseTextureAsColour) {
+        vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
+        vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
+        vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
+        vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
+        vec4 layeredColor = compositeOver(tex0, tex1);
+        layeredColor = compositeOver(layeredColor, tex2);
+        layeredColor = compositeOver(layeredColor, tex3);
+        vertexColour = layeredColor.rgb;
+        // --- Chromatic Aberration code (optional, commented out) ---
+        // vec2 uv = movingUV.st;
+        // float shift = 0.01 * sin(time);
+        // vec4 r = texture(texture00, uv + vec2(shift, 0.0));
+        // vec4 g = texture(texture00, uv);
+        // vec4 b = texture(texture00, uv - vec2(shift, 0.0));
+        // vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x);
+        // vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
+        // vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
+        // vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
+        // vec4 layeredColor = compositeOver(tex0, tex1);
+        // layeredColor = compositeOver(layeredColor, tex2);
+        // layeredColor = compositeOver(layeredColor, tex3);
+        // vertexColour = layeredColor.rgb;
+    }
+    
+    // --- Section 4: Lighting and PBR Calculation ---
+    if (bDoNotLight) {
+        finalPixelColour.rgb = vertexColour.rgb;
+        finalPixelColour.a = 1.0f;
+    } else {
+        vec4 vertexSpecular = vec4(1.0); // Default specular properties
         
+        // Use default metallic/smoothness values; override with texture if enabled.
+        float finalMetalic = metallic;
+        float finalSmoothness = smoothness;
+        
+        // --- Normal Mapping ---
+  
+        if (useNM) {
+            finalNormal = getTBNNormal(finalNormal, fTangent, fBitangent, textureNM, movingUV);
+        }
+        
+        // --- Metallic & Smoothness Texture ---
+        if (useST) {
+            vec4 stTexture = texture(textureST, movingUV.st);
+            finalMetalic = stTexture.r;   // Metallic from red channel
+            finalSmoothness = stTexture.g; // Smoothness (or roughness) from green channel
+        }
+        
+        // Compute roughness (inverse of smoothness) and clamp it
+        float roughnessVal = 1.0 - finalSmoothness;
+        roughnessVal = max(roughnessVal, 0.15);
+        
+        // Compute F0: blend between non-metal F0 (0.04) and the material colour for metals
+        vec3 F0 = mix(vec3(0.04), vertexColour, metallic);
+        
+        finalNormal = normalize(finalNormal);
+        // Calculate lighting contribution using PBR
+        finalPixelColour = calculateLightContrib(vertexColour, finalNormal.xyz, fvertexWorldLocation.xyz, 
+                                                  vertexSpecular, roughnessVal, finalMetalic, F0);
+    }
+    
+    // --- Section 5: Post-Processing ---
+    // Set alpha channel
+    finalPixelColour.a = wholeObjectTransparencyAlpha;
+    
 
-	
+    // Night mode adjustments
+    if (bNightMode) {
+        finalPixelColour.r *= 0.7;
+        finalPixelColour.b *= 0.7;
+        finalPixelColour.g *= 2.0;
+        finalPixelColour.a = 1.0;
+    }
+    
+    // Ambient Occlusion
+    if (useAO) {
+        float ao = texture(textureAO, movingUV).r;
+        finalPixelColour.rgb *= ao;
+    }
 
-											
-	
-	// Set the alpha channel
-	finalPixelColour.a = wholeObjectTransparencyAlpha;	
-	
-//	// Reflection:
-//	vec3 eyeToVertexRay = normalize(eyeLocation.xyz - fvertexWorldLocation.xyz);
-//	
-//	vec3 reflectRay = reflect(eyeToVertexRay, fvertexNormal.xyz);	
-//	vec3 refractRay = refract(eyeToVertexRay, fvertexNormal.xyz, 1.2f);
-//	
-//	vec3 reflectColour = texture( skyBoxTextureSampler, reflectRay.xyz ).rgb;
-//	vec3 refractColour = texture( skyBoxTextureSampler, refractRay.xyz ).rgb;
-//	
-//	finalPixelColour.rgb += reflectColour.rgb * 0.3f
-//	                       + refractColour.rgb * 0.3f;
-			
-			
-	if ( bNightMode )
-	{
-		
-		finalPixelColour.r=finalPixelColour.r* 0.7;
-		finalPixelColour.b=finalPixelColour.b* 0.7;
-		finalPixelColour.g=finalPixelColour.g* 2;
-		finalPixelColour.a = 1.0f;
-	
-	}
-	
-	if (useAO)
-	{
-	float ao = texture(textureAO, movingUV).r;
-	finalPixelColour.rgb *= ao;
-	}
-	return;
+   //  if (useNM)
+   // {
+ //   vec3 debugNormal = getTBNNormal(fvertexNormal.xyz, fTangent, fBitangent, textureNM, movingUV);
+ //   finalPixelColour = vec4(debugNormal, 1.0);
+   //}
 
-
+    
+    return;
 }
 ///PBR
 
@@ -504,3 +386,20 @@ vec4 calculateLightContrib(vec3 vertexMaterialColor, vec3 vertexNormal, vec3 ver
     
     return vec4(finalColor, 1.0);
 }
+
+
+//vec2 vortexEffect(vec2 uv, float strength, float speed)
+//{
+//    vec2 centeredUV = uv - 0.5;  // Center the UV coordinates
+//   float angle = atan(centeredUV.y, centeredUV.x);  // Get the angle
+//    float radius = length(centeredUV);  // Get the distance from center
+
+//   float twist = strength * sin(time * speed + radius * 10.0);  // Create a time-based twist
+//    angle += twist;  // Apply the twist
+
+//    vec2 newUV;
+//    newUV.x = cos(angle) * radius;
+//    newUV.y = sin(angle) * radius;
+
+//    return newUV + 0.5;  // Shift back to UV space
+//}

@@ -134,6 +134,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     bool useAO = false;
     std::string textureAO="";
     std::string textureST="";
+    std::string textureNM="";
     switch (type) {
     
     case CENTER:
@@ -144,6 +145,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         useAO = true;
      //   aobool = !aobool;
         textureAO = "WallAO.bmp";
+        textureNM = "Floor_Normal.bmp";
       //  textureST = "Operating_Table_MetallicSmoothness.bmp";
         break;
     case CENTERup:
@@ -154,6 +156,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         textureAO = "WallAO.bmp";
         texture = "Floor_Albedo.bmp";
+        textureNM = "Floor_Normal.bmp";
         break;
     case RIGHT:
         position.x += scale * 5.f/ 2.0f;
@@ -161,6 +164,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
+        textureNM = "Wall_Simple_Normal.bmp";
         break;
     case LEFT:
         position.x -= scale * 3.9f / 2.0f;
@@ -168,18 +172,21 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
+        textureNM = "Wall_Simple_Normal.bmp";
         break;
     case UP:
         position.z += scale * 3.9f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
+        textureNM = "Wall_Simple_Normal.bmp";
         break;
     case DOWN:
         position.z -= scale * 5.f / 2.0f;
         position.x += scale * 5.f / 2.0f;
         texture = "Wall_Simple_AlbedoTransparency.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
+        textureNM = "Wall_Simple_Normal.bmp";
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;
@@ -230,6 +237,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
 
     obj->mesh->AOtexture = textureAO;
     obj->mesh->STTexture = textureST;
+    obj->mesh->NMTexture = textureNM;
     obj->mesh->metal=1.f;
    // obj->mesh->useAO = useAO;
    // Set visibility for invisible walls

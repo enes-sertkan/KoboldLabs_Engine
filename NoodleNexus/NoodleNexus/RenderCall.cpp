@@ -246,6 +246,52 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
     }
 
 
+    {
+        GLuint textureID_NM = textureManager->getTextureIDFromName(pCurMesh->NMTexture);
+        if (textureID_NM == 0)
+        {
+            textureID_NM = MissingTexture_ID;
+
+        }
+        glActiveTexture(GL_TEXTURE0 + 6);
+        glBindTexture(GL_TEXTURE_2D, textureID_NM);
+
+
+        GLenum selectedWrapMode;
+        selectedWrapMode = GL_REPEAT;
+        //switch (pCurMesh->textureFillType[2])
+        //{
+        //case 1:selectedWrapMode = GL_CLAMP_TO_EDGE; break;
+        //case 2:selectedWrapMode = GL_CLAMP_TO_BORDER; break;
+        //case 3:selectedWrapMode = GL_MIRRORED_REPEAT; break;
+        //default:
+        //    selectedWrapMode = GL_REPEAT;
+        //    break;
+        //}
+
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, selectedWrapMode); // Horizontal wrapping
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, selectedWrapMode); // Vertical wrapping
+
+
+        GLint textureNM_UL = glGetUniformLocation(program, "textureNM");
+        glUniform1i(textureNM_UL, 6);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
+        GLint bUseNM = glGetUniformLocation(program, "useNM");
+        if (pCurMesh->NMTexture != "")
+        {
+            //glUniform1f(bDoNotLight_UL, 1.0f);  // True
+            glUniform1f(bUseNM, (GLfloat)GL_TRUE);  // True
+        }
+        else
+        {
+            //                glUniform1f(bDoNotLight_UL, 0.0f);  // False
+            glUniform1f(bUseNM, (GLfloat)GL_FALSE);  // False
+        }
+    }
+
+    //TODO refator this shit mesh of a repeating code to load textures. I'm sure it can be waaaaaay smaller.
+
+
     // Now the ratios
     // uniform vec4 texRatio_0_to_3;
     GLint texRatio_0_to_3_UL = glGetUniformLocation(program, "texRatio_0_to_3");

@@ -4,11 +4,16 @@ in vec3 vCol;
 in vec3 vPos;
 in vec3 vNormal;	// Normal from the model ("model" space)
 in vec2 vUV;		// Texture coordinates
+in vec3 vTangent;  // Tangent vector
+
 
 out vec3 fColour;
 out vec4 fvertexWorldLocation;
 out vec4 fvertexNormal;		// Normal in "world" space
 out vec2 fUV;				// Texture coordinates (to the fragment shader)
+out vec3 fTangent;         // Tangent in world space
+out vec3 fBitangent;       // Bitangent in world space
+
 
 //uniform mat4 MVP;
 uniform mat4 matView;
@@ -68,9 +73,23 @@ void main()
 	// Don't wank scaling or translation
 	// Compute the normal matrix from the model matrix (using a mat3 is enough)
 	mat3 normalMatrix = mat3(transpose(inverse(matModel)));
+
+
 	// Transform the normal and re-normalize it
 	vec3 transformedNormal = normalize(normalMatrix * vNormal);
+
 	fvertexNormal = vec4(transformedNormal, 0.0);
+	
+
+
+	// Transform tangent and compute bitangent
+    vec3 transformedTangent = normalize(normalMatrix * vTangent);
+    vec3 transformedBitangent = normalize(cross(transformedNormal, transformedTangent));
+
+    fTangent = transformedTangent;
+    fBitangent = transformedBitangent;
+
+
 	fColour = vCol;
 	fUV = vUV;			// Sent UVs to fragment shader
 }

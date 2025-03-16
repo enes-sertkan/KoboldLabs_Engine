@@ -10,6 +10,7 @@
 #include <sstream>
 
 #include <fstream>
+#include <iostream>
 
 sModelDrawInfo::sModelDrawInfo()
 {
@@ -523,129 +524,93 @@ bool cVAOManager::LoadModelIntoVAO(
 	}
 
 
-
-
 	// Calculate extents
 	drawInfo.calculateExtents();
 
-	// 
-	// Model is loaded and the vertices and indices are in the drawInfo struct
-	// 
+	// Calculate tangents
+	CalculateTangents(drawInfo);
 
-	// Create a VAO (Vertex Array Object), which will 
-	//	keep track of all the 'state' needed to draw 
-	//	from this buffer...
-
-	// Ask OpenGL for a new buffer ID...
-	glGenVertexArrays( 1, &(drawInfo.VAO_ID) );
-	// "Bind" this buffer:
-	// - aka "make this the 'current' VAO buffer
+	// Create a VAO (Vertex Array Object)
+	glGenVertexArrays(1, &(drawInfo.VAO_ID));
 	glBindVertexArray(drawInfo.VAO_ID);
 
-	// Now ANY state that is related to vertex or index buffer
-	//	and vertex attribute layout, is stored in the 'state' 
-	//	of the VAO... 
-
-
-	// NOTE: OpenGL error checks have been omitted for brevity
-//	glGenBuffers(1, &vertex_buffer);
-	glGenBuffers(1, &(drawInfo.VertexBufferID) );
-
-//	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+	// Vertex buffer
+	glGenBuffers(1, &(drawInfo.VertexBufferID));
 	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.VertexBufferID);
-	// sVert vertices[3]
-//	glBufferData( GL_ARRAY_BUFFER, 
-//				  sizeof(sVertex_SHADER_FORMAT_xyz_rgb) * drawInfo.numberOfVertices,	// ::g_NumberOfVertsToDraw,	// sizeof(vertices), 
-//				  (GLvoid*) drawInfo.pVertices,							// pVertices,			//vertices, 
-//				  GL_STATIC_DRAW );
-	glBufferData( GL_ARRAY_BUFFER, 
-				  sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * drawInfo.numberOfVertices,	// ::g_NumberOfVertsToDraw,	// sizeof(vertices), 
-				  (GLvoid*) drawInfo.pVertices,							// pVertices,			//vertices, 
-				  GL_STATIC_DRAW );
+	glBufferData(GL_ARRAY_BUFFER,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * drawInfo.numberOfVertices,
+		(GLvoid*)drawInfo.pVertices,
+		GL_STATIC_DRAW);
 
-
-	// Copy the index buffer into the video card, too
-	// Create an index buffer.
-	glGenBuffers( 1, &(drawInfo.IndexBufferID) );
-
+	// Index buffer
+	glGenBuffers(1, &(drawInfo.IndexBufferID));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, drawInfo.IndexBufferID);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+		sizeof(unsigned int) * drawInfo.numberOfIndices,
+		(GLvoid*)drawInfo.pIndices,
+		GL_STATIC_DRAW);
 
-	glBufferData( GL_ELEMENT_ARRAY_BUFFER,			// Type: Index element array
-	              sizeof( unsigned int ) * drawInfo.numberOfIndices, 
-	              (GLvoid*) drawInfo.pIndices,
-                  GL_STATIC_DRAW );
+	// Get attribute locations from shader
+	GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPos");
+	GLint vcol_location = glGetAttribLocation(shaderProgramID, "vCol");
+	GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");
+	GLint vUV_location = glGetAttribLocation(shaderProgramID, "vUV");
+	GLint vtangent_location = glGetAttribLocation(shaderProgramID, "vTangent"); // Add this line for the tangent
 
-	// Set the vertex attributes.
-// ************************************************************
-// 	   SPECIFIC TO THE SHADER.
-// 	   If the shader changes or the vertex layout changes,
-// 		you have to change this part...
-// ************************************************************
-	GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPos");	// program
-	GLint vcol_location = glGetAttribLocation(shaderProgramID, "vCol");	// program;
-	GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");	// program;
-	GLint vUV_location = glGetAttribLocation(shaderProgramID, "vUV");			// in vec2 vUV;
+	// Set the vertex attributes for the shader
+	glEnableVertexAttribArray(vpos_location);
+	glVertexAttribPointer(vpos_location,
+		3,           // vPos
+		GL_FLOAT, GL_FALSE,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, x));
 
+	glEnableVertexAttribArray(vcol_location);
+	glVertexAttribPointer(vcol_location,
+		3,           // vCol
+		GL_FLOAT, GL_FALSE,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, r));
 
-	//struct sVertex_SHADER_FORMAT_xyz_rgb
-	//{
-	//	float x, y, z;
-	//	float r, g, b;
-	//};
+	glEnableVertexAttribArray(vnorm_location);
+	glVertexAttribPointer(vnorm_location,
+		3,           // vNormal
+		GL_FLOAT, GL_FALSE,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, nx));
 
-	// Set the vertex attributes for this shader
-	glEnableVertexAttribArray(vpos_location);	// vPos
-	glVertexAttribPointer( vpos_location, 
-		                   3,		// vPos
-						   GL_FLOAT, GL_FALSE,
-//						   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),	//  sizeof(float) * 6,		// Stride
-						   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),	//  sizeof(float) * 6,		// Stride
-//						   ( void* )offsetof(sVertex_SHADER_FORMAT_xyz_rgb, x) );				// Offset
-						   ( void* )offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, x) );				// Offset
-
-	glEnableVertexAttribArray(vcol_location);	// vCol
-	glVertexAttribPointer( vcol_location, 
-		                   3,		// vCol
-						   GL_FLOAT, GL_FALSE,
-//		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),			//( void* )( sizeof(float) * 3 ));
-//		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, r));			//( void* )( sizeof(float) * 3 ));
-
-	glEnableVertexAttribArray(vnorm_location);	// vCol
-	glVertexAttribPointer( vnorm_location, 
-		                   3,		// vCol
-						   GL_FLOAT, GL_FALSE,
-//		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-	                       sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),			//( void* )( sizeof(float) * 3 ));
-//		                   sizeof(sVertex_SHADER_FORMAT_xyz_rgb),						// sizeof(float) * 6,
-		                   (void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, nx));			//( void* )( sizeof(float) * 3 ));
-
-
-
-	glEnableVertexAttribArray(vUV_location);	// vUV
+	glEnableVertexAttribArray(vUV_location);
 	glVertexAttribPointer(vUV_location,
-		2,		// in vec2 vUV;
+		2,           // vUV
 		GL_FLOAT, GL_FALSE,
 		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
 		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, u));
 
-						   // Now that all the parts are set up, set the VAO to zero
-	glBindVertexArray(0);
+	// Set the tangent attribute
+	glEnableVertexAttribArray(vtangent_location);
+	glVertexAttribPointer(vtangent_location,
+		3,           // vTangent
+		GL_FLOAT, GL_FALSE,
+		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+		(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, tx)); // Tangent offset
 
+	// Unbind VAO and buffers
+	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	// Disable vertex attributes
 	glDisableVertexAttribArray(vpos_location);
 	glDisableVertexAttribArray(vcol_location);
 	glDisableVertexAttribArray(vnorm_location);
 	glDisableVertexAttribArray(vUV_location);
+	glDisableVertexAttribArray(vtangent_location); // Disable tangent attribute
 
 	// Store the draw information into the map
-	this->m_map_ModelName_to_VAOID[ drawInfo.meshPath ] = drawInfo;
-
+	this->m_map_ModelName_to_VAOID[drawInfo.meshPath] = drawInfo;
 
 	return true;
+
 }
 
 
@@ -794,4 +759,82 @@ bool cVAOManager::getTriangleMeshInfo(
 
 
 	return true;
+}
+
+
+
+void cVAOManager::CalculateTangents(sModelDrawInfo& drawInfo)
+{
+
+	// Assuming you have a list of vertices in drawInfo.pVertices
+	sVertex_SHADER_FORMAT_xyz_rgb_N_UV* vertices = drawInfo.pVertices;
+	unsigned int numVertices = drawInfo.numberOfVertices;
+	unsigned int* indices = drawInfo.pIndices;
+	unsigned int numIndices = drawInfo.numberOfIndices;
+
+	// Loop through each triangle (3 indices per triangle)
+	for (unsigned int i = 0; i < numIndices; i += 3)
+	{
+
+		unsigned int i0 = indices[i];
+		unsigned int i1 = indices[i + 1];
+		unsigned int i2 = indices[i + 2];
+
+
+		// Check if indices are valid
+		if (i0 >= drawInfo.numberOfVertices || i1 >= drawInfo.numberOfVertices || i2 >= drawInfo.numberOfVertices) {
+			std::cerr << "Invalid index detected! Skipping this triangle." << std::endl;
+			continue;  // Skip this invalid triangle
+		}
+
+
+
+
+		// Get the 3 vertices of the triangle
+		glm::vec3 v0 = glm::vec3(vertices[i0].x, vertices[i0].y, vertices[i0].z);
+		glm::vec3 v1 = glm::vec3(vertices[i1].x, vertices[i1].y, vertices[i1].z);
+		glm::vec3 v2 = glm::vec3(vertices[i2].x, vertices[i2].y, vertices[i2].z);
+
+		glm::vec2 uv0 = glm::vec2(vertices[i0].u, vertices[i0].v);
+		glm::vec2 uv1 = glm::vec2(vertices[i1].u, vertices[i1].v);
+		glm::vec2 uv2 = glm::vec2(vertices[i2].u, vertices[i2].v);
+
+	//	std::cout << v0.x << " " << v0.y << " " << v0.z << std::endl;
+	//	std::cout << v1.x << " " << v1.y << " " << v1.z << std::endl;
+	//	std::cout << v2.x << " " << v2.y << " " << v2.z << std::endl;
+
+		// Calculate the edges of the triangle
+		glm::vec3 edge1 = v1 - v0;
+		glm::vec3 edge2 = v2 - v0;
+		glm::vec2 deltaUV1 = uv1 - uv0;
+		glm::vec2 deltaUV2 = uv2 - uv0;
+
+		// Calculate the tangent and bitangent using the cross product
+		float f = 1.0f / (deltaUV1.x * deltaUV2.y - deltaUV1.y * deltaUV2.x);
+		glm::vec3 tangent = f * (deltaUV2.y * edge1 - deltaUV1.y * edge2);
+		glm::vec3 bitangent = f * (-deltaUV2.x * edge1 + deltaUV1.x * edge2);
+
+		// Store the tangent and bitangent in the vertices
+		// Add tangents to the vertices for the three vertices of this triangle
+		vertices[i0].tx += tangent.x;
+		vertices[i0].ty += tangent.y;
+		vertices[i0].tz += tangent.z;
+
+		vertices[i1].tx += tangent.x;
+		vertices[i1].ty += tangent.y;
+		vertices[i1].tz += tangent.z;
+
+		vertices[i2].tx += tangent.x;
+		vertices[i2].ty += tangent.y;
+		vertices[i2].tz += tangent.z;
+
+	
+	}
+
+	for (unsigned int i = 0; i < numVertices; ++i) {
+		glm::vec3 tangent = glm::normalize(glm::vec3(vertices[i].tx, vertices[i].ty, vertices[i].tz));
+		vertices[i].tx = tangent.x;
+		vertices[i].ty = tangent.y;
+		vertices[i].tz = tangent.z;
+	}
 }

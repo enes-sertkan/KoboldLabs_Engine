@@ -53,8 +53,9 @@ struct sMesh
 	int textureFillType[MAX_NUM_TEXTURES];
 	std::string AOtexture;
 	std::string STTexture;
+	std::string NMTexture;
 	float metal=0;
-	float smoothness=0.1;
+	float smoothness=0;
 	bool useMetalTexture = false;
 	bool useSmoothTexture = false;
 
@@ -81,6 +82,8 @@ struct sMesh
 			}
 		}
 	}
+
+
 
 //	sMesh* pChildMeshes[100];
 };

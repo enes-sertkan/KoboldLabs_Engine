@@ -769,6 +769,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 
+    puddle->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     aWavesEffect* waveEffect = new aWavesEffect();
    // waveEffect->offset = glm::vec2(0.5, 0.5);
     scene->AddActionToObj(waveEffect, puddle);
@@ -817,7 +818,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     softBody->acceleration.y = -15;
     softObject->mesh->drawBothFaces = true;
     softBody->constIterations = 15;
-
+    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . .
     softBody->SetMazeToSBCollision(mazeGenerator);
     softBody->useVolume = true;
@@ -1147,20 +1148,27 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[24]->mesh->transperency = 0.2;
 
         scene->sceneObjects[25]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
-        scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+        scene->sceneObjects[25]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
         scene->sceneObjects[25]->mesh->AOtexture= "Operating_Table_AO.bmp";
+        scene->sceneObjects[25]->mesh->NMTexture= "Operating_Table_Normal.bmp";
+      //  scene->sceneObjects[25]->mesh->textureSpeed.x = 1.f;
+
         scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[26]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
         scene->sceneObjects[26]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
         scene->sceneObjects[26]->mesh->AOtexture = "Operating_Table_AO.bmp";
+        scene->sceneObjects[26]->mesh->NMTexture = "Operating_Table_Normal.bmp";
+       // scene->sceneObjects[26]->mesh->textureSpeed.x = 1.f;
         scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 
         scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
         scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
         scene->sceneObjects[27]->mesh->AOtexture = "Operating_Table_AO.bmp";
+        scene->sceneObjects[27]->mesh->NMTexture = "Operating_Table_Normal.bmp";
+      //  scene->sceneObjects[27]->mesh->textureSpeed.x = 1.f;
         scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
 
@@ -1333,11 +1341,14 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_AO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_MetallicSmoothness.bmp");
-
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top2.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("cam_top3.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("tv_glitch.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Wall_Simple_Normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Floor_Normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_Normal.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;

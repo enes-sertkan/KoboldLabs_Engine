@@ -19,12 +19,15 @@
 //	float r, g, b;		// in vec3 vCol;
 //};
 
+//Now with tangebnts for normal maps
 struct sVertex_SHADER_FORMAT_xyz_rgb_N_UV
 {
 	float x, y, z;		// in vec3 vPos;
 	float r, g, b, a;		// in vec3 vCol;
 	float nx, ny, nz;	// in vec3 vNormal;
 	float u, v;
+
+	float tx, ty, tz; // in vec3 vTangent;
 };
 
 struct sModelDrawInfo
@@ -95,7 +98,13 @@ public:
 	bool getTriangleMeshInfo(std::string meshName,
 	                         std::vector<cVAOManager::sTriangle> &vecTriangles);
 
+	// New method to calculate tangents for each vertex
+	void CalculateTangents(sModelDrawInfo& drawInfo);
+
+
 private:
+
+
 
 	std::map< std::string /*model name*/,
 		      sModelDrawInfo /* info needed to draw*/ >
