@@ -828,12 +828,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     SoftBody* ropeBody = new SoftBody();
    // ropeBody->useVolume = true;
-    ropeBody->acceleration.y = -30;
-    //ropeBody->acceleration.x = -40;
+    ropeBody->acceleration.y = -100;
+   // ropeBody->acceleration.x = 40;
     ropeBody->SetMazeToSBCollision(mazeGenerator);
 
     Object* ropeObject = scene->sceneObjects[32];
-    softObject->mesh->drawBothFaces = true;
+    ropeObject->mesh->drawBothFaces = true;
+    ropeObject->mesh->bOverrideObjectColour = true;
+    ropeObject->mesh->bDoNotLight = false;
+    ropeObject->mesh->objectColourRGBA = glm::vec4(1);
     //error
     ropeBody->isLockOnZ = true;
     ropeBody->zLockPos = -0.3f;
@@ -844,7 +847,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ConnSoftToObj* connector = new ConnSoftToObj();
     connector->softbody = ropeBody;
 
-//    scene->AddActionToObj(connector, scene->sceneObjects[33]);
+  scene->AddActionToObj(connector, scene->sceneObjects[33]);
     
     // Ensure "Mountain" exists in the VAO Manager before using it
    // myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);

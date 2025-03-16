@@ -32,8 +32,9 @@ public:
     MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager
     void generateMaze();
 
-    bool IsWall(int x, int y) const;
-    glm::vec3 GridToWorld(int x, int y) const;
+    bool IsWall(int x, int y);
+    bool IsFloor(int x, int y);
+    glm::vec3 GridToWorld(int x, int y) ;
     char GetMazePoint(int x, int y);
 
     //void PlaceFood(int count = 50);
@@ -58,7 +59,7 @@ private:
     void PlaceRandomObjects();
 
     std::vector<std::vector<bool>> occupiedPositions;
-    bool IsPositionOccupied(int row, int col) const;
+    bool IsPositionOccupied(int row, int col) ;
     void MarkPositionOccupied(int row, int col);
     //void PlaceRandomSizedObject(int row, int col, Direction type)  // New method to place a light
 

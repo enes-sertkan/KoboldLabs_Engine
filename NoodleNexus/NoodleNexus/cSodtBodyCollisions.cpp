@@ -10,12 +10,13 @@ glm::vec3 SoftBodyCollision::ProcessCollisionToOtherSoftBodies(glm::vec3 particl
         for (cSoftBodyVerlet::sParticle* particle : softBody->softBody->vec_pParticles)
         {
             glm::vec3 worldPos = softBody->object->mesh->positionXYZ + particle->position* softBody->object->mesh->uniformScale;
-            float distance = glm::distance(worldPos, particle->position);
+            float distance = glm::distance(worldPos, particlePos);
+
             if (distance> particleAffectionRange) continue;
 
             glm::vec3 direction = particlePos - worldPos;
             direction = glm::normalize(direction);
-            posChange += 5.f * direction /distance;
+            posChange += 0.005f * direction /distance;
 
         }
     }

@@ -11,7 +11,7 @@ class SoftBodyCollision
 {
 public:
 
-    float particleAffectionRange = 2;
+    float particleAffectionRange = 0.16;
     
 
 	MazeGenerator* mazeGenerator = nullptr;
@@ -78,20 +78,24 @@ public:
                     correction.z = distFront;  // push forward (positive z)
                 }
             }
+
+
+            if (mazeGenerator->IsFloor(gridY, gridX))
+                if (particlePos.y < 3.f)
+                {
+                    correction.y = 3.f - particlePos.y;
+                }
+            // If above the ceiling (y = 62), push it down.
+                else if (particlePos.y > 62.0f)
+                {
+                    //       correction.y = 62.0f - particlePos.y;
+                }
+
         }
 
         // Vertical collision check for floor and ceiling.
         // If the particle is below the floor (y = 22), push it up.
-        if (particlePos.y < 3.f)
-        {
-            correction.y = 3.f - particlePos.y;
-        }
-        // If above the ceiling (y = 62), push it down.
-        else if (particlePos.y > 62.0f)
-        {
-     //       correction.y = 62.0f - particlePos.y;
-        }
-
+      
         return correction;
 	}
 

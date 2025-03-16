@@ -26,9 +26,9 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
     while (std::getline(file, line)) {
         std::vector<char> row;
         for (char c : line) {
-            if (c == 'X' || c == '.' || c == 'T' || c == 'M' || c == 'B' || c == 'R' || c == 'V') {
+         //   if (c == 'X' || c == '.' || c == 'T' || c == 'M' || c == 'B' || c == 'R' || c == 'V') { //WHYYYYY?
                 row.push_back(c);
-            }
+         //   }
         }
         maze.push_back(row);
     }
@@ -42,8 +42,15 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B') {
-                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B' || cell == 'S') {
+
+                if (cell != 'S')
+                {
+                    PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                }
+      
+
+
                 PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
@@ -64,23 +71,8 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
-                //// VENTS
-                //if (row > 0 && maze[row - 1][col] == 'V') {
-                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT down
 
-                //}
-                //if (row < maze.size() - 1 && maze[row + 1][col] == 'V') {
-                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT up
 
-                //}
-                //if (col > 0 && maze[row][col - 1] == 'V') {
-                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT left
-
-                //}
-                //if (col < maze[row].size() - 1 && maze[row][col + 1] == 'V') {
-                //    PlaceModelOnGrid("assets/models/objects/vent.ply", row + 5, col, floor + 1.0f, 1.0f * 7.0f, VENTS, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f)); //VENT right
-
-                //}
 
                 // Door placement logic (optional, as in your example)
                 //if (cell == 'T') {
@@ -252,13 +244,20 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     return obj;
 }
 
-bool MazeGenerator::IsWall(int x, int y) const {
+bool MazeGenerator::IsWall(int x, int y)  {
     if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
         return true;
     return maze[x][y] == 'X';
 }
 
-glm::vec3 MazeGenerator::GridToWorld(int x, int y) const {
+bool MazeGenerator::IsFloor(int x, int y)
+{
+    if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
+        return true;
+    return maze[x][y] != 'S';
+}
+
+glm::vec3 MazeGenerator::GridToWorld(int x, int y)  {
     const float TILE_SIZE = 1.0f * 7.0* 5.0f; // Match your scaling factor
     return glm::vec3(x * TILE_SIZE, 0, y * TILE_SIZE);
 }
@@ -267,7 +266,7 @@ char MazeGenerator::GetMazePoint(int x, int y) {
     return maze[x][y];
 }
 
-bool MazeGenerator::IsPositionOccupied(int row, int col) const {
+bool MazeGenerator::IsPositionOccupied(int row, int col)  {
     if (row < 0 || col < 0 || row >= occupiedPositions.size() || col >= occupiedPositions[0].size())
         return true; // Out of bounds is considered occupied
     return occupiedPositions[row][col];

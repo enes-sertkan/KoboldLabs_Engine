@@ -42,7 +42,7 @@ public:
         object->scene->vaoManager->CloneMeshToDynamicVAO(SBMeshName, drawInfo, object->scene->programs[0]);
     
         softBody->CreateSoftBody(drawInfo);   
-        if (!isLockOnZ)//BAD CODE BAD CODE
+      //  if (!isLockOnZ)//BAD CODE BAD CODE
         //softBody->CreateRandomBracing(300, 0.8f);
        
         object->mesh->modelFileName = SBMeshName;

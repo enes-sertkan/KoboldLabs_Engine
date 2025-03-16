@@ -71,28 +71,28 @@ public:
 		case FORWARD:
 			if (object->scene->physicsManager->RayCast(position, position + forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				break;
+			//	break;
 			}
 			object->mesh->positionXYZ -= left * speed * object->scene->deltaTime;
 			break;
 		case BACK:
 			if (object->scene->physicsManager->RayCast(position, position - forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				break;
+			//	break;
 			}
 			object->mesh->positionXYZ += left * speed * object->scene->deltaTime;
 			break;
 		case LEFT:
 			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				break;
+				//break;
 			}
 			object->mesh->positionXYZ += forward * speed * object->scene->deltaTime;
 			break;
 		case RIGHT:
 			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
 			{
-				break;
+				//break;
 			}
 			object->mesh->positionXYZ -= forward * speed * object->scene->deltaTime;
 			break;
