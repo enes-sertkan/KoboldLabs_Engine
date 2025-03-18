@@ -63,6 +63,7 @@ struct sMesh
 	unsigned int uniqueID = 0;
 
 	float zoomPower = 0;
+	float chromaticPower = 0;
 
 	bool drawBothFaces = false;
 	std::string getState(void);

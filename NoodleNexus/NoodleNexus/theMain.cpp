@@ -735,6 +735,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
+    //screen_quad->mesh->chromaticPower = 0.1;
     screen_quad->mesh->blendRatio[0] = 1.f;
   //  obj->mesh->textures[1] = "screen_broken.bmp";
   //  obj->mesh->blendRatio[1] = 0.2f;
@@ -904,6 +905,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     screenSwitcher->AddTextureLayer2("cam_top3.bmp");
 
     scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+
+    scene->sceneObjects[4]->mesh->chromaticPower = 0.05;
 
 
 

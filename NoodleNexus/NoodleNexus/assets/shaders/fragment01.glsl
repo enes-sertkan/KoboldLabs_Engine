@@ -80,6 +80,7 @@ uniform float time;       // Current time in seconds
 uniform float speedX;     // UV speed X
 uniform float speedY;     // UV speed Y
 uniform float zoomPower;  // Zoom effect on texture
+uniform float chromaticPower; // Chromatic Abberation effect on textures
 
 // === Wave Uniforms ===
 uniform sWave waves[10];
@@ -162,28 +163,28 @@ for (int i = 0; i < 10; i++) {
     if (bUseObjectColour) {
         vertexColour = objectColour.rgb;
     } else if (bUseTextureAsColour) {
-        vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
-        vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
-        vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
-        vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
+        //vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
+        //vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
+        //vec4 tex2 = vec4(texture(texture02, movingUV.st).rgb, texRatio_0_to_3.z);
+        //vec4 tex3 = vec4(texture(texture03, movingUV.st).rgb, texRatio_0_to_3.w);
+        //vec4 layeredColor = compositeOver(tex0, tex1);
+        //layeredColor = compositeOver(layeredColor, tex2);
+        //layeredColor = compositeOver(layeredColor, tex3);
+        //vertexColour = layeredColor.rgb;
+        // --- Chromatic Aberration code (optional, commented out) ---
+        vec2 uv = movingUV.st;
+        float shift = chromaticPower;
+        vec4 r = texture(texture00, uv + vec2(shift, 0.0));
+        vec4 g = texture(texture00, uv);
+        vec4 b = texture(texture00, uv - vec2(shift, 0.0));
+        vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x);
+        vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
+        vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
+        vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
         vec4 layeredColor = compositeOver(tex0, tex1);
         layeredColor = compositeOver(layeredColor, tex2);
         layeredColor = compositeOver(layeredColor, tex3);
         vertexColour = layeredColor.rgb;
-        // --- Chromatic Aberration code (optional, commented out) ---
-        // vec2 uv = movingUV.st;
-        // float shift = 0.01 * sin(time);
-        // vec4 r = texture(texture00, uv + vec2(shift, 0.0));
-        // vec4 g = texture(texture00, uv);
-        // vec4 b = texture(texture00, uv - vec2(shift, 0.0));
-        // vec4 tex0 = vec4(r.r, g.g, b.b, texRatio_0_to_3.x);
-        // vec4 tex1 = vec4(texture(texture01, uv).rgb, texRatio_0_to_3.y);
-        // vec4 tex2 = vec4(texture(texture02, uv).rgb, texRatio_0_to_3.z);
-        // vec4 tex3 = vec4(texture(texture03, uv).rgb, texRatio_0_to_3.w);
-        // vec4 layeredColor = compositeOver(tex0, tex1);
-        // layeredColor = compositeOver(layeredColor, tex2);
-        // layeredColor = compositeOver(layeredColor, tex3);
-        // vertexColour = layeredColor.rgb;
     }
     
     // --- Section 4: Lighting and PBR Calculation ---

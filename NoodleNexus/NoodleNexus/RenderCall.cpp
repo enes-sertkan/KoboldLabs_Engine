@@ -681,6 +681,8 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     GLint zoomPower_UL = glGetUniformLocation(program, "zoomPower");
     glUniform1f(zoomPower_UL, pCurMesh->zoomPower);
 
+    GLint chromaticPower_UL = glGetUniformLocation(program, "chromaticPower");
+    glUniform1f(chromaticPower_UL, pCurMesh->chromaticPower);
 
     GLint bNightMode = glGetUniformLocation(program, "bNightMode");
     if (camera->nightMode)
