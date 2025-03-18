@@ -800,8 +800,6 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(mainCamera, scene->sceneObjects[0]);
     screen_quad->isTemporary = true;
 
-    mazeGenerator->generateMaze();
-    mazeSecurity->generateMaze();
 
     securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
     //BazeMazeCharacter* chararcter = new BazeMazefCharacter();
@@ -815,16 +813,21 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* softObject = scene->sceneObjects[31];
     softObject->mesh->metal = 0.8f;
     softObject->mesh->smoothness = 0.7f;
-    softBody->acceleration.y = -15;
+    softBody->acceleration.y = -16;
     softObject->mesh->drawBothFaces = true;
     softBody->constIterations = 15;
+    softBody->sbCollision->collisionMult = 2.f;
+    softBody->tighness = 2.f;
     //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . .
     softBody->SetMazeToSBCollision(mazeGenerator);
     softBody->useVolume = true;
+    softBody->easyControl = true;
     scene->AddActionToObj(softBody, softObject);
+    mazeGenerator->mainSlime = softBody;
 
-    
+    mazeGenerator->generateMaze();
+    mazeSecurity->generateMaze();
 
     SoftBody* ropeBody = new SoftBody();
    // ropeBody->useVolume = true;
@@ -838,7 +841,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeObject->mesh->bDoNotLight = false;
     ropeObject->mesh->objectColourRGBA = glm::vec4(1);
     //error
-    ropeBody->isLockOnZ = true;
+    ropeBody->isLockOnY = true;
     ropeBody->zLockPos = -0.3f;
     ropeBody->checkGreaterZLock = false;
     ropeBody->AddSoftBodyToCollisions(softBody);

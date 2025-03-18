@@ -13,19 +13,25 @@ class SoftBody : public Action {
 private:
    
 public:
+    bool easyControl = false;
     cSoftBodyVerlet* softBody = nullptr;
     std::string originalMeshName;
     std::string SBMeshName;
     glm::vec3 acceleration;
-    bool isLockOnZ = false;
+    bool isLockOnY = false;
     float zLockPos = 0.f;
     bool checkGreaterZLock = true;
     bool wind = true;
     bool useVolume = false;
     int constIterations = 3;
     float restLengthMultiplier = 1.f;
+    float tighness = 1.f;
 
     float yPosToLock;
+    
+    bool isLockOutsideRadius = false;
+    float lockRadius = 2.5f;
+    
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
     void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
@@ -50,14 +56,18 @@ public:
 
         softBody->CreateConstraintsBetweenCloseVertices(0.01f);
 
-        if (isLockOnZ)
+        if (isLockOnY)
             softBody->LockParticlesOnY(zLockPos, checkGreaterZLock);
+
+        if (isLockOutsideRadius)
+            softBody->LockParticlesOutsideRadius(lockRadius);
       
         
         softBody->useVolume = useVolume;
         
         //softBody->LockParticlesOnY(yPosToLock, true);
         softBody->CalculateBaseVolume();
+        softBody->tightnessFactor = tighness;
     }
 
     void MoveTopPart()
@@ -73,6 +83,8 @@ public:
         UpdateSoftBodyMeshes(object->scene->programs[0]);
 
         DebugDrawNormals();
+
+        if (!easyControl) return;
         // Check each arrow key independently:
         if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             // Apply a leftward force (negative X) only to particles above the center.
@@ -109,11 +121,11 @@ public:
 
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
-    
             softBody->SatisfyConstraints();
+            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
+         
 
    
-            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
           
           //  glm::vec3 center = softBody->getGeometricCentrePoint() + object->mesh->positionXYZ;
             //std::cout << center.x << " " << center.y << " " << center.z << std::endl;

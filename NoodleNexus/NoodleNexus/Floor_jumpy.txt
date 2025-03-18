@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Floor_Jumpy
+<filePath> assets/models/objects/floor_jumpy.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

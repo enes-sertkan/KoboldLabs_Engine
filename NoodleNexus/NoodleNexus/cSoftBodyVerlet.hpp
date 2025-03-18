@@ -63,6 +63,7 @@ public:
 		//
 		// If "fixed" then don't update with Verlet step
 		bool bIsFixed_DontUpdate = false;
+		float accelerationMultiplier = 1.f;
 	};
 
 	void cleanZeros(glm::vec3& value);
@@ -102,7 +103,7 @@ public:
 
 	// Force, like gravity or whatever
 	glm::vec3 acceleration = glm::vec3(0.0f);
-
+	float tightnessFactor = 1.f;
 	// This is the "guts" of the soft body
 	std::vector< sParticle* > vec_pParticles;			// All the vertices
 	std::vector< sConstraint* > vec_pConstraints;		// All "springs" or whatever
@@ -122,6 +123,7 @@ public:
 	void LockParticlesOnX(float xPos, bool lower);
 	void LockParticlesOnZ(float xPos, bool lower);
 	void LockParticlesOnY(float xPos, bool lower);
+	void LockParticlesOutsideRadius(float radius);
 
 	// This just gets the average of all the points (based on location)
 	glm::vec3 getGeometricCentrePoint(void);

@@ -7,6 +7,7 @@
 #include <random>
 #include "aMinotaur.h"
 #include "Theseus.h"
+#include "aSoftBodyAction.hpp"
 
 
 // Constructor
@@ -47,6 +48,10 @@ void MazeGenerator::generateMaze() {
                 if (cell != 'S')
                 {
                     PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                }
+                else
+                {
+                        PlaceModelOnGrid("assets/models/objects/floor_jumpy.ply", row, col, floor, 1.0f, SOFTCENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
       
 
@@ -128,7 +133,17 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     std::string textureST="";
     std::string textureNM="";
     switch (type) {
-    
+    case SOFTCENTER:
+        position.z -= 2.5f * scale;
+        position.x += 2.5f * scale;
+        color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        texture = "Floor_Albedo.bmp";
+        useAO = true;
+        //   aobool = !aobool;
+        textureAO = "WallAO.bmp";
+        //textureNM = "Floor_Normal.bmp";
+        //  textureST = "Operating_Table_MetallicSmoothness.bmp";
+        break;
     case CENTER:
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
@@ -200,6 +215,27 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         return nullptr;
     }
 
+    if (type == SOFTCENTER)
+    {
+        obj->mesh->uniformScale = 3.f;
+        SoftBody* softBody = new SoftBody();
+        softBody->isLockOutsideRadius = true;
+        softBody->lockRadius = 1.8f;
+        softBody->checkGreaterZLock = true;
+        scene->AddActionToObj(softBody, obj);
+        softBody->acceleration.y = -5.f;
+        softBody->constIterations = 10;
+        softBody->tighness = 1.5;
+        //softBody->restLengthMultiplier = 2.f;
+        softBody->sbCollision->collisionMult = 0.12f;
+        if (mainSlime != nullptr)
+        {
+           softBody->AddSoftBodyToCollisions(mainSlime);
+            mainSlime->AddSoftBodyToCollisions(softBody);
+            
+        }
+    }
+
     //if (type == MINOTAUR)
     //{
     //    MinotaurChar* minotaur = new MinotaurChar();
@@ -254,7 +290,7 @@ bool MazeGenerator::IsFloor(int x, int y)
 {
     if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
         return true;
-    return maze[x][y] != 'S';
+    return maze[x][y] != 'S' && maze[x][y] != ',';
 }
 
 glm::vec3 MazeGenerator::GridToWorld(int x, int y)  {
@@ -278,70 +314,3 @@ void MazeGenerator::MarkPositionOccupied(int row, int col) {
         occupiedPositions[row][col] = true;
 }
 
-//void MazeGenerator::PlaceFood(int count) {
-//    std::random_device rd;
-//    std::mt19937 gen(rd());
-//    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
-//    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
-//    std::uniform_int_distribution<> disFloor(0);
-//
-//    for (int i = 0; i < count; ++i) {
-//        int foodRow, foodCol, foodFloor;
-//
-//        // Find a valid position for food
-//        do {
-//            foodRow = disRow(gen);
-//            foodCol = disCol(gen);
-//            foodFloor = disFloor(gen);
-//        } while (IsWall(foodRow, foodCol) || IsPositionOccupied(foodRow, foodCol)); // Ensure the position is not a wall or occupied
-//
-//        // Place the food object
-//        Object* food = PlaceModelOnGrid("assets/models/Food/Melon2.ply", foodRow, foodCol, foodFloor, 1.0f * 7.0f, FOOD, true);
-//        food->mesh->objectColourRGBA = glm::vec4(1.0f, 0.5f, 0.7f, 1.0f);
-//        food->mesh->bOverrideObjectColour = true;
-//
-//        std::cout << "Pos of food Col " << foodCol << std::endl;
-//        std::cout << "Pos of food Row " << foodRow << std::endl;
-//
-//        // Add the food object to the foods vector
-//        if (food != nullptr) {
-//            foods.push_back(food);
-//            MarkPositionOccupied(foodRow, foodCol); // Mark the position as occupied
-//        }
-//    }
-//}
-//
-//void MazeGenerator::PlaceWater(int count) {
-//    std::random_device rd;
-//    std::mt19937 gen(rd());
-//    std::uniform_int_distribution<> disRow(0, maze.size() - 1);
-//    std::uniform_int_distribution<> disCol(0, maze[0].size() - 1);
-//    std::uniform_int_distribution<> disFloor(0);
-//
-//    for (int i = 0; i < count; ++i) {
-//        int waterRow, waterCol, waterFloor;
-//
-//        // Find a valid position for water
-//        do {
-//            waterRow = disRow(gen);
-//            waterCol = disCol(gen);
-//            waterCol = disCol(gen);
-//            waterFloor = disCol(gen);
-//        } while (IsWall(waterRow, waterCol) || IsPositionOccupied(waterRow, waterCol)); // Ensure the position is not a wall or occupied
-//
-//        // Place the water object
-//        Object* water = PlaceModelOnGrid("assets/models/Food/WaterE.ply", waterRow, waterCol, waterFloor, 1.0f * 7.0f, FOOD, true);
-//        water->mesh->textures[0] = "Water.bmp";
-//        water->mesh->blendRatio[0] = 2;
-//        water->mesh->bOverrideObjectColour = false;
-//
-//        std::cout << "Pos of water Col " << waterCol << std::endl;
-//        std::cout << "Pos of water Row " << waterRow << std::endl;
-//
-//        // Add the water object to the waters vector
-//        if (water != nullptr) {
-//            waters.push_back(water);
-//            MarkPositionOccupied(waterRow, waterCol); // Mark the position as occupied
-//        }
-//    }
-//}

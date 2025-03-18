@@ -279,6 +279,21 @@ void cSoftBodyVerlet::LockParticlesOnY(float yPos, bool lower)
 
 }
 
+
+// New function: lock particles that are outside the specified radius
+void cSoftBodyVerlet::LockParticlesOutsideRadius(float radius) {
+	// Iterate over all particles in the soft body
+	glm::vec3 center = getGeometricCentrePoint();
+	for (cSoftBodyVerlet::sParticle* particle : vec_pParticles) {
+		
+		float distance = glm::distance(particle->position, center);
+		if (distance > radius)
+			particle->bIsFixed_DontUpdate = true;
+	
+	}
+}
+
+
 void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 {
 	for (sParticle* particle : vec_pParticles)
@@ -416,7 +431,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 			// This is the actual Verlet integration step (notice there isn't a velocity)
 			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
 			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor; 
-			pCurrentParticle->position += velocity + (this->acceleration * (float)(deltaTime * deltaTime));
+			pCurrentParticle->position += velocity + (pCurrentParticle->accelerationMultiplier* this->acceleration * (float)(deltaTime * deltaTime)*2.f);
 
 			pCurrentParticle->old_position = current_pos;
 
@@ -436,21 +451,33 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 	// HACK: Stop any particles that go below the "ground"
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
+		if (pCurrentParticle->bIsFixed_DontUpdate) continue;
 		glm::vec3 particleWorldPosition = scale * pCurrentParticle->position + worldPosition;
 		glm::vec3 posChange = sbCollision->ProcessMazeCollision(particleWorldPosition)/ scale; 
 
 		pCurrentParticle->position += posChange;
 		particleWorldPosition += posChange;
 
-		
-		posChange = sbCollision->ProcessCollisionToOtherSoftBodies(particleWorldPosition);
-		pCurrentParticle->position += posChange;
 
-	/*	if (posChange!=glm::vec3(0.f))
-		{
-			pCurrentParticle->old_position = pCurrentParticle->position;
 
-		}*/
+
+		// Process soft body collisions
+		for (int i = 0; i < 1; i++) {
+			posChange = sbCollision->ProcessCollisionToOtherSoftBodies(particleWorldPosition);
+			pCurrentParticle->position += posChange;
+			particleWorldPosition += posChange;
+		}
+
+		//// ** Apply upward push if the particle is below ground (y < 0) **
+		//if (particleWorldPosition.y < 1000.0f) {
+		//	float depth = -particleWorldPosition.y;  // How deep below ground
+		//	float upwardForce = depth * 0.5f;  // The lower it is, the stronger the push
+		//	//upwardForce = upwardForce * upwardForce;
+		//	pCurrentParticle->position.y += upwardForce;
+		//}
+
+
+
 	}
 
 	//	this->vec_pParticles[5'000]->position = glm::vec3(0.0f, 30.0f, 0.0f);
@@ -557,7 +584,7 @@ void cSoftBodyVerlet::SatisfyConstraints(void)
 
 			// Making this non-one, will change how quickly the objects move together
 			// For example, making this < 1.0 will make it "bouncier"
-			float tightnessFactor = 1.f;
+		
 			if (!pX1->bIsFixed_DontUpdate)
 			pX1->position += delta * 0.5f * nonLinearDiff * tightnessFactor;
 

@@ -10,7 +10,7 @@
 
 class BazeMazeCharacter;
 class MinotaurChar;
-
+class SoftBody;
 // Enum for different object types
 enum Direction {
     RIGHT,
@@ -24,11 +24,15 @@ enum Direction {
     TUBES,
     REACTORS,
     TABLE,
-    BROKENTUBES
+    BROKENTUBES,
+    SOFTCENTER
 };
+
 
 class MazeGenerator {
 public:
+
+    SoftBody* mainSlime = nullptr;
     MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager
     void generateMaze();
 

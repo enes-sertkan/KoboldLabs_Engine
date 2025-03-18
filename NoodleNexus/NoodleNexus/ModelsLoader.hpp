@@ -145,4 +145,8 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/plene_1x1.ply";
     fileManager->WriteModelFile(&modelInfo, "Plane_1x1.txt", "XYZNUVRGBA");
 
+
+    modelInfo.modelName = "Floor_Jumpy";
+    modelInfo.meshPath = "assets/models/objects/floor_jumpy.ply";
+    fileManager->WriteModelFile(&modelInfo, "Floor_jumpy.txt", "XYZNUVRGBA");
 }

@@ -22,6 +22,7 @@ skysphere.txt
 screen_quad.txt
 Rope.txt
 Plane_1x1.txt
+Floor_jumpy.txt
 <--ObjectLoad>
 <Scene-->
 
@@ -30,9 +31,9 @@ Plane_1x1.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 1345 -1 1519
+<Position-> 3128 -1 8561
 <Rotation-> 0 0 0
-<Scale-> 1 1.06025e-38 1.01939e-38
+<Scale-> 1 1.00522e-38 8.44895e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -44,7 +45,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.04694e-38
+<Scale-> 1 1.01021e-38 1.04694e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -56,7 +57,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 9.15816e+08
+<Scale-> 1 1.11123e-38 9.64283e-39
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -68,7 +69,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -80,7 +81,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 9.15816e+08
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -92,7 +93,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -104,7 +105,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -155,7 +156,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 47 3 2
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -167,7 +168,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 45 3 58
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -179,7 +180,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 42 3 57
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -191,7 +192,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -215,7 +216,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 40 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -275,7 +276,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 1.69557e-43 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -287,7 +288,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -311,7 +312,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -323,7 +324,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -335,7 +336,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 38 3 11
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -347,7 +348,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 39 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -359,7 +360,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 41 3 8
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -383,7 +384,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 26 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 9.15816e+08
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -395,7 +396,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 46 8 72
 <Rotation-> 0 -95 -1
-<Scale-> 1 0 0
+<Scale-> 1 1.11123e-38 9.15816e+08
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -407,7 +408,7 @@ Plane_1x1.txt
 <StaticCollision-> false
 <Position-> 30 7 7
 <Rotation-> 0 0 0
-<Scale-> 0.4 0 0
+<Scale-> 0.4 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -491,7 +492,7 @@ Plane_1x1.txt
 <--Object>
 
 <Light-->
-<Position-> 9.5 6.5 91.0604 1
+<Position-> 43 6.5 186.08 1
 <Diffuse-> 5 5 5 1
 <Specular-> 1 1 1 1
 <Atten-> 0 1.94383 0.00058883 3.40282e+38
