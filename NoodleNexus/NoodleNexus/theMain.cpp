@@ -760,6 +760,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     screen_quad->mesh->textures[0] = "main_camera";
     //screen_quad->mesh->chromaticPower = 0.1;
     screen_quad->mesh->blendRatio[0] = 1.f;
+    screen_quad->mesh->chromaticPower = 0.0007f;
   //  obj->mesh->textures[1] = "screen_broken.bmp";
   //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
@@ -793,7 +794,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 
-    puddle->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+   // puddle->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     aWavesEffect* waveEffect = new aWavesEffect();
    // waveEffect->offset = glm::vec2(0.5, 0.5);
     scene->AddActionToObj(waveEffect, puddle);
@@ -853,6 +854,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     SoftBody* ropeBody = new SoftBody();
    // ropeBody->useVolume = true;
     ropeBody->acceleration.y = -100;
+    ropeBody->yToJump = -100.f;
    // ropeBody->acceleration.x = 40;
     ropeBody->SetMazeToSBCollision(mazeGenerator);
 
@@ -917,7 +919,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     mirrorReflection->fovAdjustmentFactor = 20.f;
     mirrorReflection->mirrorObject = puddle;
     mirrorReflection->cameraHeight = 0.f;
-   scene->AddActionToObj(mirrorReflection, cameraObj2);
+   //scene->AddActionToObj(mirrorReflection, cameraObj2);
 
 
 

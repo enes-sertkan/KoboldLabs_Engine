@@ -19,7 +19,9 @@ cLightManager::cLightManager()
 		this->theLights[index].atten.x = 0.0f;		// x = constant
 		this->theLights[index].atten.y = 0.1f;		// y = linear
 		this->theLights[index].atten.z = 0.01f;		// z = quadratic
-		this->theLights[index].atten.w = FLT_MAX;	// w = DistanceCutOff (FLT_MAX = infinite)
+		//FOR SOE REASON THIS IS GETTING REWRITTEN TO THIS EVERY TIME I RELOAD THE SCENE
+		//TODO FIX
+		this->theLights[index].atten.w = 30.f;	// w = DistanceCutOff (FLT_MAX = infinite)
 
 		this->theLights[index].direction = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 		// 0 = pointlight
