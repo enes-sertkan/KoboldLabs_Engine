@@ -260,6 +260,9 @@
     <ClCompile Include="AllInlcludes.hpp">
       <Filter>Engine\AllInlcudes</Filter>
     </ClCompile>
+    <ClCompile Include="aMirrorReflection.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">

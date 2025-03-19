@@ -6,12 +6,24 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 class SoftBody;
-struct Capsule;
+struct Cylinder
+{
+    float cylinderPos;
+    float cylinderRadius;
+    float cylinderHeight;
+
+    //glm::vec3 start;
+    //glm::vec3 end;
+    //float capRadius;
+
+    //Capsule(glm::vec3 s, glm::vec3 e, float r) : start(s), end(e), capRadius(r) {}
+
+};
 
 class SoftBodyCollision
 {
 public:
-    Capsule* capsule=nullptr;
+    Cylinder* cylinder=nullptr;
     float particleAffectionRange = 1.0f;
     float collisionMult = 1.f;
 
@@ -101,4 +113,67 @@ public:
 	}
 
     glm::vec3 ProcessCapsuleCollision(glm::vec3 particlePos)
+    {
+        glm::vec3 correction = glm::vec3(0);
+        glm::vec3 particlePositionXZ = glm::vec3(particlePos.x, 0, particlePos.z);
+        glm::vec3 cylinderPositionXZ = glm::vec3(particlePos.x, 0, cylinder->cylinderPos);
+
+        float distanceBetween = glm::distance(particlePositionXZ, cylinderPositionXZ);
+
+        //cylinder = new Cylinder();
+        //cylinder->cylinderPos = glm::vec3(0, 0, 0);
+        //cylinder->cylinderHeight
+
+        if (distanceBetween > cylinder->cylinderRadius)
+        {
+            glm::vec3 direction = cylinder->cylinderPos - particlePos;
+            direction = glm::normalize(direction);
+            
+            float moveMagnitude = distanceBetween - cylinder->cylinderRadius;
+            correction += moveMagnitude * direction;
+
+        }
+
+        if (particlePos.y > cylinder->cylinderHeight + cylinder->cylinderPos)
+        {
+            float distance = particlePos.y - cylinder->cylinderHeight - cylinder->cylinderPos;
+
+            correction.y = -distance;
+
+        }
+
+        if (particlePos.y >  cylinder->cylinderPos)
+        {
+            float distance = particlePos.y - cylinder->cylinderPos;
+
+            correction.y = -distance;
+
+        }
+    }
+
+    //glm::vec3 ClosestPointOnLineSegment(glm::vec3 A, glm::vec3 B, glm::vec3 P)
+    //{
+    //    glm::vec3 AB = B - A;
+    //    float t = glm::dot(P - A, AB) / glm::dot(AB, AB);
+    //    t = glm::clamp(t, 0.0f, 1.0f);
+    //    return A + t * AB;
+    //}
+
+    //glm::vec3 ProcessCapsuleCollision(glm::vec3 particlePos)
+    //{
+    //    glm::vec3 closestPoint = ClosestPointOnLineSegment(capsule->start, capsule->end, particlePos);
+
+    //    glm::vec3 toParticle = particlePos - closestPoint;
+    //    float distSq = glm::dot(toParticle, toParticle);
+    //    float radiusSq = capsule->capRadius * capsule->capRadius;
+
+    //    if (distSq < radiusSq)
+    //    {
+    //        float dist = glm::sqrt(distSq);
+    //        glm::vec3 normal = dist > 0 ? toParticle / dist : glm::vec3(1.0f, 0.0f, 0.0f);
+    //        return closestPoint + normal * capsule->capRadius;
+    //    }
+
+    //    return particlePos;
+    //}
 };

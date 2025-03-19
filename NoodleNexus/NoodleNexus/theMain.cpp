@@ -851,7 +851,14 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ConnSoftToObj* connector = new ConnSoftToObj();
     connector->softbody = ropeBody;
 
-  scene->AddActionToObj(connector, scene->sceneObjects[33]);
+    scene->AddActionToObj(connector, scene->sceneObjects[33]);
+
+  // capsule collision
+    SoftBody* softBodyCapsule = new SoftBody();
+    Object* capsuleComponentOne = scene->sceneObjects[14];
+    
+    scene->AddActionToObj(softBodyCapsule, capsuleComponentOne);
+
     
     // Ensure "Mountain" exists in the VAO Manager before using it
    // myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
