@@ -217,7 +217,9 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
 
     if (type == SOFTCENTER)
     {
-        obj->mesh->uniformScale = 3.f;
+        obj->mesh->uniformScale = 2.f;
+        obj->mesh->metal = 0.7;
+        obj->mesh->smoothness = 0.7;
         SoftBody* softBody = new SoftBody();
         softBody->isLockOutsideRadius = true;
         softBody->lockRadius = 1.8f;
@@ -226,8 +228,9 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         softBody->acceleration.y = -5.f;
         softBody->constIterations = 10;
         softBody->tighness = 1.5;
+        softBody->yToJump = -8.5;
         //softBody->restLengthMultiplier = 2.f;
-        softBody->sbCollision->collisionMult = 0.12f;
+        softBody->sbCollision->collisionMult = 0.4f;
         if (mainSlime != nullptr)
         {
            softBody->AddSoftBodyToCollisions(mainSlime);

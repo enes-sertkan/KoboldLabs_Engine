@@ -43,7 +43,7 @@ public:
         float adjustedFOV = 100.f * (1.0f + fovAdjustmentFactor / (distance + 0.001f));
         cameraController->FOV = 100.f;// adjustedFOV;;
 
-        std::cout <<"Camera Position: "<< camPos.x << " " << camPos.y << " " << camPos.z << std::endl;
+        //std::cout <<"Camera Position: "<< camPos.x << " " << camPos.y << " " << camPos.z << std::endl;
     }
 
     void RotateMeshTowardsPlayer(const glm::vec3 reflectedPos, const glm::vec3 playerPos) {

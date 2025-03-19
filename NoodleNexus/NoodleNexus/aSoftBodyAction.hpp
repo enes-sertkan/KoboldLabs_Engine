@@ -31,6 +31,7 @@ public:
     
     bool isLockOutsideRadius = false;
     float lockRadius = 2.5f;
+    float yToJump = -6;
     
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
@@ -56,6 +57,8 @@ public:
 
         softBody->CreateConstraintsBetweenCloseVertices(0.01f);
 
+        softBody->UpdateGeometricCentrePoint();
+
         if (isLockOnY)
             softBody->LockParticlesOnY(zLockPos, checkGreaterZLock);
 
@@ -68,6 +71,8 @@ public:
         //softBody->LockParticlesOnY(yPosToLock, true);
         softBody->CalculateBaseVolume();
         softBody->tightnessFactor = tighness;
+        softBody->yToJump = yToJump;
+      
     }
 
     void MoveTopPart()
@@ -122,6 +127,7 @@ public:
             // Apply Verlet integration steps
             softBody->VerletUpdate(deltaTime);
             softBody->SatisfyConstraints();
+  
             softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
          
 

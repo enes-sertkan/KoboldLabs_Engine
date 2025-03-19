@@ -13,9 +13,11 @@ class SoftBodyCollision;
 class cSoftBodyVerlet
 {
 public:
+	glm::vec3 m_geometricCentrePoint = glm::vec3(0);
+	float yToJump = -7;
 	cSoftBodyVerlet();
 	~cSoftBodyVerlet();
-
+	void UpdateGeometricCentrePoint(void);
 	// This is for loading the original model
 	// The 2nd param is the identy matrix 
 	bool CreateSoftBody(sModelDrawInfo ModelDrawInfo, glm::mat4 matInitalTransform = glm::mat4(1.0f), int constIterations = 7, float restLengthMultiplier = 1.f);

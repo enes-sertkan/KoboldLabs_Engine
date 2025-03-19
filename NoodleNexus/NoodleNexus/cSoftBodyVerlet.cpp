@@ -164,6 +164,17 @@ bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInit
 	return true;
 }
 
+void cSoftBodyVerlet::UpdateGeometricCentrePoint(void)
+{
+	glm::vec3 centre(0.0f);
+	for (sParticle* particle : vec_pParticles)
+	{
+		centre += particle->position;
+	}
+	centre /= static_cast<float>(vec_pParticles.size());
+	m_geometricCentrePoint = centre;
+}
+
 void cSoftBodyVerlet::UpdateVertexPositions(void)
 {
 	// Copy the current particle positions to the local vertex locations
@@ -409,6 +420,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		deltaTime = MAX_DELTATIME;
 	}
 
+	UpdateGeometricCentrePoint();
 
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
@@ -443,11 +455,16 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 		}
 	}
 
+
+	UpdateGeometricCentrePoint();
+
 	return;
 }
 
 void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale)
 {
+
+	glm::vec3 centerGeometric = getGeometricCentrePoint()+ worldPosition;
 	// HACK: Stop any particles that go below the "ground"
 	for (sParticle* pCurrentParticle : vec_pParticles)
 	{
@@ -462,19 +479,19 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 
 		// Process soft body collisions
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 3; i++) {
 			posChange = sbCollision->ProcessCollisionToOtherSoftBodies(particleWorldPosition);
 			pCurrentParticle->position += posChange;
 			particleWorldPosition += posChange;
 		}
 
-		//// ** Apply upward push if the particle is below ground (y < 0) **
-		//if (particleWorldPosition.y < 1000.0f) {
-		//	float depth = -particleWorldPosition.y;  // How deep below ground
-		//	float upwardForce = depth * 0.5f;  // The lower it is, the stronger the push
-		//	//upwardForce = upwardForce * upwardForce;
-		//	pCurrentParticle->position.y += upwardForce;
-		//}
+		// ** Apply upward push if the particle is below ground (y < 0) **
+		if (centerGeometric.y<yToJump) {
+			float depth = -particleWorldPosition.y;  // How deep below ground
+			float upwardForce = 0.7f;//depth * 0.5f;  // The lower it is, the stronger the push
+			//upwardForce = upwardForce * upwardForce;
+			pCurrentParticle->position.y += upwardForce;
+		}
 
 
 
@@ -677,16 +694,7 @@ void cSoftBodyVerlet::cleanZeros(glm::vec3& value)
 
 glm::vec3 cSoftBodyVerlet::getGeometricCentrePoint(void)
 {
-	glm::vec3 centreXYZ = glm::vec3(0.0f);
-
-	for (sParticle* pCurrentParticle : this->vec_pParticles)
-	{
-		centreXYZ += pCurrentParticle->position;
-	}
-	// Get average
-	centreXYZ /= (float)this->vec_pParticles.size();
-
-	return centreXYZ;
+	return m_geometricCentrePoint;
 }
 
 

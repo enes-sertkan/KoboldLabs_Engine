@@ -11,7 +11,7 @@ class SoftBodyCollision
 {
 public:
 
-    float particleAffectionRange = 0.5f;
+    float particleAffectionRange = 1.0f;
     float collisionMult = 1.f;
 
 	MazeGenerator* mazeGenerator = nullptr;
