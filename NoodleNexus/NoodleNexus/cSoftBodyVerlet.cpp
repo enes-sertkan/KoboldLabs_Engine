@@ -495,6 +495,13 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 
 
+		if (sbCollision->capsule != nullptr)
+		{
+			glm::vec3 posChange = sbCollision->ProcessCapsuleCollision(particleWorldPosition) / scale;
+
+			pCurrentParticle->position += posChange;
+		}
+
 	}
 
 	//	this->vec_pParticles[5'000]->position = glm::vec3(0.0f, 30.0f, 0.0f);

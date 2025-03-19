@@ -6,11 +6,12 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 class SoftBody;
+struct Capsule;
 
 class SoftBodyCollision
 {
 public:
-
+    Capsule* capsule=nullptr;
     float particleAffectionRange = 1.0f;
     float collisionMult = 1.f;
 
@@ -99,4 +100,5 @@ public:
         return correction;
 	}
 
+    glm::vec3 ProcessCapsuleCollision(glm::vec3 particlePos)
 };
