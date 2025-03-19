@@ -32,7 +32,8 @@ public:
     bool isLockOutsideRadius = false;
     float lockRadius = 2.5f;
     float yToJump = -6;
-    
+    bool inCylynder = false;
+
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
     void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
@@ -73,6 +74,15 @@ public:
         softBody->tightnessFactor = tighness;
         softBody->yToJump = yToJump;
       
+
+        if (inCylynder)
+        {
+            sbCollision->cylinder = new Cylinder();
+            sbCollision->cylinder->cylinderPos = object->mesh->positionXYZ;
+            sbCollision->cylinder->cylinderPos.y -= 2.f;
+            sbCollision->cylinder->cylinderRadius = 0.3f;
+            sbCollision->cylinder->cylinderHeight = 6.f;
+        }
     }
 
     void MoveTopPart()

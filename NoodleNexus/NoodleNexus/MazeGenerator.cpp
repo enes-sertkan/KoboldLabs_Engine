@@ -132,6 +132,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     std::string textureAO="";
     std::string textureST="";
     std::string textureNM="";
+    float metal = 0;
+    float smothness = 0;
     switch (type) {
     case SOFTCENTER:
         position.z -= 2.5f * scale;
@@ -143,6 +145,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         textureAO = "WallAO.bmp";
         //textureNM = "Floor_Normal.bmp";
         //  textureST = "Operating_Table_MetallicSmoothness.bmp";
+        metal = 1.f;
         break;
     case CENTER:
         position.z -= 2.5f * scale;
@@ -153,6 +156,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
      //   aobool = !aobool;
         textureAO = "WallAO.bmp";
         textureNM = "Floor_Normal.bmp";
+        metal = 0.1;
+        smothness = 0.2;
       //  textureST = "Operating_Table_MetallicSmoothness.bmp";
         break;
     case CENTERup:
@@ -164,6 +169,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         textureAO = "WallAO.bmp";
         texture = "Floor_Albedo.bmp";
         textureNM = "Floor_Normal.bmp";
+        metal = 0.1;
+        smothness = 0.2;
         break;
     case RIGHT:
         position.x += scale * 5.f/ 2.0f;
@@ -237,6 +244,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
             mainSlime->AddSoftBodyToCollisions(softBody);
             
         }
+
     }
 
     //if (type == MINOTAUR)
@@ -265,7 +273,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     obj->mesh->textureFillType[0] = 1;
     obj->mesh->objectColourRGBA = color;
     obj->mesh->bOverrideObjectColour = isOverrideColor;
-
+    obj->mesh->metal = metal;
+    obj->mesh->smoothness = smothness;
     obj->mesh->AOtexture = textureAO;
     obj->mesh->STTexture = textureST;
     obj->mesh->NMTexture = textureNM;

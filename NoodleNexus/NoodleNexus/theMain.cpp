@@ -725,6 +725,29 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
     glfwSetWindowTitle(window, ssTitle.str().c_str());
 }
 
+
+void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
+{
+    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply",pos, 1, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+    SoftBody* slimeBody = new SoftBody();
+
+    slime->isTemporary = true;
+    slime->mesh->metal = 0.8f;
+    slime->mesh->smoothness = 0.7f;
+    slimeBody->acceleration.y = -16;
+    slime->mesh->drawBothFaces = true;
+    slimeBody->constIterations = 15;
+    slimeBody->sbCollision->collisionMult = 2.f;
+    slimeBody->tighness = 2.f;
+    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+    // . . . . . . . . 
+    slimeBody->useVolume = true;
+    slimeBody->easyControl = true;
+    slimeBody->inCylynder = true;
+    scene->AddActionToObj(slimeBody, slime);
+}
+
+
 Object* screen_quad = nullptr;
 
 void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program)
@@ -803,11 +826,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
-    //BazeMazeCharacter* chararcter = new BazeMazefCharacter();
-    //chararcter->mazePosition.x = 5;
-    //chararcter->mazePosition.y = 5;
-    //chararcter->maze = mazeGenerator;
-    //scene->AddActionToObj(chararcter, scene->sceneObjects[0]);
+   
 
     SoftBody* softBody = new SoftBody();
 
@@ -824,6 +843,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     softBody->SetMazeToSBCollision(mazeGenerator);
     softBody->useVolume = true;
     softBody->easyControl = true;
+    softBody->inCylynder = false;
     scene->AddActionToObj(softBody, softObject);
     mazeGenerator->mainSlime = softBody;
 
@@ -1084,12 +1104,18 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
+
+
+ 
         scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[12]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
         scene->sceneObjects[12]->mesh->AOtexture = "Frame_Tube_AO.bmp";
 
         scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
+       // SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[12]->mesh->positionXYZ);
+
+
 
         // Right Window
         scene->sceneObjects[13]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
@@ -1106,6 +1132,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[14]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
+       // SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[14]->mesh->positionXYZ);
 
         //Room
 
@@ -1114,6 +1141,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[15]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+        //SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[15]->mesh->positionXYZ);
+
 
         scene->sceneObjects[16]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
@@ -1135,6 +1164,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[19]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+
+
 
         scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[20]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";

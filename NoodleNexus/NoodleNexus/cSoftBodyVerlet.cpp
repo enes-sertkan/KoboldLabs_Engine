@@ -487,15 +487,20 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 		// ** Apply upward push if the particle is below ground (y < 0) **
 		if (centerGeometric.y<yToJump) {
-			float depth = -particleWorldPosition.y;  // How deep below ground
-			float upwardForce = 0.7f;//depth * 0.5f;  // The lower it is, the stronger the push
+			float depth = -particleWorldPosition.y; 
+
+			if (depth < 0)
+				depth = -depth * 0.1f; 
+
+
+			float upwardForce = 5* depth;//depth * 0.5f;  // The lower it is, the stronger the push
 			//upwardForce = upwardForce * upwardForce;
 			pCurrentParticle->position.y += upwardForce;
 		}
 
 
 
-		if (sbCollision->capsule != nullptr)
+		if (sbCollision->cylinder != nullptr)
 		{
 			glm::vec3 posChange = sbCollision->ProcessCapsuleCollision(particleWorldPosition) / scale;
 

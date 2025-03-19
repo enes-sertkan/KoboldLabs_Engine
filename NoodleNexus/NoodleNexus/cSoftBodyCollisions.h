@@ -8,7 +8,7 @@
 class SoftBody;
 struct Cylinder
 {
-    float cylinderPos;
+    glm::vec3 cylinderPos;
     float cylinderRadius;
     float cylinderHeight;
 
@@ -116,13 +116,9 @@ public:
     {
         glm::vec3 correction = glm::vec3(0);
         glm::vec3 particlePositionXZ = glm::vec3(particlePos.x, 0, particlePos.z);
-        glm::vec3 cylinderPositionXZ = glm::vec3(particlePos.x, 0, cylinder->cylinderPos);
+        glm::vec3 cylinderPositionXZ = glm::vec3(cylinder->cylinderPos.x, 0, cylinder->cylinderPos.z);
 
         float distanceBetween = glm::distance(particlePositionXZ, cylinderPositionXZ);
-
-        //cylinder = new Cylinder();
-        //cylinder->cylinderPos = glm::vec3(0, 0, 0);
-        //cylinder->cylinderHeight
 
         if (distanceBetween > cylinder->cylinderRadius)
         {
@@ -134,21 +130,23 @@ public:
 
         }
 
-        if (particlePos.y > cylinder->cylinderHeight + cylinder->cylinderPos)
+        if (particlePos.y > cylinder->cylinderHeight + cylinder->cylinderPos.y)
         {
-            float distance = particlePos.y - cylinder->cylinderHeight - cylinder->cylinderPos;
+            float distance = particlePos.y - cylinder->cylinderHeight - cylinder->cylinderPos.y;
 
             correction.y = -distance;
 
         }
 
-        if (particlePos.y >  cylinder->cylinderPos)
+        if (particlePos.y <  cylinder->cylinderPos.y)
         {
-            float distance = particlePos.y - cylinder->cylinderPos;
+            float distance = particlePos.y - cylinder->cylinderPos.y;
 
             correction.y = -distance;
 
         }
+
+        return correction;
     }
 
     //glm::vec3 ClosestPointOnLineSegment(glm::vec3 A, glm::vec3 B, glm::vec3 P)
