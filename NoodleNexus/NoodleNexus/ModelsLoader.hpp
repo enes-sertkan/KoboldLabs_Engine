@@ -10,7 +10,7 @@ void CreateModelFiles(KLFileManager* fileManager)
 
 
     modelInfo.modelName = "Cube";
-    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
+    modelInfo.meshPath = "assets/models/Cube_SD_xyz_n_uv_rgba.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 
@@ -146,6 +146,10 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "Plane_1x1.txt", "XYZNUVRGBA");
 
 
+    modelInfo.modelName = "Floor_Jumpy";
+    modelInfo.meshPath = "assets/models/objects/floor_jumpy.ply";
+    fileManager->WriteModelFile(&modelInfo, "Floor_jumpy.txt", "XYZNUVRGBA"); 
+    
     modelInfo.modelName = "Floor_Jumpy";
     modelInfo.meshPath = "assets/models/objects/floor_jumpy.ply";
     fileManager->WriteModelFile(&modelInfo, "Floor_jumpy.txt", "XYZNUVRGBA");

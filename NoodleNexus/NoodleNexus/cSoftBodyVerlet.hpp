@@ -30,7 +30,9 @@ public:
 	void CreateConstraintsBetweenCloseVertices(float maxDistance);
 
 	// Create random constraints within the object to 'brace' the shape
-	// These are invisible, though
+	// These are invisible, though]
+
+	void RandomizeConstraintIterations();
 	void CreateRandomBracing(unsigned int numberOfBraces,
 		float minDistanceBetweenVertices);
 
@@ -48,10 +50,11 @@ public:
 	void VerletUpdate(double deltaTime);
 
 	// This is for the ground, hitting something, etc.
-	void ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale);
+	void ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale, bool cylCol);
 
 	void SatisfyConstraints(void);
 
+	void ApplyCylinderCollision(double deltaTime, SoftBodyCollision* sbCollision, float scale, glm::vec3 worldPosition);
 
 	typedef sVertex_SHADER_FORMAT_xyz_rgb_N_UV sVertex;
 

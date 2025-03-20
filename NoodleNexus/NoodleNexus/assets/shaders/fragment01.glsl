@@ -213,7 +213,7 @@ for (int i = 0; i < 10; i++) {
         
         // Compute roughness (inverse of smoothness) and clamp it
         float roughnessVal = 1.0 - finalSmoothness;
-        roughnessVal = max(roughnessVal, 0.2);
+        roughnessVal = max(roughnessVal, 0.15);
         
         // Compute F0: blend between non-metal F0 (0.04) and the material colour for metals
         vec3 F0 = mix(vec3(0.04), vertexColour, metallic);

@@ -726,18 +726,41 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 }
 
 
-void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
+void SpawnEffectInTudeOnPos(Scene* scene, glm::vec3 pos)
 {
-    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply",pos, 1, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+
+    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Rope.ply",pos, 0.09, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
     SoftBody* slimeBody = new SoftBody();
 
     slime->isTemporary = true;
-    slime->mesh->metal = 0.8f;
-    slime->mesh->smoothness = 0.7f;
+    slime->mesh->metal = 0.1f;
+    slime->mesh->smoothness = 0.1f;
     slimeBody->acceleration.y = -16;
     slime->mesh->drawBothFaces = true;
-    slimeBody->constIterations = 15;
-    slimeBody->sbCollision->collisionMult = 2.f;
+    slimeBody->constIterations = 2;
+    //slimeBody->sbCollision->collisionMult = 2.f;
+    slimeBody->tighness = 2.f;
+    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+    // . . . . . . . . 
+    slimeBody->useVolume = true;
+    slimeBody->easyControl = true;
+    slimeBody->inCylynder = true;
+    slimeBody->cykinderRadious = 0.1f;
+   scene->AddActionToObj(slimeBody, slime);
+}
+void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
+{
+
+    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+    SoftBody* slimeBody = new SoftBody();
+
+    slime->isTemporary = true;
+    slime->mesh->metal = 0.1f;
+    slime->mesh->smoothness = 0.1f;
+    slimeBody->acceleration.y = -16;
+    slime->mesh->drawBothFaces = true;
+    slimeBody->constIterations = 2;
+    //slimeBody->sbCollision->collisionMult = 2.f;
     slimeBody->tighness = 2.f;
     //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . 
@@ -856,7 +879,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->acceleration.y = -100;
     ropeBody->yToJump = -100.f;
    // ropeBody->acceleration.x = 40;
-    ropeBody->SetMazeToSBCollision(mazeGenerator);
+  //  ropeBody->SetMazeToSBCollision(mazeGenerator);
 
     Object* ropeObject = scene->sceneObjects[32];
     ropeObject->mesh->drawBothFaces = true;
@@ -868,19 +891,14 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->zLockPos = -0.3f;
     ropeBody->checkGreaterZLock = false;
     ropeBody->AddSoftBodyToCollisions(softBody);
-    scene->AddActionToObj(ropeBody, ropeObject);
+   scene->AddActionToObj(ropeBody, ropeObject);
 
     ConnSoftToObj* connector = new ConnSoftToObj();
     connector->softbody = ropeBody;
 
-    scene->AddActionToObj(connector, scene->sceneObjects[33]);
+   // scene->AddActionToObj(connector, scene->sceneObjects[33]);
 
-  // capsule collision
-    SoftBody* softBodyCapsule = new SoftBody();
-    Object* capsuleComponentOne = scene->sceneObjects[14];
-    
-    scene->AddActionToObj(softBodyCapsule, capsuleComponentOne);
-
+ 
     
     // Ensure "Mountain" exists in the VAO Manager before using it
    // myVAOManager->FindDrawInfoByModelName("Mountain", *myModelInfo);
@@ -1107,7 +1125,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
 
-
+        glm::vec3 tubeFix = glm::vec3(-2.4f, 2.5f, 1.9f);
  
         scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[12]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
@@ -1115,7 +1133,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
         scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
-       // SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[12]->mesh->positionXYZ);
+       // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[12]->mesh->positionXYZ+tubeFix * scene->sceneObjects[12]->mesh->uniformScale);
 
 
 
@@ -1134,7 +1152,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[14]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
         scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
-       // SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[14]->mesh->positionXYZ);
+       // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[14]->mesh->positionXYZ + tubeFix * scene->sceneObjects[14]->mesh->uniformScale);
 
         //Room
 
@@ -1143,7 +1161,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[15]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
-        //SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[15]->mesh->positionXYZ);
+    //    SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[15]->mesh->positionXYZ + tubeFix * scene->sceneObjects[15]->mesh->uniformScale);
 
 
         scene->sceneObjects[16]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
@@ -1167,19 +1185,23 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
 
-
+        //SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[19]->mesh->positionXYZ);
 
         scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[20]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
         scene->sceneObjects[20]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+        SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[20]->mesh->positionXYZ + tubeFix * scene->sceneObjects[20]->mesh->uniformScale);
+
 
         scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[21]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
         scene->sceneObjects[21]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[21]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[21]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[21]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[21]->mesh->bOverrideObjectColour = true;
+        SpawnEffectInTudeOnPos(scene, scene->sceneObjects[21]->mesh->positionXYZ + tubeFix * scene->sceneObjects[21]->mesh->uniformScale);
+
 
         scene->sceneObjects[22]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
         scene->sceneObjects[22]->mesh->blendRatio[0] = 2;

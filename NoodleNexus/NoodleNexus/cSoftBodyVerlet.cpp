@@ -461,7 +461,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 	return;
 }
 
-void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale)
+void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbCollision, glm::vec3 worldPosition, float scale, bool cylCol)
 {
 
 	glm::vec3 centerGeometric = getGeometricCentrePoint()+ worldPosition;
@@ -500,12 +500,6 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 
 
 
-		if (sbCollision->cylinder != nullptr)
-		{
-			glm::vec3 posChange = sbCollision->ProcessCapsuleCollision(particleWorldPosition) / scale;
-
-			pCurrentParticle->position += posChange;
-		}
 
 	}
 
@@ -540,6 +534,24 @@ void cSoftBodyVerlet::ApplyCollision(double deltaTime, SoftBodyCollision* sbColl
 	return;
 }
 
+
+void cSoftBodyVerlet::ApplyCylinderCollision(double deltaTime, SoftBodyCollision* sbCollision, float scale, glm::vec3 worldPosition)
+{
+	for (sParticle* pCurrentParticle : vec_pParticles)
+	{
+		if (pCurrentParticle->bIsFixed_DontUpdate) continue;
+		glm::vec3 particleWorldPosition = scale * pCurrentParticle->position + worldPosition;
+
+		if (sbCollision->cylinder != nullptr)
+		{
+
+			glm::vec3 posChange = sbCollision->ProcessCapsuleCollision(particleWorldPosition) / scale;
+
+			pCurrentParticle->position += posChange;
+		}
+
+	}
+}
 
 void cSoftBodyVerlet::SatisfyConstraints(void)
 {
@@ -715,7 +727,30 @@ glm::vec3 cSoftBodyVerlet::getGeometricCentrePoint(void)
 
 
 
+void cSoftBodyVerlet::RandomizeConstraintIterations()
+{
+	// Iterate through each constraint
+	for (sConstraint* pConstraint : vec_pConstraints)
+	{
+		// Generate a random offset in the range [-5, 5]
+		int randomOffset = (rand() % 21) - 10;
 
+		// Adjust maxIterations by the random offset
+		pConstraint->maxIterations += randomOffset;
+
+		// Ensure that maxIterations is at least 1
+		if (pConstraint->maxIterations < 1)
+		{
+			pConstraint->maxIterations = 1;
+		}
+
+
+		//float randomOffset = ((float)rand() / (float)RAND_MAX) * 0.4f - 0.2f;
+
+		// Adjust the tightness factor by the random offset
+		
+	}
+}
 
 void cSoftBodyVerlet::CreateRandomBracing(unsigned int numberOfBraces,
 	float minDistanceBetweenVertices)

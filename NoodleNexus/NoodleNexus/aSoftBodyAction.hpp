@@ -33,7 +33,10 @@ public:
     float lockRadius = 2.5f;
     float yToJump = -6;
     bool inCylynder = false;
+    float cykinderRadious = 0.4f;
 
+
+    bool randPressed = false;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
     void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
@@ -46,7 +49,8 @@ public:
         originalMeshName = object->mesh->modelFileName;
         sModelDrawInfo drawInfo;
         object->scene->vaoManager->FindDrawInfoByModelName(originalMeshName, drawInfo);
-        SBMeshName = originalMeshName + "SB";
+        float randID = rand();
+        SBMeshName = originalMeshName + "SB" + std::to_string(randID);
         object->scene->vaoManager->CloneMeshToDynamicVAO(SBMeshName, drawInfo, object->scene->programs[0]);
     
         softBody->CreateSoftBody(drawInfo);   
@@ -80,8 +84,8 @@ public:
             sbCollision->cylinder = new Cylinder();
             sbCollision->cylinder->cylinderPos = object->mesh->positionXYZ;
             sbCollision->cylinder->cylinderPos.y -= 2.f;
-            sbCollision->cylinder->cylinderRadius = 0.3f;
-            sbCollision->cylinder->cylinderHeight = 6.f;
+            sbCollision->cylinder->cylinderRadius = cykinderRadious;
+            sbCollision->cylinder->cylinderHeight = 2.5f;
         }
     }
 
@@ -121,6 +125,24 @@ public:
             glm::vec3 force = glm::vec3(0.0f, 0.0f, -6.f * object->scene->deltaTime);
             ApplyForceAboveCenter(force);
         }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+            // Apply a backward force (negative Z).
+            glm::vec3 force = glm::vec3(0.0f, 0.0f, -6.f * object->scene->deltaTime);
+            ApplyForceAboveCenter(force);
+        }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_R) == GLFW_PRESS) {
+            if (!randPressed)
+            {
+                softBody->RandomizeConstraintIterations();
+                randPressed = true;
+            }
+        }
+        else
+        {
+            randPressed = false;
+        }
     }
 
     void AddSoftBodyToCollisions(SoftBody* softBody)
@@ -138,7 +160,10 @@ public:
             softBody->VerletUpdate(deltaTime);
             softBody->SatisfyConstraints();
   
-            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale);
+            if (inCylynder)
+                softBody->ApplyCylinderCollision(deltaTime, sbCollision, object->mesh->uniformScale, object->mesh->positionXYZ);
+            else
+            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale,inCylynder);
          
 
    
