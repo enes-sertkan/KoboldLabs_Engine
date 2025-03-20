@@ -60,12 +60,12 @@ void MazeGenerator::generateMaze() {
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == 'X') {
                     PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
@@ -191,14 +191,14 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     case UP:
         position.z += scale * 3.9f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "castle_element_05_BaseColor.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         textureNM = "Wall_Simple_Normal.bmp";
         break;
     case DOWN:
         position.z -= scale * 5.f / 2.0f;
         position.x += scale * 5.f / 2.0f;
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
+        texture = "castle_element_05_BaseColor.bmp";
         textureST = "Wall_Simple_MetallicSmoothness.bmp";
         textureNM = "Wall_Simple_Normal.bmp";
         break;

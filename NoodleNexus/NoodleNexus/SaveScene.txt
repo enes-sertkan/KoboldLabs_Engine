@@ -3,6 +3,7 @@
 <ObjectLoad-->
 Cube.txt
 wall.txt
+cWall.txt
 floor.txt
 frog.txt
 sideWall.txt
@@ -33,7 +34,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3979 -1 14943
 <Rotation-> 0 0 0
-<Scale-> 1 1.62551e-43 0
+<Scale-> 1 1.00522e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -45,7 +46,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -53,6 +54,42 @@ Floor_jumpy.txt
 <Object-->
 <Name-> Comp
 <Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 27 3 1.5
+<Rotation-> 0 0 0
+<Scale-> 1 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Comp
+<Model-> Comp
+<Tags->
+<StaticCollision-> false
+<Position-> 46 3 73
+<Rotation-> 0 -90 0
+<Scale-> 1 0 7.40975e+28
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen
+<Model-> Screen
+<Tags->
+<StaticCollision-> false
+<Position-> 24 3 1.5
+<Rotation-> 0 0 0
+<Scale-> 1 0 6.74148e+22
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Screen
+<Model-> Screen
 <Tags->
 <StaticCollision-> false
 <Position-> 27 3 1.5
@@ -63,49 +100,13 @@ Floor_jumpy.txt
 <--Object>
 
 <Object-->
-<Name-> Comp
-<Model-> Comp
-<Tags->
-<StaticCollision-> false
-<Position-> 46 3 73
-<Rotation-> 0 -90 0
-<Scale-> 1 1.69557e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 24 3 1.5
-<Rotation-> 0 0 0
-<Scale-> 1 0 9.15816e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 27 3 1.5
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
 <Name-> Screen
 <Model-> Screen
 <Tags->
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 1.11123e-38 9.15816e+08
+<Scale-> 1 0 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -117,7 +118,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 29 5 67
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -130,7 +131,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 63 6 67
 <Rotation-> 0 0 0
-<Scale-> 1 1.69557e-43 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -143,7 +144,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 50 6 11
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 9.15816e+08
+<Scale-> 1 4.3558e-41 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -156,7 +157,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 47 3 2
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.1151e-38 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -168,7 +169,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 45 3 58
 <Rotation-> 0 0 0
-<Scale-> 1 0 9.15816e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -180,7 +181,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 42 3 57
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 9.15816e+08
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -192,7 +193,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.1151e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -204,7 +205,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -228,7 +229,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.15816e+08
+<Scale-> 1 4.3558e-41 9.01664e-33
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -240,7 +241,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 4.46463e+30
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -252,7 +253,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.1151e-38 1.0947e+27
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -264,7 +265,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.11123e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -276,7 +277,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.70411e-39
+<Scale-> 1 1.1151e-38 2.93929e+29
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -288,9 +289,10 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 9.15816e+08
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
+<Color-> 0 0 0
 <--Object>
 
 <Object-->
@@ -312,7 +314,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -336,7 +338,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 11
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -348,7 +350,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -360,7 +362,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 41 3 8
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -372,7 +374,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 23 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.11123e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -384,7 +386,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 26 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -396,7 +398,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 8 72
 <Rotation-> 0 -95 -1
-<Scale-> 1 0 0
+<Scale-> 1 4.3558e-41 7.40975e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -408,7 +410,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 30 7 7
 <Rotation-> 0 0 0
-<Scale-> 0.4 0 0
+<Scale-> 0.4 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -420,7 +422,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 40 6 7
 <Rotation-> 0 0 0
-<Scale-> 0.1 1.1151e-38 0
+<Scale-> 0.1 1.11123e-38 6.68383e+22
 <Visibility-> true
 <Shading-> true
 <Color-> 1 1 1
@@ -433,7 +435,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 0 5 6
 <Rotation-> 0 0 0
-<Scale-> 0.2 1.1151e-38 0
+<Scale-> 0.2 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.6 0.4
@@ -446,7 +448,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
@@ -459,7 +461,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 4.25237e-05
 <Rotation-> 2.7691e+20 1.38174e-08 1.01417e-38
-<Scale-> 5.21648e-11 1.1151e-38 0
+<Scale-> 5.21648e-11 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -472,7 +474,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 4.55929e+30
-<Scale-> 2.15902e+29 1.1151e-38 0
+<Scale-> 2.15902e+29 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -485,7 +487,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 6.60707e-07
 <Rotation-> 2.7691e+20 1.38174e-08 1.03132e-08
-<Scale-> 4.07507e-11 1.07854e-38 0
+<Scale-> 4.07507e-11 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0

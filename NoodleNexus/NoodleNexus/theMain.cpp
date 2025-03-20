@@ -1400,7 +1400,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("frog_diffuse.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("slime.bmp");
-    //scene->textureManager->Create2DTextureFromBMPFile("gibberish.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_BaseColor.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("TubeAO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");

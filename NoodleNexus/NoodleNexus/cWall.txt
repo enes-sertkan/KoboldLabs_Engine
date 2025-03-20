@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> castleWall
+<filePath> assets/models/objects/castleWall1.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

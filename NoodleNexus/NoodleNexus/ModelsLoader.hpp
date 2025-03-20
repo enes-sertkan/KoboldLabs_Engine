@@ -23,6 +23,10 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/objects/wall01.ply";
     fileManager->WriteModelFile(&modelInfo, "wall.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "castleWall";
+    modelInfo.meshPath = "assets/models/objects/castleWall1.ply";
+    fileManager->WriteModelFile(&modelInfo, "cWall.txt", "XYZNUVRGBA");
+
     modelInfo.modelName = "Floor";
     modelInfo.meshPath = "assets/models/objects/floor.ply";
     fileManager->WriteModelFile(&modelInfo, "floor.txt", "XYZNUVRGBA");
