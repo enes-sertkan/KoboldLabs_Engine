@@ -726,7 +726,7 @@ void UpdateWindowTitle(GLFWwindow* window, cLightManager* lightManager)
 }
 
 
-void SpawnEffectInTudeOnPos(Scene* scene, glm::vec3 pos)
+void SpawnEffectInTudeOnPos(Scene* scene, glm::vec3 pos, Object* player)
 {
 
     Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Rope.ply",pos, 0.09, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
@@ -743,12 +743,13 @@ void SpawnEffectInTudeOnPos(Scene* scene, glm::vec3 pos)
     //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . 
     slimeBody->useVolume = true;
-    slimeBody->easyControl = true;
+   // slimeBody->easyControl = true;
     slimeBody->inCylynder = true;
     slimeBody->cykinderRadious = 0.1f;
+    slimeBody->player = player;
    scene->AddActionToObj(slimeBody, slime);
 }
-void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
+void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos, Object* player)
 {
 
     Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
@@ -767,6 +768,7 @@ void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
     slimeBody->useVolume = true;
     slimeBody->easyControl = true;
     slimeBody->inCylynder = true;
+    slimeBody->player = player;
     scene->AddActionToObj(slimeBody, slime);
 }
 
@@ -868,9 +870,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     softBody->useVolume = true;
     softBody->easyControl = true;
     softBody->inCylynder = false;
+    softBody->player = player;
     scene->AddActionToObj(softBody, softObject);
     mazeGenerator->mainSlime = softBody;
-
+    mazeGenerator->player = player;
     mazeGenerator->generateMaze();
     mazeSecurity->generateMaze();
 
@@ -891,7 +894,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     ropeBody->zLockPos = -0.3f;
     ropeBody->checkGreaterZLock = false;
     ropeBody->AddSoftBodyToCollisions(softBody);
-   scene->AddActionToObj(ropeBody, ropeObject);
+    ropeBody->player = player;
+    scene->AddActionToObj(ropeBody, ropeObject);
+
 
     ConnSoftToObj* connector = new ConnSoftToObj();
     connector->softbody = ropeBody;
@@ -1192,7 +1197,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[20]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
         scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
-        SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[20]->mesh->positionXYZ + tubeFix * scene->sceneObjects[20]->mesh->uniformScale);
+        SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[20]->mesh->positionXYZ + tubeFix * scene->sceneObjects[20]->mesh->uniformScale, player);
 
 
         scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
@@ -1200,7 +1205,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[21]->mesh->AOtexture = "Frame_Tube_AO.bmp";
         scene->sceneObjects[21]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[21]->mesh->bOverrideObjectColour = true;
-        SpawnEffectInTudeOnPos(scene, scene->sceneObjects[21]->mesh->positionXYZ + tubeFix * scene->sceneObjects[21]->mesh->uniformScale);
+        SpawnEffectInTudeOnPos(scene, scene->sceneObjects[21]->mesh->positionXYZ + tubeFix * scene->sceneObjects[21]->mesh->uniformScale, player);
 
 
         scene->sceneObjects[22]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";

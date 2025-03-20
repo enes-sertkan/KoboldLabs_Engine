@@ -94,9 +94,9 @@ public:
 
 
             if (mazeGenerator->IsFloor(gridY, gridX))
-                if (particlePos.y < 3.f)
+                if (particlePos.y < 3.2f)
                 {
-                    correction.y = 3.f - particlePos.y;
+                    correction.y = 3.2f - particlePos.y;
                 }
             // If above the ceiling (y = 62), push it down.
                 else if (particlePos.y > 62.0f)

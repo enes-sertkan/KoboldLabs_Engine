@@ -103,13 +103,13 @@ public:
 
 	void Start() override
 	{
-		return;
+		//return;
 		object->scene->isFlyCamera = false;
 	}
 
 	void Update() override
 	{
-		return;
+		//return;
 		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
 
 	//	if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return

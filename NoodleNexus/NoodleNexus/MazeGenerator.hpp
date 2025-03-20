@@ -57,6 +57,9 @@ public:
         int gridRow = static_cast<int>(worldPos.z / TILE_SIZE);
         return glm::vec2(gridCol, gridRow);
     }
+
+    Object* player = nullptr;
+
 private:
     void loadMaze(const std::string& filePath);
     Object* PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
@@ -71,7 +74,6 @@ private:
 
     Scene* scene = nullptr;
     int lightIndex = 0;  // Index to keep track of lights
-
-   
+  
 
 };

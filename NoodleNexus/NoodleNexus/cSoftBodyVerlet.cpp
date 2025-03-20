@@ -15,6 +15,11 @@ cSoftBodyVerlet::~cSoftBodyVerlet()
 
 }
 
+void cSoftBodyVerlet::SetTargetVolumeMultiplier(float newMult)
+{
+	volume = originalVolume * newMult;
+	volumeMultiplier = newMult;
+}
 
 void cSoftBodyVerlet::CreateConstraintsBetweenCloseVertices(float maxDistance)
 {
@@ -332,7 +337,9 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*3;
+
+	originalVolume = GetVolume();
+	volume = originalVolume * volumeMultiplier;
 }
 
 
@@ -443,7 +450,7 @@ void cSoftBodyVerlet::VerletUpdate(double deltaTime)
 			// This is the actual Verlet integration step (notice there isn't a velocity)
 			const float dampingFactor = 0.95f; // Experiment with values between 0.9 and 1.0
 			glm::vec3 velocity = (current_pos - old_pos) * dampingFactor; 
-			pCurrentParticle->position += velocity + (pCurrentParticle->accelerationMultiplier* this->acceleration * (float)(deltaTime * deltaTime)*2.f);
+			pCurrentParticle->position += velocity + (pCurrentParticle->accelerationMultiplier* this->acceleration * (float)(deltaTime * deltaTime)*2.4f);
 
 			pCurrentParticle->old_position = current_pos;
 
@@ -721,6 +728,38 @@ glm::vec3 cSoftBodyVerlet::getGeometricCentrePoint(void)
 	return m_geometricCentrePoint;
 }
 
+void cSoftBodyVerlet::ResetRigidBody()
+{
+	// Get the current geometric centre of the soft body.
+	glm::vec3 centre = getGeometricCentrePoint();
+
+	// Compute the current average distance from the centre (i.e. current volume)
+	float currentAvgRadius = GetVolume();
+	if (fabs(currentAvgRadius) < 0.0001f)
+	{
+		// Avoid division by zero; if the current volume is nearly zero, do nothing.
+		return;
+	}
+
+	// Compute the scale factor needed to restore the base volume.
+	// The member variable 'volume' holds the desired average radius.
+	float scaleFactor = volumeMultiplier;
+
+	// Scale each particle's position relative to the centre and update the old position as well.
+	for (sParticle* pParticle : vec_pParticles)
+	{
+		glm::vec3 offset = pParticle->position - centre;
+		offset = glm::normalize(offset);
+		glm::vec3 newPosition = centre + offset * scaleFactor;
+
+		// Set both current and old positions so the integration does not carry over the squish.
+		pParticle->position = newPosition;
+		pParticle->old_position = newPosition;
+	}
+
+	// Optionally update the geometric centre point, if needed.
+	m_geometricCentrePoint = centre;
+}
 
 
 

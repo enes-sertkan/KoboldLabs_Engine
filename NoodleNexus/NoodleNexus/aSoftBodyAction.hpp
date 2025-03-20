@@ -35,9 +35,12 @@ public:
     bool inCylynder = false;
     float cykinderRadious = 0.4f;
 
+    Object* player = nullptr;
 
     bool randPressed = false;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
+
+    float updateRadious = 45.f;
 
     void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
     {
@@ -96,6 +99,12 @@ public:
 
     
     void Update() override {
+        if (player == nullptr) return;
+        
+        float distance = glm::distance(softBody->getGeometricCentrePoint()*object->mesh->uniformScale+object->mesh->positionXYZ, player->mesh->positionXYZ);
+
+        if (distance > updateRadious) return;
+
         // Update any other soft body logic here, e.g. Verlet integration,
         // constraint satisfaction, collisions, etc.
         UpdateSoftBody(object->scene->deltaTime);
@@ -132,6 +141,60 @@ public:
             ApplyForceAboveCenter(force);
         }
 
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) != GLFW_PRESS)
+
+        {
+            if (glfwGetKey(object->scene->window, GLFW_KEY_EQUAL) == GLFW_PRESS) {
+                // Apply a backward force (negative Z).
+                softBody->tightnessFactor += 0.02;
+                if (softBody->tightnessFactor > 2)
+                    softBody->tightnessFactor = 2;
+
+
+                //     softBody->SetTargetVolumeMultiplier(softBody->volumeMultiplier += 0.02);
+            }
+
+            if (glfwGetKey(object->scene->window, GLFW_KEY_MINUS) == GLFW_PRESS) {
+                // Apply a backward force (negative Z).
+
+
+                softBody->tightnessFactor -= 0.02;
+                if (softBody->tightnessFactor < 0)
+                    softBody->tightnessFactor = 0;
+
+                //    softBody->SetTargetVolumeMultiplier(softBody->volumeMultiplier -= 0.02);
+
+
+            }
+
+        }
+
+
+        else
+        {
+            if (glfwGetKey(object->scene->window, GLFW_KEY_EQUAL) == GLFW_PRESS) {
+      
+              softBody->SetTargetVolumeMultiplier(softBody->volumeMultiplier += 0.02);
+
+            }
+
+            if (glfwGetKey(object->scene->window, GLFW_KEY_MINUS) == GLFW_PRESS) {
+                // Apply a backward force (negative Z).
+                 softBody->SetTargetVolumeMultiplier(softBody->volumeMultiplier -= 0.02);
+
+                if (softBody->volumeMultiplier < 2)
+                    softBody->SetTargetVolumeMultiplier(2);
+
+            }
+
+
+
+        }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+          softBody->ResetRigidBody();
+
+        }
         if (glfwGetKey(object->scene->window, GLFW_KEY_R) == GLFW_PRESS) {
             if (!randPressed)
             {

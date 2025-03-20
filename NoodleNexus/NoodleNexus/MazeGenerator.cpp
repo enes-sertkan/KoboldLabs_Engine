@@ -238,6 +238,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         softBody->yToJump = -8.5;
         //softBody->restLengthMultiplier = 2.f;
         softBody->sbCollision->collisionMult = 0.4f;
+        softBody->player = player;
         if (mainSlime != nullptr)
         {
            softBody->AddSoftBodyToCollisions(mainSlime);

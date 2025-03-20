@@ -14,6 +14,9 @@ class cSoftBodyVerlet
 {
 public:
 	glm::vec3 m_geometricCentrePoint = glm::vec3(0);
+
+	float volumeMultiplier = 3.f;
+
 	float yToJump = -7;
 	cSoftBodyVerlet();
 	~cSoftBodyVerlet();
@@ -29,6 +32,7 @@ public:
 
 	void CreateConstraintsBetweenCloseVertices(float maxDistance);
 
+	void SetTargetVolumeMultiplier(float newMult);
 	// Create random constraints within the object to 'brace' the shape
 	// These are invisible, though]
 
@@ -132,11 +136,14 @@ public:
 
 	// This just gets the average of all the points (based on location)
 	glm::vec3 getGeometricCentrePoint(void);
+	void ResetRigidBody(void);
+	
 
 	// This would  take into account the mass, so would "look" more accurate, maybe?
 	glm::vec3 getCentreOfMass(void);
 
 	float volume;
+	float originalVolume;
 
 	bool useVolume = false;
 };
