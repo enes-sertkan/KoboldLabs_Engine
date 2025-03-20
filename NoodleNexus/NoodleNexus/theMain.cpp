@@ -777,7 +777,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aRotate* rotateActionTube = new aRotate();
     securityRoomScene->AddActionToObj(rotateActionTube, wierd);
 
-    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 0.5f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
 
