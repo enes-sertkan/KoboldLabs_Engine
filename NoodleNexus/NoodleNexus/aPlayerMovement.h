@@ -139,6 +139,16 @@ public:
 		{
 			Move(RIGHT);
 		}
+		
+		if (glfwGetKey(object->scene->window, GLFW_KEY_Q) == GLFW_PRESS)
+		{
+			object->mesh->positionXYZ.y += speed * object->scene->deltaTime;
+		}
+		
+		if (glfwGetKey(object->scene->window, GLFW_KEY_E) == GLFW_PRESS)
+		{
+			object->mesh->positionXYZ.y -= speed * object->scene->deltaTime;
+		}
 
 
 	}
