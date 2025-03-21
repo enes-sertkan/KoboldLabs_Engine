@@ -96,6 +96,7 @@ public:
 
     
     void Update() override {
+       
         // Update any other soft body logic here, e.g. Verlet integration,
         // constraint satisfaction, collisions, etc.
         UpdateSoftBody(object->scene->deltaTime);

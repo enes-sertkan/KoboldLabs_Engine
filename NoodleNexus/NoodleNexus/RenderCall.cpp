@@ -809,6 +809,12 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
         pCurMesh->objectColourRGBA.b,
         1.0f);
 
+    GLint eyeLocation_UL = glGetUniformLocation(program, "eyeLocation");
+    glUniform4f(eyeLocation_UL,
+        camera->position.x,
+        camera->position.y,
+        camera->position.z,
+        1.0f);
 
 
     ///CAMERA

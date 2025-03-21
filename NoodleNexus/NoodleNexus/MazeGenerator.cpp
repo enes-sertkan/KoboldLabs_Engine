@@ -56,24 +56,24 @@ void MazeGenerator::generateMaze() {
       
 
 
-                PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+               // PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERup, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
                     PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                  //  PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
                     PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                   // PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                 //   PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
-                    PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                 //   PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
 
@@ -133,7 +133,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     std::string textureST="";
     std::string textureNM="";
     float metal = 0;
-    float smothness = 0;
+    float smothness = 0.2;
     switch (type) {
     case SOFTCENTER:
         position.z -= 2.5f * scale;
@@ -164,7 +164,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.z += 1.5f * scale;
         position.x += 2.5f * scale;
         position.y += 6.0f * scale;
-        rotation.x = 180;
+       // rotation.x = 180;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         textureAO = "WallAO.bmp";
         texture = "Floor_Albedo.bmp";
@@ -175,32 +175,36 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     case RIGHT:
         position.x += scale * 5.f/ 2.0f;
         position.z -= scale * 5.f / 2.0f;
+        rotation.y = 90.f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
-        textureST = "Wall_Simple_MetallicSmoothness.bmp";
-        textureNM = "Wall_Simple_Normal.bmp";
+        texture = "castle_element_05_BaseColour.bmp";
+        textureST = "castle_element_05_MetalSmoothness.bmp";
+       textureNM = "castle_element_05_NormalGL.bmp";
         break;
     case LEFT:
         position.x -= scale * 3.9f / 2.0f;
         position.z -= scale * 5.0f / 2.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
-        texture = "Wall_Simple_AlbedoTransparency.bmp";
-        textureST = "Wall_Simple_MetallicSmoothness.bmp";
-        textureNM = "Wall_Simple_Normal.bmp";
+        rotation.y = 90.f;
+        texture = "castle_element_05_BaseColour.bmp";
+        textureST = "castle_element_05_MetalSmoothness.bmp";
+        textureNM = "castle_element_05_NormalGL.bmp";
         break;
     case UP:
         position.z += scale * 3.9f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
-        texture = "castle_element_05_BaseColor.bmp";
-        textureST = "Wall_Simple_MetallicSmoothness.bmp";
-        textureNM = "Wall_Simple_Normal.bmp";
+       // rotation.y = 180.f;
+        texture = "castle_element_05_BaseColour.bmp";
+        textureST = "castle_element_05_MetalSmoothness.bmp";
+       textureNM = "castle_element_05_NormalGL.bmp";
+       metal = 0.f;
         break;
     case DOWN:
         position.z -= scale * 5.f / 2.0f;
         position.x += scale * 5.f / 2.0f;
-        texture = "castle_element_05_BaseColor.bmp";
-        textureST = "Wall_Simple_MetallicSmoothness.bmp";
-        textureNM = "Wall_Simple_Normal.bmp";
+        texture = "castle_element_05_BaseColour.bmp";
+       textureST = "castle_element_05_MetalSmoothness.bmp";
+       textureNM = "castle_element_05_NormalGL.bmp";
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;

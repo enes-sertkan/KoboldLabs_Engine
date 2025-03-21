@@ -111,6 +111,21 @@ vec3 getTBNNormal(vec3 fNormal, vec3 fTangent, vec3 fBitangent, sampler2D normal
     return normalize(TBN * normalMapSample);
 }
 
+vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughness, vec3 F0) {
+    vec3 viewDir = normalize(eyePos - worldPos);
+    vec3 reflectionDir = reflect(-viewDir, normalize(normal));
+    
+    // Sample skybox reflection
+    vec3 skyReflection = texture(skyBoxTextureSampler, reflectionDir).rgb;
+
+    // Schlick’s approximation for Fresnel reflectance
+    float NoV = max(dot(normal, viewDir), 0.0);
+    vec3 fresnelFactor = F0 + (vec3(1.0) - F0) * pow(1.0 - NoV, 5.0);
+
+    // Adjust reflection intensity based on roughness
+    float reflectionStrength = mix(1.0, 0.04, roughness); 
+    return mix(vec3(0.0), skyReflection, fresnelFactor * reflectionStrength);
+}
 
 // === Main Fragment Shader Function ===
 void main() {
@@ -222,6 +237,23 @@ for (int i = 0; i < 10; i++) {
         // Calculate lighting contribution using PBR
         finalPixelColour = calculateLightContrib(vertexColour, finalNormal.xyz, fvertexWorldLocation.xyz, 
                                                   vertexSpecular, roughnessVal, finalMetalic, F0);
+
+
+    // Skybox reflection
+    vec3 reflection = getSkyboxReflection(finalNormal, fvertexWorldLocation.xyz, eyeLocation.xyz, roughnessVal, F0);
+   // reflection = reflection*2.0; 
+    // Calculate Fresnel-Schlick approximation to get the reflection factor based on the view direction
+    vec3 viewDir = normalize(eyeLocation.xyz - fvertexWorldLocation.xyz); // Camera to fragment direction
+    float NoV = max(dot(finalNormal, viewDir), 0.0); // Dot product between normal and view direction
+    vec3 fresnelFactor = F0 + (vec3(1.0) - F0) * pow(1.0 - NoV, 5.0); // Fresnel-Schlick
+
+    // Mix the reflection based on the Fresnel factor (affects metal vs. non-metal behavior)
+    finalPixelColour.rgb = mix(finalPixelColour.rgb, reflection, fresnelFactor.r); // Using red channel for mixing intensity
+     
+    vec3 reflectionDir = reflect(-viewDir, normalize(finalNormal));
+    // Sample skybox reflection
+    vec3 skyReflection = texture(skyBoxTextureSampler, reflectionDir).rgb;
+   //  finalPixelColour.rgb = skyReflection;
     }
     
     // --- Section 5: Post-Processing ---
@@ -243,11 +275,6 @@ for (int i = 0; i < 10; i++) {
         finalPixelColour.rgb *= ao;
     }
 
-   //  if (useNM)
-   // {
- //   vec3 debugNormal = getTBNNormal(fvertexNormal.xyz, fTangent, fBitangent, textureNM, movingUV);
- //   finalPixelColour = vec4(debugNormal, 1.0);
-   //}
 
     
     return;

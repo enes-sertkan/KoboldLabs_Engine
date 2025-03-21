@@ -13,7 +13,7 @@ out vec4 fvertexNormal;		// Normal in "world" space
 out vec2 fUV;				// Texture coordinates (to the fragment shader)
 out vec3 fTangent;         // Tangent in world space
 out vec3 fBitangent;       // Bitangent in world space
-
+out mat4 fragViewMatrix; // View matrix
 
 //uniform mat4 MVP;
 uniform mat4 matView;
@@ -66,7 +66,13 @@ void main()
 
 	
 	// Screen space location of vertex
-	mat4 matMVP = matProjection * matView * matModel;
+	   // Calculate the model-view-projection matrix
+    mat4 matMVP = matProjection * matView * matModel;
+
+    // Pass the view matrix to the fragment shader
+    fragViewMatrix = matView;
+
+
 	gl_Position = matMVP * vec4(finalVert, 1.0);
 
 	// Calculatte the vertex normal

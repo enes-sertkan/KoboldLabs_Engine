@@ -1400,7 +1400,7 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("frog_diffuse.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("binaries.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("slime.bmp");
-    scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_BaseColour.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Tube_AlbedoTransparency.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("TubeAO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Vent_Big_AlbedoTransparency.bmp");
@@ -1420,6 +1420,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Wall_Simple_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Floor_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_Normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_MetalSmoothness.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;

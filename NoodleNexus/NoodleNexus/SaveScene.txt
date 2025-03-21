@@ -32,9 +32,9 @@ Floor_jumpy.txt
 <Model-> Cube
 <Tags->
 <StaticCollision-> false
-<Position-> 3979 -1 14943
+<Position-> 4060 -1 15340
 <Rotation-> 0 0 0
-<Scale-> 1 1.00522e-38 0
+<Scale-> 1 1.00522e-38 7.56701e-44
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -46,7 +46,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 1.41531e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -58,7 +58,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.11123e-38 1.08367e-38
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -70,7 +70,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 0 7.40975e+28
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -82,7 +82,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 6.74148e+22
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -106,7 +106,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 0 6.68383e+22
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -118,7 +118,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 29 5 67
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -131,7 +131,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 63 6 67
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -144,7 +144,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 50 6 11
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 7.40975e+28
+<Scale-> 1 4.3558e-41 2.67887e+18
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -157,7 +157,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 47 3 2
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 6.68383e+22
+<Scale-> 1 4.3558e-41 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -169,7 +169,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 45 3 58
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.69557e-43 2.67929e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -193,7 +193,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 7.40975e+28
+<Scale-> 1 4.3558e-41 2.67957e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -205,7 +205,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 7.40975e+28
+<Scale-> 1 1.1151e-38 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -217,7 +217,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 40 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 4.3558e-41 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -229,7 +229,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 9.01664e-33
+<Scale-> 1 1.1151e-38 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -241,7 +241,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 4.46463e+30
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -253,7 +253,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 1.0947e+27
+<Scale-> 1 1.11123e-38 2.67866e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -265,7 +265,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 7.40975e+28
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -277,7 +277,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 2.93929e+29
+<Scale-> 1 1.1151e-38 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -289,7 +289,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 2.66909e+18
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -302,7 +302,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -326,7 +326,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.1151e-38 2.6788e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -338,7 +338,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 11
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1.1151e-38 2.6693e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -350,7 +350,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -362,7 +362,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 41 3 8
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 7.40975e+28
+<Scale-> 1 1.1151e-38 2.66128e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -374,7 +374,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 23 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 7.40975e+28
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -386,7 +386,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 26 8 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 7.40975e+28
+<Scale-> 1 1.11123e-38 2.66895e+18
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -398,7 +398,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 8 72
 <Rotation-> 0 -95 -1
-<Scale-> 1 4.3558e-41 7.40975e+28
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -410,7 +410,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 30 7 7
 <Rotation-> 0 0 0
-<Scale-> 0.4 1.11123e-38 0
+<Scale-> 0.4 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -422,7 +422,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 40 6 7
 <Rotation-> 0 0 0
-<Scale-> 0.1 1.11123e-38 6.68383e+22
+<Scale-> 0.1 1.11123e-38 2.67908e+18
 <Visibility-> true
 <Shading-> true
 <Color-> 1 1 1
@@ -448,7 +448,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
@@ -474,7 +474,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 4.55929e+30
-<Scale-> 2.15902e+29 0 0
+<Scale-> 2.15902e+29 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -487,179 +487,19 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 6.60707e-07
 <Rotation-> 2.7691e+20 1.38174e-08 1.03132e-08
-<Scale-> 4.07507e-11 0 0
+<Scale-> 4.07507e-11 1.07854e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
 <--Object>
 
 <Light-->
-<Position-> 9.5 6.5 90.3004 1
-<Diffuse-> 2 2 2 1
+<Position-> 0 0 0 1
+<Diffuse-> 2 1.95 1.8 1
 <Specular-> 1 1 1 1
-<Atten-> 0 0.35 2.5e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 17.5 7.5 43 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.25 2e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 42 14.5 6.5 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 7.5 0.00055 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 25.5 6 8 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.25 2e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 -9.7 -3.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 23 9 2 1
-<Diffuse-> 3.26 2.06 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.45 0.00042 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 26 9 2 1
-<Diffuse-> 3.26 2.06 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.75 0.0008 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 45.5 8.5 72 1
-<Diffuse-> 3.26 2.06 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.7 0.00072 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 6.5 20.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 31 10.5 11 1
-<Diffuse-> 1.46 0.28 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.05 4.5e-05 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 -2.4 11.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 45 5 27 1
-<Diffuse-> 2.1 -2.88 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.649828 2.787e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 -2.6 -63.2996 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 38 9.5 73 1
-<Diffuse-> -0.46 1.26 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.025 2.5e-05 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 -2.4 11.7 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 37 8 72.5 1
-<Diffuse-> -1.78 1.16 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.15 1.2e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 -2.6 -63.2996 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 39 10 69 1
-<Diffuse-> -1.84 2.84 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.07 6.5e-05 30
-<Direction-> 0 -1 0 0
-<Param1-> 1 -6.4 13.6 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 41 8.5 63 1
-<Diffuse-> 2.84 1.66 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.22 1.4e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 -2.7 -63.2996 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 33 6 9 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.12 9.2e-06 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 65.5 6.5 52.5 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.09 7.2e-06 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 55 8.5 9.5 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.16 1.2e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
-<Param2-> 1 0 0 0
-<--Light>
-
-<Light-->
-<Position-> 43 6.5 43 1
-<Diffuse-> 2 2 2 1
-<Specular-> 1 1 1 1
-<Atten-> 0 0.14 1e-05 30
-<Direction-> 0 1 0 0
-<Param1-> 0 0 0 0
+<Atten-> 0 0 0 30
+<Direction-> 1 -1 1 0
+<Param1-> 2 0 0 0
 <Param2-> 1 0 0 0
 <--Light>
 
