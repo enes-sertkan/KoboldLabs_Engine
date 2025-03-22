@@ -59,6 +59,7 @@ struct sMesh
 	bool useMetalTexture = false;
 	bool useSmoothTexture = false;
 
+	bool shellTexturing = false;
 
 	unsigned int uniqueID = 0;
 

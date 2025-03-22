@@ -579,6 +579,80 @@ glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const
     return matView;
 }
 
+void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, Camera* camera)
+{
+    if (!pCurMesh->shellTexturing)
+    {
+        return;
+    }
+
+    // Get location of "bShellTexturing" uniform
+    GLint bUseShellTexturing_UL = glGetUniformLocation(program, "bShellTexturing");
+    glUniform1f(bUseShellTexturing_UL, (GLfloat)GL_TRUE);
+
+    // Find model info in the VAO manager
+    sModelDrawInfo meshToDrawInfo;
+    if (!vaoManager->FindDrawInfoByModelName(pCurMesh->modelFileName, meshToDrawInfo))
+    {
+        return; // Model not found
+    }
+
+    // Setup the model transformation (Translation, Rotation, Scale)
+    glm::mat4 matModel = glm::mat4(1.0f);
+
+    // Translation matrix (position)
+    glm::mat4 matTranslate = glm::translate(glm::mat4(1.0f), pCurMesh->positionXYZ);
+
+    // Rotation matrices for X, Y, Z axis
+    glm::mat4 matRotateX = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::mat4 matRotateY = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 matRotateZ = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.z), glm::vec3(0.0f, 0.0f, 1.0f));
+
+    // Scale matrix
+    glm::mat4 matScale = glm::scale(glm::mat4(1.0f), glm::vec3(pCurMesh->uniformScale));
+
+    // Combine all transformations into the model matrix
+    matModel *= matTranslate;
+    matModel *= matRotateX;
+    matModel *= matRotateY;
+    matModel *= matRotateZ;
+    matModel *= matScale;
+
+    // Pass the model matrix to the shader
+    const GLint matModel_UL = glGetUniformLocation(program, "matModel");
+    glUniformMatrix4fv(matModel_UL, 1, GL_FALSE, (const GLfloat*)&matModel);
+
+    // Camera transformation: Get View and Projection matrices
+    glm::mat4 matProjection = glm::perspective(glm::radians(camera->fov), camera->resolution.x / camera->resolution.y, 0.1f, 1000000.0f);
+    glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
+
+    // Pass view and projection matrices to the shader
+    const GLint matView_UL = glGetUniformLocation(program, "matView");
+    glUniformMatrix4fv(matView_UL, 1, GL_FALSE, (const GLfloat*)&matView);
+
+    const GLint matProjection_UL = glGetUniformLocation(program, "matProjection");
+    glUniformMatrix4fv(matProjection_UL, 1, GL_FALSE, (const GLfloat*)&matProjection);
+
+    // Set up the camera location (for lighting, etc.)
+    GLint cameraLocation_UL = glGetUniformLocation(program, "cameraLocation");
+    glUniform3f(cameraLocation_UL, camera->position.x, camera->position.y, camera->position.z);
+
+    // Set the shell texturing layer and draw the mesh for each layer
+    for (int layer = 0; layer < 64; layer++)
+    {
+        GLint shellLayer_UL = glGetUniformLocation(program, "shellLayer");
+        glUniform1i(shellLayer_UL, layer);
+
+        // Bind the VAO and draw the mesh
+        glBindVertexArray(meshToDrawInfo.VAO_ID);
+        glDrawElements(GL_TRIANGLES, meshToDrawInfo.numberOfIndices, GL_UNSIGNED_INT, (void*)0);
+    }
+
+    // Disable VAO
+    glBindVertexArray(0);
+}
+
+
 void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
@@ -799,6 +873,23 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     {
         glUniform1f(bUseObjectColour, (GLfloat)GL_FALSE);   // or 0.0f
     }
+      
+    
+    
+    GLint bUseShellTextutring = glGetUniformLocation(program, "bShellTexturing");
+
+    if (pCurMesh->shellTexturing)
+    {
+        // bool doesn't really exist, it's a float...
+        glUniform1f(bUseShellTextutring, (GLfloat)GL_TRUE);    // or 1.0f
+    }
+    else
+    {
+        glUniform1f(bUseShellTextutring, (GLfloat)GL_FALSE);   // or 0.0f
+    }
+
+
+
 
     // Set the object colour
     // uniform vec4 objectColour;
@@ -1004,7 +1095,10 @@ void DrawCameraView(Camera* camera, int programID)
 
         sMesh* pCurMesh = object->mesh;
 
+        if (!object->mesh->shellTexturing)
         DrawMeshWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
+        else
+        DrawShellTexturingWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, camera);
       //  DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
 
     }

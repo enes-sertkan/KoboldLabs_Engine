@@ -10,7 +10,7 @@ void CreateModelFiles(KLFileManager* fileManager)
 
 
     modelInfo.modelName = "Cube";
-    modelInfo.meshPath = "assets/models/Cube_SD_xyz_n_uv_rgba.ply";
+    modelInfo.meshPath = "assets/models/Cube_xyz_n_uv.ply";
     // Call WriteModelFile to save the model info
     fileManager->WriteModelFile(&modelInfo, "Cube.txt", "XYZNUV");
 

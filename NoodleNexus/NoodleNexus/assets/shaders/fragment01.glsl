@@ -19,6 +19,11 @@ uniform bool bDoNotLight;     // If true, skip lighting
 uniform bool bNightMode;      // Night mode flag
 uniform float wholeObjectTransparencyAlpha; // Alpha channel for entire object
 
+
+uniform bool bShellTexturing;  
+uniform int shellLayer; 
+
+
 // === Output ===
 out vec4 finalPixelColour;    // Final fragment colour (RGBA)
 
@@ -84,6 +89,55 @@ uniform float chromaticPower; // Chromatic Abberation effect on textures
 
 // === Wave Uniforms ===
 uniform sWave waves[10];
+// Hash function (UV-based)
+float hash(vec2 uv) {
+    // Scale UV and convert to uint
+    uint x = uint(uv.x);
+    uint y = uint(uv.y);
+    uint seed = x*513U + 101U * y;  // Use a prime number multiplier to mix
+
+    // Simple bit-mixing with smaller constants
+    seed = (seed << 5U) ^ seed;
+    seed = seed * 1664525U + 1013904223U;  // Constants from a common LCG
+
+    return float(seed) / 4294967295.0;  // Normalize to [0, 1]
+}
+// Compute shell color with randomness based on the hash value (no need for randomValue function)
+vec3 computeShellColor(in vec2 uv, in float shellHeight, in sampler2D baseTex, in sampler2D shellTex, float uvOffsetFactor) {
+    uv = uv*1000.f;
+    vec2 localUV = fract(uv) * 2.0 - 1.0;
+    
+    // Calculate distance from center
+    float localDistance = length(localUV);
+
+    // Generate randomness based on the hash function (UV-based)
+    float rnd = hash(uv); // Get random float between 0 and 1 using hash function
+
+    float _Thickness = 1.f;
+    float _TaperPower = 3.5f;
+
+    float thicknessThreshold = _Thickness * (rnd - pow(shellHeight, _TaperPower));
+
+      if(localDistance > thicknessThreshold) {
+       discard;
+    }
+
+    if (rnd < shellHeight) discard;  // You can adjust the threshold based on your effect
+
+    // Sample base color (or use any texture for base color)
+    vec3 baseColor = vec3(0.2, 0.8, 0.2) * 0.1f;
+
+    vec3 shellColor = vec3(0.2, 0.8, 0.2) * shellHeight/rnd;  // Placeholder; replace with shell texture if needed
+    
+    // Blend the base color with the shell color based on shell height
+    float blendFactor = shellHeight; // Simple linear blending
+    return mix(baseColor, shellColor, 1.f);
+}
+
+
+
+
+
 
 
 // === Utility Function: Composite Two Colours ===
@@ -96,9 +150,9 @@ vec4 compositeOver(vec4 bottom, vec4 top) {
     return vec4(outColor, outAlpha);
 }
 
+
+
 // === Normal Mapping Helper ===
-
-
 
 vec3 getTBNNormal(vec3 fNormal, vec3 fTangent, vec3 fBitangent, sampler2D normalMap, vec2 uv) {
     // Sample normal map (values in [0,1])
@@ -129,6 +183,26 @@ vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughnes
 
 // === Main Fragment Shader Function ===
 void main() {
+
+
+if (bShellTexturing)
+{
+   // Compute shell color with the shell height and UV offset factor
+        float shellHeight = float(shellLayer)/64;  // Example, scale as needed
+        float uvOffsetFactor = 0.1; // Example, adjust based on desired effect
+
+        // Calculate the shell color based on the textures and parameters
+        vec3 shellColor = computeShellColor(fUV, shellHeight, texture00, texture01, uvOffsetFactor);
+
+        // Set final pixel color, incorporating the shell effect
+        finalPixelColour.rgb = shellColor;
+        finalPixelColour.a = 1.0;  // Set the alpha (adjust as needed)
+
+     //    finalPixelColour.rgb = vec3(0.2,0.8,0.2);
+        return;
+
+}
+
       vec3 finalNormal = fvertexNormal.xyz;
     // --- Section 1: Wave Effects & UV Animation ---
     vec2 movingUV = fUV + vec2(time * speedX, time * speedY);

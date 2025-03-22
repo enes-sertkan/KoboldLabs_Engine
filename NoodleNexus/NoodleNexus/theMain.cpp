@@ -810,9 +810,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),4.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),40.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
+    puddle->mesh->shellTexturing = true;
 
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
