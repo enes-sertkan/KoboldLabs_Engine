@@ -651,6 +651,28 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
     GLint shellLength_UL = glGetUniformLocation(program, "shellLength");
     glUniform1f(shellLength_UL, pCurMesh->stData.shellLength);
 
+
+
+    for (int i = 0; i < 20; ++i) {
+        // Build the uniform name string for each field
+        std::string baseName = "colliders[" + std::to_string(i) + "].";
+
+        GLint isOnLoc = glGetUniformLocation(program, (baseName + "isOn").c_str());
+        // Send as int: 1 for true, 0 for false
+        glUniform1i(isOnLoc, pCurMesh->stColliders[i].isOn ? 1 : 0);
+
+        GLint posLoc = glGetUniformLocation(program, (baseName + "position").c_str());
+        glUniform3f(posLoc, pCurMesh->stColliders[i].position.x, pCurMesh->stColliders[i].position.y, pCurMesh->stColliders[i].position.z);
+
+        GLint radiusLoc = glGetUniformLocation(program, (baseName + "radius").c_str());
+        glUniform1f(radiusLoc, pCurMesh->stColliders[i].radius);
+
+        GLint blendingRadiusLoc = glGetUniformLocation(program, (baseName + "blendingRadius").c_str());
+        glUniform1f(blendingRadiusLoc, pCurMesh->stColliders[i].blendingRadius);
+    }
+
+
+
     // Set the shell texturing layer and draw the mesh for each layer
     for (int layer = 0; layer < pCurMesh->stData.shellCount; layer++)
     {

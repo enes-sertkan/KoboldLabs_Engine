@@ -62,7 +62,7 @@ struct sMesh
 
 	bool shellTexturing = false;
 	sSTData stData;
-
+	sSTCollider stColliders[20];
 
 
 	unsigned int uniqueID = 0;
@@ -82,12 +82,49 @@ struct sMesh
 			// Only replace an inactive wave.
 			if (!waves[i].active) {
 			    waves[i].uv = uvPos;    // Set the new UV position
-			    waves[i].time = 0.5f;     // Reset the time value
+			    waves[i].time = 0.f;     // Reset the time value
 				waves[i].active = true;   // Mark the wave as active
 				return;  // Only spawn one wave, then exit.
 			}
 		}
 	}
+
+	int CreateCollider( glm::vec3 pos, float radius = 0.5f, float blendingRadius = 0.5f)
+	{
+		for (int i = 0; i < 20; ++i)
+		{
+			if (!stColliders[i].isOn)
+			{
+				stColliders[i].isOn = true;
+				stColliders[i].position = pos;
+				stColliders[i].radius = radius;
+				stColliders[i].blendingRadius = blendingRadius;
+				return i;
+			}
+		}
+		return -1; // No available collider slot
+	}
+
+	bool DestroyCollider(unsigned int index)
+	{
+		if (index < 20)
+		{
+			stColliders[index].isOn = false;
+			return true;
+		}
+		return false;
+	}
+
+	bool UpdateColliderPosition(unsigned int index, glm::vec3 pos)
+	{
+		if (index < 20 && stColliders[index].isOn)
+		{
+			stColliders[index].position= pos;
+			return true;
+		}
+		return false;
+	}
+
 
 
 

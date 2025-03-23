@@ -18,20 +18,35 @@ public:
     glm::vec2 offset = glm::vec2(0);
     Object* player = nullptr;
 
+    int colliderID = -1;
+
     virtual void Start() override
     {
         if (player)
         {
             lastPlayerPos = player->mesh->positionXYZ;
+            colliderID = object->mesh->CreateCollider(player->mesh->positionXYZ, 0.1f, 0.1f);
         }
         timeSinceLastWave = waveSpawnInterval;
+       
+
     }
 
     virtual void Update() override
     {
         if (!player) return;
-
         glm::vec3 currentPos = player->mesh->positionXYZ;
+
+
+        glm::vec2 planeScale = glm::vec2(object->mesh->uniformScale * 1.91f, object->mesh->uniformScale * 1.9f);
+        glm::vec2 uvPos = CalculateUV(currentPos, object->mesh->positionXYZ,
+            glm::vec3(0, object->mesh->rotationEulerXYZ.y, 0),
+            planeScale, offset);
+        object->mesh->UpdateColliderPosition(colliderID, player->mesh->positionXYZ);
+
+
+
+       
         float movedDist = glm::distance(glm::vec2(currentPos.x, currentPos.z), glm::vec2(lastPlayerPos.x, lastPlayerPos.z));
         bool isMoving = movedDist > movementThreshold;
 

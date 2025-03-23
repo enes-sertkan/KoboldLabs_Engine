@@ -34,38 +34,80 @@ uniform float verticalTightening;
 uniform float verticalExponent;
 uniform float shellLength;
 
+struct sSTCollider {
+    bool isOn;
+    vec3 position;  // Now in world space!
+    float radius;
+    float blendingRadius;
+};
+
+uniform sSTCollider colliders[20];
+
+
+
+
 // Function: Generate random noise for shake effect
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
-vec3 extrudeShellLayer(in vec3 pos, in vec3 normal, 
+vec3 extrudeShellLayer(vec3 pos, vec3 normal, 
                        float shellIndex, float shellCount, float shellLength, 
                        float time, 
                        float minWindOffset, float maxWindOffset, 
-                       float verticalTightening, // 0 = linear, 1 = fully compressed per verticalExponent
-                       float verticalExponent,   // >1 compresses the top (e.g., 2.0 or 3.0)
-                       float windExponent)       // Exponent for wind easing (e.g., 2.0)
+                       float verticalTightening, 
+                       float verticalExponent,  
+                       float windExponent)       
 {
     // 1. Compute normalized shell height (0 at bottom, 1 at top)
     float shellHeight = (shellIndex + 1.0) / shellCount;
-    
+
     // 2. Compute an adjusted (effective) shell height.
-    //    We blend the linear shellHeight with a compressed version (using pow) to keep the top layers closer.
     float effectiveHeight = mix(shellHeight, pow(shellHeight, verticalExponent), verticalTightening);
 
     // 3. Extrude the vertex along its normal using the effective height.
-    vec3 updatedPos = pos + normalize(normal) * shellLength * effectiveHeight;
-    
+    vec3 updatedPos = normalize(normal) * shellLength * effectiveHeight;
+
     // 4. Compute an easing factor for the wind effect.
     float easeFactor = pow(effectiveHeight, windExponent);
     
-    // 5. Animate the wind: map sin(time) from [-1, 1] to [0, 1]
-    float windNorm = (sin(time) + 1.0) / 2.0;
-    // Interpolate between min and max wind offsets based on windNorm.
+    // 5. Wind effect (temporarily disabled)
+    float windNorm = 0.5;
     float windOffset = easeFactor * mix(minWindOffset, maxWindOffset, windNorm);
     
-    // 6. Apply the wind offset on the x-axis.
-    updatedPos.x += windOffset;
+    // 6. Process colliders in world space.
+    float maxEffect = 0.0;
+    vec3 bestDir = vec3(0.0);
+    
+    for (int i = 0; i < 20; i++) {
+        if (!colliders[i].isOn)
+            continue;
+
+        // Compute distance in world space
+        float d = length(pos - colliders[i].position);
+        float effect = 0.0;
+
+        if (d < colliders[i].radius) {
+            effect = 1.0;
+        } else if (d < colliders[i].blendingRadius) {
+            effect = 1.0 - (d - colliders[i].radius) / (colliders[i].blendingRadius - colliders[i].radius);
+        }
+
+        if (effect > maxEffect) {
+            maxEffect = effect;
+            bestDir = normalize(pos - colliders[i].position);
+        }
+    }
+    maxEffect = length(pos - colliders[0].position);
+       bestDir = normalize(pos - colliders[0].position);
+    // 7. Apply collider effect:
+    float colliderPush = 2.0;
+
+    vec3 colliderOffset = colliderPush * bestDir * maxEffect * shellHeight;
+    colliderOffset.y=0;
+    colliderOffset = colliderOffset*0.2;
+    // 8. Apply the final push
+        if (maxEffect<5.f)
+    updatedPos += colliderOffset;
     
     return updatedPos;
 }
@@ -87,9 +129,9 @@ void main() {
 
     // Camera Attraction Effect (Suck Power)
     float distanceToCamera = distance(fvertexWorldLocation3, cameraLocation);
-    if (distanceToCamera < 60.0) {
+    if (distanceToCamera < 0.0) {
         vec3 direction = normalize(cameraLocation - fvertexWorldLocation3);
-        float power = suckPower / distanceToCamera;
+        float power = 0.00 / distanceToCamera;
         power = min(power, distanceToCamera);
         vec3 change = direction * power;
         finalVert += change;
@@ -113,7 +155,7 @@ void main() {
 
         // Apply Shell Extrusion if enabled
     if (bShellTexturing) {
-        finalVert = extrudeShellLayer(finalVert, transformedNormal, shellLayer, shellCount, 0.02, time, 0.01, 0.02, verticalTightening, verticalExponent, 4);
+        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, 0.02, time, 0.01, 0.02, verticalTightening, verticalExponent, 4);
     }
 
         gl_Position = matMVP * vec4(finalVert, 1.0);

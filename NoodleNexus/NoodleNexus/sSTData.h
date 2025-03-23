@@ -1,11 +1,17 @@
 #pragma once
-//#include "glm/vec3.hpp"
+#include "GLCommon.h"
+
+//#include "linmath.h"
+#include <glm/glm.hpp>
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
 
 struct sSTCollider
 {
-	//glm::vec3 position;
+	bool isOn=false;
+	glm::vec3 position;
 	float radius = 0.5;;
-	float blendingRadius = 0.5f;
+	float blendingRadius = 1.f;
 };
 
 

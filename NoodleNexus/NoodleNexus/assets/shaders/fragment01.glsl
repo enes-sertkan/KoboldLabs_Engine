@@ -73,7 +73,14 @@ uniform int shellCount;
 uniform float verticalTightening;
 uniform float verticalExponent;
 uniform float shellLength;
+struct sSTCollider {
+    bool isOn;
+    vec3 position;  // Now in world space!
+    float radius;
+    float blendingRadius;
+};
 
+uniform sSTCollider colliders[20];
 
 
 // === Material Uniforms ===
@@ -115,6 +122,8 @@ float hash(vec2 uv) {
 // Compute shell color with randomness based on the hash value (no need for randomValue function)
 vec3 computeShellColor(in vec2 uv, in float shellHeight, in sampler2D baseTex, in sampler2D shellTex, float uvOffsetFactor) {
     uv = uv*1000.f;
+
+
     vec2 localUV = fract(uv) * 2.0 - 1.0;
     
     // Calculate distance from center
