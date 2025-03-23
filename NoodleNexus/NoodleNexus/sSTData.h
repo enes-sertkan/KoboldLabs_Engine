@@ -20,6 +20,6 @@ struct sSTData
 	int shellCount = 256;
 	float verticalTightening = 0.5;
 	float verticalExponent = 3.f;
-	float shellLength = 0.02;
+	float shellLength = 0.04f;
 
 };

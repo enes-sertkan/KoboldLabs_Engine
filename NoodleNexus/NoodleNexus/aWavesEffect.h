@@ -25,7 +25,7 @@ public:
         if (player)
         {
             lastPlayerPos = player->mesh->positionXYZ;
-            colliderID = object->mesh->CreateCollider(player->mesh->positionXYZ, 0.1f, 0.1f);
+            colliderID = object->mesh->CreateCollider(player->mesh->positionXYZ, 5.f, 10.f);
         }
         timeSinceLastWave = waveSpawnInterval;
        

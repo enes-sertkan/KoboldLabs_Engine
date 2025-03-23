@@ -97,17 +97,24 @@ vec3 extrudeShellLayer(vec3 pos, vec3 normal,
             bestDir = normalize(pos - colliders[i].position);
         }
     }
-    maxEffect = length(pos - colliders[0].position);
+ 
+    maxEffect = length( pos.xz - colliders[0].position.xz);
        bestDir = normalize(pos - colliders[0].position);
+       bestDir.y = 0;
     // 7. Apply collider effect:
-    float colliderPush = 2.0;
+    //float colliderPush = 2.0;
 
-    vec3 colliderOffset = colliderPush * bestDir * maxEffect * shellHeight;
+    vec3 colliderOffset = bestDir * maxEffect * shellHeight;
     colliderOffset.y=0;
-    colliderOffset = colliderOffset*0.2;
+    //colliderOffset = colliderOffset*0.2;
     // 8. Apply the final push
-        if (maxEffect<5.f)
-    updatedPos += colliderOffset;
+        if (maxEffect<4.f)
+   updatedPos -= bestDir*0.1*shellHeight;
+
+    else if (maxEffect < 15.f) {
+        updatedPos -= bestDir*0.05*shellHeight* (1.0 - (maxEffect - 4) / 11);
+        }
+
     
     return updatedPos;
 }
@@ -155,7 +162,7 @@ void main() {
 
         // Apply Shell Extrusion if enabled
     if (bShellTexturing) {
-        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, 0.02, time, 0.01, 0.02, verticalTightening, verticalExponent, 4);
+        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, shellLength, time, 0.01, 0.02, verticalTightening, verticalExponent, 4);
     }
 
         gl_Position = matMVP * vec4(finalVert, 1.0);
