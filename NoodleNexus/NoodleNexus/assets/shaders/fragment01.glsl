@@ -20,8 +20,6 @@ uniform bool bNightMode;      // Night mode flag
 uniform float wholeObjectTransparencyAlpha; // Alpha channel for entire object
 
 
-uniform bool bShellTexturing;  
-uniform int shellLayer; 
 
 
 // === Output ===
@@ -65,6 +63,18 @@ uniform sampler2D textureST;         // Metallic & Smoothness texture
 uniform bool useST;
 uniform sampler2D textureNM;         // Normal map
 uniform bool useNM;
+
+
+
+
+uniform bool bShellTexturing;  
+uniform int shellLayer;  // Current shell layer index (0 - max)
+uniform int shellCount;
+uniform float verticalTightening;
+uniform float verticalExponent;
+uniform float shellLength;
+
+
 
 // === Material Uniforms ===
 uniform float metallic;              // Default metallic value
@@ -188,7 +198,7 @@ void main() {
 if (bShellTexturing)
 {
    // Compute shell color with the shell height and UV offset factor
-        float shellHeight = float(shellLayer)/64;  // Example, scale as needed
+        float shellHeight = float(shellLayer)/256;  // Example, scale as needed
         float uvOffsetFactor = 0.1; // Example, adjust based on desired effect
 
         // Calculate the shell color based on the textures and parameters

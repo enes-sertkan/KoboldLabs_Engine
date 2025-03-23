@@ -194,7 +194,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.z += scale * 3.9f / 2.0f;
         position.x += scale * 5.0f / 2.0f;
        // rotation.y = 180.f;
-        texture = "castle_element_05_BaseColour.bmp";
+       texture = "castle_element_05_BaseColour.bmp";
         textureST = "castle_element_05_MetalSmoothness.bmp";
        textureNM = "castle_element_05_NormalGL.bmp";
        metal = 0.f;
@@ -204,7 +204,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.x += scale * 5.f / 2.0f;
         texture = "castle_element_05_BaseColour.bmp";
        textureST = "castle_element_05_MetalSmoothness.bmp";
-       textureNM = "castle_element_05_NormalGL.bmp";
+      textureNM = "castle_element_05_NormalGL.bmp";
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;

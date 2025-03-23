@@ -11,6 +11,7 @@
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include "UVWave.h"
+#include "sSTData.h"
 
 struct sMesh
 {
@@ -60,6 +61,9 @@ struct sMesh
 	bool useSmoothTexture = false;
 
 	bool shellTexturing = false;
+	sSTData stData;
+
+
 
 	unsigned int uniqueID = 0;
 

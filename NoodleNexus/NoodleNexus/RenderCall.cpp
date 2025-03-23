@@ -637,8 +637,22 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
     GLint cameraLocation_UL = glGetUniformLocation(program, "cameraLocation");
     glUniform3f(cameraLocation_UL, camera->position.x, camera->position.y, camera->position.z);
 
+
+
+    GLint shellCount_UL = glGetUniformLocation(program, "shellCount");
+    glUniform1i(shellCount_UL, pCurMesh->stData.shellCount);
+
+    GLint verticalTightening_UL = glGetUniformLocation(program, "verticalTightening");
+    glUniform1f(verticalTightening_UL, pCurMesh->stData.verticalTightening);
+
+    GLint verticalExponent_UL = glGetUniformLocation(program, "verticalExponent");
+    glUniform1f(verticalExponent_UL, pCurMesh->stData.verticalExponent);
+
+    GLint shellLength_UL = glGetUniformLocation(program, "shellLength");
+    glUniform1f(shellLength_UL, pCurMesh->stData.shellLength);
+
     // Set the shell texturing layer and draw the mesh for each layer
-    for (int layer = 0; layer < 64; layer++)
+    for (int layer = 0; layer < pCurMesh->stData.shellCount; layer++)
     {
         GLint shellLayer_UL = glGetUniformLocation(program, "shellLayer");
         glUniform1i(shellLayer_UL, layer);
