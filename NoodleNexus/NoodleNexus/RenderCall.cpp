@@ -597,6 +597,8 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
         return; // Model not found
     }
 
+
+
     // Setup the model transformation (Translation, Rotation, Scale)
     glm::mat4 matModel = glm::mat4(1.0f);
 
@@ -673,16 +675,16 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
 
 
 
-    // Set the shell texturing layer and draw the mesh for each layer
-    for (int layer = 0; layer < pCurMesh->stData.shellCount; layer++)
-    {
-        GLint shellLayer_UL = glGetUniformLocation(program, "shellLayer");
-        glUniform1i(shellLayer_UL, layer);
 
-        // Bind the VAO and draw the mesh
-        glBindVertexArray(meshToDrawInfo.VAO_ID);
-        glDrawElements(GL_TRIANGLES, meshToDrawInfo.numberOfIndices, GL_UNSIGNED_INT, (void*)0);
-    }
+
+    glBindVertexArray(meshToDrawInfo.VAO_ID);
+    glDrawElementsInstanced(
+        GL_TRIANGLES,
+        meshToDrawInfo.numberOfIndices,
+        GL_UNSIGNED_INT,
+        (void*)0,
+        pCurMesh->stData.shellCount  // Number of shell layers  
+    );
 
     // Disable VAO
     glBindVertexArray(0);

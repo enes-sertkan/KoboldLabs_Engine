@@ -1,5 +1,6 @@
-#version 330
+#version 410  
 // (Pixel) Fragment Shader
+
 
 #define PI 3.14159265359
 
@@ -10,6 +11,11 @@ in vec4 fvertexNormal;        // Vertex normal in world space
 in vec2 fUV;                  // Texture coordinates (UV)
 in vec3 fTangent;             // Tangent in world space
 in vec3 fBitangent;           // Bitangent in world space
+
+
+
+
+
 
 // === Uniforms for Object & Lighting ===
 uniform vec4 objectColour;    // Override colour 
@@ -68,11 +74,14 @@ uniform bool useNM;
 
 
 uniform bool bShellTexturing;  
-uniform int shellLayer;  // Current shell layer index (0 - max)
+in float fshellLayer;
 uniform int shellCount;
 uniform float verticalTightening;
 uniform float verticalExponent;
-uniform float shellLength;
+
+
+
+
 struct sSTCollider {
     bool isOn;
     vec3 position;  // Now in world space!
@@ -203,25 +212,37 @@ vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughnes
 // === Main Fragment Shader Function ===
 void main() {
 
-
 if (bShellTexturing)
 {
-   // Compute shell color with the shell height and UV offset factor
-        float shellHeight = float(shellLayer)/256;  // Example, scale as needed
-        float uvOffsetFactor = 0.1; // Example, adjust based on desired effect
+    // Compute shell color with the shell height and UV offset factor
+    float shellHeight = float(fshellLayer)/256.0;
+    float uvOffsetFactor = 0.1;
 
-        // Calculate the shell color based on the textures and parameters
-        vec3 shellColor = computeShellColor(fUV, shellHeight, texture00, texture01, uvOffsetFactor);
+    // Calculate the shell color
+    vec3 shellColor = computeShellColor(fUV, shellHeight, texture00, texture01, uvOffsetFactor);
 
-        // Set final pixel color, incorporating the shell effect
-        finalPixelColour.rgb = shellColor;
-        finalPixelColour.a = 1.0;  // Set the alpha (adjust as needed)
+    // --- Use PBR lighting for shells ---
+    vec4 vertexSpecular = vec4(1.0); 
+    float roughnessVal = 1.0 - smoothness;  // Use default smoothness
+    roughnessVal = max(roughnessVal, 0.15);
+    vec3 F0 = mix(vec3(0.04), shellColor, metallic);  // Use default metallic
+    finalPixelColour.xyz = shellColor;
+    // Calculate lighting
+  if  (shellHeight>1) finalPixelColour = calculateLightContrib(
+        shellColor, 
+        normalize(fvertexNormal.xyz),  // Use existing normal calculation
+        fvertexWorldLocation.xyz, 
+        vertexSpecular, 
+        roughnessVal, 
+        metallic,  // Use default metallic uniform
+        F0
+    );
 
-     //    finalPixelColour.rgb = vec3(0.2,0.8,0.2);
-        return;
-
+    // Apply post-processing (same as regular objects)
+    finalPixelColour.a = wholeObjectTransparencyAlpha;
+    
+    return;  // Early return still needed for shells
 }
-
       vec3 finalNormal = fvertexNormal.xyz;
     // --- Section 1: Wave Effects & UV Animation ---
     vec2 movingUV = fUV + vec2(time * speedX, time * speedY);

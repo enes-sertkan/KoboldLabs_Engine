@@ -17,9 +17,9 @@ struct sSTCollider
 
 struct sSTData
 {
-	int shellCount = 256;
-	float verticalTightening = 0.5;
-	float verticalExponent = 3.f;
-	float shellLength = 0.04f;
+	int shellCount = 330;
+	float verticalTightening = 0.8;
+	float verticalExponent = 0.1f;
+	float shellLength = 0.044f;
 
 };

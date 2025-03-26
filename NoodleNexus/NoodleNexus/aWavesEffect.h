@@ -13,6 +13,7 @@ private:
     float timeSinceLastWave = 0.0f; // Timer for wave spawning
     glm::vec3 lastPlayerPos = glm::vec3(0.0f); // To track player's previous position
     float movementThreshold = 0.01f; // Minimum distance to consider that the player is moving
+    GLuint instanceVBO = 0;
 
 public:
     glm::vec2 offset = glm::vec2(0);
@@ -29,6 +30,8 @@ public:
         }
         timeSinceLastWave = waveSpawnInterval;
        
+
+        PrepareVaoForInstancing();
 
     }
 
@@ -109,5 +112,50 @@ public:
         uv.y = -(localRotatedPos.z / planeScale.y) + 0.5f;
 
         return uv;
+    }
+
+
+
+    void PrepareVaoForInstancing()
+    {
+        // --- Create instance VBO for shell heights ---
+        glGenBuffers(1, &instanceVBO);
+        glBindBuffer(GL_ARRAY_BUFFER, instanceVBO);
+
+        // Fill with shell heights (0.0 to 1.0 for 512 layers)
+        std::vector<float> shellNumbers(object->mesh->stData.shellCount); // CHANGED TO FLOAT
+        for (int i = 0; i < object->mesh->stData.shellCount; i++) {
+            shellNumbers[i] = (float)i; // Store as float
+        }
+
+
+
+        glBufferData(GL_ARRAY_BUFFER,
+            shellNumbers.size() * sizeof(float),
+            shellNumbers.data(),
+            GL_DYNAMIC_DRAW); // Use DYNAMIC if updating often
+
+        // --- Attach to the VAO ---
+        // Get the existing VAO from your VAO manager
+        sModelDrawInfo meshInfo;
+        if (object->scene->vaoManager->FindDrawInfoByModelName(object->mesh->modelFileName, meshInfo))
+        {
+            glBindVertexArray(meshInfo.VAO_ID); // Bind existing VAO
+
+            // Enable and configure the instance attribute
+            glEnableVertexAttribArray(2); // Use a free location (e.g., 2)
+            glVertexAttribPointer(
+                2,                  // Location
+                1,                  // Components
+                GL_FLOAT,           // CHANGED TO FLOAT
+                GL_FALSE,
+                sizeof(float),
+                (void*)0
+            );
+            glVertexAttribDivisor(2, 1); // Critical for instancing!
+
+            glBindVertexArray(0); // Unbind VAO
+        }
+    
     }
 };

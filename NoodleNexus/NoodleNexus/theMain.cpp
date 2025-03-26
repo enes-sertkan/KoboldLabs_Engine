@@ -794,7 +794,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aRotate* rotateAction = new aRotate();
     securityRoomScene->AddActionToObj(rotateAction, wierd);
 
-    Object* tube = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/frog.ply", glm::vec3(250.f, 25.f, 113.f), 10, glm::vec3(0.f), true, glm::vec4(0.f, 0.5f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    Object* tube = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/objects/frog.ply", glm::vec3(250.f, 13.f, 113.f), 10, glm::vec3(0.f), true, glm::vec4(0.f, 0.5f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     tube->mesh->textures[0] = "frog_diffuse.bmp";
     tube->mesh->blendRatio[0] = 1.0f;
     aRotate* rotateActionTube = new aRotate();
@@ -810,7 +810,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),20.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),30.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;

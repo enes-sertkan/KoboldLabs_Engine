@@ -45,9 +45,6 @@
     <Filter Include="Engine\LightManager">
       <UniqueIdentifier>{06139e88-bde6-447a-8a74-9690d3f555ea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\LightManager\Lights">
-      <UniqueIdentifier>{0479b598-aa46-49da-ac91-afc112109a35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Others">
       <UniqueIdentifier>{fe2e679f-06c7-48ea-a00f-7c5fa644c921}</UniqueIdentifier>
     </Filter>
@@ -90,6 +87,9 @@
     <Filter Include="Engine\AllInlcudes">
       <UniqueIdentifier>{a2eb000f-4529-4b58-8aa4-0ecfb122398e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Object\Lights">
+      <UniqueIdentifier>{0479b598-aa46-49da-ac91-afc112109a35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -123,13 +123,13 @@
       <Filter>Engine\PhysicsManager\Phsyics_Stuff_Old</Filter>
     </ClCompile>
     <ClCompile Include="cLightManager.cpp">
-      <Filter>Engine\LightManager\Lights</Filter>
+      <Filter>Engine\Object\Lights</Filter>
     </ClCompile>
     <ClCompile Include="RenderCall.cpp">
       <Filter>RenderStuff</Filter>
     </ClCompile>
     <ClCompile Include="cLightHelper\cLightHelper.cpp">
-      <Filter>Engine\LightManager\Lights</Filter>
+      <Filter>Engine\Object\Lights</Filter>
     </ClCompile>
     <ClCompile Include="cObject.cpp">
       <Filter>Engine\Object</Filter>
@@ -290,10 +290,10 @@
       <Filter>Engine\PhysicsManager\Phsyics_Stuff_Old</Filter>
     </ClInclude>
     <ClInclude Include="cLightManager.h">
-      <Filter>Engine\LightManager\Lights</Filter>
+      <Filter>Engine\Object\Lights</Filter>
     </ClInclude>
     <ClInclude Include="cLightHelper\cLightHelper.h">
-      <Filter>Engine\LightManager\Lights</Filter>
+      <Filter>Engine\Object\Lights</Filter>
     </ClInclude>
     <ClInclude Include="sObject.h">
       <Filter>Meshes, etc.</Filter>
