@@ -116,24 +116,55 @@ vec3 extrudeShellLayer(vec3 pos, vec3 normal,
     }
  
     maxEffect = length(pos.xz - colliders[0].position.xz);
-    bestDir = normalize(pos - colliders[0].position);
-    bestDir.y = 0;
+   maxEffect=maxEffect;
+  // if (maxEffect<0.1)
+  // maxEffect = -1;
 
-    vec3 colliderOffset = bestDir * maxEffect * shellHeight;
+    bestDir = normalize(colliders[0].position-pos);
+         bestDir.y*=0;
+        bestDir.x*=1.3;
+
+        // if ((length(bestDir) < 0.001))
+    //     bestDir.x+=0.15;
+       
+       
+       bestDir = normalize(  bestDir);
+
+    
+
+
+     if (effectiveHeight>0.5)
+   {
+     float colliderPower =  pow((effectiveHeight-0.5)*2, 8);
+   
+    vec3 colliderOffset = bestDir * 0.03* colliderPower/maxEffect;
     colliderOffset.y = 0;
 
     // Apply collider effect with random variation
-    if (maxEffect < 4.0)
-      updatedPos -= bestDir * 0.1 * effectiveHeight * (0.8 + vertexRandomness * 0.4);  // Add randomness
+    if (maxEffect < 3.0)
+     { updatedPos -= colliderOffset;  // Add randomness
 
-   else if (maxEffect < 15.0) 
-      updatedPos -= bestDir * 0.05 * effectiveHeight * (1.0 - (maxEffect - 4.0) / 11.0) * (0.8 + vertexRandomness * 0.4);
+      if (maxEffect < 0.5)
+        updatedPos -= normalize(normal) * shellLength * shellHeight*0.2*(0.5-maxEffect);
+      //    updatedPos.y -= 0.007*effectiveHeight/maxEffect;
+       }
+  // else if (maxEffect < 15.0) 
+   //   updatedPos = bestDir * 0.2 * effectiveHeight/maxEffect;
 
     // Apply wind effect with per-vertex variation
-    updatedPos.x += windOffset * (0.8 + vertexRandomness * 0.4)*7;
+
+ 
+}
+
+
+    updatedPos.x += windOffset * (0.8 + vertexRandomness * 0.4);
+
+
 
     return updatedPos;
 }
+
+
 void main() {
     vec3 finalVert = vPos;
 
@@ -177,7 +208,7 @@ void main() {
 
         // Apply Shell Extrusion if enabled
     if (bShellTexturing) {
-        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, shellLength, time, 0.004, 0.006, verticalTightening, verticalExponent, 4);
+        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, shellLength, time, 0.01, 0.015, verticalTightening, verticalExponent, 4);
            fshellLayer = shellLayer;
     
     }
