@@ -43,6 +43,8 @@ private:
 public:
 	//Animator* animator = nullptr;
 
+	Object* selectedObject = nullptr;
+
 	float cameraMoveSpeed=200;
 	float cameraRotateSpeed=50;
 

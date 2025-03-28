@@ -83,6 +83,12 @@
 #include "aMirrorReflection.h"
 
 
+// Core MGUI headers
+#include "imgui/imgui.h"          // Main MGUI header
+#include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
+#include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
+
+
  Scene* currentScene=nullptr;
 
 
@@ -102,6 +108,107 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
 void DrawCameraView(Camera* camera, int programID);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera);
+
+
+
+void SetupDearImGui(GLFWwindow* window)
+{
+    // IMPORTANT: Must be called AFTER GL context is created
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO();
+
+    // Match your EXACT OpenGL version
+    const char* glsl_version = "#version 420";  // Match your 4.2 context
+    if (!ImGui_ImplGlfw_InitForOpenGL(window, true))
+    {
+        std::cerr << "Failed to initialize GLFW backend!" << std::endl;
+        return;
+    }
+
+    if (!ImGui_ImplOpenGL3_Init(glsl_version))
+    {
+        std::cerr << "Failed to initialize OpenGL3 backend!" << std::endl;
+        return;
+    }
+
+    ImGui::StyleColorsDark();
+}
+
+
+void SceneHierarchyExample(Scene* scene)
+{
+    ImGui::Begin("Scene Hierarchy");
+
+    // Use PushID/PopID for each object to guarantee unique IDs
+    for (size_t i = 0; i < scene->sceneObjects.size(); i++)
+    {
+        Object* obj = scene->sceneObjects[i];
+        ImGui::PushID(obj); // Unique ID based on object pointer
+
+        bool isSelected = (scene->selectedObject == obj);
+        if (ImGui::Selectable(obj->name.c_str(), isSelected))
+        {
+            scene->selectedObject = obj;
+        }
+
+        // Optional: Add object index to label if names aren't unique
+        // ImGui::SameLine();
+        // ImGui::TextDisabled("(#%d)", i);
+
+        ImGui::PopID();
+    }
+
+    ImGui::End();
+}
+
+void ObjectTransformExample(Object* selectedObject)
+{
+    if (!selectedObject) return;
+
+    ImGui::Begin("Transform");
+
+    // Position
+    ImGui::DragFloat3("Position",
+        glm::value_ptr(selectedObject->mesh->positionXYZ),
+        0.1f);
+
+    // Rotation (convert radians to degrees for display)
+    glm::vec3 rotationDegrees = glm::degrees(
+        selectedObject->mesh->rotationEulerXYZ
+    );
+
+    if (ImGui::DragFloat3("Rotation",
+        glm::value_ptr(rotationDegrees),
+        1.0f))
+    {
+        selectedObject->mesh->rotationEulerXYZ =
+            glm::radians(rotationDegrees);
+    }
+
+    // Scale
+    ImGui::DragFloat("Scale",
+        &selectedObject->mesh->uniformScale,
+        0.1f, 0.01f, 100.0f);
+
+    ImGui::End();
+}
+
+void RenderDearImGui()
+{
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    // Your GUI components
+    SceneHierarchyExample(currentScene);
+    ObjectTransformExample(currentScene->selectedObject);
+
+    // Render ImGui
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
 
 
 std::string g_floatToString(float theFloat)
@@ -1274,6 +1381,8 @@ int main(void)
 
     AABBOctTree();
 
+
+
 //   READING FILES
 //   -------------
 
@@ -1319,7 +1428,6 @@ int main(void)
 
 
 
-
 //   PREPARING OPENGL
 //   ----------------
 
@@ -1334,6 +1442,8 @@ int main(void)
    
 
 
+
+    SetupDearImGui(window);
 
 //   PREPARING ENGINE STUFF
 //   ----------------------
@@ -1643,6 +1753,8 @@ int main(void)
             //gridRenderer.Render(viewProjectionMatrix, cameraPosition);
         }
 
+
+        RenderDearImGui();
 
 //      SWAP VISUAL BUFFERS
 //      ------------------------------------------ 
