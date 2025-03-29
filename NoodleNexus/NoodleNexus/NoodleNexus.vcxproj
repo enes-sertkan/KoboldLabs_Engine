@@ -190,6 +190,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="KLObjectReaderWriter.cpp" />
     <ClCompile Include="KLSceneReaderWriter.cpp" />
+    <ClCompile Include="LabAttackFactory.cpp" />
     <ClCompile Include="LuaScript.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="SceneEditor.cpp" />
     <ClCompile Include="SceneEditorExtra.cpp" />
     <ClCompile Include="sharedThings.cpp" />
+    <ClCompile Include="ShootAtPlayerAction.cpp" />
     <ClCompile Include="sMesh.cpp" />
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
@@ -264,6 +266,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="KLFileManager.hpp" />
+    <ClInclude Include="LabAttackFactory.h" />
     <ClInclude Include="Laser.hpp" />
     <ClInclude Include="LuaScript.h" />
     <ClInclude Include="MazeGenerator.hpp" />
@@ -277,6 +280,7 @@
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
+    <ClInclude Include="ShootAtPlayerAction.h" />
     <ClInclude Include="sMesh.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />

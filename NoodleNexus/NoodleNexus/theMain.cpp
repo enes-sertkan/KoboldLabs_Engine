@@ -82,7 +82,7 @@
 #include "aWavesEffect.h"
 #include "aMirrorReflection.h"
 #include "BruteEnemy.h"
-
+#include "LabAttackFactory.h"
 
 // Core MGUI headers
 #include "imgui/imgui.h"          // Main MGUI header
@@ -918,7 +918,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
-
+    LabAttackFactory* LAFactory = new LabAttackFactory();
+    LAFactory->scene = scene;
 
     screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
@@ -1016,6 +1017,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     BruteEnemy* bEnem2 = new BruteEnemy();
     bEnem2->maze = mazeGenerator;
+    bEnem2->factory = LAFactory;
     scene->AddActionToObj(bEnem2, softObject);
 
     softObject->mesh->metal = 0.8f;

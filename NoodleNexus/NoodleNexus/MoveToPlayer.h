@@ -6,7 +6,7 @@ class MoveToPlayerAction : public GOAPAction {
 public:
     MoveToPlayerAction() {
         preconditions["playerVisible"] = true;
-        effects["playerInAttackRange"] = true;
+        effects["playerInRange"] = true;
         cost = 1.0f;
     }
 
