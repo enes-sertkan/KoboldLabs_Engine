@@ -50,6 +50,7 @@ public:
 
     BazeMazeCharacter* minoChar = nullptr;
     BazeMazeCharacter* thesChar = nullptr;
+    Object* player = nullptr;
 
     glm::vec2 WorldToGrid(const glm::vec3& worldPos) const {
         const float TILE_SIZE = 1.0f * 4.0f; // Match GridToWorld scaling

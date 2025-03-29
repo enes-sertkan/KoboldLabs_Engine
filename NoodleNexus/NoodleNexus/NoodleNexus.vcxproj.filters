@@ -93,6 +93,9 @@
     <Filter Include="Imgui">
       <UniqueIdentifier>{6b0e94db-676b-4282-b724-4c4cd31bdef9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GOAP">
+      <UniqueIdentifier>{7c9dd803-6524-438b-aec9-b01d150d3590}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -286,6 +289,9 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_impl_opengl3.cpp">
       <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="GOAPPlanner.cpp">
+      <Filter>GOAP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -513,6 +519,21 @@
     </ClInclude>
     <ClInclude Include="imgui\imgui_impl_opengl3_loader.h">
       <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPAction.h">
+      <Filter>GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="aAgent.h">
+      <Filter>GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveToPlayer.h">
+      <Filter>GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="BruteEnemy.h">
+      <Filter>GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="GOAPPlanner.h">
+      <Filter>GOAP</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

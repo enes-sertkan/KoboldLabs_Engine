@@ -104,11 +104,13 @@ public:
 	void Start() override
 	{
 	//	return;
-		object->scene->isFlyCamera = false;
+		object->scene->isFlyCamera = true;
 	}
 
 	void Update() override
 	{
+
+		if (object->scene->isFlyCamera) return;
 	//	return;
 		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
 

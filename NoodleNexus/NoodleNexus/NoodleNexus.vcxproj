@@ -178,6 +178,7 @@
     <ClCompile Include="cVAOManager_DynamicMesh.cpp" />
     <ClCompile Include="cViperFlagConnector.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="GOAPPlanner.cpp" />
     <ClCompile Include="GridRenderer.cpp" />
     <ClCompile Include="Gun.hpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -206,6 +207,7 @@
     <ClCompile Include="theMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aAgent.h" />
     <ClInclude Include="aCameraToTexture.h" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="aConnectSoftBodToObj.hpp" />
@@ -224,6 +226,7 @@
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
+    <ClInclude Include="BruteEnemy.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="CameraPoint.h" />
@@ -247,6 +250,8 @@
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
     <ClInclude Include="cViperFlagConnector.hpp" />
+    <ClInclude Include="GOAPAction.h" />
+    <ClInclude Include="GOAPPlanner.h" />
     <ClInclude Include="GridRenderer.h" />
     <ClInclude Include="iCommand.hpp" />
     <ClInclude Include="imgui\imconfig.h" />
@@ -263,6 +268,7 @@
     <ClInclude Include="LuaScript.h" />
     <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="ModelsLoader.hpp" />
+    <ClInclude Include="MoveToPlayer.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />

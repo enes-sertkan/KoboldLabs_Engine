@@ -81,10 +81,12 @@
 #include "aRotationWithMinutes.hpp"
 #include "aWavesEffect.h"
 #include "aMirrorReflection.h"
+#include "BruteEnemy.h"
 
 
 // Core MGUI headers
 #include "imgui/imgui.h"          // Main MGUI header
+#include "imgui/imconfig.h"          // Main MGUI header
 #include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
 
@@ -135,31 +137,39 @@ void SetupDearImGui(GLFWwindow* window)
     ImGui::StyleColorsDark();
 }
 
-
-void SceneHierarchyExample(Scene* scene)
+void SceneHierarchyExample(SceneEditor* sceneEditor)
 {
+    Scene* scene = sceneEditor->scene;
+    static ImGuiTextFilter filter;
+
     ImGui::Begin("Scene Hierarchy");
 
-    // Use PushID/PopID for each object to guarantee unique IDs
-    for (size_t i = 0; i < scene->sceneObjects.size(); i++)
+    // Search bar using ImGui's built-in filter
+    filter.Draw("Search...");
+    ImGui::SameLine();
+    if (ImGui::Button("Clear")) filter.Clear();
+
+    ImGui::Separator();
+
+    for (Object* obj : scene->sceneObjects)
     {
-        Object* obj = scene->sceneObjects[i];
-        ImGui::PushID(obj); // Unique ID based on object pointer
+        if (!filter.PassFilter(obj->name.c_str()))
+            continue;
 
-        bool isSelected = (scene->selectedObject == obj);
+        ImGui::PushID(obj);
+        bool isSelected = (sceneEditor->selectedObject == obj);
         if (ImGui::Selectable(obj->name.c_str(), isSelected))
-        {
-            scene->selectedObject = obj;
-        }
-
-        // Optional: Add object index to label if names aren't unique
-        // ImGui::SameLine();
-        // ImGui::TextDisabled("(#%d)", i);
-
+            sceneEditor->selectedObject = obj;
         ImGui::PopID();
     }
 
     ImGui::End();
+}
+
+bool IsMouseOverImGui()
+{
+    ImGuiIO& io = ImGui::GetIO();
+    return io.WantCaptureMouse; // True when mouse is over any ImGui window
 }
 
 void ObjectTransformExample(Object* selectedObject)
@@ -168,33 +178,57 @@ void ObjectTransformExample(Object* selectedObject)
 
     ImGui::Begin("Transform");
 
+
     // Position
     ImGui::DragFloat3("Position",
-        glm::value_ptr(selectedObject->mesh->positionXYZ),
-        0.1f);
+        glm::value_ptr(selectedObject->startTranform->position),
+        0.05f);
 
-    // Rotation (convert radians to degrees for display)
-    glm::vec3 rotationDegrees = glm::degrees(
-        selectedObject->mesh->rotationEulerXYZ
-    );
 
     if (ImGui::DragFloat3("Rotation",
-        glm::value_ptr(rotationDegrees),
-        1.0f))
+        glm::value_ptr(selectedObject->startTranform->rotation),
+        0.5f))
     {
-        selectedObject->mesh->rotationEulerXYZ =
-            glm::radians(rotationDegrees);
+        selectedObject->startTranform->rotation =
+            glm::radians(selectedObject->startTranform->rotation);
     }
-
-    // Scale
+    
     ImGui::DragFloat("Scale",
-        &selectedObject->mesh->uniformScale,
-        0.1f, 0.01f, 100.0f);
+        &selectedObject->startTranform->scale.x,
+        0.1f, 0.01f, 100.0f);  // Advanced controls here
+
+
+    if (ImGui::CollapsingHeader("Current Position"))
+    {
+        // Position
+        ImGui::DragFloat3("Position",
+            glm::value_ptr(selectedObject->mesh->positionXYZ),
+            0.1f);
+
+        // Rotation (convert radians to degrees for display)
+        glm::vec3 rotationDegrees = glm::degrees(
+            selectedObject->mesh->rotationEulerXYZ
+        );
+
+        if (ImGui::DragFloat3("Rotation",
+            glm::value_ptr(rotationDegrees),
+            1.0f))
+        {
+            selectedObject->mesh->rotationEulerXYZ =
+                glm::radians(rotationDegrees);
+        }
+
+        // Scale
+        ImGui::DragFloat("Scale",
+            &selectedObject->mesh->uniformScale,
+            0.1f, 0.01f, 100.0f);  // Advanced controls here
+    }
+  
 
     ImGui::End();
 }
 
-void RenderDearImGui()
+void RenderDearImGui(SceneEditor* sceneEditor)
 {
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
@@ -202,8 +236,8 @@ void RenderDearImGui()
     ImGui::NewFrame();
 
     // Your GUI components
-    SceneHierarchyExample(currentScene);
-    ObjectTransformExample(currentScene->selectedObject);
+    SceneHierarchyExample(sceneEditor);
+    ObjectTransformExample(sceneEditor->selectedObject);
 
     // Render ImGui
     ImGui::Render();
@@ -919,6 +953,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(32.f,3.2f,8.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+   
+
+    Object* bruteEnemy = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(32.f, 7.0f, 8.f), 1.f, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+    bruteEnemy->name = "BENEMY";
+    bruteEnemy->isTemporary = true;
+    BruteEnemy* bEnem = new BruteEnemy();
+    bEnem->maze = mazeGenerator;
+    scene->AddActionToObj(bEnem, bruteEnemy);
+    
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
@@ -940,6 +983,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(playerMovement, player);
 
     waveEffect->player = player;
+    mazeGenerator->player = player;
     //scene->AddActionToObj(playerShooting, player);
 
     //aRotationWithMinutes* rotateCam2 = new aRotationWithMinutes();
@@ -963,7 +1007,17 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     SoftBody* softBody = new SoftBody();
 
+
+
+
+
     Object* softObject = scene->sceneObjects[31];
+    //softObject->name = "ENEMY";
+
+    BruteEnemy* bEnem2 = new BruteEnemy();
+    bEnem2->maze = mazeGenerator;
+    scene->AddActionToObj(bEnem2, softObject);
+
     softObject->mesh->metal = 0.8f;
     softObject->mesh->smoothness = 0.7f;
     softBody->acceleration.y = -16;
@@ -1734,9 +1788,13 @@ int main(void)
 
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
-        handleKeyboardAsync(window,screen_quad, scene);
-        handleMouseAsync(window);
-
+        
+           
+            if (!IsMouseOverImGui())
+            {
+                handleKeyboardAsync(window, screen_quad, scene);
+            handleMouseAsync(window);
+        }
 
         //TODO : GRIDS
 
@@ -1754,7 +1812,8 @@ int main(void)
         }
 
 
-        RenderDearImGui();
+        if (scene->isFlyCamera)
+        RenderDearImGui(sceneEditor);
 
 //      SWAP VISUAL BUFFERS
 //      ------------------------------------------ 
