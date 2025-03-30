@@ -3,7 +3,7 @@
 
 #include "aRotate.h"
 #include "BruteEnemy.h"
-
+#include "aBullet.h"
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
     int playerBulletPoolSize, int enemyBulletPoolSize)
@@ -92,7 +92,7 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
         
             scene->AddActionToObj(brut, enemy);
             brut->Start();
-          //  m_wandererPool.push_back(enemy);
+            m_creepPool.push_back(enemy);
             return enemy;
 
 }
@@ -106,6 +106,10 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
 
     scene->AddActionToObj(projectileAction, bullet);
     m_playerBulletPool.push_back(bullet);
+
+    aBullet* bulletCol = new aBullet();
+    bulletCol->factory = this;
+    scene->AddActionToObj(bulletCol, bullet);
     return bullet;
 }
 

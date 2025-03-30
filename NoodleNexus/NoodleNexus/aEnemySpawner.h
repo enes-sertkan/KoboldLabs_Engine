@@ -22,7 +22,7 @@ public:
 
         timeSinceLastSpawn += object->scene->deltaTime;
 
-        if (timeSinceLastSpawn >= spawnInterval && currentEnemies < maxEnemies) {
+        if (timeSinceLastSpawn >= spawnInterval && factory->m_creepPool.size() < maxEnemies) {
             SpawnEnemy();
             timeSinceLastSpawn = 0.0f;
         }

@@ -1017,7 +1017,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     BruteEnemy* bEnem2 = new BruteEnemy();
     bEnem2->maze = mazeGenerator;
     bEnem2->factory = LAFactory;
-    scene->AddActionToObj(bEnem2, softObject);
+    //scene->AddActionToObj(bEnem2, softObject);
 
     softObject->mesh->metal = 0.8f;
     softObject->mesh->smoothness = 0.7f;

@@ -212,6 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aAgent.h" />
+    <ClInclude Include="aBullet.h" />
     <ClInclude Include="aCameraToTexture.h" />
     <ClInclude Include="aChangeColorOverTime.hpp" />
     <ClInclude Include="aConnectSoftBodToObj.hpp" />
