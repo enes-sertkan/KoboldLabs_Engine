@@ -2,28 +2,30 @@
 #include "aAgent.h"
 #include "MoveToPlayer.h"
 #include "ShootAtPlayerAction.h"
+#include "MoveToControlPointAction.h"
 
 
 class BruteEnemy : public Agent {
 public:
     BruteEnemy() {
-        speed = 1.f;
+        speed = 4.f;
        // attackDamage = 30.0f;
-        attackRange = 1.5f;
+        attackRange = 10.f;
         health = 200;
 
         // Available actions
         availableActions.push_back(new MoveToPlayerAction());
         availableActions.push_back(new ShootAtPlayerAction());
+        availableActions.push_back(new MoveToControlPointAction());
   
 
         // Default goal: Get in range and attack
-        goal = { {"playerInRange", true} };
+        goal = { {"hasReachedControlPoint", true} };
     }
 
     void updateWorldState() override {
         // Global knowledge + local tweaks
-        worldState["playerVisible"] = (glm::distance(object->mesh->positionXYZ, maze->player->mesh->positionXYZ) < 20.0f);
+        worldState["playerVisible"] = (true);
         worldState["playerInRange"] = (glm::distance(object->mesh->positionXYZ, maze->player->mesh->positionXYZ) <= attackRange);
     }
 };

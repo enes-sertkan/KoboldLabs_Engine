@@ -1130,7 +1130,7 @@ void DrawCameraView(Camera* camera, int programID)
 
     for (Object* object : scene->sceneObjectsSorted)
     {
-
+        if (!object->isActive) continue;
         sMesh* pCurMesh = object->mesh;
 
         if (!object->mesh->shellTexturing)

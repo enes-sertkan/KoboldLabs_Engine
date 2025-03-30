@@ -80,7 +80,7 @@ LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int s
 // Spawn functions for bullets (position and speed)
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 1.f, glm::vec3(0.f), true, glm::vec4(0.7f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.4f, glm::vec3(0.f), true, glm::vec4(0.7f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 
@@ -93,7 +93,7 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
 
 Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 2.f, glm::vec3(0.f), true, glm::vec4(0.9f, 0.1f, 0.1f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), true, glm::vec4(0.9f, 0.1f, 0.1f, 1.f), true, scene->sceneObjects);
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 

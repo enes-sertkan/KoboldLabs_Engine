@@ -41,7 +41,7 @@ public:
 
 	virtual void Start()
 	{
-		targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
+		//targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
 
 	}
 
@@ -92,7 +92,7 @@ public:
 	}
 
 	void MoveToNextPathPoint()
-	{
+	{/*
 		currentPathPoint++;
 		
 
@@ -121,7 +121,7 @@ public:
 			onPath = false;
 
 
-		}
+		}*/
 
 	}
 
@@ -131,31 +131,31 @@ public:
 		//Find closest food
 		//
 
-		pathFinder->maze = maze;
+		//pathFinder->maze = maze;
 
-		std::vector<glm::vec2> path;
-		path.clear();
-		while (path.size() == 0 && (maze->waters.size() > 0 || maze->foods.size() > 0))
-		{
-			Object* target = FindClosestFoodOrWater(object->mesh->positionXYZ);
-			glm::vec2 targetPos = maze->WorldToGrid(target->mesh->positionXYZ);  //maze->WorldToGrid(maze->foods[3]->mesh->positionXYZ); maze->minoChar->mazePosition;
+		//std::vector<glm::vec2> path;
+		//path.clear();
+		//while (path.size() == 0 && (maze->waters.size() > 0 || maze->foods.size() > 0))
+		//{
+		//	Object* target = FindClosestFoodOrWater(object->mesh->positionXYZ);
+		//	glm::vec2 targetPos = maze->WorldToGrid(target->mesh->positionXYZ);  //maze->WorldToGrid(maze->foods[3]->mesh->positionXYZ); maze->minoChar->mazePosition;
 
-			path = pathFinder->FindPath(mazePosition, targetPos);
+		//	path = pathFinder->FindPath(mazePosition, targetPos);
 
-			if (path.size() == 0)
-			{
-				maze->foods.erase(std::remove(maze->foods.begin(), maze->foods.end(), target), maze->foods.end());
-				maze->waters.erase(std::remove(maze->waters.begin(), maze->waters.end(), target), maze->waters.end());
-			}
+		//	if (path.size() == 0)
+		//	{
+		//		maze->foods.erase(std::remove(maze->foods.begin(), maze->foods.end(), target), maze->foods.end());
+		//		maze->waters.erase(std::remove(maze->waters.begin(), maze->waters.end(), target), maze->waters.end());
+		//	}
 
-		}
+		//}
 
-		if (path.size() > 0)
-		{
-			currentPath = path;
+		//if (path.size() > 0)
+		//{
+		//	currentPath = path;
 
-			onPath = true;
-		}
+		//	onPath = true;
+		//}
 	}
 
 	Object* FindClosestFood(const glm::vec3& currentWorldPos) {

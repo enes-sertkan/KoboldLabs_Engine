@@ -7,6 +7,7 @@
 #include <glm/vec4.hpp>
 #include "Scene.hpp"
 #include "cLightManager.h" // Include the light manager
+#include "LabAttackFactory.h"
 
 class BazeMazeCharacter;
 class MinotaurChar;
@@ -25,7 +26,8 @@ enum Direction {
     REACTORS,
     TABLE,
     BROKENTUBES,
-    SOFTCENTER
+    SOFTCENTER,
+    BRUTEENEM
 };
 
 
@@ -47,10 +49,11 @@ public:
     //void PlaceWater(int count = 100);
     std::vector<Object*> waters;
 
+    std::vector<glm::vec2> controlPoints;
 
-    BazeMazeCharacter* minoChar = nullptr;
-    BazeMazeCharacter* thesChar = nullptr;
     Object* player = nullptr;
+
+    LabAttackFactory* factory = nullptr;
 
     glm::vec2 WorldToGrid(const glm::vec3& worldPos) const {
         const float TILE_SIZE = 1.0f * 4.0f; // Match GridToWorld scaling

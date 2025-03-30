@@ -7,14 +7,15 @@
 #include <algorithm>
 #include "glm/glm.hpp"
 #include "LabAttackFactory.h"
-
+#include "StupidPathFinder.h"
 
 class Agent : public BazeMazeCharacter {
 public:
     LabAttackFactory* factory = nullptr;
     virtual void updateWorldState() = 0; // Must be implemented per enemy type
     void replanIfNeeded();              // Checks if current plan is still valid
-
+    std::queue<glm::vec2> controlPoints;
+    StupidPathFinder* pathFinder = new StupidPathFinder();
     // World state (shared + local knowledge)
     std::unordered_map<std::string, bool> worldState;
 
@@ -24,17 +25,50 @@ public:
     std::unordered_map<std::string, bool> goal; // Current goal (e.g., {"playerInAttackRange", true})
 
     float attackRange = 0;
-   
+    float playerDetectionRange = 15.f;
+
+    // Override from BazeMazeCharacter
+    void Start() override {
+        for (glm::vec2 CP : maze->controlPoints)
+        {
+            controlPoints.push(CP);
+     }
+    }
+
 
     // Override from BazeMazeCharacter
     void Update() override {
         updateWorldState();
+
+
+        // Dynamic goal switching
+        if (IsPlayerInRange() || goal["hasReachedControlPoint"]) {
+            goal = { {"playerDamaged", true} }; // Attack mode
+            currentPlan = std::queue<GOAPAction*>();
+        }
+        else if (!controlPoints.empty()) {
+            goal = { {"hasReachedControlPoint", true} }; // Patrol 
+            currentPlan = std::queue<GOAPAction*>();
+
+        }
+
         if (currentPlan.empty()) {
             currentPlan = GOAPPlanner::plan(this, goal);
         }
         executeCurrentAction();
+
+
+       
+           
+
     }
 
+
+    bool IsPlayerInRange()  {
+        float dist = glm::distance(object->mesh->positionXYZ,
+            maze->player->mesh->positionXYZ);
+        return dist <= playerDetectionRange;
+    }
 
 
     // Common movement methods

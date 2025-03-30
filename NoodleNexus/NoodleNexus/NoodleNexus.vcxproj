@@ -194,6 +194,7 @@
     <ClCompile Include="LuaScript.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="mouse_keyboard_async.cpp" />
+    <ClCompile Include="MoveToControlPointAction.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="PlyFileLoaders.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="LuaScript.h" />
     <ClInclude Include="MazeGenerator.hpp" />
     <ClInclude Include="ModelsLoader.hpp" />
+    <ClInclude Include="MoveToControlPointAction.h" />
     <ClInclude Include="MoveToPlayer.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="PhysicsManager.h" />

@@ -15,7 +15,7 @@ public:
 
 	virtual void Start()
 	{
-		targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
+		//targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
 	}
 
 
@@ -24,7 +24,7 @@ public:
 	{
 	
 	//	RageTick();
-		speed = 300.f;
+		/*speed = 300.f;
 	
 		if (MoveToTargetPositionUpdate())
 		{
@@ -38,7 +38,7 @@ public:
 				object->mesh->objectColourRGBA = glm::vec4(1, 1, 1, 1);
 			 DefaultWanderingTick();
 			}
-		}
+		}*/
 
 
 
@@ -55,38 +55,38 @@ public:
 
 	void PickNewDirectionRage()
 	{
-		glm::vec2 minoPos = maze->minoChar->mazePosition;
-		glm::vec2 theoPos = maze->thesChar->mazePosition;
+	//	glm::vec2 minoPos = maze->minoChar->mazePosition;
+	//	glm::vec2 theoPos = maze->thesChar->mazePosition;
 
-		//if distance on x bigger then distance
-		//Mega stupid solution with * to remove minuses
-		if ((minoPos.x - theoPos.x)* (minoPos.x - theoPos.x) > (minoPos.y - theoPos.y)* (minoPos.y - theoPos.y))
-		{
-			if (minoPos.x < theoPos.x) 
-			{
-				curWanderingDirection = CRIGHT;
-			}
+	//	//if distance on x bigger then distance
+	//	//Mega stupid solution with * to remove minuses
+	//	if ((minoPos.x - theoPos.x)* (minoPos.x - theoPos.x) > (minoPos.y - theoPos.y)* (minoPos.y - theoPos.y))
+	//	{
+	//		if (minoPos.x < theoPos.x) 
+	//		{
+	//			curWanderingDirection = CRIGHT;
+	//		}
 
-			if (minoPos.x > theoPos.x)
-			{
-				curWanderingDirection = CLEFT;
-			}
-		}
+	//		if (minoPos.x > theoPos.x)
+	//		{
+	//			curWanderingDirection = CLEFT;
+	//		}
+	//	}
 
-		else
+	//	else
 
-		{
-			if (minoPos.y < theoPos.y)
-			{
-				curWanderingDirection = CUP;
-			}
+	//	{
+	//		if (minoPos.y < theoPos.y)
+	//		{
+	//			curWanderingDirection = CUP;
+	//		}
 
-			if (minoPos.y > theoPos.y)
-			{
-				curWanderingDirection = CDOWN;
-			}
+	//		if (minoPos.y > theoPos.y)
+	//		{
+	//			curWanderingDirection = CDOWN;
+	//		}
 
-		}
+	//	}
 	}
 };
 

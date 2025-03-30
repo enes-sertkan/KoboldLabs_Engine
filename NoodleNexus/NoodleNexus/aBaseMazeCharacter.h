@@ -17,19 +17,25 @@ private:
 
 public:
 	float speed = 250;
-	glm::vec3 mazePosition;
+
 	glm::vec3 targetWorldPosition;
 	MazeGenerator* maze = nullptr;
 	CharDirection curWanderingDirection;
 	int health = 100;
 
 
+	glm::vec3 GetMazePosition()
+	{
+		glm::vec2 mazePosition = maze->WorldToGrid(object->mesh->positionXYZ);
+		
+		return glm::vec3(mazePosition.x, 0, mazePosition.y);
+	}
 
 	bool Move(CharDirection direction)
 	{
 		//std::cout << "MOVE()" << std::endl;
-		int curX = mazePosition.x;
-		int curY = mazePosition.y;
+		int curX = GetMazePosition().x;
+		int curY = GetMazePosition().y;
 		switch (direction)
 		{
 		case CUP: object->mesh->rotationEulerXYZ.y = 0; return TryMovingToMazePoint(curX, curY + 1); break;
@@ -46,10 +52,10 @@ public:
 
 	bool TryMovingToMazePoint(int x, int y)
 	{
-		//std::cout << "Trying to move to" << mazePosition.x << " " << mazePosition.y << " and tile is" << maze->GetMazePoint(mazePosition.x, mazePosition.y) << std::endl;
+//		std::cout << "Trying to move to" << x << " " << y << " and tile is " << maze->GetMazePoint(x, y) << std::endl;
 
 
-		if (maze->IsWall(y, x)) return false;
+	//	if (maze->IsWall(x, y)) return false;
 
 
 
@@ -58,10 +64,11 @@ public:
 
 
 		//std::cout << "TRY MOVE()" << std::endl;
-			mazePosition.x = x;
-			mazePosition.y = y;
+		//	mazePosition.x = x;
+		//	mazePosition.y = y;
 			targetWorldPosition = maze->GridToWorld(x, y);
-			DamageOnWalk();
+			targetWorldPosition.y = object->mesh->positionXYZ.y;
+			//DamageOnWalk();
 		//	std::cout << "Current health: " << health << std::endl;
 			return true;
 	}
@@ -100,7 +107,7 @@ public:
 
 	virtual void Start()
 	{
-		targetWorldPosition = maze->GridToWorld(mazePosition.x, mazePosition.y);
+		targetWorldPosition = maze->GridToWorld(GetMazePosition().x, GetMazePosition().y);
 	}
 	
 
@@ -152,18 +159,6 @@ public:
 		{
 			
 		}
-	}
-
-	void HandleEncounter()
-	{
-		//Do logic for when they meet.
-		if (maze->thesChar->health > 50)
-			maze->minoChar->object->Destroy();
-		else
-			maze->thesChar->object->Destroy();
-;
-		//object->Destroy();
-
 	}
 
 	void DamageOnWalk()

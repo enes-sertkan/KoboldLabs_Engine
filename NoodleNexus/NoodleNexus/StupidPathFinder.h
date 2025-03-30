@@ -2,189 +2,111 @@
 #include "MazeGenerator.hpp"
 #include <algorithm>
 #include <vector>
+#include <queue>
+#include <unordered_map>
+#include <unordered_set> // Added for closed set
+#include <iostream>
 
-#define NOMINMAX
-#include <Windows.h>
-#include <process.h>
-
-class StupidPathFinder
-{
+class StupidPathFinder {
 public:
     glm::vec2 movementDirections[4] = { glm::vec2(1, 0), glm::vec2(-1, 0), glm::vec2(0, 1), glm::vec2(0, -1) };
     MazeGenerator* maze;
+    long pathsChecked = 0; // Counter for tested paths
 
-    CRITICAL_SECTION cs;
-    HANDLE foundEvent;
-    HANDLE timeoutEvent;
-    volatile bool pathFound;
-    volatile bool timeoutTriggered;
-    std::vector<glm::vec2> foundPath;
-    volatile long pathsChecked;
+    struct Node {
+        glm::vec2 position;
+        float cost;
+        float heuristic;
+        Node* parent;
 
-    StupidPathFinder() : pathFound(false), timeoutTriggered(false), pathsChecked(0) {
-        InitializeCriticalSection(&cs);
-        foundEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
-        timeoutEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-    }
-
-    ~StupidPathFinder() {
-        DeleteCriticalSection(&cs);
-        CloseHandle(foundEvent);
-        CloseHandle(timeoutEvent);
-    }
-
-    struct ThreadParams {
-        StupidPathFinder* finder;
-        glm::vec2 startPos;
-        glm::vec2 targetPos;
-        unsigned int seed;
+        bool operator<(const Node& other) const {
+            return (cost + heuristic) > (other.cost + other.heuristic);
+        }
     };
 
-    static inline int thread_rand(unsigned int* seed) {
-        *seed = (*seed * 1103515245 + 12345) % 2147483648;
-        return (int)*seed;
-    }
+    struct vec2Hash {
+        size_t operator()(const glm::vec2& v) const {
+            return std::hash<float>()(v.x) ^ (std::hash<float>()(v.y) << 1);
+        }
+    };
 
     std::vector<glm::vec2> FindPath(glm::vec2 startPos, glm::vec2 targetPos) {
-        std::cout << "Searching with threading for possible paths" << std::endl;
+        pathsChecked = 0; // Reset counter
+        auto cmp = [](Node* left, Node* right) { return *left < *right; };
+        std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> openSet(cmp);
+        std::unordered_map<glm::vec2, Node*, vec2Hash> allNodes;
+        std::unordered_set<glm::vec2, vec2Hash> closedSet; // Added closed set
 
-        EnterCriticalSection(&cs);
-        pathFound = false;
-        timeoutTriggered = false;
-        foundPath.clear();
-        pathsChecked = 0;
-        LeaveCriticalSection(&cs);
-        ResetEvent(foundEvent);
-        ResetEvent(timeoutEvent);
+        Node* startNode = new Node{ startPos, 0, heuristic(startPos, targetPos), nullptr };
+        openSet.push(startNode);
+        allNodes[startPos] = startNode;
 
-        const int numThreads = 50;
-        HANDLE threads[numThreads];
+        while (!openSet.empty()) {
+            Node* current = openSet.top();
+            openSet.pop();
 
-        for (int i = 0; i < numThreads; ++i) {
-            ThreadParams* params = new ThreadParams;
-            params->finder = this;
-            params->startPos = startPos;
-            params->targetPos = targetPos;
-            params->seed = GetTickCount() + i;
-
-            unsigned threadID;
-            threads[i] = (HANDLE)_beginthreadex(NULL, 0, ThreadFunc, params, 0, &threadID);
-            if (threads[i] == NULL) {
-                delete params;
-                std::cerr << "Failed to create thread " << i << std::endl;
-            }
-        }
-
-        HANDLE waitEvents[2] = { foundEvent, timeoutEvent };
-        DWORD waitResult = WaitForMultipleObjects(2, waitEvents, FALSE, INFINITE);
-
-        if (waitResult == WAIT_OBJECT_0 + 1) { // Timeout triggered
-            EnterCriticalSection(&cs);
-            foundPath.clear();
-            LeaveCriticalSection(&cs);
-        }
-
-        WaitForMultipleObjects(numThreads, threads, TRUE, INFINITE);
-
-        for (int i = 0; i < numThreads; ++i) {
-            CloseHandle(threads[i]);
-        }
-
-        std::cout << "Total # of paths checked: " << pathsChecked << std::endl;
-        return foundPath;
-    }
-
-    static unsigned __stdcall ThreadFunc(void* param) {
-        ThreadParams* params = (ThreadParams*)param;
-        StupidPathFinder* finder = params->finder;
-        unsigned int seed = params->seed;
-
-        while (true) {
-            EnterCriticalSection(&finder->cs);
-            bool found = finder->pathFound;
-            bool timeout = finder->timeoutTriggered;
-            LeaveCriticalSection(&finder->cs);
-
-            if (found || timeout) {
-                break;
+            // Skip if already processed
+            if (closedSet.find(current->position) != closedSet.end()) {
+                continue;
             }
 
-            std::vector<glm::vec2> path = finder->LookForPath(params->startPos, params->targetPos, &seed);
+            closedSet.insert(current->position); // Mark as processed
+            pathsChecked++;
 
-            if (!path.empty() && path.back().x == params->targetPos.x && path.back().y == params->targetPos.y) {
-                EnterCriticalSection(&finder->cs);
-                if (!finder->pathFound) {
-                    finder->pathFound = true;
-                    finder->foundPath = path;
-                    SetEvent(finder->foundEvent);
+            if (current->position == targetPos) {
+                std::vector<glm::vec2> path;
+                while (current != nullptr) {
+                    path.push_back(current->position);
+                    current = current->parent;
                 }
-                LeaveCriticalSection(&finder->cs);
-                break;
-            } else {
-                long newChecks = InterlockedIncrement(&finder->pathsChecked);
-                if (newChecks >= 110000) {
-                    EnterCriticalSection(&finder->cs);
-                    if (!finder->timeoutTriggered) {
-                        finder->timeoutTriggered = true;
-                        SetEvent(finder->timeoutEvent);
-                    }
-                    LeaveCriticalSection(&finder->cs);
+                std::reverse(path.begin(), path.end());
+
+                // Cleanup
+                for (auto& pair : allNodes) delete pair.second;
+                std::cout << "A* tested " << pathsChecked << " nodes to find path ("
+                    << path.size() << " steps)" << std::endl;
+                return path;
+            }
+
+            // Explore neighbors
+            for (glm::vec2 dir : movementDirections) {
+                glm::vec2 neighborPos = current->position + dir;
+
+                if (maze->IsWall(neighborPos.y, neighborPos.x)) continue;
+
+                float newCost = current->cost + 1;
+                Node* neighborNode = nullptr;
+                auto it = allNodes.find(neighborPos);
+
+                if (it == allNodes.end()) {
+                    neighborNode = new Node{
+                        neighborPos,
+                        newCost,
+                        heuristic(neighborPos, targetPos),
+                        current
+                    };
+                    allNodes[neighborPos] = neighborNode;
+                    openSet.push(neighborNode);
                 }
-                seed = thread_rand(&seed);
+                else if (newCost < it->second->cost) {
+                    it->second->cost = newCost;
+                    it->second->parent = current;
+                    openSet.push(it->second); // Re-add to update priority
+                }
+
+                // If neighbor is in closedSet but a better path is found, 
+                // A* with consistent heuristic doesn't need to re-open it.
             }
         }
 
-        delete params;
-        return 0;
+        // Cleanup if no path found
+        for (auto& pair : allNodes) delete pair.second;
+        std::cout << "A* tested " << pathsChecked << " nodes (no path found)" << std::endl;
+        return {};
     }
 
-    std::vector<glm::vec2> LookForPath(glm::vec2 startPos, glm::vec2 targetPos, unsigned int* seed) {
-        std::vector<glm::vec2> currentPath;
-        currentPath.clear();
-        glm::vec2 curPos = startPos;
-
-        if (CheckTile(curPos.x, curPos.y, targetPos)) {
-            currentPath.push_back(curPos);
-            return currentPath;
-        }
-
-        do {
-            std::vector<glm::vec2> possibleTiles = FindPossibleTiles(curPos.x, curPos.y, currentPath);
-            if (possibleTiles.empty()) {
-                return std::vector<glm::vec2>();
-            }
-
-            int tileID = thread_rand(seed) % possibleTiles.size();
-            glm::vec2 nextTile = possibleTiles[tileID];
-
-            if (CheckTile(nextTile.x, nextTile.y, targetPos)) {
-                currentPath.push_back(nextTile);
-                return currentPath;
-            }
-
-            currentPath.push_back(nextTile);
-            curPos = nextTile;
-        } while (true);
-    }
-
-    bool CheckTile(int x, int y, glm::vec2 targetPos) {
-        return (targetPos.x == x && targetPos.y == y);
-    }
-
-    std::vector<glm::vec2> FindPossibleTiles(int x, int y, std::vector<glm::vec2> currentPath) {
-        std::vector<glm::vec2> possibleTiles;
-        for (glm::vec2 dir : movementDirections) {
-            if (IsTileCheckable(x + dir.x, y + dir.y, currentPath))
-                possibleTiles.push_back(glm::vec2(x + dir.x, y + dir.y));
-        }
-        return possibleTiles;
-    }
-
-    bool IsTileCheckable(int x, int y, std::vector<glm::vec2> currentPath) {
-        if (maze->IsWall(y, x)) return false;
-        if (std::find(currentPath.begin(), currentPath.end(), glm::vec2(x, y)) != currentPath.end()) {
-            return false;
-        }
-        return true;
+private:
+    float heuristic(glm::vec2 a, glm::vec2 b) {
+        return abs(a.x - b.x) + abs(a.y - b.y);
     }
 };

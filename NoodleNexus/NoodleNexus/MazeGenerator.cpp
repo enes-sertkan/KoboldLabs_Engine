@@ -8,7 +8,7 @@
 #include "aMinotaur.h"
 #include "Theseus.h"
 #include "aSoftBodyAction.hpp"
-
+#include "BruteEnemy.h"
 
 // Constructor
 MazeGenerator::MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager) : scene(scene) {
@@ -43,7 +43,7 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' || cell == 'B' || cell == 'S') {
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B') {
 
                 if (cell != 'S')
                 {
@@ -108,13 +108,17 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TUBES, true);
                 }
                 else if (cell == 'B') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, BROKENTUBES, true);
+                    PlaceModelOnGrid("assets/models/Sphere_radius_1_xyz_N_uv.ply", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 else if (cell == 'R') {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, REACTORS, true);
                 }
 
                 
+            }
+
+            if (cell >= '1' && cell <= '9') {
+                controlPoints.push_back(glm::vec2(col, row));
             }
         }
     }
@@ -206,6 +210,9 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
        textureST = "castle_element_05_MetalSmoothness.bmp";
       textureNM = "castle_element_05_NormalGL.bmp";
         break;
+    case BRUTEENEM:
+        position.y += 5.f;
+        break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;
     //    position.x += scale * 5.0f / 2.0f;
@@ -224,6 +231,18 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     if (obj == nullptr) {
         std::cerr << "Failed to create object for type: " << type << std::endl;
         return nullptr;
+    }
+
+    if (type == BRUTEENEM)
+    {
+    
+        obj->name = "ENEMY";
+        BruteEnemy* bEnem = new BruteEnemy();
+        bEnem->maze = this;
+        bEnem->factory = factory;
+        isOverrideColor = true;
+        scene->AddActionToObj(bEnem, obj);
+
     }
 
     if (type == SOFTCENTER)
@@ -310,7 +329,7 @@ bool MazeGenerator::IsFloor(int x, int y)
 }
 
 glm::vec3 MazeGenerator::GridToWorld(int x, int y)  {
-    const float TILE_SIZE = 1.0f * 7.0* 5.0f; // Match your scaling factor
+    const float TILE_SIZE = 1.0f*4.f; // Match your scaling factor
     return glm::vec3(x * TILE_SIZE, 0, y * TILE_SIZE);
 }
 

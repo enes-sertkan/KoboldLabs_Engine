@@ -2,11 +2,11 @@
 #include "aAgent.h"
 
 bool ShootAtPlayerAction::checkProceduralPrecondition(Agent* agent) {
-    // Check if player is in attack range and visible
-    glm::vec3 toPlayer = agent->maze->player->mesh->positionXYZ - agent->object->mesh->positionXYZ;
-    float distance = glm::length(toPlayer);
+    //// Check if player is in attack range and visible
+    //glm::vec3 toPlayer = agent->maze->player->mesh->positionXYZ - agent->object->mesh->positionXYZ;
+    //float distance = glm::length(toPlayer);
 
-    return (distance <= agent->attackRange);
+    return   preconditions["playerInRange"];
        // && !agent->maze->IsWallBetween(agent->mazePosition, agent->maze->player->mazePosition);
 }
 
@@ -20,5 +20,5 @@ bool ShootAtPlayerAction::perform(Agent* agent, float deltaTime) {
     currentCooldown = cooldown; // Reset timer
 
     // Keep this action active (return false to continue next frame)
-    return false;
+    return !agent->worldState["playerInRange"];
 }

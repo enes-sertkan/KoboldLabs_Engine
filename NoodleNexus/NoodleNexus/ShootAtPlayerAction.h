@@ -16,7 +16,7 @@ public:
 
     bool checkProceduralPrecondition(Agent* agent) override;
     bool perform(Agent* agent, float deltaTime) override;
-    bool isDone() const override { return false; } // Never "done" - keeps shooting until replanned
+  
     void reset() override { currentCooldown = 0.0f; }
 
 private:

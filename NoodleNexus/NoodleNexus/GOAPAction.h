@@ -12,7 +12,7 @@ public:
     // Must implement these in each action
     virtual bool checkProceduralPrecondition(Agent* agent) = 0;
     virtual bool perform(Agent* agent, float deltaTime) = 0;
-    virtual bool isDone() const = 0;
+
     virtual void reset() = 0;
 
     // Preconditions & effects (used by planner)
