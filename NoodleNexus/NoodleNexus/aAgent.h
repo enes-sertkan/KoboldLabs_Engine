@@ -42,11 +42,11 @@ public:
 
 
         // Dynamic goal switching
-        if (IsPlayerInRange() || goal["hasReachedControlPoint"]) {
+        if (IsPlayerInRange() && goal["hasReachedControlPoint"]) {
             goal = { {"playerDamaged", true} }; // Attack mode
             currentPlan = std::queue<GOAPAction*>();
         }
-        else if (!controlPoints.empty()) {
+        else if (!controlPoints.empty()&&!IsPlayerInRange()) {
             goal = { {"hasReachedControlPoint", true} }; // Patrol 
             currentPlan = std::queue<GOAPAction*>();
 

@@ -5,11 +5,11 @@ X...................XXX
 XXX.................XXX
 XXX.................XXX
 X...................XXX
-X...........2.......XXX
-X........1..........XXX
-X...................XXX
+X...........1.......XXX
+X........2..........XXX
+X.B.................XXX
 XX.XXXXXXXX.XXXXXX.XXXX
 XX.XXXXXXXX.XXXXXX.XXXX
 XX.XXXXXXXX.XXXXXX.XXXX
-XXBXXXXXXXXBXXXXXXBXXXX
+XX.XXXXXXXXBXXXXXXBXXXX
 XXXXXXXXXXXXXXXXXXXXXXX

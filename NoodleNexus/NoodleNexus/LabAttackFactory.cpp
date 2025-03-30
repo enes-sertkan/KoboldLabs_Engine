@@ -2,6 +2,7 @@
 #include "LabAttackFactory.h"
 
 #include "aRotate.h"
+#include "BruteEnemy.h"
 
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
@@ -78,13 +79,30 @@ LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int s
 //}
 
 // Spawn functions for bullets (position and speed)
+
+Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
+{
+    
+            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 1.2f, glm::vec3(0.f), true, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+        
+            enemy->isTemporary = true;
+            BruteEnemy* brut = new BruteEnemy();
+            brut->maze = maze;
+            brut->factory = this;
+        
+            scene->AddActionToObj(brut, enemy);
+            brut->Start();
+          //  m_wandererPool.push_back(enemy);
+            return enemy;
+
+}
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.4f, glm::vec3(0.f), true, glm::vec4(0.7f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.6f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 
-
+    bullet->isTemporary = true;
 
     scene->AddActionToObj(projectileAction, bullet);
     m_playerBulletPool.push_back(bullet);
@@ -97,7 +115,7 @@ Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm:
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 
-
+    bullet->isTemporary = true;
 
     scene->AddActionToObj(projectileAction, bullet);
 

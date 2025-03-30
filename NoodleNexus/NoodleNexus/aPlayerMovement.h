@@ -29,8 +29,8 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float walkSpeed = 0.6f;
-	float runSpeed = 3.f;
+	float walkSpeed = 1.3f;
+	float runSpeed = 4.f;
 	float speed = walkSpeed;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D

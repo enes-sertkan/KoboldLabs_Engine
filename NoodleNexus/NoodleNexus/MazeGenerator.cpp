@@ -9,7 +9,8 @@
 #include "Theseus.h"
 #include "aSoftBodyAction.hpp"
 #include "BruteEnemy.h"
-
+#include "aEnemySpawner.h"
+#include "LabAttackFactory.h"
 // Constructor
 MazeGenerator::MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager) : scene(scene) {
     loadMaze(filePath);
@@ -108,7 +109,7 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TUBES, true);
                 }
                 else if (cell == 'B') {
-                    PlaceModelOnGrid("assets/models/Sphere_radius_1_xyz_N_uv.ply", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 else if (cell == 'R') {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, REACTORS, true);
@@ -236,12 +237,12 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     if (type == BRUTEENEM)
     {
     
-        obj->name = "ENEMY";
-        BruteEnemy* bEnem = new BruteEnemy();
-        bEnem->maze = this;
-        bEnem->factory = factory;
+        obj->name = "ENEMY SPAWNER";
+        aEnemySpawner* spawner = new aEnemySpawner();
+   
+        spawner->factory = factory;
         isOverrideColor = true;
-        scene->AddActionToObj(bEnem, obj);
+        scene->AddActionToObj(spawner, obj);
 
     }
 

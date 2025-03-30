@@ -7,11 +7,13 @@
 #include <glm/vec4.hpp>
 #include "Scene.hpp"
 #include "cLightManager.h" // Include the light manager
-#include "LabAttackFactory.h"
+
 
 class BazeMazeCharacter;
 class MinotaurChar;
 class SoftBody;
+
+class LabAttackFactory;
 // Enum for different object types
 enum Direction {
     RIGHT,

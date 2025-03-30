@@ -83,6 +83,7 @@
 #include "aMirrorReflection.h"
 #include "BruteEnemy.h"
 #include "LabAttackFactory.h"
+#include "aPlayerShooting.h"
 
 // Core MGUI headers
 #include "imgui/imgui.h"          // Main MGUI header
@@ -920,6 +921,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
     LabAttackFactory* LAFactory = new LabAttackFactory();
     LAFactory->scene = scene;
+    LAFactory->maze = mazeGenerator;
     mazeGenerator->factory = LAFactory;
     screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
@@ -972,10 +974,13 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     
     Object* player = scene->GenerateMeshObjectsFromObject("", glm::vec3(20.f, 5.f, 7.f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
     aPlayerMovement* playerMovement = new aPlayerMovement();
+    aPlayerShooting* playerShooting = new aPlayerShooting();
+    playerShooting->factory = LAFactory;
     player->isTemporary = true;
   // aPlayerShooting* playerShooting = new aPlayerShooting();
 
     scene->AddActionToObj(playerMovement, player);
+    scene->AddActionToObj(playerShooting, player);
 
     waveEffect->player = player;
     mazeGenerator->player = player;
@@ -1012,7 +1017,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     BruteEnemy* bEnem2 = new BruteEnemy();
     bEnem2->maze = mazeGenerator;
     bEnem2->factory = LAFactory;
-    //scene->AddActionToObj(bEnem2, softObject);
+    scene->AddActionToObj(bEnem2, softObject);
 
     softObject->mesh->metal = 0.8f;
     softObject->mesh->smoothness = 0.7f;

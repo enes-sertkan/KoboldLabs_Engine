@@ -20,7 +20,7 @@ public:
     void reset() override { currentCooldown = 0.0f; }
 
 private:
-    float cooldown;
+    float cooldown=1.f;
     float bulletSpeed = 3.f;
     float currentCooldown = 0.0f;
 };

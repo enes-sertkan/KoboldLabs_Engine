@@ -27,7 +27,7 @@ public:
         }
 
         // Success if close enough to attack
-        return (glm::distance(agent->object->mesh->positionXYZ, playerPos) <= agent->attackRange);
+        return (glm::distance(agent->object->mesh->positionXYZ, playerPos) <= agent->attackRange-0.5f);
     }
 
    
