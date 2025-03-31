@@ -419,18 +419,18 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             break;
         }
     }
-    if (isControlD)
-    {
-        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-            SaveScene("SaveScene.txt");
-    }
+    //if (isControlD)
+    //{
+    //    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    //        SaveScene("SaveScene.txt");
+    //}
 
 
 }
 
-void SceneEditor::SaveScene(std::string name)
-{
-    fileManger->WriteSceneFile(scene, name);
-        
-}
+//void SceneEditor::SaveScene(std::string name)
+//{
+//    fileManger->WriteSceneFile(scene, name);
+//        
+//}
 

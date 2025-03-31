@@ -439,3 +439,92 @@ void KLFileManager::WriteSceneFile(const Scene* scene, std::string fileName) {
 }
 
 
+// For Imgui
+
+std::string KLFileManager::SerializeSceneToString(const Scene* scene)
+{
+    std::stringstream ss;
+
+    // Write header
+    ss << "<KoboldLabs>\n";
+    ss << "<SceneFile>\n";
+    ss << "<ObjectLoad-->\n";
+
+    // Write model files
+    for (const std::string& path : scene->modelPaths) {
+        ss << path << "\n";
+    }
+    ss << "<--ObjectLoad>\n";
+    ss << "<Scene-->\n\n";
+
+    // Write objects
+    for (const Object* object : scene->sceneObjects) {
+        if (object->isTemporary) continue;
+
+        ss << "<Object-->\n";
+        ss << "<Name-> " << object->name << "\n";
+        ss << "<Model-> " << object->mesh->uniqueFriendlyName << "\n";
+        ss << "<Tags->";
+        for (const std::string& tag : object->tags) {
+            ss << " " << tag;
+        }
+        ss << "\n";
+        ss << "<StaticCollision-> " << (object->isCollisionStatic ? "true" : "false") << "\n";
+        ss << "<Position-> " << object->startTranform->position.x << " "
+            << object->startTranform->position.y << " "
+            << object->startTranform->position.z << "\n";
+        ss << "<Rotation-> " << object->startTranform->rotation.x << " "
+            << object->startTranform->rotation.y << " "
+            << object->startTranform->rotation.z << "\n";
+        ss << "<Scale-> " << object->startTranform->scale.x << " "
+            << object->startTranform->scale.y << " "
+            << object->startTranform->scale.z << "\n";
+        ss << "<Visibility-> " << (object->mesh->bIsVisible ? "true" : "false") << "\n";
+        ss << "<Shading-> " << (!object->mesh->bDoNotLight ? "true" : "false") << "\n";
+        if (object->mesh->bOverrideObjectColour) {
+            ss << "<Color-> " << object->mesh->objectColourRGBA.r << " "
+                << object->mesh->objectColourRGBA.g << " "
+                << object->mesh->objectColourRGBA.b << "\n";
+        }
+        ss << "<--Object>\n\n";
+    }
+
+    // Write lights
+    for (int j = 0; j <= scene->lightManager->lastLightIndex; ++j) {
+        const cLightManager::sLight& light = scene->lightManager->theLights[j];
+        ss << "<Light-->\n";
+        ss << "<Position-> " << light.position.x << " "
+            << light.position.y << " "
+            << light.position.z << " "
+            << light.position.w << "\n";
+        ss << "<Diffuse-> " << light.diffuse.r << " "
+            << light.diffuse.g << " "
+            << light.diffuse.b << " "
+            << light.diffuse.a << "\n";
+        // ... continue with all light properties ...
+        ss << "<--Light>\n\n";
+    }
+
+    // Write camera data
+    for (const CameraPoint& cameraPoint : scene->cameraPoints) {
+        ss << "<Camera-->\n";
+        ss << "<Position-> " << cameraPoint.position.x << " "
+            << cameraPoint.position.y << " "
+            << cameraPoint.position.z << "\n";
+        ss << "<Rotation-> " << cameraPoint.rotation.x << " "
+            << cameraPoint.rotation.y << "\n";
+        ss << "<--Camera>\n\n";
+    }
+
+    ss << "<--Scene>\n";
+    ss << "</SceneFile>\n";
+    ss << "</KoboldLabs>\n";
+
+    return ss.str();
+}
+
+bool KLFileManager::CompareSceneToSavedData(const Scene* scene, const std::string& savedData)
+{
+    std::string currentData = SerializeSceneToString(scene);
+    return currentData == savedData;
+}

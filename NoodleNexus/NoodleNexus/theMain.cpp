@@ -85,6 +85,7 @@
 #include "LabAttackFactory.h"
 #include "aPlayerShooting.h"
 #include "aGrassCollider .h"
+#include "SceneEditor.h"
 
 
 // Core MGUI headers
@@ -109,6 +110,11 @@ cBasicTextureManager* g_pTextures = NULL;
 
 cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
+
+KLFileManager* fileMangerImgui = new KLFileManager();
+bool showExitPopup = false;
+bool isSceneSaved = true;
+std::string lastSavedData;
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
@@ -318,6 +324,37 @@ void ObjectPropertiesExample(Object* selectedObject)
 
     ImGui::End();
 }
+
+void SaveSceneImgui(Scene* scene, const std::string& name) {
+    if (!scene) {
+        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
+        return;
+    }
+
+    // Write scene to file
+    fileMangerImgui->WriteSceneFile(scene, name);
+
+    // Capture the current saved data for comparison
+    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
+    isSceneSaved = true;
+}
+
+bool HasUnsavedChanges(Scene* scene) {
+    if (lastSavedData.empty()) return true; // Assume unsaved if no data stored
+    std::string currentData = fileMangerImgui->SerializeSceneToString(scene);
+    return (currentData != lastSavedData);
+}
+
+void CheckForExit(SceneEditor* sceneEditor) {
+    if (glfwWindowShouldClose(sceneEditor->window)) {
+        if (HasUnsavedChanges(sceneEditor->scene)) {
+            showExitPopup = true;
+            glfwSetWindowShouldClose(sceneEditor->window, GLFW_FALSE);
+        }
+    }
+}
+
+
 void RenderDearImGui(SceneEditor* sceneEditor)
 {
     // Start the Dear ImGui frame
@@ -325,14 +362,76 @@ void RenderDearImGui(SceneEditor* sceneEditor)
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
+    // Check for GLFW close request
+    if (glfwWindowShouldClose(sceneEditor->window))
+    {
+        if (isSceneSaved)
+        {
+            // If saved, allow the window to close
+            return;
+        }
+        else
+        {
+            // If not saved, show popup and cancel the close request
+            showExitPopup = true;
+            glfwSetWindowShouldClose(sceneEditor->window, false);
+        }
+    }
+
     // Your GUI components
     SceneHierarchyExample(sceneEditor);
     ObjectPropertiesExample(sceneEditor->selectedObject);
+
+    ImGui::Begin("Scene Controls");
+
+    if (ImGui::Button("Save Scene")) // Save Scene button
+    {
+        SaveSceneImgui(sceneEditor->scene, "SaveScene.txt"); // Use the actual scene
+    }
+
+    if (ImGui::Button("Exit")) {
+        if (HasUnsavedChanges(sceneEditor->scene)) {
+            showExitPopup = true;
+        }
+        else {
+            glfwSetWindowShouldClose(sceneEditor->window, true);
+        }
+    }
+
+    ImGui::End(); // Close "Scene Controls" window
+
+    // Show confirmation popup if needed
+    if (showExitPopup)
+    {
+        ImGui::OpenPopup("Exit Confirmation");
+    }
+
+    if (ImGui::BeginPopupModal("Exit Confirmation", NULL, ImGuiWindowFlags_AlwaysAutoResize))
+    {
+        ImGui::Text("Are you sure you want to exit without saving?");
+        ImGui::Separator();
+
+        if (ImGui::Button("Yes, Exit"))
+        {
+            glfwSetWindowShouldClose(sceneEditor->window, true); // Close the window
+            ImGui::CloseCurrentPopup();
+            showExitPopup = false;
+        }
+        ImGui::SameLine();
+        if (ImGui::Button("Cancel"))
+        {
+            showExitPopup = false;
+            ImGui::CloseCurrentPopup();
+        }
+
+        ImGui::EndPopup();
+    }
 
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
+
 
 
 std::string g_floatToString(float theFloat)
@@ -1052,7 +1151,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
-
+    puddle->isActive = false;
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 
@@ -1908,7 +2007,7 @@ int main(void)
             //gridRenderer.Render(viewProjectionMatrix, cameraPosition);
         }
 
-
+        CheckForExit(sceneEditor);
         if (scene->isFlyCamera)
         RenderDearImGui(sceneEditor);
 

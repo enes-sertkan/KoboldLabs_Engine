@@ -3,6 +3,8 @@
 
 #include "cVAOManager/cVAOManager.h"
 #include <string>;
+#include <sstream> 
+#include <fstream> 
 #include "Scene.hpp";
 
 class KLFileManager
@@ -13,4 +15,7 @@ public:
 
 	Scene* ReadSceneFile(std::string filePath);
 	void WriteSceneFile(const Scene* scene, std::string fileName);
+
+	std::string SerializeSceneToString(const Scene* scene);
+	bool CompareSceneToSavedData(const Scene* scene, const std::string& savedData);
 };
