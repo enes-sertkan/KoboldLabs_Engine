@@ -19,5 +19,5 @@ private:
     std::vector<glm::vec2> m_CurrentPath;
     int m_CurrentPathPoint = 0;
     bool m_ReachedFinalPoint = false;
-    const float REACH_DISTANCE = 0.1f; // Grid cell proximity
+    const float REACH_DISTANCE = 0.5f; // Grid cell proximity
 };

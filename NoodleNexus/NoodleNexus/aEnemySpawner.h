@@ -6,7 +6,7 @@
 class aEnemySpawner : public Action {
 private:
     float spawnInterval = 8.0f; // Seconds between spawns
-    float timeSinceLastSpawn = .0f;
+    float timeSinceLastSpawn = 0.f;
     int maxEnemies = 5;        // Maximum concurrent enemies
     int currentEnemies = 0;
 

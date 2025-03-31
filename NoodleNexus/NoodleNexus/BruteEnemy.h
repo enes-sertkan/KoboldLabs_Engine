@@ -8,7 +8,7 @@
 class BruteEnemy : public Agent {
 public:
     BruteEnemy() {
-        speed = 4.f;
+        speed = 8.f;
        // attackDamage = 30.0f;
         attackRange = 10.f;
         health = 200;

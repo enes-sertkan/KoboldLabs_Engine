@@ -28,7 +28,7 @@ public:
 	{
 		glm::vec2 mazePosition = maze->WorldToGrid(object->mesh->positionXYZ);
 		
-		return glm::vec3(mazePosition.x, 0, mazePosition.y);
+		return glm::vec3(mazePosition.x, mazePosition.y,0);
 	}
 
 	bool Move(CharDirection direction)

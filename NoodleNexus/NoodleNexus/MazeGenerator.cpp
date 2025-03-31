@@ -179,7 +179,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         break;
     case RIGHT:
         position.x += scale * 5.f/ 2.0f;
-        position.z -= scale * 5.f / 2.0f;
+        position.z -= scale * 5.1f / 2.0f;
         rotation.y = 90.f;
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         texture = "castle_element_05_BaseColour.bmp";
@@ -187,8 +187,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
        textureNM = "castle_element_05_NormalGL.bmp";
         break;
     case LEFT:
-        position.x -= scale * 3.9f / 2.0f;
-        position.z -= scale * 5.0f / 2.0f;
+        position.x -= scale * 3.f / 2.0f;
+        position.z -= scale * 5.05f / 2.0f;
         color = glm::vec4(0.3f, 0.6f, 0.3f, 1.0f);
         rotation.y = 90.f;
         texture = "castle_element_05_BaseColour.bmp";
@@ -197,7 +197,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         break;
     case UP:
         position.z += scale * 3.9f / 2.0f;
-        position.x += scale * 5.0f / 2.0f;
+        position.x += scale * 4.f / 2.0f;
        // rotation.y = 180.f;
        texture = "castle_element_05_BaseColour.bmp";
         textureST = "castle_element_05_MetalSmoothness.bmp";
@@ -206,7 +206,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         break;
     case DOWN:
         position.z -= scale * 5.f / 2.0f;
-        position.x += scale * 5.f / 2.0f;
+        position.x += scale * 4.f / 2.0f;
         texture = "castle_element_05_BaseColour.bmp";
        textureST = "castle_element_05_MetalSmoothness.bmp";
       textureNM = "castle_element_05_NormalGL.bmp";
@@ -320,6 +320,15 @@ bool MazeGenerator::IsWall(int x, int y)  {
     if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
         return true;
     return maze[x][y] == 'X';
+}
+
+int MazeGenerator::GetRows()
+{
+    return maze.size();
+}
+int MazeGenerator::GetCols()
+{
+    return maze[0].size();
 }
 
 bool MazeGenerator::IsFloor(int x, int y)

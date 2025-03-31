@@ -4,7 +4,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
-#include <unordered_set> // Added for closed set
+#include <unordered_set>
 #include <iostream>
 
 class StupidPathFinder {
@@ -35,7 +35,7 @@ public:
         auto cmp = [](Node* left, Node* right) { return *left < *right; };
         std::priority_queue<Node*, std::vector<Node*>, decltype(cmp)> openSet(cmp);
         std::unordered_map<glm::vec2, Node*, vec2Hash> allNodes;
-        std::unordered_set<glm::vec2, vec2Hash> closedSet; // Added closed set
+        std::unordered_set<glm::vec2, vec2Hash> closedSet;
 
         Node* startNode = new Node{ startPos, 0, heuristic(startPos, targetPos), nullptr };
         openSet.push(startNode);
@@ -45,21 +45,52 @@ public:
             Node* current = openSet.top();
             openSet.pop();
 
-            // Skip if already processed
             if (closedSet.find(current->position) != closedSet.end()) {
                 continue;
             }
 
-            closedSet.insert(current->position); // Mark as processed
+            closedSet.insert(current->position);
             pathsChecked++;
 
             if (current->position == targetPos) {
                 std::vector<glm::vec2> path;
-                while (current != nullptr) {
-                    path.push_back(current->position);
-                    current = current->parent;
+                Node* pathNode = current;
+                while (pathNode != nullptr) {
+                    path.push_back(pathNode->position);
+                    pathNode = pathNode->parent;
                 }
                 std::reverse(path.begin(), path.end());
+
+                // Print the maze with the path
+                std::cout << "Maze with path:\n";
+
+                int rows = maze->GetRows();
+                int cols = maze->GetCols();
+
+                std::unordered_set<glm::vec2, vec2Hash> pathSet(path.begin(), path.end());
+
+                for (int y = 0; y < rows; ++y) {
+                    for (int x = 0; x < cols; ++x) {
+                        glm::vec2 pos(x, y);
+                        if (pos == startPos) {
+                            std::cout << 'A';
+                        }
+                        else if (pos == targetPos) {
+                            std::cout << 'T';
+                        }
+                        else if (pathSet.find(pos) != pathSet.end()) {
+                            std::cout << '+';
+                        }
+                        else if (maze->IsWall(y, x)) {
+                            std::cout << '#';
+                        }
+                        else {
+                            std::cout << ' ';
+                        }
+                    }
+                    std::cout << '\n';
+                }
+                std::cout << std::endl;
 
                 // Cleanup
                 for (auto& pair : allNodes) delete pair.second;
@@ -68,7 +99,6 @@ public:
                 return path;
             }
 
-            // Explore neighbors
             for (glm::vec2 dir : movementDirections) {
                 glm::vec2 neighborPos = current->position + dir;
 
@@ -79,27 +109,18 @@ public:
                 auto it = allNodes.find(neighborPos);
 
                 if (it == allNodes.end()) {
-                    neighborNode = new Node{
-                        neighborPos,
-                        newCost,
-                        heuristic(neighborPos, targetPos),
-                        current
-                    };
+                    neighborNode = new Node{ neighborPos, newCost, heuristic(neighborPos, targetPos), current };
                     allNodes[neighborPos] = neighborNode;
                     openSet.push(neighborNode);
                 }
                 else if (newCost < it->second->cost) {
                     it->second->cost = newCost;
                     it->second->parent = current;
-                    openSet.push(it->second); // Re-add to update priority
+                    openSet.push(it->second);
                 }
-
-                // If neighbor is in closedSet but a better path is found, 
-                // A* with consistent heuristic doesn't need to re-open it.
             }
         }
 
-        // Cleanup if no path found
         for (auto& pair : allNodes) delete pair.second;
         std::cout << "A* tested " << pathsChecked << " nodes (no path found)" << std::endl;
         return {};

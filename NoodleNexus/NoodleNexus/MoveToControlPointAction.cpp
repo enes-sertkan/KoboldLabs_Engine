@@ -1,6 +1,6 @@
 #include "MoveToControlPointAction.h"
 #include "aAgent.h"
-
+#include <iostream>
 bool MoveToControlPointAction::checkProceduralPrecondition(Agent* agent) {
     // Only valid if we have control points to visit
     return !agent->controlPoints.empty();
@@ -19,7 +19,7 @@ bool MoveToControlPointAction::perform(Agent* agent, float deltaTime) {
         agent->pathFinder->maze = agent->maze;
         glm::vec3 mazePos = agent->GetMazePosition();
 
-
+        std::cout << "POS: " << agent->object->mesh->positionXYZ.x << " " << agent->object->mesh->positionXYZ.y << " " << agent->object->mesh->positionXYZ.z << " MAZE POS: " << mazePos.x << " " << mazePos.y << " " << mazePos.z << std::endl;
         m_CurrentPath = agent->pathFinder->FindPath(mazePos, target);
 
         //if (m_CurrentPath.empty()) {
