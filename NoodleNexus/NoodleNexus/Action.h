@@ -18,6 +18,10 @@ public:
 		//printf("WOW, you are UPDATING\n");
 	}
 
+	virtual void OnDestroy()
+	{
+	
+	}
 };
 
 

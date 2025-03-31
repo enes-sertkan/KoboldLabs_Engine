@@ -130,12 +130,19 @@ float hash(vec2 uv) {
 }
 // Compute shell color with randomness based on the hash value (no need for randomValue function)
 vec3 computeShellColor(in vec2 uv, in float shellHeight, in sampler2D baseTex, in sampler2D shellTex, float uvOffsetFactor) {
-    uv = uv*900.f;
+    uv = uv*250.f;
 
-     float   maxEffect = length(fvertexWorldLocation.xz - colliders[0].position.xz);
 
-     if (maxEffect<0.2)
-        discard;
+        for (int i = 0; i < 20; i++) {
+        if (!colliders[i].isOn)
+            continue;
+
+        float   maxEffect = length(fvertexWorldLocation.xz - colliders[i].position.xz);
+
+         if (maxEffect<colliders[i].radius/2)
+            discard;
+      }
+  
 
 
      //   if (maxEffect<0.5)

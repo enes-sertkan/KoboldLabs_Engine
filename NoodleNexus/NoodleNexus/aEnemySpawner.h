@@ -5,9 +5,9 @@
 
 class aEnemySpawner : public Action {
 private:
-    float spawnInterval = 8.0f; // Seconds between spawns
+    float spawnInterval = 1.0f; // Seconds between spawns
     float timeSinceLastSpawn = 0.f;
-    int maxEnemies = 5;        // Maximum concurrent enemies
+    int maxEnemies = 10;        // Maximum concurrent enemies
     int currentEnemies = 0;
 
 public:
@@ -19,9 +19,12 @@ public:
 
     virtual void Update() {
         if (!factory) return;
+        float delta = object->scene->deltaTime;
+            if (delta > 0.5)
+                delta = 0.f;
 
-        timeSinceLastSpawn += object->scene->deltaTime;
-
+        timeSinceLastSpawn += delta;
+     
         if (timeSinceLastSpawn >= spawnInterval && factory->m_creepPool.size() < maxEnemies) {
             SpawnEnemy();
             timeSinceLastSpawn = 0.0f;

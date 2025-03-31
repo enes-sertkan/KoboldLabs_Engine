@@ -97,61 +97,54 @@ vec3 extrudeShellLayer(vec3 pos, vec3 normal,
     vec3 bestDir = vec3(0.0);
     
     for (int i = 0; i < 20; i++) {
+       if (effectiveHeight<0.5)
+          break;
         if (!colliders[i].isOn)
             continue;
+  
+        float d = length(pos.xz - colliders[i].position.xz);
+        float effect = d;//0.0;
 
-        float d = length(pos - colliders[i].position);
-        float effect = 0.0;
+          if (effect > 3.0)
+              continue;
 
-        if (d < colliders[i].radius) {
-            effect = 1.0;
-        } else if (d < colliders[i].blendingRadius) {
-            effect = 1.0 - (d - colliders[i].radius) / (colliders[i].blendingRadius - colliders[i].radius);
-        }
+       // if (d < colliders[i].radius) {
+       //     effect = 1.0;
+       // } else if (d < colliders[i].blendingRadius) {
+        //    effect = 1.0 - (d - colliders[i].radius) / (colliders[i].blendingRadius - colliders[i].radius);
+      //  }
 
-        if (effect > maxEffect) {
-            maxEffect = effect;
-            bestDir = normalize(pos - colliders[i].position);
-        }
-    }
+
+
+
+     bestDir = normalize(colliders[i].position-pos);  
+     bestDir.y*=0;
+     bestDir.x*=1.3;
+     bestDir = normalize(  bestDir);
+    float colliderPower =  pow((effectiveHeight-0.5)*2, 8);
+    vec3 colliderOffset = bestDir * 0.03* colliderPower/effect;
+    colliderOffset.y = 0;
+    
+      
+
+
+    // Apply collider effect 
+  
+     updatedPos -= colliderOffset;  // Add randomness
+
+      if (effect < 0.5)
+        updatedPos -= normalize(normal) * shellLength * shellHeight*0.2*(0.5-maxEffect);
+    
  
-    maxEffect = length(pos.xz - colliders[0].position.xz);
-   maxEffect=maxEffect;
-  // if (maxEffect<0.1)
-  // maxEffect = -1;
-
-    bestDir = normalize(colliders[0].position-pos);
-         bestDir.y*=0;
-        bestDir.x*=1.3;
-
-        // if ((length(bestDir) < 0.001))
-    //     bestDir.x+=0.15;
-       
-       
-       bestDir = normalize(  bestDir);
 
     
 
 
-     if (effectiveHeight>0.5)
-   {
-     float colliderPower =  pow((effectiveHeight-0.5)*2, 8);
-   
-    vec3 colliderOffset = bestDir * 0.03* colliderPower/maxEffect;
-    colliderOffset.y = 0;
 
-    // Apply collider effect with random variation
-    if (maxEffect < 3.0)
-     { updatedPos -= colliderOffset;  // Add randomness
-
-      if (maxEffect < 0.5)
-        updatedPos -= normalize(normal) * shellLength * shellHeight*0.2*(0.5-maxEffect);
       //    updatedPos.y -= 0.007*effectiveHeight/maxEffect;
-       }
-  // else if (maxEffect < 15.0) 
-   //   updatedPos = bestDir * 0.2 * effectiveHeight/maxEffect;
+       
 
-    // Apply wind effect with per-vertex variation
+
 
  
 }

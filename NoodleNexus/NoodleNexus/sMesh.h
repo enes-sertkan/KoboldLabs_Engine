@@ -105,6 +105,17 @@ struct sMesh
 		return -1; // No available collider slot
 	}
 
+
+	bool RemoveCollider(unsigned int index)
+	{
+		if (index < 20 && stColliders[index].isOn)
+		{
+			stColliders[index].isOn = false;
+			return true;
+		}
+		return false;
+	}
+
 	bool DestroyCollider(unsigned int index)
 	{
 		if (index < 20)

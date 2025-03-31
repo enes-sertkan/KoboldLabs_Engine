@@ -212,7 +212,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
       textureNM = "castle_element_05_NormalGL.bmp";
         break;
     case BRUTEENEM:
-        position.y += 3.f;
+        position.y += 2.f;
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;

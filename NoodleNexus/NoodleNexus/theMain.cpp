@@ -84,12 +84,15 @@
 #include "BruteEnemy.h"
 #include "LabAttackFactory.h"
 #include "aPlayerShooting.h"
+#include "aGrassCollider .h"
+
 
 // Core MGUI headers
 #include "imgui/imgui.h"          // Main MGUI header
 #include "imgui/imconfig.h"          // Main MGUI header
 #include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
+
 
 
  Scene* currentScene=nullptr;
@@ -172,63 +175,149 @@ bool IsMouseOverImGui()
     ImGuiIO& io = ImGui::GetIO();
     return io.WantCaptureMouse; // True when mouse is over any ImGui window
 }
-
-void ObjectTransformExample(Object* selectedObject)
+void ObjectPropertiesExample(Object* selectedObject)
 {
-    if (!selectedObject) return;
+    if (!selectedObject || !selectedObject->mesh) return;
 
-    ImGui::Begin("Transform");
+    ImGui::Begin("Mesh Properties");
 
-
-    // Position
-    ImGui::DragFloat3("Position",
-        glm::value_ptr(selectedObject->startTranform->position),
-        0.05f);
-
-
-    if (ImGui::DragFloat3("Rotation",
-        glm::value_ptr(selectedObject->startTranform->rotation),
-        0.5f))
+    // Basic Transform Controls
+    if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        selectedObject->startTranform->rotation =
-            glm::radians(selectedObject->startTranform->rotation);
-    }
-    
-    ImGui::DragFloat("Scale",
-        &selectedObject->startTranform->scale.x,
-        0.1f, 0.01f, 100.0f);  // Advanced controls here
-
-
-    if (ImGui::CollapsingHeader("Current Position"))
-    {
-        // Position
         ImGui::DragFloat3("Position",
-            glm::value_ptr(selectedObject->mesh->positionXYZ),
-            0.1f);
+            glm::value_ptr(selectedObject->startTranform->position),
+            0.05f);
 
-        // Rotation (convert radians to degrees for display)
-        glm::vec3 rotationDegrees = glm::degrees(
-            selectedObject->mesh->rotationEulerXYZ
-        );
 
         if (ImGui::DragFloat3("Rotation",
-            glm::value_ptr(rotationDegrees),
-            1.0f))
+            glm::value_ptr(selectedObject->startTranform->rotation),
+            0.5f))
         {
-            selectedObject->mesh->rotationEulerXYZ =
-                glm::radians(rotationDegrees);
+            selectedObject->startTranform->rotation =
+                glm::radians(selectedObject->startTranform->rotation);
         }
 
-        // Scale
         ImGui::DragFloat("Scale",
-            &selectedObject->mesh->uniformScale,
+            &selectedObject->startTranform->scale.x,
             0.1f, 0.01f, 100.0f);  // Advanced controls here
+
+
+        if (ImGui::CollapsingHeader("Current Position"))
+        {
+            // Position
+            ImGui::DragFloat3("Position",
+                glm::value_ptr(selectedObject->mesh->positionXYZ),
+                0.1f);
+
+            // Rotation (convert radians to degrees for display)
+            glm::vec3 rotationDegrees = glm::degrees(
+                selectedObject->mesh->rotationEulerXYZ
+            );
+
+            if (ImGui::DragFloat3("Rotation",
+                glm::value_ptr(rotationDegrees),
+                1.0f))
+            {
+                selectedObject->mesh->rotationEulerXYZ =
+                    glm::radians(rotationDegrees);
+            }
+
+            // Scale
+            ImGui::DragFloat("Scale",
+                &selectedObject->mesh->uniformScale,
+                0.1f, 0.01f, 100.0f);  // Advanced controls here
+        }
+
+
     }
-  
+
+    // Material Properties
+    if (ImGui::CollapsingHeader("Material Settings"))
+    {
+        ImGui::ColorEdit4("Object Color", glm::value_ptr(selectedObject->mesh->objectColourRGBA));
+        ImGui::Checkbox("Override Color", &selectedObject->mesh->bOverrideObjectColour);
+        ImGui::DragFloat("Transparency", &selectedObject->mesh->transperency, 0.01f, 0.0f, 1.0f);
+        ImGui::DragFloat("Metalness", &selectedObject->mesh->metal, 0.01f, 0.0f, 1.0f);
+        ImGui::DragFloat("Smoothness", &selectedObject->mesh->smoothness, 0.01f, 0.0f, 1.0f);
+    }
+
+    // Texture Management
+    if (ImGui::CollapsingHeader("Textures"))
+    {
+        for (int i = 0; i < sMesh::MAX_NUM_TEXTURES; i++)
+        {
+            ImGui::PushID(i);
+            ImGui::Text("Texture Slot %d", i);
+           // ImGui::InputText("Path", selectedObject->mesh->textures[i]);
+            ImGui::DragFloat("Blend Ratio", &selectedObject->mesh->blendRatio[i], 0.01f, 0.0f, 1.0f);
+            ImGui::Combo("Fill Type", &selectedObject->mesh->textureFillType[i], "Repeat\0Clamp\0Mirror\0");
+            ImGui::Separator();
+            ImGui::PopID();
+        }
+    }
+
+    // Shell Texturing (STData)
+    if (ImGui::CollapsingHeader("Shell Texturing"))
+    {
+        sSTData& st = selectedObject->mesh->stData;
+        ImGui::Checkbox("Enable Shell Texturing", &selectedObject->mesh->shellTexturing);
+
+        ImGui::DragInt("Shell Count", &st.shellCount, 1, 1, 1000);
+        ImGui::DragFloat("Vertical Tightening", &st.verticalTightening, 0.01f, 0.0f, 1.0f);
+        ImGui::DragFloat("Vertical Exponent", &st.verticalExponent, 0.01f, 0.0f, 5.0f);
+        ImGui::DragFloat("Shell Length", &st.shellLength, 0.01f, 0.0f, 2.0f);
+    }
+
+    // Collider Management
+    if (ImGui::CollapsingHeader("Colliders"))
+    {
+        // Add new collider
+        if (ImGui::Button("Add Collider"))
+        {
+            int newIndex = selectedObject->mesh->CreateCollider(
+                selectedObject->mesh->positionXYZ
+            );
+            if (newIndex == -1)
+                ImGui::TextColored(ImVec4(1, 0, 0, 1), "No free collider slots!");
+        }
+
+        // List existing colliders
+        for (int i = 0; i < 20; i++)
+        {
+            sSTCollider& col = selectedObject->mesh->stColliders[i];
+            if (!col.isOn) continue;
+
+            ImGui::PushID(i);
+            if (ImGui::TreeNodeEx(("Collider " + std::to_string(i)).c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+            {
+                ImGui::DragFloat3("Position", glm::value_ptr(col.position), 0.1f);
+                ImGui::DragFloat("Radius", &col.radius, 0.01f, 0.01f, 10.0f);
+                ImGui::DragFloat("Blend Radius", &col.blendingRadius, 0.01f, 0.0f, 10.0f);
+
+                if (ImGui::Button("Remove"))
+                {
+                    selectedObject->mesh->RemoveCollider(i);
+                    ImGui::TreePop();
+                    ImGui::PopID();
+                    break;
+                }
+
+                ImGui::TreePop();
+            }
+            ImGui::PopID();
+        }
+    }
+
+    // Special Effects
+    if (ImGui::CollapsingHeader("Special Effects"))
+    {
+        ImGui::DragFloat("Zoom Power", &selectedObject->mesh->zoomPower, 0.01f, 0.0f, 5.0f);
+        ImGui::DragFloat("Chromatic Power", &selectedObject->mesh->chromaticPower, 0.01f, 0.0f, 2.0f);
+        ImGui::Checkbox("Draw Both Faces", &selectedObject->mesh->drawBothFaces);
+    }
 
     ImGui::End();
 }
-
 void RenderDearImGui(SceneEditor* sceneEditor)
 {
     // Start the Dear ImGui frame
@@ -238,7 +327,7 @@ void RenderDearImGui(SceneEditor* sceneEditor)
 
     // Your GUI components
     SceneHierarchyExample(sceneEditor);
-    ObjectTransformExample(sceneEditor->selectedObject);
+    ObjectPropertiesExample(sceneEditor->selectedObject);
 
     // Render ImGui
     ImGui::Render();
@@ -920,6 +1009,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
     LabAttackFactory* LAFactory = new LabAttackFactory();
+
     LAFactory->scene = scene;
     LAFactory->maze = mazeGenerator;
     mazeGenerator->factory = LAFactory;
@@ -954,10 +1044,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(48.f,3.2f,23.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(48.f,3.2f,23.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
-   
-
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),5.5f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),5.5f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+    LAFactory->grass = puddle;
+    puddle->name = "GRASS";
     underpuddle->isTemporary = true;
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
@@ -975,12 +1065,17 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* player = scene->GenerateMeshObjectsFromObject("", glm::vec3(20.f, 5.f, 7.f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
     aPlayerMovement* playerMovement = new aPlayerMovement();
     aPlayerShooting* playerShooting = new aPlayerShooting();
+    aGrassCollider* playerGrassCollider = new aGrassCollider();
+    playerGrassCollider->SetGrass(puddle);
+    playerGrassCollider->colliderRadius = 0.4f;
+
     playerShooting->factory = LAFactory;
     player->isTemporary = true;
   // aPlayerShooting* playerShooting = new aPlayerShooting();
-
+    scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);
     scene->AddActionToObj(playerShooting, player);
+
 
     waveEffect->player = player;
     mazeGenerator->player = player;

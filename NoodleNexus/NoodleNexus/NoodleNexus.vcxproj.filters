@@ -293,6 +293,18 @@
     <ClCompile Include="GOAPPlanner.cpp">
       <Filter>GOAP</Filter>
     </ClCompile>
+    <ClCompile Include="aEnemySpawner.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LabAttackFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveToControlPointAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShootAtPlayerAction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -534,6 +546,24 @@
     </ClInclude>
     <ClInclude Include="GOAPPlanner.h">
       <Filter>GOAP</Filter>
+    </ClInclude>
+    <ClInclude Include="aBullet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayerShooting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LabAttackFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveToControlPointAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootAtPlayerAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aGrassCollider .h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

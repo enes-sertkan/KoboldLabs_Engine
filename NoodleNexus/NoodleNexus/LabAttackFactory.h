@@ -8,6 +8,7 @@
 #include "sObject.h"
 #include "aProjectileMovement.hpp"
 #include "MazeGenerator.hpp"
+#include "aGrassCollider .h"
 
 class LabAttackFactory {
 public:
@@ -18,6 +19,7 @@ public:
         int playerBulletPoolSize = 20, int enemyBulletPoolSize = 20);
     ~LabAttackFactory();
 
+    Object* grass = nullptr;
 
 
     Scene* scene = nullptr;

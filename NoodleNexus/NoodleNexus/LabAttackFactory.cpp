@@ -83,9 +83,18 @@ LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int s
 Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
 {
     
-            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 1.2f, glm::vec3(0.f), true, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.4f, glm::vec3(0.f), true, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
         
             enemy->isTemporary = true;
+        
+            
+            if (grass != nullptr)
+            {
+                aGrassCollider* grassCollider = new aGrassCollider();
+                grassCollider->SetGrass(grass);
+                scene->AddActionToObj(grassCollider, enemy);
+            }
+            
             BruteEnemy* brut = new BruteEnemy();
             brut->maze = maze;
             brut->factory = this;
@@ -93,6 +102,9 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
             scene->AddActionToObj(brut, enemy);
             brut->Start();
             m_creepPool.push_back(enemy);
+
+   
+
             return enemy;
 
 }

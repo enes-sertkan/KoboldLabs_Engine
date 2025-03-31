@@ -23,11 +23,11 @@ public:
 
     virtual void Start() override
     {
-        if (player)
+     /*   if (player)
         {
             lastPlayerPos = player->mesh->positionXYZ;
             colliderID = object->mesh->CreateCollider(player->mesh->positionXYZ, 5.f, 10.f);
-        }
+        }*/
         timeSinceLastWave = waveSpawnInterval;
        
 
@@ -45,7 +45,7 @@ public:
         glm::vec2 uvPos = CalculateUV(currentPos, object->mesh->positionXYZ,
             glm::vec3(0, object->mesh->rotationEulerXYZ.y, 0),
             planeScale, offset);
-        object->mesh->UpdateColliderPosition(colliderID, player->mesh->positionXYZ);
+       // object->mesh->UpdateColliderPosition(colliderID, player->mesh->positionXYZ);
 
 
 

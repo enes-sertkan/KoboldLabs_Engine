@@ -25,7 +25,7 @@ public:
     std::unordered_map<std::string, bool> goal; // Current goal (e.g., {"playerInAttackRange", true})
 
     float attackRange = 0;
-    float playerDetectionRange = 15.f;
+    float playerDetectionRange = 5.f;
 
     // Override from BazeMazeCharacter
     void Start() override {
