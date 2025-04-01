@@ -17,14 +17,14 @@ public:
 
     virtual void Update() {
         // 1. Handle enemy collisions
-        std::vector<Object*>::iterator it = factory->m_creepPool.begin();
+        std::vector<BruteEnemy*>::iterator it = factory->m_creepPool.begin();
         while (it != factory->m_creepPool.end()) {
-            Object* enemy = *it;
-            float distance = glm::distance(enemy->mesh->positionXYZ, object->mesh->positionXYZ);
+            BruteEnemy* enemy = *it;
+            float distance = glm::distance(enemy->object->mesh->positionXYZ, object->mesh->positionXYZ);
 
             if (distance < 2.0f) {
-                it = factory->m_creepPool.erase(it);
-                enemy->Destroy();
+            
+                enemy->Damage(2);
                 object->Destroy(); // Destroy bullet on hit
                 return; // Exit early since bullet is destroyed
             }

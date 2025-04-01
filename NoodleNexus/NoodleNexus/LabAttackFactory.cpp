@@ -102,7 +102,7 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
         
             scene->AddActionToObj(brut, enemy);
             brut->Start();
-            m_creepPool.push_back(enemy);
+            m_creepPool.push_back(brut);
 
    
 
@@ -146,7 +146,7 @@ void LabAttackFactory::Start()
 
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.6f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.2f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 

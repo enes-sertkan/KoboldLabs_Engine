@@ -27,8 +27,13 @@ public:
     float attackRange = 0;
     float playerDetectionRange = 5.f;
 
+    float health;
+    float maxHealth=10;
+
+
     // Override from BazeMazeCharacter
     void Start() override {
+        health = maxHealth;
         for (glm::vec2 CP : maze->controlPoints)
         {
             controlPoints.push(CP);
@@ -63,6 +68,23 @@ public:
 
     }
 
+    void Damage(int damage)
+    {
+        health -= damage;
+        OnDamage(damage);
+        if (health <= 0)
+            Death();
+    }
+
+    virtual void OnDamage(int damage)
+    {
+
+    }
+
+    virtual void Death()
+    {
+        object->Destroy();
+    }
 
     bool IsPlayerInRange()  {
         float dist = glm::distance(object->mesh->positionXYZ,

@@ -28,4 +28,16 @@ public:
         worldState["playerVisible"] = (true);
         worldState["playerInRange"] = (glm::distance(object->mesh->positionXYZ, maze->player->mesh->positionXYZ) <= attackRange);
     }
+
+    void OnDamage(int damage) override
+    {
+        object->mesh->objectColourRGBA = glm::vec4((maxHealth - health) / maxHealth,0.2,  health / maxHealth, 1.f);
+    }
+
+    virtual void Death() override
+    {
+        std::vector<BruteEnemy*>::iterator it = std::find(factory->m_creepPool.begin(), factory->m_creepPool.end(), this);
+        factory->m_creepPool.erase(it);
+        object->Destroy();
+    }
 };

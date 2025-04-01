@@ -11,7 +11,9 @@
 #include "aGrassCollider .h"
 #include "TurretConfig.h"
 
+
 class Turret;
+class BruteEnemy;
 
 class LabAttackFactory {
 public:
@@ -56,7 +58,7 @@ public:
     std::vector<cTurretNeck*>         turretNecks;
     std::vector<cTurretBody*>         turretBodies;
 
-    std::vector<Object*>         m_creepPool;
+    std::vector<BruteEnemy*>         m_creepPool;
     std::vector<Object*>       m_avoiderPool;
     std::vector<Object*>       m_shooterPool;
     std::vector<Object*>      m_wandererPool;

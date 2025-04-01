@@ -59,7 +59,7 @@ public:
                 shootDir = glm::normalize(shootDir);
 
                 // Define the bullet speed (adjust the magnitude as needed).
-                glm::vec3 bulletSpeed = shootDir * 150.0f;  // Example: 50 units per second
+                glm::vec3 bulletSpeed = shootDir * 40.0f;  // Example: 50 units per second
 
                 // Optionally, offset the spawn position in the shooting direction to avoid immediate collisions.
                 glm::vec3 spawnPos = playerPos + shootDir * 1.0f;

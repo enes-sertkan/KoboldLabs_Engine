@@ -1915,7 +1915,7 @@ int main(void)
 
 //   PREPARING SOMETHING ELSE (TODO: Try to put it away into functions)
 //   ------------------------
-
+    std::cout << "Textures Load Start" << std::endl;
 
     glUseProgram(program);
 
