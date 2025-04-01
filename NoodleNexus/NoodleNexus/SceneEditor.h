@@ -23,7 +23,9 @@ public:
 
 	std::string currentFilename = "SaveScene.txt";
 	bool showSaveAsPopup = false;
+	bool showLoadScenePopup = false;
 	char newFilenameBuffer[256] = "SaveScene.txt";
+	char loadFilenameBuffer[256] = "NewScene.txt";
 
 	Object* selectedObject = nullptr;
 
@@ -34,9 +36,7 @@ public:
 	Object* selectBox;
 
 	cLightManager::sLight* PickFirstLight();
-
-
-		cLightManager::sLight* PickNextLight();
+	cLightManager::sLight* PickNextLight();
 
 
 	bool isEditing;

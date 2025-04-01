@@ -326,17 +326,14 @@ void ObjectPropertiesExample(Object* selectedObject)
 
 
 //IMGUI HELL
-void SaveSceneImgui(Scene* scene, const std::string& name) {
-    if (!scene) {
-        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
+void SaveSceneImgui(SceneEditor* sceneEditor, const std::string& name) {
+    if (!sceneEditor || !sceneEditor->fileManger || !sceneEditor->scene) {
+        std::cerr << "Error: Invalid scene, editor, or file manager!" << std::endl;
         return;
     }
 
-    // Write scene to file
-    fileMangerImgui->WriteSceneFile(scene, name);
-
-    // Capture the current saved data for comparison
-    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
+    sceneEditor->fileManger->WriteSceneFile(sceneEditor->scene, name);
+    lastSavedData = sceneEditor->fileManger->SerializeSceneToString(sceneEditor->scene);
     isSceneSaved = true;
 }
 
@@ -378,7 +375,7 @@ void SaveSceneButton(SceneEditor* sceneEditor) {
 
     if (ImGui::Button("Save Scene")) // Save Scene button
     {
-        SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename); // Use the actual scene
+        SaveSceneImgui(sceneEditor, sceneEditor->currentFilename); // Use the actual scene
     }
 
     if (ImGui::Button("Exit")) {
@@ -438,7 +435,7 @@ void ShowSaveAsPopup(SceneEditor* sceneEditor) {
         // Save button
         if (ImGui::Button("Save")) {
             sceneEditor->currentFilename = sceneEditor->newFilenameBuffer;
-            SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename);
+            SaveSceneImgui(sceneEditor, sceneEditor->currentFilename);
             sceneEditor->showSaveAsPopup = false;
             ImGui::CloseCurrentPopup();
         }
@@ -455,6 +452,60 @@ void ShowSaveAsPopup(SceneEditor* sceneEditor) {
     }
 }
 
+// ---------------------------
+// Implement Load Scene later
+// ---------------------------
+
+//void LoadSceneImgui(SceneEditor* sceneEditor, const std::string& filename) {
+//    if (!sceneEditor || !sceneEditor->fileManger) {
+//        std::cerr << "Error: Invalid scene or file manager!" << std::endl;
+//        return;
+//    }
+//
+//    Scene* newScene = sceneEditor->fileManger->ReadSceneFile(filename);
+//    if (newScene) {
+//        delete sceneEditor->scene;       // Clean up old scene
+//        sceneEditor->scene = newScene;
+//        sceneEditor->currentFilename = filename;
+//        std::cout << "Scene loaded: " << filename << std::endl;
+//    }
+//    else {
+//        std::cerr << "Failed to load scene: " << filename << std::endl;
+//    }
+//}
+//
+//void ShowLoadScenePopup(SceneEditor* sceneEditor) {
+//    if (sceneEditor->showLoadScenePopup) {
+//        ImGui::OpenPopup("Load Scene");
+//    }
+//
+//    // Center the popup
+//    ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+//    ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+//
+//    if (ImGui::BeginPopupModal("Load Scene", NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+//        // Text input for filename
+//        ImGui::InputText("Scene File", sceneEditor->loadFilenameBuffer, IM_ARRAYSIZE(sceneEditor->loadFilenameBuffer));
+//
+//        // Load button
+//        if (ImGui::Button("Load")) {
+//            LoadSceneImgui(sceneEditor, sceneEditor->loadFilenameBuffer);
+//            sceneEditor->showLoadScenePopup = false;
+//            ImGui::CloseCurrentPopup();
+//        }
+//
+//        ImGui::SameLine();
+//
+//        // Cancel button
+//        if (ImGui::Button("Cancel")) {
+//            sceneEditor->showLoadScenePopup = false;
+//            ImGui::CloseCurrentPopup();
+//        }
+//
+//        ImGui::EndPopup();
+//    }
+//}
+
 void RenderDearImGui(SceneEditor* sceneEditor)
 {
     // Start the Dear ImGui frame
@@ -466,11 +517,14 @@ void RenderDearImGui(SceneEditor* sceneEditor)
     if (ImGui::BeginMainMenuBar()) {
         if (ImGui::BeginMenu("File")) {
             if (ImGui::MenuItem("Save")) {
-                SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename);
+                SaveSceneImgui(sceneEditor, sceneEditor->currentFilename);
             }
             if (ImGui::MenuItem("Save As...")) {
                 sceneEditor->showSaveAsPopup = true;
             }
+            //if (ImGui::MenuItem("Load Scene...")) {
+            //    sceneEditor->showLoadScenePopup = true;
+            //}
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
@@ -485,6 +539,7 @@ void RenderDearImGui(SceneEditor* sceneEditor)
 
     SaveSceneButton(sceneEditor);
     ShowSaveAsPopup(sceneEditor);
+    //ShowLoadScenePopup(sceneEditor);
 
     ImGui::End();
 
