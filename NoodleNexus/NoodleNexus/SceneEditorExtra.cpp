@@ -260,10 +260,7 @@ void SceneEditor::HandleInputAsync(GLFWwindow* window)
             }
         }
 
-        // Update selected object's mesh properties
-        selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;
-        selectedObject->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
-        selectedObject->mesh->uniformScale = selectedObject->startTranform->scale.x;
+
     }
 
 

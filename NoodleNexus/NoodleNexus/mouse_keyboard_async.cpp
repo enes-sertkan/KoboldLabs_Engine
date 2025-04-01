@@ -13,6 +13,11 @@
 
 //extern cLightManager* g_pLightManager;
 
+#include "imgui/imgui.h"          // Main MGUI header
+#include "imgui/imconfig.h"          // Main MGUI header
+#include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
+#include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
+
 
 
 struct sMouseState
@@ -89,6 +94,8 @@ void handleMouseAsync(GLFWwindow* window)
 
     return;
 }
+
+
 
 void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
 {
@@ -278,12 +285,21 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
     return;
 }
 
+
+
+
+bool IsMouseOverImGui()
+{
+    ImGuiIO& io = ImGui::GetIO();
+    return io.WantCaptureMouse; // True when mouse is over any ImGui window
+}
 // *********************************************************
 // Mouse callbacks:
 
 // Set with glfwSetCursorPosCallback(window, cursor_position_callback);
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
+    if (IsMouseOverImGui()) return;
 //    std::cout << "mouse x,y: " << xpos << ", " << ypos << std::endl;
     
     g_MouseState.currentPositionXY.x = (int)xpos;

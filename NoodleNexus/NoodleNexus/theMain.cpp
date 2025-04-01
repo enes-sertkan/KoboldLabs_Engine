@@ -85,7 +85,6 @@
 #include "LabAttackFactory.h"
 #include "aPlayerShooting.h"
 #include "aGrassCollider .h"
-#include "SceneEditor.h"
 
 
 // Core MGUI headers
@@ -111,17 +110,18 @@ cBasicTextureManager* g_pTextures = NULL;
 cCommandGroup* g_pCommandDirector = NULL;
 cCommandFactory* g_pCommandFactory = NULL;
 
-KLFileManager* fileMangerImgui = new KLFileManager();
-bool showExitPopup = false;
-bool isSceneSaved = true;
-std::string lastSavedData;
-
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
 void DrawCameraView(Camera* camera, int programID);
 void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera);
 
 
+
+
+KLFileManager* fileMangerImgui = new KLFileManager();
+bool showExitPopup = false;
+bool isSceneSaved = true;
+std::string lastSavedData;
 
 void SetupDearImGui(GLFWwindow* window)
 {
@@ -166,6 +166,7 @@ void SceneHierarchyExample(SceneEditor* sceneEditor)
         if (!filter.PassFilter(obj->name.c_str()))
             continue;
 
+
         ImGui::PushID(obj);
         bool isSelected = (sceneEditor->selectedObject == obj);
         if (ImGui::Selectable(obj->name.c_str(), isSelected))
@@ -176,11 +177,8 @@ void SceneHierarchyExample(SceneEditor* sceneEditor)
     ImGui::End();
 }
 
-bool IsMouseOverImGui()
-{
-    ImGuiIO& io = ImGui::GetIO();
-    return io.WantCaptureMouse; // True when mouse is over any ImGui window
-}
+
+
 void ObjectPropertiesExample(Object* selectedObject)
 {
     if (!selectedObject || !selectedObject->mesh) return;
@@ -200,7 +198,7 @@ void ObjectPropertiesExample(Object* selectedObject)
             0.5f))
         {
             selectedObject->startTranform->rotation =
-                glm::radians(selectedObject->startTranform->rotation);
+            selectedObject->startTranform->rotation;
         }
 
         ImGui::DragFloat("Scale",
@@ -325,20 +323,8 @@ void ObjectPropertiesExample(Object* selectedObject)
     ImGui::End();
 }
 
-void SaveSceneImgui(Scene* scene, const std::string& name) {
-    if (!scene) {
-        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
-        return;
-    }
 
-    // Write scene to file
-    fileMangerImgui->WriteSceneFile(scene, name);
-
-    // Capture the current saved data for comparison
-    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
-    isSceneSaved = true;
-}
-
+//IMGUI HELL
 bool HasUnsavedChanges(Scene* scene) {
     if (lastSavedData.empty()) return true; // Assume unsaved if no data stored
     std::string currentData = fileMangerImgui->SerializeSceneToString(scene);
@@ -354,14 +340,7 @@ void CheckForExit(SceneEditor* sceneEditor) {
     }
 }
 
-
-void RenderDearImGui(SceneEditor* sceneEditor)
-{
-    // Start the Dear ImGui frame
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-
+void CheckIfSceneClosed(SceneEditor* sceneEditor) {
     // Check for GLFW close request
     if (glfwWindowShouldClose(sceneEditor->window))
     {
@@ -377,11 +356,23 @@ void RenderDearImGui(SceneEditor* sceneEditor)
             glfwSetWindowShouldClose(sceneEditor->window, false);
         }
     }
+}
 
-    // Your GUI components
-    SceneHierarchyExample(sceneEditor);
-    ObjectPropertiesExample(sceneEditor->selectedObject);
+void SaveSceneImgui(Scene* scene, const std::string& name) {
+    if (!scene) {
+        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
+        return;
+    }
 
+    // Write scene to file
+    fileMangerImgui->WriteSceneFile(scene, name);
+
+    // Capture the current saved data for comparison
+    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
+    isSceneSaved = true;
+}
+
+void SaveSceneButton(SceneEditor* sceneEditor) {
     ImGui::Begin("Scene Controls");
 
     if (ImGui::Button("Save Scene")) // Save Scene button
@@ -397,9 +388,9 @@ void RenderDearImGui(SceneEditor* sceneEditor)
             glfwSetWindowShouldClose(sceneEditor->window, true);
         }
     }
+}
 
-    ImGui::End(); // Close "Scene Controls" window
-
+void ExitButtonWithPopUp(SceneEditor* sceneEditor) {
     // Show confirmation popup if needed
     if (showExitPopup)
     {
@@ -426,13 +417,35 @@ void RenderDearImGui(SceneEditor* sceneEditor)
 
         ImGui::EndPopup();
     }
+}
+
+void RenderDearImGui(SceneEditor* sceneEditor)
+{
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    CheckIfSceneClosed(sceneEditor);
+
+    // Your GUI components
+    SceneHierarchyExample(sceneEditor);
+    ObjectPropertiesExample(sceneEditor->selectedObject);
+
+    SaveSceneButton(sceneEditor);
+   // SaveAsSceneButton(sceneEditor);
+
+    ImGui::End();
+
+
+    ExitButtonWithPopUp(sceneEditor);
 
     // Render ImGui
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-
+//IMGUI HELL END
 
 std::string g_floatToString(float theFloat)
 {
@@ -1151,7 +1164,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
-    puddle->isActive = false;
+
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 
@@ -1984,13 +1997,13 @@ int main(void)
 
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
-        
+        if (scene->isFlyCamera)
+            RenderDearImGui(sceneEditor);
            
-            if (!IsMouseOverImGui())
-            {
+          
                 handleKeyboardAsync(window, screen_quad, scene);
             handleMouseAsync(window);
-        }
+        
 
         //TODO : GRIDS
 
@@ -2007,9 +2020,8 @@ int main(void)
             //gridRenderer.Render(viewProjectionMatrix, cameraPosition);
         }
 
-        CheckForExit(sceneEditor);
-        if (scene->isFlyCamera)
-        RenderDearImGui(sceneEditor);
+
+    
 
 //      SWAP VISUAL BUFFERS
 //      ------------------------------------------ 

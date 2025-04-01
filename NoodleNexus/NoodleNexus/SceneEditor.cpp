@@ -54,9 +54,18 @@ void SceneEditor::ChangeMode(std::string mode)
 void SceneEditor::Update()
 {
     if (selectedObject != nullptr)
-      UpdateSelectBox();
-    
+    {
+        UpdateSelectBox();
+
+        // Update selected object's mesh properties
+        selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;
+        selectedObject->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+        selectedObject->mesh->uniformScale = selectedObject->startTranform->scale.x;
+    }
     HandleInputAsync(window);
+
+
+
 }
 
 void SceneEditor::UpdateSelectBox()
@@ -73,6 +82,8 @@ void SceneEditor::UpdateSelectBox()
         selectBox->mesh->positionXYZ = selectedLight->position;
         selectBox->mesh->rotationEulerXYZ = glm::vec3(0, 0, 0);
     }
+
+
 
 }
 
