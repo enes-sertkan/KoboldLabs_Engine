@@ -113,7 +113,7 @@ cCommandFactory* g_pCommandFactory = NULL;
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene);
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID);
 void DrawCameraView(Camera* camera, int programID);
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera);
+void DrawSkyBox(Object* object, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera);
 
 
 
@@ -148,31 +148,75 @@ void SetupDearImGui(GLFWwindow* window)
     ImGui::StyleColorsDark();
 }
 
-void SceneHierarchyExample(SceneEditor* sceneEditor)
-{
+void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilter& filter) {
+    // Skip if filtered out
+    if (!filter.PassFilter(obj->name.c_str()))
+        return;
+
+    ImGui::PushID(obj);
+
+    // Set tree node flags
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow |
+        ImGuiTreeNodeFlags_OpenOnDoubleClick |
+        ImGuiTreeNodeFlags_SpanAvailWidth;
+
+    // Show selection highlight
+    if (sceneEditor->selectedObject == obj)
+        flags |= ImGuiTreeNodeFlags_Selected;
+
+    // Check if has children
+    bool hasChildren = !obj->sceneObjects.empty();
+    if (!hasChildren)
+        flags |= ImGuiTreeNodeFlags_Leaf;
+
+    // Draw tree node
+    bool isOpen = ImGui::TreeNodeEx(obj->name.c_str(), flags);
+
+    // Handle selection
+    if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
+        sceneEditor->selectedObject = obj;
+
+    // Context menu for parenting
+    if (ImGui::BeginPopupContextItem()) {
+        if (ImGui::MenuItem("Make Child")) {
+            // Your parenting logic here
+        }
+        ImGui::EndPopup();
+    }
+
+    // Recursively draw children
+    if (isOpen) {
+        for (Object* child : obj->sceneObjects)
+            RenderObjectNode(child, sceneEditor, filter);
+        ImGui::TreePop();
+    }
+
+    ImGui::PopID();
+}
+
+void SceneHierarchyExample(SceneEditor* sceneEditor) {
     Scene* scene = sceneEditor->scene;
     static ImGuiTextFilter filter;
 
     ImGui::Begin("Scene Hierarchy");
 
-    // Search bar using ImGui's built-in filter
+    // Search/filter header
     filter.Draw("Search...");
     ImGui::SameLine();
     if (ImGui::Button("Clear")) filter.Clear();
-
     ImGui::Separator();
 
+    // Find and draw root objects (objects with no parent)
+    std::unordered_set<Object*> children;
     for (Object* obj : scene->sceneObjects)
-    {
-        if (!filter.PassFilter(obj->name.c_str()))
-            continue;
+        for (Object* child : obj->sceneObjects)
+            children.insert(child);
 
-
-        ImGui::PushID(obj);
-        bool isSelected = (sceneEditor->selectedObject == obj);
-        if (ImGui::Selectable(obj->name.c_str(), isSelected))
-            sceneEditor->selectedObject = obj;
-        ImGui::PopID();
+    for (Object* obj : scene->sceneObjects) {
+        // Only display objects that aren't children of other objects
+        if (children.find(obj) == children.end()) {
+            RenderObjectNode(obj, sceneEditor, filter);
+        }
     }
 
     ImGui::End();
@@ -183,6 +227,16 @@ void SceneHierarchyExample(SceneEditor* sceneEditor)
 void ObjectPropertiesExample(Object* selectedObject)
 {
     if (!selectedObject || !selectedObject->mesh) return;
+
+    // Temporary copy with sanitized values
+    glm::vec3 safePos = selectedObject->mesh->positionXYZ;
+
+    // Clamp extremely large values before editing
+    if (glm::length(safePos) > 1000.0f) {
+        safePos = glm::vec3(0.0f);
+    }
+
+
 
     ImGui::Begin("Mesh Properties");
 
@@ -1281,6 +1335,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->isTemporary = true;
     
     Object* player = scene->GenerateMeshObjectsFromObject("", glm::vec3(20.f, 5.f, 7.f), 4, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, scene->sceneObjects);
+    player->name = "PLAYER";
     aPlayerMovement* playerMovement = new aPlayerMovement();
     aPlayerShooting* playerShooting = new aPlayerShooting();
     aGrassCollider* playerGrassCollider = new aGrassCollider();
@@ -1289,6 +1344,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     playerShooting->factory = LAFactory;
     player->isTemporary = true;
+
+    player->AddChild(scene->sceneObjects[31]);
+    scene->sceneObjects[31]->name = "CHILD";
+    scene->sceneObjects[31]->mesh->positionXYZ = glm::vec3(0);
   // aPlayerShooting* playerShooting = new aPlayerShooting();
     scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);
@@ -2061,7 +2120,7 @@ int main(void)
         scene->lightManager->theLights[1].position.z = scene->sceneObjects[15]->mesh->positionXYZ.z;*/
 
 
-        DrawSkyBox(SkySphere->mesh, program, scene->vaoManager, scene->textureManager, scene->fCamera->getCameraData());
+        DrawSkyBox(SkySphere, program, scene->vaoManager, scene->textureManager, scene->fCamera->getCameraData());
 //      DRAW LOOP
 //      ------------------------------------------       
         //scene->SortObjectsForDrawing();

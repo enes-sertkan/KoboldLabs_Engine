@@ -201,7 +201,7 @@ void main() {
 
         // Apply Shell Extrusion if enabled
     if (bShellTexturing) {
-        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, shellLength, time, 0.01, 0.015, verticalTightening, verticalExponent, 4);
+        finalVert = finalVert+ extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, shellCount, shellLength, time, 0.01, 0.03, verticalTightening, verticalExponent, 4);
            fshellLayer = shellLayer;
     
     }

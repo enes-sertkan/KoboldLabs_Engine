@@ -691,7 +691,7 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
 }
 
 
-void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
+void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
     {
@@ -838,36 +838,42 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
     // Could be called the "model" or "world" matrix
     glm::mat4 matModel = glm::mat4(1.0f);
 
+    glm::vec3 position = curObject->GetWorldPosition();
     // Translation (movement, position, placement...)
     glm::mat4 matTranslate
         = glm::translate(glm::mat4(1.0f),
-            glm::vec3(pCurMesh->positionXYZ.x,
-                pCurMesh->positionXYZ.y,
-                pCurMesh->positionXYZ.z));
+            glm::vec3(position.x,
+                position.y,
+                position.z));
 
     // Rotation...
     // Caculate 3 Euler acix matrices...
+
+    glm::vec3 rotation = curObject->GetWorldRotation();
+
     glm::mat4 matRotateX =
         glm::rotate(glm::mat4(1.0f),
-            glm::radians(pCurMesh->rotationEulerXYZ.x), // Angle in radians
+            glm::radians(rotation.x), // Angle in radians
             glm::vec3(1.0f, 0.0, 0.0f));
 
     glm::mat4 matRotateY =
         glm::rotate(glm::mat4(1.0f),
-            glm::radians(pCurMesh->rotationEulerXYZ.y), // Angle in radians
+            glm::radians(rotation.y), // Angle in radians
             glm::vec3(0.0f, 1.0, 0.0f));
 
     glm::mat4 matRotateZ =
         glm::rotate(glm::mat4(1.0f),
-            glm::radians(pCurMesh->rotationEulerXYZ.z), // Angle in radians
+            glm::radians(rotation.z), // Angle in radians
             glm::vec3(0.0f, 0.0, 1.0f));
 
 
+    float scale = curObject->GetWorldScale();
+
     // Scale
     glm::mat4 matScale = glm::scale(glm::mat4(1.0f),
-        glm::vec3(pCurMesh->uniformScale,
-            pCurMesh->uniformScale,
-            pCurMesh->uniformScale));
+        glm::vec3(scale,
+            scale,
+            scale));
 
 
     // Calculate the final model/world matrix
@@ -1062,7 +1068,7 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
 }
 
 
-void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
+void DrawSkyBox(Object* object, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
 
 
@@ -1104,7 +1110,7 @@ void DrawSkyBox(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasic
     GLint skyBoxTextureSampler_UL = glGetUniformLocation(program, "skyBoxTextureSampler");
     glUniform1i(skyBoxTextureSampler_UL, 40);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
 
-    DrawMeshWithCamera(pCurMesh, program, vaoManager, textureManager, camera);
+    DrawMeshWithCamera(object, object->mesh, program, vaoManager, textureManager, camera);
 
     //SkySphere->mesh->bIsVisible = true;
 
@@ -1126,7 +1132,7 @@ void DrawCameraView(Camera* camera, int programID)
     scene->SortObjectsForDrawing();
 
     if (camera->scene->skybox != nullptr)
-        DrawSkyBox(scene->skybox->mesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
+        DrawSkyBox(scene->skybox, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
 
     for (Object* object : scene->sceneObjectsSorted)
     {
@@ -1134,7 +1140,7 @@ void DrawCameraView(Camera* camera, int programID)
         sMesh* pCurMesh = object->mesh;
 
         if (!object->mesh->shellTexturing)
-        DrawMeshWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
+        DrawMeshWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
         else
         DrawShellTexturingWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, camera);
       //  DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
