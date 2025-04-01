@@ -69,7 +69,7 @@ private:
 
     std::vector<std::vector<char>> maze;
     void loadMaze(const std::string& filePath);
-    Object* PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f));
+    Object* PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction direction, bool invisible = false, glm::vec4 color = glm::vec4(0.5,0.5,0.5,1.f), Object* parent = nullptr);
     void PlaceRandomObjects();
 
     std::vector<std::vector<bool>> occupiedPositions;

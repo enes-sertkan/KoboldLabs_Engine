@@ -69,6 +69,21 @@ public:
         child->m_parent = this;
     }
 
+    void AddChildRaw(Object* child) {
+        if (!child) return;
+
+       
+
+        // Remove from previous parent
+        if (child->m_parent) {
+            child->m_parent->RemoveChild(child);
+        }
+
+        // Add to this parent
+        m_children.push_back(child);
+        child->m_parent = this;
+    }
+
     void RemoveChild(Object* child) {
         auto it = std::find(m_children.begin(), m_children.end(), child);
         if (it != m_children.end()) {

@@ -49,7 +49,7 @@ public:
 	{
 		// Get the camera's rotation (pitch, yaw) in degrees
 		glm::vec2 eyeRotation = object->scene->fCamera->getEyeRotation();
-		std::cout << eyeRotation.x << " " << eyeRotation.y << std::endl;
+		//std::cout << eyeRotation.x << " " << eyeRotation.y << std::endl;
 		// Convert yaw (the second component) to radians.
 		float yaw = glm::radians(eyeRotation.y);
 

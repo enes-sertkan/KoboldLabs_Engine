@@ -1318,7 +1318,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),5.5f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
     LAFactory->grass = puddle;
     puddle->name = "GRASS";
+    underpuddle->name = "UNDERGRASS";
     underpuddle->isTemporary = true;
+    puddle->AddChild(underpuddle);
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
@@ -1345,7 +1347,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     player->AddChild(scene->sceneObjects[31]);
     scene->sceneObjects[31]->name = "CHILD";
-    scene->sceneObjects[31]->mesh->positionXYZ = glm::vec3(0);
+   
   // aPlayerShooting* playerShooting = new aPlayerShooting();
     scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);

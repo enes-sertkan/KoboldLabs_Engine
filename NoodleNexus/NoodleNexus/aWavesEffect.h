@@ -88,7 +88,7 @@ public:
         // Only spawn wave if UV coordinates are within valid range [0,1]
         if (uvPos.x >= 0.0f && uvPos.x <= 1.0f && uvPos.y >= 0.0f && uvPos.y <= 1.0f)
         {
-            std::cout << "Wave spawned at UV: " << uvPos.x << " " << uvPos.y << std::endl;
+         //   std::cout << "Wave spawned at UV: " << uvPos.x << " " << uvPos.y << std::endl;
             object->mesh->spawnWave(uvPos);
         }
     }

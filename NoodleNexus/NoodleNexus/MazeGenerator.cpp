@@ -39,6 +39,9 @@ void MazeGenerator::loadMaze(const std::string& filePath) {
 
 void MazeGenerator::generateMaze() {
     int floor = 1;
+    Object* parent = scene->GenerateMeshObjectsFromObject(
+        "", glm::vec3(0), 1, glm::vec3(0), false, glm::vec4(1.0, 0.2, 0.2, 1.0f), true, scene->sceneObjects);
+    parent->name = "MAZE";
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];
@@ -48,11 +51,11 @@ void MazeGenerator::generateMaze() {
 
                 if (cell != 'S')
                 {
-                    PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                 }
                 else
                 {
-                        PlaceModelOnGrid("assets/models/objects/floor_jumpy.ply", row, col, floor, 1.0f, SOFTCENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                        PlaceModelOnGrid("assets/models/objects/floor_jumpy.ply", row, col, floor, 1.0f, SOFTCENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                 }
       
 
@@ -61,19 +64,19 @@ void MazeGenerator::generateMaze() {
 
                 // Place surrounding walls
                 if (row > 0 && maze[row - 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f), parent);
                   //  PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, DOWN, true, glm::vec4(0.0f, 1.0f, 0.0f, 1.f));
                 }
                 if (row < maze.size() - 1 && maze[row + 1][col] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                    // PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor + 1.0f, 1.0f, UP, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col > 0 && maze[row][col - 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                  //   PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, LEFT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
                 if (col < maze[row].size() - 1 && maze[row][col + 1] == 'X') {
-                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("assets/models/objects/castleWall1.ply", row, col, floor, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                  //   PlaceModelOnGrid("assets/models/objects/wall01side.ply", row, col, floor + 1.0f, 1.0f, RIGHT, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
                 }
 
@@ -109,7 +112,7 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TUBES, true);
                 }
                 else if (cell == 'B') {
-                    PlaceModelOnGrid("", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f));
+                    PlaceModelOnGrid("", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                 }
                 else if (cell == 'R') {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, REACTORS, true);
@@ -127,7 +130,7 @@ void MazeGenerator::generateMaze() {
     //PlaceWater(100);
 }
 bool aobool = false;
-Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction type, bool isVisible, glm::vec4 color) {
+Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int floor, float scale, Direction type, bool isVisible, glm::vec4 color, Object* parent) {
     glm::vec3 position(col * scale * 4.0f, floor * scale * 3.0f, row * scale * 4.0f);
     glm::vec3 rotation(0.0f);
     glm::vec3 objectScale(1, 1, 1);
@@ -139,6 +142,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     std::string textureNM="";
     float metal = 0;
     float smothness = 0.2;
+    std::string name = "MAZE OBJECT";
     switch (type) {
     case SOFTCENTER:
         position.z -= 2.5f * scale;
@@ -163,6 +167,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         textureNM = "Floor_Normal.bmp";
         metal = 0.1;
         smothness = 0.2;
+        name = "Floor";
       //  textureST = "Operating_Table_MetallicSmoothness.bmp";
         break;
     case CENTERup:
@@ -176,6 +181,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         textureNM = "Floor_Normal.bmp";
         metal = 0.1;
         smothness = 0.2;
+        name = "Ceiling";
         break;
     case RIGHT:
         position.x += scale * 5.f/ 2.0f;
@@ -184,7 +190,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         color = glm::vec4(0.3f, 0.3f, 0.3f, 1.0f);
         texture = "castle_element_05_BaseColour.bmp";
         textureST = "castle_element_05_MetalSmoothness.bmp";
-       textureNM = "castle_element_05_NormalGL.bmp";
+        textureNM = "castle_element_05_NormalGL.bmp";
+        name = "Wall Right";
         break;
     case LEFT:
         position.x -= scale * 3.f / 2.0f;
@@ -194,6 +201,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         texture = "castle_element_05_BaseColour.bmp";
         textureST = "castle_element_05_MetalSmoothness.bmp";
         textureNM = "castle_element_05_NormalGL.bmp";
+        name = "Wall Left";
         break;
     case UP:
         position.z += scale * 3.9f / 2.0f;
@@ -203,6 +211,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         textureST = "castle_element_05_MetalSmoothness.bmp";
        textureNM = "castle_element_05_NormalGL.bmp";
        metal = 0.f;
+       name = "Wall Up";
         break;
     case DOWN:
         position.z -= scale * 5.f / 2.0f;
@@ -210,6 +219,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         texture = "castle_element_05_BaseColour.bmp";
        textureST = "castle_element_05_MetalSmoothness.bmp";
       textureNM = "castle_element_05_NormalGL.bmp";
+      name = "Wall Down";
         break;
     case BRUTEENEM:
         position.y += 2.f;
@@ -228,6 +238,10 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     Object* obj = scene->GenerateMeshObjectsFromObject(
         path, position, scale * objectScale.x, rotation,false, glm::vec4(1.0, 0.2, 0.2, 1.0f), true, scene->sceneObjects);
 
+    if (parent!=nullptr)
+    {
+        parent->AddChildRaw(obj);
+    }
 
     if (obj == nullptr) {
         std::cerr << "Failed to create object for type: " << type << std::endl;
@@ -237,7 +251,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     if (type == BRUTEENEM)
     {
     
-        obj->name = "ENEMY SPAWNER";
+        name = "ENEMY SPAWNER";
         aEnemySpawner* spawner = new aEnemySpawner();
    
         spawner->factory = factory;
@@ -290,6 +304,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     //    thesChar = theseus;
     //}
 
+    obj->name = name;
     obj->isTemporary = true;
     obj->mesh->drawBothFaces = true;
     obj->mesh->textures[0] = texture;
