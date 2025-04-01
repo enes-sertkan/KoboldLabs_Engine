@@ -72,8 +72,9 @@ void SceneEditor::UpdateSelectBox()
 {
     if (editMode == "Objects")
     {
-        selectBox->mesh->positionXYZ = selectedObject->startTranform->position;
-        selectBox->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+        selectBox->mesh->positionXYZ = selectedObject->GetWorldPosition();
+        selectBox->mesh->rotationEulerXYZ = selectedObject->GetWorldRotation();
+        selectBox->mesh->uniformScale = selectedObject->GetWorldScale();
 
     
     }

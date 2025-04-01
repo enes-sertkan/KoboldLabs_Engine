@@ -64,6 +64,17 @@ public:
         child->mesh->rotationEulerXYZ = childWorldRot - parentWorldRot;
         child->mesh->uniformScale = childWorldScale / parentWorldScale;
 
+        //LOCAL TRANFORM FIX
+        childWorldPos = child->startTranform->position;
+        childWorldRot = child->startTranform->rotation;
+        childWorldScale = child->startTranform->scale.x;
+
+     
+        child->startTranform->position = childWorldPos - parentWorldPos;
+        child->startTranform->rotation = childWorldRot - parentWorldRot;
+        child->startTranform->scale.x = childWorldScale / parentWorldScale;
+
+
         // Add to this parent
         m_children.push_back(child);
         child->m_parent = this;
@@ -100,6 +111,16 @@ public:
             child->mesh->positionXYZ = worldPos;
             child->mesh->rotationEulerXYZ = worldRot;
             child->mesh->uniformScale = worldScale;
+
+
+            //LOCAL TRANFORM FIX
+            worldPos = child->startTranform->position;
+            worldRot = child->startTranform->rotation;
+            worldScale = child->startTranform->scale.x;
+
+            child->startTranform->position = worldPos + this->GetWorldPosition();
+            child->startTranform->rotation = worldRot + this->GetWorldRotation();
+            child->startTranform->scale.x = worldScale * this->GetWorldScale();
         }
     }
 
