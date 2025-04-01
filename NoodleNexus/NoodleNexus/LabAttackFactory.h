@@ -9,6 +9,9 @@
 #include "aProjectileMovement.hpp"
 #include "MazeGenerator.hpp"
 #include "aGrassCollider .h"
+#include "TurretConfig.h"
+
+class Turret;
 
 class LabAttackFactory {
 public:
@@ -32,10 +35,26 @@ public:
     Object* SpawnWanderer(const glm::vec3& position);
     Object* SpawnBrut(const glm::vec3& position);
 
+    void Start();
+
+    cTurretHead* SpawnTurretHead(const glm::vec3& position, eTurretHeadID headID);
+    cTurretNeck* SpawnTurretNeck(const glm::vec3& position, eTurretNeckID headID);
+    cTurretBody* SpawnTurretBody(const glm::vec3& position, eTurretBodyID headID);
+
+
+
     // For bullets, a position and a speed vector are provided.
     Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed);
     Object* SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed);
+    // Spawn turret based on configuration
+    Turret* SpawnTurret(const glm::vec3& position, const sTurretCofig& config);
 
+
+   
+    //These are templates 
+    std::vector<cTurretHead*>         turretHeads;
+    std::vector<cTurretNeck*>         turretNecks;
+    std::vector<cTurretBody*>         turretBodies;
 
     std::vector<Object*>         m_creepPool;
     std::vector<Object*>       m_avoiderPool;
@@ -45,7 +64,6 @@ public:
     std::vector<Object*>   m_enemyBulletPool;
 private:
     // Object pools for each type.
-   
 
     // Current sizes (or capacities) for the pools
     int m_creepPoolSize;

@@ -1279,8 +1279,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
     LabAttackFactory* LAFactory = new LabAttackFactory();
-
     LAFactory->scene = scene;
+    LAFactory->Start();
     LAFactory->maze = mazeGenerator;
     mazeGenerator->factory = LAFactory;
     screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);

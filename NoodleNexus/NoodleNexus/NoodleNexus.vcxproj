@@ -232,6 +232,7 @@
     <ClInclude Include="aRotationWithMinutes.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
+    <ClInclude Include="aTurretBody.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="BruteEnemy.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
@@ -253,6 +254,7 @@
     <ClInclude Include="cSoftBodyVerlet.hpp" />
     <ClInclude Include="cTerrainPathChooser.hpp" />
     <ClInclude Include="CTextureFromBMP.h" />
+    <ClInclude Include="cTurret.h" />
     <ClInclude Include="cVAOManager\cVAOManager.h" />
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
@@ -294,6 +296,7 @@
     <ClInclude Include="StupidPathFinder.h" />
     <ClInclude Include="Theseus.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TurretConfig.h" />
     <ClInclude Include="UsableItem.hpp" />
     <ClInclude Include="VerletPhysics.hpp" />
     <ClInclude Include="UVWave.h" />

@@ -96,6 +96,9 @@
     <Filter Include="GOAP">
       <UniqueIdentifier>{7c9dd803-6524-438b-aec9-b01d150d3590}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OpenTD">
+      <UniqueIdentifier>{bb67f08d-232b-487c-b9e4-dfaac48196dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -487,9 +490,6 @@
     <ClInclude Include="Theseus.h">
       <Filter>Actions</Filter>
     </ClInclude>
-    <ClInclude Include="StupidPathFinder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aRotate.h">
       <Filter>Actions</Filter>
     </ClInclude>
@@ -553,17 +553,29 @@
     <ClInclude Include="aPlayerShooting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LabAttackFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MoveToControlPointAction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ShootAtPlayerAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="aGrassCollider .h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="cTurret.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretConfig.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="LabAttackFactory.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="ShootAtPlayerAction.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="StupidPathFinder.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="aTurretBody.h">
+      <Filter>OpenTD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

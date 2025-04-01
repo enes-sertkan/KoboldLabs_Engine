@@ -4,6 +4,7 @@
 #include "aRotate.h"
 #include "BruteEnemy.h"
 #include "aBullet.h"
+#include "aTurretBody.h"
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
     int playerBulletPoolSize, int enemyBulletPoolSize)
@@ -108,6 +109,41 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
             return enemy;
 
 }
+
+
+
+
+cTurretHead* LabAttackFactory::SpawnTurretHead(const glm::vec3& position, eTurretHeadID headID)
+{
+
+}
+cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurretNeckID headID)
+{
+
+}
+cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurretBodyID headID)
+{
+
+}
+
+
+void LabAttackFactory::Start()
+{
+    cTurretBody* standarTurretBody = new cTurretBody();
+    
+    Object* standartBodyObject = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(0), 1.f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
+    standartBodyObject->isTemporary = true; //THIS IS VERY IMPORTANT
+    standartBodyObject->name = "StandartTurretBodyTemplate";
+    aTurretBody* turretBodyAction = new aTurretBody();
+
+    standarTurretBody->ID = STANDARTBODY;
+    standarTurretBody->object = standartBodyObject;
+    standarTurretBody->action = turretBodyAction;
+    turretBodies.push_back(standarTurretBody);
+
+
+}
+
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
     Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.6f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
