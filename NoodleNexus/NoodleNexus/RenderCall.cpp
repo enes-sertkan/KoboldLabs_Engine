@@ -579,7 +579,7 @@ glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const
     return matView;
 }
 
-void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, Camera* camera)
+void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, Camera* camera)
 {
     if (!pCurMesh->shellTexturing)
     {
@@ -602,16 +602,21 @@ void DrawShellTexturingWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* 
     // Setup the model transformation (Translation, Rotation, Scale)
     glm::mat4 matModel = glm::mat4(1.0f);
 
+    glm::vec3 position = object->GetWorldPosition();
     // Translation matrix (position)
-    glm::mat4 matTranslate = glm::translate(glm::mat4(1.0f), pCurMesh->positionXYZ);
+    glm::mat4 matTranslate = glm::translate(glm::mat4(1.0f), position);
 
+
+    glm::vec3 rotation = object->GetWorldPosition();
     // Rotation matrices for X, Y, Z axis
-    glm::mat4 matRotateX = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.x), glm::vec3(1.0f, 0.0f, 0.0f));
-    glm::mat4 matRotateY = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.y), glm::vec3(0.0f, 1.0f, 0.0f));
-    glm::mat4 matRotateZ = glm::rotate(glm::mat4(1.0f), glm::radians(pCurMesh->rotationEulerXYZ.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    glm::mat4 matRotateX = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::mat4 matRotateY = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 matRotateZ = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
 
+
+    float scale = object->GetWorldScale();
     // Scale matrix
-    glm::mat4 matScale = glm::scale(glm::mat4(1.0f), glm::vec3(pCurMesh->uniformScale));
+    glm::mat4 matScale = glm::scale(glm::mat4(1.0f), glm::vec3(scale));
 
     // Combine all transformations into the model matrix
     matModel *= matTranslate;
@@ -1142,7 +1147,7 @@ void DrawCameraView(Camera* camera, int programID)
         if (!object->mesh->shellTexturing)
         DrawMeshWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
         else
-        DrawShellTexturingWithCamera(pCurMesh, scene->programs[0], scene->vaoManager, camera);
+        DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, camera);
       //  DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
 
     }

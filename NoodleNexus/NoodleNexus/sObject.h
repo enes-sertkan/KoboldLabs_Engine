@@ -100,4 +100,26 @@ public:
         }
         return mesh->uniformScale;
     }
+
+
+    void RemoveParent() {
+        if (m_parent) {
+            // Store current parent reference
+            Object* oldParent = m_parent;
+
+            // Capture world transforms BEFORE parent removal
+            glm::vec3 worldPosition = GetWorldPosition();
+            glm::vec3 worldRotation = GetWorldRotation();
+            float worldScale = GetWorldScale();
+
+            // Remove from parent's children (this sets m_parent to nullptr)
+            oldParent->RemoveChild(this);
+
+            // Convert to independent object by setting local transforms to world values
+            mesh->positionXYZ = worldPosition;
+            mesh->rotationEulerXYZ = worldRotation;
+            mesh->uniformScale = worldScale;
+        }
+    }
+
 };

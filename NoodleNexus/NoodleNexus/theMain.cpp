@@ -148,46 +148,47 @@ void SetupDearImGui(GLFWwindow* window)
     ImGui::StyleColorsDark();
 }
 
+
 void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilter& filter) {
-    // Skip if filtered out
-    if (!filter.PassFilter(obj->name.c_str()))
-        return;
+    if (!filter.PassFilter(obj->name.c_str())) return;
 
     ImGui::PushID(obj);
 
-    // Set tree node flags
     ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow |
-        ImGuiTreeNodeFlags_OpenOnDoubleClick |
         ImGuiTreeNodeFlags_SpanAvailWidth;
 
-    // Show selection highlight
-    if (sceneEditor->selectedObject == obj)
-        flags |= ImGuiTreeNodeFlags_Selected;
+    flags |= obj->m_children.empty() ? ImGuiTreeNodeFlags_Leaf : 0;
+    flags |= (sceneEditor->selectedObject == obj) ? ImGuiTreeNodeFlags_Selected : 0;
 
-    // Check if has children
-    bool hasChildren = !obj->sceneObjects.empty();
-    if (!hasChildren)
-        flags |= ImGuiTreeNodeFlags_Leaf;
-
-    // Draw tree node
     bool isOpen = ImGui::TreeNodeEx(obj->name.c_str(), flags);
 
     // Handle selection
-    if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen())
+    if (ImGui::IsItemClicked() && !ImGui::IsItemToggledOpen()) {
         sceneEditor->selectedObject = obj;
+    }
 
     // Context menu for parenting
     if (ImGui::BeginPopupContextItem()) {
         if (ImGui::MenuItem("Make Child")) {
-            // Your parenting logic here
+            if (sceneEditor->selectedObject &&
+                sceneEditor->selectedObject != obj) {
+                obj->AddChild(sceneEditor->selectedObject);
+            }
+        }
+
+        if (ImGui::MenuItem("Remove Parent")) {
+             
+            obj->RemoveParent();
+            
         }
         ImGui::EndPopup();
     }
 
-    // Recursively draw children
+    // Recursive render using PROPER child list
     if (isOpen) {
-        for (Object* child : obj->sceneObjects)
+        for (Object* child : obj->m_children) { // Use m_children instead of sceneObjects
             RenderObjectNode(child, sceneEditor, filter);
+        }
         ImGui::TreePop();
     }
 
@@ -200,28 +201,28 @@ void SceneHierarchyExample(SceneEditor* sceneEditor) {
 
     ImGui::Begin("Scene Hierarchy");
 
-    // Search/filter header
     filter.Draw("Search...");
     ImGui::SameLine();
     if (ImGui::Button("Clear")) filter.Clear();
     ImGui::Separator();
 
-    // Find and draw root objects (objects with no parent)
-    std::unordered_set<Object*> children;
-    for (Object* obj : scene->sceneObjects)
-        for (Object* child : obj->sceneObjects)
-            children.insert(child);
-
+    /* PHASE 1: Find all child objects using PROPER child list */
+    std::unordered_set<Object*> allChildren;
     for (Object* obj : scene->sceneObjects) {
-        // Only display objects that aren't children of other objects
-        if (children.find(obj) == children.end()) {
+        for (Object* child : obj->m_children) { // Use m_children here
+            allChildren.insert(child);
+        }
+    }
+
+    /* PHASE 2: Draw hierarchy roots */
+    for (Object* obj : scene->sceneObjects) {
+        if (allChildren.find(obj) == allChildren.end()) {
             RenderObjectNode(obj, sceneEditor, filter);
         }
     }
 
     ImGui::End();
 }
-
 
 
 void ObjectPropertiesExample(Object* selectedObject)
