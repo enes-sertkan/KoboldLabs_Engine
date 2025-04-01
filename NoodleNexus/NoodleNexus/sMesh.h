@@ -15,6 +15,20 @@
 
 struct sMesh
 {
+	sMesh() { // Constructor
+		positionXYZ = glm::vec3(0.0f);
+		rotationEulerXYZ = glm::vec3(0.0f);
+		uniformScale = 1.0f;
+		objectColourRGBA = glm::vec4(1.0f);
+		bOverrideObjectColour = false;
+		bDoNotLight = false;
+		// Initialize ALL members here
+		transperency = 1.0f;
+		metal = 0.0f;
+		smoothness = 0.0f;
+		// ... other members
+	}
+
 	std::string modelFileName;			// "bunny.ply"
 	std::string uniqueFriendlyName;		// "Fred", "Ali", "Bunny_007"
 

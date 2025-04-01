@@ -249,13 +249,10 @@ void ObjectPropertiesExample(Object* selectedObject)
             0.05f);
 
 
-        if (ImGui::DragFloat3("Rotation",
+        ImGui::DragFloat3("Rotation",
             glm::value_ptr(selectedObject->startTranform->rotation),
-            0.5f))
-        {
-            selectedObject->startTranform->rotation =
-            selectedObject->startTranform->rotation;
-        }
+            0.5f);
+    
 
         ImGui::DragFloat("Scale",
             &selectedObject->startTranform->scale.x,
@@ -1325,7 +1322,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
-    puddle->isActive = false;
+    puddle->isActive = true;
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 

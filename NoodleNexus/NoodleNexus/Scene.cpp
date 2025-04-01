@@ -467,9 +467,8 @@ Object* Scene::GenerateMeshObjectsFromObject(
     std::vector<Object*>& sceneObjects
 ) {
     Object* object = new Object;
-    sMesh* Meshes = new sMesh();
-    object->mesh = Meshes;
-
+    object->mesh = new sMesh();
+ 
     // Initialize mesh properties
     object->mesh->uniqueFriendlyName = filePath;
     object->mesh->modelFileName = filePath;
@@ -477,6 +476,11 @@ Object* Scene::GenerateMeshObjectsFromObject(
     object->mesh->rotationEulerXYZ = rotXYZ;
     object->mesh->bOverrideObjectColour = bOverrideColor;
     object->mesh->objectColourRGBA = objectColor;
+
+    object->startTranform->position = posXYZ;
+    object->startTranform->rotation = rotXYZ;
+    object->startTranform->scale.x = scale;
+
 
     // Set uniform scale based on the passed-in scale parameter
     object->mesh->uniformScale = scale; 

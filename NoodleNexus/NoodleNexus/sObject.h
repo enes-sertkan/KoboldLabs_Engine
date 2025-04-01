@@ -72,10 +72,22 @@ public:
     void RemoveChild(Object* child) {
         auto it = std::find(m_children.begin(), m_children.end(), child);
         if (it != m_children.end()) {
+            // Capture world transforms BEFORE removing parent relationship
+            glm::vec3 worldPos = child->GetWorldPosition();
+            glm::vec3 worldRot = child->GetWorldRotation();
+            float worldScale = child->GetWorldScale();
+
+            // Remove parent-child relationship
             m_children.erase(it);
             child->m_parent = nullptr;
+
+            // Update child's local transforms to maintain world position
+            child->mesh->positionXYZ = worldPos;
+            child->mesh->rotationEulerXYZ = worldRot;
+            child->mesh->uniformScale = worldScale;
         }
     }
+
 
     // Get world position (slow, recalculates every call)
     glm::vec3 GetWorldPosition() {
@@ -104,22 +116,10 @@ public:
 
     void RemoveParent() {
         if (m_parent) {
-            // Store current parent reference
-            Object* oldParent = m_parent;
-
-            // Capture world transforms BEFORE parent removal
-            glm::vec3 worldPosition = GetWorldPosition();
-            glm::vec3 worldRotation = GetWorldRotation();
-            float worldScale = GetWorldScale();
-
-            // Remove from parent's children (this sets m_parent to nullptr)
-            oldParent->RemoveChild(this);
-
-            // Convert to independent object by setting local transforms to world values
-            mesh->positionXYZ = worldPosition;
-            mesh->rotationEulerXYZ = worldRotation;
-            mesh->uniformScale = worldScale;
+            // Let the parent handle the detachment and transform updates
+            m_parent->RemoveChild(this);
         }
     }
+
 
 };

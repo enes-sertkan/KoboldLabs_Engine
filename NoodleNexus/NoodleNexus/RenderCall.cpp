@@ -607,7 +607,7 @@ void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint progr
     glm::mat4 matTranslate = glm::translate(glm::mat4(1.0f), position);
 
 
-    glm::vec3 rotation = object->GetWorldPosition();
+    glm::vec3 rotation = object->GetWorldRotation();
     // Rotation matrices for X, Y, Z axis
     glm::mat4 matRotateX = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
     glm::mat4 matRotateY = glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
