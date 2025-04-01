@@ -46,7 +46,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 2.21702e-07
+<Scale-> 1 0 3.30641e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -58,7 +58,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 0 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -70,7 +70,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 0 2.21469e-07
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -82,7 +82,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 24 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 0
+<Scale-> 1 4.3558e-41 3.29668e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -94,7 +94,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 27 3 1.5
 <Rotation-> 0 0 0
-<Scale-> 1 0 2.21469e-07
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -106,7 +106,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 3 73
 <Rotation-> 0 -90 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 0 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -131,7 +131,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 63 6 67
 <Rotation-> 0 0 0
-<Scale-> 1 0 2.21469e-07
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -144,7 +144,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 50 6 11
 <Rotation-> 0 0 0
-<Scale-> 1 0 2.21469e-07
+<Scale-> 1 1.1151e-38 3.29668e+28
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -157,7 +157,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 48 3 3
 <Rotation-> 0 0 0
-<Scale-> 0.71 1.1151e-38 0
+<Scale-> 0.71 1.1151e-38 3.30611e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -169,7 +169,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 45 3 58
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 2.21469e-07
+<Scale-> 1 1.1151e-38 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -181,7 +181,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 42 3 57
 <Rotation-> 0 0 0
-<Scale-> 1 1.69557e-43 2.21469e-07
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -193,7 +193,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 2.22281e-07
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -205,7 +205,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 1.69557e-43 2.22284e-07
+<Scale-> 1 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -217,7 +217,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 40 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -229,7 +229,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 32 3 10
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 2.21469e-07
+<Scale-> 1 4.3558e-41 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -241,7 +241,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 72
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 2.21469e-07
+<Scale-> 1 1.1151e-38 3.30617e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -265,7 +265,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 2.22291e-07
+<Scale-> 1 1.69557e-43 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -277,7 +277,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 43 3 71
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -289,7 +289,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 1
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -302,7 +302,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 38 3 69
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -350,7 +350,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 39 3 68
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 2.21469e-07
+<Scale-> 1 1.1151e-38 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -362,7 +362,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 41 3 8
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1.11123e-38 3.29299e+28
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -398,7 +398,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 46 8 72
 <Rotation-> 0 -95 -1
-<Scale-> 1 0 0
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -410,7 +410,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 30 7 7
 <Rotation-> 0 0 0
-<Scale-> 0.4 0 0
+<Scale-> 0.4 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -435,7 +435,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 0 5 6
 <Rotation-> 0 0 0
-<Scale-> 0.2 0 0
+<Scale-> 0.2 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.3 0.6 0.4
@@ -448,7 +448,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> -303 2018 -1194
 <Rotation-> 0 180 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0 0 0
@@ -474,7 +474,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 4.55929e+30
-<Scale-> 2.15902e+29 4.3558e-41 0
+<Scale-> 2.15902e+29 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -487,7 +487,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 6.60707e-07
 <Rotation-> 2.7691e+20 1.38174e-08 1.03132e-08
-<Scale-> 4.07507e-11 1.11123e-38 0
+<Scale-> 4.07507e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0 0
@@ -500,7 +500,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 9.51496e+14 9.51496e+14 9.51496e+14
 <Rotation-> 9.51496e+14 9.51496e+14 8.11322e-39
-<Scale-> 0 4.3558e-41 0
+<Scale-> 0 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -526,7 +526,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 9.51496e+14 9.51496e+14 9.51496e+14
 <Rotation-> 9.51496e+14 4.91539e-11 4.80383e-14
-<Scale-> 6.48899e-07 4.3558e-41 0
+<Scale-> 6.48899e-07 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -565,7 +565,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 4.91539e-11 9.51496e+14 9.51496e+14
 <Rotation-> 4.91539e-11 9.50773e+14 8.11322e-39
-<Scale-> 6.79055e-21 1.11123e-38 0
+<Scale-> 6.79055e-21 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -604,7 +604,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 6.64432e-07
 <Rotation-> 2.7691e+20 3.45434e-09 3.94606e-41
-<Scale-> -1.92879e+25 4.54306e-39 0
+<Scale-> -1.92879e+25 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -617,7 +617,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 4.91539e-11 4.91539e-11 3.96042e-11
 <Rotation-> 3.96042e-11 4.91912e-11 8.11322e-39
-<Scale-> -3.01128e+25 1.1151e-38 0
+<Scale-> -3.01128e+25 4.54306e-39 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -630,7 +630,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.96042e-11 9.51392e+14 9.51496e+14
 <Rotation-> 9.51496e+14 4.91539e-11 8.11322e-39
-<Scale-> 0 1.07854e-38 0
+<Scale-> 0 1.11123e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -643,7 +643,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 9.51496e+14 9.51496e+14 9.51496e+14
 <Rotation-> 9.51496e+14 4.91539e-11 1.63466e+25
-<Scale-> 5.55719e-11 1.11123e-38 0
+<Scale-> 5.55719e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -656,7 +656,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.73456e+20 5.52684e+31 4.17811e-41
-<Scale-> 0 1.11123e-38 0
+<Scale-> 0 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -708,7 +708,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 1.11123e-38 0
+<Scale-> 5.60382e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -721,7 +721,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 0 1.11123e-38 0
+<Scale-> 0 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -747,7 +747,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 2.65773e-06
 <Rotation-> 2.7691e+20 3.45434e-09 1.01019e-38
-<Scale-> 2.59207e-09 1.11123e-38 0
+<Scale-> 2.59207e-09 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -799,7 +799,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 8.25768e+17
 <Rotation-> 7.7447e+31 3.96021e-41 4.85276e+30
-<Scale-> 0.00273421 1.11123e-38 0
+<Scale-> 0.00273421 1.11123e-38 3.29299e+28
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -838,7 +838,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 6.01379e+07 7.36518e+31 4.25237e-05
 <Rotation-> 2.7691e+20 1.38174e-08 3.94606e-41
-<Scale-> 3.78002e-32 1.1151e-38 0
+<Scale-> 3.78002e-32 1.69557e-43 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -851,7 +851,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 9.51496e+14 9.51496e+14 9.51496e+14
 <Rotation-> 9.51496e+14 4.91539e-11 8.11322e-39
-<Scale-> 0 0 0
+<Scale-> 0 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -903,7 +903,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 4.54306e-39 0
+<Scale-> 5.60382e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -916,7 +916,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 2.47427e+32 1.8124e+34 1.72908e+28
-<Scale-> 5.60382e-11 4.54306e-39 0
+<Scale-> 5.60382e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -942,7 +942,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 4.91539e-11 4.91539e-11 3.96042e-11
 <Rotation-> 3.96042e-11 4.91912e-11 1.04618e+27
-<Scale-> 5.21657e-11 1.1151e-38 0
+<Scale-> 5.21657e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> false
 <Color-> 0.001 0.01 0.001
@@ -1020,7 +1020,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 8.03807e+20 4.3558e-41 0
+<Scale-> 8.03807e+20 8.94907e-39 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1046,7 +1046,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
+<Scale-> 5.51234e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1059,7 +1059,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 4.3558e-41 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1098,7 +1098,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 6.38693e+28 1.0901e+27
 <Rotation-> 2.93867e+29 4.68935e+27 8.04386e+20
-<Scale-> 2.92037e-11 8.94907e-39 0
+<Scale-> 2.92037e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1125,32 +1125,6 @@ Floor_jumpy.txt
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
 <Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
-<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1200,6 +1174,32 @@ Floor_jumpy.txt
 <Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
 <Tags->
 <StaticCollision-> false
+<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
+<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
 <Scale-> 5.51234e-11 1.1151e-38 0
@@ -1228,7 +1228,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 1.11123e-38 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1293,7 +1293,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.11123e-38 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1306,6 +1306,19 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
 <Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
@@ -1332,20 +1345,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 0 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1358,7 +1358,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 1.1151e-38 0
+<Scale-> 5.51234e-11 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1371,7 +1371,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 0 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1410,20 +1410,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 9.35094e+26 7.06851e+28
 <Rotation-> 2.93867e+29 1.03247e-38 1.0901e+27
-<Scale-> 8.03807e+20 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 4.3558e-41 0
+<Scale-> 8.03807e+20 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1447,9 +1434,22 @@ Floor_jumpy.txt
 <Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
 <Tags->
 <StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
 <Position-> 7.71303e+31 6.59349e+22 7.0067e+22
 <Rotation-> 8.12924e-10 6.3869e+28 1.0901e+27
-<Scale-> 8.03807e+20 1.11123e-38 0
+<Scale-> 8.03807e+20 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1488,7 +1488,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
+<Scale-> 5.51234e-11 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1514,6 +1514,123 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
+<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
+<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
+<Scale-> 5.51234e-11 4.3558e-41 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
+<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
+<Scale-> 5.51234e-11 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
+<Scale-> 5.51234e-11 8.94907e-39 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.9 0.1 0.1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
+<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
 <Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
@@ -1527,111 +1644,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 8.94907e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
-<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 1.69557e-43 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
-<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
-<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 3.8369e+12 1.76145e+19 1.42957e+34
-<Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 4.3558e-41 0
+<Scale-> 8.03807e+20 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1657,7 +1670,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 8.03807e+20 1.11123e-38 0
+<Scale-> 5.51234e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1670,20 +1683,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0.9 0.1 0.1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
-<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
-<Scale-> 8.03807e+20 1.1151e-38 0
+<Scale-> 8.03807e+20 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0.9 0.1 0.1
@@ -1709,7 +1709,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 6.38693e+28 1.0901e+27
 <Rotation-> 2.93867e+29 7.20642e+31 1.78457e+25
-<Scale-> 5.55719e-11 1.1151e-38 0
+<Scale-> 5.55719e-11 1.69557e-43 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1722,7 +1722,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.71303e+31 6.59349e+22 7.0067e+22
 <Rotation-> 8.12924e-10 6.3869e+28 1.0901e+27
-<Scale-> 8.03807e+20 1.11123e-38 0
+<Scale-> 8.03807e+20 8.94907e-39 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1735,7 +1735,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 6.38693e+28 1.0901e+27
 <Rotation-> 2.93867e+29 1.03247e-38 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1748,7 +1748,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 6.38693e+28 1.0901e+27
 <Rotation-> 2.93867e+29 7.20642e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.69557e-43 0
+<Scale-> 5.51234e-11 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1761,33 +1761,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0.1 1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
-<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
 <Scale-> 5.51234e-11 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0.1 1
-<--Object>
-
-<Object-->
-<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
-<Tags->
-<StaticCollision-> false
-<Position-> 7.71303e+31 6.59349e+22 7.0067e+22
-<Rotation-> 8.12924e-10 6.3869e+28 1.0901e+27
-<Scale-> 8.03807e+20 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1801,6 +1775,32 @@ Floor_jumpy.txt
 <Position-> 2.61328e+11 4.2951e+24 6.04709e+28
 <Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
 <Scale-> 5.51234e-11 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 7.71303e+31 6.59349e+22 7.0067e+22
+<Rotation-> 8.12924e-10 6.3869e+28 1.0901e+27
+<Scale-> 8.03807e+20 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0 0.1 1
+<--Object>
+
+<Object-->
+<Name-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Model-> <Model->assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 2.61328e+11 4.2951e+24 6.04709e+28
+<Rotation-> 7.50361e+28 1.80821e+25 6.21169e+26
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1852,7 +1852,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
+<Scale-> 5.51234e-11 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1904,7 +1904,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
+<Scale-> 5.51234e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1917,7 +1917,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.1854e+22 3.39372e+27 1.10927e+27
 <Rotation-> 1.10305e+21 7.20647e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.1151e-38 0
+<Scale-> 5.51234e-11 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1930,7 +1930,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 0 0
+<Scale-> 5.51234e-11 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1943,7 +1943,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.71303e+31 6.59349e+22 7.0067e+22
 <Rotation-> 8.12924e-10 6.3869e+28 1.0901e+27
-<Scale-> 8.03807e+20 4.3558e-41 0
+<Scale-> 8.03807e+20 0 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1956,7 +1956,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 3.8369e+12 1.76145e+19 1.42957e+34
 <Rotation-> 4.0065e-11 1.03248e-38 1.11311e+27
-<Scale-> 5.51234e-11 8.94907e-39 0
+<Scale-> 5.51234e-11 8.94907e-39 3.28056e+28
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1
@@ -1969,7 +1969,7 @@ Floor_jumpy.txt
 <StaticCollision-> false
 <Position-> 7.40978e+28 9.35094e+26 7.06851e+28
 <Rotation-> 2.93867e+29 7.20642e+31 1.11311e+27
-<Scale-> 5.51234e-11 1.69557e-43 0
+<Scale-> 5.51234e-11 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <Color-> 0 0.1 1

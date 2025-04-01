@@ -123,6 +123,7 @@ bool showExitPopup = false;
 bool isSceneSaved = true;
 std::string lastSavedData;
 
+
 void SetupDearImGui(GLFWwindow* window)
 {
     // IMPORTANT: Must be called AFTER GL context is created
@@ -325,6 +326,20 @@ void ObjectPropertiesExample(Object* selectedObject)
 
 
 //IMGUI HELL
+void SaveSceneImgui(Scene* scene, const std::string& name) {
+    if (!scene) {
+        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
+        return;
+    }
+
+    // Write scene to file
+    fileMangerImgui->WriteSceneFile(scene, name);
+
+    // Capture the current saved data for comparison
+    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
+    isSceneSaved = true;
+}
+
 bool HasUnsavedChanges(Scene* scene) {
     if (lastSavedData.empty()) return true; // Assume unsaved if no data stored
     std::string currentData = fileMangerImgui->SerializeSceneToString(scene);
@@ -358,26 +373,12 @@ void CheckIfSceneClosed(SceneEditor* sceneEditor) {
     }
 }
 
-void SaveSceneImgui(Scene* scene, const std::string& name) {
-    if (!scene) {
-        std::cerr << "Error: Scene is nullptr! Cannot save." << std::endl;
-        return;
-    }
-
-    // Write scene to file
-    fileMangerImgui->WriteSceneFile(scene, name);
-
-    // Capture the current saved data for comparison
-    lastSavedData = fileMangerImgui->SerializeSceneToString(scene);
-    isSceneSaved = true;
-}
-
 void SaveSceneButton(SceneEditor* sceneEditor) {
     ImGui::Begin("Scene Controls");
 
     if (ImGui::Button("Save Scene")) // Save Scene button
     {
-        SaveSceneImgui(sceneEditor->scene, "SaveScene.txt"); // Use the actual scene
+        SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename); // Use the actual scene
     }
 
     if (ImGui::Button("Exit")) {
@@ -419,12 +420,62 @@ void ExitButtonWithPopUp(SceneEditor* sceneEditor) {
     }
 }
 
+
+
+void ShowSaveAsPopup(SceneEditor* sceneEditor) {
+    if (sceneEditor->showSaveAsPopup) {
+        ImGui::OpenPopup("Save As");
+    }
+
+    // Always center this popup
+    ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+    ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+
+    if (ImGui::BeginPopupModal("Save As", NULL, ImGuiWindowFlags_AlwaysAutoResize)) {
+        // Text input for filename
+        ImGui::InputText("Filename", sceneEditor->newFilenameBuffer, IM_ARRAYSIZE(sceneEditor->newFilenameBuffer));
+
+        // Save button
+        if (ImGui::Button("Save")) {
+            sceneEditor->currentFilename = sceneEditor->newFilenameBuffer;
+            SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename);
+            sceneEditor->showSaveAsPopup = false;
+            ImGui::CloseCurrentPopup();
+        }
+
+        ImGui::SameLine();
+
+        // Cancel button
+        if (ImGui::Button("Cancel")) {
+            sceneEditor->showSaveAsPopup = false;
+            ImGui::CloseCurrentPopup();
+        }
+
+        ImGui::EndPopup();
+    }
+}
+
 void RenderDearImGui(SceneEditor* sceneEditor)
 {
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
+
+    // Main menu bar with "Save As" option
+    if (ImGui::BeginMainMenuBar()) {
+        if (ImGui::BeginMenu("File")) {
+            if (ImGui::MenuItem("Save")) {
+                SaveSceneImgui(sceneEditor->scene, sceneEditor->currentFilename);
+            }
+            if (ImGui::MenuItem("Save As...")) {
+                sceneEditor->showSaveAsPopup = true;
+            }
+            ImGui::EndMenu();
+        }
+        ImGui::EndMainMenuBar();
+    }
+
 
     CheckIfSceneClosed(sceneEditor);
 
@@ -433,7 +484,7 @@ void RenderDearImGui(SceneEditor* sceneEditor)
     ObjectPropertiesExample(sceneEditor->selectedObject);
 
     SaveSceneButton(sceneEditor);
-   // SaveAsSceneButton(sceneEditor);
+    ShowSaveAsPopup(sceneEditor);
 
     ImGui::End();
 
@@ -1164,7 +1215,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     puddle->mesh->textures[0] = "screen_broken.bmp";
     puddle->mesh->blendRatio[0] = 1.0f;
     puddle->mesh->shellTexturing = true;
-
+    puddle->isActive = false;
     puddle->mesh->smoothness = 0.99f;
     puddle->mesh->metal = 0.99f;
 

@@ -21,6 +21,10 @@ public:
 	KLFileManager* fileManger = nullptr;
 	Scene* scene = nullptr; //Current scene
 
+	std::string currentFilename = "SaveScene.txt";
+	bool showSaveAsPopup = false;
+	char newFilenameBuffer[256] = "SaveScene.txt";
+
 	Object* selectedObject = nullptr;
 
 	int objIndex=0;
