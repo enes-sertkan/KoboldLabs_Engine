@@ -7,7 +7,7 @@
 class aTurretHead : public Action
 {
 private:
-    float m_shootCooldown = 1.0f; // Seconds between shots
+    float m_shootCooldown = 0.1f; // Seconds between shots
     float m_timeSinceLastShot = 0.0f;
 
 public:

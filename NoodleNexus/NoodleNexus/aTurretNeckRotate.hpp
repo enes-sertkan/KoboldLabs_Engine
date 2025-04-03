@@ -7,7 +7,7 @@
 class aTurretNeckRotate : public Action 
 {
 public:
-    float rotationSpeed = 10.0f; // Degrees per second
+    float rotationSpeed = 45.0f; // Degrees per second
 
     void Update() override 
     {

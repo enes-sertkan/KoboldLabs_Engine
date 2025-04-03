@@ -268,7 +268,7 @@ void LabAttackFactory::Start()
     standardBody->ID = STANDARTBODY;
     standardBody->object = bodyObj;
     standardBody->action = new aTurretBody();
-    standardBody->connectionTransform = glm::vec3(0, 1, 0); // Example offset
+    standardBody->connectionTransform = glm::vec3(0, 1.5, 0); // Example offset
     turretBodies.push_back(standardBody);
     bodyObj->isActive = false;
 
@@ -287,7 +287,7 @@ void LabAttackFactory::Start()
     standardNeck->ID = STANDARTNECK;
     standardNeck->object = neckObj;
     standardNeck->action = new aTurretNeckRotate();
-    standardNeck->connectionTransform = glm::vec3(0, 0.8f, 0); // Example offset
+    standardNeck->connectionTransform = glm::vec3(0, 1.2f, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
     // Standard Head
