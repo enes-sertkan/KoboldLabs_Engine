@@ -22,6 +22,24 @@ public:
 	{
 	
 	}
+
+
+
+	virtual Action* Clone() const
+	{
+		Action* clone = new Action(*this); // Uses copy constructor
+		clone->object = nullptr; // Reset the object reference
+		return clone;
+	}
+	Action()
+	{ }
+
+	// Copy constructor
+	Action(const Action& other) : object(nullptr)
+	{
+		// Copy any base class members here
+		// (Currently just the object pointer which we set to null)
+	}
 };
 
 

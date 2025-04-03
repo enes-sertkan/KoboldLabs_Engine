@@ -43,20 +43,24 @@ public:
     cTurretNeck* SpawnTurretNeck(const glm::vec3& position, eTurretNeckID headID);
     cTurretBody* SpawnTurretBody(const glm::vec3& position, eTurretBodyID headID);
 
-
+    Turret* SpawnTurret(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID);
 
     // For bullets, a position and a speed vector are provided.
     Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed);
     Object* SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed);
     // Spawn turret based on configuration
-    Turret* SpawnTurret(const glm::vec3& position, const sTurretCofig& config);
+
 
 
    
-    //These are templates 
-    std::vector<cTurretHead*>         turretHeads;
-    std::vector<cTurretNeck*>         turretNecks;
-    std::vector<cTurretBody*>         turretBodies;
+    std::vector<cTurretHead*> turretHeads;
+    std::vector<cTurretNeck*> turretNecks;
+    std::vector<cTurretBody*> turretBodies;
+
+    cTurretBody* FindTurretBodyTemplate(eTurretBodyID id);
+    cTurretNeck* FindTurretNeckTemplate(eTurretNeckID id);
+    cTurretHead* FindTurretHeadTemplate(eTurretHeadID id);
+
 
     std::vector<BruteEnemy*>         m_creepPool;
     std::vector<Object*>       m_avoiderPool;

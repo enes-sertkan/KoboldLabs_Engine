@@ -233,6 +233,8 @@
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
     <ClInclude Include="aTurretBody.h" />
+    <ClInclude Include="aTurretHead.hpp" />
+    <ClInclude Include="aTurretNeckRotate.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="BruteEnemy.h" />
     <ClInclude Include="C24BitBMPpixel.h" />

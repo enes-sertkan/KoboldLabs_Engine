@@ -1348,6 +1348,11 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     player->AddChild(scene->sceneObjects[31]);
     scene->sceneObjects[31]->name = "CHILD";
    
+    glm::vec3 turretPos = player->mesh->positionXYZ;
+    turretPos.y -= 1;
+
+    LAFactory->SpawnTurret(turretPos, STANDARTBODY, STANDARTNECK, STANDARTHEAD);
+
   // aPlayerShooting* playerShooting = new aPlayerShooting();
     scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);

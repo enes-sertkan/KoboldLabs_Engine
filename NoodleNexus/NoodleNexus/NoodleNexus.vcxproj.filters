@@ -577,6 +577,12 @@
     <ClInclude Include="aTurretBody.h">
       <Filter>OpenTD</Filter>
     </ClInclude>
+    <ClInclude Include="aTurretHead.hpp">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="aTurretNeckRotate.hpp">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

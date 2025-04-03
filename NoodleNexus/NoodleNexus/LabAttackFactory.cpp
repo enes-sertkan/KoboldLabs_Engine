@@ -5,6 +5,9 @@
 #include "BruteEnemy.h"
 #include "aBullet.h"
 #include "aTurretBody.h"
+#include "aTurretNeckRotate.hpp"
+#include "aTurretHead.hpp"
+#include "cTurret.h"
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
     int playerBulletPoolSize, int enemyBulletPoolSize)
@@ -111,42 +114,215 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
 }
 
 
+Turret* LabAttackFactory::SpawnTurret(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID)
+{
+    Turret* newTurret = new Turret();
+    newTurret->factory = this;
+    newTurret->position = position;
 
+    sTurretCofig config;
+    config.bodyID = bodyID;
+    config.neckID = neckID;
+    config.headID = headID;
+
+    newTurret->RebuildTurret(&config);
+    return newTurret;
+}
+
+
+cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurretBodyID bodyID)
+{
+    cTurretBody* templateBody = FindTurretBodyTemplate(bodyID);
+    if (!templateBody) {
+        // Fallback to standard
+        templateBody = FindTurretBodyTemplate(STANDARTBODY);
+        if (!templateBody) return nullptr;
+    }
+
+    // Create new instance
+    Object* newObj = scene->GenerateMeshObjectsFromObject(
+        templateBody->object->mesh->modelFileName,
+        position,
+        templateBody->object->mesh->uniformScale,
+        templateBody->object->mesh->rotationEulerXYZ,
+        templateBody->object->mesh->bOverrideObjectColour,
+        templateBody->object->mesh->objectColourRGBA,
+        !templateBody->object->mesh->bDoNotLight,
+        scene->sceneObjects
+    );
+
+    newObj->name = "Body";
+
+    cTurretBody* newBody = new cTurretBody();
+    newBody->object = newObj;
+    newBody->action = templateBody->action->Clone(); // Implement Clone() for actions
+    newBody->ID = bodyID;
+    newBody->connectionTransform = templateBody->connectionTransform;
+
+    scene->AddActionToObj(newBody->action, newObj);
+    return newBody;
+}
 
 cTurretHead* LabAttackFactory::SpawnTurretHead(const glm::vec3& position, eTurretHeadID headID)
 {
+    cTurretHead* templateHead = FindTurretHeadTemplate(headID);
+    if (!templateHead) {
+        // Fallback to standard head
+        templateHead = FindTurretHeadTemplate(STANDARTHEAD);
+        if (!templateHead) return nullptr;
+    }
 
+    // Create new instance
+    Object* newObj = scene->GenerateMeshObjectsFromObject(
+        templateHead->object->mesh->modelFileName,
+        position,
+        templateHead->object->mesh->uniformScale,
+        templateHead->object->mesh->rotationEulerXYZ,
+        templateHead->object->mesh->bOverrideObjectColour,
+        templateHead->object->mesh->objectColourRGBA,
+        !templateHead->object->mesh->bDoNotLight,
+        scene->sceneObjects
+    );
+
+    newObj->name = "Head";
+
+    cTurretHead* newHead = new cTurretHead();
+    newHead->object = newObj;
+    newHead->action = templateHead->action->Clone();
+    newHead->ID = headID;
+    newHead->connectionTransform = templateHead->connectionTransform;
+
+    scene->AddActionToObj(newHead->action, newObj);
+    return newHead;
 }
-cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurretNeckID headID)
-{
 
+cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurretNeckID neckID)
+{
+    cTurretNeck* templateNeck = FindTurretNeckTemplate(neckID);
+    if (!templateNeck) {
+        // Fallback to standard neck
+        templateNeck = FindTurretNeckTemplate(STANDARTNECK);
+        if (!templateNeck) return nullptr;
+    }
+
+    // Create new instance
+    Object* newObj = scene->GenerateMeshObjectsFromObject(
+        templateNeck->object->mesh->modelFileName,
+        position,
+        templateNeck->object->mesh->uniformScale,
+        templateNeck->object->mesh->rotationEulerXYZ,
+        templateNeck->object->mesh->bOverrideObjectColour,
+        templateNeck->object->mesh->objectColourRGBA,
+        !templateNeck->object->mesh->bDoNotLight,
+        scene->sceneObjects
+    );
+
+    newObj->name = "Neck";
+
+    cTurretNeck* newNeck = new cTurretNeck();
+    newNeck->object = newObj;
+    newNeck->action = templateNeck->action->Clone();
+    newNeck->ID = neckID;
+    newNeck->connectionTransform = templateNeck->connectionTransform;
+
+    scene->AddActionToObj(newNeck->action, newObj);
+    return newNeck;
 }
-cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurretBodyID headID)
-{
 
+
+cTurretBody* LabAttackFactory::FindTurretBodyTemplate(eTurretBodyID id)
+{
+    for (cTurretBody* body : turretBodies) {
+        if (body->ID == id) return body;
+    }
+    return nullptr;
+}
+
+cTurretHead* LabAttackFactory::FindTurretHeadTemplate(eTurretHeadID id)
+{
+    for (cTurretHead* head : turretHeads) {
+        if (head->ID == id) return head;
+    }
+    return nullptr;
+}
+
+cTurretNeck* LabAttackFactory::FindTurretNeckTemplate(eTurretNeckID id)
+{
+    for (cTurretNeck* neck : turretNecks) {
+        if (neck->ID == id) return neck;
+    }
+    return nullptr;
 }
 
 
 void LabAttackFactory::Start()
 {
-    cTurretBody* standarTurretBody = new cTurretBody();
-    
-    Object* standartBodyObject = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(0), 1.f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
-    standartBodyObject->isTemporary = true; //THIS IS VERY IMPORTANT
-    standartBodyObject->name = "StandartTurretBodyTemplate";
-    aTurretBody* turretBodyAction = new aTurretBody();
+    // Standard Body
+    cTurretBody* standardBody = new cTurretBody();
+    Object* bodyObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(0), 1.f, glm::vec3(0.f),
+        true, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
+        true, scene->sceneObjects
+    );
+    standardBody->ID = STANDARTBODY;
+    standardBody->object = bodyObj;
+    standardBody->action = new aTurretBody();
+    standardBody->connectionTransform = glm::vec3(0, 1, 0); // Example offset
+    turretBodies.push_back(standardBody);
+    bodyObj->isActive = false;
 
-    standarTurretBody->ID = STANDARTBODY;
-    standarTurretBody->object = standartBodyObject;
-    standarTurretBody->action = turretBodyAction;
-    turretBodies.push_back(standarTurretBody);
 
+    cTurretNeck* standardNeck = new cTurretNeck();
+    Object* neckObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(0),
+        0.5f,
+        glm::vec3(0.f),
+        true,
+        glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+    standardNeck->ID = STANDARTNECK;
+    standardNeck->object = neckObj;
+    standardNeck->action = new aTurretNeckRotate();
+    standardNeck->connectionTransform = glm::vec3(0, 0.8f, 0); // Example offset
+    turretNecks.push_back(standardNeck);
+    neckObj->isActive = false;
+    // Standard Head
+    cTurretHead* standardHead = new cTurretHead();
+    Object* headObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(0),
+        0.8f,
+        glm::vec3(0.f),
+        true,
+        glm::vec4(1.f, 0.f, 0.f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+    standardHead->ID = STANDARTHEAD;
+    standardHead->object = headObj;
+    aTurretHead* standartHeadAction = new aTurretHead();
+    standartHeadAction->factory = this;
+    standardHead->action = standartHeadAction;
+     
+    standardHead->connectionTransform = glm::vec3(0, 0.3f, 0);
+    turretHeads.push_back(standardHead);
+
+    headObj->isActive = false;
 
 }
+
+
+
 
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
     Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.2f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
+
+    bullet->name = "PBullet";
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 
