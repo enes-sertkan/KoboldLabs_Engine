@@ -558,7 +558,102 @@ void ShowSaveAsPopup(SceneEditor* sceneEditor) {
 //    }
 //}
 
-void RenderDearImGui(SceneEditor* sceneEditor)
+const char* GetBodyName(eTurretBodyID id) {
+    switch (id) {
+    case STANDARTBODY: return "Standard Body";
+        // Add new body types here as you create them
+    default: return "Unknown Body";
+    }
+}
+
+const char* GetNeckName(eTurretNeckID id) {
+    switch (id) {
+    case STANDARTNECK: return "Standard Neck";
+        // Add new neck types here
+    default: return "Unknown Neck";
+    }
+}
+
+const char* GetHeadName(eTurretHeadID id) {
+    switch (id) {
+    case STANDARTHEAD: return "Standard Head";
+        // Add new head types here
+    default: return "Unknown Head";
+    }
+}
+
+void TurretSpawnerWindow(LabAttackFactory* factory) {
+    static glm::vec3 spawnPosition = { 0.0f, 0.0f, 0.0f };
+    static eTurretBodyID selectedBodyID = STANDARTBODY;
+    static eTurretNeckID selectedNeckID = STANDARTNECK;
+    static eTurretHeadID selectedHeadID = STANDARTHEAD;
+
+    ImGui::Begin("Turret Spawner");
+
+    // Position controls
+    ImGui::DragFloat3("Spawn Position", glm::value_ptr(spawnPosition), 0.1f);
+
+    // Body selection - automatically shows all available bodies
+    if (ImGui::BeginCombo("Body Type", GetBodyName(selectedBodyID))) {
+        for (cTurretBody* body : factory->turretBodies) {
+            const bool isSelected = (selectedBodyID == body->ID);
+            if (ImGui::Selectable(GetBodyName(body->ID), isSelected)) {
+                selectedBodyID = body->ID;
+            }
+            if (isSelected) {
+                ImGui::SetItemDefaultFocus();
+            }
+        }
+        ImGui::EndCombo();
+    }
+
+    // Neck selection - automatically shows all available necks
+    if (ImGui::BeginCombo("Neck Type", GetNeckName(selectedNeckID))) {
+        for (cTurretNeck* neck : factory->turretNecks) {
+            const bool isSelected = (selectedNeckID == neck->ID);
+            if (ImGui::Selectable(GetNeckName(neck->ID), isSelected)) {
+                selectedNeckID = neck->ID;
+            }
+            if (isSelected) {
+                ImGui::SetItemDefaultFocus();
+            }
+        }
+        ImGui::EndCombo();
+    }
+
+    // Head selection - automatically shows all available heads
+    if (ImGui::BeginCombo("Head Type", GetHeadName(selectedHeadID))) {
+        for (cTurretHead* head : factory->turretHeads) {
+            const bool isSelected = (selectedHeadID == head->ID);
+            if (ImGui::Selectable(GetHeadName(head->ID), isSelected)) {
+                selectedHeadID = head->ID;
+            }
+            if (isSelected) {
+                ImGui::SetItemDefaultFocus();
+            }
+        }
+        ImGui::EndCombo();
+    }
+
+    if (ImGui::Button("Spawn Turret")) {
+        sTurretCofig config{
+            selectedBodyID,
+            selectedNeckID,
+            selectedHeadID
+        };
+
+        if (factory->SpawnTurret(spawnPosition, config.bodyID, config.neckID, config.headID)) {
+            std::cout << "Spawned turret with config: "
+                << GetBodyName(config.bodyID) << ", "
+                << GetNeckName(config.neckID) << ", "
+                << GetHeadName(config.headID) << std::endl;
+        }
+    }
+
+    ImGui::End();
+}
+
+void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
 {
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
@@ -588,6 +683,7 @@ void RenderDearImGui(SceneEditor* sceneEditor)
     // Your GUI components
     SceneHierarchyExample(sceneEditor);
     ObjectPropertiesExample(sceneEditor->selectedObject);
+    TurretSpawnerWindow(factory);
 
     SaveSceneButton(sceneEditor);
     ShowSaveAsPopup(sceneEditor);
@@ -1274,11 +1370,12 @@ void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
 
 Object* screen_quad = nullptr;
 
-void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program)
+void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint program, LabAttackFactory** factory)
 {
     MazeGenerator* mazeGenerator = new MazeGenerator("assets/models/maze.txt", scene, scene->lightManager);
     MazeGenerator* mazeSecurity = new MazeGenerator("assets/models/mazeSecurity.txt", securityRoomScene, securityRoomScene->lightManager);
     LabAttackFactory* LAFactory = new LabAttackFactory();
+    *factory = LAFactory;
     LAFactory->scene = scene;
     LAFactory->Start();
     LAFactory->maze = mazeGenerator;
@@ -1907,8 +2004,8 @@ int main(void)
     secutityRoomScene->vaoManager = scene->vaoManager;
     secutityRoomScene->fCamera = g_pFlyCamera;
     secutityRoomScene->physicsManager = scene->physicsManager;
-
-    AddActions(scene, cameraScene, secutityRoomScene, program);
+    LabAttackFactory* factory = nullptr;
+    AddActions(scene, cameraScene, secutityRoomScene, program, &factory);
 
     Animator* animator = new Animator();
     animator->scene = scene;
@@ -2168,7 +2265,7 @@ int main(void)
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
         if (scene->isFlyCamera)
-            RenderDearImGui(sceneEditor);
+            RenderDearImGui(sceneEditor, factory);
            
           
                 handleKeyboardAsync(window, screen_quad, scene);
