@@ -1,4 +1,11 @@
 #pragma once
+
+
+class aTurretHead;
+class aTurretBody;
+class aTurretNeck;
+class aTurretHead;
+
 enum eTurretBodyID
 {
 	STANDARTBODY
@@ -6,7 +13,8 @@ enum eTurretBodyID
 
 enum eTurretNeckID
 {
-	STANDARTNECK
+	STANDARTNECK,
+	AIMNECK
 };
 
 enum eTurretHeadID
@@ -26,25 +34,28 @@ struct sTurretCofig
 class cTurretPart {
 public:
 	Object* object;
-	Action* action;
 	glm::vec3 connectionTransform = glm::vec3(0);
 
 };
 
 class cTurretHead : public cTurretPart {
 public:
+	aTurretHead* action;
 	eTurretHeadID ID;
 
 };
 
 class cTurretNeck : public cTurretPart {
 public:
+	aTurretNeck* action;
+	Object* headConnection;
 	eTurretNeckID ID;
 
 };
 
 class cTurretBody : public cTurretPart {
 public:
+	aTurretBody* action;
 	eTurretBodyID ID;
 
 };

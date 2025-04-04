@@ -3,8 +3,9 @@
 #include "Action.h"
 #include "LabAttackFactory.h"
 #include <glm/gtc/quaternion.hpp>
+#include "aTurretPart.h"
 
-class aTurretHead : public Action
+class aTurretHead : public aTurretPart
 {
 private:
     float m_shootCooldown = 0.1f; // Seconds between shots
@@ -42,7 +43,7 @@ public:
         factory->SpawnPlayerBullet(shootPosition, forward * bulletSpeed);
     }
 
-    Action* Clone() const override
+    aTurretHead* Clone() const override
     {
         aTurretHead* clone = new aTurretHead(*this);
         clone->factory = factory; 

@@ -2,9 +2,9 @@
 #pragma once
 #include "Action.h"
 #include <glm/glm.hpp>
-#include "sObject.h"
 #include "Scene.hpp"
-class aTurretNeckRotate : public Action 
+#include "aTurretNeck.h"
+class aTurretNeckRotate : public aTurretNeck
 {
 public:
     float rotationSpeed = 45.0f; // Degrees per second
@@ -16,9 +16,11 @@ public:
         // Rotate around Y axis
         float deltaRotation = rotationSpeed * object->scene->deltaTime;
         object->mesh->rotationEulerXYZ.y += deltaRotation;
+
+ 
     }
 
-    Action* Clone() const override 
+    aTurretNeck* Clone() const override
     {
         aTurretNeckRotate* clone = new aTurretNeckRotate(*this);
         clone->object = nullptr;

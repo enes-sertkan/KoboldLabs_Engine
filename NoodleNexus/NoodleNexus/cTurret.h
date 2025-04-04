@@ -12,9 +12,9 @@ class Turret {
 public:
 
 
-	cTurretPart* head;
-	cTurretPart* neck;
-	cTurretPart* body;
+	cTurretHead* head;
+	cTurretNeck* neck;
+	cTurretBody* body;
 	LabAttackFactory* factory;
 	glm::vec3 position;
 
@@ -39,9 +39,9 @@ public:
 
             if (neck && neck->object) {
                 head = factory->SpawnTurretHead(neck->connectionTransform, config->headID);
-                neck->object->AddChild(head->object);
-                head->object->mesh->positionXYZ = neck->connectionTransform;
-                head->object->startTranform->position= neck->connectionTransform;
+                neck->headConnection->AddChild(head->object);
+                head->object->mesh->positionXYZ = glm::vec3(0);
+                head->object->startTranform->position= glm::vec3(0);
             }
         }
     }

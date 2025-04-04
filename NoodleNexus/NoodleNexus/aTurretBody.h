@@ -1,11 +1,13 @@
-class aTurretBody : public Action
+#pragma once
+#include "aTurretPart.h"
+class aTurretBody : public aTurretPart
 {
 public:
     float rotationSpeed = 1.0f;
     glm::vec3 targetDirection = glm::vec3(0, 0, 1);
 
     // Override Clone() for derived class
-    Action* Clone() const override
+    aTurretBody* Clone() const override
     {
         aTurretBody* clone = new aTurretBody(*this);
         clone->object = nullptr;
@@ -14,7 +16,7 @@ public:
 
     // Copy constructor
     aTurretBody(const aTurretBody& other)
-        : Action(other), // Call base class copy constructor
+        : aTurretPart(other), // Call base class copy constructor
         rotationSpeed(other.rotationSpeed),
         targetDirection(other.targetDirection)
     {

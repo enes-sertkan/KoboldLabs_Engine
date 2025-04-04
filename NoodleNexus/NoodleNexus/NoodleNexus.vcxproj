@@ -152,6 +152,7 @@
     <ClCompile Include="aPlayerMovement.h" />
     <ClCompile Include="aScreenTextureSwitch.h" />
     <ClCompile Include="aTextureWiggler.h" />
+    <ClCompile Include="aTurretPart.h" />
     <ClCompile Include="aWavesEffect.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="aSoftBodyAction.hpp" />
     <ClInclude Include="aTurretBody.h" />
     <ClInclude Include="aTurretHead.hpp" />
+    <ClInclude Include="aTurretNeck.h" />
     <ClInclude Include="aTurretNeckRotate.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="BruteEnemy.h" />
@@ -299,6 +301,7 @@
     <ClInclude Include="Theseus.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TurretConfig.h" />
+    <ClInclude Include="TurretNeckAim.h" />
     <ClInclude Include="UsableItem.hpp" />
     <ClInclude Include="VerletPhysics.hpp" />
     <ClInclude Include="UVWave.h" />

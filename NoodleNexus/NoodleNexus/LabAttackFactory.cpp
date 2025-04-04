@@ -6,6 +6,7 @@
 #include "aBullet.h"
 #include "aTurretBody.h"
 #include "aTurretNeckRotate.hpp"
+#include "TurretNeckAim.h"
 #include "aTurretHead.hpp"
 #include "cTurret.h"
 // Constructor
@@ -219,12 +220,31 @@ cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurre
 
     newObj->name = "Neck";
 
+    // Create head connection object
+    Object* connectionObj = scene->GenerateMeshObjectsFromObject(
+        "",
+        position,
+        templateNeck->object->mesh->uniformScale,
+        templateNeck->object->mesh->rotationEulerXYZ,
+        templateNeck->object->mesh->bOverrideObjectColour,
+        templateNeck->object->mesh->objectColourRGBA,
+        !templateNeck->object->mesh->bDoNotLight,
+        scene->sceneObjects
+    );
+
+    connectionObj->name = "HeadConnection";
+    newObj->AddChild(connectionObj);
+    connectionObj->mesh->positionXYZ = templateNeck->connectionTransform;
+    connectionObj->startTranform->position = templateNeck->connectionTransform;
+
+
     cTurretNeck* newNeck = new cTurretNeck();
     newNeck->object = newObj;
     newNeck->action = templateNeck->action->Clone();
+    newNeck->action->headConnection = connectionObj;
     newNeck->ID = neckID;
     newNeck->connectionTransform = templateNeck->connectionTransform;
-
+    newNeck->headConnection = connectionObj;
     scene->AddActionToObj(newNeck->action, newObj);
     return newNeck;
 }
@@ -273,6 +293,27 @@ void LabAttackFactory::Start()
     bodyObj->isActive = false;
 
 
+    cTurretNeck* aimNeck = new cTurretNeck();
+    Object* aimNeckObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Cube_xyz_n_uv.ply",
+        glm::vec3(0),
+        0.5f,
+        glm::vec3(0.f),
+        true,
+        glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+    aimNeck->ID = AIMNECK;
+    aimNeck->object = aimNeckObj;
+    aimNeck->action = new TurretNeckAim();
+    aimNeck->action->factory = this;
+    aimNeck->connectionTransform = glm::vec3(0, 1.2f, 0); // Example offset
+    turretNecks.push_back(aimNeck);
+    aimNeckObj->isActive = false;
+
+
+    // Aim Neck
     cTurretNeck* standardNeck = new cTurretNeck();
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Cube_xyz_n_uv.ply",
@@ -290,6 +331,7 @@ void LabAttackFactory::Start()
     standardNeck->connectionTransform = glm::vec3(0, 1.2f, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
+
     // Standard Head
     cTurretHead* standardHead = new cTurretHead();
     Object* headObj = scene->GenerateMeshObjectsFromObject(

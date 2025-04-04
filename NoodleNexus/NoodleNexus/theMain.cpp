@@ -569,6 +569,7 @@ const char* GetBodyName(eTurretBodyID id) {
 const char* GetNeckName(eTurretNeckID id) {
     switch (id) {
     case STANDARTNECK: return "Standard Neck";
+    case AIMNECK: return "Auto Aim Neck";
         // Add new neck types here
     default: return "Unknown Neck";
     }
