@@ -311,6 +311,12 @@
     <ClCompile Include="aTurretPart.h">
       <Filter>OpenTD</Filter>
     </ClCompile>
+    <ClCompile Include="Turret.cpp">
+      <Filter>OpenTD</Filter>
+    </ClCompile>
+    <ClCompile Include="aEnemyBullet.h">
+      <Filter>OpenTD</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -590,6 +596,9 @@
       <Filter>OpenTD</Filter>
     </ClInclude>
     <ClInclude Include="TurretNeckAim.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="aPlayerBullet.h">
       <Filter>OpenTD</Filter>
     </ClInclude>
   </ItemGroup>

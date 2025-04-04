@@ -8,15 +8,41 @@
 class aTurretHead : public aTurretPart
 {
 private:
-    float m_shootCooldown = 0.1f; // Seconds between shots
+    float m_shootCooldown = 0.3f;
     float m_timeSinceLastShot = 0.0f;
+    size_t m_currentBarrel = 0;
+
+    // Recoil parameters
+    glm::vec3 m_originalLocalPosition;
+    float m_currentRecoil = 0.0f;
+    float m_recoilDistance = 0.4f;
+    float m_recoilRecoverySpeed = 1.5f;
+
+    // Cached rotation quaternion for frame consistency
+    glm::quat m_currentWorldRotation;
 
 public:
-    LabAttackFactory* factory = nullptr; // Should be set by turret creation
+    void Start() override {
+        aTurretPart::Start();
+        m_originalLocalPosition = object->mesh->positionXYZ;
+    }
 
     void Update() override
     {
         if (!object || !factory) return;
+
+        // Get world rotation once per frame
+        m_currentWorldRotation = object->GetWorldRotationQuat();
+
+        // Handle recoil recovery
+        if (m_currentRecoil > 0.0f) {
+            m_currentRecoil -= m_recoilRecoverySpeed * object->scene->deltaTime;
+            m_currentRecoil = glm::max(m_currentRecoil, 0.0f);
+            glm::vec3 recoilOffset = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, -m_currentRecoil);
+
+            // Apply recoil in local space backward direction
+            object->mesh->positionXYZ = m_originalLocalPosition + recoilOffset;
+        }
 
         m_timeSinceLastShot += object->scene->deltaTime;
 
@@ -29,25 +55,31 @@ public:
 
     void Shoot()
     {
-        // Get head's forward direction
-        glm::vec3 rotationDegrees = object->GetWorldRotation();
-        glm::vec3 rotationRadians = glm::radians(rotationDegrees);
-        glm::quat rotation = glm::quat(rotationRadians);
-        glm::vec3 forward = rotation * glm::vec3(0.0f, 0.0f, 1.0f);
+        std::vector<glm::vec3> m_barrelPositions = turret->head->barrelsPos;
+        if (m_barrelPositions.empty()) return;
 
-        // Get shoot position (center of head)
-        glm::vec3 shootPosition = object->GetWorldPosition();
+        // Apply recoil using cached rotation
+        m_currentRecoil = m_recoilDistance;
 
-        // Create bullet with direction
-        float bulletSpeed = 10.0f;
-        factory->SpawnPlayerBullet(shootPosition, forward * bulletSpeed);
+        // Get current barrel position using frame-consistent rotation
+        glm::vec3 localBarrelPos = m_barrelPositions[m_currentBarrel];
+        glm::vec3 worldBarrelPos = object->GetWorldPosition() +
+            m_currentWorldRotation * (localBarrelPos - glm::vec3(0.0f, 0.0f, m_currentRecoil));
+
+        // Get shoot direction using cached rotation
+        glm::vec3 forward = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, 1.0f);
+
+        factory->SpawnPlayerBullet(worldBarrelPos, forward * 20.0f);
+
+        m_currentBarrel = (m_currentBarrel + 1) % m_barrelPositions.size();
     }
 
     aTurretHead* Clone() const override
     {
         aTurretHead* clone = new aTurretHead(*this);
-        clone->factory = factory; 
+        clone->factory = factory;
         clone->m_timeSinceLastShot = 0.0f;
+        clone->m_currentBarrel = 0;
         return clone;
     }
 };

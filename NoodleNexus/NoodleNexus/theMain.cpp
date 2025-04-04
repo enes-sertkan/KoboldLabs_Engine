@@ -2065,6 +2065,10 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Operating_Table_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_NormalGL.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("castle_element_05_MetalSmoothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_Albedo.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_Normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_Occlusion.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_ST.bmp");
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;

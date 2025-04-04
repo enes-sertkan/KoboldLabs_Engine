@@ -9,6 +9,8 @@
 #include "TurretNeckAim.h"
 #include "aTurretHead.hpp"
 #include "cTurret.h"
+#include "aEnemyBullet.h"
+#include "aPlayerBullet.h"
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
     int playerBulletPoolSize, int enemyBulletPoolSize)
@@ -153,7 +155,11 @@ cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurre
     );
 
     newObj->name = "Body";
-
+    newObj->mesh->textures[0] = templateBody->object->mesh->textures[0];
+    newObj->mesh->blendRatio[0] = templateBody->object->mesh->blendRatio[0];
+    newObj->mesh->NMTexture = templateBody->object->mesh->NMTexture;
+    newObj->mesh->AOtexture = templateBody->object->mesh->AOtexture;
+    newObj->mesh->STTexture = templateBody->object->mesh->STTexture;
     cTurretBody* newBody = new cTurretBody();
     newBody->object = newObj;
     newBody->action = templateBody->action->Clone(); // Implement Clone() for actions
@@ -187,11 +193,18 @@ cTurretHead* LabAttackFactory::SpawnTurretHead(const glm::vec3& position, eTurre
 
     newObj->name = "Head";
 
+    newObj->mesh->textures[0] = templateHead->object->mesh->textures[0];
+    newObj->mesh->blendRatio[0] = templateHead->object->mesh->blendRatio[0];
+    newObj->mesh->NMTexture = templateHead->object->mesh->NMTexture;
+    newObj->mesh->AOtexture = templateHead->object->mesh->AOtexture;
+    newObj->mesh->STTexture = templateHead->object->mesh->STTexture;
+
     cTurretHead* newHead = new cTurretHead();
     newHead->object = newObj;
     newHead->action = templateHead->action->Clone();
     newHead->ID = headID;
     newHead->connectionTransform = templateHead->connectionTransform;
+    newHead->barrelsPos = templateHead->barrelsPos;
 
     scene->AddActionToObj(newHead->action, newObj);
     return newHead;
@@ -219,6 +232,13 @@ cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurre
     );
 
     newObj->name = "Neck";
+
+
+    newObj->mesh->textures[0] = templateNeck->object->mesh->textures[0];
+    newObj->mesh->blendRatio[0] = templateNeck->object->mesh->blendRatio[0];
+    newObj->mesh->NMTexture = templateNeck->object->mesh->NMTexture;
+    newObj->mesh->AOtexture = templateNeck->object->mesh->AOtexture;
+    newObj->mesh->STTexture = templateNeck->object->mesh->STTexture;
 
     // Create head connection object
     Object* connectionObj = scene->GenerateMeshObjectsFromObject(
@@ -280,35 +300,48 @@ void LabAttackFactory::Start()
     // Standard Body
     cTurretBody* standardBody = new cTurretBody();
     Object* bodyObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
-        glm::vec3(0), 1.f, glm::vec3(0.f),
-        true, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
+        "assets/models/Turret/StandartTurretBody.ply",
+        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
         true, scene->sceneObjects
     );
+
+    bodyObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    bodyObj->mesh->blendRatio[0] = 1;
+    bodyObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    bodyObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    bodyObj->mesh->STTexture = "Turret/Turret_ST.bmp";
     standardBody->ID = STANDARTBODY;
     standardBody->object = bodyObj;
     standardBody->action = new aTurretBody();
-    standardBody->connectionTransform = glm::vec3(0, 1.5, 0); // Example offset
+    standardBody->connectionTransform = glm::vec3(0, 1, 0); // Example offset
     turretBodies.push_back(standardBody);
     bodyObj->isActive = false;
 
 
     cTurretNeck* aimNeck = new cTurretNeck();
     Object* aimNeckObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
+        "assets/models/Turret/StandartTurretNeck.ply",
         glm::vec3(0),
-        0.5f,
+        0.07f,
         glm::vec3(0.f),
-        true,
+        false,
         glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
         true,
         scene->sceneObjects
     );
+    aimNeckObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    aimNeckObj->mesh->blendRatio[0] = 1;
+    aimNeckObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    aimNeckObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    aimNeckObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+
+
     aimNeck->ID = AIMNECK;
     aimNeck->object = aimNeckObj;
     aimNeck->action = new TurretNeckAim();
     aimNeck->action->factory = this;
-    aimNeck->connectionTransform = glm::vec3(0, 1.2f, 0); // Example offset
+    aimNeck->connectionTransform = glm::vec3(0, 0.7f, 0); // Example offset
     turretNecks.push_back(aimNeck);
     aimNeckObj->isActive = false;
 
@@ -316,34 +349,52 @@ void LabAttackFactory::Start()
     // Aim Neck
     cTurretNeck* standardNeck = new cTurretNeck();
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
+        "assets/models/Turret/StandartTurretNeck.ply",
         glm::vec3(0),
-        0.5f,
+        0.07f,
         glm::vec3(0.f),
-        true,
+        false,
         glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
         true,
         scene->sceneObjects
     );
+
+    neckObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    neckObj->mesh->blendRatio[0] = 1;
+    neckObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    neckObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    neckObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+
+
     standardNeck->ID = STANDARTNECK;
     standardNeck->object = neckObj;
     standardNeck->action = new aTurretNeckRotate();
-    standardNeck->connectionTransform = glm::vec3(0, 1.2f, 0); // Example offset
+    standardNeck->connectionTransform = glm::vec3(0, 0.7f, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
 
     // Standard Head
     cTurretHead* standardHead = new cTurretHead();
     Object* headObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
+        "assets/models/Turret/StandartTurretHead.ply",
         glm::vec3(0),
-        0.8f,
+        0.07f,
         glm::vec3(0.f),
-        true,
+        false,
         glm::vec4(1.f, 0.f, 0.f, 1.f),
         true,
         scene->sceneObjects
     );
+
+
+    headObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    headObj->mesh->blendRatio[0] = 1;
+    headObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    headObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    headObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+    standardHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
+
+
     standardHead->ID = STANDARTHEAD;
     standardHead->object = headObj;
     aTurretHead* standartHeadAction = new aTurretHead();
@@ -362,8 +413,9 @@ void LabAttackFactory::Start()
 
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.2f, glm::vec3(0.f), true, glm::vec4(0.1f, 0.6f, 0.f, 1.f), true, scene->sceneObjects);
-
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.14f, glm::vec3(0.f), true, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    bullet->mesh->metal = 0.8;
+    bullet->mesh->smoothness = 0.7f;
     bullet->name = "PBullet";
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
@@ -373,7 +425,7 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
     scene->AddActionToObj(projectileAction, bullet);
     m_playerBulletPool.push_back(bullet);
 
-    aBullet* bulletCol = new aBullet();
+    aPlayerBullet* bulletCol = new aPlayerBullet();
     bulletCol->factory = this;
     scene->AddActionToObj(bulletCol, bullet);
     return bullet;
@@ -382,12 +434,19 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
 Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed)
 {
     Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), true, glm::vec4(0.9f, 0.1f, 0.1f, 1.f), true, scene->sceneObjects);
+   
+    bullet->name = "EBullet";
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 
     bullet->isTemporary = true;
 
     scene->AddActionToObj(projectileAction, bullet);
+
+
+    aEnemyBullet* bulletCol = new aEnemyBullet();
+    bulletCol->factory = this;
+    scene->AddActionToObj(bulletCol, bullet);
 
     return bullet;
 }

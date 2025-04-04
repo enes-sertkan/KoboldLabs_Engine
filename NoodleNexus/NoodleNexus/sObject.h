@@ -124,7 +124,7 @@ public:
         }
     }
 
-
+    //CRYING!! NO TIME TO DO OPTIMISED VERSION:((
     // Get world position (slow, recalculates every call)
     glm::vec3 GetWorldPosition() {
         if (m_parent) {
@@ -140,6 +140,22 @@ public:
         }
         return mesh->rotationEulerXYZ;
     }
+
+    glm::quat GetWorldRotationQuat()  {
+        // Convert degrees to radians
+        glm::vec3 radians = glm::radians(GetWorldRotation());
+
+        // Create rotation matrix using XYZ rotation order
+        glm::mat4 rotationMatrix = glm::eulerAngleXYZ(
+            radians.x,  // X-axis rotation (pitch)
+            radians.y,  // Y-axis rotation (yaw)
+            radians.z   // Z-axis rotation (roll)
+        );
+
+        // Convert matrix to quaternion
+        return glm::quat_cast(rotationMatrix);
+    }
+
 
     // Get world scale (slow, recalculates every call)
     float GetWorldScale() {

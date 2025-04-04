@@ -42,6 +42,8 @@ class cTurretHead : public cTurretPart {
 public:
 	aTurretHead* action;
 	eTurretHeadID ID;
+	std::vector<glm::vec3> barrelsPos;
+
 
 };
 

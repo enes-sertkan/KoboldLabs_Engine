@@ -24,6 +24,9 @@ screen_quad.txt
 Rope.txt
 Plane_1x1.txt
 Floor_jumpy.txt
+StandartTurretHead.txt
+StandartTurretNeck.txt
+StandartTurretBody.txt
 <--ObjectLoad>
 <Scene-->
 

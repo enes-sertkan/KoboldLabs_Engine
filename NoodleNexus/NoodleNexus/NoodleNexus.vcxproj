@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="aBaseMazeCharacter.h" />
+    <ClCompile Include="aEnemyBullet.h" />
     <ClCompile Include="aEnemySpawner.h" />
     <ClCompile Include="AllInlcludes.hpp" />
     <ClCompile Include="aLocTriggersLua.h" />
@@ -210,6 +211,7 @@
     <ClCompile Include="ShootAtPlayerAction.cpp" />
     <ClCompile Include="sMesh.cpp" />
     <ClCompile Include="theMain.cpp" />
+    <ClCompile Include="Turret.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aAgent.h" />
@@ -226,6 +228,7 @@
     <ClInclude Include="aMinotaur.h" />
     <ClInclude Include="aMoveInDirection.h" />
     <ClInclude Include="Animator.h" />
+    <ClInclude Include="aPlayerBullet.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
     <ClInclude Include="aPlayerShooting.h" />
     <ClInclude Include="aRayCastPhysics.h" />

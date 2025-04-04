@@ -150,11 +150,16 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "Plane_1x1.txt", "XYZNUVRGBA");
 
 
-    modelInfo.modelName = "Floor_Jumpy";
-    modelInfo.meshPath = "assets/models/objects/floor_jumpy.ply";
-    fileManager->WriteModelFile(&modelInfo, "Floor_jumpy.txt", "XYZNUVRGBA"); 
+    modelInfo.modelName = "StandartTurretHead";
+    modelInfo.meshPath = "assets/models/Turret/StandartTurretHead.ply";
+    fileManager->WriteModelFile(&modelInfo, "StandartTurretHead.txt", "XYZNUVRGBA"); 
     
-    modelInfo.modelName = "Floor_Jumpy";
-    modelInfo.meshPath = "assets/models/objects/floor_jumpy.ply";
-    fileManager->WriteModelFile(&modelInfo, "Floor_jumpy.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "StandartTurretNeck";
+    modelInfo.meshPath = "assets/models/Turret/StandartTurretNeck.ply";
+    fileManager->WriteModelFile(&modelInfo, "StandartTurretNeck.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "StandartTurretBody";
+    modelInfo.meshPath = "assets/models/Turret/StandartTurretBody.ply";
+    fileManager->WriteModelFile(&modelInfo, "StandartTurretBody.txt", "XYZNUVRGBA");
+
 }
