@@ -33,6 +33,7 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <iostream>
 
 //void ReadPlyModelFromFile(std::string plyFileName);
 #include "PlyFileLoaders.h"
@@ -93,11 +94,10 @@
 #include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
 
+// physx
+#include <physx/PxPhysicsAPI.h>
 
-
- Scene* currentScene=nullptr;
-
-
+Scene* currentScene=nullptr;
 
 std::vector<sMesh*> g_vecMeshesToDraw;
 
@@ -1806,7 +1806,6 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 int main(void)
 {
 
-
     AABBOctTree();
 
 
@@ -2070,7 +2069,6 @@ int main(void)
     unsigned int numberOfNarrowPhaseTrianglesInAABB_BroadPhaseThing = 0;
 
 
-
    Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // Camera* securutyCamera=  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // mainCamera->nightMode = true;
@@ -2155,8 +2153,6 @@ int main(void)
         double deltaTime = currentFrameTime - lastFrameTime;
         lastFrameTime = currentFrameTime;
 //      ------------------------------------------ 
-
-        
 
 
 
