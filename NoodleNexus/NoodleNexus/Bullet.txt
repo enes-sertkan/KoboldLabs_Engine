@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Bullet
+<filePath> assets/models/bullet.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

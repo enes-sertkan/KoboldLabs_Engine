@@ -136,6 +136,20 @@ Turret* LabAttackFactory::SpawnTurret(const glm::vec3& position, eTurretBodyID b
     return newTurret;
 }
 
+Turret* LabAttackFactory::SpawnTurretGhost(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID)
+{
+    Turret* newTurret = new Turret();
+    newTurret->factory = this;
+    newTurret->position = position;
+
+    sTurretCofig config;
+    config.bodyID = bodyID;
+    config.neckID = neckID;
+    config.headID = headID;
+
+    newTurret->RebuildTurretGhost(&config);
+    return newTurret;
+}
 
 cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurretBodyID bodyID)
 {
@@ -169,6 +183,16 @@ cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurre
     newBody->action = templateBody->action->Clone(); // Implement Clone() for actions
     newBody->ID = bodyID;
     newBody->connectionTransform = templateBody->connectionTransform;
+
+    if (grass != nullptr)
+    {
+        aGrassCollider* grassCollider = new aGrassCollider();
+        grassCollider->SetGrass(grass);
+        grassCollider->colliderRadius = 1.2f;
+        grassCollider->colliderBlendRadius = 2.f;
+        scene->AddActionToObj(grassCollider, newBody->object);
+    }
+
 
     scene->AddActionToObj(newBody->action, newObj);
     return newBody;
@@ -353,7 +377,7 @@ void LabAttackFactory::Start()
     // Aim Neck
     cTurretNeck* standardNeck = new cTurretNeck();
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Turret/StandartTurretNeck.ply",
+        "assets/models/Cube_xyz_n_uv.ply",
         glm::vec3(0),
         0.07f,
         glm::vec3(0.f),
@@ -417,7 +441,7 @@ void LabAttackFactory::Start()
 
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.14f, glm::vec3(0.f), true, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.5f, glm::vec3(0.f), true, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
     bullet->mesh->metal = 0.8;
     bullet->mesh->smoothness = 0.7f;
     bullet->name = "PBullet";
@@ -427,11 +451,14 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
     bullet->isTemporary = true;
 
     scene->AddActionToObj(projectileAction, bullet);
+    projectileAction->Start();
     m_playerBulletPool.push_back(bullet);
 
     aPlayerBullet* bulletCol = new aPlayerBullet();
     bulletCol->factory = this;
     scene->AddActionToObj(bulletCol, bullet);
+
+
     return bullet;
 }
 
@@ -446,7 +473,7 @@ Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm:
     bullet->isTemporary = true;
 
     scene->AddActionToObj(projectileAction, bullet);
-
+    projectileAction->Start();
 
     aEnemyBullet* bulletCol = new aEnemyBullet();
     bulletCol->factory = this;

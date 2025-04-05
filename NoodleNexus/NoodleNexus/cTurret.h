@@ -21,6 +21,19 @@ public:
     Turret() : head(nullptr), neck(nullptr), body(nullptr), factory(nullptr), position(0) {}
 
 	void RebuildTurret(sTurretCofig* config);
+	void RebuildTurretGhost(sTurretCofig* config);
+
+	sTurretCofig* GetConfig() const;
+private:
+	void UpdatePartPosition(cTurretPart* part, const glm::vec3& newPosition) {
+		if (part && part->object) {
+			part->object->mesh->positionXYZ = newPosition;
+			part->object->startTranform->position = newPosition;
+		}
+	}
+
+
+
 
 };
 

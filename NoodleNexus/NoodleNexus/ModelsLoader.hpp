@@ -162,4 +162,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Turret/StandartTurretBody.ply";
     fileManager->WriteModelFile(&modelInfo, "StandartTurretBody.txt", "XYZNUVRGBA");
 
+
+        modelInfo.modelName = "Bullet";
+    modelInfo.meshPath = "assets/models/bullet.ply";
+    fileManager->WriteModelFile(&modelInfo, "Bullet.txt", "XYZNUVRGBA");
+
 }

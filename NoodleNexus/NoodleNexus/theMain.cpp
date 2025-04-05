@@ -583,8 +583,8 @@ const char* GetHeadName(eTurretHeadID id) {
     }
 }
 
-void TurretSpawnerWindow(LabAttackFactory* factory) {
-    static glm::vec3 spawnPosition = { 0.0f, 0.0f, 0.0f };
+void TurretSpawnerWindow(LabAttackFactory* factory, SceneEditor* sceneEditor) {
+    
     static eTurretBodyID selectedBodyID = STANDARTBODY;
     static eTurretNeckID selectedNeckID = STANDARTNECK;
     static eTurretHeadID selectedHeadID = STANDARTHEAD;
@@ -592,7 +592,7 @@ void TurretSpawnerWindow(LabAttackFactory* factory) {
     ImGui::Begin("Turret Spawner");
 
     // Position controls
-    ImGui::DragFloat3("Spawn Position", glm::value_ptr(spawnPosition), 0.1f);
+    ImGui::DragFloat3("Spawn Position", glm::value_ptr(sceneEditor->ghostTurret->body->object->mesh->positionXYZ), 0.1f);
 
     // Body selection - automatically shows all available bodies
     if (ImGui::BeginCombo("Body Type", GetBodyName(selectedBodyID))) {
@@ -600,6 +600,10 @@ void TurretSpawnerWindow(LabAttackFactory* factory) {
             const bool isSelected = (selectedBodyID == body->ID);
             if (ImGui::Selectable(GetBodyName(body->ID), isSelected)) {
                 selectedBodyID = body->ID;
+                sTurretCofig* config = sceneEditor->ghostTurret->GetConfig();
+
+                config->bodyID = selectedBodyID;
+                sceneEditor->ghostTurret->RebuildTurretGhost(config);
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
@@ -614,6 +618,11 @@ void TurretSpawnerWindow(LabAttackFactory* factory) {
             const bool isSelected = (selectedNeckID == neck->ID);
             if (ImGui::Selectable(GetNeckName(neck->ID), isSelected)) {
                 selectedNeckID = neck->ID;
+
+                sTurretCofig* config = sceneEditor->ghostTurret->GetConfig();
+
+                config->neckID = selectedNeckID;
+                sceneEditor->ghostTurret->RebuildTurretGhost(config);
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
@@ -627,7 +636,13 @@ void TurretSpawnerWindow(LabAttackFactory* factory) {
         for (cTurretHead* head : factory->turretHeads) {
             const bool isSelected = (selectedHeadID == head->ID);
             if (ImGui::Selectable(GetHeadName(head->ID), isSelected)) {
+
+                sTurretCofig* config = sceneEditor->ghostTurret->GetConfig();
+
+                config->headID = selectedHeadID;
+                sceneEditor->ghostTurret->RebuildTurretGhost(config);
                 selectedHeadID = head->ID;
+                
             }
             if (isSelected) {
                 ImGui::SetItemDefaultFocus();
@@ -643,7 +658,7 @@ void TurretSpawnerWindow(LabAttackFactory* factory) {
             selectedHeadID
         };
 
-        if (factory->SpawnTurret(spawnPosition, config.bodyID, config.neckID, config.headID)) {
+        if (factory->SpawnTurret(sceneEditor->ghostTurret->body->object->mesh->positionXYZ, config.bodyID, config.neckID, config.headID)) {
             std::cout << "Spawned turret with config: "
                 << GetBodyName(config.bodyID) << ", "
                 << GetNeckName(config.neckID) << ", "
@@ -684,7 +699,7 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
     // Your GUI components
     SceneHierarchyExample(sceneEditor);
     ObjectPropertiesExample(sceneEditor->selectedObject);
-    TurretSpawnerWindow(factory);
+    TurretSpawnerWindow(factory, sceneEditor);
 
     SaveSceneButton(sceneEditor);
     ShowSaveAsPopup(sceneEditor);
@@ -2153,7 +2168,7 @@ int main(void)
 
     SceneEditor* sceneEditor = new SceneEditor();
 
-    sceneEditor->Start("selectBox.txt",fileManager, program, window, scene->vaoManager, scene);
+    sceneEditor->Start("selectBox.txt",fileManager, program, window, scene->vaoManager, scene, factory);
 
 
 

@@ -251,21 +251,21 @@ if (bShellTexturing)
     vec3 shellColor = computeShellColor(fUV, shellHeight, texture00, texture01, uvOffsetFactor);
 
     // --- Use PBR lighting for shells ---
-    //  vec4 vertexSpecular = vec4(1.0); 
-    // float roughnessVal = 1.0 - smoothness;  // Use default smoothness
-    //roughnessVal = max(roughnessVal, 0.15);
-    // vec3 F0 = mix(vec3(0.04), shellColor, metallic);  // Use default metallic
+      vec4 vertexSpecular = vec4(1.0); 
+     float roughnessVal = 1.0 - smoothness;  // Use default smoothness
+    roughnessVal = max(roughnessVal, 0.15);
+     vec3 F0 = mix(vec3(0.04), shellColor, metallic);  // Use default metallic
     finalPixelColour.xyz = shellColor;
     // Calculate lighting
- // if  (shellHeight>10) finalPixelColour = calculateLightContrib(
-  //      shellColor, 
-  //     normalize(fvertexNormal.xyz),  // Use existing normal calculation
-  //      fvertexWorldLocation.xyz, 
-  //      vertexSpecular, 
-  //      roughnessVal, 
-  //      metallic,  // Use default metallic uniform
-  //      F0
-  //  );
+  if  (shellHeight>10) finalPixelColour = calculateLightContrib(
+        shellColor, 
+      normalize(fvertexNormal.xyz),  // Use existing normal calculation
+       fvertexWorldLocation.xyz, 
+       vertexSpecular, 
+     roughnessVal, 
+      metallic,  // Use default metallic uniform
+       F0
+   );
 
     // Apply post-processing (same as regular objects)
     finalPixelColour.a = 1.f;
@@ -418,8 +418,8 @@ for (int i = 0; i < 10; i++) {
         finalPixelColour.rgb *= ao;
     }
 
-
-    
+    if (finalPixelColour.a==1)
+    finalPixelColour.a = objectColour.a;
     return;
 }
 ///PBR

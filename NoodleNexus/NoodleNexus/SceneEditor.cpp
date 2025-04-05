@@ -1,9 +1,9 @@
 #include "SceneEditor.h"
 #include "KLFileManager.hpp"
 #include "cVAOManager/cVAOManager.h"
+#include "LabAttackFactory.h"
 
-
-void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene)
+void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene, LabAttackFactory* factory)
 {
     scene = currentScene;
 	sModelDrawInfo modelInfo = klFileManger->ReadModelFile(selectBoxPath);
@@ -37,7 +37,7 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, 
     PickFirstLight();
 
     
-
+    ghostTurret = factory->SpawnTurretGhost(glm::vec3(0), STANDARTBODY, STANDARTNECK, STANDARTHEAD);
     fileManger = klFileManger;
  
 

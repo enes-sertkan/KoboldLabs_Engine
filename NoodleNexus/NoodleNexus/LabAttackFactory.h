@@ -44,6 +44,7 @@ public:
     cTurretBody* SpawnTurretBody(const glm::vec3& position, eTurretBodyID headID);
 
     Turret* SpawnTurret(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID);
+    Turret* SpawnTurretGhost(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID);
 
     // For bullets, a position and a speed vector are provided.
     Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed);

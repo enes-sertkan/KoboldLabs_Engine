@@ -12,11 +12,15 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
+#include "cTurret.h"
+#include "TurretConfig.h"
 
 class SceneEditor
 {
 public:
-	void Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene);
+	Turret* ghostTurret;
+
+	void Start(std::string selectBoxPath, KLFileManager* klFileManger, GLuint program, GLFWwindow* currentWindow, cVAOManager* managerVAO, Scene* currentScene, LabAttackFactory* factory);
 
 	KLFileManager* fileManger = nullptr;
 	Scene* scene = nullptr; //Current scene

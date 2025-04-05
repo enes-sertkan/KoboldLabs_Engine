@@ -40,7 +40,15 @@ private:
 	sMesh* pSphere = NULL;
 	lua_State* L;
 
-
+	std::vector<Object*> GetObjectsByTransparency(bool transparent) const {
+		std::vector<Object*> result;
+		for (auto obj : sceneObjectsSorted) {
+			if (obj->mesh->transperency < 1.0f == transparent) {
+				result.push_back(obj);
+			}
+		}
+		return result;
+	}
 public:
 	//Animator* animator = nullptr;
 
@@ -109,6 +117,15 @@ public:
 	
 	void AddActionToObj(Action* action, Object* object);
 
+
+	std::vector<Object*> GetOpaqueObjects() const {
+		return GetObjectsByTransparency(false);
+	}
+
+	std::vector<Object*> GetTransparentObjects() const {
+		return GetObjectsByTransparency(true);
+	}
+
 	Object* GenerateMeshObjectsFromObject(
 		const std::string& filePath, glm::vec3 posXYZ, float scale, glm::vec3 rotXYZ,
 		bool bOverrideColor, glm::vec4 objectColor, bool bDoLightingExist,
@@ -125,5 +142,5 @@ public:
 
 	void ErrorCallback(int error, const char* description);
 
-	
+
 };

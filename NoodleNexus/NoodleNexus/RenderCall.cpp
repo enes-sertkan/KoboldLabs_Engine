@@ -1153,25 +1153,30 @@ void RenderDepthPrePass(Camera* camera, GLuint depthShaderProgram, cFBO_RGB_dept
 }
 
 
-void DrawCameraView(Camera* camera, int programID)
-{
+
+void DrawCameraView(Camera* camera, int programID) {
     Scene* scene = camera->scene;
-    scene->SortObjectsForDrawing();
 
+    // Sort objects into opaque and transparent groups
+    scene->SortObjectsForDrawing(); // Assuming this sorts and categorizes
 
-    // --- Depth Pre-Pass ---
-    if (scene->depthProgram)
-    RenderDepthPrePass(camera, scene->depthProgram, scene->depthFBO);
-
+    // --- Depth Pre-Pass (Opaque Only) ---
+    if (scene->depthProgram) {
+        RenderDepthPrePass(camera, scene->depthProgram, scene->depthFBO);
+    }
 
     // --- Main Render Pass ---
-    if (camera->scene->skybox != nullptr)
-        DrawSkyBox(scene->skybox, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
+    if (camera->scene->skybox != nullptr) {
+        DrawSkyBox(scene->skybox, scene->programs[0],
+            scene->vaoManager, scene->textureManager, camera);
+    }
 
-    for (Object* object : scene->sceneObjectsSorted) {
+    // First pass: Opaque objects with depth testing
+    for (Object* object : scene->GetOpaqueObjects()) { // You'll need this method
         if (!object->isActive) continue;
         sMesh* pCurMesh = object->mesh;
 
+        // Bind depth texture for occlusion
         if (scene->depthFBO)
         {
             // Bind depth texture for occlusion testing
@@ -1181,8 +1186,8 @@ void DrawCameraView(Camera* camera, int programID)
 
 
             GLint bDepth = glGetUniformLocation(programID, "bDepth");
-                glUniform1f(bDepth, (GLfloat)GL_TRUE);  // True
-         
+            glUniform1f(bDepth, (GLfloat)GL_TRUE);  // True
+
 
         }
 
@@ -1193,15 +1198,46 @@ void DrawCameraView(Camera* camera, int programID)
             glUniform1f(bDepth, (GLfloat)GL_FALSE);  // True
         }
 
-        if (!object->mesh->shellTexturing)
-        DrawMeshWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
-        else
-        DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, camera);
-      //  DrawMesh(pCurMesh, scene->programs[programID], scene->vaoManager, scene->textureManager, scene);
-
+        if (!pCurMesh->shellTexturing) {
+            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
+        }
+        else {
+            DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, camera);
+        }
     }
 
+    // Second pass: Transparent objects (no occlusion, back-to-front)
+    glDisable(GL_CULL_FACE); // Often needed for transparency
+    glDepthMask(GL_FALSE); // Disable depth writing
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    for (Object* object : scene->GetTransparentObjects()) { // You'll need this method
+        if (!object->isActive) continue;
+        sMesh* pCurMesh = object->mesh;
+
+        // Disable depth testing for transparent objects
+        GLint bDepthUL = glGetUniformLocation(programID, "bDepth");
+        glUniform1f(bDepthUL, GL_FALSE);
+
+        if (!pCurMesh->shellTexturing) {
+            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
+        }
+        else {
+            DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, camera);
+        }
+    }
+
+    // Restore state
+    glDepthMask(GL_TRUE);
+    glDisable(GL_BLEND);
+    glEnable(GL_CULL_FACE);
 }
+
 
 void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID)
 {
