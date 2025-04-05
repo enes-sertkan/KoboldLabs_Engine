@@ -74,6 +74,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
             neck = factory->SpawnTurretNeck(body->connectionTransform, config->neckID);
 
             if (neck && neck->object) {
+                neck->object->actions.clear();
                 body->object->AddChild(neck->object);
                 neck->object->mesh->positionXYZ = body->connectionTransform;
                 neck->object->startTranform->position = body->connectionTransform;
@@ -83,7 +84,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         else if (neck->object) {
             // Update existing neck position
             body->object->AddChild(neck->object);
-            neck->object->actions.clear();
+          
             neck->object->mesh->positionXYZ = body->connectionTransform;
             updateTransparency(neck);
         }
@@ -101,6 +102,8 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
             if (head && head->object) {
                 head->object->actions.clear();
                 neck->headConnection->AddChild(head->object);
+
+                //WE do this, bc head is child of CONNECTOR
                 head->object->mesh->positionXYZ = glm::vec3(0);
                 head->object->startTranform->position = glm::vec3(0);
                 updateTransparency(head);
@@ -109,7 +112,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         else if (head->object) {
             neck->headConnection->AddChild(head->object);
             // Update existing head position
-            head->object->mesh->positionXYZ = neck->connectionTransform;
+            head->object->mesh->positionXYZ = glm::vec3(0);
             updateTransparency(head);
         }
     }
