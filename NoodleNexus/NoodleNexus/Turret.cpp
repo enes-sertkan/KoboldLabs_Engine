@@ -54,12 +54,14 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         if (body && body->object) {
             body->object->mesh->transperency = 0.5f;
             position = oldPos; // Update position from new body
+            body->object->actions.clear();
+            updateTransparency(body);
         }
     }
     else if (body->object) {
         // Update existing body position
-        body->object->actions.clear();
-        body->object->mesh->positionXYZ = oldPos;
+   
+   
         updateTransparency(body);
     }
 
@@ -80,6 +82,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         }
         else if (neck->object) {
             // Update existing neck position
+            body->object->AddChild(neck->object);
             neck->object->actions.clear();
             neck->object->mesh->positionXYZ = body->connectionTransform;
             updateTransparency(neck);
@@ -104,6 +107,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
             }
         }
         else if (head->object) {
+            neck->headConnection->AddChild(head->object);
             // Update existing head position
             head->object->mesh->positionXYZ = neck->connectionTransform;
             updateTransparency(head);
