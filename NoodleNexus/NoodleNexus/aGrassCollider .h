@@ -13,8 +13,8 @@ private:
     bool isColliderActive = false;  // Current collider state
 
 public:
-    float activationDistance = 10.0f;   // Distance to activate collider
-    float deactivationDistance = 15.0f; // Distance to deactivate
+    float activationDistance = 15.0f;   // Distance to activate collider
+    float deactivationDistance = 18.0f; // Distance to deactivate
     float colliderRadius = 0.8f;       // Collider dimensions
     float colliderBlendRadius = 1.2f;
 

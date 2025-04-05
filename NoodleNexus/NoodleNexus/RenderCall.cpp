@@ -360,7 +360,7 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 
 
 
-        pCurMesh->time += 0.1;
+        pCurMesh->time += scene->deltaTime;
         GLint time_UL = glGetUniformLocation(program, "time");
         glUniform1f(time_UL, pCurMesh->time);
 
@@ -646,6 +646,11 @@ void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint progr
 
 
 
+    pCurMesh->time += camera->scene->deltaTime;
+    GLint time_UL = glGetUniformLocation(program, "time");
+    glUniform1f(time_UL, pCurMesh->time);
+
+
     GLint shellCount_UL = glGetUniformLocation(program, "shellCount");
     glUniform1i(shellCount_UL, pCurMesh->stData.shellCount);
 
@@ -777,15 +782,10 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
     }
 
-    float currentTime = glfwGetTime(); // For example, using GLFW
-    GLint timeUniform = glGetUniformLocation(program, "time");
-    glUniform1f(timeUniform, currentTime);
 
 
 
-
-
-    pCurMesh->time += 0.1;
+    pCurMesh->time += camera->scene->deltaTime;
     GLint time_UL = glGetUniformLocation(program, "time");
     glUniform1f(time_UL, pCurMesh->time);
 
