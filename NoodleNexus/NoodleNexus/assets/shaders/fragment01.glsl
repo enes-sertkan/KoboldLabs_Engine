@@ -16,6 +16,9 @@ in vec3 fBitangent;           // Bitangent in world space
 
 
 
+uniform sampler2D depthTexture;  
+uniform bool bDepth;  
+
 
 // === Uniforms for Object & Lighting ===
 uniform vec4 objectColour;    // Override colour 
@@ -130,7 +133,7 @@ float hash(vec2 uv) {
 }
 // Compute shell color with randomness based on the hash value (no need for randomValue function)
 vec3 computeShellColor(in vec2 uv, in float shellHeight, in sampler2D baseTex, in sampler2D shellTex, float uvOffsetFactor) {
-    uv = uv*250.f;
+    uv = uv*500.f;
 
 
         for (int i = 0; i < 20; i++) {
@@ -227,6 +230,17 @@ vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughnes
 // === Main Fragment Shader Function ===
 void main() {
 
+if (bDepth)
+{
+vec2 screenUV = gl_FragCoord.xy / vec2(textureSize(depthTexture, 0));
+    float storedDepth = texture(depthTexture, screenUV).r;
+    
+    if (gl_FragCoord.z > storedDepth + 0.001) {
+        discard;  // Occluded fragment!
+    }
+
+ }
+
 if (bShellTexturing)
 {
     // Compute shell color with the shell height and UV offset factor
@@ -237,24 +251,24 @@ if (bShellTexturing)
     vec3 shellColor = computeShellColor(fUV, shellHeight, texture00, texture01, uvOffsetFactor);
 
     // --- Use PBR lighting for shells ---
-    vec4 vertexSpecular = vec4(1.0); 
-    float roughnessVal = 1.0 - smoothness;  // Use default smoothness
-    roughnessVal = max(roughnessVal, 0.15);
-    vec3 F0 = mix(vec3(0.04), shellColor, metallic);  // Use default metallic
+    //  vec4 vertexSpecular = vec4(1.0); 
+    // float roughnessVal = 1.0 - smoothness;  // Use default smoothness
+    //roughnessVal = max(roughnessVal, 0.15);
+    // vec3 F0 = mix(vec3(0.04), shellColor, metallic);  // Use default metallic
     finalPixelColour.xyz = shellColor;
     // Calculate lighting
-  if  (shellHeight>1) finalPixelColour = calculateLightContrib(
-        shellColor, 
-        normalize(fvertexNormal.xyz),  // Use existing normal calculation
-        fvertexWorldLocation.xyz, 
-        vertexSpecular, 
-        roughnessVal, 
-        metallic,  // Use default metallic uniform
-        F0
-    );
+ // if  (shellHeight>10) finalPixelColour = calculateLightContrib(
+  //      shellColor, 
+  //     normalize(fvertexNormal.xyz),  // Use existing normal calculation
+  //      fvertexWorldLocation.xyz, 
+  //      vertexSpecular, 
+  //      roughnessVal, 
+  //      metallic,  // Use default metallic uniform
+  //      F0
+  //  );
 
     // Apply post-processing (same as regular objects)
-    finalPixelColour.a = wholeObjectTransparencyAlpha;
+    finalPixelColour.a = 1.f;
     
     return;  // Early return still needed for shells
 }

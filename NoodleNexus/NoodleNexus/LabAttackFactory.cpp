@@ -95,6 +95,16 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
             enemy->isTemporary = true;
         
             
+          
+            
+            BruteEnemy* brut = new BruteEnemy();
+            brut->maze = maze;
+            brut->factory = this;
+        
+            scene->AddActionToObj(brut, enemy);
+
+            brut->Start();
+            
             if (grass != nullptr)
             {
                 aGrassCollider* grassCollider = new aGrassCollider();
@@ -102,12 +112,6 @@ Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
                 scene->AddActionToObj(grassCollider, enemy);
             }
             
-            BruteEnemy* brut = new BruteEnemy();
-            brut->maze = maze;
-            brut->factory = this;
-        
-            scene->AddActionToObj(brut, enemy);
-            brut->Start();
             m_creepPool.push_back(brut);
 
    

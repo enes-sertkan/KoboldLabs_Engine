@@ -25,6 +25,7 @@
 #include <iostream>
 #include "CameraPoint.h"
 #include "Camera.hpp"
+#include "cFBO_RGB_depth.hpp"
 //#include "Animator.h"
 
 
@@ -57,6 +58,7 @@ public:
 
 	void DrawMesh(sMesh* pCurMesh, GLuint program);
 	std::vector<GLuint> programs;
+	GLuint depthProgram;
 	void DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program);
 	void DrawRay(glm::vec3 pos, glm::vec3 posEnd, GLuint program, glm::vec4 color, bool isWire, float scale);
 
@@ -80,7 +82,7 @@ public:
 
 	cLightManager* lightManager;
 	PhysicsManager* physicsManager;
-
+	cFBO_RGB_depth* depthFBO;
 	std::vector<std::string> modelPaths;
 	std::vector<CameraPoint> cameraPoints;
 	CameraPoint currentCameraPoint;

@@ -55,8 +55,8 @@ float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
 }
 float hash(vec2 uv) {
-    uint x = uint(uv.x * 1000.0);  // Scale to avoid precision issues
-    uint y = uint(uv.y * 1000.0);
+    uint x = uint(uv.x * 250.0);  // Scale to avoid precision issues
+    uint y = uint(uv.y * 250.0);
     uint seed = x * 513U + 101U * y;
 
     seed = (seed << 5U) ^ seed;
@@ -65,7 +65,7 @@ float hash(vec2 uv) {
     return float(seed) / 4294967295.0;
 }
 
-vec3 extrudeShellLayer(vec3 pos, vec3 normal, 
+    vec3 extrudeShellLayer(vec3 pos, vec3 normal, 
                        float shellIndex, float shellCount, float shellLength, 
                        float time, 
                        float minWindOffset, float maxWindOffset, 
@@ -73,86 +73,59 @@ vec3 extrudeShellLayer(vec3 pos, vec3 normal,
                        float verticalExponent,  
                        float windExponent)       
 {
+    float vertexRandomness = hash(pos.xz);
+
     // 1. Compute normalized shell height (0 at bottom, 1 at top)
     float shellHeight = (shellIndex + 1.0) / shellCount;
 
-    // 2. Compute an adjusted (effective) shell height.
+    // 2. Compute adjusted shell parameters
     float effectiveHeight = mix(shellHeight, pow(shellHeight, verticalExponent), verticalTightening);
-
-    // 3. Extrude the vertex along its normal using the effective height.
     vec3 updatedPos = normalize(normal) * shellLength * effectiveHeight;
+    
+    // 3. Only process colliders on upper half of shells
+    if (effectiveHeight > 0.5) {
+        vec3 totalColliderOffset = vec3(0.0);
+        float colliderPower = pow((effectiveHeight - 0.5) * 2.0, 8.0);
+        
+        // 4. Process all colliders
+        for (int i = 0; i < 10; i++) {
+            if (!colliders[i].isOn) continue;
 
-    // 4. Compute an easing factor for the wind effect.
-    float easeFactor = pow(effectiveHeight, windExponent);
-    
-    // 5. Introduce per-vertex randomness using the hash function
-    float vertexRandomness = hash(pos.xz);
-    
-    // 6. Wind effect with per-vertex phase shift
+            // Calculate XZ distance to collider
+            vec2 colliderXZ = colliders[i].position.xz;
+            vec2 posXZ = pos.xz;
+            float d = distance(colliderXZ, posXZ);
+            
+            // Calculate falloff effect
+            float radius = colliders[i].radius;
+            float blendRange = colliders[i].blendingRadius;
+            if (d>blendRange) continue;
+
+            float effect = clamp(1.0 - d/blendRange, 0.0, 1.0);
+            
+            if (effect <= 0.0) continue;
+
+            // Calculate direction vector
+            vec3 dir = normalize(pos - colliders[i].position);
+            dir.y = 0.0; // Flatten to XZ plane
+            dir = normalize(dir);
+            dir.xz *= vec2(1.3, 1.0); // Apply directional bias
+            dir = normalize(dir);
+
+            // Accumulate offset
+            totalColliderOffset += dir * effect * colliderPower * 0.03;
+        }
+        
+        // 5. Apply accumulated collider effect
+        updatedPos += totalColliderOffset;
+    }
+
+    // 6. Wind effect (existing code)
+
     float windNorm = (sin(time + vertexRandomness * 3.14) + 1.0) / 2.0;
-    float windOffset = easeFactor * mix(minWindOffset, maxWindOffset, windNorm);
-    
-    // 7. Process colliders in world space.
-    float maxEffect = 0.0;
-    vec3 bestDir = vec3(0.0);
-    
-    for (int i = 0; i < 20; i++) {
-       if (effectiveHeight<0.5)
-          break;
-        if (!colliders[i].isOn)
-            continue;
-  
-        float d = length(pos.xz - colliders[i].position.xz);
-        float effect = d;//0.0;
-
-          if (effect > 3.0)
-              continue;
-
-       // if (d < colliders[i].radius) {
-       //     effect = 1.0;
-       // } else if (d < colliders[i].blendingRadius) {
-        //    effect = 1.0 - (d - colliders[i].radius) / (colliders[i].blendingRadius - colliders[i].radius);
-      //  }
-
-
-
-
-     bestDir = normalize(colliders[i].position-pos);  
-     bestDir.y*=0;
-     bestDir.x*=1.3;
-     bestDir = normalize(  bestDir);
-    float colliderPower =  pow((effectiveHeight-0.5)*2, 8);
-    vec3 colliderOffset = bestDir * 0.03* colliderPower/effect;
-    colliderOffset.y = 0;
-    
-      
-
-
-    // Apply collider effect 
-  
-     updatedPos -= colliderOffset;  // Add randomness
-
-      if (effect < 0.5)
-        updatedPos -= normalize(normal) * shellLength * shellHeight*0.2*(0.5-maxEffect);
-    
- 
-
-    
-
-
-
-      //    updatedPos.y -= 0.007*effectiveHeight/maxEffect;
-       
-
-
-
- 
-}
-
-
+    float windOffset = pow(effectiveHeight, windExponent) * 
+                      mix(minWindOffset, maxWindOffset, windNorm);
     updatedPos.x += windOffset * (0.8 + vertexRandomness * 0.4);
-
-
 
     return updatedPos;
 }
@@ -174,17 +147,17 @@ void main() {
     vec3 fvertexWorldLocation3 = fvertexWorldLocation.xyz;
 
     // Camera Attraction Effect (Suck Power)
-    float distanceToCamera = distance(fvertexWorldLocation3, cameraLocation);
-    if (distanceToCamera < 0.0) {
-        vec3 direction = normalize(cameraLocation - fvertexWorldLocation3);
-        float power = 0.00 / distanceToCamera;
-        power = min(power, distanceToCamera);
-        vec3 change = direction * power;
-        finalVert += change;
-        fPositionOffset = change;  // Pass this to fragment shader for further effects
-    } else {
-        fPositionOffset = vec3(0.0);
-    }
+   // float distanceToCamera = distance(fvertexWorldLocation3, cameraLocation);
+  //  if (distanceToCamera < 0.0) {
+   //     vec3 direction = normalize(cameraLocation - fvertexWorldLocation3);
+   //     float power = 0.00 / distanceToCamera;
+  //      power = min(power, distanceToCamera);
+  //      vec3 change = direction * power;
+   //     finalVert += change;
+   //     fPositionOffset = change;  // Pass this to fragment shader for further effects
+   // } else {
+   //     fPositionOffset = vec3(0.0);
+   // }
 
     // Compute Final Vertex Position in Screen Space
     mat4 matMVP = matProjection * matView * matModel;

@@ -1137,7 +1137,25 @@ GLuint PrepareOpenGL(GLFWwindow* const &window)
     return program;
 }
 
+GLuint LoadShaderProgram(
+    const std::string& shaderName,
+    const std::string& vertexPath,
+    const std::string& fragmentPath,
+    std::string& errorOut
+) {
+    cShaderManager::cShader vertShader;
+    vertShader.fileName = vertexPath;
 
+    cShaderManager::cShader fragShader;
+    fragShader.fileName = fragmentPath;
+    cShaderManager* pShaderManager = new cShaderManager();
+    if (!pShaderManager->createProgramFromFile(shaderName, vertShader, fragShader)) {
+        errorOut = pShaderManager->getLastError();
+        return 0; // Indicate failure
+    }
+
+    return pShaderManager->getIDFromFriendlyName(shaderName);
+}
 void PrepareFlyCamera()
 {
 
@@ -1412,8 +1430,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),5.5f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),5.5f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
     LAFactory->grass = puddle;
     puddle->name = "GRASS";
     underpuddle->name = "UNDERGRASS";
@@ -1963,7 +1981,10 @@ int main(void)
 //   ----------------
 
     GLuint program = PrepareOpenGL(window);
-
+    std::string errorDepth;
+    GLuint depthProgram = LoadShaderProgram("deapth","assets/shaders/depth_vertex.glsl","assets/shaders/depth_fragment.glsl", errorDepth);
+    if (!depthProgram) { std::cerr << "Depth Shader Error: " << errorDepth << std::endl; }
+    
     //NOTE : GRIDS
     //GridRenderer gridRenderer;
     //if (!gridRenderer.Initialize()) {
@@ -1992,6 +2013,15 @@ int main(void)
     secutityRoomScene->lightManager = new cLightManager();
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
+    scene->depthProgram = depthProgram;
+
+    cFBO_RGB_depth* depthFBO = new cFBO_RGB_depth();
+    std::string error;
+    if (!depthFBO->init(1920, 1080, error, "DepthTexture", scene->textureManager)) {
+        std::cerr << "FBO Error: " << error << std::endl;
+    }
+    scene->depthFBO = depthFBO;
+
     //HACK FOR LIGHTING
     secutityRoomScene->lightManager->loadUniformLocations(scene->programs[0]);
    // cameraScene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);

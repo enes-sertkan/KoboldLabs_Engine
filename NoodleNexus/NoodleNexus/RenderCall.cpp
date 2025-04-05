@@ -9,7 +9,7 @@
 #include "cVAOManager/cVAOManager.h"
 #include <iostream>
 #include "cBasicTextureManager.h"
-
+#include "cFBO_RGB_depth.hpp"
 
 //RenderCall
 
@@ -1130,19 +1130,68 @@ void DrawSkyBox(Object* object, GLuint program, cVAOManager* vaoManager, cBasicT
 
 }
 
+void RenderDepthPrePass(Camera* camera, GLuint depthShaderProgram, cFBO_RGB_depth* depthFBO) {
+    Scene* scene = camera->scene;
+
+    // Bind FBO and clear depth
+    depthFBO->clearBuffers(false, true); // Clear depth only
+    glBindFramebuffer(GL_FRAMEBUFFER, depthFBO->ID);
+    glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); // Disable color writes
+
+    // Render all opaque objects (skip transparent/shells)
+    for (Object* object : scene->sceneObjectsSorted) {
+        if (!object->isActive || object->mesh->bDoNotLight || object->mesh->shellTexturing)
+            continue; // Skip transparent/shells in pre-pass
+
+        DrawMeshWithCamera(object, object->mesh, depthShaderProgram,
+            scene->vaoManager, scene->textureManager, camera);
+    }
+
+    // Restore defaults
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+}
+
 
 void DrawCameraView(Camera* camera, int programID)
 {
     Scene* scene = camera->scene;
     scene->SortObjectsForDrawing();
 
+
+    // --- Depth Pre-Pass ---
+    if (scene->depthProgram)
+    RenderDepthPrePass(camera, scene->depthProgram, scene->depthFBO);
+
+
+    // --- Main Render Pass ---
     if (camera->scene->skybox != nullptr)
         DrawSkyBox(scene->skybox, scene->programs[0], scene->vaoManager, scene->textureManager, camera);
 
-    for (Object* object : scene->sceneObjectsSorted)
-    {
+    for (Object* object : scene->sceneObjectsSorted) {
         if (!object->isActive) continue;
         sMesh* pCurMesh = object->mesh;
+
+        if (scene->depthFBO)
+        {
+            // Bind depth texture for occlusion testing
+            glActiveTexture(GL_TEXTURE15);
+            glBindTexture(GL_TEXTURE_2D, scene->depthFBO->depthTexture_ID);
+            glUniform1i(glGetUniformLocation(programID, "depthTexture"), 15);
+
+
+            GLint bDepth = glGetUniformLocation(programID, "bDepth");
+                glUniform1f(bDepth, (GLfloat)GL_TRUE);  // True
+         
+
+        }
+
+        else
+        {
+
+            GLint bDepth = glGetUniformLocation(programID, "bDepth");
+            glUniform1f(bDepth, (GLfloat)GL_FALSE);  // True
+        }
 
         if (!object->mesh->shellTexturing)
         DrawMeshWithCamera(object, pCurMesh, scene->programs[0], scene->vaoManager, scene->textureManager, camera);

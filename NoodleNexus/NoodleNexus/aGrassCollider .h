@@ -15,8 +15,8 @@ private:
 public:
     float activationDistance = 10.0f;   // Distance to activate collider
     float deactivationDistance = 15.0f; // Distance to deactivate
-    float colliderRadius = 1.0f;       // Collider dimensions
-    float colliderHeight = 2.0f;
+    float colliderRadius = 0.8f;       // Collider dimensions
+    float colliderBlendRadius = 1.2f;
 
     virtual void Start() override {
         colliderID = -1;
@@ -39,7 +39,7 @@ public:
             colliderID = grass->mesh->CreateCollider(
                 grassPos,
                 colliderRadius,
-                colliderHeight
+                colliderBlendRadius
             );
             isColliderActive = true;
             std::cout << "Grass collider ID:"<< colliderID<<" activated at distance " << distance << std::endl;

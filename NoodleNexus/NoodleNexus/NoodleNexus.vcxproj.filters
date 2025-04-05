@@ -637,5 +637,11 @@
     <None Include="LuaTextureBlendMove.lua">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="depth_vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="depth_fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
