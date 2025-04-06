@@ -117,9 +117,12 @@ private:
         sTurretCofig* config = ghostTurret->GetConfig();
 
         switch (currentSelection) {
-        case HEAD: config->headID = CycleEnum(config->headID, direction); break;
-        case NECK: config->neckID = CycleEnum(config->neckID, direction); break;
-        case BODY: config->bodyID = CycleEnum(config->bodyID, direction); break;
+        case HEAD: config->headID = CycleEnum(config->headID, direction); 
+            std::cout<<"Head changed to " << config->headID << std::endl; break;
+        case NECK: config->neckID = CycleEnum(config->neckID, direction); 
+            std::cout << "Neck changed to " << config->neckID << std::endl; break; 
+        case BODY: config->bodyID = CycleEnum(config->bodyID, direction); 
+            std::cout << "Body changed to " << config->bodyID << std::endl; break;
         }
 
         ghostTurret->RebuildTurretGhost(config);
@@ -157,7 +160,7 @@ private:
         rayDir = glm::normalize(rayDir);
 
         float distance;
-        if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0, 3, 0), planeNormal, distance) && distance > 0) {
+        if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0, 3.1, 0), planeNormal, distance) && distance > 0) {
             ghostTurret->body->object->mesh->positionXYZ = rayStart + rayDir * distance;
        
         }

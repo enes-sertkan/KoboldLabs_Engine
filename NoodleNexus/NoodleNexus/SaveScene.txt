@@ -27,6 +27,9 @@ Floor_jumpy.txt
 StandartTurretHead.txt
 StandartTurretNeck.txt
 StandartTurretBody.txt
+TripleTurretBody.txt
+TripleTurretNeck.txt
+TripleTurretHead.txt
 Bullet.txt
 <--ObjectLoad>
 <Scene-->

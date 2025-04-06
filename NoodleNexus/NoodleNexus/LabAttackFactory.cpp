@@ -342,14 +342,39 @@ void LabAttackFactory::Start()
     standardBody->ID = STANDARTBODY;
     standardBody->object = bodyObj;
     standardBody->action = new aTurretBody();
-    standardBody->connectionTransform = glm::vec3(0, 1, 0); // Example offset
+    standardBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
     turretBodies.push_back(standardBody);
     bodyObj->isActive = false;
 
 
+    // Standard Body
+    cTurretBody* tripleBody = new cTurretBody();
+    Object* tribodyObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Turret2/Turret2_body.ply",
+        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
+        true, scene->sceneObjects
+    );
+
+    tribodyObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    tribodyObj->mesh->blendRatio[0] = 1;
+    tribodyObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    tribodyObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    tribodyObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+    tripleBody->ID = TRIPLEBODY;
+    tripleBody->object = tribodyObj;
+    tripleBody->action = new aTurretBody();
+    tripleBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
+    turretBodies.push_back(tripleBody);
+    tribodyObj->isActive = false;
+
+
+
+
+
     cTurretNeck* aimNeck = new cTurretNeck();
     Object* aimNeckObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Turret/StandartTurretNeck.ply",
+        "assets/models/Turret2/Turret2_neck.ply",
         glm::vec3(0),
         0.07f,
         glm::vec3(0.f),
@@ -369,7 +394,7 @@ void LabAttackFactory::Start()
     aimNeck->object = aimNeckObj;
     aimNeck->action = new TurretNeckAim();
     aimNeck->action->factory = this;
-    aimNeck->connectionTransform = glm::vec3(0, 0.7f, 0); // Example offset
+    aimNeck->connectionTransform = glm::vec3(0, 1.275f, 0); // Example offset
     turretNecks.push_back(aimNeck);
     aimNeckObj->isActive = false;
 
@@ -377,7 +402,7 @@ void LabAttackFactory::Start()
     // Aim Neck
     cTurretNeck* standardNeck = new cTurretNeck();
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
-        "assets/models/Cube_xyz_n_uv.ply",
+        "assets/models/Turret/StandartTurretNeck.ply",
         glm::vec3(0),
         0.07f,
         glm::vec3(0.f),
@@ -397,7 +422,7 @@ void LabAttackFactory::Start()
     standardNeck->ID = STANDARTNECK;
     standardNeck->object = neckObj;
     standardNeck->action = new aTurretNeckRotate();
-    standardNeck->connectionTransform = glm::vec3(0, 0.7f, 0); // Example offset
+    standardNeck->connectionTransform = glm::vec3(0, 1.265f, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
 
@@ -434,6 +459,39 @@ void LabAttackFactory::Start()
 
     headObj->isActive = false;
 
+
+    //Triple Head
+    cTurretHead* tripleHead = new cTurretHead();
+    Object* triheadObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Turret2/Turret2_head.ply",
+        glm::vec3(0),
+        0.07f,
+        glm::vec3(0.f),
+        false,
+        glm::vec4(1.f, 0.f, 0.f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+
+
+    triheadObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    triheadObj->mesh->blendRatio[0] = 1;
+    triheadObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
+    triheadObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
+    triheadObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+    tripleHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
+
+
+    tripleHead->ID = TRIPLEHEAD;
+    tripleHead->object = triheadObj;
+    aTurretHead* triHeadAction = new aTurretHead();
+    triHeadAction->factory = this;
+    tripleHead->action = triHeadAction;
+
+    tripleHead->connectionTransform = glm::vec3(0, 0.3f, 0);
+    turretHeads.push_back(tripleHead);
+
+    triheadObj->isActive = false;
 }
 
 

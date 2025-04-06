@@ -1199,6 +1199,7 @@ void DrawCameraView(Camera* camera, int programID) {
         }
 
         if (!pCurMesh->shellTexturing) {
+            if(object && pCurMesh)
             DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
                 scene->vaoManager, scene->textureManager, camera);
         }
