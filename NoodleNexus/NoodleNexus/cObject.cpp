@@ -27,13 +27,16 @@ void Object::Destroy()
     // sceneObjects.clear();
 
     // 4. Remove from scene
+    for (Object* child : m_children)
+        child->Destroy();
+
+
     if (scene)
     {
         scene->RemoveObject(this);
     }
 
-    for (Object* child : m_children)
-        child->Destroy();
+  
  //   delete this;
     // 5. If this object is dynamically allocated, 
     // you would call 'delete this' here - but only

@@ -25,6 +25,26 @@ public:
             direction.y = 0;
             direction = glm::normalize(direction);
             agent->object->mesh->positionXYZ+= direction * agent->speed * deltaTime;
+
+
+
+            float targetYaw = glm::degrees(glm::atan(-direction.x, -direction.z));
+
+            // Get current rotation
+            float currentYaw = agent->object->mesh->rotationEulerXYZ.y;
+
+            // Calculate shortest angle difference
+            float deltaYaw = targetYaw - currentYaw;
+            if (deltaYaw > 180) deltaYaw -= 360;
+            if (deltaYaw < -180) deltaYaw += 360;
+
+            // Smooth rotation interpolation
+            float rotationSpeed = 200.0f; // Degrees per second
+            float maxRotationStep = rotationSpeed * agent->object->scene->deltaTime;
+            float rotationStep = glm::clamp(deltaYaw, -maxRotationStep, maxRotationStep);
+
+            // Apply rotation
+            agent->object->mesh->rotationEulerXYZ.y += rotationStep;
         }
 
         // Success if close enough to attack

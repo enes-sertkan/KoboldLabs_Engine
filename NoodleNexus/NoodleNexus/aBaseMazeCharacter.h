@@ -76,31 +76,47 @@ public:
 	//returns if reaches position
 	bool MoveToTargetPositionUpdate()
 	{
-	//	std::cout << "START Moving to point" << mazePosition.x <<" "<< mazePosition.y<<std::endl;
-		// Calculate the direction vector
+		// Calculate direction and distance
 		glm::vec3 direction = targetWorldPosition - object->mesh->positionXYZ;
+		float distance = glm::length(direction);
 
-		// Calculate the distance to the target
-		float distance = length(direction);
-
-		// If the distance is very small, return the target position directly
+		// Early exit if at target
 		if (distance < 0.001f) {
 			return true;
 		}
 
-		// Normalize the direction vector
-		direction = normalize(direction);
+		// Normalize direction and calculate movement
+		direction = glm::normalize(direction);
+		glm::vec3 movement = direction * speed * object->scene->deltaTime;
 
-		// Calculate the movement vector
-		glm::vec3 movement = direction * speed*object->scene->deltaTime;
+		// Update rotation to face direction (NEW CODE)
+		if (distance > 0.1f) { // Only rotate when moving significantly
+			// Calculate target yaw from movement direction
+			float targetYaw = glm::degrees(glm::atan(-direction.x, -direction.z));
 
-		// If the movement would overshoot the target, clamp it to the target position
-		if (length(movement) >= distance) {
+			// Get current rotation
+			float currentYaw = object->mesh->rotationEulerXYZ.y;
+
+			// Calculate shortest angle difference
+			float deltaYaw = targetYaw - currentYaw;
+			if (deltaYaw > 180) deltaYaw -= 360;
+			if (deltaYaw < -180) deltaYaw += 360;
+
+			// Smooth rotation interpolation
+			float rotationSpeed = 200.0f; // Degrees per second
+			float maxRotationStep = rotationSpeed * object->scene->deltaTime;
+			float rotationStep = glm::clamp(deltaYaw, -maxRotationStep, maxRotationStep);
+
+			// Apply rotation
+			object->mesh->rotationEulerXYZ.y += rotationStep;
+		}
+
+		// Handle movement
+		if (glm::length(movement) >= distance) {
+			object->mesh->positionXYZ = targetWorldPosition;
 			return true;
 		}
 
-	//	std::cout << "Moving to point" << targetWorldPosition.x << " " << targetWorldPosition.z << std::endl;
-		
 		object->mesh->positionXYZ += movement;
 		return false;
 	}
