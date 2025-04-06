@@ -2123,6 +2123,11 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_AO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_met_smothness.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_normals.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_albedo.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_MS.bmp");
+ 
 
 
 

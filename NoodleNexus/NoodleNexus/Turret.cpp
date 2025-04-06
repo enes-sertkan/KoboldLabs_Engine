@@ -30,38 +30,40 @@ void Turret::RebuildTurret(sTurretCofig* config)
         }
     }
 }
-
 void Turret::RebuildTurretGhost(sTurretCofig* config)
 {
-    // Helper function to update part transparency
     auto updateTransparency = [](cTurretPart* part) {
         if (part && part->object) {
             part->object->mesh->transperency = 0.5f;
         }
         };
 
-    glm::vec3 oldPos = glm::vec3(0);
-
+    glm::vec3 oldPos = position;
 
     // Handle Body
     if (!body || body->ID != config->bodyID) {
-      
         if (body && body->object) {
             oldPos = body->object->mesh->positionXYZ;
-            body->object->Destroy();
         }
-        body = factory->SpawnTurretBody(oldPos, config->bodyID);
-        if (body && body->object) {
-            body->object->mesh->transperency = 0.5f;
-            position = oldPos; // Update position from new body
-            body->object->actions.clear();
+
+        cTurretBody* bodyTemplate = factory->FindTurretBodyTemplate(config->bodyID);
+        if (!bodyTemplate) {
+            bodyTemplate = factory->FindTurretBodyTemplate(STANDARTBODY);
+        }
+
+        if (bodyTemplate) {
+            if (!body) {
+                body = factory->SpawnTurretBody(oldPos, config->bodyID);
+            }
+            // Update existing body properties
+            body->object->mesh->modelFileName = bodyTemplate->object->mesh->modelFileName;
+            body->ID = bodyTemplate->ID;
+            body->object->mesh->positionXYZ = oldPos;
             updateTransparency(body);
+            body->object->actions.clear();
         }
     }
     else if (body->object) {
-        // Update existing body position
-   
-   
         updateTransparency(body);
     }
 
@@ -70,54 +72,64 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         const bool neckNeedsUpdate = !neck || neck->ID != config->neckID;
 
         if (neckNeedsUpdate) {
-            if (neck && neck->object) neck->object->Destroy();
-            neck = factory->SpawnTurretNeck(body->connectionTransform, config->neckID);
+            cTurretNeck* neckTemplate = factory->FindTurretNeckTemplate(config->neckID);
+            if (!neckTemplate) {
+                neckTemplate = factory->FindTurretNeckTemplate(STANDARTNECK);
+            }
 
-            if (neck && neck->object) {
-                neck->object->actions.clear();
-                body->object->AddChild(neck->object);
+            if (neckTemplate) {
+                if (!neck) {
+                    neck = factory->SpawnTurretNeck(body->connectionTransform, config->neckID);
+                    body->object->AddChild(neck->object);
+                }
+                // Update existing neck properties
+                neck->object->mesh->modelFileName = neckTemplate->object->mesh->modelFileName;
+                neck->ID = neckTemplate->ID;
                 neck->object->mesh->positionXYZ = body->connectionTransform;
                 neck->object->startTranform->position = body->connectionTransform;
                 updateTransparency(neck);
+                neck->object->actions.clear();
             }
         }
         else if (neck->object) {
-            // Update existing neck position
             body->object->AddChild(neck->object);
-          
             neck->object->mesh->positionXYZ = body->connectionTransform;
             updateTransparency(neck);
         }
     }
 
-    // Handle Head
+    // Handle Head (existing optimized version)
     if (neck && neck->object) {
         const bool headNeedsUpdate = !head || head->ID != config->headID;
 
         if (headNeedsUpdate) {
-            if (head && head->object) head->object->Destroy();
-            head = factory->SpawnTurretHead(neck->connectionTransform, config->headID);
+            cTurretHead* headTemplate = factory->FindTurretHeadTemplate(config->headID);
+            if (!headTemplate) {
+                headTemplate = factory->FindTurretHeadTemplate(STANDARTHEAD);
+            }
 
-
-            if (head && head->object) {
-                head->object->actions.clear();
-                neck->headConnection->AddChild(head->object);
-
-                //WE do this, bc head is child of CONNECTOR
+            if (headTemplate) {
+                if (!head) {
+                    head = factory->SpawnTurretHead(glm::vec3(0), config->headID);
+                    neck->headConnection->AddChild(head->object);
+                }
+                // Update existing head properties
+                head->object->mesh->modelFileName = headTemplate->object->mesh->modelFileName;
+                head->ID = headTemplate->ID;
                 head->object->mesh->positionXYZ = glm::vec3(0);
                 head->object->startTranform->position = glm::vec3(0);
                 updateTransparency(head);
+                head->object->actions.clear();
             }
         }
         else if (head->object) {
             neck->headConnection->AddChild(head->object);
-            // Update existing head position
             head->object->mesh->positionXYZ = glm::vec3(0);
             updateTransparency(head);
         }
     }
 
-    // Clear any actions for ghost turret
+    // Clear actions for ghost turret
     if (body) body->action = nullptr;
     if (neck) neck->action = nullptr;
     if (head) head->action = nullptr;

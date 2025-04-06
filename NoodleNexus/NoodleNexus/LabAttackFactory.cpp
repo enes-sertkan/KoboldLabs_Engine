@@ -356,11 +356,12 @@ void LabAttackFactory::Start()
         true, scene->sceneObjects
     );
 
-    tribodyObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    tribodyObj->mesh->textures[0] = "Turret2/Turret2_albedo.bmp";
     tribodyObj->mesh->blendRatio[0] = 1;
-    tribodyObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
-    tribodyObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
-    tribodyObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+    tribodyObj->mesh->NMTexture = "Turret2/Turret2_normal.bmp";
+    tribodyObj->mesh->AOtexture = "Turret2/Turret2_AO.bmp";
+    tribodyObj->mesh->STTexture = "Turret2/Turret2_MS.bmp";
+
     tripleBody->ID = TRIPLEBODY;
     tripleBody->object = tribodyObj;
     tripleBody->action = new aTurretBody();
@@ -383,12 +384,12 @@ void LabAttackFactory::Start()
         true,
         scene->sceneObjects
     );
-    aimNeckObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
-    aimNeckObj->mesh->blendRatio[0] = 1;
-    aimNeckObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
-    aimNeckObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
-    aimNeckObj->mesh->STTexture = "Turret/Turret_ST.bmp";
 
+    aimNeckObj->mesh->textures[0] = "Turret2/Turret2_albedo.bmp";
+    aimNeckObj->mesh->blendRatio[0] = 1;
+    aimNeckObj->mesh->NMTexture = "Turret2/Turret2_normal.bmp";
+    aimNeckObj->mesh->AOtexture = "Turret2/Turret2_AO.bmp";
+    aimNeckObj->mesh->STTexture = "Turret2/Turret2_MS.bmp";
 
     aimNeck->ID = AIMNECK;
     aimNeck->object = aimNeckObj;
@@ -451,6 +452,9 @@ void LabAttackFactory::Start()
     standardHead->ID = STANDARTHEAD;
     standardHead->object = headObj;
     aTurretHead* standartHeadAction = new aTurretHead();
+    standartHeadAction->m_recoilDistance = 0.6f;
+    standartHeadAction->m_recoilRecoverySpeed = 1.f;
+
     standartHeadAction->factory = this;
     standardHead->action = standartHeadAction;
      
@@ -474,18 +478,21 @@ void LabAttackFactory::Start()
     );
 
 
-    triheadObj->mesh->textures[0] = "Turret/Turret_Albedo.bmp";
+    triheadObj->mesh->textures[0] = "Turret2/Turret2_albedo.bmp";
     triheadObj->mesh->blendRatio[0] = 1;
-    triheadObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
-    triheadObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
-    triheadObj->mesh->STTexture = "Turret/Turret_ST.bmp";
-    tripleHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
+    triheadObj->mesh->NMTexture = "Turret2/Turret2_normal.bmp";
+    triheadObj->mesh->AOtexture = "Turret2/Turret2_AO.bmp"; 
+    triheadObj->mesh->STTexture = "Turret2/Turret2_MS.bmp";
+    tripleHead->barrelsPos.push_back(glm::vec3(0.f, 0.2f, 0.7f));
+    tripleHead->barrelsPos.push_back(glm::vec3(0.2f, 0.f, 0.7f));
+    tripleHead->barrelsPos.push_back(glm::vec3(-0.2f, 0.f, 0.7f));
 
 
     tripleHead->ID = TRIPLEHEAD;
     tripleHead->object = triheadObj;
     aTurretHead* triHeadAction = new aTurretHead();
     triHeadAction->factory = this;
+    triHeadAction->m_shootCooldown = 0.25f;
     tripleHead->action = triHeadAction;
 
     tripleHead->connectionTransform = glm::vec3(0, 0.3f, 0);

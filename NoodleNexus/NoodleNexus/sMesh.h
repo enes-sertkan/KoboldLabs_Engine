@@ -71,8 +71,8 @@ struct sMesh
 	std::string NMTexture;
 	float metal=0;
 	float smoothness=0;
-	bool useMetalTexture = false;
-	bool useSmoothTexture = false;
+	bool useMetalTexture = true;
+	bool useSmoothTexture = true;
 
 	bool shellTexturing = false;
 	sSTData stData;

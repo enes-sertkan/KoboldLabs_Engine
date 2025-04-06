@@ -8,20 +8,23 @@
 class aTurretHead : public aTurretPart
 {
 private:
-    float m_shootCooldown = 0.3f;
+
     float m_timeSinceLastShot = 0.0f;
     size_t m_currentBarrel = 0;
 
     // Recoil parameters
     glm::vec3 m_originalLocalPosition;
     float m_currentRecoil = 0.0f;
-    float m_recoilDistance = 0.4f;
-    float m_recoilRecoverySpeed = 1.5f;
+   
 
     // Cached rotation quaternion for frame consistency
     glm::quat m_currentWorldRotation;
 
 public:
+    float m_shootCooldown = 0.6f;
+    float m_recoilDistance = 0.4f;
+    float m_recoilRecoverySpeed = 1.5f;
+
     void Start() override {
         aTurretPart::Start();
         m_originalLocalPosition = object->mesh->positionXYZ;
