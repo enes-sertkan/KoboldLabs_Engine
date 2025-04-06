@@ -17,7 +17,8 @@ public:
         availableActions.push_back(new MoveToPlayerAction());
         availableActions.push_back(new ShootAtPlayerAction());
         availableActions.push_back(new MoveToControlPointAction());
-  
+        playerDetectionRange = 5.0f + static_cast<float>(rand()) /
+            (static_cast<float>(RAND_MAX / (10.0f)));
 
         // Default goal: Get in range and attack
         goal = { {"hasReachedControlPoint", true} };

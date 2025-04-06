@@ -2133,6 +2133,9 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_body_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_Normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_SM.bmp");
  
 
 

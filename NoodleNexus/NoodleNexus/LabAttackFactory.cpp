@@ -97,6 +97,7 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             enemy->mesh->textures[0] = "Turret_wheel/Wheel_Enem_body_color.bmp";
             enemy->mesh->blendRatio[0] = 1.f;
             enemy->mesh->NMTexture = "Turret_wheel/Wheel_Enem_body_Normal.bmp";
+            enemy->mesh->STTexture = "Turret_wheel/Wheel_Enem_body_SM.bmp";
             position.y += 0.4;
             position.z -= 0.05;;
 
@@ -105,6 +106,7 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             wheel->mesh->textures[0] = "Turret_wheel/Wheel_Enem_wheel_color.bmp";
             wheel->mesh->blendRatio[0] = 1.f;
             wheel->mesh->NMTexture = "Turret_wheel/Wheel_Enem_wheel_Normal.bmp";
+            wheel->mesh->STTexture = "Turret_wheel/Wheel_Enem_wheel_SM.bmp";
             enemy->AddChild(wheel);
             aRotateWheel* rotateWheel = new aRotateWheel();
             scene->AddActionToObj(rotateWheel, wheel);
@@ -117,6 +119,7 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             head->mesh->textures[0] = "Turret_wheel/Wheel_Enem_head_Colour.bmp";
             head->mesh->blendRatio[0] = 1.f;
             head->mesh->NMTexture = "Turret_wheel/Wheel_Enem_head_Normal.bmp";
+            enemy->mesh->STTexture = "Turret_wheel/Wheel_Enem_head_SM.bmp";
             enemy->AddChild(head);
             
           
