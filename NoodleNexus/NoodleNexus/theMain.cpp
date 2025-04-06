@@ -85,6 +85,7 @@
 #include "LabAttackFactory.h"
 #include "aPlayerShooting.h"
 #include "aGrassCollider .h"
+#include "aTurretPlacer.h"
 
 
 // Core MGUI headers
@@ -1469,11 +1470,14 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     player->name = "PLAYER";
     aPlayerMovement* playerMovement = new aPlayerMovement();
     aPlayerShooting* playerShooting = new aPlayerShooting();
+    aTurretPlacer* playerTurPlacer = new aTurretPlacer();
+
     aGrassCollider* playerGrassCollider = new aGrassCollider();
     playerGrassCollider->SetGrass(puddle);
     playerGrassCollider->colliderRadius = 0.4f;
 
     playerShooting->factory = LAFactory;
+    playerTurPlacer->factory = LAFactory;
     player->isTemporary = true;
 
     player->AddChild(scene->sceneObjects[31]);
@@ -1482,12 +1486,13 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     glm::vec3 turretPos = player->mesh->positionXYZ;
     turretPos.y -= 1;
 
-    LAFactory->SpawnTurret(turretPos, STANDARTBODY, STANDARTNECK, STANDARTHEAD);
+  //  LAFactory->SpawnTurret(turretPos, STANDARTBODY, STANDARTNECK, STANDARTHEAD);
 
   // aPlayerShooting* playerShooting = new aPlayerShooting();
     scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);
-    scene->AddActionToObj(playerShooting, player);
+    scene->AddActionToObj(playerTurPlacer, player);
+   // scene->AddActionToObj(playerShooting, player);
 
 
     waveEffect->player = player;

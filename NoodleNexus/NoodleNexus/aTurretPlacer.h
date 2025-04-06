@@ -1,0 +1,159 @@
+#pragma once
+#include "Action.h"
+#include "cTurret.h"
+#include "LabAttackFactory.h"
+#include <GLFW/glfw3.h>
+#include <glm/gtx/intersect.hpp>
+
+class aTurretPlacer : public Action {
+public:
+    LabAttackFactory* factory = nullptr;
+    Turret* ghostTurret = nullptr;
+
+    enum eSelectedPart { HEAD, NECK, BODY } currentSelection = BODY;
+    float keyCooldown = 0.2f;
+    float currentCooldown = 0.0f;
+
+    void Start() override {
+        // Create ghost turret instance
+        ghostTurret = factory->SpawnTurretGhost(glm::vec3(0), STANDARTBODY, STANDARTNECK, STANDARTHEAD);
+
+        UpdateWireframe();
+    }
+
+    void OnDestroy() override {
+        if (ghostTurret) {
+            ghostTurret->RebuildTurretGhost(nullptr); // Destroy all parts
+            delete ghostTurret;
+        }
+    }
+
+    void Update() override {
+        if (!ghostTurret || !factory) return;
+
+        currentCooldown -= object->scene->deltaTime;
+
+        UpdateGhostPosition();
+        HandleInput();
+        UpdateWireframe();
+    }
+
+private:
+    void HandleInput() {
+        if (currentCooldown > 0) return;
+
+        // Selection cycling
+        if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
+            currentSelection = static_cast<eSelectedPart>((currentSelection + 1) % 3);
+            currentCooldown = keyCooldown;
+        }
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS) {
+            currentSelection = static_cast<eSelectedPart>((currentSelection - 1) % 3);
+            currentCooldown = keyCooldown;
+        }
+
+
+
+        // Part modification
+        if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
+            ChangePart(-1);
+            currentCooldown = keyCooldown;
+        }
+        if (glfwGetKey(object->scene->window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+            ChangePart(1);
+            currentCooldown = keyCooldown;
+        }
+
+        // Placement
+        if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+            PlaceTurret();
+            currentCooldown = keyCooldown;
+        }
+    }
+
+    void UpdateWireframe() {
+        if (!ghostTurret) return;
+
+        // Reset all wireframes
+        if (ghostTurret->body && ghostTurret->body->object)
+            ghostTurret->body->object->mesh->bIsWireframe = false;
+        if (ghostTurret->neck && ghostTurret->neck->object)
+            ghostTurret->neck->object->mesh->bIsWireframe = false;
+        if (ghostTurret->head && ghostTurret->head->object)
+            ghostTurret->head->object->mesh->bIsWireframe = false;
+
+        // Highlight selected part
+        switch (currentSelection) {
+        case BODY:
+            if (ghostTurret->body && ghostTurret->body->object)
+                ghostTurret->body->object->mesh->bIsWireframe = true;
+            break;
+        case NECK:
+            if (ghostTurret->neck && ghostTurret->neck->object)
+                ghostTurret->neck->object->mesh->bIsWireframe = true;
+            break;
+        case HEAD:
+            if (ghostTurret->head && ghostTurret->head->object)
+                ghostTurret->head->object->mesh->bIsWireframe = true;
+            break;
+        }
+    }
+
+    void ChangePart(int direction) {
+        sTurretCofig* config = ghostTurret->GetConfig();
+
+        switch (currentSelection) {
+        case HEAD: config->headID = CycleEnum(config->headID, direction); break;
+        case NECK: config->neckID = CycleEnum(config->neckID, direction); break;
+        case BODY: config->bodyID = CycleEnum(config->bodyID, direction); break;
+        }
+
+        ghostTurret->RebuildTurretGhost(config);
+        UpdateWireframe();
+    }
+
+    template<typename T>
+    T CycleEnum(T current, int direction) {
+        const int enumCount = EnumInfo<T>::count();
+        int newValue = (static_cast<int>(current) + direction + enumCount) % enumCount;
+        return static_cast<T>(newValue);
+    }
+
+
+    void UpdateGhostPosition() {
+        glm::vec3 planeNormal(0, 1, 0); // Ground plane (Y-axis up)
+        Camera* camera = object->scene->fCamera->getCameraData();
+        glm::vec3 rayStart = camera->position;
+
+        // Get camera rotation and convert to radians
+        glm::vec3 cameraRotation = camera->rotation;
+        float pitch = glm::radians(cameraRotation.x);
+        float yaw = glm::radians(cameraRotation.y);
+
+        // Calculate forward direction vector
+        glm::vec3 rayDir;
+        rayDir.x = cos(pitch) * cos(yaw);
+        rayDir.y = sin(pitch);
+        rayDir.z = cos(pitch) * sin(yaw);
+        rayDir = glm::normalize(rayDir);
+
+        float distance;
+        if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0,3,0), planeNormal, distance) && distance > 0) {
+       
+            ghostTurret->body->object->mesh->positionXYZ = rayStart + rayDir * distance;
+        }
+    }
+
+    void PlaceTurret() {
+        if (!factory || !ghostTurret) return;
+
+        sTurretCofig* config = ghostTurret->GetConfig();
+        factory->SpawnTurret(
+            ghostTurret->body->object->mesh->positionXYZ,
+            config->bodyID,
+            config->neckID,
+            config->headID
+        );
+    }
+};

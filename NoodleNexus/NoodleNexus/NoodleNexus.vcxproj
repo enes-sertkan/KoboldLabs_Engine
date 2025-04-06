@@ -240,6 +240,7 @@
     <ClInclude Include="aTurretHead.hpp" />
     <ClInclude Include="aTurretNeck.h" />
     <ClInclude Include="aTurretNeckRotate.hpp" />
+    <ClInclude Include="aTurretPlacer.h" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="BruteEnemy.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
