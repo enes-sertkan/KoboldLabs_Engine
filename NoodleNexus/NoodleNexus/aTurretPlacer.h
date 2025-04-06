@@ -9,21 +9,29 @@ class aTurretPlacer : public Action {
 public:
     LabAttackFactory* factory = nullptr;
     Turret* ghostTurret = nullptr;
+    bool isActive = true;
+
 
     enum eSelectedPart { HEAD, NECK, BODY } currentSelection = BODY;
     float keyCooldown = 0.2f;
     float currentCooldown = 0.0f;
 
-    void Start() override {
-        // Create ghost turret instance
-        ghostTurret = factory->SpawnTurretGhost(glm::vec3(0), STANDARTBODY, STANDARTNECK, STANDARTHEAD);
 
+    void Start() override {
+        // Create ghost turret instance at hidden position
+        ghostTurret = factory->SpawnTurretGhost(glm::vec3(-100), STANDARTBODY, STANDARTNECK, STANDARTHEAD);
         UpdateWireframe();
+    }
+
+    void SetActive(bool active) {
+        isActive = active;
+        // Move to valid position when activating
+        if (active) UpdateGhostPosition();
     }
 
     void OnDestroy() override {
         if (ghostTurret) {
-            ghostTurret->RebuildTurretGhost(nullptr); // Destroy all parts
+         //   ghostTurret->RebuildTurretGhost(nullptr);
             delete ghostTurret;
         }
     }
@@ -42,18 +50,23 @@ private:
     void HandleInput() {
         if (currentCooldown > 0) return;
 
+
+        if (glfwGetKey(object->scene->window, GLFW_KEY_Q) == GLFW_PRESS) {
+            SetActive(!isActive);
+            currentCooldown = keyCooldown;
+        }
+
+        if (!isActive) return;
+
         // Selection cycling
         if (glfwGetKey(object->scene->window, GLFW_KEY_DOWN) == GLFW_PRESS) {
             currentSelection = static_cast<eSelectedPart>((currentSelection + 1) % 3);
             currentCooldown = keyCooldown;
         }
-
         if (glfwGetKey(object->scene->window, GLFW_KEY_UP) == GLFW_PRESS) {
-            currentSelection = static_cast<eSelectedPart>((currentSelection - 1) % 3);
+            currentSelection = static_cast<eSelectedPart>((currentSelection - 1 + 3) % 3);
             currentCooldown = keyCooldown;
         }
-
-
 
         // Part modification
         if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT) == GLFW_PRESS) {
@@ -122,16 +135,21 @@ private:
 
 
     void UpdateGhostPosition() {
-        glm::vec3 planeNormal(0, 1, 0); // Ground plane (Y-axis up)
+        if (!isActive) {
+            // Keep ghost hidden when inactive
+            ghostTurret->body->object->mesh->positionXYZ = glm::vec3(-100);
+            return;
+        }
+
+        glm::vec3 planeNormal(0, 1, 0);
         Camera* camera = object->scene->fCamera->getCameraData();
         glm::vec3 rayStart = camera->position;
 
-        // Get camera rotation and convert to radians
+        // Calculate camera forward
         glm::vec3 cameraRotation = camera->rotation;
         float pitch = glm::radians(cameraRotation.x);
         float yaw = glm::radians(cameraRotation.y);
 
-        // Calculate forward direction vector
         glm::vec3 rayDir;
         rayDir.x = cos(pitch) * cos(yaw);
         rayDir.y = sin(pitch);
@@ -139,14 +157,15 @@ private:
         rayDir = glm::normalize(rayDir);
 
         float distance;
-        if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0,3,0), planeNormal, distance) && distance > 0) {
-       
+        if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0, 3, 0), planeNormal, distance) && distance > 0) {
             ghostTurret->body->object->mesh->positionXYZ = rayStart + rayDir * distance;
+       
         }
     }
 
+
     void PlaceTurret() {
-        if (!factory || !ghostTurret) return;
+        if (!isActive || !factory || !ghostTurret) return;
 
         sTurretCofig* config = ghostTurret->GetConfig();
         factory->SpawnTurret(

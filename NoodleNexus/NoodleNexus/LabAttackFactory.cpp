@@ -441,10 +441,15 @@ void LabAttackFactory::Start()
 
 Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.5f, glm::vec3(0.f), true, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
     bullet->mesh->metal = 0.8;
     bullet->mesh->smoothness = 0.7f;
     bullet->name = "PBullet";
+    bullet->mesh->textures[0] = "Bullet/Bullet_colour.bmp";
+    bullet->mesh->AOtexture = "Bullet/Bullet_AO.bmp";
+    bullet->mesh->STTexture = "Bullet/Bullet_met_smothness.bmp";
+    bullet->mesh->NMTexture = "Bullet/Bullet_normals.bmp";
+
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;
 

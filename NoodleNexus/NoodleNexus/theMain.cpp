@@ -2119,6 +2119,11 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_Occlusion.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret/Turret_ST.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_colour.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_met_smothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Bullet/Bullet_normals.bmp");
+
 
 
     std::cout << "Skybox Texture Load Start" << std::endl;
