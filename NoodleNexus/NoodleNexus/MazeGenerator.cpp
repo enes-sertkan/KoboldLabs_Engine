@@ -222,7 +222,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
       name = "Wall Down";
         break;
     case BRUTEENEM:
-        position.y += 2.f;
+        position.y += 2.1f;
         break;
     //case VENTS:
     //    position.z -= scale * 5.0f / 2.0f;

@@ -22,6 +22,7 @@ public:
         playerPos.y = agent->object->mesh->positionXYZ.y;
 
         if (glm::length(direction) > 0) {
+            direction.y = 0;
             direction = glm::normalize(direction);
             agent->object->mesh->positionXYZ+= direction * agent->speed * deltaTime;
         }

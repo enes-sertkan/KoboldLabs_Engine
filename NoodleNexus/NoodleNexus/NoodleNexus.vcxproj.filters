@@ -604,6 +604,9 @@
     <ClInclude Include="aTurretPlacer.h">
       <Filter>OpenTD</Filter>
     </ClInclude>
+    <ClInclude Include="aRotateWheel.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

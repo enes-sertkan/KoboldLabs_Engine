@@ -30,6 +30,9 @@ StandartTurretBody.txt
 TripleTurretBody.txt
 TripleTurretNeck.txt
 TripleTurretHead.txt
+EnemyWheeelBody.txt
+EnemyWheeelWheel.txt
+EnemyWheeelHead.txt
 Bullet.txt
 <--ObjectLoad>
 <Scene-->

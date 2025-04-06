@@ -128,7 +128,7 @@ public:
     // Get world position (slow, recalculates every call)
     glm::vec3 GetWorldPosition() {
         if (!mesh) return glm::vec3(0);
-        if (m_parent) {
+        if (m_parent && m_parent->mesh) {
             return m_parent->GetWorldPosition() + mesh->positionXYZ;
         }
         return mesh->positionXYZ;

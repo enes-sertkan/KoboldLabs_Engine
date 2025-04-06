@@ -17,6 +17,8 @@ void Object::Destroy()
     delete startTranform;
     startTranform = nullptr;
 
+ 
+
     // 3. Destroy child objects if we own them
     // (Only if sceneObjects contains owned pointers)
     // for (Object* child : sceneObjects) {
@@ -30,6 +32,8 @@ void Object::Destroy()
         scene->RemoveObject(this);
     }
 
+    for (Object* child : m_children)
+        child->Destroy();
  //   delete this;
     // 5. If this object is dynamically allocated, 
     // you would call 'delete this' here - but only

@@ -2127,6 +2127,9 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_AO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_MS.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_Colour.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_body_color.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_color.bmp");
  
 
 

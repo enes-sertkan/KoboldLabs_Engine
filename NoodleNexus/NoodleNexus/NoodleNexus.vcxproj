@@ -233,6 +233,7 @@
     <ClInclude Include="aPlayerShooting.h" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRotate.h" />
+    <ClInclude Include="aRotateWheel.h" />
     <ClInclude Include="aRotationWithMinutes.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />

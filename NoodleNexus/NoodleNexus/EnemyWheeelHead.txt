@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> EnemyWheeelHead
+<filePath> assets/models/Enemy_Wheel/Enenemy_wheel_head.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

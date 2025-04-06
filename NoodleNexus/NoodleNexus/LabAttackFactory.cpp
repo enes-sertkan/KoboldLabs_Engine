@@ -11,6 +11,8 @@
 #include "cTurret.h"
 #include "aEnemyBullet.h"
 #include "aPlayerBullet.h"
+#include "aRotateWheel.h"
+
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
     int playerBulletPoolSize, int enemyBulletPoolSize)
@@ -87,20 +89,38 @@ LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int s
 
 // Spawn functions for bullets (position and speed)
 
-Object* LabAttackFactory::SpawnBrut(const glm::vec3& position)
+Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
 {
-    
-            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.4f, glm::vec3(0.f), true, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
-        
+            position.y -= 2;
+            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_body.ply", position, 2.f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
             enemy->isTemporary = true;
-        
+            enemy->mesh->textures[0] = "Turret_wheel/Wheel_Enem_body_color.bmp";
+            enemy->mesh->blendRatio[0] = 1.f;
+            position.y += 0.4;
+            position.z -= 0.05;;
+
+            Object* wheel = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_wheel.ply", position, 2.f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            wheel->isTemporary = true;
+            wheel->mesh->textures[0] = "Turret_wheel/Wheel_Enem_wheel_color.bmp";
+            wheel->mesh->blendRatio[0] = 1.f;
+            enemy->AddChild(wheel);
+            aRotateWheel* rotateWheel = new aRotateWheel();
+            scene->AddActionToObj(rotateWheel, wheel);
+
+
+
+            position.y += 0.5f;
+            Object* head = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_head.ply", position, 2.f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            head->isTemporary = true;
+            head->mesh->textures[0] = "Turret_wheel/Wheel_Enem_head_Colour.bmp";
+            head->mesh->blendRatio[0] = 1.f;
+            enemy->AddChild(head);
             
           
-            
+            enemy->name = "WHEEL_ENEMY";
             BruteEnemy* brut = new BruteEnemy();
-            brut->maze = maze;
             brut->factory = this;
-        
+            brut->maze = maze;
             scene->AddActionToObj(brut, enemy);
 
             brut->Start();
