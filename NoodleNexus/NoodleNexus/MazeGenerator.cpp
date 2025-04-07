@@ -42,6 +42,7 @@ void MazeGenerator::generateMaze() {
     Object* parent = scene->GenerateMeshObjectsFromObject(
         "", glm::vec3(0), 1, glm::vec3(0), false, glm::vec4(1.0, 0.2, 0.2, 1.0f), true, scene->sceneObjects);
     parent->name = "MAZE";
+    parent->isTemporary = true;
     for (size_t row = 0; row < maze.size(); ++row) {
         for (size_t col = 0; col < maze[row].size(); ++col) {
             char cell = maze[row][col];

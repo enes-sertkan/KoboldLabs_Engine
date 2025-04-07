@@ -38,7 +38,11 @@ public:
 
     float health;
     float maxHealth=10;
+    
+    virtual void ResetPath()
+    {
 
+    }
 
     // Override from BazeMazeCharacter
     void Start() override {
@@ -58,6 +62,7 @@ public:
         // Dynamic goal switching
         if (IsPlayerInRange() && goal["hasReachedControlPoint"]) {
             goal = { {"playerDamaged", true} }; // Attack mode
+            ResetPath();
             currentPlan = std::queue<GOAPAction*>();
         }
         else if (!controlPoints.empty()&&!IsPlayerInRange()) {

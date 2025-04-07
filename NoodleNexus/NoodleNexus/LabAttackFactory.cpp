@@ -214,6 +214,8 @@ cTurretBody* LabAttackFactory::SpawnTurretBody(const glm::vec3& position, eTurre
     newObj->mesh->NMTexture = templateBody->object->mesh->NMTexture;
     newObj->mesh->AOtexture = templateBody->object->mesh->AOtexture;
     newObj->mesh->STTexture = templateBody->object->mesh->STTexture;
+    newObj->isTemporary = true;
+
     cTurretBody* newBody = new cTurretBody();
     newBody->object = newObj;
     newBody->action = templateBody->action->Clone(); // Implement Clone() for actions
@@ -262,6 +264,7 @@ cTurretHead* LabAttackFactory::SpawnTurretHead(const glm::vec3& position, eTurre
     newObj->mesh->NMTexture = templateHead->object->mesh->NMTexture;
     newObj->mesh->AOtexture = templateHead->object->mesh->AOtexture;
     newObj->mesh->STTexture = templateHead->object->mesh->STTexture;
+    newObj->isTemporary = true;
 
     cTurretHead* newHead = new cTurretHead();
     newHead->object = newObj;
@@ -303,6 +306,7 @@ cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurre
     newObj->mesh->NMTexture = templateNeck->object->mesh->NMTexture;
     newObj->mesh->AOtexture = templateNeck->object->mesh->AOtexture;
     newObj->mesh->STTexture = templateNeck->object->mesh->STTexture;
+    newObj->isTemporary = true;
 
     // Create head connection object
     Object* connectionObj = scene->GenerateMeshObjectsFromObject(
@@ -320,7 +324,7 @@ cTurretNeck* LabAttackFactory::SpawnTurretNeck(const glm::vec3& position, eTurre
     newObj->AddChild(connectionObj);
     connectionObj->mesh->positionXYZ = templateNeck->connectionTransform;
     connectionObj->startTranform->position = templateNeck->connectionTransform;
-
+    connectionObj->isTemporary = true;
 
     cTurretNeck* newNeck = new cTurretNeck();
     newNeck->object = newObj;
@@ -381,7 +385,7 @@ void LabAttackFactory::Start()
     standardBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
     turretBodies.push_back(standardBody);
     bodyObj->isActive = false;
-
+    bodyObj->isTemporary = true;
 
     // Standard Body
     cTurretBody* tripleBody = new cTurretBody();
@@ -404,7 +408,7 @@ void LabAttackFactory::Start()
     tripleBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
     turretBodies.push_back(tripleBody);
     tribodyObj->isActive = false;
-
+    tribodyObj->isTemporary = true;
 
 
 
@@ -426,6 +430,7 @@ void LabAttackFactory::Start()
     aimNeckObj->mesh->NMTexture = "Turret2/Turret2_normal.bmp";
     aimNeckObj->mesh->AOtexture = "Turret2/Turret2_AO.bmp";
     aimNeckObj->mesh->STTexture = "Turret2/Turret2_MS.bmp";
+    aimNeckObj->isTemporary = true;
 
     aimNeck->ID = AIMNECK;
     aimNeck->object = aimNeckObj;
@@ -462,6 +467,8 @@ void LabAttackFactory::Start()
     standardNeck->connectionTransform = glm::vec3(0, 1.265f, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
+    neckObj->isTemporary = true;
+
 
     // Standard Head
     cTurretHead* standardHead = new cTurretHead();
@@ -483,6 +490,7 @@ void LabAttackFactory::Start()
     headObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
     headObj->mesh->STTexture = "Turret/Turret_ST.bmp";
     standardHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
+  
 
 
     standardHead->ID = STANDARTHEAD;
@@ -498,7 +506,7 @@ void LabAttackFactory::Start()
     turretHeads.push_back(standardHead);
 
     headObj->isActive = false;
-
+    headObj->isTemporary = true;
 
     //Triple Head
     cTurretHead* tripleHead = new cTurretHead();
@@ -535,6 +543,7 @@ void LabAttackFactory::Start()
     turretHeads.push_back(tripleHead);
 
     triheadObj->isActive = false;
+    triheadObj->isTemporary = true;
 }
 
 

@@ -7,6 +7,7 @@
 
 class BruteEnemy : public Agent {
 public:
+    MoveToControlPointAction* mazeMovection = nullptr;
     Object* partToLaunch = nullptr;
     BruteEnemy() {
         speed = 4.f;
@@ -18,12 +19,18 @@ public:
         // Available actions
         availableActions.push_back(new MoveToPlayerAction());
         availableActions.push_back(new ShootAtPlayerAction());
-        availableActions.push_back(new MoveToControlPointAction());
+        mazeMovection = new MoveToControlPointAction();
+        availableActions.push_back(mazeMovection);
         playerDetectionRange = 5.0f + static_cast<float>(rand()) /
             (static_cast<float>(RAND_MAX / (10.0f)));
 
         // Default goal: Get in range and attack
         goal = { {"hasReachedControlPoint", true} };
+    }
+
+    void ResetPath() override
+    {
+        mazeMovection->reset();
     }
 
     void updateWorldState() override {

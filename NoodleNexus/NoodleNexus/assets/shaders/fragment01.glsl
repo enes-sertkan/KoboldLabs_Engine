@@ -200,7 +200,30 @@ vec4 compositeOver(vec4 bottom, vec4 top) {
 
 // === Normal Mapping Helper ===
 
+
+bool IsValidTBN(vec3 tangent, vec3 bitangent, vec3 normal) {
+    // Check for non-zero vectors
+    float tangentLen = length(tangent);
+    float bitangentLen = length(bitangent);
+    if (tangentLen < 0.01 || bitangentLen < 0.01) return false;
+    
+    // Check orthogonality to normal (dot product should be ~0)
+    float tangentDot = abs(dot(normalize(tangent), normalize(normal)));
+    float bitangentDot = abs(dot(normalize(bitangent), normalize(normal)));
+    if (tangentDot > 0.1 || bitangentDot > 0.1) return false;
+    
+    // Check angle between tangent and bitangent (~90 degrees)
+    float tbnAngle = degrees(acos(dot(normalize(tangent), normalize(bitangent))));
+    if (abs(tbnAngle - 90.0) > 15.0) return false;
+    
+    return true;
+}
+
+
 vec3 getTBNNormal(vec3 fNormal, vec3 fTangent, vec3 fBitangent, sampler2D normalMap, vec2 uv) {
+if (!IsValidTBN(fTangent, fBitangent, fNormal)) {
+        return normalize(fNormal); // Fallback to vertex normal
+    }
     // Sample normal map (values in [0,1])
     vec3 normalMapSample = texture(normalMap, uv).rgb;
     // Remap to [-1, 1]

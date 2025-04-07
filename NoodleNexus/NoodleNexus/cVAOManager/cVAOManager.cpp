@@ -156,8 +156,13 @@ bool readPlyFile_XYZ(sModelDrawInfo& modelDrawInfo)
 		int discard = 0;
 		plyFile >> discard;
 		plyFile >> pPlyFileTriangles[index].vertIndex_0;
+		pPlyFileTriangles[index].vertIndex_0 -= 1; // Convert to 0-based
+
 		plyFile >> pPlyFileTriangles[index].vertIndex_1;
+		pPlyFileTriangles[index].vertIndex_1 -= 1;
+
 		plyFile >> pPlyFileTriangles[index].vertIndex_2;
+		pPlyFileTriangles[index].vertIndex_2 -= 1;
 	}
 
 	// Copy the triangle data to a 1D array...
@@ -444,6 +449,21 @@ bool readPlyFile_XYZ_Normal_RGBA(sModelDrawInfo& modelDrawInfo) {
 		plyFile >> u >> v;
 		modelDrawInfo.pVertices[index].u = u;
 		modelDrawInfo.pVertices[index].v = v;
+
+		// Check EOF and read errors for faces
+		if (plyFile.eof()) {
+			std::cout << "ERROR: Failed to read vertice " << index
+				<< " of " << modelDrawInfo.numberOfVertices << "  EOF  " << std::endl;
+			break;
+
+		}
+
+		if (plyFile.fail()) {
+			std::cout << "ERROR: Failed to read vertice " << index
+				<< " of " << modelDrawInfo.numberOfVertices << "  FAIL  " << std::endl;
+			break;
+
+		}
 	}
 
 	// Load triangle info from the file
@@ -460,6 +480,29 @@ bool readPlyFile_XYZ_Normal_RGBA(sModelDrawInfo& modelDrawInfo) {
 		plyFile >> pPlyFileTriangles[index].vertIndex_0;
 		plyFile >> pPlyFileTriangles[index].vertIndex_1;
 		plyFile >> pPlyFileTriangles[index].vertIndex_2;
+
+		// Check EOF and read errors for faces
+		if (plyFile.eof()) {
+			std::cout << "ERROR: Failed to read face " << index
+				<< " of " << modelDrawInfo.numberOfTriangles << "  EOF  "<<std::endl;
+			break;
+	
+		}
+
+		if (plyFile.fail()) {
+			std::cout << "ERROR: Failed to read face " << index
+				<< " of " << modelDrawInfo.numberOfTriangles << "  FAIL  "<<std::endl;
+			break;
+	
+		}
+
+		//if (pPlyFileTriangles[index].vertIndex_0 >= modelDrawInfo.numberOfVertices) {
+		//	std::cout << "ERROR: Invalid indices in " << modelDrawInfo.meshPath
+		//		<< " (max index: " << pPlyFileTriangles[index].vertIndex_0
+		//		<< ", vertices: " << modelDrawInfo.numberOfVertices << ")"
+		//		<< std::endl;
+
+		//}
 	}
 
 	// Copy the triangle data to a 1D array
@@ -473,6 +516,17 @@ bool readPlyFile_XYZ_Normal_RGBA(sModelDrawInfo& modelDrawInfo) {
 		modelDrawInfo.pIndices[index + 2] = pPlyFileTriangles[triIndex].vertIndex_2;
 		index += 3;
 	}
+
+	unsigned int maxIndex = 0;
+	for (unsigned int index = 0; index != modelDrawInfo.numberOfTriangles; index++) {
+		maxIndex = std::max(maxIndex, pPlyFileTriangles[index].vertIndex_0);
+		maxIndex = std::max(maxIndex, pPlyFileTriangles[index].vertIndex_1);
+		maxIndex = std::max(maxIndex, pPlyFileTriangles[index].vertIndex_2);
+
+	
+	}
+
+	
 
 	// Clean up
 	delete[] pPlyFileTriangles;
@@ -771,11 +825,36 @@ void cVAOManager::CalculateTangents(sModelDrawInfo& drawInfo)
 
 	for (unsigned int i = 0; i < numIndices; i += 3)
 	{
+		
+		unsigned int i0 = indices[i];
+		unsigned int i1 = indices[i + 1];
+		unsigned int i2 = indices[i + 2];
+		if (i0 >= drawInfo.numberOfVertices || i1 >= drawInfo.numberOfVertices || i2 >= drawInfo.numberOfVertices) {
+
+
+			continue;
+		}
+		vertices[i0].tx = 0;
+		vertices[i0].ty = 0;
+		vertices[i0].tz = 0;
+
+		vertices[i1].tx = 0;
+		vertices[i1].ty = 0;
+		vertices[i1].tz = 0;
+
+		vertices[i2].tx = 0;
+		vertices[i2].ty = 0;
+		vertices[i2].tz = 0;
+
+	}
+	for (unsigned int i = 0; i < numIndices; i += 3)
+	{
 		unsigned int i0 = indices[i];
 		unsigned int i1 = indices[i + 1];
 		unsigned int i2 = indices[i + 2];
 
 		if (i0 >= drawInfo.numberOfVertices || i1 >= drawInfo.numberOfVertices || i2 >= drawInfo.numberOfVertices) {
+
 			std::cerr << "Invalid index detected! Skipping this triangle." << std::endl;
 			continue;
 		}

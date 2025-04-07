@@ -127,6 +127,7 @@ std::queue<GOAPAction*> GOAPPlanner::plan(Agent* agent,
         while (currentNode->parent != nullptr) {
             if (currentNode->action) {
                 reversePlan.push_back(currentNode->action);
+            
             }
             currentNode = currentNode->parent;
         }
