@@ -1473,6 +1473,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aPlayerShooting* playerShooting = new aPlayerShooting();
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
     aToolManager* toolManager = new aToolManager();
+
+    playerMovement->maze = mazeGenerator;
+
     toolManager->RegisterTool(GLFW_KEY_1, playerTurPlacer);
     toolManager->RegisterTool(GLFW_KEY_2, playerShooting);
 

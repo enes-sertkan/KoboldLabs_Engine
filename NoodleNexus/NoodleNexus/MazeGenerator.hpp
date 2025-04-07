@@ -35,7 +35,7 @@ enum Direction {
 
 class MazeGenerator {
 public:
-
+    const float TILE_SIZE = 1.0f * 4.0f;
     SoftBody* mainSlime = nullptr;
     MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager
     void generateMaze();
@@ -59,7 +59,7 @@ public:
     LabAttackFactory* factory = nullptr;
 
     glm::vec2 WorldToGrid(const glm::vec3& worldPos) const {
-        const float TILE_SIZE = 1.0f * 4.0f; // Match GridToWorld scaling
+       // Match GridToWorld scaling
         int gridCol = static_cast<int>(worldPos.x / TILE_SIZE);
         int gridRow = static_cast<int>(worldPos.z / TILE_SIZE);
         return glm::vec2(gridCol, gridRow);

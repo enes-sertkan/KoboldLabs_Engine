@@ -332,6 +332,8 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     return obj;
 }
 
+
+//for some reason x and y are mixed up.
 bool MazeGenerator::IsWall(int x, int y)  {
     if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
         return true;

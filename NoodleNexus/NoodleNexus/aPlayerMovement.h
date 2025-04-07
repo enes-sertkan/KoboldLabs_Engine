@@ -6,7 +6,7 @@
 #include "cBasicFlyCamera/cBasicFlyCamera.h"
 #include "Scene.hpp"
 #include <glm/glm.hpp>
-
+#include "MazeGenerator.hpp"
 
 
 
@@ -35,6 +35,9 @@ public:
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
 	GLuint program;
+	MazeGenerator* maze = nullptr;
+
+
 
 	enum Direction
 	{
@@ -69,30 +72,30 @@ public:
 		switch (direction)
 		{
 		case FORWARD:
-			if (object->scene->physicsManager->RayCast(position, position + forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (CheckMazePos(position - left * speed * 1.5f * object->scene->deltaTime))
 			{
-			//	break;
+				break;
 			}
 			object->mesh->positionXYZ -= left * speed * object->scene->deltaTime;
 			break;
 		case BACK:
-			if (object->scene->physicsManager->RayCast(position, position - forward * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (CheckMazePos(position + left * speed * 1.5f * object->scene->deltaTime))
 			{
-			//	break;
+				break;
 			}
 			object->mesh->positionXYZ += left * speed * object->scene->deltaTime;
 			break;
 		case LEFT:
-			if (object->scene->physicsManager->RayCast(position, position + left * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (CheckMazePos(position + forward * speed * 1.5f * object->scene->deltaTime))
 			{
-				//break;
+				break;
 			}
 			object->mesh->positionXYZ += forward * speed * object->scene->deltaTime;
 			break;
 		case RIGHT:
-			if (object->scene->physicsManager->RayCast(position, position - left * speed * 1.5f * object->scene->deltaTime, collisions, false))
+			if (CheckMazePos(position - forward * speed * 1.5f * object->scene->deltaTime))
 			{
-				//break;
+				break;
 			}
 			object->mesh->positionXYZ -= forward * speed * object->scene->deltaTime;
 			break;
@@ -143,6 +146,20 @@ public:
 		}
 
 
+	}
+
+
+	bool CheckMazePos(glm::vec3 position)
+	{
+		glm::vec3 sadFix = position;
+		sadFix.x += maze->TILE_SIZE * 0.45;
+		sadFix.z += maze->TILE_SIZE * 0.6;
+
+		glm::vec2 mazePos = maze->WorldToGrid(sadFix);
+
+
+		return maze->IsWall(mazePos.y, mazePos.x);
+	
 	}
 
 };

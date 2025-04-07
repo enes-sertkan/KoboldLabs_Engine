@@ -10,7 +10,7 @@ public:
     LabAttackFactory* factory = nullptr;
     Turret* ghostTurret = nullptr;
     bool isActive = true;
-
+    bool isValidPos = false;
 
     enum eSelectedPart { HEAD, NECK, BODY } currentSelection = BODY;
     float keyCooldown = 0.2f;
@@ -51,10 +51,10 @@ private:
         if (currentCooldown > 0) return;
 
 
-        if (glfwGetKey(object->scene->window, GLFW_KEY_Q) == GLFW_PRESS) {
-            SetActive(!isActive);
-            currentCooldown = keyCooldown;
-        }
+        //if (glfwGetKey(object->scene->window, GLFW_KEY_Q) == GLFW_PRESS) {
+        //    SetActive(!isActive);
+        //    currentCooldown = keyCooldown;
+        //}
 
         if (!isActive) return;
 
@@ -159,16 +159,29 @@ private:
         rayDir.z = cos(pitch) * sin(yaw);
         rayDir = glm::normalize(rayDir);
 
+        isValidPos = true;
         float distance;
         if (glm::intersectRayPlane(rayStart, rayDir, glm::vec3(0, 3.1, 0), planeNormal, distance) && distance > 0) {
-            ghostTurret->body->object->mesh->positionXYZ = rayStart + rayDir * distance;
-       
+            glm::vec3 newPos = rayStart + rayDir * distance;
+            glm::vec3 sadFix = newPos;
+            sadFix.x += factory->maze->TILE_SIZE*0.45;
+            sadFix.z += factory->maze->TILE_SIZE*0.6;
+
+            glm::vec2 mazePos = factory->maze->WorldToGrid(sadFix);
+
+            isValidPos = !factory->maze->IsWall(mazePos.y, mazePos.x);
+
+            if (isValidPos)
+            ghostTurret->body->object->mesh->positionXYZ = newPos;
+            else
+            ghostTurret->body->object->mesh->positionXYZ = glm::vec3(-100);
+  
         }
     }
 
 
     void PlaceTurret() {
-        if (!isActive || !factory || !ghostTurret) return;
+        if (!isActive || !factory || !ghostTurret || !isValidPos) return;
 
         sTurretCofig* config = ghostTurret->GetConfig();
         factory->SpawnTurret(

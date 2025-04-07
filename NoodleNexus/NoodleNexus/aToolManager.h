@@ -15,6 +15,9 @@ public:
             tools[numberKey - GLFW_KEY_1] = toolAction;
         }
     }
+    void Start() override {
+        SwitchToTool(0);
+    }
 
     void Update() override {
         // Check number keys 1-9
