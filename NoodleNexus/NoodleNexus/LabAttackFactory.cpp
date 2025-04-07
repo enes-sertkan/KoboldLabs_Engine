@@ -131,6 +131,7 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
           
             enemy->name = "WHEEL_ENEMY";
             BruteEnemy* brut = new BruteEnemy();
+            brut->partToLaunch = head;
             brut->factory = this;
             brut->maze = maze;
             scene->AddActionToObj(brut, enemy);

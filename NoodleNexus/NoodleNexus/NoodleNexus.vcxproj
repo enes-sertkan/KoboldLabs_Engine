@@ -225,6 +225,7 @@
     <ClInclude Include="aExhaustTrail.hpp" />
     <ClInclude Include="aExplodeOnRayCollision.hpp" />
     <ClInclude Include="aGrassCollider .h" />
+    <ClInclude Include="aLaunchAction.h" />
     <ClInclude Include="aLinearProjectileMovement.hpp" />
     <ClInclude Include="aMinotaur.h" />
     <ClInclude Include="aMoveInDirection.h" />

@@ -3,10 +3,11 @@
 #include "MoveToPlayer.h"
 #include "ShootAtPlayerAction.h"
 #include "MoveToControlPointAction.h"
-
+#include "aLaunchAction.h" 
 
 class BruteEnemy : public Agent {
 public:
+    Object* partToLaunch = nullptr;
     BruteEnemy() {
         speed = 4.f;
        // attackDamage = 30.0f;
@@ -31,15 +32,23 @@ public:
         worldState["playerInRange"] = (glm::distance(object->mesh->positionXYZ, maze->player->mesh->positionXYZ) <= attackRange);
     }
 
-    void OnDamage(int damage) override
-    {
-        object->mesh->objectColourRGBA = glm::vec4((maxHealth - health) / maxHealth,0.2,  health / maxHealth, 1.f);
-    }
+    virtual void Death() override {
+        // If there is a part to launch, detach it and add a LaunchAction.
+        if (partToLaunch) {
+            // Unparent the part.
+            partToLaunch->RemoveParent();
+            // Add the launch action, setting the floor height (for example, y = 0.0f).
+            float floorHeight = 0.0f;
+            object->scene->AddActionToObj(new aLaunchAction(partToLaunch, floorHeight), partToLaunch);
+        }
 
-    virtual void Death() override
-    {
+        // Remove this enemy from the factory's pool.
         std::vector<BruteEnemy*>::iterator it = std::find(factory->m_creepPool.begin(), factory->m_creepPool.end(), this);
-        factory->m_creepPool.erase(it);
+        if (it != factory->m_creepPool.end()) {
+            factory->m_creepPool.erase(it);
+        }
+
+        // Destroy the enemy's object.
         object->Destroy();
     }
 };
