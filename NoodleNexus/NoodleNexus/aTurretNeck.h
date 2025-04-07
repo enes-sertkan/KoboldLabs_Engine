@@ -8,6 +8,8 @@ class aTurretNeck : public aTurretPart
 public:
 	Object* headConnection = nullptr;
 
+
+
     aTurretNeck* Clone() const override
     {
         aTurretNeck* clone = new aTurretNeck(*this);

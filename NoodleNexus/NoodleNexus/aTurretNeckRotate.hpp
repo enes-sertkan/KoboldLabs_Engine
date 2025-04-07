@@ -9,8 +9,17 @@ class aTurretNeckRotate : public aTurretNeck
 public:
     float rotationSpeed = 45.0f; // Degrees per second
 
+    void Start() override
+    {
+
+        turret->constantShooting = true;
+
+    }
+
+
     void Update() override 
     {
+        turret->constantShooting = true;
         if (!object) return;
         
         // Rotate around Y axis

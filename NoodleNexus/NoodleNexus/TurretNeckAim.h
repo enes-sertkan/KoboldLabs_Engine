@@ -15,6 +15,7 @@ public:
 
     float detectionRadious = 15.f;
 
+
     void Update() override {
         if (!object || !factory) return;
 
@@ -23,9 +24,9 @@ public:
 
         // Then handle aiming
         if (headConnection && headConnection->mesh) {
-            Agent* target = FindClosestEnemy();
-            if (target) {
-                AimAtTarget(target->object->GetWorldPosition()+target->colliderCenter);
+          turret->target =   FindClosestEnemy();
+            if (turret->target) {
+                AimAtTarget(turret->target->object->GetWorldPosition()+ turret->target->colliderCenter);
             }
         }
     }
@@ -36,7 +37,7 @@ public:
         Agent* closestEnemy = nullptr;
 
         // Manually check each enemy pool
-        CheckEnemyPool(factory->m_creepPool, ourPos, closestDist, closestEnemy);
+        closestEnemy = CheckEnemyPool(factory->m_creepPool, ourPos, closestDist);
 
 
         return closestEnemy;
@@ -102,11 +103,11 @@ public:
         return clone;
     }
 
-    void CheckEnemyPool(const std::vector<BruteEnemy*> pool,
+    Agent* CheckEnemyPool(const std::vector<BruteEnemy*> pool,
         const glm::vec3& ourPos,
-        float& closestDist,
-        Agent*& closestEnemy)
+        float& closestDist)
     {
+        Agent* closestEnemy = nullptr;
         for (BruteEnemy* enemy : pool) {
             if (!enemy->object->isActive) continue;
 
@@ -119,5 +120,6 @@ public:
                 closestEnemy = enemy;
             }
         }
+        return closestEnemy;
     }
 };

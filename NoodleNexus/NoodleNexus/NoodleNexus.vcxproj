@@ -293,6 +293,7 @@
     <ClInclude Include="MoveToControlPointAction.h" />
     <ClInclude Include="MoveToPlayer.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="aParticleEmitter .h" />
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />
     <ClInclude Include="aProjectileMovement.hpp" />

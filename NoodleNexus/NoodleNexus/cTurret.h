@@ -4,7 +4,7 @@
 
 #include "TurretConfig.h"
 #include "LabAttackFactory.h"
-
+#include "aAgent.h"
 
 
 
@@ -17,6 +17,8 @@ public:
 	cTurretBody* body;
 	LabAttackFactory* factory;
 	glm::vec3 position;
+	Agent* target = nullptr;
+	bool constantShooting = false;
 
     Turret() : head(nullptr), neck(nullptr), body(nullptr), factory(nullptr), position(0) {}
 

@@ -34,6 +34,8 @@ public:
     {
         if (!object || !factory) return;
 
+        if (!turret->target && !turret->constantShooting) return;
+
         // Get world rotation once per frame
         m_currentWorldRotation = object->GetWorldRotationQuat();
 
