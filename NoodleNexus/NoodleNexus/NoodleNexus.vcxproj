@@ -239,6 +239,7 @@
     <ClInclude Include="aRotationWithMinutes.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
+    <ClInclude Include="aToolManager.h" />
     <ClInclude Include="aTurretBody.h" />
     <ClInclude Include="aTurretHead.hpp" />
     <ClInclude Include="aTurretNeck.h" />

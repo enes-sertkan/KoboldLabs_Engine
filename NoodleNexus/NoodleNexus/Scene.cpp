@@ -369,7 +369,7 @@ void Scene::Update()
         if (obj)
             if (actions.size()>0)
                 for (Action* action : obj->actions)
-                    if (action) action->Update();
+                    if (action && action->isActive) action->Update();
 
     }
 

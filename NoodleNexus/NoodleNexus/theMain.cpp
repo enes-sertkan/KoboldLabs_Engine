@@ -86,6 +86,7 @@
 #include "aPlayerShooting.h"
 #include "aGrassCollider .h"
 #include "aTurretPlacer.h"
+#include "aToolManager.h"
 
 
 // Core MGUI headers
@@ -1471,6 +1472,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aPlayerMovement* playerMovement = new aPlayerMovement();
     aPlayerShooting* playerShooting = new aPlayerShooting();
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
+    aToolManager* toolManager = new aToolManager();
+    toolManager->RegisterTool(GLFW_KEY_1, playerTurPlacer);
+    toolManager->RegisterTool(GLFW_KEY_2, playerShooting);
 
     aGrassCollider* playerGrassCollider = new aGrassCollider();
     playerGrassCollider->SetGrass(puddle);
@@ -1488,11 +1492,11 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
   //  LAFactory->SpawnTurret(turretPos, STANDARTBODY, STANDARTNECK, STANDARTHEAD);
 
-  // aPlayerShooting* playerShooting = new aPlayerShooting();
     scene->AddActionToObj(playerGrassCollider, player);
     scene->AddActionToObj(playerMovement, player);
     scene->AddActionToObj(playerTurPlacer, player);
-   // scene->AddActionToObj(playerShooting, player);
+    scene->AddActionToObj(playerShooting, player);
+    scene->AddActionToObj(toolManager, player);
 
 
     waveEffect->player = player;

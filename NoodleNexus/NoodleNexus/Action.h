@@ -10,6 +10,7 @@ private:
 
 public:
 
+	bool isActive = true;
 	Object* object = nullptr;
 	virtual void Start()
 	{}

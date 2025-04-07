@@ -613,6 +613,9 @@
     <ClInclude Include="aLaunchAction.h">
       <Filter>OpenTD</Filter>
     </ClInclude>
+    <ClInclude Include="aToolManager.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
