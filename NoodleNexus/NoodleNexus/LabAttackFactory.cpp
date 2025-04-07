@@ -169,6 +169,7 @@ Turret* LabAttackFactory::SpawnTurret(const glm::vec3& position, eTurretBodyID b
     config.headID = headID;
 
     newTurret->RebuildTurret(&config);
+    turrets.push_back(newTurret);
     return newTurret;
 }
 

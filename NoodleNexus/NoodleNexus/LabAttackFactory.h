@@ -63,7 +63,10 @@ public:
     cTurretHead* FindTurretHeadTemplate(eTurretHeadID id);
 
 
+    std::vector<Turret*>         turrets;
+
     std::vector<BruteEnemy*>         m_creepPool;
+
     std::vector<Object*>       m_avoiderPool;
     std::vector<Object*>       m_shooterPool;
     std::vector<Object*>      m_wandererPool;

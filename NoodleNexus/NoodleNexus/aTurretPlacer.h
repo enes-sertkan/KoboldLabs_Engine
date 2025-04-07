@@ -171,6 +171,19 @@ private:
 
             isValidPos = !factory->maze->IsWall(mazePos.y, mazePos.x);
 
+
+            for (Turret* tur : factory->turrets)
+            {
+                float dis = glm::distance(tur->body->object->GetWorldPosition(), newPos);
+
+                    if (dis < 1.4)
+                    {
+                        isValidPos = false;
+                        break;
+                    }
+
+            }
+
             if (isValidPos)
             ghostTurret->body->object->mesh->positionXYZ = newPos;
             else
