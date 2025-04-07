@@ -41,7 +41,7 @@ public:
 
         // Attach to VAO (using your existing VAO manager)
         sModelDrawInfo meshInfo;
-        if (object->scene->vaoManager->FindDrawInfoByModelName("quad", meshInfo)) {
+        if (object->scene->vaoManager->FindDrawInfoByModelName("assets/models/Sphere_radius_1_xyz_N_uv.ply", meshInfo)) {
             glBindVertexArray(meshInfo.VAO_ID);
 
             // Position (vec3)
@@ -94,7 +94,7 @@ public:
 
             // Initialize particle
             particle.position = emitterPosition;
-            particle.velocity = glm::linearRand(velocityRange[0], velocityRange[1]);
+            particle.velocity = glm::vec3(0,1,0);// glm::linearRand(velocityRange[0], velocityRange[1]);
             particle.color = colorStart;
             particle.size = sizeStart;
             particle.lifetime = particle.lifeRemaining = 1.0f;

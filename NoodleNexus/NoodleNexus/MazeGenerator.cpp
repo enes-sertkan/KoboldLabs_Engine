@@ -48,11 +48,14 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B') {
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B'||cell == ',') {
 
                 if (cell != 'S')
                 {
-                    PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
+                    if (cell == ',')
+                    PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERFLOOR, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
+                    else
+                        PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                 }
                 else
                 {
@@ -141,6 +144,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
     std::string textureAO="";
     std::string textureST="";
     std::string textureNM="";
+    bool useMetalic = true;
     float metal = 0;
     float smothness = 0.2;
     std::string name = "MAZE OBJECT";
@@ -161,15 +165,34 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         position.z -= 2.5f * scale;
         position.x += 2.5f * scale;
         color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-        texture = "Floor_Albedo.bmp";
+        texture = "Grass/Grass_basecolor.bmp";
         useAO = true;
      //   aobool = !aobool;
-        textureAO = "WallAO.bmp";
-        textureNM = "Floor_Normal.bmp";
+        textureAO = "Grass/Grass_ambientOcclusion.bmp";
+        textureNM = "Grass/Grass_normal.bmp";
+        textureST = "Grass/Grass_smoothness.bmp";
+        useMetalic = false;
         metal = 0.1;
         smothness = 0.2;
         name = "Floor";
       //  textureST = "Operating_Table_MetallicSmoothness.bmp";
+        break;
+
+    case CENTERFLOOR:
+        position.z -= 2.5f * scale;
+        position.x += 2.5f * scale;
+        color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+        texture = "Floor_Albedo.bmp";
+        useAO = true;
+        //   aobool = !aobool;
+        textureAO = "WallAO.bmp";
+        textureNM = "Floor_Normal.bmp";
+        //textureST = "Grass/Grass_smoothness.bmp";
+        useMetalic = false;
+        metal = 0.1;
+        smothness = 0.2;
+        name = "Floor";
+        //  textureST = "Operating_Table_MetallicSmoothness.bmp";
         break;
     case CENTERup:
         position.z += 1.5f * scale;
@@ -266,6 +289,7 @@ Object* MazeGenerator::PlaceModelOnGrid(std::string path, int row, int col, int 
         obj->mesh->uniformScale = 2.f;
         obj->mesh->metal = 0.7;
         obj->mesh->smoothness = 0.7;
+        obj->mesh->useMetalTexture = useMetalic;
         SoftBody* softBody = new SoftBody();
         softBody->isLockOutsideRadius = true;
         softBody->lockRadius = 1.8f;

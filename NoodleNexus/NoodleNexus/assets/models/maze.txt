@@ -1,8 +1,8 @@
 XXXXXXXXXXXXXXXXXXXXXXX
-X.......XXXXXXXX....XXX
-X1.............X....XXX
-X.......XXXXX..X....XXX
-XXXXXXXXXXXXX..X....XXX
+X,,,,,,,XXXXXXXX....XXX
+X1,,,,,,,,,,,,,X....XXX
+X,,,,,,,XXXXX,,X....XXX
+XXXXXXXXXXXXX,,X....XXX
 XXXXXXX...........XXXXX
 XXXXXXX...........XXXXX
 XXXXXXXXX........XXXXXX

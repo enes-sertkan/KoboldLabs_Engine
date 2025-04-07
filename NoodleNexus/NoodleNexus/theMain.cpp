@@ -95,7 +95,7 @@
 #include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
 
-
+#include "aParticleEmitter .h"
 
  Scene* currentScene=nullptr;
 
@@ -1440,6 +1440,10 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
+    securutyCamera->name = "Particles";
+
+    aParticleEmitter* particleEmmiter = new aParticleEmitter();
+  //  scene->AddActionToObj(particleEmmiter, securutyCamera);
 
     Object* securutyCamera2 = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(41.f, 40.0f, 20.f), 10, glm::vec3(0.f, 0.5f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera2->mesh->textures[0] = "screen_broken.bmp";
@@ -1449,7 +1453,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
-    LAFactory->grass = puddle;
+   
+ LAFactory->grass = puddle;
     puddle->name = "GRASS";
     underpuddle->name = "UNDERGRASS";
     underpuddle->isTemporary = true;
@@ -1473,6 +1478,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aPlayerShooting* playerShooting = new aPlayerShooting();
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
     aToolManager* toolManager = new aToolManager();
+
 
     playerMovement->maze = mazeGenerator;
 
@@ -2143,6 +2149,10 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_SM.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_basecolor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_ambientOcclusion.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_normal.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_smoothness.bmp");
  
 
 

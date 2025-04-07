@@ -21,6 +21,7 @@ enum Direction {
     UP,
     DOWN,
     CENTER,
+    CENTERFLOOR,
     CENTERup,
     LIGHT,
     VENTS,
