@@ -11,7 +11,8 @@ public:
         speed = 4.f;
        // attackDamage = 30.0f;
         attackRange = 3.f;
-        health = 200;
+        maxHealth = 40;
+        health = 40;
 
         // Available actions
         availableActions.push_back(new MoveToPlayerAction());

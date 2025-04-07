@@ -136,11 +136,39 @@ public:
 
     // Get world rotation (slow, recalculates every call)
     glm::vec3 GetWorldRotation() {
-        if (m_parent) {
-            return m_parent->GetWorldRotation() + mesh->rotationEulerXYZ;
-        }
-        return mesh->rotationEulerXYZ;
+        // Get world transformation matrix
+        glm::mat4 worldTransform = GetWorldTransform();
+
+        // Extract rotation matrix (ignore scale and translation)
+        glm::mat3 rotationMatrix(worldTransform);
+
+        // Extract Euler angles in XYZ order (same as original)
+        glm::vec3 radians;
+        glm::extractEulerAngleXYZ(glm::mat4(rotationMatrix), radians.x, radians.y, radians.z);
+
+        return glm::degrees(radians);
     }
+
+    glm::mat4 GetWorldTransform() {
+        glm::mat4 transform = glm::mat4(1.0f);
+
+        // Apply parent transformations first
+        if (m_parent) {
+            transform = m_parent->GetWorldTransform();
+        }
+
+        // Apply local transformations in TRS order (Translation * Rotation * Scale)
+        transform = glm::translate(transform, mesh->positionXYZ);
+        transform *= glm::eulerAngleXYZ(
+            glm::radians(mesh->rotationEulerXYZ.x),
+            glm::radians(mesh->rotationEulerXYZ.y),
+            glm::radians(mesh->rotationEulerXYZ.z)
+        );
+        transform = glm::scale(transform, glm::vec3(mesh->uniformScale));
+
+        return transform;
+    }
+
 
     glm::quat GetWorldRotationQuat()  {
         // Convert degrees to radians

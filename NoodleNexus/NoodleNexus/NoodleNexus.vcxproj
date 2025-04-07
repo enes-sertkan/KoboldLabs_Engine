@@ -155,6 +155,7 @@
     <ClCompile Include="aTextureWiggler.h" />
     <ClCompile Include="aTurretPart.h" />
     <ClCompile Include="aWavesEffect.h" />
+    <ClCompile Include="aWheelEnemyHead.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
     <ClCompile Include="Basic_Shader_Manager\cShaderManager.cpp" />
     <ClCompile Include="bPhysics_BroadPhase.cpp" />

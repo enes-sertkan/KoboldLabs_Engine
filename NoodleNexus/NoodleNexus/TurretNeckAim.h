@@ -13,6 +13,8 @@ public:
     float maxPitch = 180.0f;      // Maximum vertical aiming angle
     float maxYaw = 180.0f;        // Maximum horizontal aiming angle
 
+    float detectionRadious = 15.f;
+
     void Update() override {
         if (!object || !factory) return;
 
@@ -21,17 +23,17 @@ public:
 
         // Then handle aiming
         if (headConnection && headConnection->mesh) {
-            Object* target = FindClosestEnemy();
+            Agent* target = FindClosestEnemy();
             if (target) {
-                AimAtTarget(target);
+                AimAtTarget(target->object->GetWorldPosition()+target->colliderCenter);
             }
         }
     }
 
-    Object* FindClosestEnemy() {
+    Agent* FindClosestEnemy() {
         glm::vec3 ourPos = headConnection->GetWorldPosition();
         float closestDist = FLT_MAX;
-        Object* closestEnemy = nullptr;
+        Agent* closestEnemy = nullptr;
 
         // Manually check each enemy pool
         CheckEnemyPool(factory->m_creepPool, ourPos, closestDist, closestEnemy);
@@ -40,10 +42,10 @@ public:
         return closestEnemy;
     }
 
-    void AimAtTarget(Object* target) {
-        if (!target || !headConnection || !object) return;
+    void AimAtTarget(glm::vec3 targetPos) {
+        if (!headConnection || !object) return;
 
-        glm::vec3 targetPos = target->GetWorldPosition();
+       
         glm::vec3 ourPos = headConnection->GetWorldPosition();
 
         // Calculate direction to target in world space
@@ -103,15 +105,18 @@ public:
     void CheckEnemyPool(const std::vector<BruteEnemy*> pool,
         const glm::vec3& ourPos,
         float& closestDist,
-        Object*& closestEnemy)
+        Agent*& closestEnemy)
     {
         for (BruteEnemy* enemy : pool) {
             if (!enemy->object->isActive) continue;
 
-            float dist = glm::distance(ourPos, enemy->object->GetWorldPosition());
+            float dist = glm::distance(ourPos, enemy->object->GetWorldPosition() + enemy->colliderCenter);
+
+            if (dist > detectionRadious) continue;
+
             if (dist < closestDist) {
                 closestDist = dist;
-                closestEnemy = enemy->object;
+                closestEnemy = enemy;
             }
         }
     }

@@ -9,8 +9,17 @@
 #include "LabAttackFactory.h"
 #include "StupidPathFinder.h"
 
+
+
+class DamageListener {
+public:
+    virtual void OnDamage(int damage) = 0;
+};
+
 class Agent : public BazeMazeCharacter {
 public:
+
+    glm::vec3 colliderCenter = { 0,1.5f,0 };
     LabAttackFactory* factory = nullptr;
     virtual void updateWorldState() = 0; // Must be implemented per enemy type
     void replanIfNeeded();              // Checks if current plan is still valid
@@ -68,10 +77,22 @@ public:
 
     }
 
-    void Damage(int damage)
-    {
+    void AddDamageListener(DamageListener* listener) {
+        damageListeners.push_back(listener);
+    }
+    
+    void RemoveDamageListener(DamageListener* listener) {
+        damageListeners.erase(std::remove(damageListeners.begin(), 
+                                        damageListeners.end(), listener), 
+                            damageListeners.end());
+    }
+
+    void Damage(int damage)  {
         health -= damage;
-        OnDamage(damage);
+        for (auto listener : damageListeners) {
+            listener->OnDamage(damage);
+        }
+
         if (health <= 0)
             Death();
     }
@@ -186,6 +207,7 @@ public:
 
 
 private:
+    std::vector<DamageListener*> damageListeners;
     void executeCurrentAction() {
         if (!currentPlan.empty()) {
             GOAPAction* action = currentPlan.front();

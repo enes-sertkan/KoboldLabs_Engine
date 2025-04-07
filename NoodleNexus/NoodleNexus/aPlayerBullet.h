@@ -22,7 +22,7 @@ public:
         std::vector<BruteEnemy*>::iterator it = factory->m_creepPool.begin();
         while (it != factory->m_creepPool.end()) {
             BruteEnemy* enemy = *it;
-            float distance = glm::distance(enemy->object->mesh->positionXYZ, object->mesh->positionXYZ);
+            float distance = glm::distance(enemy->object->mesh->positionXYZ+enemy->colliderCenter, object->mesh->positionXYZ);
 
             if (distance < 2.0f) {
 

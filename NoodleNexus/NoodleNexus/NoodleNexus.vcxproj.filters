@@ -317,6 +317,9 @@
     <ClCompile Include="aEnemyBullet.h">
       <Filter>OpenTD</Filter>
     </ClCompile>
+    <ClCompile Include="aWheelEnemyHead.h">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">

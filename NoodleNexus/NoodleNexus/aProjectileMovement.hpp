@@ -27,34 +27,27 @@ public:
         object->mesh->positionXYZ += speed * object->scene->deltaTime;
     }
 
-    void UpdateRotation()
-    {
-        if (glm::length(speed) > 0.001f)
-        {
-            // Calculate direction from speed vector
+    void UpdateRotation() {
+        if (glm::length(speed) > 0.001f) {
             glm::vec3 direction = glm::normalize(speed);
 
             // Calculate yaw (horizontal rotation)
             float yaw = std::atan2(direction.x, direction.z);
 
             // Calculate pitch (vertical tilt)
-            float horizontalSpeed = glm::length(glm::vec3(direction.x, 0.0f, direction.z));
-            float pitch = 0.0f;
+            float pitch = std::asin(-direction.y);  // Correct vertical calculation
 
-            if (horizontalSpeed > 0.001f) {
-                pitch = std::atan2(-direction.y, horizontalSpeed);
-            }
-            else {
-                // Handle pure vertical movement
-                pitch = (direction.y > 0) ? -glm::half_pi<float>() : glm::half_pi<float>();
-            }
+            // Create rotation matrix with YAW first, then PITCH
+            glm::mat4 rotationMatrix = glm::mat4(1.0f);
+            rotationMatrix = glm::rotate(rotationMatrix, yaw, glm::vec3(0.0f, 1.0f, 0.0f));  // Yaw
+            rotationMatrix = glm::rotate(rotationMatrix, pitch, glm::vec3(1.0f, 0.0f, 0.0f)); // Pitch
+
+            // Extract Euler angles in XYZ order from the combined matrix
+            glm::vec3 euler;
+            glm::extractEulerAngleXYZ(rotationMatrix, euler.x, euler.y, euler.z);
 
             // Convert to degrees and update rotation
-            object->mesh->rotationEulerXYZ = glm::vec3(
-                glm::degrees(pitch),
-                glm::degrees(yaw),
-                0.0f  // No roll by default
-            );
+            object->mesh->rotationEulerXYZ = glm::degrees(euler);
         }
     }
 
