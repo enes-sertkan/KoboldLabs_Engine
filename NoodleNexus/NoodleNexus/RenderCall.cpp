@@ -1,4 +1,4 @@
-#include "GLCommon.h"
+ï»¿#include "GLCommon.h"
 #include "sharedThings.h"
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp> // glm::vec3
@@ -10,7 +10,7 @@
 #include <iostream>
 #include "cBasicTextureManager.h"
 #include "cFBO_RGB_depth.hpp"
-
+#include <glm/gtc/type_ptr.hpp>
 //RenderCall
 
 sMesh* pDebugSphere = NULL;
@@ -700,15 +700,156 @@ void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint progr
     glBindVertexArray(0);
 }
 
+std::vector<GPUParticle>  GenerateGPUParticles(std::vector<Particle> cpuParticles) {
+
+    std::vector<GPUParticle> gpuParticles;
+    for (Particle cpuParticle : cpuParticles) {
+        if (!cpuParticle.active) continue;
+
+ 
+ 
+
+        gpuParticles.push_back(GPUParticle(cpuParticle));
+    }
+
+    return gpuParticles;
+
+}
+
+void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
+    cVAOManager* vaoManager, Camera* camera)
+{
+    // Only process if this mesh is a particle emitter with valid particle data and is visible.
+    if (!pCurMesh->isParticleEmitter || pCurMesh->pParticles == nullptr || !pCurMesh->bIsVisible)
+        return;
+
+    // Optional: Distance culling (if the emitter is too far away, then skip rendering)
+    if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
+        return;
+
+    // Enable blending for particles (assuming transparency)
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDepthMask(GL_FALSE);  // Do not write to depth buffer
+
+    // Use the same shader program as for meshes
+    glUseProgram(program);
+
+    // Optional: disable face culling if particles should be double sided
+    if (pCurMesh->drawBothFaces)
+        glDisable(GL_CULL_FACE);
+
+    // --------------------------------------------------
+    // Set up the Model transformation for the emitter object.
+    // (This is the emitter's world transform.)
+    glm::mat4 matModel = glm::mat4(1.0f);
+    glm::vec3 position = object->GetWorldPosition();
+    glm::vec3 rotation = object->GetWorldRotation();
+    float scale = object->GetWorldScale();
+
+    // Build model matrix as in DrawMeshWithCamera:
+    matModel *= glm::translate(glm::mat4(1.0f), position);
+    matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1, 0, 0));
+    matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0, 1, 0));
+    matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.z), glm::vec3(0, 0, 1));
+    matModel *= glm::scale(glm::mat4(1.0f), glm::vec3(scale));
+
+    // Set model matrix uniform.
+    GLint modelLoc = glGetUniformLocation(program, "matModel");
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(matModel));
+
+    // --------------------------------------------------
+    // Calculate and pass the View and Projection matrices.
+    glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
+    glm::mat4 matProjection = glm::perspective(glm::radians(camera->fov),
+        camera->resolution.x / camera->resolution.y, 0.1f, 1000000.0f);
+
+    GLint viewLoc = glGetUniformLocation(program, "matView");
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(matView));
+    GLint projLoc = glGetUniformLocation(program, "matProjection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(matProjection));
+
+    // Set up additional uniforms common in your mesh shader.
+    // For example, camera location for lighting, etc.
+    GLint camLoc = glGetUniformLocation(program, "cameraLocation");
+    glUniform3f(camLoc, camera->position.x, camera->position.y, camera->position.z);
+
+    // Update emitter time uniform.
+    pCurMesh->time += camera->scene->deltaTime;
+    GLint timeLoc = glGetUniformLocation(program, "time");
+    glUniform1f(timeLoc, pCurMesh->time);
+
+    // --------------------------------------------------
+    // Convert your CPU particles to GPU particles.
+    // (Only active particles are included.)
+    std::vector<GPUParticle> gpuParticles = GenerateGPUParticles(*pCurMesh->pParticles);
+    int activeParticleCount = gpuParticles.size();  // number of particles to render
+    if (activeParticleCount == 0)
+    {
+        // Nothing to draw.
+        glUseProgram(0);
+        glDepthMask(GL_TRUE);
+        glDisable(GL_BLEND);
+        if (pCurMesh->drawBothFaces)
+            glEnable(GL_CULL_FACE);
+        return;
+    }
+
+    // Update the uniform buffer with particle data.
+    glBindBuffer(GL_UNIFORM_BUFFER, pCurMesh->particleUBO);
+    glBufferSubData(GL_UNIFORM_BUFFER, 0, activeParticleCount * sizeof(GPUParticle), gpuParticles.data());
+    // Bind the buffer to the binding point 0 so the shader can read it.
+    glBindBufferBase(GL_UNIFORM_BUFFER, 0, pCurMesh->particleUBO);
+
+
+    GLvoid* p = glMapBuffer(GL_UNIFORM_BUFFER, GL_READ_ONLY);
+    if (p) {
+        GPUParticle* particles = (GPUParticle*)p;
+        std::cout << "First particle position: "
+            << particles[0].position.x << ", "
+            << particles[0].position.y << ", "
+            << particles[0].position.z << std::endl;
+        glUnmapBuffer(GL_UNIFORM_BUFFER);
+    }
+
+    // --------------------------------------------------
+    // Find the geometry to use for each particle. Often it is a simple quad or sphere.
+    sModelDrawInfo particleMeshInfo;
+    // Note: You can choose whichever model makes sense (e.g., "assets/models/particleQuad.ply").
+    if (!vaoManager->FindDrawInfoByModelName("assets/models/Sphere_radius_1_xyz_N_uv.ply", particleMeshInfo))
+    {
+        std::cerr << "Error: Particle mesh not found!" << std::endl;
+        glUseProgram(0);
+        return;
+    }
+
+    // Bind the VAO and draw instanced particles.
+    glBindVertexArray(particleMeshInfo.VAO_ID);
+    glDrawElementsInstanced(GL_TRIANGLES,
+        particleMeshInfo.numberOfIndices,
+        GL_UNSIGNED_INT,
+        (void*)0,
+        activeParticleCount);
+    glBindVertexArray(0);
+
+    // --------------------------------------------------
+    // Restore GL states.
+    if (pCurMesh->drawBothFaces)
+        glEnable(GL_CULL_FACE);
+    glUseProgram(0);
+    glDepthMask(GL_TRUE);
+    glDisable(GL_BLEND);
+}
 
 void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
-    {
+    {  
         return;
     }
     
-  
+
+    glUseProgram(program);
   //  if (pCurMesh!=camera->scene->skybox->mesh)
  //   {
         // Check if the object is in front of the camera
@@ -733,7 +874,7 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
 
 
         // Determine your threshold: objects must be within maxAngle from the forward vector
-        // For a 30° half-angle (60° total FOV), the cosine is about 0.866.
+        // For a 30Â° half-angle (60Â° total FOV), the cosine is about 0.866.
         float fovThreshold = glm::cos(glm::radians(0.1f));
 
         // Cull the object if it falls outside the desired cone
@@ -1140,7 +1281,7 @@ void RenderDepthPrePass(Camera* camera, GLuint depthShaderProgram, cFBO_RGB_dept
 
     // Render all opaque objects (skip transparent/shells)
     for (Object* object : scene->sceneObjectsSorted) {
-        if (!object->isActive || object->mesh->bDoNotLight || object->mesh->shellTexturing)
+        if (!object->isActive)
             continue; // Skip transparent/shells in pre-pass
 
         DrawMeshWithCamera(object, object->mesh, depthShaderProgram,
@@ -1197,15 +1338,25 @@ void DrawCameraView(Camera* camera, int programID) {
             GLint bDepth = glGetUniformLocation(programID, "bDepth");
             glUniform1f(bDepth, (GLfloat)GL_FALSE);  // True
         }
+   
 
-        if (!pCurMesh->shellTexturing) {
-            if(object && pCurMesh)
-            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
-                scene->vaoManager, scene->textureManager, camera);
-        }
-        else {
+        if (pCurMesh->shellTexturing) {
+  
             DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0],
                 scene->vaoManager, camera);
+           
+        }
+        else if (pCurMesh->isParticleEmitter)
+        {
+           
+                DrawParticlesWithCamera(object, pCurMesh, scene->programs[0],
+                    scene->vaoManager,camera);
+
+        }
+        else
+        {
+            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
         }
     }
 

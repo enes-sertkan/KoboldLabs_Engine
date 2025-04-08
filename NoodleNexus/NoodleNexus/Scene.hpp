@@ -67,6 +67,7 @@ public:
 	void DrawMesh(sMesh* pCurMesh, GLuint program);
 	std::vector<GLuint> programs;
 	GLuint depthProgram;
+	GLuint particleProgram;
 	void DrawSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program);
 	void DrawRay(glm::vec3 pos, glm::vec3 posEnd, GLuint program, glm::vec4 color, bool isWire, float scale);
 

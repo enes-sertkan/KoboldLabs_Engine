@@ -12,6 +12,43 @@
 #include <glm/gtx/rotate_vector.hpp>
 #include "UVWave.h"
 #include "sSTData.h"
+#include <vector>
+
+struct Particle {
+	glm::vec3 position;
+	glm::vec3 velocity;
+	glm::vec4 color;
+	float size;
+	float lifetime;
+	float lifeRemaining;
+	bool active = false;
+};
+
+struct GPUParticle {
+	GPUParticle(Particle cpuParticle)
+	{
+	position = cpuParticle.position;
+	velocity = cpuParticle.velocity;
+	color = cpuParticle.color;
+	size = cpuParticle.size;
+	lifetime = cpuParticle.lifeRemaining;
+	}
+	glm::vec3 position;   // 12 bytes
+	//float padding1;       // +4 = 16 (vec3 needs padding in std140)
+
+	glm::vec3 velocity;   // 12
+	//float padding2;       // +4 = 16
+
+	glm::vec4 color;      // 16 (no padding needed)
+
+	float size;          // 4
+	float lifetime;      // +4 = 8  // Maps to CPU's `lifeRemaining`
+
+	// Optional: Add padding if needed for alignment (e.g., for SSBOs)
+	//float padding[2];  // Example padding for 16-byte alignment
+};
+
+
 
 struct sMesh
 {
@@ -88,6 +125,10 @@ struct sMesh
 	std::string getState(void);
 	bool loadState(std::string newState);
 
+	bool isParticleEmitter = false;
+	std::vector<Particle>* pParticles =  new   std::vector<Particle>();;
+	GLuint particleSSBO;
+	GLuint particleUBO;
 
 	UVWave waves[10];
 	void spawnWave(glm::vec2 uvPos) {

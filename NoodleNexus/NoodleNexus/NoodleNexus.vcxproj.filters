@@ -655,10 +655,16 @@
     <None Include="LuaTextureBlendMove.lua">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="depth_vertex.glsl">
+    <None Include="assets\shaders\depth_vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="depth_fragment.glsl">
+    <None Include="assets\shaders\particle_fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\particle_vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\depth_fragment.glsl">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

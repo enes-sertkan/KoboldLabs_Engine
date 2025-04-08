@@ -316,11 +316,13 @@
     <ClInclude Include="UVWave.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\shaders\depth_fragment.glsl" />
+    <None Include="assets\shaders\depth_vertex.glsl" />
     <None Include="assets\shaders\fragment01.glsl" />
+    <None Include="assets\shaders\particle_fragment.glsl" />
+    <None Include="assets\shaders\particle_vertex.glsl" />
     <None Include="assets\shaders\vertex01.glsl" />
     <None Include="cObjectMovement.lua" />
-    <None Include="depth_fragment.glsl" />
-    <None Include="depth_vertex.glsl" />
     <None Include="fragment02.glsl" />
     <None Include="infinite_grid.frag" />
     <None Include="infinite_grid.vs" />

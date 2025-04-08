@@ -312,6 +312,7 @@ void Scene::UpdateDeltaTime()
     std::chrono::duration<float> dt = currentTime - previousTime;
     previousTime = currentTime;
     deltaTime = dt.count();
+    if (deltaTime > 0.5) deltaTime = 0.5f;
     
 }
 

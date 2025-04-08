@@ -1438,12 +1438,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     securityRoomScene->AddActionToObj(rotateActionTube, wierd);
 
     Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
+    Object* particles = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 3, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
-    securutyCamera->name = "Particles";
+    particles->name = "Particles";
+    particles->mesh->drawBothFaces=true;
+   // particles->mesh->transperency = 0.2;
 
     aParticleEmitter* particleEmmiter = new aParticleEmitter();
-  //  scene->AddActionToObj(particleEmmiter, securutyCamera);
+    scene->AddActionToObj(particleEmmiter, particles);
 
     Object* securutyCamera2 = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(41.f, 40.0f, 20.f), 10, glm::vec3(0.f, 0.5f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera2->mesh->textures[0] = "screen_broken.bmp";
@@ -2017,7 +2020,8 @@ int main(void)
     std::string errorDepth;
     GLuint depthProgram = LoadShaderProgram("deapth","assets/shaders/depth_vertex.glsl","assets/shaders/depth_fragment.glsl", errorDepth);
     if (!depthProgram) { std::cerr << "Depth Shader Error: " << errorDepth << std::endl; }
-    
+    GLuint particleProgram = LoadShaderProgram("particle","assets/shaders/particle_vertex.glsl","assets/shaders/particle_fragment.glsl", errorDepth);  //  if (!particleProgram) { std::cerr << "Particle Shader Error: " << errorDepth << std::endl; }
+    if (!particleProgram) { std::cerr << "Particle Shader Error: " << errorDepth << std::endl; }
     //NOTE : GRIDS
     //GridRenderer gridRenderer;
     //if (!gridRenderer.Initialize()) {
@@ -2046,7 +2050,7 @@ int main(void)
     secutityRoomScene->lightManager = new cLightManager();
 
     scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
-    scene->depthProgram = depthProgram;
+  //  scene->depthProgram = depthProgram;
 
     cFBO_RGB_depth* depthFBO = new cFBO_RGB_depth();
     std::string error;
@@ -2054,6 +2058,8 @@ int main(void)
         std::cerr << "FBO Error: " << error << std::endl;
     }
     scene->depthFBO = depthFBO;
+    scene->particleProgram = particleProgram;
+
 
     //HACK FOR LIGHTING
     secutityRoomScene->lightManager->loadUniformLocations(scene->programs[0]);
