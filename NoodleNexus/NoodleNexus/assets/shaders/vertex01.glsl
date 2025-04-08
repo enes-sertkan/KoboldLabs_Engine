@@ -1,5 +1,5 @@
 #version 430
-
+#extension GL_NV_uniform_buffer_std430_layout : enable
 // ------ Input Attributes -----------
 in vec3 vPos;
 in vec3 vNormal;
@@ -10,17 +10,20 @@ layout (location = 2) in float shellLayer; // Only used in mesh branch.
 
 // ------ Particle UBO ----------------
 #define MAX_PARTICLES 1024
+// Define Particle struct outside the UBO
 struct Particle {
     vec3 position;
-   // float padding1;
+    float padding1;
     vec3 velocity;
-  //  float padding2;
+    float padding2;
     vec4 color;
     float size;
     float lifetime;
-   // vec2 padding3;
+    vec2 padding3;
 };
-layout(std140, binding = 0) uniform ParticleData {
+
+// UBO declaration
+layout(std430, binding = 1) uniform ParticleData {
     Particle particles[MAX_PARTICLES];
 };
 

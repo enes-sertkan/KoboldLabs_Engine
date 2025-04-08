@@ -779,6 +779,10 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     GLint timeLoc = glGetUniformLocation(program, "time");
     glUniform1f(timeLoc, pCurMesh->time);
 
+    GLint bNightMode = glGetUniformLocation(program, "isParticleEmitter");
+
+        glUniform1f(bNightMode, (GLfloat)GL_TRUE);  // True
+
     // --------------------------------------------------
     // Convert your CPU particles to GPU particles.
     // (Only active particles are included.)
@@ -808,7 +812,8 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
         std::cout << "First particle position: "
             << particles[0].position.x << ", "
             << particles[0].position.y << ", "
-            << particles[0].position.z << std::endl;
+            << particles[0].position.z <<
+            " scale: "<< particles[0].size << std::endl;
         glUnmapBuffer(GL_UNIFORM_BUFFER);
     }
 
@@ -923,6 +928,9 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
     }
 
+    GLint bParticleMode = glGetUniformLocation(program, "isParticleEmitter");
+
+    glUniform1f(bParticleMode, (GLfloat)GL_FALSE);  // True
 
 
 

@@ -34,10 +34,10 @@ struct GPUParticle {
 	lifetime = cpuParticle.lifeRemaining;
 	}
 	glm::vec3 position;   // 12 bytes
-	//float padding1;       // +4 = 16 (vec3 needs padding in std140)
+	float padding1;       // +4 = 16 (vec3 needs padding in std140)
 
 	glm::vec3 velocity;   // 12
-	//float padding2;       // +4 = 16
+	float padding2;       // +4 = 16
 
 	glm::vec4 color;      // 16 (no padding needed)
 
@@ -45,7 +45,7 @@ struct GPUParticle {
 	float lifetime;      // +4 = 8  // Maps to CPU's `lifeRemaining`
 
 	// Optional: Add padding if needed for alignment (e.g., for SSBOs)
-	//float padding[2];  // Example padding for 16-byte alignment
+	float padding[2];  // Example padding for 16-byte alignment
 };
 
 
