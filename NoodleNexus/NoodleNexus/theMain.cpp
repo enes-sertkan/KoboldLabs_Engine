@@ -722,15 +722,14 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
         {
 
             //PLAY MODE UI
-            PlayerUI::RenderHPBar(40, 100);
+            PlayerUI::RenderHPBar(70, 100);
+            PlayerUI::RenderStaminaBar(50, 100);
+            PlayerUI::RenderCrosshair();
+            ImGui::End();
+
         }
 
-
-
-
-
         ImGui::End();
-
 
         ExitButtonWithPopUp(sceneEditor);
 
