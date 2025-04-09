@@ -144,7 +144,7 @@ void main() {
         fragViewMatrix = matView;
         
         // Compute clip-space position.
-        gl_Position = matProjection * matView * matModel * vec4(vPos * particleSize+particlePos, 1.0);
+        gl_Position = matProjection * matView  * vec4(vPos * particleSize+particlePos, 1.0);
         
         // Not used in particle branch.
         fshellLayer = 0.0;

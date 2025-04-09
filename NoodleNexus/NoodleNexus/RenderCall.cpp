@@ -717,49 +717,39 @@ std::vector<GPUParticle>  GenerateGPUParticles(std::vector<Particle> cpuParticle
 }
 
 void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
-    cVAOManager* vaoManager, Camera* camera)
+    cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
-    // Only process if this mesh is a particle emitter with valid particle data and is visible.
     if (!pCurMesh->isParticleEmitter || pCurMesh->pParticles == nullptr || !pCurMesh->bIsVisible)
         return;
 
-    // Optional: Distance culling (if the emitter is too far away, then skip rendering)
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
         return;
 
-    // Enable blending for particles (assuming transparency)
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDepthMask(GL_FALSE);  // Do not write to depth buffer
+    glDepthMask(GL_FALSE);
 
-    // Use the same shader program as for meshes
     glUseProgram(program);
 
-    // Optional: disable face culling if particles should be double sided
     if (pCurMesh->drawBothFaces)
         glDisable(GL_CULL_FACE);
 
-    // --------------------------------------------------
-    // Set up the Model transformation for the emitter object.
-    // (This is the emitter's world transform.)
+    // Model matrix setup
     glm::mat4 matModel = glm::mat4(1.0f);
     glm::vec3 position = object->GetWorldPosition();
     glm::vec3 rotation = object->GetWorldRotation();
     float scale = object->GetWorldScale();
 
-    // Build model matrix as in DrawMeshWithCamera:
     matModel *= glm::translate(glm::mat4(1.0f), position);
     matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.x), glm::vec3(1, 0, 0));
     matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.y), glm::vec3(0, 1, 0));
     matModel *= glm::rotate(glm::mat4(1.0f), glm::radians(rotation.z), glm::vec3(0, 0, 1));
     matModel *= glm::scale(glm::mat4(1.0f), glm::vec3(scale));
 
-    // Set model matrix uniform.
     GLint modelLoc = glGetUniformLocation(program, "matModel");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(matModel));
 
-    // --------------------------------------------------
-    // Calculate and pass the View and Projection matrices.
+    // View and Projection matrices
     glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
     glm::mat4 matProjection = glm::perspective(glm::radians(camera->fov),
         camera->resolution.x / camera->resolution.y, 0.1f, 1000000.0f);
@@ -769,28 +759,106 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     GLint projLoc = glGetUniformLocation(program, "matProjection");
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(matProjection));
 
-    // Set up additional uniforms common in your mesh shader.
-    // For example, camera location for lighting, etc.
+    // Camera location and time
     GLint camLoc = glGetUniformLocation(program, "cameraLocation");
     glUniform3f(camLoc, camera->position.x, camera->position.y, camera->position.z);
 
-    // Update emitter time uniform.
     pCurMesh->time += camera->scene->deltaTime;
     GLint timeLoc = glGetUniformLocation(program, "time");
     glUniform1f(timeLoc, pCurMesh->time);
 
-    GLint bNightMode = glGetUniformLocation(program, "isParticleEmitter");
+    // Set particle emitter flag
+    GLint isParticleEmitterLoc = glGetUniformLocation(program, "isParticleEmitter");
+    glUniform1f(isParticleEmitterLoc, (GLfloat)GL_TRUE);
 
-        glUniform1f(bNightMode, (GLfloat)GL_TRUE);  // True
+    // Stencil texture handling
+    GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
+    if (pCurMesh->bIsStencilTexture && textureManager != nullptr)
+    {
+        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_TRUE);
+        glActiveTexture(GL_TEXTURE0 + pCurMesh->stencilTextureID);
+        GLuint stencilTextureID = textureManager->getTextureIDFromName(pCurMesh->stencilTexture);
+        glBindTexture(GL_TEXTURE_2D, stencilTextureID);
+        GLint stencilTexture_UL = glGetUniformLocation(program, "stencilTexture");
+        glUniform1i(stencilTexture_UL, pCurMesh->stencilTextureID);
+    }
+    else
+    {
+        glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
+    }
 
-    // --------------------------------------------------
-    // Convert your CPU particles to GPU particles.
-    // (Only active particles are included.)
+    // Texture speed and effects
+    GLint speedX_UL = glGetUniformLocation(program, "speedX");
+    glUniform1f(speedX_UL, pCurMesh->textureSpeed.x);
+    GLint speedY_UL = glGetUniformLocation(program, "speedY");
+    glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
+    GLint zoomPower_UL = glGetUniformLocation(program, "zoomPower");
+    glUniform1f(zoomPower_UL, pCurMesh->zoomPower);
+    GLint chromaticPower_UL = glGetUniformLocation(program, "chromaticPower");
+    glUniform1f(chromaticPower_UL, pCurMesh->chromaticPower);
+
+    // Night mode
+    GLint bNightMode_UL = glGetUniformLocation(program, "bNightMode");
+    glUniform1f(bNightMode_UL, camera->nightMode ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
+
+    // Lighting and object color
+    GLint bDoNotLight_UL = glGetUniformLocation(program, "bDoNotLight");
+    glUniform1f(bDoNotLight_UL, pCurMesh->bDoNotLight ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
+
+    GLint bUseTextureAsColour_UL = glGetUniformLocation(program, "bUseTextureAsColour");
+    glUniform1f(bUseTextureAsColour_UL, (GLfloat)GL_TRUE);
+
+    // Object color override
+    GLint bUseObjectColour_UL = glGetUniformLocation(program, "bUseObjectColour");
+    glUniform1f(bUseObjectColour_UL, pCurMesh->bOverrideObjectColour ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
+
+    GLint objectColour_UL = glGetUniformLocation(program, "objectColour");
+    glUniform4f(objectColour_UL,
+        pCurMesh->objectColourRGBA.r,
+        pCurMesh->objectColourRGBA.g,
+        pCurMesh->objectColourRGBA.b,
+        1.0f);
+
+    // Shell texturing
+    GLint bUseShellTexturing_UL = glGetUniformLocation(program, "bShellTexturing");
+    glUniform1f(bUseShellTexturing_UL, pCurMesh->shellTexturing ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
+
+    // Transparency
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+
+    // Special effects (suck/shake)
+    glUniform1f(glGetUniformLocation(program, "suckPower"),
+        (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds") ? 25.0f : 0.0f);
+    glUniform1f(glGetUniformLocation(program, "shakePower"),
+        (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds") ? 0.005f : 0.0f);
+
+    // Wave data
+    for (int i = 0; i < 10; i++) {
+        float activeValue = pCurMesh->waves[i].active ? 1.0f : 0.0f;
+        glm::vec4 waveData(pCurMesh->waves[i].uv.x, pCurMesh->waves[i].uv.y, activeValue, pCurMesh->waves[i].time);
+        std::string uniformName = "waves[" + std::to_string(i) + "].data";
+        GLint location = glGetUniformLocation(program, uniformName.c_str());
+        if (location != -1)
+            glUniform4f(location, waveData.x, waveData.y, waveData.z, waveData.w);
+        if (activeValue) pCurMesh->waves[i].time += 0.02f;
+        if (pCurMesh->waves[i].time > 4.0f)
+            pCurMesh->waves[i].active = false;
+    }
+
+    // Wireframe mode
+    if (pCurMesh->bIsWireframe)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    else
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    // Set up textures
+    SetUpTextures(pCurMesh, program, textureManager);
+
+    // Generate and update GPU particles
     std::vector<GPUParticle> gpuParticles = GenerateGPUParticles(*pCurMesh->pParticles);
-    int activeParticleCount = gpuParticles.size();  // number of particles to render
+    int activeParticleCount = gpuParticles.size();
     if (activeParticleCount == 0)
     {
-        // Nothing to draw.
         glUseProgram(0);
         glDepthMask(GL_TRUE);
         glDisable(GL_BLEND);
@@ -799,13 +867,11 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
         return;
     }
 
-    // Update the uniform buffer with particle data.
     glBindBuffer(GL_UNIFORM_BUFFER, pCurMesh->particleUBO);
     glBufferSubData(GL_UNIFORM_BUFFER, 0, activeParticleCount * sizeof(GPUParticle), gpuParticles.data());
-    // Bind the buffer to the binding point 0 so the shader can read it.
     glBindBufferBase(GL_UNIFORM_BUFFER, 0, pCurMesh->particleUBO);
 
-
+    // Debugging code (optional)
     GLvoid* p = glMapBuffer(GL_UNIFORM_BUFFER, GL_READ_ONLY);
     if (p) {
         GPUParticle* particles = (GPUParticle*)p;
@@ -813,14 +879,12 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
             << particles[0].position.x << ", "
             << particles[0].position.y << ", "
             << particles[0].position.z <<
-            " scale: "<< particles[0].size << std::endl;
+            " scale: " << particles[0].size << std::endl;
         glUnmapBuffer(GL_UNIFORM_BUFFER);
     }
 
-    // --------------------------------------------------
-    // Find the geometry to use for each particle. Often it is a simple quad or sphere.
+    // Draw particles
     sModelDrawInfo particleMeshInfo;
-    // Note: You can choose whichever model makes sense (e.g., "assets/models/particleQuad.ply").
     if (!vaoManager->FindDrawInfoByModelName("assets/models/Sphere_radius_1_xyz_N_uv.ply", particleMeshInfo))
     {
         std::cerr << "Error: Particle mesh not found!" << std::endl;
@@ -828,7 +892,6 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
         return;
     }
 
-    // Bind the VAO and draw instanced particles.
     glBindVertexArray(particleMeshInfo.VAO_ID);
     glDrawElementsInstanced(GL_TRIANGLES,
         particleMeshInfo.numberOfIndices,
@@ -837,13 +900,13 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
         activeParticleCount);
     glBindVertexArray(0);
 
-    // --------------------------------------------------
-    // Restore GL states.
+    // Restore states
     if (pCurMesh->drawBothFaces)
         glEnable(GL_CULL_FACE);
     glUseProgram(0);
     glDepthMask(GL_TRUE);
     glDisable(GL_BLEND);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Reset to default
 }
 
 void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
@@ -1358,7 +1421,7 @@ void DrawCameraView(Camera* camera, int programID) {
         {
            
                 DrawParticlesWithCamera(object, pCurMesh, scene->programs[0],
-                    scene->vaoManager,camera);
+                    scene->vaoManager, scene->textureManager, camera);
 
         }
         else

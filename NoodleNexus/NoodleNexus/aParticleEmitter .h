@@ -3,22 +3,40 @@
 #include <glm/glm.hpp>
 #include "Scene.hpp"
 #include <GLFW/glfw3.h>
-
+#include <cstdlib> 
 
 
 class aParticleEmitter : public Action {
 private:
+    float randomFloat(float min, float max) {
+        return min + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max - min)));
+    }
+
+    glm::vec3 randomVelocity() {
+        // Generate random components for each axis
+        float x = randomFloat(-1.0f, 1.0f);
+        float y = randomFloat(-1.0f, 1.0f);
+        float z = randomFloat(-1.0f, 1.0f);
+
+        // Normalize to get direction
+        glm::vec3 dir = glm::normalize(glm::vec3(x, y, z));
+
+        // Apply random speed
+        float speed = randomFloat(velocityRange.x, velocityRange.y);
+        return dir * speed;
+    }
+
     std::vector<Particle>* particles = new   std::vector<Particle>();
     GLuint particleUBO;  // Changed to Shader Storage Buffer
     unsigned int maxParticles = 1024;
     float spawnRate = 3.f;
 
     // Particle properties
-    glm::vec3 velocityRange[2];
+    glm::vec2 velocityRange = glm::vec2(5.f,10.f);
     glm::vec4 colorStart=glm::vec4(1);
     glm::vec4  colorEnd = glm::vec4(0.8,0.2,0.2,1);
     float sizeStart = 0.1f;
-    float sizeEnd = 0.2;
+    float sizeEnd = 1.f;
     float particlesToSpawn = 0;
 public:
     virtual void Start() override {
@@ -57,7 +75,7 @@ public:
 
             // Initialize particle
             particles->at(id).position = object->GetWorldPosition();
-            particles->at(id).velocity = glm::vec3(0, 7.5, 0);// glm::linearRand(velocityRange[0], velocityRange[1]);
+            particles->at(id).velocity = randomVelocity();// glm::linearRand(velocityRange[0], velocityRange[1]);
             particles->at(id).color = colorStart;
             particles->at(id).size = sizeStart;
             particles->at(id).lifetime = particles->at(id).lifeRemaining = 10.f;
