@@ -297,6 +297,8 @@
     <ClInclude Include="PhysicsManager.h" />
     <ClInclude Include="aPlayerItemsController.h" />
     <ClInclude Include="aProjectileMovement.hpp" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="player_ui.h" />
     <ClInclude Include="ProjectileWeapon.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="SceneEditor.h" />

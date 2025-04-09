@@ -99,6 +99,9 @@
     <Filter Include="OpenTD">
       <UniqueIdentifier>{bb67f08d-232b-487c-b9e4-dfaac48196dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Player">
+      <UniqueIdentifier>{5a6e5396-47f9-411c-9a2c-eb75f1a4b4c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -618,6 +621,12 @@
     </ClInclude>
     <ClInclude Include="aParticleEmitter .h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="player_ui.h">
+      <Filter>Header Files\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
