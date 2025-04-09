@@ -13,9 +13,9 @@ namespace PlayerUI {
         style.Colors[ImGuiCol_WindowBg] = ImVec4(0.0f, 0.0f, 0.0f, 0.35f);
     }
 
-    inline void RenderHPBar(const Player& player) {
-        const float currentHP = player.GetHealth();
-        const float maxHP = player.GetMaxHealth();
+    inline void RenderHPBar(int health, int maxHealth) {
+        const float currentHP = health;
+        const float maxHP = maxHealth;
         const float ratio = currentHP / maxHP;
 
         const ImGuiViewport* viewport = ImGui::GetMainViewport();
@@ -68,7 +68,6 @@ namespace PlayerUI {
             ImGui::PopStyleColor();
         }
 
-        ImGui::End();
         ImGui::PopStyleVar(2);
     }
 

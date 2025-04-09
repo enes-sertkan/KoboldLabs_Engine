@@ -675,48 +675,69 @@ void TurretSpawnerWindow(LabAttackFactory* factory, SceneEditor* sceneEditor) {
 
 void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
 {
-    // Start the Dear ImGui frame
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
+ 
 
-    // Main menu bar with "Save As" option
-    if (ImGui::BeginMainMenuBar()) {
-        if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("Save")) {
-                SaveSceneImgui(sceneEditor, sceneEditor->currentFilename);
+        // Start the Dear ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+
+
+
+        if (sceneEditor->scene->isFlyCamera)
+        {
+        // Main menu bar with "Save As" option
+        if (ImGui::BeginMainMenuBar()) {
+            if (ImGui::BeginMenu("File")) {
+                if (ImGui::MenuItem("Save")) {
+                    SaveSceneImgui(sceneEditor, sceneEditor->currentFilename);
+                }
+                if (ImGui::MenuItem("Save As...")) {
+                    sceneEditor->showSaveAsPopup = true;
+                }
+                //if (ImGui::MenuItem("Load Scene...")) {
+                //    sceneEditor->showLoadScenePopup = true;
+                //}
+                ImGui::EndMenu();
             }
-            if (ImGui::MenuItem("Save As...")) {
-                sceneEditor->showSaveAsPopup = true;
-            }
-            //if (ImGui::MenuItem("Load Scene...")) {
-            //    sceneEditor->showLoadScenePopup = true;
-            //}
-            ImGui::EndMenu();
+            ImGui::EndMainMenuBar();
         }
-        ImGui::EndMainMenuBar();
-    }
 
 
-    CheckIfSceneClosed(sceneEditor);
+        CheckIfSceneClosed(sceneEditor);
 
-    // Your GUI components
-    SceneHierarchyExample(sceneEditor);
-    ObjectPropertiesExample(sceneEditor->selectedObject);
-    TurretSpawnerWindow(factory, sceneEditor);
+        // Your GUI components
+        SceneHierarchyExample(sceneEditor);
+        ObjectPropertiesExample(sceneEditor->selectedObject);
+        TurretSpawnerWindow(factory, sceneEditor);
 
-    SaveSceneButton(sceneEditor);
-    ShowSaveAsPopup(sceneEditor);
-    //ShowLoadScenePopup(sceneEditor);
+        SaveSceneButton(sceneEditor);
+        ShowSaveAsPopup(sceneEditor);
+        //ShowLoadScenePopup(sceneEditor);
 
-    ImGui::End();
+       
+
+        }
+        else
+        {
+
+            //PLAY MODE UI
+            PlayerUI::RenderHPBar(40, 100);
+        }
 
 
-    ExitButtonWithPopUp(sceneEditor);
 
-    // Render ImGui
-    ImGui::Render();
-    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+
+        ImGui::End();
+
+
+        ExitButtonWithPopUp(sceneEditor);
+
+        // Render ImGui
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        return;
 }
 
 //IMGUI HELL END
@@ -2036,8 +2057,8 @@ int main(void)
 
     SetupDearImGui(window);
 
-    Player player(100.0f);  // Create player with 100 max HP
-    PlayerUI::Initialize();
+ 
+   PlayerUI::Initialize();
 
 //   PREPARING ENGINE STUFF
 //   ----------------------
@@ -2295,9 +2316,7 @@ int main(void)
  /*       followScript->start = RacingCar->mesh->positionXYZ;
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
 
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
+
 //      UPDATE
 //      ------------------------------------------
        // SetCameraAndProjectionMatrices(ratio, program);
@@ -2307,7 +2326,7 @@ int main(void)
         scene->Update();
         secutityRoomScene->Update();
         
-        PlayerUI::RenderHPBar(player);
+
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
 
@@ -2368,15 +2387,13 @@ int main(void)
 
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
-        if (scene->isFlyCamera)
+  
             RenderDearImGui(sceneEditor, factory);
            
           
                 handleKeyboardAsync(window, screen_quad, scene);
             handleMouseAsync(window);
-        
-            ImGui::Render();
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
         //TODO : GRIDS
 
         {
