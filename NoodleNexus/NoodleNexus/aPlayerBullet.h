@@ -27,7 +27,8 @@ public:
             if (distance < 2.0f) {
 
                 enemy->Damage(2);
-                object->Destroy(); // Destroy bullet on hit
+
+                DestroyBullet();// Destroy bullet on hit
                 return; // Exit early since bullet is destroyed
             }
             else {

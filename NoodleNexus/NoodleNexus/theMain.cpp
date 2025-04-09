@@ -1461,7 +1461,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     securityRoomScene->AddActionToObj(rotateActionTube, wierd);
 
     Object* securutyCamera = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 3, glm::vec3(0.f, 179.07f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
-    Object* particles = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 1, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* particles = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(16.f, 3.0f, 0.f), 1, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     securutyCamera->mesh->textures[0] = "screen_broken.bmp";
     securutyCamera->mesh->blendRatio[0] = 1.0f;
     particles->name = "Particles";
@@ -1469,7 +1469,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
    // particles->mesh->transperency = 0.2;
 
     aParticleEmitter* particleEmmiter = new aParticleEmitter();
-    scene->AddActionToObj(particleEmmiter, particles);
+  //  scene->AddActionToObj(particleEmmiter, particles);
 
     Object* securutyCamera2 = securityRoomScene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", glm::vec3(41.f, 40.0f, 20.f), 10, glm::vec3(0.f, 0.5f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, securityRoomScene->sceneObjects);
     securutyCamera2->mesh->textures[0] = "screen_broken.bmp";

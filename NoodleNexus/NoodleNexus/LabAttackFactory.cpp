@@ -13,7 +13,7 @@
 #include "aPlayerBullet.h"
 #include "aRotateWheel.h"
 #include "aWheelEnemyHead.h"
-
+#include "aParticleEmitter .h"
 
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
@@ -570,11 +570,21 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
     projectileAction->Start();
     m_playerBulletPool.push_back(bullet);
 
+    Object* smokeEmiiter = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+  
+
+    bullet->AddChild(smokeEmiiter);
+    smokeEmiiter->mesh->isParticleEmitter = true;
+    smokeEmiiter->mesh->metal = 0.1;
+    smokeEmiiter->mesh->bDoNotLight = true;
+    aParticleEmitter* particleEmmiter = new aParticleEmitter();
+    scene->AddActionToObj(particleEmmiter, smokeEmiiter);
+    particleEmmiter->Start();
     aPlayerBullet* bulletCol = new aPlayerBullet();
     bulletCol->factory = this;
     scene->AddActionToObj(bulletCol, bullet);
-
-
+    smokeEmiiter->name = "SMOKE PARTICLES";
+    bulletCol->particles = particleEmmiter;
     return bullet;
 }
 
@@ -592,6 +602,7 @@ Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm:
     projectileAction->Start();
 
     aEnemyBullet* bulletCol = new aEnemyBullet();
+
     bulletCol->factory = this;
     scene->AddActionToObj(bulletCol, bullet);
 

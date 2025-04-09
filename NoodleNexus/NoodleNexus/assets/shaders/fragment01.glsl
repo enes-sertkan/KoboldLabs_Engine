@@ -5,14 +5,17 @@
 #define PI 3.14159265359
 
 // === Input Attributes (from Vertex Shader) ===
-in vec3 fColour;              // Base colour (from vertex buffer)
+in vec4 fColour;              // Base colour (from vertex buffer or particle color)
 in vec4 fvertexWorldLocation; // Vertex world position
 in vec4 fvertexNormal;        // Vertex normal in world space
 in vec2 fUV;                  // Texture coordinates (UV)
 in vec3 fTangent;             // Tangent in world space
 in vec3 fBitangent;           // Bitangent in world space
+in float fLife;               // Particle lifetime (0.0 for meshes)
 
 
+// === Particle-Specific Uniforms ===
+uniform bool isParticleEmitter;  // True if rendering particles
 
 
 
@@ -263,6 +266,37 @@ vec2 screenUV = gl_FragCoord.xy / vec2(textureSize(depthTexture, 0));
     }
 
  }
+    if (isParticleEmitter) {
+
+        
+        // Get particle color (already passed from vertex shader)
+        vec4 particleColor = fColour;
+        
+        // Apply lighting if needed (simplified for particles)
+        vec3 litColor = particleColor.rgb;
+        if (!bDoNotLight) {
+            vec3 normal = normalize(fvertexNormal.xyz);
+            vec3 viewDir = normalize(eyeLocation.xyz - fvertexWorldLocation.xyz);
+            
+            // Simplified PBR for particles
+            float roughness = 0.7;
+            vec3 F0 = vec3(0.04);
+            litColor = calculateLightContrib(
+                particleColor.rgb, 
+                normal,
+                fvertexWorldLocation.xyz,
+                vec4(1.0),
+                roughness,
+                0.0, // metallic
+                F0
+            ).rgb;
+        }
+        
+        // Final particle color with fade
+        finalPixelColour = vec4(litColor, particleColor.a);
+        return;
+    }
+
 
 if (bShellTexturing)
 {
@@ -340,9 +374,9 @@ for (int i = 0; i < 10; i++) {
     }
     
     // --- Section 3: Base Vertex Colour Determination ---
-    vec3 vertexColour = fColour;
+    vec4 vertexColour = fColour;
     if (bUseObjectColour) {
-        vertexColour = objectColour.rgb;
+        vertexColour = objectColour;
     } else if (bUseTextureAsColour) {
         //vec4 tex0 = vec4(texture(texture00, movingUV.st).rgb, texRatio_0_to_3.x);
         //vec4 tex1 = vec4(texture(texture01, movingUV.st).rgb, texRatio_0_to_3.y);
@@ -365,7 +399,7 @@ for (int i = 0; i < 10; i++) {
         vec4 layeredColor = compositeOver(tex0, tex1);
         layeredColor = compositeOver(layeredColor, tex2);
         layeredColor = compositeOver(layeredColor, tex3);
-        vertexColour = layeredColor.rgb;
+        vertexColour = layeredColor;
     }
     
     // --- Section 4: Lighting and PBR Calculation ---
@@ -397,11 +431,11 @@ for (int i = 0; i < 10; i++) {
         roughnessVal = max(roughnessVal, 0.15);
         
         // Compute F0: blend between non-metal F0 (0.04) and the material colour for metals
-        vec3 F0 = mix(vec3(0.04), vertexColour, metallic);
+        vec3 F0 = mix(vec3(0.04), vertexColour.rgb, metallic);
         
         finalNormal = normalize(finalNormal);
         // Calculate lighting contribution using PBR
-        finalPixelColour = calculateLightContrib(vertexColour, finalNormal.xyz, fvertexWorldLocation.xyz, 
+        finalPixelColour = calculateLightContrib(vertexColour.rgb, finalNormal.xyz, fvertexWorldLocation.xyz, 
                                                   vertexSpecular, roughnessVal, finalMetalic, F0);
 
 

@@ -61,7 +61,7 @@ out vec3 fBitangent;
 out mat4 fragViewMatrix;       // For use in the fragment shader
 out vec3 fPositionOffset;      // For mesh branch (e.g. camera attraction)
 out float fshellLayer;         // Shell layer index (mesh branch)
-out vec3  fColour;              // Color output (particle uses Particle.color, mesh uses vCol)
+out vec4  fColour;              // Color output (particle uses Particle.color, mesh uses vCol)
 out float fLife;               // Particle lifetime (set to 0.0 for mesh)
 
 // ------ Utility functions --------------
@@ -127,7 +127,7 @@ void main() {
         // Retrieve particle-specific data.
         vec3 particlePos = particles[particleID].position;
         float particleSize = particles[particleID].size;
-        fColour = particles[particleID].color.rgb;
+        fColour = particles[particleID].color;
         fLife = particles[particleID].lifetime;
         
         // Scale the input vertex positions by the particle's size.
@@ -189,7 +189,10 @@ void main() {
         gl_Position = matMVP * vec4(finalVert, 1.0);
         
         // Pass through vertex color.
-        fColour = vCol;
+        if (!isParticleEmitter) {
+        fColour.rgb = vCol;
+        fColour.a = 1;
+        }
         fUV = vUV;
         fLife = 0.0;  // Not used for mesh.
     }

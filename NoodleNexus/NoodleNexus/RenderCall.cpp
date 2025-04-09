@@ -704,7 +704,7 @@ std::vector<GPUParticle>  GenerateGPUParticles(std::vector<Particle> cpuParticle
 
     std::vector<GPUParticle> gpuParticles;
     for (Particle cpuParticle : cpuParticles) {
-        if (!cpuParticle.active) continue;
+    if (!cpuParticle.active) continue;
 
  
  
@@ -725,9 +725,9 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
         return;
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glDepthMask(GL_FALSE);
+  //  glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   // glDepthMask(GL_FALSE);
 
     glUseProgram(program);
 
@@ -750,15 +750,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(matModel));
 
     // View and Projection matrices
-    glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
-    glm::mat4 matProjection = glm::perspective(glm::radians(camera->fov),
-        camera->resolution.x / camera->resolution.y, 0.1f, 1000000.0f);
-
-    GLint viewLoc = glGetUniformLocation(program, "matView");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(matView));
-    GLint projLoc = glGetUniformLocation(program, "matProjection");
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(matProjection));
-
+  
     // Camera location and time
     GLint camLoc = glGetUniformLocation(program, "cameraLocation");
     glUniform3f(camLoc, camera->position.x, camera->position.y, camera->position.z);
@@ -824,7 +816,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     glUniform1f(bUseShellTexturing_UL, pCurMesh->shellTexturing ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
 
     // Transparency
-    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+   // glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
 
     // Special effects (suck/shake)
     glUniform1f(glGetUniformLocation(program, "suckPower"),
@@ -869,7 +861,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
 
     glBindBuffer(GL_UNIFORM_BUFFER, pCurMesh->particleUBO);
     glBufferSubData(GL_UNIFORM_BUFFER, 0, activeParticleCount * sizeof(GPUParticle), gpuParticles.data());
-    glBindBufferBase(GL_UNIFORM_BUFFER, 0, pCurMesh->particleUBO);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 1, pCurMesh->particleUBO);
 
     // Debugging code (optional)
     GLvoid* p = glMapBuffer(GL_UNIFORM_BUFFER, GL_READ_ONLY);
@@ -885,7 +877,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
 
     // Draw particles
     sModelDrawInfo particleMeshInfo;
-    if (!vaoManager->FindDrawInfoByModelName("assets/models/Sphere_radius_1_xyz_N_uv.ply", particleMeshInfo))
+    if (!vaoManager->FindDrawInfoByModelName(pCurMesh->modelFileName, particleMeshInfo))
     {
         std::cerr << "Error: Particle mesh not found!" << std::endl;
         glUseProgram(0);
@@ -904,9 +896,12 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     if (pCurMesh->drawBothFaces)
         glEnable(GL_CULL_FACE);
     glUseProgram(0);
-    glDepthMask(GL_TRUE);
+
+
+
+  // glDepthMask(GL_TRUE);
     glDisable(GL_BLEND);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Reset to default
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Reset to default
 }
 
 void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
@@ -967,6 +962,15 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         // (for, while, do)
         return;
     }
+
+
+
+
+        GLint isParticleEmitterLoc = glGetUniformLocation(program, "isParticleEmitter");
+    glUniform1f(isParticleEmitterLoc, (GLfloat)GL_FALSE);
+
+
+
 
     GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
 

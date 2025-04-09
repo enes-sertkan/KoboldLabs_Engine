@@ -3,6 +3,7 @@
 #include "Action.h"
 #include "LabAttackFactory.h"
 #include "aProjectileMovement.hpp"
+#include "aParticleEmitter .h"
 
 class aBullet : public Action {
 private:
@@ -13,6 +14,8 @@ private:
 
 public:
     LabAttackFactory* factory = nullptr;
+    aParticleEmitter* particles = nullptr;
+
 
     virtual void Start() {
         lifetime = 0.0f; // Reset timer on spawn
@@ -23,7 +26,9 @@ public:
         // 2. Lifetime tracking
         lifetime += object->scene->deltaTime;
         if (lifetime >= maxLifetime) {
-            object->Destroy(); // Self-destruct after timeout
+
+            DestroyBullet();
+           // Self-destruct after timeout
         }
 
         if (!projectile || !factory) return;
@@ -41,7 +46,22 @@ public:
 
         if (factory->maze->IsWall(mazePos.y, mazePos.x))
         {
-            object->Destroy(); // Self-destruct after timeout
+
+            DestroyBullet();
         }
+    }
+
+
+    void DestroyBullet()
+    {
+        if (particles)
+        {
+            particles->object->RemoveParent();
+            particles->spawnActive = false;
+            particles->destroyOnNoParticles = true;
+        }
+
+        object->Destroy();
+
     }
 };

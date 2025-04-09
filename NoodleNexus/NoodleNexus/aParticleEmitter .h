@@ -14,9 +14,9 @@ private:
 
     glm::vec3 randomVelocity() {
         // Generate random components for each axis
-        float x = randomFloat(-1.0f, 1.0f);
-        float y = randomFloat(-1.0f, 1.0f);
-        float z = randomFloat(-1.0f, 1.0f);
+        float x = randomFloat(minDirection.x, maxDirection.x);
+        float y = randomFloat(minDirection.y, maxDirection.y);
+        float z = randomFloat(minDirection.z, maxDirection.z);
 
         // Normalize to get direction
         glm::vec3 dir = glm::normalize(glm::vec3(x, y, z));
@@ -32,13 +32,20 @@ private:
     float spawnRate = 3.f;
 
     // Particle properties
-    glm::vec2 velocityRange = glm::vec2(5.f,10.f);
-    glm::vec4 colorStart=glm::vec4(1);
-    glm::vec4  colorEnd = glm::vec4(0.8,0.2,0.2,1);
+    glm::vec2 velocityRange = glm::vec2(0.1f,1.f);
+    glm::vec3 minDirection = glm::vec3(-0.1, 1, -0.1);
+    glm::vec3 maxDirection = glm::vec3(0.1, 1, 0.1);
+
+    glm::vec4 colorStart=glm::vec4(0.4,0.4,0.4,0.8);
+    glm::vec4  colorEnd = glm::vec4(0.6,0.6,0.6,0);
     float sizeStart = 0.1f;
     float sizeEnd = 1.f;
     float particlesToSpawn = 0;
+
 public:
+
+    bool spawnActive = true;
+    bool destroyOnNoParticles = true;
     virtual void Start() override {
         particles->resize(maxParticles);
 
@@ -69,6 +76,7 @@ public:
 
         // Spawn new particles
          particlesToSpawn += spawnRate * deltaTime;
+         if (spawnActive)
         for (int i = 0; i < particlesToSpawn; i++) {
             int id = GetNextAvailableParticle();
       //      if (particles->at(id).active) break; // Pool full
@@ -78,11 +86,12 @@ public:
             particles->at(id).velocity = randomVelocity();// glm::linearRand(velocityRange[0], velocityRange[1]);
             particles->at(id).color = colorStart;
             particles->at(id).size = sizeStart;
-            particles->at(id).lifetime = particles->at(id).lifeRemaining = 10.f;
+            particles->at(id).lifetime = particles->at(id).lifeRemaining = 2.f;
             particles->at(id).active = true;
         }
         particlesToSpawn -= floorf(particlesToSpawn);
 
+        int counter = 0;
 
         // Update existing particles
         for (int i = 0; i < particles->size(); i++) {
@@ -91,9 +100,11 @@ public:
             particles->at(i).lifeRemaining -= deltaTime;
             if (particles->at(i).lifeRemaining <= 0.0f) {
                 particles->at(i).active = false;
+             
                 continue;
             }
 
+            counter++;
             // Physics integration
           //  particles->at(i).velocity += glm::vec3(0.0f, -9.81f, 0.0f) * deltaTime; // Gravity
             particles->at(i).position += particles->at(i).velocity * deltaTime;
@@ -107,6 +118,12 @@ public:
         }
 
         object->mesh->pParticles = particles;
+
+
+        if (counter <= 0 && !isActive && !destroyOnNoParticles)
+        {
+            this->object->Destroy();
+        }
 
     }
 
@@ -126,5 +143,36 @@ public:
         }
       
           return 0;
+    }
+
+    void OnDestroy() override
+    {
+        for (Particle particle : *particles)
+        {
+            particle.active = false;
+        }
+        object->mesh->pParticles = particles;
+        std::vector<GPUParticle> gpuParticles = GenerateGPUParticles(*particles);
+        glBindBuffer(GL_UNIFORM_BUFFER, particleUBO);
+        glBufferSubData(GL_UNIFORM_BUFFER, 0, gpuParticles.size() * sizeof(GPUParticle), gpuParticles.data());
+        glBindBufferBase(GL_UNIFORM_BUFFER, 0, particleUBO);
+
+    }
+
+
+    std::vector<GPUParticle>  GenerateGPUParticles(std::vector<Particle> cpuParticles) {
+
+        std::vector<GPUParticle> gpuParticles;
+        for (Particle cpuParticle : cpuParticles) {
+     //       if (!cpuParticle.active) continue;
+
+
+
+
+            gpuParticles.push_back(GPUParticle(cpuParticle));
+        }
+
+        return gpuParticles;
+
     }
 };
