@@ -96,6 +96,8 @@
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
 
 #include "aParticleEmitter .h"
+#include "player.h"
+#include "player_ui.h"
 
  Scene* currentScene=nullptr;
 
@@ -2030,6 +2032,9 @@ int main(void)
 
     SetupDearImGui(window);
 
+    Player player(100.0f);  // Create player with 100 max HP
+    PlayerUI::Initialize();
+
 //   PREPARING ENGINE STUFF
 //   ----------------------
 
@@ -2284,7 +2289,9 @@ int main(void)
  /*       followScript->start = RacingCar->mesh->positionXYZ;
         followScript->end = scene->sceneObjects[27]->mesh->positionXYZ;*/
 
-
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
 //      UPDATE
 //      ------------------------------------------
        // SetCameraAndProjectionMatrices(ratio, program);
@@ -2294,7 +2301,7 @@ int main(void)
         scene->Update();
         secutityRoomScene->Update();
         
-
+        PlayerUI::RenderHPBar(player);
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
 
@@ -2362,7 +2369,8 @@ int main(void)
                 handleKeyboardAsync(window, screen_quad, scene);
             handleMouseAsync(window);
         
-
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         //TODO : GRIDS
 
         {
