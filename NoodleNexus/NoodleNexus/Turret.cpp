@@ -29,6 +29,8 @@ void Turret::RebuildTurret(sTurretCofig* config)
             head->action->turret = this;
         }
     }
+
+    SpawnEffect();
 }
 void Turret::RebuildTurretGhost(sTurretCofig* config)
 {

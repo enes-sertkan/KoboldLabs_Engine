@@ -8,7 +8,7 @@
 #include "glm/glm.hpp"
 #include "LabAttackFactory.h"
 #include "StupidPathFinder.h"
-
+#include "aParticleEmitter .h"
 
 
 class DamageListener {
@@ -117,9 +117,63 @@ public:
 
     }
 
+    void Deathffect()
+    {
+        if (!factory) return;
+        Object* effectEmiiter = factory->scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", object->GetWorldPosition(), 1.f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), false, factory->scene->sceneObjects);
+
+
+
+
+        effectEmiiter->mesh->isParticleEmitter = true;
+        effectEmiiter->mesh->metal = 0.1;
+        effectEmiiter->mesh->bDoNotLight = true;
+        aParticleEmitter* particleEmmitter = new aParticleEmitter();
+        particleEmmitter->spawnRate = 0.f;
+        particleEmmitter->destroyOnNoParticles = true;
+        particleEmmitter->particlesToSpawn = 60.f;
+        particleEmmitter->minDirection = glm::vec3(-1, 0.1, -1);
+        particleEmmitter->maxDirection = glm::vec3(1, 1, 1);
+        particleEmmitter->colorEnd = glm::vec4(1, 0.4, 0.5, 1.f);;
+        particleEmmitter->colorStart = glm::vec4(1, 0.647, 0.2, 1.f);
+        particleEmmitter->velocityRange = glm::vec2(11, 13);
+        particleEmmitter->sizeStart = 0.1f;
+        particleEmmitter->sizeEnd = 0.f;
+        particleEmmitter->lifeTimeRange = glm::vec2(1.4f, 1.5f);
+        particleEmmitter->damping = glm::vec3(0.65f, 0.8f, 0.65f);
+
+        factory->scene->AddActionToObj(particleEmmitter, effectEmiiter);
+        particleEmmitter->Start();
+
+
+        Object* effectEmiiter2 = factory->scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", object->GetWorldPosition(), 1.f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), false, factory->scene->sceneObjects);
+
+        effectEmiiter2->mesh->isParticleEmitter = true;
+        effectEmiiter2->mesh->metal = 0.1;
+        effectEmiiter2->mesh->bDoNotLight = true;
+        aParticleEmitter* particleEmmitter2 = new aParticleEmitter();
+        particleEmmitter2->spawnRate = 0.f;
+        particleEmmitter2->destroyOnNoParticles = true;
+        particleEmmitter2->particlesToSpawn = 10.f;
+        particleEmmitter2->minDirection = glm::vec3(-1, 0.1, -1);
+        particleEmmitter2->maxDirection = glm::vec3(1, 1, 1);
+        particleEmmitter2->colorEnd = glm::vec4(1, 0.4, 0.5, 1.f);;
+        particleEmmitter2->colorStart = glm::vec4(1, 0.647, 0.2, 1.f);
+        particleEmmitter2->velocityRange = glm::vec2(9, 10);
+        particleEmmitter2->sizeStart = 0.1f;
+        particleEmmitter2->sizeEnd = 0.f;
+        particleEmmitter2->lifeTimeRange = glm::vec2(1.4f, 1.5f);
+        particleEmmitter2->damping = glm::vec3(0.95f, 0.95f, 0.95f);
+
+        factory->scene->AddActionToObj(particleEmmitter2, effectEmiiter2);
+        particleEmmitter2->Start();
+    }
+
     virtual void Death()
     {
+        Deathffect();
         object->Destroy();
+       
     }
 
     bool IsPlayerInRange()  {

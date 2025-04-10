@@ -42,6 +42,7 @@ public:
     }
 
     virtual void Death() override {
+        Deathffect();
         // If there is a part to launch, detach it and add a LaunchAction.
         if (partToLaunch) {
             // Unparent the part.

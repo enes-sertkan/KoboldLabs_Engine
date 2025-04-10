@@ -60,6 +60,7 @@ public:
 
     glm::vec4 colorStart = glm::vec4(0.4, 0.4, 0.4, 0.8);
     glm::vec4  colorEnd = glm::vec4(0.6, 0.6, 0.6, 0);
+    glm::vec3 damping = glm::vec3(1.f);
     float sizeStart = 0.1f;
     float sizeEnd = 1.f;
     float particlesToSpawn = 0;
@@ -118,6 +119,8 @@ public:
                 particles->at(i).rotation += particles->at(i).rotationSpeed * deltaTime;
 
                 particles->at(i).position += particles->at(i).velocity * deltaTime;
+
+                particles->at(i).velocity = particles->at(i).velocity * damping;
 
                 // Update visual properties
                 float lifeRatio = particles->at(i).lifeRemaining / particles->at(i).lifetime;
