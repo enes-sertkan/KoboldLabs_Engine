@@ -58,34 +58,36 @@ public:
     void Update() override {
         updateWorldState();
 
-
-        // Dynamic goal switching
-        if (IsPlayerInRange() && goal["hasReachedControlPoint"]) {
-            goal = { {"playerDamaged", true} }; // Attack mode
-            ResetPath();
-            currentPlan = std::queue<GOAPAction*>();
-        }
-        else if (!IsPlayerInAttackRange()&& goal["playerDamaged"])
+        if (!worldState["stateLock"])
         {
-            if (IsPlayerInRange())
+
+            // Dynamic goal switching
+            if (IsPlayerInRange() && goal["hasReachedControlPoint"]) {
                 goal = { {"playerDamaged", true} }; // Attack mode
-            else goal = { { "hasReachedControlPoint", true} };
+                ResetPath();
+                currentPlan = std::queue<GOAPAction*>();
+            }
+            else if (!IsPlayerInAttackRange() && goal["playerDamaged"])
+            {
+                if (IsPlayerInRange())
+                    goal = { {"playerDamaged", true} }; // Attack mode
+                else goal = { { "hasReachedControlPoint", true} };
 
-            currentPlan = std::queue<GOAPAction*>();
+                currentPlan = std::queue<GOAPAction*>();
+            }
+            else if (!controlPoints.empty() && !IsPlayerInRange()) {
+                goal = { {"hasReachedControlPoint", true} }; // Patrol 
+                currentPlan = std::queue<GOAPAction*>();
+
+            }
         }
-        else if (!controlPoints.empty()&&!IsPlayerInRange()) {
-            goal = { {"hasReachedControlPoint", true} }; // Patrol 
-            currentPlan = std::queue<GOAPAction*>();
-
-        }
-
-        if (currentPlan.empty()) {
-            currentPlan = GOAPPlanner::plan(this, goal);
-        }
-        executeCurrentAction();
+            if (currentPlan.empty()) {
+                currentPlan = GOAPPlanner::plan(this, goal);
+            }
+            executeCurrentAction();
 
 
-       
+    
            
 
     }

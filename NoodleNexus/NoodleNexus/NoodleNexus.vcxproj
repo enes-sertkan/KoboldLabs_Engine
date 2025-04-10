@@ -278,6 +278,7 @@
     <ClInclude Include="aDrawAim.hpp" />
     <ClInclude Include="aExplosion.hpp" />
     <ClInclude Include="cViperFlagConnector.hpp" />
+    <ClInclude Include="DashAtPlayerAction .h" />
     <ClInclude Include="GOAPAction.h" />
     <ClInclude Include="GOAPPlanner.h" />
     <ClInclude Include="GridRenderer.h" />

@@ -4,6 +4,7 @@
 #include "ShootAtPlayerAction.h"
 #include "MoveToControlPointAction.h"
 #include "aLaunchAction.h" 
+#include "DashAtPlayerAction .h"
 
 class BruteEnemy : public Agent {
 public:
@@ -12,18 +13,18 @@ public:
     BruteEnemy() {
         speed = 4.f;
        // attackDamage = 30.0f;
-        attackRange = 3.f+static_cast<float>(rand()) /
+        attackRange = 4.f+static_cast<float>(rand()) /
             (static_cast<float>(RAND_MAX / (5.f)));;
         maxHealth = 40;
         health = 40;
 
         // Available actions
         availableActions.push_back(new MoveToPlayerAction());
-        availableActions.push_back(new ShootAtPlayerAction());
+        availableActions.push_back(new DashAtPlayerAction());
         mazeMovection = new MoveToControlPointAction();
         availableActions.push_back(mazeMovection);
         playerDetectionRange = 5.0f + static_cast<float>(rand()) /
-            (static_cast<float>(RAND_MAX / (10.0f)));
+            (static_cast<float>(RAND_MAX / (5.0f)));
 
         // Default goal: Get in range and attack
         goal = { {"hasReachedControlPoint", true} };

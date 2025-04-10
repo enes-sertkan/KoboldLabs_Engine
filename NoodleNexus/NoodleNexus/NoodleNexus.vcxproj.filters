@@ -640,6 +640,9 @@
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="DashAtPlayerAction .h">
+      <Filter>GOAP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

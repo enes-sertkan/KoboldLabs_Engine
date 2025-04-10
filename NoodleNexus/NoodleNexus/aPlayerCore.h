@@ -19,6 +19,7 @@ private:
     bool isInvulnerable = false;
     float invulnerabilityTimer = 0.0f;
     const float INVULNERABILITY_DURATION = 2.0f; // 2 seconds of invulnerability after respawn
+    const float DAMAGE_INVULNERABILITY = 0.5f;    // After taking damage
 
 public:
     aPlayerMovement* playerMovement = nullptr;
@@ -53,6 +54,8 @@ public:
         if (isDead || isInvulnerable) return;
         health -= damage;
         health = (std::max)(health, 0.0f);  // Extra parentheses prevent macro expansion
+
+
     }
 
     void Heal(float amount) {
