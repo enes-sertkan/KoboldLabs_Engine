@@ -171,6 +171,16 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.modelName = "TripleTurretHead";
     modelInfo.meshPath = "assets/models/Turret2/Turret2_head.ply";
     fileManager->WriteModelFile(&modelInfo, "TripleTurretHead.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "ProjectileTurretBody";
+    modelInfo.meshPath = "assets/models/Turret3/Turret3_body.ply";
+    fileManager->WriteModelFile(&modelInfo, "ProjectileTurretBody.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "ProjectileTurretNeck";
+    modelInfo.meshPath = "assets/models/Turret3/Turret3_neck.ply";
+    fileManager->WriteModelFile(&modelInfo, "ProjectileTurretNeck.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "ProjectileTurretHead";
+    modelInfo.meshPath = "assets/models/Turret3/Turret3_head.ply";
+    fileManager->WriteModelFile(&modelInfo, "ProjectileTurretHead.txt", "XYZNUVRGBA");
     
     modelInfo.modelName = "EnemyWheeelBody";
     modelInfo.meshPath = "assets/models/Enemy_Wheel/Enenemy_wheel_body.ply";

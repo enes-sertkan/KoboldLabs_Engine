@@ -391,7 +391,7 @@ void LabAttackFactory::Start()
     bodyObj->isActive = false;
     bodyObj->isTemporary = true;
 
-    // Standard Body
+    // Triple Body
     cTurretBody* tripleBody = new cTurretBody();
     Object* tribodyObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret2/Turret2_body.ply",
@@ -415,8 +415,29 @@ void LabAttackFactory::Start()
     tribodyObj->isTemporary = true;
 
 
+    // Rocket Body
+    cTurretBody* rocketBody = new cTurretBody();
+    Object* rocketbodyObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Turret3/Turret3_body.ply",
+        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
+        true, scene->sceneObjects
+    );
 
+    rocketbodyObj->mesh->textures[0] = "Turret3/Turret3_Base.bmp";
+    rocketbodyObj->mesh->blendRatio[0] = 1;
+    rocketbodyObj->mesh->NMTexture = "Turret3/Turret3_Normal.bmp";
+    rocketbodyObj->mesh->AOtexture = "Turret3/Turret3_AmbOcc.bmp";
+    //rocketObj->mesh->STTexture = "Turret3/Turret3_ST.bmp";
+    rocketBody->ID = ROCKETBODY;
+    rocketBody->object = rocketbodyObj;
+    rocketBody->action = new aTurretBody();
+    rocketBody->connectionTransform = glm::vec3(0, 0.6f, 0); // Example offset
+    turretBodies.push_back(rocketBody);
+    rocketbodyObj->isActive = false;
+    rocketbodyObj->isTemporary = true;
 
+    // Aim Neck
     cTurretNeck* aimNeck = new cTurretNeck();
     Object* aimNeckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret2/Turret2_neck.ply",
@@ -445,7 +466,7 @@ void LabAttackFactory::Start()
     aimNeckObj->isActive = false;
 
 
-    // Aim Neck
+    // Standard Neck
     cTurretNeck* standardNeck = new cTurretNeck();
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret/StandartTurretNeck.ply",
@@ -473,6 +494,34 @@ void LabAttackFactory::Start()
     neckObj->isActive = false;
     neckObj->isTemporary = true;
 
+    // Rocket Neck
+    cTurretNeck* rocketNeck = new cTurretNeck();
+    Object* rocketNeckObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Turret3/Turret3_neck.ply",
+        glm::vec3(0),
+        0.07f,
+        glm::vec3(0.f),
+        false,
+        glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+
+    rocketNeckObj->mesh->textures[0] = "Turret3/Turret3_Base.bmp";
+    rocketNeckObj->mesh->blendRatio[0] = 1;
+    rocketNeckObj->mesh->NMTexture = "Turret3/Turret3_Normal.bmp";
+    rocketNeckObj->mesh->AOtexture = "Turret3/Turret3_AmbOcc.bmp";
+    //rocketNeckObj->mesh->STTexture = "Turret3/Turret3_ST.bmp";
+    rocketNeckObj->isTemporary = true;
+
+    rocketNeck->ID = ROCKETNECK;
+    rocketNeck->object = rocketNeckObj;
+    rocketNeck->action = new TurretNeckAim();
+    rocketNeck->action->factory = this;
+    rocketNeck->connectionTransform = glm::vec3(0, 1.0f, 0); // Example offset
+    turretNecks.push_back(rocketNeck);
+    rocketNeckObj->isActive = false;
+
 
     // Standard Head
     cTurretHead* standardHead = new cTurretHead();
@@ -495,8 +544,6 @@ void LabAttackFactory::Start()
     headObj->mesh->STTexture = "Turret/Turret_ST.bmp";
     standardHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
   
-
-
     standardHead->ID = STANDARTHEAD;
     standardHead->object = headObj;
     aTurretHead* standartHeadAction = new aTurretHead();
@@ -548,6 +595,42 @@ void LabAttackFactory::Start()
 
     triheadObj->isActive = false;
     triheadObj->isTemporary = true;
+
+    // Rocket Head
+    cTurretHead* rocketHead = new cTurretHead();
+    Object* rocketHeadObj = scene->GenerateMeshObjectsFromObject(
+        "assets/models/Turret3/Turret3_head.ply",
+        glm::vec3(0),
+        0.07f,
+        glm::vec3(0.f),
+        false,
+        glm::vec4(1.f, 0.f, 0.f, 1.f),
+        true,
+        scene->sceneObjects
+    );
+
+    rocketHeadObj->mesh->textures[0] = "Turret3/Turret3_Base.bmp";
+    rocketHeadObj->mesh->blendRatio[0] = 1;
+    rocketHeadObj->mesh->NMTexture = "Turret3/Turret3_Normal.bmp";
+    rocketHeadObj->mesh->AOtexture = "Turret3/Turret3_AmbOcc.bmp";
+    //rocketHeadObj->mesh->STTexture = "Turret3/Turret3_ST.bmp";
+    rocketHead->barrelsPos.push_back(glm::vec3(0.f, 0.f, 0.7f));
+
+    rocketHead->ID = ROCKETHEAD;
+    rocketHead->object = rocketHeadObj;
+
+    aTurretHead* rocketHeadAction = new aTurretHead();
+    rocketHeadAction->m_recoilDistance = 0.6f;
+    rocketHeadAction->m_recoilRecoverySpeed = 1.f;
+
+    rocketHeadAction->factory = this;
+    rocketHead->action = rocketHeadAction;
+
+    rocketHead->connectionTransform = glm::vec3(0, 0.3f, -0.6f);
+    turretHeads.push_back(rocketHead);
+
+    rocketHeadObj->isActive = false;
+    rocketHeadObj->isTemporary = true;
 }
 
 
