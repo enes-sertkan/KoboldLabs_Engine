@@ -100,6 +100,10 @@
 #include "player_ui.h"
 #include "aPlayerCore.h"
 
+// FMOD
+#include <fmod.hpp>
+#include <fmod_errors.h>
+
  Scene* currentScene=nullptr;
 
 
@@ -127,6 +131,67 @@ KLFileManager* fileMangerImgui = new KLFileManager();
 bool showExitPopup = false;
 bool isSceneSaved = true;
 std::string lastSavedData;
+
+
+//----------------------------------------------------------------*
+// FMOD Implementation
+//----------------------------------------------------------------*
+
+FMOD::System* fmodSystem = nullptr;
+FMOD::Sound* backgroundMusic = nullptr;
+FMOD::Channel* musicChannel = nullptr;
+
+void initFMOD() {
+    FMOD_RESULT result;
+
+    // Create FMOD system
+    result = FMOD::System_Create(&fmodSystem);  // Use fmodSystem here
+    if (result != FMOD_OK) {
+        std::cerr << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
+        exit(-1);
+    }
+
+    // Initialize FMOD system
+    result = fmodSystem->init(512, FMOD_INIT_NORMAL, nullptr);  // Use fmodSystem here
+    if (result != FMOD_OK) {
+        std::cerr << "FMOD init error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
+        exit(-1);
+    }
+}
+
+void loadAndPlayBackgroundMusic(const char* filepath) {
+    FMOD_RESULT result;
+
+    // Load sound (looping music)
+    result = fmodSystem->createSound(filepath, FMOD_LOOP_NORMAL | FMOD_2D, nullptr, &backgroundMusic);
+    if (result != FMOD_OK) {
+        std::cerr << "Failed to load background music: " << FMOD_ErrorString(result) << std::endl;
+        exit(-1);
+    }
+
+    // Play the sound
+    result = fmodSystem->playSound(backgroundMusic, nullptr, false, &musicChannel);
+    if (result != FMOD_OK) {
+        std::cerr << "Failed to play background music: " << FMOD_ErrorString(result) << std::endl;
+        exit(-1);
+    }
+}
+
+void updateFMOD() {
+    if (fmodSystem) {
+        fmodSystem->update();
+    }
+}
+
+void cleanupFMOD() {
+    if (backgroundMusic) backgroundMusic->release();
+    if (fmodSystem) fmodSystem->close();
+    if (fmodSystem) fmodSystem->release();
+}
+
+//----------------------------------------------------------------*
+// End Of FMOD
+//----------------------------------------------------------------*
 
 
 void SetupDearImGui(GLFWwindow* window)
@@ -2284,6 +2349,8 @@ int main(void)
     scene->Start();
     secutityRoomScene->Start();
 
+    initFMOD();
+    loadAndPlayBackgroundMusic("assets/sounds/mainMenu.mp3");
  
 
     //  Turn on the blend operation
@@ -2328,6 +2395,7 @@ int main(void)
 
         scene->Update();
         secutityRoomScene->Update();
+        updateFMOD();
         
 
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
@@ -2440,7 +2508,7 @@ int main(void)
 //      ------------------------------------------ 
     delete ::g_pFlyCamera;
 
-
+    cleanupFMOD();
     glfwDestroyWindow(window);
 
     glfwTerminate();
