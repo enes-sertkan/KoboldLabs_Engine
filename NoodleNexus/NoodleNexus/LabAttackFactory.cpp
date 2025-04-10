@@ -11,9 +11,11 @@
 #include "cTurret.h"
 #include "aEnemyBullet.h"
 #include "aPlayerBullet.h"
+#include "aPlayerFollowingBullet.h"
 #include "aRotateWheel.h"
 #include "aWheelEnemyHead.h"
 #include "aParticleEmitter .h"
+#include "aTurretHeadFollowing.h"
 
 // Constructor
 LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int shooterPoolSize, int wandererPoolSize,
@@ -621,7 +623,7 @@ void LabAttackFactory::Start()
     rocketHead->ID = ROCKETHEAD;
     rocketHead->object = rocketHeadObj;
 
-    aTurretHead* rocketHeadAction = new aTurretHead();
+    aTurretHeadFollowing* rocketHeadAction = new aTurretHeadFollowing();
     rocketHeadAction->m_recoilDistance = 0.6f;
     rocketHeadAction->m_recoilRecoverySpeed = 1.f;
 
@@ -682,6 +684,68 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
        
         smokeEmiiter->name = "SMOKE PARTICLES";
      
+        bulletCol->particles = particleEmmitter;
+        //   particleEmmitter->spawnRate = 0.f;
+        //   particleEmmitter->destroyOnNoParticles = true;
+        smokeEmiiter->mesh->transperency = 0.99f;
+        particleEmmitter->particlesToSpawn = 5.f;
+        particleEmmitter->minDirection = glm::vec3(-0.1, 1, -0.1);
+        particleEmmitter->maxDirection = glm::vec3(0.1, 1, 0.1);
+        particleEmmitter->colorEnd = glm::vec4(0.6, 0.6, 0.6, 0);
+        particleEmmitter->colorStart = glm::vec4(1, 0.647, 0.2, 1.f);
+        particleEmmitter->velocityRange = glm::vec2(0.2f, 1.f);
+        particleEmmitter->sizeStart = 0.05f;
+        particleEmmitter->sizeEnd = 0.4f;
+        particleEmmitter->lifeTimeRange = glm::vec2(0.7, 1.5f);
+    }
+    return bullet;
+}
+
+Object* LabAttackFactory::SpawnPlayerFollowingBullet(const glm::vec3& position, const glm::vec3& speed, bool particles)
+{
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    bullet->mesh->metal = 0.8;
+    bullet->mesh->smoothness = 0.7f;
+    bullet->name = "PBullet";
+    bullet->mesh->textures[0] = "Bullet/Bullet_colour.bmp";
+    bullet->mesh->AOtexture = "Bullet/Bullet_AO.bmp";
+    bullet->mesh->STTexture = "Bullet/Bullet_met_smothness.bmp";
+    bullet->mesh->NMTexture = "Bullet/Bullet_normals.bmp";
+
+    aProjectileMovement* projectileAction = new aProjectileMovement();
+    projectileAction->speed = speed;
+
+    bullet->isTemporary = true;
+
+    scene->AddActionToObj(projectileAction, bullet);
+    projectileAction->Start();
+
+    m_playerBulletPool.push_back(bullet);
+
+
+    aPlayerFollowingBullet* bulletCol = new aPlayerFollowingBullet();
+    bulletCol->factory = this;
+    scene->AddActionToObj(bulletCol, bullet);
+
+    bulletCol->projectile = projectileAction;
+
+    if (particles)
+    {
+        Object* smokeEmiiter = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+
+
+        bullet->AddChild(smokeEmiiter);
+        smokeEmiiter->mesh->isParticleEmitter = true;
+        smokeEmiiter->mesh->metal = 0.1;
+        smokeEmiiter->mesh->bDoNotLight = true;
+
+
+        aParticleEmitter* particleEmmitter = new aParticleEmitter();
+        scene->AddActionToObj(particleEmmitter, smokeEmiiter);
+        particleEmmitter->Start();
+
+        smokeEmiiter->name = "SMOKE PARTICLES";
+
         bulletCol->particles = particleEmmitter;
         //   particleEmmitter->spawnRate = 0.f;
         //   particleEmmitter->destroyOnNoParticles = true;

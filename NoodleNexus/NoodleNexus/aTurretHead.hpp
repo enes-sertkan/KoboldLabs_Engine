@@ -58,7 +58,7 @@ public:
         }
     }
 
-    void Shoot()
+    virtual void Shoot()
     {
         std::vector<glm::vec3> m_barrelPositions = turret->head->barrelsPos;
         if (m_barrelPositions.empty()) return;

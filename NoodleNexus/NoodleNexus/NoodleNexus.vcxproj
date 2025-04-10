@@ -247,6 +247,7 @@
     <ClInclude Include="aToolManager.h" />
     <ClInclude Include="aTurretBody.h" />
     <ClInclude Include="aTurretHead.hpp" />
+    <ClInclude Include="aTurretHeadFollowing.h" />
     <ClInclude Include="aTurretNeck.h" />
     <ClInclude Include="aTurretNeckRotate.hpp" />
     <ClInclude Include="aTurretPlacer.h" />

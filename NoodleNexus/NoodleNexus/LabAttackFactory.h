@@ -51,6 +51,7 @@ public:
 
     // For bullets, a position and a speed vector are provided.
     Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed, bool particles = false);
+    Object* SpawnPlayerFollowingBullet(const glm::vec3& position, const glm::vec3& speed, bool particles);
     Object* SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed);
     // Spawn turret based on configuration
 
