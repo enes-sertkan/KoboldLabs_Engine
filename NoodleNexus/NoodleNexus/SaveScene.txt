@@ -30,6 +30,9 @@ StandartTurretBody.txt
 TripleTurretBody.txt
 TripleTurretNeck.txt
 TripleTurretHead.txt
+ProjectileTurretHead.txt
+ProjectileTurretNeck.txt
+ProjectileTurretBody.txt
 EnemyWheeelBody.txt
 EnemyWheeelWheel.txt
 EnemyWheeelHead.txt

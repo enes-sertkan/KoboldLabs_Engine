@@ -1842,13 +1842,15 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-     /*   scene->sceneObjects[4]->mesh->textures[0] = "uv_mapper.bmp";
-        scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[4]->mesh->stencilTexture = "binaries.bmp";
-        scene->sceneObjects[4]->mesh->stencilTextureID = 61;
-        scene->sceneObjects[4]->mesh->textureSpeed.x = 0.1f;*/
+        //scene->sceneObjects[4]->mesh->textures[0] = "Turret3/Turret3_Base.bmp";
+        //scene->sceneObjects[4]->mesh->textures[1] = "Turret3/Turret3_Normal.bmp";
+        //scene->sceneObjects[4]->mesh->textures[2] = "Turret3/Turret3_AmbOcc.bmp";
+        //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        //scene->sceneObjects[4]->mesh->blendRatio[2] = 1;
+        //scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
+        //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+
 
       /*  scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
@@ -2236,6 +2238,9 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_AO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret2/Turret2_MS.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret3/Turret3_AmbOcc.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret3/Turret3_Base.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Turret3/Turret3_Normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_Colour.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_body_color.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_color.bmp");

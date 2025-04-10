@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> ProjectileTurretHead
+<filePath> assets/models/Turret3/Turret3_head.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

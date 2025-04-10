@@ -9,41 +9,44 @@ class aTurretHead;
 enum eTurretBodyID
 {
 	STANDARTBODY,
-	TRIPLEBODY
+	TRIPLEBODY,
+	ROCKETBODY
 };
 
 enum eTurretNeckID
 {
 	STANDARTNECK,
-	AIMNECK
+	AIMNECK,
+	ROCKETNECK
 };
 
 enum eTurretHeadID
 {
 	STANDARTHEAD,
-	TRIPLEHEAD
+	TRIPLEHEAD,
+	ROCKETHEAD
 };
 
 template<typename T>
 struct EnumInfo {
 	// Default implementation - override for each enum
-	static int count() { return 2; }
+	static int count() { return 3; }
 };
 
 // Specialize for each turret part enum
 template<>
 struct EnumInfo<eTurretBodyID> {
-	static int count() { return 2; } // Number of body types
+	static int count() { return 3; } // Number of body types
 };
 
 template<>
 struct EnumInfo<eTurretNeckID> {
-	static int count() { return 2; } // STANDARTNECK and AIMNECK
+	static int count() { return 3; } // STANDARTNECK and AIMNECK
 };
 
 template<>
 struct EnumInfo<eTurretHeadID> {
-	static int count() { return 2; } // Number of head types
+	static int count() { return 3; } // Number of head types
 };
 
 
