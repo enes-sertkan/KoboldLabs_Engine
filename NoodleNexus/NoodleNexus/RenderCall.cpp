@@ -161,7 +161,7 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         glActiveTexture(GL_TEXTURE0 + 4);
         glBindTexture(GL_TEXTURE_2D, textureID_AO);
 
-    
+
 
         GLenum selectedWrapMode;
         selectedWrapMode = GL_REPEAT;
@@ -183,7 +183,7 @@ void SetUpTextures(sMesh* pCurMesh, GLuint program, cBasicTextureManager* textur
         GLint textureAO_UL = glGetUniformLocation(program, "textureAO");
         glUniform1i(textureAO_UL, 4);       // <-- Note we use the NUMBER, not the GL_TEXTURE3 here
         GLint bUseAO = glGetUniformLocation(program, "useAO");
-        if (pCurMesh->AOtexture!="")
+        if (pCurMesh->AOtexture != "")
         {
             //glUniform1f(bDoNotLight_UL, 1.0f);  // True
             glUniform1f(bUseAO, (GLfloat)GL_TRUE);  // True
@@ -319,7 +319,7 @@ void DrawCameraViewToTexture(Camera* camera, int framebufferID)
 
 void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Scene* scene)
 {
-    
+
 
     // Is it visible? 
     if (!pCurMesh->bIsVisible)
@@ -360,17 +360,17 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 
 
 
-        pCurMesh->time += scene->deltaTime;
-        GLint time_UL = glGetUniformLocation(program, "time");
-        glUniform1f(time_UL, pCurMesh->time);
+    pCurMesh->time += scene->deltaTime;
+    GLint time_UL = glGetUniformLocation(program, "time");
+    glUniform1f(time_UL, pCurMesh->time);
 
-        GLint speedX_UL = glGetUniformLocation(program, "speedX");
-        glUniform1f(speedX_UL, pCurMesh->textureSpeed.x);
+    GLint speedX_UL = glGetUniformLocation(program, "speedX");
+    glUniform1f(speedX_UL, pCurMesh->textureSpeed.x);
 
-        GLint speedY_UL = glGetUniformLocation(program, "speedY");
-        glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
+    GLint speedY_UL = glGetUniformLocation(program, "speedY");
+    glUniform1f(speedY_UL, pCurMesh->textureSpeed.y);
 
-  
+
 
     // Use lighting or not
     // uniform bool bDoNotLight;	
@@ -486,7 +486,7 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
 
     GLint cameraLocation = glGetUniformLocation(program, "cameraLocation");
     glUniform3f(cameraLocation,
-        scene->fCamera->getEyeLocation().x+10.f,
+        scene->fCamera->getEyeLocation().x + 10.f,
         scene->fCamera->getEyeLocation().y,
         scene->fCamera->getEyeLocation().z);
 
@@ -495,21 +495,21 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
    // if (pCurMesh->transperency < 1)
    // {
        // glDisable(GL_DEPTH_TEST);
-        glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
 
 
-        if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
+    if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
         glUniform1f(glGetUniformLocation(program, "suckPower"), 25.f);
-        else
+    else
         glUniform1f(glGetUniformLocation(program, "suckPower"), 0.f);
     //}
 
 
 
-        if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
-            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
-        else
-            glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
+    if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
+        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
+    else
+        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
 
 
     // solid or wireframe, etc.
@@ -540,8 +540,8 @@ void DrawMesh(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTe
         glBindVertexArray(0); 			//disable VAO(and everything else)
     }
 
-   // glEnable(GL_DEPTH_TEST);
-	return;
+    // glEnable(GL_DEPTH_TEST);
+    return;
 }
 
 glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const glm::vec3& cameraPosition)
@@ -579,8 +579,9 @@ glm::mat4 CalculateViewMatrixFromRotation(const glm::vec3& cameraRotation, const
     return matView;
 }
 
-void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, Camera* camera)
+void DrawShellTexturingWithCamera(Object* object, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, Camera* camera)
 {
+    glUseProgram(program);
     if (!pCurMesh->shellTexturing)
     {
         return;
@@ -589,6 +590,11 @@ void DrawShellTexturingWithCamera(Object* object , sMesh* pCurMesh, GLuint progr
     // Get location of "bShellTexturing" uniform
     GLint bUseShellTexturing_UL = glGetUniformLocation(program, "bShellTexturing");
     glUniform1f(bUseShellTexturing_UL, (GLfloat)GL_TRUE);
+
+    // Set particle emitter flag
+    GLint isParticleEmitterLoc = glGetUniformLocation(program, "isParticleEmitter");
+    glUniform1f(isParticleEmitterLoc, (GLfloat)GL_FALSE);
+
 
     // Find model info in the VAO manager
     sModelDrawInfo meshToDrawInfo;
@@ -704,10 +710,10 @@ std::vector<GPUParticle>  GenerateGPUParticles(std::vector<Particle> cpuParticle
 
     std::vector<GPUParticle> gpuParticles;
     for (Particle cpuParticle : cpuParticles) {
-    if (!cpuParticle.active) continue;
+        if (!cpuParticle.active) continue;
 
- 
- 
+
+
 
         gpuParticles.push_back(GPUParticle(cpuParticle));
     }
@@ -725,9 +731,9 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
         return;
 
-  //  glEnable(GL_BLEND);
+    glEnable(GL_BLEND);
     //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-   // glDepthMask(GL_FALSE);
+    //glDepthMask(GL_FALSE);
 
     glUseProgram(program);
 
@@ -749,8 +755,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     GLint modelLoc = glGetUniformLocation(program, "matModel");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(matModel));
 
-    // View and Projection matrices
-  
+
     // Camera location and time
     GLint camLoc = glGetUniformLocation(program, "cameraLocation");
     glUniform3f(camLoc, camera->position.x, camera->position.y, camera->position.z);
@@ -816,7 +821,7 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     glUniform1f(bUseShellTexturing_UL, pCurMesh->shellTexturing ? (GLfloat)GL_TRUE : (GLfloat)GL_FALSE);
 
     // Transparency
-   // glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
+    glUniform1f(glGetUniformLocation(program, "wholeObjectTransparencyAlpha"), pCurMesh->transperency);
 
     // Special effects (suck/shake)
     glUniform1f(glGetUniformLocation(program, "suckPower"),
@@ -852,8 +857,8 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     if (activeParticleCount == 0)
     {
         glUseProgram(0);
-        glDepthMask(GL_TRUE);
-        glDisable(GL_BLEND);
+        //        glDepthMask(GL_TRUE);
+          //      glDisable(GL_BLEND);
         if (pCurMesh->drawBothFaces)
             glEnable(GL_CULL_FACE);
         return;
@@ -861,19 +866,19 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
 
     glBindBuffer(GL_UNIFORM_BUFFER, pCurMesh->particleUBO);
     glBufferSubData(GL_UNIFORM_BUFFER, 0, activeParticleCount * sizeof(GPUParticle), gpuParticles.data());
-    glBindBufferBase(GL_UNIFORM_BUFFER, 1, pCurMesh->particleUBO);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 0, pCurMesh->particleUBO);
 
     // Debugging code (optional)
-    GLvoid* p = glMapBuffer(GL_UNIFORM_BUFFER, GL_READ_ONLY);
-    if (p) {
-        GPUParticle* particles = (GPUParticle*)p;
-        std::cout << "First particle position: "
-            << particles[0].position.x << ", "
-            << particles[0].position.y << ", "
-            << particles[0].position.z <<
-            " scale: " << particles[0].size << std::endl;
-        glUnmapBuffer(GL_UNIFORM_BUFFER);
-    }
+   // GLvoid* p = glMapBuffer(GL_UNIFORM_BUFFER, GL_READ_ONLY);
+    //if (p) {
+    //    GPUParticle* particles = (GPUParticle*)p;
+    //    std::cout << "First particle position: "
+    //        << particles[0].position.x << ", "
+    //        << particles[0].position.y << ", "
+    //        << particles[0].position.z <<
+    //        " scale: " << particles[0].size << std::endl;
+    //    glUnmapBuffer(GL_UNIFORM_BUFFER);
+    //}
 
     // Draw particles
     sModelDrawInfo particleMeshInfo;
@@ -896,56 +901,53 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     if (pCurMesh->drawBothFaces)
         glEnable(GL_CULL_FACE);
     glUseProgram(0);
-
-
-
-  // glDepthMask(GL_TRUE);
-    glDisable(GL_BLEND);
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Reset to default
+    //glDepthMask(GL_TRUE);
+    //glDisable(GL_BLEND);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); // Reset to default
 }
 
 void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager, cBasicTextureManager* textureManager, Camera* camera)
 {
     if (glm::distance(camera->position, pCurMesh->positionXYZ) > camera->drawDistance)
-    {  
+    {
         return;
     }
-    
+
 
     glUseProgram(program);
-  //  if (pCurMesh!=camera->scene->skybox->mesh)
- //   {
-        // Check if the object is in front of the camera
-        glm::vec3 cameraRotation = camera->rotation;
+    //  if (pCurMesh!=camera->scene->skybox->mesh)
+   //   {
+          // Check if the object is in front of the camera
+    glm::vec3 cameraRotation = camera->rotation;
 
-        float pitch = cameraRotation.x;
-        float yaw = cameraRotation.y;
-        // Roll is not used for calculating the forward vector
+    float pitch = cameraRotation.x;
+    float yaw = cameraRotation.y;
+    // Roll is not used for calculating the forward vector
 
-        glm::vec3 forward;
-        forward.x = cos(pitch) * cos(yaw);
-        forward.y = sin(pitch);
-        forward.z = cos(pitch) * sin(yaw);
+    glm::vec3 forward;
+    forward.x = cos(pitch) * cos(yaw);
+    forward.y = sin(pitch);
+    forward.z = cos(pitch) * sin(yaw);
 
-        forward = glm::normalize(forward);
+    forward = glm::normalize(forward);
 
-        // Calculate the vector from the camera to the object
-        glm::vec3 toObject = pCurMesh->positionXYZ - camera->position;
+    // Calculate the vector from the camera to the object
+    glm::vec3 toObject = pCurMesh->positionXYZ - camera->position;
 
-        // Calculate the dot product to determine if the object is in front of the camera
-        float dotProduct = glm::dot(forward, toObject);
+    // Calculate the dot product to determine if the object is in front of the camera
+    float dotProduct = glm::dot(forward, toObject);
 
 
-        // Determine your threshold: objects must be within maxAngle from the forward vector
-        // For a 30° half-angle (60° total FOV), the cosine is about 0.866.
-        float fovThreshold = glm::cos(glm::radians(0.1f));
+    // Determine your threshold: objects must be within maxAngle from the forward vector
+    // For a 30° half-angle (60° total FOV), the cosine is about 0.866.
+    float fovThreshold = glm::cos(glm::radians(0.1f));
 
-        // Cull the object if it falls outside the desired cone
-        if (dotProduct < fovThreshold) {
-            //std::cout << "dot product: " << dotProduct << std::endl;
-            //std::cout << "fov Threshold: " << fovThreshold << std::endl;
-          //  return; // Object is outside the narrower visible area
-    //    }
+    // Cull the object if it falls outside the desired cone
+    if (dotProduct < fovThreshold) {
+        //std::cout << "dot product: " << dotProduct << std::endl;
+        //std::cout << "fov Threshold: " << fovThreshold << std::endl;
+      //  return; // Object is outside the narrower visible area
+//    }
 
     }
 
@@ -962,15 +964,6 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         // (for, while, do)
         return;
     }
-
-
-
-
-        GLint isParticleEmitterLoc = glGetUniformLocation(program, "isParticleEmitter");
-    glUniform1f(isParticleEmitterLoc, (GLfloat)GL_FALSE);
-
-
-
 
     GLint bUseStencilTexture_UL = glGetUniformLocation(program, "bUseStencilTexture");
 
@@ -995,11 +988,8 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         glUniform1f(bUseStencilTexture_UL, (GLfloat)GL_FALSE);
     }
 
-    GLint bParticleMode = glGetUniformLocation(program, "isParticleEmitter");
-
-    glUniform1f(bParticleMode, (GLfloat)GL_FALSE);  // True
-
-
+    GLint isParticleEmitterLoc = glGetUniformLocation(program, "isParticleEmitter");
+    glUniform1f(isParticleEmitterLoc, (GLfloat)GL_FALSE);
 
     pCurMesh->time += camera->scene->deltaTime;
     GLint time_UL = glGetUniformLocation(program, "time");
@@ -1138,9 +1128,9 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
     {
         glUniform1f(bUseObjectColour, (GLfloat)GL_FALSE);   // or 0.0f
     }
-      
-    
-    
+
+
+
     GLint bUseShellTextutring = glGetUniformLocation(program, "bShellTexturing");
 
     if (pCurMesh->shellTexturing)
@@ -1179,11 +1169,11 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
     glm::mat4 matProjection = glm::mat4(1.0f);
 
     matProjection = glm::perspective(glm::radians(camera->fov),           // FOV
-        camera->resolution.x/camera->resolution.y,          // Aspect ratio of screen
+        camera->resolution.x / camera->resolution.y,          // Aspect ratio of screen
         0.1f,           // Near plane
         1000000.0f);       // Far plane
 
-   
+
 
     // Construct the view matrix
     glm::mat4 matView = CalculateViewMatrixFromRotation(camera->rotation, camera->position);
@@ -1230,7 +1220,7 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
     for (int i = 0; i < 10; i++) {
         // Pack uv into x and y, active flag into z (as 1.0/0.0), and time into w.
         float activeValue = pCurMesh->waves[i].active ? 1.0f : 0.0f;
-        glm::vec4 waveData(pCurMesh->waves[i].uv.x, pCurMesh ->waves[i].uv.y, activeValue, pCurMesh->waves[i].time);
+        glm::vec4 waveData(pCurMesh->waves[i].uv.x, pCurMesh->waves[i].uv.y, activeValue, pCurMesh->waves[i].time);
 
         // Construct the uniform name, e.g., "waves[0].data"
         std::string uniformName = "waves[" + std::to_string(i) + "].data";
@@ -1238,7 +1228,7 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
         if (location != -1) {
             glUniform4f(location, waveData.x, waveData.y, waveData.z, waveData.w);
         }
-        if (activeValue) pCurMesh->waves[i].time+= 0.02;
+        if (activeValue) pCurMesh->waves[i].time += 0.02;
         if (pCurMesh->waves[i].time > 4.f)
         {
             pCurMesh->waves[i].active = false;
@@ -1413,19 +1403,19 @@ void DrawCameraView(Camera* camera, int programID) {
             GLint bDepth = glGetUniformLocation(programID, "bDepth");
             glUniform1f(bDepth, (GLfloat)GL_FALSE);  // True
         }
-   
+
 
         if (pCurMesh->shellTexturing) {
-  
+
             DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0],
                 scene->vaoManager, camera);
-           
+
         }
         else if (pCurMesh->isParticleEmitter)
         {
-           
-                DrawParticlesWithCamera(object, pCurMesh, scene->programs[0],
-                    scene->vaoManager, scene->textureManager, camera);
+
+            DrawParticlesWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
 
         }
         else
@@ -1449,13 +1439,24 @@ void DrawCameraView(Camera* camera, int programID) {
         GLint bDepthUL = glGetUniformLocation(programID, "bDepth");
         glUniform1f(bDepthUL, GL_FALSE);
 
-        if (!pCurMesh->shellTexturing) {
-            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
-                scene->vaoManager, scene->textureManager, camera);
-        }
-        else {
+
+        if (pCurMesh->shellTexturing) {
+
             DrawShellTexturingWithCamera(object, pCurMesh, scene->programs[0],
                 scene->vaoManager, camera);
+
+        }
+        else if (pCurMesh->isParticleEmitter)
+        {
+
+            DrawParticlesWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
+
+        }
+        else
+        {
+            DrawMeshWithCamera(object, pCurMesh, scene->programs[0],
+                scene->vaoManager, scene->textureManager, camera);
         }
     }
 
@@ -1486,7 +1487,7 @@ void DrawCameraViewToFramebufer(Camera* camera, int programID, int framebufferID
     // Restore previous state
     glBindFramebuffer(GL_FRAMEBUFFER, prevFBO);
     glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
-  
+
 }
 
 void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint program, Scene* scene)
@@ -1511,7 +1512,7 @@ void DrawDebugSphere(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint pro
     pDebugSphere->objectColourRGBA = RGBA;
     pDebugSphere->uniformScale = scale;
 
-    DrawMesh(pDebugSphere, program, scene->vaoManager,scene->textureManager, scene);
+    DrawMesh(pDebugSphere, program, scene->vaoManager, scene->textureManager, scene);
 
     pDebugSphere->bIsVisible = false;
 
@@ -1540,7 +1541,7 @@ void DrawDebugCube(glm::vec3 position, glm::vec4 RGBA, float scale, GLuint progr
     pDebugCube->objectColourRGBA = RGBA;
     pDebugCube->uniformScale = scale;
 
-    DrawMesh(pDebugCube, program, scene->vaoManager,scene->textureManager, scene);
+    DrawMesh(pDebugCube, program, scene->vaoManager, scene->textureManager, scene);
 
     pDebugCube->bIsVisible = false;
 

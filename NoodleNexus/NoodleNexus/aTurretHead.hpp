@@ -22,7 +22,7 @@ private:
 
 public:
     float m_shootCooldown = 0.6f;
-    float m_recoilDistance = 0.4f;
+    float m_recoilDistance = 0.4/2.5f;
     float m_recoilRecoverySpeed = 1.5f;
 
     void Start() override {
@@ -43,7 +43,7 @@ public:
         if (m_currentRecoil > 0.0f) {
             m_currentRecoil -= m_recoilRecoverySpeed * object->scene->deltaTime;
             m_currentRecoil = glm::max(m_currentRecoil, 0.0f);
-            glm::vec3 recoilOffset = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, -m_currentRecoil);
+            glm::vec3 recoilOffset =  glm::vec3(0.0f, 0.0f, -m_currentRecoil);
 
             // Apply recoil in local space backward direction
             object->mesh->positionXYZ = m_originalLocalPosition + recoilOffset;
@@ -74,7 +74,7 @@ public:
         // Get shoot direction using cached rotation
         glm::vec3 forward = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, 1.0f);
 
-        factory->SpawnPlayerBullet(worldBarrelPos, forward * 20.0f);
+        factory->SpawnPlayerBullet(worldBarrelPos, forward * 15.0f, true);
 
         m_currentBarrel = (m_currentBarrel + 1) % m_barrelPositions.size();
     }

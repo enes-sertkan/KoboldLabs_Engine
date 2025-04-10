@@ -23,7 +23,7 @@ struct Particle {
 };
 
 // UBO declaration
-layout(std430, binding = 1) uniform ParticleData {
+layout(std430, binding = 0) uniform ParticleData {
     Particle particles[MAX_PARTICLES];
 };
 

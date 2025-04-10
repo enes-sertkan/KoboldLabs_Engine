@@ -98,6 +98,7 @@
 #include "aParticleEmitter .h"
 #include "player.h"
 #include "player_ui.h"
+#include "aPlayerCore.h"
 
  Scene* currentScene=nullptr;
 
@@ -673,7 +674,7 @@ void TurretSpawnerWindow(LabAttackFactory* factory, SceneEditor* sceneEditor) {
     ImGui::End();
 }
 
-void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
+void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory, aPlayerCore* playerCore)
 {
  
 
@@ -722,7 +723,7 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory)
         {
 
             //PLAY MODE UI
-            PlayerUI::RenderHPBar(70, 100);
+            PlayerUI::RenderHPBar(playerCore->health, playerCore->maxHealth);
             PlayerUI::RenderStaminaBar(50, 100);
             PlayerUI::RenderCrosshair();
             ImGui::End();
@@ -1503,7 +1504,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aPlayerShooting* playerShooting = new aPlayerShooting();
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
     aToolManager* toolManager = new aToolManager();
+    aPlayerCore* playerCore = new aPlayerCore();
 
+    LAFactory->playerCore = playerCore;
 
     playerMovement->maze = mazeGenerator;
 
@@ -1531,6 +1534,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(playerTurPlacer, player);
     scene->AddActionToObj(playerShooting, player);
     scene->AddActionToObj(toolManager, player);
+    scene->AddActionToObj(playerCore, player);
 
 
     waveEffect->player = player;
@@ -2387,7 +2391,7 @@ int main(void)
 //      HANDLE ASYNC CONTROLS
 //      ------------------------------------------ 
   
-            RenderDearImGui(sceneEditor, factory);
+            RenderDearImGui(sceneEditor, factory, factory->playerCore);
            
           
                 handleKeyboardAsync(window, screen_quad, scene);

@@ -65,6 +65,11 @@ public:
             ResetPath();
             currentPlan = std::queue<GOAPAction*>();
         }
+        else if (!IsPlayerInAttackRange()&& goal["playerDamaged"])
+        {
+            goal = { {"playerDamaged", true} }; // Attack mode
+            currentPlan = std::queue<GOAPAction*>();
+        }
         else if (!controlPoints.empty()&&!IsPlayerInRange()) {
             goal = { {"hasReachedControlPoint", true} }; // Patrol 
             currentPlan = std::queue<GOAPAction*>();
@@ -117,6 +122,14 @@ public:
             maze->player->mesh->positionXYZ);
         return dist <= playerDetectionRange;
     }
+
+
+    bool IsPlayerInAttackRange() {
+        float dist = glm::distance(object->mesh->positionXYZ,
+            maze->player->mesh->positionXYZ);
+        return dist <= attackRange;
+    }
+
 
 
     // Common movement methods

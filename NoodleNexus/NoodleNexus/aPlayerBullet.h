@@ -19,12 +19,17 @@ public:
     virtual void Update() override {
         // 1. Handle enemy collisions
         aBullet::Update();
+        if (!factory) return;
         std::vector<BruteEnemy*>::iterator it = factory->m_creepPool.begin();
         while (it != factory->m_creepPool.end()) {
             BruteEnemy* enemy = *it;
             float distance = glm::distance(enemy->object->mesh->positionXYZ+enemy->colliderCenter, object->mesh->positionXYZ);
 
-            if (distance < 2.0f) {
+            if (distance < 1.0f) {
+
+
+
+             
 
                 enemy->Damage(2);
 
@@ -38,4 +43,6 @@ public:
 
 
     }
+
+
 };

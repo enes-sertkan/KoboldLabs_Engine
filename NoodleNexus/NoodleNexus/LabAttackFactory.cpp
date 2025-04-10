@@ -93,18 +93,19 @@ LabAttackFactory::LabAttackFactory(int creepPoolSize, int avoiderPoolSize, int s
 
 Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
 {
+    float scale = 2.5f;
             position.y -= 2;
-            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_body.ply", position, 2.5f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_body.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
             enemy->isTemporary = true;
             enemy->mesh->textures[0] = "Turret_wheel/Wheel_Enem_body_color.bmp";
             enemy->mesh->blendRatio[0] = 1.f;
             enemy->mesh->NMTexture = "Turret_wheel/Wheel_Enem_body_Normal.bmp";
             enemy->mesh->STTexture = "Turret_wheel/Wheel_Enem_body_SM.bmp";
-            position.y += 0.5;
-            position.z -= 0.06125;;
-            position.x -= 0.03;
+            position.y += 0.5/ scale;
+            position.z -= 0.06125/ scale;
+            position.x -= 0.03/ scale;
 
-            Object* wheel = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_wheel.ply", position, 2.5f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            Object* wheel = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_wheel.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
             wheel->isTemporary = true;
             wheel->mesh->textures[0] = "Turret_wheel/Wheel_Enem_wheel_color.bmp";
             wheel->mesh->blendRatio[0] = 1.f;
@@ -116,8 +117,8 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
 
 
 
-            position.y += 0.6125f;
-            Object* head = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_head.ply", position, 2.5f, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            position.y += 0.6125f/ scale;
+            Object* head = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_head.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
             head->isTemporary = true;
             head->mesh->textures[0] = "Turret_wheel/Wheel_Enem_head_Colour.bmp";
             head->mesh->blendRatio[0] = 1.f;
@@ -155,6 +156,7 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             return enemy;
 
 }
+
 
 
 Turret* LabAttackFactory::SpawnTurret(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID)
@@ -366,11 +368,12 @@ cTurretNeck* LabAttackFactory::FindTurretNeckTemplate(eTurretNeckID id)
 
 void LabAttackFactory::Start()
 {
+    float partsScale = 0.07f;
     // Standard Body
     cTurretBody* standardBody = new cTurretBody();
     Object* bodyObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret/StandartTurretBody.ply",
-        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        glm::vec3(0), partsScale, glm::vec3(0.f),
         false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
         true, scene->sceneObjects
     );
@@ -383,7 +386,7 @@ void LabAttackFactory::Start()
     standardBody->ID = STANDARTBODY;
     standardBody->object = bodyObj;
     standardBody->action = new aTurretBody();
-    standardBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
+    standardBody->connectionTransform = glm::vec3(0, 0.3f/ partsScale, 0); // Example offset
     turretBodies.push_back(standardBody);
     bodyObj->isActive = false;
     bodyObj->isTemporary = true;
@@ -392,7 +395,7 @@ void LabAttackFactory::Start()
     cTurretBody* tripleBody = new cTurretBody();
     Object* tribodyObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret2/Turret2_body.ply",
-        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        glm::vec3(0), partsScale, glm::vec3(0.f),
         false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
         true, scene->sceneObjects
     );
@@ -406,7 +409,7 @@ void LabAttackFactory::Start()
     tripleBody->ID = TRIPLEBODY;
     tripleBody->object = tribodyObj;
     tripleBody->action = new aTurretBody();
-    tripleBody->connectionTransform = glm::vec3(0, 0.3f, 0); // Example offset
+    tripleBody->connectionTransform = glm::vec3(0, 0.3f/ partsScale, 0); // Example offset
     turretBodies.push_back(tripleBody);
     tribodyObj->isActive = false;
     tribodyObj->isTemporary = true;
@@ -418,7 +421,7 @@ void LabAttackFactory::Start()
     Object* aimNeckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret2/Turret2_neck.ply",
         glm::vec3(0),
-        0.07f,
+        partsScale,
         glm::vec3(0.f),
         false,
         glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
@@ -437,7 +440,7 @@ void LabAttackFactory::Start()
     aimNeck->object = aimNeckObj;
     aimNeck->action = new TurretNeckAim();
     aimNeck->action->factory = this;
-    aimNeck->connectionTransform = glm::vec3(0, 1.275f, 0); // Example offset
+    aimNeck->connectionTransform = glm::vec3(0, 1.3f/ partsScale, 0); // Example offset
     turretNecks.push_back(aimNeck);
     aimNeckObj->isActive = false;
 
@@ -447,7 +450,7 @@ void LabAttackFactory::Start()
     Object* neckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret/StandartTurretNeck.ply",
         glm::vec3(0),
-        0.07f,
+        partsScale,
         glm::vec3(0.f),
         false,
         glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
@@ -465,7 +468,7 @@ void LabAttackFactory::Start()
     standardNeck->ID = STANDARTNECK;
     standardNeck->object = neckObj;
     standardNeck->action = new aTurretNeckRotate();
-    standardNeck->connectionTransform = glm::vec3(0, 1.265f, 0); // Example offset
+    standardNeck->connectionTransform = glm::vec3(0, 1.265f/ partsScale, 0); // Example offset
     turretNecks.push_back(standardNeck);
     neckObj->isActive = false;
     neckObj->isTemporary = true;
@@ -476,7 +479,7 @@ void LabAttackFactory::Start()
     Object* headObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret/StandartTurretHead.ply",
         glm::vec3(0),
-        0.07f,
+        partsScale,
         glm::vec3(0.f),
         false,
         glm::vec4(1.f, 0.f, 0.f, 1.f),
@@ -503,7 +506,7 @@ void LabAttackFactory::Start()
     standartHeadAction->factory = this;
     standardHead->action = standartHeadAction;
      
-    standardHead->connectionTransform = glm::vec3(0, 0.3f, 0);
+    standardHead->connectionTransform = glm::vec3(0, 0.3f/ partsScale, 0);
     turretHeads.push_back(standardHead);
 
     headObj->isActive = false;
@@ -514,7 +517,7 @@ void LabAttackFactory::Start()
     Object* triheadObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret2/Turret2_head.ply",
         glm::vec3(0),
-        0.07f,
+        partsScale,
         glm::vec3(0.f),
         false,
         glm::vec4(1.f, 0.f, 0.f, 1.f),
@@ -540,7 +543,7 @@ void LabAttackFactory::Start()
     triHeadAction->m_shootCooldown = 0.25f;
     tripleHead->action = triHeadAction;
 
-    tripleHead->connectionTransform = glm::vec3(0, 0.3f, 0);
+    tripleHead->connectionTransform = glm::vec3(0, 0.3f/ partsScale, 0);
     turretHeads.push_back(tripleHead);
 
     triheadObj->isActive = false;
@@ -550,7 +553,7 @@ void LabAttackFactory::Start()
 
 
 
-Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed)
+Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed, bool particles)
 {
     Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
     bullet->mesh->metal = 0.8;
@@ -570,6 +573,15 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
     projectileAction->Start();
     m_playerBulletPool.push_back(bullet);
 
+
+    aPlayerBullet* bulletCol = new aPlayerBullet();
+    bulletCol->factory = this;
+    scene->AddActionToObj(bulletCol, bullet);
+
+    bulletCol->projectile = projectileAction;
+
+    if (particles)
+    {
     Object* smokeEmiiter = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
   
 
@@ -577,14 +589,28 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
     smokeEmiiter->mesh->isParticleEmitter = true;
     smokeEmiiter->mesh->metal = 0.1;
     smokeEmiiter->mesh->bDoNotLight = true;
-    aParticleEmitter* particleEmmiter = new aParticleEmitter();
-    scene->AddActionToObj(particleEmmiter, smokeEmiiter);
-    particleEmmiter->Start();
-    aPlayerBullet* bulletCol = new aPlayerBullet();
-    bulletCol->factory = this;
-    scene->AddActionToObj(bulletCol, bullet);
-    smokeEmiiter->name = "SMOKE PARTICLES";
-    bulletCol->particles = particleEmmiter;
+
+ 
+        aParticleEmitter* particleEmmitter = new aParticleEmitter();
+        scene->AddActionToObj(particleEmmitter, smokeEmiiter);
+        particleEmmitter->Start();
+       
+        smokeEmiiter->name = "SMOKE PARTICLES";
+     
+        bulletCol->particles = particleEmmitter;
+        //   particleEmmitter->spawnRate = 0.f;
+        //   particleEmmitter->destroyOnNoParticles = true;
+        smokeEmiiter->mesh->transperency = 0.99f;
+        particleEmmitter->particlesToSpawn = 5.f;
+        particleEmmitter->minDirection = glm::vec3(-0.1, 1, -0.1);
+        particleEmmitter->maxDirection = glm::vec3(0.1, 1, 0.1);
+        particleEmmitter->colorEnd = glm::vec4(0.6, 0.6, 0.6, 0);
+        particleEmmitter->colorStart = glm::vec4(1, 0.647, 0.2, 1.f);
+        particleEmmitter->velocityRange = glm::vec2(0.2f, 1.f);
+        particleEmmitter->sizeStart = 0.05f;
+        particleEmmitter->sizeEnd = 0.4f;
+        particleEmmitter->lifeTimeRange = glm::vec2(0.7, 1.5f);
+    }
     return bullet;
 }
 
@@ -604,6 +630,7 @@ Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm:
     aEnemyBullet* bulletCol = new aEnemyBullet();
 
     bulletCol->factory = this;
+    bulletCol->projectile = projectileAction;
     scene->AddActionToObj(bulletCol, bullet);
 
     return bullet;

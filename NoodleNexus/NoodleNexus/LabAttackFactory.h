@@ -10,6 +10,7 @@
 #include "MazeGenerator.hpp"
 #include "aGrassCollider .h"
 #include "TurretConfig.h"
+#include "aPlayerCore.h"
 
 
 class Turret;
@@ -17,7 +18,9 @@ class BruteEnemy;
 
 class LabAttackFactory {
 public:
+    float floorHeight = 3.f;
     Object* player = nullptr;
+    aPlayerCore* playerCore = nullptr;
     MazeGenerator* maze = nullptr;
     // Constructor with default initial pool sizes
     LabAttackFactory(int creepPoolSize = 10, int avoiderPoolSize = 10, int shooterPoolSize = 10, int wandererPoolSize = 10,
@@ -47,7 +50,7 @@ public:
     Turret* SpawnTurretGhost(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID);
 
     // For bullets, a position and a speed vector are provided.
-    Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed);
+    Object* SpawnPlayerBullet(const glm::vec3& position, const glm::vec3& speed, bool particles = false);
     Object* SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed);
     // Spawn turret based on configuration
 

@@ -29,23 +29,26 @@ private:
     std::vector<Particle>* particles = new   std::vector<Particle>();
     GLuint particleUBO;  // Changed to Shader Storage Buffer
     unsigned int maxParticles = 1024;
-    float spawnRate = 3.f;
+ 
 
+
+
+public:
     // Particle properties
-    glm::vec2 velocityRange = glm::vec2(0.1f,1.f);
+    glm::vec2 velocityRange = glm::vec2(0.1f, 1.f);
     glm::vec3 minDirection = glm::vec3(-0.1, 1, -0.1);
     glm::vec3 maxDirection = glm::vec3(0.1, 1, 0.1);
 
-    glm::vec4 colorStart=glm::vec4(0.4,0.4,0.4,0.8);
-    glm::vec4  colorEnd = glm::vec4(0.6,0.6,0.6,0);
+    glm::vec4 colorStart = glm::vec4(0.4, 0.4, 0.4, 0.8);
+    glm::vec4  colorEnd = glm::vec4(0.6, 0.6, 0.6, 0);
     float sizeStart = 0.1f;
     float sizeEnd = 1.f;
     float particlesToSpawn = 0;
-
-public:
-
+    float spawnRate = 3.f;
     bool spawnActive = true;
     bool destroyOnNoParticles = true;
+    glm::vec2 lifeTimeRange = glm::vec2(0.7, 1.5f);
+    bool firstSpawn = true;
     virtual void Start() override {
         particles->resize(maxParticles);
 
@@ -73,6 +76,35 @@ public:
 
         // Update GPU buffer
       //  UpdateSSBOData();
+        int counter = 0;
+        if (!firstSpawn)
+        {
+
+
+            // Update existing particles
+            for (int i = 0; i < particles->size(); i++) {
+                if (!particles->at(i).active) continue;
+
+                particles->at(i).lifeRemaining -= deltaTime;
+                if (particles->at(i).lifeRemaining <= 0.0f) {
+                    particles->at(i).active = false;
+
+                    continue;
+                }
+
+                counter++;
+                // Physics integration
+              //  particles->at(i).velocity += glm::vec3(0.0f, -9.81f, 0.0f) * deltaTime; // Gravity
+                particles->at(i).position += particles->at(i).velocity * deltaTime;
+
+                // Update visual properties
+                float lifeRatio = particles->at(i).lifeRemaining / particles->at(i).lifetime;
+                if (lifeRatio < 0) { particles->at(i).active = false; }
+                particles->at(i).color = glm::mix(colorEnd, colorStart, lifeRatio);
+                particles->at(i).size = glm::mix(sizeEnd, sizeStart, lifeRatio);
+
+            }
+        }
 
         // Spawn new particles
          particlesToSpawn += spawnRate * deltaTime;
@@ -86,36 +118,14 @@ public:
             particles->at(id).velocity = randomVelocity();// glm::linearRand(velocityRange[0], velocityRange[1]);
             particles->at(id).color = colorStart;
             particles->at(id).size = sizeStart;
-            particles->at(id).lifetime = particles->at(id).lifeRemaining = 2.f;
+            particles->at(id).lifetime = particles->at(id).lifeRemaining = randomFloat(lifeTimeRange.x, lifeTimeRange.y);
             particles->at(id).active = true;
         }
         particlesToSpawn -= floorf(particlesToSpawn);
 
-        int counter = 0;
 
-        // Update existing particles
-        for (int i = 0; i < particles->size(); i++) {
-            if (!particles->at(i).active) continue;
 
-            particles->at(i).lifeRemaining -= deltaTime;
-            if (particles->at(i).lifeRemaining <= 0.0f) {
-                particles->at(i).active = false;
-             
-                continue;
-            }
-
-            counter++;
-            // Physics integration
-          //  particles->at(i).velocity += glm::vec3(0.0f, -9.81f, 0.0f) * deltaTime; // Gravity
-            particles->at(i).position += particles->at(i).velocity * deltaTime;
-
-            // Update visual properties
-            float lifeRatio = particles->at(i).lifeRemaining / particles->at(i).lifetime;
-            if (lifeRatio < 0) { particles->at(i).active = false; }
-            particles->at(i).color = glm::mix(colorEnd, colorStart, lifeRatio);
-            particles->at(i).size = glm::mix(sizeEnd, sizeStart, lifeRatio);
-
-        }
+        firstSpawn = false;
 
         object->mesh->pParticles = particles;
 
@@ -135,7 +145,7 @@ public:
 
     int GetNextAvailableParticle() {
         int i = 0;
-        for (auto& particle : *object->mesh->pParticles)
+        for (auto& particle : *particles)
         {
            
             if (!particle.active) return i;

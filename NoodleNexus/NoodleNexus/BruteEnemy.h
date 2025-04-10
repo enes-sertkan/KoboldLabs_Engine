@@ -12,7 +12,8 @@ public:
     BruteEnemy() {
         speed = 4.f;
        // attackDamage = 30.0f;
-        attackRange = 3.f;
+        attackRange = 3.f+static_cast<float>(rand()) /
+            (static_cast<float>(RAND_MAX / (5.f)));;
         maxHealth = 40;
         health = 40;
 

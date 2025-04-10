@@ -93,7 +93,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
         }
         else if (neck->object) {
             body->object->AddChild(neck->object);
-            neck->object->mesh->positionXYZ = body->connectionTransform;
+            neck->object->mesh->positionXYZ = body->connectionTransform/ body->object->GetWorldScale();
             updateTransparency(neck);
         }
     }

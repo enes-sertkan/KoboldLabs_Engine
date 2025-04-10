@@ -19,6 +19,7 @@ class Object
 {
 
 public:
+    bool fakeParent = false;
     std::string name;
     sMesh* mesh;
     Scene* scene;
@@ -124,53 +125,51 @@ public:
         }
     }
 
-    //CRYING!! NO TIME TO DO OPTIMISED VERSION:((
-    // Get world position (slow, recalculates every call)
-    glm::vec3 GetWorldPosition() {
-        if (!mesh) return glm::vec3(0);
-        if (m_parent && m_parent->mesh) {
-            return m_parent->GetWorldPosition() + mesh->positionXYZ;
-        }
-        return mesh->positionXYZ;
-    }
-
-    // Get world rotation (slow, recalculates every call)
-    glm::vec3 GetWorldRotation() {
-        // Get world transformation matrix
-        glm::mat4 worldTransform = GetWorldTransform();
-
-        // Extract rotation matrix (ignore scale and translation)
-        glm::mat3 rotationMatrix(worldTransform);
-
-        // Extract Euler angles in XYZ order (same as original)
-        glm::vec3 radians;
-        glm::extractEulerAngleXYZ(glm::mat4(rotationMatrix), radians.x, radians.y, radians.z);
-
-        return glm::degrees(radians);
-    }
-
-    glm::mat4 GetWorldTransform() {
-        glm::mat4 transform = glm::mat4(1.0f);
-
-        // Apply parent transformations first
-        if (m_parent) {
-            transform = m_parent->GetWorldTransform();
-        }
-
-        // Apply local transformations in TRS order (Translation * Rotation * Scale)
-        transform = glm::translate(transform, mesh->positionXYZ);
-        transform *= glm::eulerAngleXYZ(
+    glm::mat4 GetLocalTransform() {
+        // Translation matrix from local position
+        glm::mat4 translationMat = glm::translate(glm::mat4(1.0f), mesh->positionXYZ);
+        // Rotation matrix from Euler angles (converted to radians)
+        glm::mat4 rotationMat = glm::eulerAngleXYZ(
             glm::radians(mesh->rotationEulerXYZ.x),
             glm::radians(mesh->rotationEulerXYZ.y),
             glm::radians(mesh->rotationEulerXYZ.z)
         );
-        transform = glm::scale(transform, glm::vec3(mesh->uniformScale));
+        // Scale matrix (uniform scaling)
+        glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), glm::vec3(mesh->uniformScale));
 
-        return transform;
+        // Combine: Translation * Rotation * Scale
+        return translationMat * rotationMat * scaleMat;
     }
 
+    // Build the world transformation matrix by composing parent's transformation if available
+    glm::mat4 GetWorldTransform() {
+        // Start with the local transform
+        glm::mat4 localTransform = GetLocalTransform();
 
-    glm::quat GetWorldRotationQuat()  {
+        // If there is a valid parent, the world transform is parent's world transform multiplied by local
+        if (m_parent) {
+            if (m_parent->fakeParent)  return  localTransform;
+
+
+
+            return m_parent->GetWorldTransform() * localTransform;
+        }
+        return localTransform;
+    }
+
+    // Get the world position by extracting the translation part from the world matrix
+    glm::vec3 GetWorldPosition() {
+        // If no mesh is attached, return zero vector
+        if (!mesh) return glm::vec3(0.0f);
+
+        // Compute the full world transform
+        glm::mat4 worldTransform = GetWorldTransform();
+        // The translation is in the 4th column of the 4x4 matrix (ignoring w component)
+        return glm::vec3(worldTransform[3]);
+    }
+
+    // Get the world rotation quaternion directly from the world transformation matrix
+    glm::quat GetWorldRotationQuat() {
         // Convert degrees to radians
         glm::vec3 radians = glm::radians(GetWorldRotation());
 
@@ -185,14 +184,35 @@ public:
         return glm::quat_cast(rotationMatrix);
     }
 
+    // Get the world rotation as Euler angles (degrees),
+    // by converting the quaternion from the world transform to Euler angles.
+    glm::vec3 GetWorldRotation() {
+        // Get world transformation matrix
+        glm::mat4 worldTransform = GetWorldTransform();
 
-    // Get world scale (slow, recalculates every call)
-    float GetWorldScale() {
-        if (m_parent) {
-            return m_parent->GetWorldScale() * mesh->uniformScale;
-        }
-        return mesh->uniformScale;
+        // Extract rotation matrix (ignore scale and translation)
+        glm::mat3 rotationMatrix(worldTransform);
+
+        // Extract Euler angles in XYZ order (same as original)
+        glm::vec3 radians;
+        glm::extractEulerAngleXYZ(glm::mat4(rotationMatrix), radians.x, radians.y, radians.z);
+
+        return glm::degrees(radians);
     }
+
+    float GetWorldScale() {
+        if (!mesh) return 1.0f;
+
+        float localScale = mesh->uniformScale;
+
+        // Recursively multiply parent's scale if it exists
+        if (m_parent) {
+            return m_parent->GetWorldScale() * localScale;
+        }
+
+        return localScale;
+    }
+
 
 
     void RemoveParent() {
