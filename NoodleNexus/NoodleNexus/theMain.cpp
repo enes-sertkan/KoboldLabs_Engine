@@ -222,6 +222,9 @@ void SetupDearImGui(GLFWwindow* window)
 void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilter& filter) {
     if (!filter.PassFilter(obj->name.c_str())) return;
 
+    if (!obj->isActive) {
+        ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.5f, 0.5f, 0.5f, 1.0f));
+    }
     ImGui::PushID(obj);
 
     ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow |
@@ -251,8 +254,23 @@ void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilt
             obj->RemoveParent();
             
         }
+
+        if (ImGui::MenuItem("Destroy Object"))
+        {
+            obj->Destroy();
+            // Clear selection if destroying the selected object
+            if (sceneEditor->selectedObject == obj)
+            {
+                sceneEditor->selectedObject = nullptr;
+            }
+        }
+
+
         ImGui::EndPopup();
-    }
+        if (!obj->isActive) {
+            ImGui::PopStyleColor();
+        }   
+ }
 
     // Recursive render using PROPER child list
     if (isOpen) {
@@ -261,7 +279,9 @@ void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilt
         }
         ImGui::TreePop();
     }
-
+    if (!obj->isActive) {
+        ImGui::PopStyleColor();
+    }
     ImGui::PopID();
 }
 
@@ -285,6 +305,7 @@ void SceneHierarchyExample(SceneEditor* sceneEditor) {
     }
 
     /* PHASE 2: Draw hierarchy roots */
+
     for (Object* obj : scene->sceneObjects) {
         if (allChildren.find(obj) == allChildren.end()) {
             RenderObjectNode(obj, sceneEditor, filter);
@@ -295,8 +316,46 @@ void SceneHierarchyExample(SceneEditor* sceneEditor) {
 }
 
 
-void ObjectPropertiesExample(Object* selectedObject)
+void ObjectPropertiesExample(SceneEditor* sceneEditor)
 {
+    Object* selectedObject = sceneEditor->selectedObject;
+
+    if (!selectedObject) return;
+
+    ImGui::Begin("Object Properties");
+
+    if (ImGui::CollapsingHeader("General Settings", ImGuiTreeNodeFlags_DefaultOpen)) {
+        ImGui::Checkbox("Is Active", &selectedObject->isActive);
+        ImGui::Checkbox("Collision Static", &selectedObject->isCollisionStatic);
+        ImGui::Checkbox("Is Temporary", &selectedObject->isTemporary);
+
+        // Tags management
+        static char newTag[32] = "";
+        ImGui::InputText("New Tag", newTag, IM_ARRAYSIZE(newTag));
+        if (ImGui::Button("Add Tag") && newTag[0] != '\0') {
+            selectedObject->tags.push_back(newTag);
+            newTag[0] = '\0';
+        }
+
+        ImGui::Text("Tags:");
+        for (auto it = selectedObject->tags.begin(); it != selectedObject->tags.end();) {
+            ImGui::BulletText("%s", it->c_str());
+            ImGui::SameLine();
+            if (ImGui::SmallButton("X")) {
+                it = selectedObject->tags.erase(it);
+            }
+            else {
+                ++it;
+            }
+        }
+    }
+    if (ImGui::Button("Destroy Object", ImVec2(-1, 0)))
+    {
+        selectedObject->Destroy();
+        sceneEditor->selectedObject = nullptr;
+        // This will be handled in the next frame by SceneHierarchyExample
+    }
+    
     if (!selectedObject || !selectedObject->mesh) return;
 
     // Temporary copy with sanitized values
@@ -309,53 +368,54 @@ void ObjectPropertiesExample(Object* selectedObject)
 
 
 
-    ImGui::Begin("Mesh Properties");
+
 
     // Basic Transform Controls
     if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        ImGui::DragFloat3("Position",
-            glm::value_ptr(selectedObject->startTranform->position),
-            0.05f);
-
-
-        ImGui::DragFloat3("Rotation",
-            glm::value_ptr(selectedObject->startTranform->rotation),
-            0.5f);
-    
-
-        ImGui::DragFloat("Scale",
-            &selectedObject->startTranform->scale.x,
-            0.1f, 0.01f, 100.0f);  // Advanced controls here
-
-
-        if (ImGui::CollapsingHeader("Current Position"))
-        {
-            // Position
+        if (selectedObject->startTranform) {
             ImGui::DragFloat3("Position",
-                glm::value_ptr(selectedObject->mesh->positionXYZ),
-                0.1f);
+                glm::value_ptr(selectedObject->startTranform->position),
+                0.05f);
 
-            // Rotation (convert radians to degrees for display)
-            glm::vec3 rotationDegrees = glm::degrees(
-                selectedObject->mesh->rotationEulerXYZ
-            );
 
-            if (ImGui::DragFloat3("Rotation",
-                glm::value_ptr(rotationDegrees),
-                1.0f))
+            ImGui::DragFloat3("Rotation",
+                glm::value_ptr(selectedObject->startTranform->rotation),
+                0.5f);
+
+
+            ImGui::DragFloat("Scale",
+                &selectedObject->startTranform->scale.x,
+                0.1f, 0.01f, 100.0f);  // Advanced controls here
+
+
+            if (ImGui::CollapsingHeader("Current Position"))
             {
-                selectedObject->mesh->rotationEulerXYZ =
-                    glm::radians(rotationDegrees);
+                // Position
+                ImGui::DragFloat3("Position",
+                    glm::value_ptr(selectedObject->mesh->positionXYZ),
+                    0.1f);
+
+                // Rotation (convert radians to degrees for display)
+                glm::vec3 rotationDegrees = glm::degrees(
+                    selectedObject->mesh->rotationEulerXYZ
+                );
+
+                if (ImGui::DragFloat3("Rotation",
+                    glm::value_ptr(rotationDegrees),
+                    1.0f))
+                {
+                    selectedObject->mesh->rotationEulerXYZ =
+                        glm::radians(rotationDegrees);
+                }
+
+                // Scale
+                ImGui::DragFloat("Scale",
+                    &selectedObject->mesh->uniformScale,
+                    0.1f, 0.01f, 100.0f);  // Advanced controls here
             }
 
-            // Scale
-            ImGui::DragFloat("Scale",
-                &selectedObject->mesh->uniformScale,
-                0.1f, 0.01f, 100.0f);  // Advanced controls here
         }
-
-
     }
 
     // Material Properties
@@ -444,9 +504,45 @@ void ObjectPropertiesExample(Object* selectedObject)
     }
 
     ImGui::End();
+
+  
+
 }
 
+void ObjectCreationWindow(Scene* scene, SceneEditor* editor) {
+    ImGui::Begin("Object Creation");
 
+    if (ImGui::Button("Create Cube")) {
+        //Object* newObj = scene->CreateCube("New Cube");
+        //editor->selectedObject = newObj;
+    }
+
+    if (ImGui::Button("Create Sphere")) {
+        //Object* newObj = scene->CreateSphere("New Sphere");
+        //editor->selectedObject = newObj;
+    }
+
+    if (ImGui::Button("Copy Selected") && editor->selectedObject) {
+        //Object* original = editor->selectedObject;
+        //Object* copy = new Object(*original); // Assuming proper copy constructor
+        //copy->name = original->name + "_copy";
+        //scene->sceneObjects.push_back(copy);
+        //editor->selectedObject = copy;
+    }
+
+    // Advanced creation with parameters
+    static char objName[128] = "";
+    ImGui::InputText("Object Name", objName, IM_ARRAYSIZE(objName));
+    if (ImGui::Button("Create Empty")) {
+        //Object* newObj = new Object();
+        //newObj->name = objName;
+        //scene->sceneObjects.push_back(newObj);
+        //editor->selectedObject = newObj;
+        //objName[0] = '\0';
+    }
+
+    ImGui::End();
+}
 //IMGUI HELL
 void SaveSceneImgui(SceneEditor* sceneEditor, const std::string& name) {
     if (!sceneEditor || !sceneEditor->fileManger || !sceneEditor->scene) {
@@ -774,7 +870,7 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory, aPlaye
 
         // Your GUI components
         SceneHierarchyExample(sceneEditor);
-        ObjectPropertiesExample(sceneEditor->selectedObject);
+        ObjectPropertiesExample(sceneEditor);
         TurretSpawnerWindow(factory, sceneEditor);
 
         SaveSceneButton(sceneEditor);

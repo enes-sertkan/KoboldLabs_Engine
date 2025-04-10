@@ -67,7 +67,10 @@ public:
         }
         else if (!IsPlayerInAttackRange()&& goal["playerDamaged"])
         {
-            goal = { {"playerDamaged", true} }; // Attack mode
+            if (IsPlayerInRange())
+                goal = { {"playerDamaged", true} }; // Attack mode
+            else goal = { { "hasReachedControlPoint", true} };
+
             currentPlan = std::queue<GOAPAction*>();
         }
         else if (!controlPoints.empty()&&!IsPlayerInRange()) {

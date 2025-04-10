@@ -39,6 +39,8 @@ void SceneEditor::Start(std::string selectBoxPath, KLFileManager* klFileManger, 
     
     ghostTurret = factory->SpawnTurretGhost(glm::vec3(0), STANDARTBODY, STANDARTNECK, STANDARTHEAD);
     fileManger = klFileManger;
+
+    scene->sceneEditor = this;
  
 
 }
@@ -55,12 +57,16 @@ void SceneEditor::Update()
 {
     if (selectedObject != nullptr)
     {
-        UpdateSelectBox();
+   
 
         // Update selected object's mesh properties
-        selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;
-        selectedObject->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
-        selectedObject->mesh->uniformScale = selectedObject->startTranform->scale.x;
+        if (selectedObject->startTranform != nullptr)
+        {
+            UpdateSelectBox();
+            selectedObject->mesh->positionXYZ = selectedObject->startTranform->position;
+            selectedObject->mesh->rotationEulerXYZ = selectedObject->startTranform->rotation;
+            selectedObject->mesh->uniformScale = selectedObject->startTranform->scale.x;
+        }
     }
     HandleInputAsync(window);
 

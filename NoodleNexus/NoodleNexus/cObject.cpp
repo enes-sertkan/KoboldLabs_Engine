@@ -1,6 +1,6 @@
 #include "sObject.h"
 #include "Scene.hpp"
-
+#include "SceneEditor.h"
 
 
 void Object::Destroy()
@@ -34,6 +34,10 @@ void Object::Destroy()
     if (scene)
     {
         scene->RemoveObject(this);
+
+        if (scene->sceneEditor)
+            if (scene->sceneEditor->selectedObject == this)
+                scene->sceneEditor->selectedObject = nullptr;
     }
 
   

@@ -28,7 +28,7 @@
 #include "cFBO_RGB_depth.hpp"
 //#include "Animator.h"
 
-
+class SceneEditor;
 
 //This is a class bc we gonna have functions in it later
 class Scene
@@ -51,7 +51,7 @@ private:
 	}
 public:
 	//Animator* animator = nullptr;
-
+	SceneEditor* sceneEditor = nullptr;
 	Object* selectedObject = nullptr;
 
 	float cameraMoveSpeed=200;

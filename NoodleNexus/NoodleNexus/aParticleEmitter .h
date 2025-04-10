@@ -76,10 +76,10 @@ public:
 
         // Update GPU buffer
       //  UpdateSSBOData();
-        int counter = 0;
+        
         if (!firstSpawn)
         {
-
+            int counter = 0;
 
             // Update existing particles
             for (int i = 0; i < particles->size(); i++) {
@@ -104,7 +104,13 @@ public:
                 particles->at(i).size = glm::mix(sizeEnd, sizeStart, lifeRatio);
 
             }
+            if (counter <= 0 && !spawnActive && destroyOnNoParticles)
+            {
+                this->object->Destroy();
+            }
         }
+
+
 
         // Spawn new particles
          particlesToSpawn += spawnRate * deltaTime;
@@ -130,10 +136,7 @@ public:
         object->mesh->pParticles = particles;
 
 
-        if (counter <= 0 && !isActive && !destroyOnNoParticles)
-        {
-            this->object->Destroy();
-        }
+     
 
     }
 
