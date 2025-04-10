@@ -551,7 +551,7 @@ void LabAttackFactory::Start()
     standardHead->ID = STANDARTHEAD;
     standardHead->object = headObj;
     aTurretHead* standartHeadAction = new aTurretHead();
-    standartHeadAction->m_recoilDistance = 0.6f;
+    standartHeadAction->m_recoilDistance = 0.6f / 2.5f;
     standartHeadAction->m_recoilRecoverySpeed = 1.f;
 
     standartHeadAction->factory = this;
@@ -624,7 +624,7 @@ void LabAttackFactory::Start()
     rocketHead->object = rocketHeadObj;
 
     aTurretHeadFollowing* rocketHeadAction = new aTurretHeadFollowing();
-    rocketHeadAction->m_recoilDistance = 0.6f;
+    rocketHeadAction->m_recoilDistance = 0.6f / 2.5f;
     rocketHeadAction->m_recoilRecoverySpeed = 1.f;
 
     rocketHeadAction->factory = this;

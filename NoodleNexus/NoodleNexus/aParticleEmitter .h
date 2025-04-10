@@ -139,7 +139,7 @@ public:
 
         // Spawn new particles
          particlesToSpawn += spawnRate * deltaTime;
-         if (spawnActive)
+         if (spawnActive || firstSpawn)
         for (int i = 0; i < particlesToSpawn; i++) {
             int id = GetNextAvailableParticle();
       //      if (particles->at(id).active) break; // Pool full

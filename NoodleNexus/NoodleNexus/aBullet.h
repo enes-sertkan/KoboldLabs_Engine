@@ -88,6 +88,7 @@ public:
         aParticleEmitter* particleEmmitter = new aParticleEmitter();
         particleEmmitter->spawnRate = 0.f;
         particleEmmitter->destroyOnNoParticles = true;
+        particleEmmitter->spawnActive = false;
         particleEmmitter->particlesToSpawn = 5.f;
         particleEmmitter->minDirection = glm::vec3(-1, -1, -1);
         particleEmmitter->maxDirection = glm::vec3(1, 1, 1);

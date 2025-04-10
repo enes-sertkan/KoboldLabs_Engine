@@ -40,8 +40,7 @@ private:
         if (!factory) return;
         Object* effectEmiiter = factory->scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", body->object->GetWorldPosition() , 1.f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), false, factory->scene->sceneObjects);
 
-
-
+        
         effectEmiiter->mesh->bIsWireframe = true;
         effectEmiiter->mesh->isParticleEmitter = true;
         effectEmiiter->mesh->metal = 0.1;
@@ -59,7 +58,7 @@ private:
         particleEmmitter->sizeEnd = 0.f;
         particleEmmitter->lifeTimeRange = glm::vec2(0.7f, 1.5f);
         particleEmmitter->damping = glm::vec3(0.93f, 0.9f, 0.93f);
-
+        particleEmmitter->spawnActive = false;
         factory->scene->AddActionToObj(particleEmmitter, effectEmiiter);
         particleEmmitter->Start();
 

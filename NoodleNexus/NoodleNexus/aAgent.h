@@ -141,7 +141,7 @@ public:
         particleEmmitter->sizeEnd = 0.f;
         particleEmmitter->lifeTimeRange = glm::vec2(1.4f, 1.5f);
         particleEmmitter->damping = glm::vec3(0.65f, 0.8f, 0.65f);
-
+        particleEmmitter->spawnActive = false;
         factory->scene->AddActionToObj(particleEmmitter, effectEmiiter);
         particleEmmitter->Start();
 
@@ -164,7 +164,7 @@ public:
         particleEmmitter2->sizeEnd = 0.f;
         particleEmmitter2->lifeTimeRange = glm::vec2(1.4f, 1.5f);
         particleEmmitter2->damping = glm::vec3(0.95f, 0.95f, 0.95f);
-
+        particleEmmitter2->spawnActive = false;
         factory->scene->AddActionToObj(particleEmmitter2, effectEmiiter2);
         particleEmmitter2->Start();
     }
