@@ -236,7 +236,7 @@
     <ClInclude Include="Animator.h" />
     <ClInclude Include="aPlayerBullet.h" />
     <ClInclude Include="aPlayerCamera.hpp" />
-    <ClInclude Include="aPlayerCore.h" />
+    <ClInclude Include="aPlayerFollowingBullet.h" />
     <ClInclude Include="aPlayerShooting.h" />
     <ClInclude Include="aRayCastPhysics.h" />
     <ClInclude Include="aRotate.h" />

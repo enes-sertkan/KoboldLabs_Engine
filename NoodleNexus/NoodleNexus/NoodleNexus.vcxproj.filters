@@ -628,8 +628,8 @@
     <ClInclude Include="player.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="aPlayerCore.h">
-      <Filter>Actions</Filter>
+    <ClInclude Include="aPlayerFollowingBullet.h">
+      <Filter>OpenTD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
