@@ -628,6 +628,9 @@
     <ClInclude Include="player.h">
       <Filter>Header Files\Player</Filter>
     </ClInclude>
+    <ClInclude Include="aPlayerFollowingBullet.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">
