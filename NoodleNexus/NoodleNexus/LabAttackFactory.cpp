@@ -146,6 +146,8 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             {
                 aGrassCollider* grassCollider = new aGrassCollider();
                 grassCollider->SetGrass(grass);
+                grassCollider->colliderRadius = 1.2f;
+                grassCollider->colliderBlendRadius = 1.5f;
                 scene->AddActionToObj(grassCollider, enemy);
             }
             
