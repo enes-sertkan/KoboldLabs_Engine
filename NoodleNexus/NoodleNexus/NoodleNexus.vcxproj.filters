@@ -323,6 +323,9 @@
     <ClCompile Include="aWheelEnemyHead.h">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlyFileLoaders.h">
@@ -630,6 +633,12 @@
     </ClInclude>
     <ClInclude Include="aPlayerFollowingBullet.h">
       <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="aTurretHeadFollowing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
+      <Filter>Imgui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

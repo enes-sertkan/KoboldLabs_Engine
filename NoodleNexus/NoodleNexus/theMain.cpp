@@ -94,6 +94,7 @@
 #include "imgui/imconfig.h"          // Main MGUI header
 #include "imgui/imgui_impl_glfw.h" // GLFW integration (if required)
 #include "imgui/imgui_impl_opengl3.h" // OpenGL 3+ integration
+#include "imgui/imgui_stdlib.h"
 
 #include "aParticleEmitter .h"
 #include "player.h"
@@ -219,6 +220,7 @@ void SetupDearImGui(GLFWwindow* window)
 }
 
 
+// Renders a single object node (unchanged from previous versions)
 void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilter& filter) {
     if (!filter.PassFilter(obj->name.c_str())) return;
 
@@ -227,9 +229,7 @@ void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilt
     }
     ImGui::PushID(obj);
 
-    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow |
-        ImGuiTreeNodeFlags_SpanAvailWidth;
-
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
     flags |= obj->m_children.empty() ? ImGuiTreeNodeFlags_Leaf : 0;
     flags |= (sceneEditor->selectedObject == obj) ? ImGuiTreeNodeFlags_Selected : 0;
 
@@ -240,41 +240,60 @@ void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilt
         sceneEditor->selectedObject = obj;
     }
 
-    // Context menu for parenting
+    // Context menu for object operations (parenting, reordering, destroy, etc.)
     if (ImGui::BeginPopupContextItem()) {
         if (ImGui::MenuItem("Make Child")) {
-            if (sceneEditor->selectedObject &&
-                sceneEditor->selectedObject != obj) {
+            if (sceneEditor->selectedObject && sceneEditor->selectedObject != obj) {
                 obj->AddChild(sceneEditor->selectedObject);
             }
         }
-
         if (ImGui::MenuItem("Remove Parent")) {
-             
             obj->RemoveParent();
-            
         }
-
-        if (ImGui::MenuItem("Destroy Object"))
-        {
+        if (ImGui::MenuItem("Destroy Object")) {
             obj->Destroy();
-            // Clear selection if destroying the selected object
-            if (sceneEditor->selectedObject == obj)
-            {
+            if (sceneEditor->selectedObject == obj) {
                 sceneEditor->selectedObject = nullptr;
             }
         }
-
-
+        // Reorder options:
+        if (ImGui::MenuItem("Move Up")) {
+            if (obj->m_parent) {
+                auto& siblings = obj->m_parent->m_children;
+                auto it = std::find(siblings.begin(), siblings.end(), obj);
+                if (it != siblings.begin()) {
+                    std::iter_swap(it, it - 1);
+                }
+            }
+            else {
+                auto& roots = obj->scene->sceneObjects;
+                auto it = std::find(roots.begin(), roots.end(), obj);
+                if (it != roots.begin()) {
+                    std::iter_swap(it, it - 1);
+                }
+            }
+        }
+        if (ImGui::MenuItem("Move Down")) {
+            if (obj->m_parent) {
+                auto& siblings = obj->m_parent->m_children;
+                auto it = std::find(siblings.begin(), siblings.end(), obj);
+                if (it != siblings.end() && (it + 1) != siblings.end()) {
+                    std::iter_swap(it, it + 1);
+                }
+            }
+            else {
+                auto& roots = obj->scene->sceneObjects;
+                auto it = std::find(roots.begin(), roots.end(), obj);
+                if (it != roots.end() && (it + 1) != roots.end()) {
+                    std::iter_swap(it, it + 1);
+                }
+            }
+        }
         ImGui::EndPopup();
-        if (!obj->isActive) {
-            ImGui::PopStyleColor();
-        }   
- }
+    }
 
-    // Recursive render using PROPER child list
     if (isOpen) {
-        for (Object* child : obj->m_children) { // Use m_children instead of sceneObjects
+        for (Object* child : obj->m_children) {
             RenderObjectNode(child, sceneEditor, filter);
         }
         ImGui::TreePop();
@@ -285,231 +304,292 @@ void RenderObjectNode(Object* obj, SceneEditor* sceneEditor, const ImGuiTextFilt
     ImGui::PopID();
 }
 
+// Renders a single light node. It shows a selectable label for each light,
+// and when selected it displays some editable state.
+void RenderLightNode(cLightManager::sLight* light, int index, SceneEditor* sceneEditor) {
+    bool selected = (sceneEditor->lightIndex == index);
+    std::string label = "Light " + std::to_string(index);
+    if (ImGui::Selectable(label.c_str(), selected)) {
+        sceneEditor->lightIndex = index;
+        sceneEditor->selectedLight = light;
+    }
+    // Right-click context menu for the light (e.g., toggle on/off)
+
+}
+
+// Main hierarchy window that shows both objects and lights within separate folders
 void SceneHierarchyExample(SceneEditor* sceneEditor) {
     Scene* scene = sceneEditor->scene;
     static ImGuiTextFilter filter;
+    static bool sortByName = false;  // Toggle for sorting objects
+    static bool showObjects = true;
+    static bool showLights = true;
 
     ImGui::Begin("Scene Hierarchy");
+
+    // Top bar: toggles and a checkbox to sort objects by name
+    ImGui::Checkbox("Show Objects", &showObjects);
+    ImGui::SameLine();
+    ImGui::Checkbox("Sort by Name", &sortByName);
+    ImGui::SameLine();
+    ImGui::Checkbox("Show Lights", &showLights);
 
     filter.Draw("Search...");
     ImGui::SameLine();
     if (ImGui::Button("Clear")) filter.Clear();
     ImGui::Separator();
 
-    /* PHASE 1: Find all child objects using PROPER child list */
-    std::unordered_set<Object*> allChildren;
-    for (Object* obj : scene->sceneObjects) {
-        for (Object* child : obj->m_children) { // Use m_children here
-            allChildren.insert(child);
+    // ****************** OBJECTS FOLDER ******************
+    if (showObjects) {
+        if (ImGui::CollapsingHeader("Objects", ImGuiTreeNodeFlags_DefaultOpen)) {
+            // If sorting is enabled, sort the root objects.
+            if (sortByName) {
+                std::sort(scene->sceneObjects.begin(), scene->sceneObjects.end(),
+                    [](Object* a, Object* b) {
+                        return a->name < b->name;
+                    }
+                );
+            }
+            // PHASE 1: Collect all children (so we only list roots)
+            std::unordered_set<Object*> allChildren;
+            for (Object* obj : scene->sceneObjects) {
+                for (Object* child : obj->m_children) {
+                    allChildren.insert(child);
+                }
+            }
+            // PHASE 2: Draw only root objects
+            for (Object* obj : scene->sceneObjects) {
+                if (allChildren.find(obj) == allChildren.end()) {
+                    RenderObjectNode(obj, sceneEditor, filter);
+                }
+            }
         }
     }
 
-    /* PHASE 2: Draw hierarchy roots */
-
-    for (Object* obj : scene->sceneObjects) {
-        if (allChildren.find(obj) == allChildren.end()) {
-            RenderObjectNode(obj, sceneEditor, filter);
+    // ****************** LIGHTS FOLDER ******************
+    if (showLights && scene->lightManager) {
+        if (ImGui::CollapsingHeader("Lights", ImGuiTreeNodeFlags_DefaultOpen)) {
+            // Iterate over all lights in the light manager
+            for (int i = 0; i < cLightManager::NUMBEROFLIGHTS; ++i) {
+                cLightManager::sLight* light = &(scene->lightManager->theLights[i]);
+                // Optionally, you can skip lights that are "off" by checking param2.x
+                RenderLightNode(light, i, sceneEditor);
+            }
         }
     }
 
     ImGui::End();
 }
-
 
 void ObjectPropertiesExample(SceneEditor* sceneEditor)
 {
-    Object* selectedObject = sceneEditor->selectedObject;
+    ImGui::Begin("Properties");
 
-    if (!selectedObject) return;
+    // Mode selection: 0 = Object Properties, 1 = Light Properties
+    static int mode = 0;
+    if (ImGui::RadioButton("Object", mode == 0))
+        mode = 0;
+    ImGui::SameLine();
+    if (ImGui::RadioButton("Light", mode == 1))
+        mode = 1;
 
-    ImGui::Begin("Object Properties");
-
-    if (ImGui::CollapsingHeader("General Settings", ImGuiTreeNodeFlags_DefaultOpen)) {
-        ImGui::Checkbox("Is Active", &selectedObject->isActive);
-        ImGui::Checkbox("Collision Static", &selectedObject->isCollisionStatic);
-        ImGui::Checkbox("Is Temporary", &selectedObject->isTemporary);
-
-        // Tags management
-        static char newTag[32] = "";
-        ImGui::InputText("New Tag", newTag, IM_ARRAYSIZE(newTag));
-        if (ImGui::Button("Add Tag") && newTag[0] != '\0') {
-            selectedObject->tags.push_back(newTag);
-            newTag[0] = '\0';
+    if (mode == 0)
+    {
+        // ***** OBJECT PROPERTIES (existing code) *****
+        Object* selectedObject = sceneEditor->selectedObject;
+        if (!selectedObject) {
+            ImGui::Text("No object selected.");
+            ImGui::End();
+            return;
         }
 
-        ImGui::Text("Tags:");
-        for (auto it = selectedObject->tags.begin(); it != selectedObject->tags.end();) {
-            ImGui::BulletText("%s", it->c_str());
-            ImGui::SameLine();
-            if (ImGui::SmallButton("X")) {
-                it = selectedObject->tags.erase(it);
+        if (ImGui::CollapsingHeader("General Settings", ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            ImGui::InputText("NAME", &selectedObject->name, 0.01f);
+
+            if (ImGui::Button("Copy ")) {
+                Object* original = selectedObject;
+                Object* copy = original->Clone(); // Assuming proper copy constructor
+                copy->name = original->name + "_copy";
+                sceneEditor->selectedObject = copy;
             }
-            else {
-                ++it;
+            ImGui::Checkbox("Is Active", &selectedObject->isActive);
+            ImGui::Checkbox("Collision Static", &selectedObject->isCollisionStatic);
+            ImGui::Checkbox("Is Temporary", &selectedObject->isTemporary);
+
+            // Tags management
+            static char newTag[32] = "";
+            ImGui::InputText("New Tag", newTag, IM_ARRAYSIZE(newTag));
+            if (ImGui::Button("Add Tag") && newTag[0] != '\0') {
+                selectedObject->tags.push_back(newTag);
+                newTag[0] = '\0';
             }
-        }
-    }
-    if (ImGui::Button("Destroy Object", ImVec2(-1, 0)))
-    {
-        selectedObject->Destroy();
-        sceneEditor->selectedObject = nullptr;
-        // This will be handled in the next frame by SceneHierarchyExample
-    }
-    
-    if (!selectedObject || !selectedObject->mesh) return;
-
-    // Temporary copy with sanitized values
-    glm::vec3 safePos = selectedObject->mesh->positionXYZ;
-
-    // Clamp extremely large values before editing
-    if (glm::length(safePos) > 1000.0f) {
-        safePos = glm::vec3(0.0f);
-    }
-
-
-
-
-
-    // Basic Transform Controls
-    if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
-    {
-        if (selectedObject->startTranform) {
-            ImGui::DragFloat3("Position",
-                glm::value_ptr(selectedObject->startTranform->position),
-                0.05f);
-
-
-            ImGui::DragFloat3("Rotation",
-                glm::value_ptr(selectedObject->startTranform->rotation),
-                0.5f);
-
-
-            ImGui::DragFloat("Scale",
-                &selectedObject->startTranform->scale.x,
-                0.1f, 0.01f, 100.0f);  // Advanced controls here
-
-
-            if (ImGui::CollapsingHeader("Current Position"))
-            {
-                // Position
-                ImGui::DragFloat3("Position",
-                    glm::value_ptr(selectedObject->mesh->positionXYZ),
-                    0.1f);
-
-                // Rotation (convert radians to degrees for display)
-                glm::vec3 rotationDegrees = glm::degrees(
-                    selectedObject->mesh->rotationEulerXYZ
-                );
-
-                if (ImGui::DragFloat3("Rotation",
-                    glm::value_ptr(rotationDegrees),
-                    1.0f))
-                {
-                    selectedObject->mesh->rotationEulerXYZ =
-                        glm::radians(rotationDegrees);
+            ImGui::Text("Tags:");
+            for (auto it = selectedObject->tags.begin(); it != selectedObject->tags.end();) {
+                ImGui::BulletText("%s", it->c_str());
+                ImGui::SameLine();
+                if (ImGui::SmallButton("X")) {
+                    it = selectedObject->tags.erase(it);
                 }
-
-                // Scale
-                ImGui::DragFloat("Scale",
-                    &selectedObject->mesh->uniformScale,
-                    0.1f, 0.01f, 100.0f);  // Advanced controls here
+                else {
+                    ++it;
+                }
             }
-
         }
-    }
-
-    // Material Properties
-    if (ImGui::CollapsingHeader("Material Settings"))
-    {
-        ImGui::ColorEdit4("Object Color", glm::value_ptr(selectedObject->mesh->objectColourRGBA));
-        ImGui::Checkbox("Override Color", &selectedObject->mesh->bOverrideObjectColour);
-        ImGui::DragFloat("Transparency", &selectedObject->mesh->transperency, 0.01f, 0.0f, 1.0f);
-        ImGui::DragFloat("Metalness", &selectedObject->mesh->metal, 0.01f, 0.0f, 1.0f);
-        ImGui::DragFloat("Smoothness", &selectedObject->mesh->smoothness, 0.01f, 0.0f, 1.0f);
-    }
-
-    // Texture Management
-    if (ImGui::CollapsingHeader("Textures"))
-    {
-        for (int i = 0; i < sMesh::MAX_NUM_TEXTURES; i++)
-        {
-            ImGui::PushID(i);
-            ImGui::Text("Texture Slot %d", i);
-           // ImGui::InputText("Path", selectedObject->mesh->textures[i]);
-            ImGui::DragFloat("Blend Ratio", &selectedObject->mesh->blendRatio[i], 0.01f, 0.0f, 1.0f);
-            ImGui::Combo("Fill Type", &selectedObject->mesh->textureFillType[i], "Repeat\0Clamp\0Mirror\0");
-            ImGui::Separator();
-            ImGui::PopID();
-        }
-    }
-
-    // Shell Texturing (STData)
-    if (ImGui::CollapsingHeader("Shell Texturing"))
-    {
-        sSTData& st = selectedObject->mesh->stData;
-        ImGui::Checkbox("Enable Shell Texturing", &selectedObject->mesh->shellTexturing);
-
-        ImGui::DragInt("Shell Count", &st.shellCount, 1, 1, 1000);
-        ImGui::DragFloat("Vertical Tightening", &st.verticalTightening, 0.01f, 0.0f, 1.0f);
-        ImGui::DragFloat("Vertical Exponent", &st.verticalExponent, 0.01f, 0.0f, 5.0f);
-        ImGui::DragFloat("Shell Length", &st.shellLength, 0.01f, 0.0f, 2.0f);
-    }
-
-    // Collider Management
-    if (ImGui::CollapsingHeader("Colliders"))
-    {
-        // Add new collider
-        if (ImGui::Button("Add Collider"))
-        {
-            int newIndex = selectedObject->mesh->CreateCollider(
-                selectedObject->mesh->positionXYZ
-            );
-            if (newIndex == -1)
-                ImGui::TextColored(ImVec4(1, 0, 0, 1), "No free collider slots!");
+        if (ImGui::Button("Destroy Object", ImVec2(-1, 0))) {
+            selectedObject->Destroy();
+            sceneEditor->selectedObject = nullptr;
+            // This will be handled in the next frame by SceneHierarchyExample
         }
 
-        // List existing colliders
-        for (int i = 0; i < 20; i++)
-        {
-            sSTCollider& col = selectedObject->mesh->stColliders[i];
-            if (!col.isOn) continue;
+        if (!selectedObject || !selectedObject->mesh) {
+            ImGui::End();
+            return;
+        }
 
-            ImGui::PushID(i);
-            if (ImGui::TreeNodeEx(("Collider " + std::to_string(i)).c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+        // Basic Transform Controls
+        if (ImGui::CollapsingHeader("Transform", ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            if (selectedObject->startTranform)
             {
-                ImGui::DragFloat3("Position", glm::value_ptr(col.position), 0.1f);
-                ImGui::DragFloat("Radius", &col.radius, 0.01f, 0.01f, 10.0f);
-                ImGui::DragFloat("Blend Radius", &col.blendingRadius, 0.01f, 0.0f, 10.0f);
+                ImGui::DragFloat3("Position", glm::value_ptr(selectedObject->startTranform->position), 0.05f);
+                ImGui::DragFloat3("Rotation", glm::value_ptr(selectedObject->startTranform->rotation), 0.5f);
+                ImGui::DragFloat("Scale", &selectedObject->startTranform->scale.x, 0.1f, 0.01f, 100.0f);
 
-                if (ImGui::Button("Remove"))
+                if (ImGui::CollapsingHeader("Current Position"))
                 {
-                    selectedObject->mesh->RemoveCollider(i);
+                    ImGui::DragFloat3("Position", glm::value_ptr(selectedObject->mesh->positionXYZ), 0.1f);
+                    glm::vec3 rotationDegrees = glm::degrees(selectedObject->mesh->rotationEulerXYZ);
+                    if (ImGui::DragFloat3("Rotation", glm::value_ptr(rotationDegrees), 1.0f))
+                        selectedObject->mesh->rotationEulerXYZ = glm::radians(rotationDegrees);
+                    ImGui::DragFloat("Scale", &selectedObject->mesh->uniformScale, 0.1f, 0.01f, 100.0f);
+                }
+            }
+        }
+
+        // Material Properties
+        if (ImGui::CollapsingHeader("Material Settings"))
+        {
+            ImGui::ColorEdit4("Object Color", glm::value_ptr(selectedObject->mesh->objectColourRGBA));
+            ImGui::Checkbox("Override Color", &selectedObject->mesh->bOverrideObjectColour);
+            ImGui::DragFloat("Transparency", &selectedObject->mesh->transperency, 0.01f, 0.0f, 1.0f);
+            ImGui::DragFloat("Metalness", &selectedObject->mesh->metal, 0.01f, 0.0f, 1.0f);
+            ImGui::DragFloat("Smoothness", &selectedObject->mesh->smoothness, 0.01f, 0.0f, 1.0f);
+        }
+
+        // Texture Management
+        if (ImGui::CollapsingHeader("Textures"))
+        {
+            for (int i = 0; i < sMesh::MAX_NUM_TEXTURES; i++)
+            {
+                ImGui::PushID(i);
+                ImGui::Text("Texture Slot %d", i);
+                ImGui::InputText("Texture", &selectedObject->mesh->textures[i], 0.01f);
+                ImGui::DragFloat("Blend Ratio", &selectedObject->mesh->blendRatio[i], 0.01f, 0.0f, 1.0f);
+                ImGui::Combo("Fill Type", &selectedObject->mesh->textureFillType[i], "Repeat\0Clamp\0Mirror\0");
+                ImGui::Separator();
+                ImGui::PopID();
+            }
+        }
+
+        // Shell Texturing
+        if (ImGui::CollapsingHeader("Shell Texturing"))
+        {
+            sSTData& st = selectedObject->mesh->stData;
+            ImGui::Checkbox("Enable Shell Texturing", &selectedObject->mesh->shellTexturing);
+            ImGui::DragInt("Shell Count", &st.shellCount, 1, 1, 1000);
+            ImGui::DragFloat("Vertical Tightening", &st.verticalTightening, 0.01f, 0.0f, 1.0f);
+            ImGui::DragFloat("Vertical Exponent", &st.verticalExponent, 0.01f, 0.0f, 5.0f);
+            ImGui::DragFloat("Shell Length", &st.shellLength, 0.01f, 0.0f, 2.0f);
+        }
+
+        // Collider Management
+        if (ImGui::CollapsingHeader("Colliders"))
+        {
+            if (ImGui::Button("Add Collider"))
+            {
+                int newIndex = selectedObject->mesh->CreateCollider(selectedObject->mesh->positionXYZ);
+                if (newIndex == -1)
+                    ImGui::TextColored(ImVec4(1, 0, 0, 1), "No free collider slots!");
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                sSTCollider& col = selectedObject->mesh->stColliders[i];
+                if (!col.isOn) continue;
+                ImGui::PushID(i);
+                if (ImGui::TreeNodeEx(("Collider " + std::to_string(i)).c_str(), ImGuiTreeNodeFlags_DefaultOpen))
+                {
+                    ImGui::DragFloat3("Position", glm::value_ptr(col.position), 0.1f);
+                    ImGui::DragFloat("Radius", &col.radius, 0.01f, 0.01f, 10.0f);
+                    ImGui::DragFloat("Blend Radius", &col.blendingRadius, 0.01f, 0.0f, 10.0f);
+                    if (ImGui::Button("Remove"))
+                    {
+                        selectedObject->mesh->RemoveCollider(i);
+                        ImGui::TreePop();
+                        ImGui::PopID();
+                        break;
+                    }
                     ImGui::TreePop();
-                    ImGui::PopID();
-                    break;
                 }
-
-                ImGui::TreePop();
+                ImGui::PopID();
             }
-            ImGui::PopID();
+        }
+
+        // Special Effects
+        if (ImGui::CollapsingHeader("Special Effects"))
+        {
+            ImGui::DragFloat("Zoom Power", &selectedObject->mesh->zoomPower, 0.01f, 0.0f, 5.0f);
+            ImGui::DragFloat("Chromatic Power", &selectedObject->mesh->chromaticPower, 0.01f, 0.0f, 2.0f);
+            ImGui::Checkbox("Draw Both Faces", &selectedObject->mesh->drawBothFaces);
         }
     }
-
-    // Special Effects
-    if (ImGui::CollapsingHeader("Special Effects"))
+    else // Light mode
     {
-        ImGui::DragFloat("Zoom Power", &selectedObject->mesh->zoomPower, 0.01f, 0.0f, 5.0f);
-        ImGui::DragFloat("Chromatic Power", &selectedObject->mesh->chromaticPower, 0.01f, 0.0f, 2.0f);
-        ImGui::Checkbox("Draw Both Faces", &selectedObject->mesh->drawBothFaces);
+        // ***** LIGHT PROPERTIES MODE *****
+        cLightManager::sLight* selectedLight = sceneEditor->selectedLight;
+        if (!selectedLight)
+        {
+            ImGui::Text("No light selected.");
+            if (ImGui::Button("Pick First Light"))
+            {
+                selectedLight = sceneEditor->PickFirstLight();
+                sceneEditor->selectedLight = selectedLight;
+                sceneEditor->lightIndex = 0;
+            }
+        }
+        else
+        {
+            if (ImGui::CollapsingHeader("Light Settings", ImGuiTreeNodeFlags_DefaultOpen))
+            {
+                ImGui::DragFloat4("Position", &selectedLight->position[0]);
+                ImGui::DragFloat4("Diffuse", &selectedLight->diffuse[0]);
+                ImGui::DragFloat4("Specular", &selectedLight->specular[0]);
+                ImGui::DragFloat4("Attenuation", &selectedLight->atten[0]);
+                ImGui::DragFloat4("Direction", &selectedLight->direction[0]);
+                ImGui::DragFloat4("Param1", &selectedLight->param1[0]);
+                float onOff = selectedLight->param2.x;
+                if (ImGui::InputFloat("On/Off", &onOff))
+                {
+                    selectedLight->param2.x = onOff;
+                }
+            }
+            if (ImGui::Button("Remove Light"))
+            {
+                if (sceneEditor->scene->lightManager)
+                {
+                    int lightIndex = sceneEditor->lightIndex;
+                    sceneEditor->scene->lightManager->RemoveLight(lightIndex);
+                    sceneEditor->selectedLight = nullptr;
+                }
+            }
+        }
     }
 
     ImGui::End();
-
-  
-
 }
 
-void ObjectCreationWindow(Scene* scene, SceneEditor* editor) {
+
+void ObjectCreationWindow(SceneEditor* editor) {
     ImGui::Begin("Object Creation");
 
     if (ImGui::Button("Create Cube")) {
@@ -523,11 +603,11 @@ void ObjectCreationWindow(Scene* scene, SceneEditor* editor) {
     }
 
     if (ImGui::Button("Copy Selected") && editor->selectedObject) {
-        //Object* original = editor->selectedObject;
-        //Object* copy = new Object(*original); // Assuming proper copy constructor
-        //copy->name = original->name + "_copy";
-        //scene->sceneObjects.push_back(copy);
-        //editor->selectedObject = copy;
+        Object* original = editor->selectedObject;
+        Object* copy = original->Clone(); // Assuming proper copy constructor
+        copy->name = original->name + "_copy";
+        //editor->scene->sceneObjects.push_back(copy);
+        editor->selectedObject = copy;
     }
 
     // Advanced creation with parameters
@@ -872,7 +952,7 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory, aPlaye
         SceneHierarchyExample(sceneEditor);
         ObjectPropertiesExample(sceneEditor);
         TurretSpawnerWindow(factory, sceneEditor);
-
+        ObjectCreationWindow(sceneEditor);
         SaveSceneButton(sceneEditor);
         ShowSaveAsPopup(sceneEditor);
         //ShowLoadScenePopup(sceneEditor);

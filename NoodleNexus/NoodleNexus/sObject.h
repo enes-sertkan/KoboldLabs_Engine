@@ -222,5 +222,6 @@ public:
         }
     }
 
-
+    Object* Clone();
+  
 };
