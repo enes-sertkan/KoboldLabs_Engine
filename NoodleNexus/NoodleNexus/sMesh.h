@@ -21,34 +21,40 @@ struct Particle {
 	float size;
 	float lifetime;
 	float lifeRemaining;
+
+	// New: 3D rotation represented as Euler angles (in degrees)
+	glm::vec3 rotation = glm::vec3(0.0f);
+
+	// New: Rotation speed as Euler angle increments (degrees per second)
+	glm::vec3 rotationSpeed = glm::vec3(0.0f);
+
 	bool active = false;
 };
 
-struct GPUParticle {
+struct GPUParticle{
 	GPUParticle(Particle cpuParticle)
 	{
-	position = cpuParticle.position;
-	velocity = cpuParticle.velocity;
-	color = cpuParticle.color;
-	size = cpuParticle.size;
-	lifetime = cpuParticle.lifeRemaining;
+		position = cpuParticle.position;
+		velocity = cpuParticle.velocity;
+		color = cpuParticle.color;
+		size = cpuParticle.size;
+		lifetime = cpuParticle.lifeRemaining;
+		rotation = cpuParticle.rotation;  // Copy over current rotation
 	}
 	glm::vec3 position;   // 12 bytes
-	float padding1;       // +4 = 16 (vec3 needs padding in std140)
+	float size;           // 4 bytes (offset 12)
 
-	glm::vec3 velocity;   // 12
-	float padding2;       // +4 = 16
+	glm::vec3 velocity;   // 12 bytes (offset 16)
+	float lifetime;       // 4 bytes (offset 28)
 
-	glm::vec4 color;      // 16 (no padding needed)
+	glm::vec4 color;      // 16 bytes (offset 32)
 
-	float size;          // 4
-	float lifetime;      // +4 = 8  // Maps to CPU's `lifeRemaining`
+	glm::vec3 rotation;   // 12 bytes (offset 48)
+	float padding;        // 4 bytes (offset 60)
 
-	// Optional: Add padding if needed for alignment (e.g., for SSBOs)
-	float padding[2];  // Example padding for 16-byte alignment
+	// Explicit padding to match std140 requirements
+	//float _pad0[3];       // 12 bytes (offset 64)
 };
-
-
 
 struct sMesh
 {

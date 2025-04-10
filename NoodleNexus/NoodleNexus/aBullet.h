@@ -77,7 +77,7 @@ public:
     void SpawnHitEffect()
     {
         if (!factory) return;
-        Object* effectEmiiter = factory->scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", object->GetWorldPosition() + glm::normalize(projectile->speed) * 0.52f , 1.f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), false, factory->scene->sceneObjects);
+        Object* effectEmiiter = factory->scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", object->GetWorldPosition() + glm::normalize(projectile->speed) * 0.52f , 1.f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), false, factory->scene->sceneObjects);
 
 
 

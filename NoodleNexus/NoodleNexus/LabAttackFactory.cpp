@@ -733,7 +733,7 @@ Object* LabAttackFactory::SpawnPlayerFollowingBullet(const glm::vec3& position, 
 
     if (particles)
     {
-        Object* smokeEmiiter = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+        Object* smokeEmiiter = scene->GenerateMeshObjectsFromObject("assets/models/Cube_xyz_n_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
 
 
         bullet->AddChild(smokeEmiiter);

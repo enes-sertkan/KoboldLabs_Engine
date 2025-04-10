@@ -11,15 +11,18 @@ layout (location = 2) in float shellLayer; // Only used in mesh branch.
 // ------ Particle UBO ----------------
 #define MAX_PARTICLES 1024
 // Define Particle struct outside the UBO
+
 struct Particle {
-    vec3 position;
-    float padding1;
-    vec3 velocity;
-    float padding2;
-    vec4 color;
-    float size;
-    float lifetime;
-    vec2 padding3;
+       vec3 position;    // 12 bytes
+        float size;       // 4 bytes
+        
+        vec3 velocity;    // 12 bytes
+        float lifetime;   // 4 bytes
+        
+        vec4 color;       // 16 bytes
+        
+        vec3 rotation;    // 12 bytes
+        float padding3;   // 4 bytes
 };
 
 // UBO declaration
@@ -65,6 +68,33 @@ out vec4  fColour;              // Color output (particle uses Particle.color, m
 out float fLife;               // Particle lifetime (set to 0.0 for mesh)
 
 // ------ Utility functions --------------
+
+mat3 rotationMatrix(vec3 angles) {
+    float cx = cos(angles.x), sx = sin(angles.x);
+    float cy = cos(angles.y), sy = sin(angles.y);
+    float cz = cos(angles.z), sz = sin(angles.z);
+    
+    mat3 rotX = mat3(
+        1.0, 0.0, 0.0,
+        0.0, cx, -sx,
+        0.0, sx, cx
+    );
+    
+    mat3 rotY = mat3(
+        cy, 0.0, sy,
+        0.0, 1.0, 0.0,
+        -sy, 0.0, cy
+    );
+    
+    mat3 rotZ = mat3(
+        cz, -sz, 0.0,
+        sz, cz, 0.0,
+        0.0, 0.0, 1.0
+    );
+    
+    return rotZ * rotY * rotX;  // ZYX order
+}
+
 // Simple random/ hash functions for noise calculations.
 float rand(vec2 co) {
     return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);
@@ -129,9 +159,9 @@ void main() {
         float particleSize = particles[particleID].size;
         fColour = particles[particleID].color;
         fLife = particles[particleID].lifetime;
-        
+         mat3 particleRotation = rotationMatrix(particles[particleID].rotation);
         // Scale the input vertex positions by the particle's size.
-        vec4 worldPos = matModel * vec4(vPos * particleSize+particlePos, 1.0);
+        vec4 worldPos = matModel * vec4(particleRotation*vPos * particleSize+particlePos, 1.0);
         fvertexWorldLocation = worldPos;
         
         // Transform normals and tangents.
@@ -144,7 +174,7 @@ void main() {
         fragViewMatrix = matView;
         
         // Compute clip-space position.
-        gl_Position = matProjection * matView  * vec4(vPos * particleSize+particlePos, 1.0);
+        gl_Position = matProjection * matView  * vec4(particleRotation*vPos * particleSize+particlePos, 1.0);
         
         // Not used in particle branch.
         fshellLayer = 0.0;
