@@ -36,7 +36,7 @@ public:
         glm::vec3 forward = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, 1.0f);
 
         // Changed to spawn following bullets
-        factory->SpawnPlayerFollowingBullet(worldBarrelPos, forward * 15.0f, true);
+        factory->SpawnPlayerFollowingBullet(worldBarrelPos, forward * 7.5f, true);
 
         m_currentBarrel = (m_currentBarrel + 1) % m_barrelPositions.size();
     }

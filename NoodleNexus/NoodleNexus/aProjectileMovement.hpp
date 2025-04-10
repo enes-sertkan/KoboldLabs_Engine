@@ -28,6 +28,7 @@ public:
     }
 
     void UpdateRotation() {
+        if (!object) return;
         if (glm::length(speed) > 0.001f) {
             glm::vec3 direction = glm::normalize(speed);
 

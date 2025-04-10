@@ -6,27 +6,30 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/quaternion.hpp>
 
-class aPlayerFollowingBullet : public aBullet {
+class aPlayerFollowingBullet : public aPlayerBullet {
 private:
-    float visionRange = 15.0f;    // Detection range for enemies
-    float rotationSpeed = 90.0f;  // Degrees per second
+    float visionRange = 100.0f;    // Detection range for enemies
+    float rotationSpeed = 180.0f;  // Degrees per second
     glm::vec3 currentDirection;   // Normalized movement direction
 
 
 public:
+
     LabAttackFactory* factory = nullptr;
     aProjectileMovement* projectile = nullptr;  // Reference to movement component
 
     virtual void Start() override {
-        aBullet::Start();
+        aPlayerBullet::factory = factory;
+        aPlayerBullet::projectile = projectile;
+        aPlayerBullet::Start();
         if (projectile) {
             currentDirection = glm::normalize(projectile->speed);
         }
     }
 
     virtual void Update() override {
-        aBullet::Update(); // Handle base bullet logic and movement
-
+        aPlayerBullet::Update(); // Handle base bullet logic and movement
+      
         if (!factory || !projectile || glm::length(projectile->speed) < 0.01f) return;
 
         // Find closest enemy in vision range
@@ -73,7 +76,7 @@ public:
         }
 
         // Optional: Add visual rotation to projectile model
-        object->mesh->rotationEulerXYZ += glm::vec3(0.0f, 5.0f, 0.0f) * rotationSpeed * object->scene->deltaTime;
+     //   object->mesh->rotationEulerXYZ += glm::vec3(0.0f, 5.0f, 0.0f) * rotationSpeed * object->scene->deltaTime;
     }
 
     BruteEnemy* FindClosestEnemy(const glm::vec3& position) {

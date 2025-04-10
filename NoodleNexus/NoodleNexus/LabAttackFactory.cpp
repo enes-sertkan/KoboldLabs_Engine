@@ -703,7 +703,7 @@ Object* LabAttackFactory::SpawnPlayerBullet(const glm::vec3& position, const glm
 
 Object* LabAttackFactory::SpawnPlayerFollowingBullet(const glm::vec3& position, const glm::vec3& speed, bool particles)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.5f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
     bullet->mesh->metal = 0.8;
     bullet->mesh->smoothness = 0.7f;
     bullet->name = "PBullet";
@@ -724,10 +724,12 @@ Object* LabAttackFactory::SpawnPlayerFollowingBullet(const glm::vec3& position, 
 
 
     aPlayerFollowingBullet* bulletCol = new aPlayerFollowingBullet();
+    
     bulletCol->factory = this;
     scene->AddActionToObj(bulletCol, bullet);
 
     bulletCol->projectile = projectileAction;
+    bulletCol->Start();
 
     if (particles)
     {
