@@ -18,7 +18,7 @@ class BruteEnemy;
 
 class LabAttackFactory {
 public:
-    float floorHeight = 3.f;
+
     Object* player = nullptr;
     aPlayerCore* playerCore = nullptr;
     MazeGenerator* maze = nullptr;

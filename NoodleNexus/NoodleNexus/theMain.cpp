@@ -789,7 +789,7 @@ void RenderDearImGui(SceneEditor* sceneEditor, LabAttackFactory* factory, aPlaye
 
             //PLAY MODE UI
             PlayerUI::RenderHPBar(playerCore->health, playerCore->maxHealth);
-            PlayerUI::RenderStaminaBar(50, 100);
+            PlayerUI::RenderStaminaBar(playerCore->playerMovement->currentStamina, playerCore->playerMovement->maxStamina);
             PlayerUI::RenderCrosshair();
             ImGui::End();
 
@@ -1570,7 +1570,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
     aToolManager* toolManager = new aToolManager();
     aPlayerCore* playerCore = new aPlayerCore();
-
+    playerCore->playerMovement = playerMovement;
     LAFactory->playerCore = playerCore;
 
     playerMovement->maze = mazeGenerator;

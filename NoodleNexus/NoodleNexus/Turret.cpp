@@ -59,6 +59,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
             body->object->mesh->modelFileName = bodyTemplate->object->mesh->modelFileName;
             body->ID = bodyTemplate->ID;
             body->object->mesh->positionXYZ = oldPos;
+            body->connectionTransform = bodyTemplate->connectionTransform;
             updateTransparency(body);
             body->object->actions.clear();
         }
@@ -87,13 +88,15 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
                 neck->ID = neckTemplate->ID;
                 neck->object->mesh->positionXYZ = body->connectionTransform;
                 neck->object->startTranform->position = body->connectionTransform;
+                neck->connectionTransform = neckTemplate->connectionTransform;
+                neck->headConnection->mesh->positionXYZ   = neckTemplate->connectionTransform;
                 updateTransparency(neck);
                 neck->object->actions.clear();
             }
         }
         else if (neck->object) {
-            body->object->AddChild(neck->object);
-            neck->object->mesh->positionXYZ = body->connectionTransform/ body->object->GetWorldScale();
+
+            neck->object->mesh->positionXYZ = body->connectionTransform;
             updateTransparency(neck);
         }
     }
@@ -123,7 +126,7 @@ void Turret::RebuildTurretGhost(sTurretCofig* config)
             }
         }
         else if (head->object) {
-            neck->headConnection->AddChild(head->object);
+           
             head->object->mesh->positionXYZ = glm::vec3(0);
             updateTransparency(head);
         }

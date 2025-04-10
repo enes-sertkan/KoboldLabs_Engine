@@ -421,7 +421,7 @@ void LabAttackFactory::Start()
     cTurretBody* rocketBody = new cTurretBody();
     Object* rocketbodyObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret3/Turret3_body.ply",
-        glm::vec3(0), 0.07f, glm::vec3(0.f),
+        glm::vec3(0), partsScale, glm::vec3(0.f),
         false, glm::vec4(0.1f, 0.6f, 0.f, 1.f),
         true, scene->sceneObjects
     );
@@ -434,7 +434,7 @@ void LabAttackFactory::Start()
     rocketBody->ID = ROCKETBODY;
     rocketBody->object = rocketbodyObj;
     rocketBody->action = new aTurretBody();
-    rocketBody->connectionTransform = glm::vec3(0, 0.6f, 0); // Example offset
+    rocketBody->connectionTransform = glm::vec3(0, 0.6f/ partsScale, 0); // Example offset
     turretBodies.push_back(rocketBody);
     rocketbodyObj->isActive = false;
     rocketbodyObj->isTemporary = true;
@@ -501,7 +501,7 @@ void LabAttackFactory::Start()
     Object* rocketNeckObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret3/Turret3_neck.ply",
         glm::vec3(0),
-        0.07f,
+        partsScale,
         glm::vec3(0.f),
         false,
         glm::vec4(0.8f, 0.8f, 0.8f, 1.f),
@@ -520,7 +520,7 @@ void LabAttackFactory::Start()
     rocketNeck->object = rocketNeckObj;
     rocketNeck->action = new TurretNeckAim();
     rocketNeck->action->factory = this;
-    rocketNeck->connectionTransform = glm::vec3(0, 1.0f, 0); // Example offset
+    rocketNeck->connectionTransform = glm::vec3(0, 1.0f/ partsScale, 0); // Example offset
     turretNecks.push_back(rocketNeck);
     rocketNeckObj->isActive = false;
 
@@ -603,8 +603,8 @@ void LabAttackFactory::Start()
     Object* rocketHeadObj = scene->GenerateMeshObjectsFromObject(
         "assets/models/Turret3/Turret3_head.ply",
         glm::vec3(0),
-        0.07f,
-        glm::vec3(0.f),
+        partsScale,
+        glm::vec3(-30.f,0,0),
         false,
         glm::vec4(1.f, 0.f, 0.f, 1.f),
         true,
@@ -628,7 +628,7 @@ void LabAttackFactory::Start()
     rocketHeadAction->factory = this;
     rocketHead->action = rocketHeadAction;
 
-    rocketHead->connectionTransform = glm::vec3(0, 0.3f, -0.6f);
+    rocketHead->connectionTransform = glm::vec3(0, 0.3f/ partsScale, -0.6f);
     turretHeads.push_back(rocketHead);
 
     rocketHeadObj->isActive = false;

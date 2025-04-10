@@ -36,6 +36,7 @@ enum Direction {
 
 class MazeGenerator {
 public:
+    float floorHeight = 3.f;
     const float TILE_SIZE = 1.0f * 4.0f;
     SoftBody* mainSlime = nullptr;
     MazeGenerator(const std::string& filePath, Scene* scene, cLightManager* lightManager);  // Add lightManager

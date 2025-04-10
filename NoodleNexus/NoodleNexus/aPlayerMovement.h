@@ -1,5 +1,6 @@
 #pragma once
-
+#define NOMINMAX  // Disable Windows min/max macros
+#include <windows.h>  // If you need Windows headers
 #include "Action.h"
 #include "sObject.h"
 #include <glm/vec3.hpp> 
@@ -7,12 +8,27 @@
 #include "Scene.hpp"
 #include <glm/glm.hpp>
 #include "MazeGenerator.hpp"
-
+#include <algorithm> 
 
 
 
 class aPlayerMovement : public Action
 {
+
+	// Stamina variables
+	
+	const float staminaDrainRate = 25.0f;  // Per second when running
+	const float staminaRegenRate = 15.0f;   // Per second when recovering
+	const float staminaJumpCost = 30.0f;    // Stamina needed to jump
+
+	// Jumping variables
+	float verticalVelocity = 0.0f;
+	const float gravity = -25.0f;
+	const float jumpForce = 7.5f;
+	bool isGrounded = true;
+	 float groundLevel = 0.0f;
+
+
 
 	void DrawRayS(glm::vec3 pos, glm::vec3 posEnd, GLuint program)
 	{
@@ -29,8 +45,10 @@ class aPlayerMovement : public Action
 
 	}
 public:
-	float walkSpeed = 2.3f;
-	float runSpeed = 8.f;
+	float currentStamina = 100.0f;
+	const float maxStamina = 100.0f;
+	float walkSpeed = 4.f;
+	float runSpeed = 9.f;
 	float speed = walkSpeed;
 	bool isMoving = true;
 	glm::vec3 up = glm::vec3(0, 1, 0);      // Common up vector in 3D
@@ -108,45 +126,27 @@ public:
 	{
 	//	return;
 		object->scene->isFlyCamera = true;
+		currentStamina = maxStamina;
+		groundLevel = object->startTranform->position.y;
 	}
 
-	void Update() override
-	{
-
+	void Update() override {
 		if (object->scene->isFlyCamera) return;
-	//	return;
+
+		// Update camera position first
 		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
 
-	//	if (object->scene->isFlyCamera && !glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) return; //IF not fly camera and not pressing shoft, then return
+		// Handle stamina regeneration/drain
+		UpdateStamina();
 
+		// Handle movement inputs
+		HandleMovementInputs();
 
-		if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
-			speed = runSpeed;
-		else
-			speed = walkSpeed;
-
-
-
-
-		if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS)
-		{
-			Move(FORWARD);
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS)
-		{
-			Move(BACK);
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS)
-		{
-			Move(LEFT);
-		}
-		if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS)
-		{
-			Move(RIGHT);
-		}
-
-
+		// Apply gravity and jumping physics
+		ApplyGravity();
+		GroundCheck();
 	}
+
 
 
 	bool CheckMazePos(glm::vec3 position)
@@ -161,5 +161,67 @@ public:
 		return maze->IsWall(mazePos.y, mazePos.x);
 	
 	}
+
+
+	private:
+		void UpdateStamina() {
+			bool isMoving = glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS ||
+				glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS ||
+				glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS ||
+				glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS;
+
+			if (isMoving && speed == runSpeed) {
+				currentStamina -= staminaDrainRate * object->scene->deltaTime;
+				currentStamina = (std::max)(currentStamina, 0.0f);
+
+				// Force walk if stamina depleted
+				if (currentStamina <= 0.0f) {
+					speed = walkSpeed;
+				}
+			}
+			else {
+				currentStamina += staminaRegenRate * object->scene->deltaTime;
+				currentStamina = (std::min)(currentStamina, maxStamina);
+			}
+		}
+
+		void HandleMovementInputs() {
+			// Speed control
+			if (glfwGetKey(object->scene->window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) {
+				speed = (currentStamina > 0.0f) ? runSpeed : walkSpeed;
+			}
+			else {
+				speed = walkSpeed;
+			}
+
+			// Movement
+			if (glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS) Move(FORWARD);
+			if (glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS) Move(BACK);
+			if (glfwGetKey(object->scene->window, GLFW_KEY_A) == GLFW_PRESS) Move(LEFT);
+			if (glfwGetKey(object->scene->window, GLFW_KEY_D) == GLFW_PRESS) Move(RIGHT);
+
+			// Jumping
+			if (glfwGetKey(object->scene->window, GLFW_KEY_SPACE) == GLFW_PRESS &&
+				isGrounded &&
+				currentStamina >= staminaJumpCost) {
+				verticalVelocity = jumpForce;
+				currentStamina -= staminaJumpCost;
+				isGrounded = false;
+			}
+		}
+
+		void ApplyGravity() {
+			verticalVelocity += gravity * object->scene->deltaTime;
+			object->mesh->positionXYZ.y += verticalVelocity * object->scene->deltaTime;
+		}
+
+		void GroundCheck() {
+			if (object->mesh->positionXYZ.y <= groundLevel) {
+				object->mesh->positionXYZ.y = groundLevel;
+				verticalVelocity = 0.0f;
+				isGrounded = true;
+			}
+		}
+
 
 };

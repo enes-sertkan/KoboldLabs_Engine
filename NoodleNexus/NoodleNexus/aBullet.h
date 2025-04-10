@@ -36,7 +36,7 @@ public:
         std::vector<sCollision_RayTriangleInMesh> collisions;
         glm::vec3 pos = object->GetWorldPosition() + glm::normalize(projectile->speed) * 1.35f;
 
-        if (pos.y < factory->floorHeight)
+        if (pos.y < factory->maze->floorHeight)
             DestroyBullet();
             
         glm::vec3 sadFix = pos ;

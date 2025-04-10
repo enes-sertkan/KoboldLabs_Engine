@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include "MazeGenerator.hpp"
 #include <algorithm> 
+#include "aPlayerMovement.h"
 
 
 class aPlayerCore : public Action {
@@ -20,6 +21,8 @@ private:
     const float INVULNERABILITY_DURATION = 2.0f; // 2 seconds of invulnerability after respawn
 
 public:
+    aPlayerMovement* playerMovement = nullptr;
+
     glm::vec3 colliderCenter = glm::vec3(0);
     float colliderRadius = 1.f;
     float health = 20.f;
