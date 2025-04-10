@@ -91,7 +91,7 @@ public:
         headConnection->mesh->rotationEulerXYZ = glm::vec3(
             pitch,  // X rotation (pitch up/down)
             0.0f,   // Y rotation 
-            roll    // Z rotation (fine horizontal adjustment)
+           0.0f   // Z rotation (fine horizontal adjustment)
         );
     }
 
