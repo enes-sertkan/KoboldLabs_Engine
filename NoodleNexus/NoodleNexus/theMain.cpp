@@ -1680,7 +1680,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     LAFactory->Start();
     LAFactory->maze = mazeGenerator;
     mazeGenerator->factory = LAFactory;
-    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, 0.f, 0.f), 6.5, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
+    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, -0.115f, 0.f), 1.42, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
     //screen_quad->mesh->chromaticPower = 0.1;
     screen_quad->mesh->blendRatio[0] = 1.f;
@@ -2547,7 +2547,8 @@ int main(void)
 
 
 
-   Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
+   Camera* mainCamera =  cameraScene->AddCamera(glm::vec3(16.f, 0.f, 0.f), glm::vec3(0.f,180.f,0.f), glm::vec2(1920.f, 1080.f));
+   mainCamera->fov = 10.f;
   // Camera* securutyCamera=  cameraScene->AddCamera(glm::vec3(16.f, 0.5f, 0.f), glm::vec3(0.f,179.07f,0.f), glm::vec2(1920.f, 1080.f));
   // mainCamera->nightMode = true;
 
