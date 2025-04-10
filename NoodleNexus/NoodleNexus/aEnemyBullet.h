@@ -26,7 +26,7 @@ public:
 
         if (distance < playerCore->colliderRadius) {
 
-            playerCore->Damage(1) ;
+            playerCore->Damage(damage) ;
 
             DestroyBullet();// Destroy bullet on hit
             return; // Exit early since bullet is destroyed

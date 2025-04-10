@@ -11,8 +11,10 @@ private:
 
     float lifetime = 0.0f;
     const float maxLifetime = 3.0f; // Self-destruct after 3 seconds
+   
 
 public:
+    float damage = 1;
     LabAttackFactory* factory = nullptr;
     aParticleEmitter* particles = nullptr;
     aProjectileMovement* projectile = nullptr;

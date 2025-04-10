@@ -8,6 +8,7 @@ class aPlayerBullet : public aBullet {
 private:
     float lifetime = 0.0f;
     const float maxLifetime = 3.0f; // Self-destruct after 3 seconds
+    float damage = 2;
 
 public:
 
@@ -31,7 +32,7 @@ public:
 
              
 
-                enemy->Damage(2);
+                enemy->Damage(damage);
 
                 DestroyBullet();// Destroy bullet on hit
                 return; // Exit early since bullet is destroyed
