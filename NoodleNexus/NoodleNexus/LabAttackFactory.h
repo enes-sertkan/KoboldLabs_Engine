@@ -39,6 +39,7 @@ public:
     Object* SpawnShooter(const glm::vec3& position);
     Object* SpawnWanderer(const glm::vec3& position);
     Object* SpawnBrut(glm::vec3 position);
+    Object* SpawnBrutShooterEnemy(glm::vec3 position);
 
     void Start();
 

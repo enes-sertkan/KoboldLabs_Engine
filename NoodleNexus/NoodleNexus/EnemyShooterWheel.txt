@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> EnemyShooterWheel
+<filePath> assets/models/Enemy_Shooter/Enemy_shooter_wheel.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

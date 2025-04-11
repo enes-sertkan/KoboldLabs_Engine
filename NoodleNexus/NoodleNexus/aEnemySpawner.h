@@ -32,7 +32,7 @@ public:
     }
 
     void SpawnEnemy() {
-        Object* enemy = factory->SpawnBrut(object->mesh->positionXYZ);
+        Object* enemy = factory->SpawnBrutShooterEnemy(object->mesh->positionXYZ);
         if (enemy) {
             currentEnemies++;
 

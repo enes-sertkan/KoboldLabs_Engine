@@ -2430,6 +2430,8 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_head_SM.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Turret_wheel/Wheel_Enem_wheel_SM.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Enemy_Shooter_Txtr/Shooter_Normal_OpenGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("Enemy_Shooter_Txtr/Shooter_Base_color.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_basecolor.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_ambientOcclusion.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_normal.bmp");

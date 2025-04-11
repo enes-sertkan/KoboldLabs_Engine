@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> EnemyShooterHead
+<filePath> assets/models/Enemy_Shooter/Enemy_shooter_head.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
