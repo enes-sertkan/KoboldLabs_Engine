@@ -82,7 +82,7 @@ private:
     bool HandleDashing(Agent* agent, float deltaTime) {
         glm::vec3 movement = dashDirection * dashSpeed * deltaTime;
         glm::vec3 newPos = agent->object->mesh->positionXYZ + movement; 
-        glm::vec3 checkPos = agent->object->mesh->positionXYZ - dashDirection * 2.f;
+        glm::vec3 checkPos = agent->object->mesh->positionXYZ + dashDirection * 2.f;
         agent->worldState["stateLock"] = true;
         // Collision check
         if (CheckCollision(checkPos, agent->maze)) {
