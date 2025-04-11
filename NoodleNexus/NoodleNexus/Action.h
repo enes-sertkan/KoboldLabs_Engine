@@ -21,7 +21,7 @@ public:
 
 	virtual void OnDestroy()
 	{
-	
+		object = nullptr;
 	}
 
 

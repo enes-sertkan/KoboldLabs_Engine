@@ -30,6 +30,7 @@ public:
         if (lifetime >= maxLifetime) {
 
             DestroyBullet();
+            return;
            // Self-destruct after timeout
         }
 
@@ -39,7 +40,10 @@ public:
         glm::vec3 pos = object->GetWorldPosition() + glm::normalize(projectile->speed) * 1.35f;
 
         if (pos.y < factory->maze->floorHeight)
+        {
             DestroyBullet();
+            return;
+        }
             
         glm::vec3 sadFix = pos ;
         sadFix.x += factory->maze->TILE_SIZE * 0.45;
@@ -52,6 +56,7 @@ public:
         {
 
             DestroyBullet();
+            return;
         }
 
 

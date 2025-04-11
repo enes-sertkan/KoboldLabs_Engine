@@ -18,8 +18,10 @@ public:
     }
 
     virtual void Update() override {
+        if (!object) return;
         // 1. Handle enemy collisions
         aBullet::Update();
+        if (!object) return;
         if (!factory) return;
         std::vector<BruteEnemy*>::iterator it = factory->m_creepPool.begin();
         while (it != factory->m_creepPool.end()) {

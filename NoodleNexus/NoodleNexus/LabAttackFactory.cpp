@@ -626,6 +626,7 @@ void LabAttackFactory::Start()
     aTurretHeadFollowing* rocketHeadAction = new aTurretHeadFollowing();
     rocketHeadAction->m_recoilDistance = 0.6f / partsScale;
     rocketHeadAction->m_recoilRecoverySpeed = 1.f / partsScale;
+    rocketHeadAction->m_shootCooldown = 1.f;
 
     rocketHeadAction->factory = this;
     rocketHead->action = rocketHeadAction;
