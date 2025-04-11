@@ -104,6 +104,7 @@
 // FMOD
 #include <fmod.hpp>
 #include <fmod_errors.h>
+#include "aTurretDestroyer.h"
 
  Scene* currentScene=nullptr;
 
@@ -1746,6 +1747,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     aTurretPlacer* playerTurPlacer = new aTurretPlacer();
     aToolManager* toolManager = new aToolManager();
     aPlayerCore* playerCore = new aPlayerCore();
+    aTurretDestroyer* turretDestroyer = new aTurretDestroyer();
+
     playerCore->playerMovement = playerMovement;
     LAFactory->playerCore = playerCore;
 
@@ -1753,6 +1756,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     toolManager->RegisterTool(GLFW_KEY_1, playerTurPlacer);
     toolManager->RegisterTool(GLFW_KEY_2, playerShooting);
+    toolManager->RegisterTool(GLFW_KEY_3, turretDestroyer);
 
     aGrassCollider* playerGrassCollider = new aGrassCollider();
     playerGrassCollider->SetGrass(puddle);
@@ -1768,6 +1772,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     glm::vec3 turretPos = player->mesh->positionXYZ;
     turretPos.y -= 1;
 
+
+    turretDestroyer->factory = LAFactory;
   //  LAFactory->SpawnTurret(turretPos, STANDARTBODY, STANDARTNECK, STANDARTHEAD);
 
     scene->AddActionToObj(playerGrassCollider, player);
@@ -1776,6 +1782,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(playerShooting, player);
     scene->AddActionToObj(toolManager, player);
     scene->AddActionToObj(playerCore, player);
+    scene->AddActionToObj(turretDestroyer, player);
 
 
     waveEffect->player = player;

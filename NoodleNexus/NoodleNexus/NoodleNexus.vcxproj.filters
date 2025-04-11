@@ -643,6 +643,9 @@
     <ClInclude Include="DashAtPlayerAction .h">
       <Filter>GOAP</Filter>
     </ClInclude>
+    <ClInclude Include="aTurretDestroyer.h">
+      <Filter>OpenTD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

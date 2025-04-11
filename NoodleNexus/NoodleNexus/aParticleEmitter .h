@@ -121,6 +121,7 @@ public:
                 particles->at(i).position += particles->at(i).velocity * deltaTime;
 
                 particles->at(i).velocity = particles->at(i).velocity * damping;
+                particles->at(i).rotation = particles->at(i).rotation * damping;
 
                 // Update visual properties
                 float lifeRatio = particles->at(i).lifeRemaining / particles->at(i).lifetime;

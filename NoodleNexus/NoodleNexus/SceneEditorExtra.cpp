@@ -69,6 +69,7 @@ bool isAltD(GLFWwindow* window)
 
 void SceneEditor::HandleInputAsync(GLFWwindow* window)
 {
+    if (!scene->isFlyCamera) return;
 
     float speed = 1;
 

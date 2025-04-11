@@ -10,7 +10,7 @@ private:
 
 
     float lifetime = 0.0f;
-    const float maxLifetime = 3.0f; // Self-destruct after 3 seconds
+    const float maxLifetime = 10.0f; // Self-destruct after 3 seconds
    
 
 public:
@@ -94,15 +94,16 @@ public:
         particleEmmitter->spawnRate = 0.f;
         particleEmmitter->destroyOnNoParticles = true;
         particleEmmitter->spawnActive = false;
-        particleEmmitter->particlesToSpawn = 5.f;
+        particleEmmitter->particlesToSpawn = 4.f;
         particleEmmitter->minDirection = glm::vec3(-1, -1, -1);
         particleEmmitter->maxDirection = glm::vec3(1, 1, 1);
         particleEmmitter->colorEnd = glm::vec4(0.8, 0.8, 0.2,1.f);
         particleEmmitter->colorStart = glm::vec4(1, 0.647, 0.2,1.f);
-        particleEmmitter->velocityRange = glm::vec2(5, 15);
+        particleEmmitter->velocityRange = glm::vec2(3, 10);
         particleEmmitter->sizeStart = 0.1f;
         particleEmmitter->sizeEnd = 0.f;
         particleEmmitter->lifeTimeRange = glm::vec2(0.5f, 1.1f);
+        particleEmmitter->damping = glm::vec3(0.90f, 0.90f, 0.90f);
 
         factory->scene->AddActionToObj(particleEmmitter, effectEmiiter);
         particleEmmitter->Start();

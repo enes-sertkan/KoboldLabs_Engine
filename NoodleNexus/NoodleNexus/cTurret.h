@@ -6,7 +6,7 @@
 #include "LabAttackFactory.h"
 #include "aAgent.h"
 #include "aParticleEmitter .h"
-
+#include <algorithm>
 
 class Turret {
 public:
@@ -26,6 +26,21 @@ public:
 	void RebuildTurretGhost(sTurretCofig* config);
 
 	sTurretCofig* GetConfig() const;
+
+    void Destroy() {
+        // Remove from factory list
+        auto it = std::find(factory->turrets.begin(), factory->turrets.end(), this);
+        if (it != factory->turrets.end()) {
+            factory->turrets.erase(it);
+        }
+
+        // Destroy components
+        if (head && head->object) head->object->Destroy();
+        if (neck && neck->object) neck->object->Destroy();
+        if (body && body->object) body->object->Destroy();
+
+        delete this;
+    }
 private:
 	void UpdatePartPosition(cTurretPart* part, const glm::vec3& newPosition) {
 		if (part && part->object) {
