@@ -224,4 +224,15 @@ public:
 
     Object* Clone();
   
+
+
+    void RemoveAction(Action* action)
+    {
+        std::vector<Action*>::iterator it = std::find(actions.begin(), actions.end(), action);
+        if (it != actions.end())
+        {
+            delete* it; // Free the memory if dynamically allocated
+            actions.erase(it); // Remove from vector
+        }
+    }
 };

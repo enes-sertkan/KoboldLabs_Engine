@@ -30,7 +30,7 @@ public:
         // Get current barrel position using frame-consistent rotation
         glm::vec3 localBarrelPos = m_barrelPositions[m_currentBarrel];
         glm::vec3 worldBarrelPos = object->GetWorldPosition() +
-            m_currentWorldRotation * (localBarrelPos - glm::vec3(0.0f, 0.0f, m_currentRecoil));
+            m_currentWorldRotation * (localBarrelPos - glm::vec3(0.0f, 0.0f, m_currentRecoil * object->GetWorldScale()));
 
         // Get shoot direction using cached rotation
         glm::vec3 forward = m_currentWorldRotation * glm::vec3(0.0f, 0.0f, 1.0f);

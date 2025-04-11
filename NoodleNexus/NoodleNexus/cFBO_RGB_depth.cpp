@@ -24,8 +24,9 @@ bool cFBO_RGB_depth::shutdown(void)
 }
 
 
-bool cFBO_RGB_depth::init(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* textureManager)
+bool cFBO_RGB_depth::init(int width, int height, std::string& error, std::string textureName, cBasicTextureManager* _textureManager)
 {
+	textureManager = _textureManager;
 	this->width = width;
 	this->height = height;
 

@@ -1342,8 +1342,12 @@ void RenderDepthPrePass(Camera* camera, GLuint depthShaderProgram, cFBO_RGB_dept
     // Bind FBO and clear depth
     depthFBO->clearBuffers(false, true); // Clear depth only
     glBindFramebuffer(GL_FRAMEBUFFER, depthFBO->ID);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthFBO->depthTexture_ID, 0);
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        std::cerr << "Depth FBO incomplete!" << std::endl;
+    }
     glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE); // Disable color writes
-
+    glDepthMask(GL_TRUE);
     // Render all opaque objects (skip transparent/shells)
     for (Object* object : scene->sceneObjectsSorted) {
         if (!object->isActive)
@@ -1353,6 +1357,7 @@ void RenderDepthPrePass(Camera* camera, GLuint depthShaderProgram, cFBO_RGB_dept
             scene->vaoManager, scene->textureManager, camera);
     }
 
+    glDepthMask(GL_FALSE);
     // Restore defaults
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
@@ -1386,10 +1391,10 @@ void DrawCameraView(Camera* camera, int programID) {
         if (scene->depthFBO)
         {
             // Bind depth texture for occlusion testing
-            glActiveTexture(GL_TEXTURE15);
+            GLuint depthTexUnit = 15; // Use a high unit to avoid overlap
+            glActiveTexture(GL_TEXTURE0 + depthTexUnit);
             glBindTexture(GL_TEXTURE_2D, scene->depthFBO->depthTexture_ID);
-            glUniform1i(glGetUniformLocation(programID, "depthTexture"), 15);
-
+            glUniform1i(glGetUniformLocation(programID, "depthTexture"), depthTexUnit);
 
             GLint bDepth = glGetUniformLocation(programID, "bDepth");
             glUniform1f(bDepth, (GLfloat)GL_TRUE);  // True

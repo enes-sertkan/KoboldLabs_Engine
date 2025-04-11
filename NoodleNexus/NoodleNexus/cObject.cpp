@@ -9,7 +9,8 @@ void Object::Destroy()
     for (Action* action : actions)
     {
         action->OnDestroy();
-        delete action;
+        RemoveAction(action);
+       // delete action;
     }
     actions.clear();
 
