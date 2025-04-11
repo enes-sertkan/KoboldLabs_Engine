@@ -34,6 +34,7 @@ bool MoveToControlPointAction::perform(Agent* agent, float deltaTime) {
     if (agent->controlPoints.empty())
     {
         m_ReachedFinalPoint = true;
+        agent->Damage(100);
         return true;
     }
 

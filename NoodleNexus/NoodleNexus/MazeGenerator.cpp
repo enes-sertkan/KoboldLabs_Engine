@@ -49,11 +49,11 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B'||cell == ',') {
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B'||cell == ',' || (cell >= '1' && cell <= '9')) {
 
                 if (cell != 'S')
                 {
-                    if (cell == ',')
+                    if (cell == ',' || cell=='1')
                     PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTERFLOOR, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                     else
                         PlaceModelOnGrid("assets/models/objects/floor.ply", row, col, floor, 1.0f, CENTER, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
