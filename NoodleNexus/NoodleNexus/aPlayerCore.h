@@ -10,6 +10,7 @@
 #include "MazeGenerator.hpp"
 #include <algorithm> 
 #include "aPlayerMovement.h"
+#include "AudioManager.hpp"
 
 
 class aPlayerCore : public Action {
@@ -54,7 +55,10 @@ public:
         if (isDead || isInvulnerable) return;
         health -= damage;
         health = (std::max)(health, 0.0f);  // Extra parentheses prevent macro expansion
+        audio::AudioManager::Instance().Load2DSound("Hurt", "assets/sounds/roblox.flac");
+        audio::AudioManager::Instance().Play2DSound("Hurt");
         playerMovement->DamageJump();
+
 
     }
 

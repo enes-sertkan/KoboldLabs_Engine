@@ -5,6 +5,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include "aTurretPart.h"
 #include "sObject.h"
+#include "AudioManager.hpp"
 
 class aTurretHead : public aTurretPart
 {
@@ -55,8 +56,13 @@ public:
         if (m_timeSinceLastShot >= m_shootCooldown)
         {
             Shoot();
+            //audio::AudioManager::Instance().PlayOneShot3D("assets/sounds/RocketFlyBy.wav", object->GetWorldPosition(), {0, 0, 0}, 1.0f);
+
+            audio::AudioManager::Instance().Load2DSound("FlyingMissile", "assets/sounds/RocketFlyBy.wav");
+            audio::AudioManager::Instance().Play2DSound("FlyingMissile");
             m_timeSinceLastShot = 0.0f;
         }
+
     }
 
     virtual void Shoot()
