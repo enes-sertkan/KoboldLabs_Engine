@@ -134,8 +134,6 @@ public:
 	void Update() override {
 		if (object->scene->isFlyCamera) return;
 
-		// Update camera position first
-		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
 
 		// Handle stamina regeneration/drain
 		UpdateStamina();
@@ -147,7 +145,13 @@ public:
 		ApplyGravity();
 		GroundCheck();
 
-		object->mesh->rotationEulerXYZ = object->scene->fCamera->getCameraData()->rotation;
+		// Update camera position first
+		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
+
+		//object->mesh->rotationEulerXYZ = object->scene->fCamera->getCameraData()->rotation;
+		object->mesh->rotationEulerXYZ.y = -object->scene->fCamera->getCameraData()->rotation.y;
+		//object->mesh->rotationEulerXYZ.z = -object->mesh->rotationEulerXYZ.x;  
+		//object->mesh->rotationEulerXYZ.x = -object->mesh->rotationEulerXYZ.z;
 	}
 
 

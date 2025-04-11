@@ -28,7 +28,7 @@ public:
     bool isCollisionStatic = false;
     std::vector<std::string> tags;
     bool isActive = true;
-
+    bool useRotationMatrix = false;
 
     std::vector<Object*> m_children;  // The proud parent's little ones
     Object* m_parent = nullptr;       // Who raised you, object?
@@ -235,4 +235,6 @@ public:
             actions.erase(it); // Remove from vector
         }
     }
+
+    
 };

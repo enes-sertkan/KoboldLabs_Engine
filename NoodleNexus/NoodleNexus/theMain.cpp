@@ -1754,9 +1754,9 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     playerMovement->maze = mazeGenerator;
 
-    toolManager->RegisterTool(GLFW_KEY_1, playerTurPlacer);
-    toolManager->RegisterTool(GLFW_KEY_2, playerShooting);
-    toolManager->RegisterTool(GLFW_KEY_3, turretDestroyer);
+    toolManager->RegisterTool(GLFW_KEY_1, playerTurPlacer,"assets/models/Tools/tool_destroyer.ply");
+    toolManager->RegisterTool(GLFW_KEY_2, playerShooting,"");
+    toolManager->RegisterTool(GLFW_KEY_3, turretDestroyer,"assets/models/Tools/tool_destroyer.ply");
 
     aGrassCollider* playerGrassCollider = new aGrassCollider();
     playerGrassCollider->SetGrass(puddle);
@@ -2443,6 +2443,9 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_ambientOcclusion.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_normal.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("Grass/Grass_smoothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_albedo.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_ST.bmp");
  
 
 

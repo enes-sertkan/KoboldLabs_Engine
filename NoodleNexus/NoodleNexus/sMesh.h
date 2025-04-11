@@ -27,6 +27,7 @@ struct Particle {
 
 	// New: Rotation speed as Euler angle increments (degrees per second)
 	glm::vec3 rotationSpeed = glm::vec3(0.0f);
+	glm::vec3 targetPos = glm::vec3(0.0f);
 
 	bool active = false;
 };

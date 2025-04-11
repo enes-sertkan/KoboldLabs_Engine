@@ -245,6 +245,7 @@
     <ClInclude Include="aRotationWithMinutes.hpp" />
     <ClInclude Include="aSizeUpThenDown.hpp" />
     <ClInclude Include="aSoftBodyAction.hpp" />
+    <ClInclude Include="aTargetedParticleEmitter .h" />
     <ClInclude Include="aToolManager.h" />
     <ClInclude Include="aTurretBody.h" />
     <ClInclude Include="aTurretDestroyer.h" />

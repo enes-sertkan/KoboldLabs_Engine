@@ -7,7 +7,7 @@
 
 
 class aParticleEmitter : public Action {
-private:
+public:
     float randomFloat(float min, float max) {
         return min + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (max - min)));
     }
@@ -48,7 +48,7 @@ private:
     }
 
 
-public:
+
     // In aParticleEmitter, add rotation speed range parameters:
     glm::vec3 minRotationSpeed = glm::vec3(-200.0f, -200.0f, -200.0f);
     glm::vec3 maxRotationSpeed = glm::vec3(200.0f, 200.0f, 200.0f);
