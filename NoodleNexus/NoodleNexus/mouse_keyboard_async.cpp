@@ -302,10 +302,25 @@ void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
     if (IsMouseOverImGui()) return;
 //    std::cout << "mouse x,y: " << xpos << ", " << ypos << std::endl;
     
+    if (::g_pFlyCamera->scene->isFlyCamera)
+    {
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+    else
+    {  // Hide and capture the cursor
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+        // Optional: Raw mouse motion for smoother input (if supported)
+        if (glfwRawMouseMotionSupported()) {
+            glfwSetInputMode(window, GLFW_RAW_MOUSE_MOTION, GLFW_TRUE);
+        }
+ 
+    }
+
     g_MouseState.currentPositionXY.x = (int)xpos;
     g_MouseState.currentPositionXY.y = (int)-ypos;
 
-    if ( g_MouseState.bIsLeftMouseButtonDown )
+    if ( g_MouseState.bIsLeftMouseButtonDown || !::g_pFlyCamera->scene->isFlyCamera)
     {
         // If the Left mouse key is down, 
         //  figure out the differene between the current mouse postion and the last one

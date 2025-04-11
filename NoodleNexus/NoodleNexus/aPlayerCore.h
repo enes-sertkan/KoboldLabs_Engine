@@ -54,7 +54,7 @@ public:
         if (isDead || isInvulnerable) return;
         health -= damage;
         health = (std::max)(health, 0.0f);  // Extra parentheses prevent macro expansion
-
+        playerMovement->DamageJump();
 
     }
 

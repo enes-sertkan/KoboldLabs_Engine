@@ -37,6 +37,7 @@ EnemyWheeelBody.txt
 EnemyWheeelWheel.txt
 EnemyWheeelHead.txt
 Bullet.txt
+ToolDestroyer.txt
 <--ObjectLoad>
 <Scene-->
 

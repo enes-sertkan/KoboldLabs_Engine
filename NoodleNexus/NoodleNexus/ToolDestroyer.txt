@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> ToolDestroyer
+<filePath> assets/models/Tools/tool_destroyer.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

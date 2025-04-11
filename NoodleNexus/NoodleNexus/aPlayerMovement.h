@@ -17,14 +17,15 @@ class aPlayerMovement : public Action
 
 	// Stamina variables
 	
-	const float staminaDrainRate = 25.0f;  // Per second when running
+	const float staminaDrainRate = 10.0f;  // Per second when running
 	const float staminaRegenRate = 15.0f;   // Per second when recovering
-	const float staminaJumpCost = 30.0f;    // Stamina needed to jump
+	const float staminaJumpCost = 0.0f;    // Stamina needed to jump
 
 	// Jumping variables
 	float verticalVelocity = 0.0f;
-	const float gravity = -25.0f;
+	const float gravity = -15.0f;
 	const float jumpForce = 7.5f;
+	const float damageJumpForce = 4.5f;
 	bool isGrounded = true;
 	 float groundLevel = 0.0f;
 
@@ -145,6 +146,8 @@ public:
 		// Apply gravity and jumping physics
 		ApplyGravity();
 		GroundCheck();
+
+		object->mesh->rotationEulerXYZ = object->scene->fCamera->getCameraData()->rotation;
 	}
 
 
@@ -162,8 +165,15 @@ public:
 	
 	}
 
+	void DamageJump()
+	{
+		verticalVelocity += damageJumpForce;;
+		isGrounded = false;
+	}
 
 	private:
+
+
 		void UpdateStamina() {
 			bool isMoving = glfwGetKey(object->scene->window, GLFW_KEY_W) == GLFW_PRESS ||
 				glfwGetKey(object->scene->window, GLFW_KEY_S) == GLFW_PRESS ||

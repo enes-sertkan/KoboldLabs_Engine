@@ -37,7 +37,7 @@ public:
             // Calculate the direction vector from the camera to the player
             glm::vec3 direction = object->mesh->positionXYZ - newCameraPosition;
 
-
+          
         }
     }
 };
