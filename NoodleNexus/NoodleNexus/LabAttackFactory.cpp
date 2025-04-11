@@ -97,47 +97,47 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
 {
     float scale = 2.5f;
             position.y -= 2;
-            Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_body.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
-            enemy->isTemporary = true;
-            enemy->mesh->textures[0] = "Turret_wheel/Wheel_Enem_body_color.bmp";
-            enemy->mesh->blendRatio[0] = 1.f;
-            enemy->mesh->NMTexture = "Turret_wheel/Wheel_Enem_body_Normal.bmp";
-            enemy->mesh->STTexture = "Turret_wheel/Wheel_Enem_body_SM.bmp";
+            Object* enemy2 = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_body.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            enemy2->isTemporary = true;
+            enemy2->mesh->textures[0] = "Turret_wheel/Wheel_Enem_body_color.bmp";
+            enemy2->mesh->blendRatio[0] = 1.f;
+            enemy2->mesh->NMTexture = "Turret_wheel/Wheel_Enem_body_Normal.bmp";
+            enemy2->mesh->STTexture = "Turret_wheel/Wheel_Enem_body_SM.bmp";
             position.y += 0.5/ scale;
             position.z -= 0.06125/ scale;
             position.x -= 0.03/ scale;
 
-            Object* wheel = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_wheel.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
-            wheel->isTemporary = true;
-            wheel->mesh->textures[0] = "Turret_wheel/Wheel_Enem_wheel_color.bmp";
-            wheel->mesh->blendRatio[0] = 1.f;
-            wheel->mesh->NMTexture = "Turret_wheel/Wheel_Enem_wheel_Normal.bmp";
-            wheel->mesh->STTexture = "Turret_wheel/Wheel_Enem_wheel_SM.bmp";
-            enemy->AddChild(wheel);
+            Object* wheel2 = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_wheel.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            wheel2->isTemporary = true;
+            wheel2->mesh->textures[0] = "Turret_wheel/Wheel_Enem_wheel_color.bmp";
+            wheel2->mesh->blendRatio[0] = 1.f;
+            wheel2->mesh->NMTexture = "Turret_wheel/Wheel_Enem_wheel_Normal.bmp";
+            wheel2->mesh->STTexture = "Turret_wheel/Wheel_Enem_wheel_SM.bmp";
+            enemy2->AddChild(wheel2);
             aRotateWheel* rotateWheel = new aRotateWheel();
-            scene->AddActionToObj(rotateWheel, wheel);
+            scene->AddActionToObj(rotateWheel, wheel2);
 
 
 
             position.y += 0.6125f/ scale;
-            Object* head = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_head.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
-            head->isTemporary = true;
-            head->mesh->textures[0] = "Turret_wheel/Wheel_Enem_head_Colour.bmp";
-            head->mesh->blendRatio[0] = 1.f;
-            head->mesh->NMTexture = "Turret_wheel/Wheel_Enem_head_Normal.bmp";
-            head->mesh->STTexture = "Turret_wheel/Wheel_Enem_head_SM.bmp";
-            enemy->AddChild(head);
+            Object* head2 = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Wheel/Enenemy_wheel_head.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+            head2->isTemporary = true;
+            head2->mesh->textures[0] = "Turret_wheel/Wheel_Enem_head_Colour.bmp";
+            head2->mesh->blendRatio[0] = 1.f;
+            head2->mesh->NMTexture = "Turret_wheel/Wheel_Enem_head_Normal.bmp";
+            head2->mesh->STTexture = "Turret_wheel/Wheel_Enem_head_SM.bmp";
+            enemy2->AddChild(head2);
             aWheelEnemyHead* wheelHeadAction = new aWheelEnemyHead();
-            scene->AddActionToObj(wheelHeadAction, head);
+            scene->AddActionToObj(wheelHeadAction, head2);
 
 
           
-            enemy->name = "WHEEL_ENEMY";
+            enemy2->name = "WHEEL_ENEMY";
             BruteEnemy* brut = new BruteEnemy();
-            brut->partToLaunch = head;
+            brut->partToLaunch = head2;
             brut->factory = this;
             brut->maze = maze;
-            scene->AddActionToObj(brut, enemy);
+            scene->AddActionToObj(brut, enemy2);
 
             brut->Start();
 
@@ -150,17 +150,80 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
                 grassCollider->SetGrass(grass);
                 grassCollider->colliderRadius = 1.2f;
                 grassCollider->colliderBlendRadius = 1.5f;
-                scene->AddActionToObj(grassCollider, enemy);
+                scene->AddActionToObj(grassCollider, enemy2);
             }
             
             m_creepPool.push_back(brut);
 
    
 
-            return enemy;
+            return enemy2;
 
 }
 
+Object* LabAttackFactory::SpawnBrutShooterEnemy(glm::vec3 position)
+{
+    float scale = 2.5f;
+    position.y -= 1.5;
+    Object* enemy = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Shooter/Enemy_shooter_body.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+    enemy->isTemporary = true;
+    enemy->mesh->textures[0] = "Enemy_Shooter_Txtr/Shooter_Base_color.bmp";
+    enemy->mesh->blendRatio[0] = 1.f;
+    enemy->mesh->NMTexture = "Enemy_Shooter_Txtr/Shooter_Normal_OpenGL.bmp";
+    //enemy->mesh->STTexture = "Enemy_Shooter_Txtr/Shooter_Mixed_AO.bmp";
+    position.y += 0.0 / scale;
+    position.z -= 0.06125 / scale;
+    position.x -= 0.03 / scale;
+
+    Object* wheel = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Shooter/Enemy_shooter_wheel.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+    wheel->isTemporary = true;
+    wheel->mesh->textures[0] = "Enemy_Shooter_Txtr/Shooter_Base_color.bmp";
+    wheel->mesh->blendRatio[0] = 1.f;
+    wheel->mesh->NMTexture = "Enemy_Shooter_Txtr/Shooter_Normal_OpenGL.bmp";
+    //wheel->mesh->STTexture = "Enemy_Shooter_Txtr/Shooter_Mixed_AO.bmp";
+    enemy->AddChild(wheel);
+    aRotateWheel* rotateWheel = new aRotateWheel();
+    scene->AddActionToObj(rotateWheel, wheel);
+
+    position.y += 0.6125f / scale;
+    Object* head = scene->GenerateMeshObjectsFromObject("assets/models/Enemy_Shooter/Enemy_shooter_head.ply", position, scale, glm::vec3(0.f), false, glm::vec4(0.f, 0.1f, 1.f, 0.f), true, scene->sceneObjects);
+    head->isTemporary = true;
+    head->mesh->textures[0] = "Enemy_Shooter_Txtr/Shooter_Base_color.bmp";
+    head->mesh->blendRatio[0] = 1.f;
+    head->mesh->NMTexture = "Enemy_Shooter_Txtr/Shooter_Normal_OpenGL.bmp";
+    //head->mesh->STTexture = "Enemy_Shooter_Txtr/Shooter_Mixed_AO.bmp";
+    enemy->AddChild(head);
+    aWheelEnemyHead* wheelHeadAction = new aWheelEnemyHead();
+    scene->AddActionToObj(wheelHeadAction, head);
+
+    enemy->name = "WHEEL_ENEMY";
+    BruteEnemy* brut = new BruteEnemy();
+    brut->partToLaunch = head;
+    brut->factory = this;
+    brut->maze = maze;
+    scene->AddActionToObj(brut, enemy);
+
+    brut->Start();
+
+    wheelHeadAction->agent = brut;
+
+
+    if (grass != nullptr)
+    {
+        aGrassCollider* grassCollider = new aGrassCollider();
+        grassCollider->SetGrass(grass);
+        grassCollider->colliderRadius = 1.2f;
+        grassCollider->colliderBlendRadius = 1.5f;
+        scene->AddActionToObj(grassCollider, enemy);
+    }
+
+    m_creepPool.push_back(brut);
+
+
+
+    return enemy;
+
+}
 
 
 Turret* LabAttackFactory::SpawnTurret(const glm::vec3& position, eTurretBodyID bodyID, eTurretNeckID neckID, eTurretHeadID headID)

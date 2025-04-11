@@ -36,6 +36,9 @@ ProjectileTurretBody.txt
 EnemyWheeelBody.txt
 EnemyWheeelWheel.txt
 EnemyWheeelHead.txt
+EnemyShooterBody.txt
+EnemyShooterWheel.txt
+EnemyShooterHead.txt
 Bullet.txt
 ToolDestroyer.txt
 <--ObjectLoad>
