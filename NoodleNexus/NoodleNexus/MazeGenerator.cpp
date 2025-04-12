@@ -49,7 +49,7 @@ void MazeGenerator::generateMaze() {
             char cell = maze[row][col];
             occupiedPositions.resize(maze.size(), std::vector<bool>(maze[0].size(), false));
 
-            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B'||cell == ',' || (cell >= '1' && cell <= '9')) {
+            if (cell == '.' || cell == 'M' || cell == 'T' || cell == 'R' ||  cell == 'S' || cell == 'B' || cell == 'N' ||cell == ',' || (cell >= '1' && cell <= '9')) {
 
                 if (cell != 'S')
                 {
@@ -117,6 +117,9 @@ void MazeGenerator::generateMaze() {
                     PlaceModelOnGrid("", row, col, floor, 1.0f * 7.0f, TUBES, true);
                 }
                 else if (cell == 'B') {
+                    PlaceModelOnGrid("", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
+                }
+                else if (cell == 'N') {
                     PlaceModelOnGrid("", row, col, floor, 1.0f, BRUTEENEM, true, glm::vec4(0.5f, 0.5f, 0.5f, 1.f), parent);
                 }
                 else if (cell == 'R') {

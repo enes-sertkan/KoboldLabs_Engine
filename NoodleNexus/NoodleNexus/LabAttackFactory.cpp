@@ -137,11 +137,13 @@ Object* LabAttackFactory::SpawnBrut(glm::vec3 position)
             brut->partToLaunch = head2;
             brut->factory = this;
             brut->maze = maze;
+            brut->availableActions.push_back(new DashAtPlayerAction());
             scene->AddActionToObj(brut, enemy2);
-
-            brut->Start();
-
             wheelHeadAction->agent = brut;
+            brut->Start();
+            brut->maxHealth = 7.f;
+            brut->health = 7.f;
+          
 
             
             if (grass != nullptr)
@@ -204,9 +206,11 @@ Object* LabAttackFactory::SpawnBrutShooterEnemy(glm::vec3 position)
     scene->AddActionToObj(brut, enemy);
 
     brut->Start();
-
+    brut->attackRange = 7.f + static_cast<float>(rand()) /
+        (static_cast<float>(RAND_MAX / (9.f)));
+    brut->availableActions.push_back(new ShootAtPlayerAction());
     wheelHeadAction->agent = brut;
-
+    brut->maxHealth = 30.f;
 
     if (grass != nullptr)
     {
@@ -831,8 +835,14 @@ Object* LabAttackFactory::SpawnPlayerFollowingBullet(const glm::vec3& position, 
 
 Object* LabAttackFactory::SpawnEnemyBullet(const glm::vec3& position, const glm::vec3& speed)
 {
-    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", position, 0.5f, glm::vec3(0.f), true, glm::vec4(0.9f, 0.1f, 0.1f, 1.f), true, scene->sceneObjects);
-   
+    Object* bullet = scene->GenerateMeshObjectsFromObject("assets/models/bullet.ply", position, 0.3f, glm::vec3(0.f), false, glm::vec4(0.5f, 0.4f, 0.4f, 1.f), true, scene->sceneObjects);
+    bullet->mesh->metal = 0.8;
+    bullet->mesh->smoothness = 0.7f;
+
+    bullet->mesh->textures[0] = "Bullet/Bullet_colour.bmp";
+    bullet->mesh->AOtexture = "Bullet/Bullet_AO.bmp";
+    bullet->mesh->STTexture = "Bullet/Bullet_met_smothness.bmp";
+    bullet->mesh->NMTexture = "Bullet/Bullet_normals.bmp";
     bullet->name = "EBullet";
     aProjectileMovement* projectileAction = new aProjectileMovement();
     projectileAction->speed = speed;

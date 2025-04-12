@@ -17,7 +17,10 @@ public:
     }
     virtual void Update() override {
         // 1. Handle enemy collisions
+        if (!object) return;
+        // 1. Handle enemy collisions
         aBullet::Update();
+        if (!object) return;
         if (!factory) return;
 
         aPlayerCore* playerCore = factory->playerCore;

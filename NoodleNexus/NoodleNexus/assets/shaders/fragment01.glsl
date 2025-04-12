@@ -335,7 +335,15 @@ if (bShellTexturing)
       vec3 finalNormal = fvertexNormal.xyz;
     // --- Section 1: Wave Effects & UV Animation ---
     vec2 movingUV = fUV + vec2(time * speedX, time * speedY);
-    
+    // === New Zoom Functionality ===
+// Apply zoom centered at UV(0.5, 0.5)
+if (zoomPower > 0.0) {
+    float zoomFactor = zoomPower*2.5+1;// Prevent division by zero
+    movingUV -= vec2(0.5); // Center at middle
+    movingUV /= zoomFactor; // Apply zoom
+    movingUV += vec2(0.5); // Restore coordinates
+}
+
 // Process multiple waves
 for (int i = 0; i < 10; i++) {
     vec2 waveOrigin = waves[i].data.xy;

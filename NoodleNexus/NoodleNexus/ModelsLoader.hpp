@@ -190,8 +190,9 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "EnemyWheeelWheel.txt", "XYZNUVRGBA");
     modelInfo.modelName = "EnemyWheeelHead";
     modelInfo.meshPath = "assets/models/Enemy_Wheel/Enenemy_wheel_head.ply";
-    fileManager->WriteModelFile(&modelInfo, "EnemyWheeelHead.txt", "XYZNUVRGBA");
-
+    fileManager->WriteModelFile(&modelInfo, "EnemyWheeelBody.txt", "XYZNUVRGBA");
+    modelInfo.meshPath = "assets/models/Enemy_Wheel/Enenemy_wheel_body.ply";
+    fileManager->WriteModelFile(&modelInfo, "EnemyWheeelBody.txt", "XYZNUVRGBA");
 
         modelInfo.modelName = "ToolDestroyer";
     modelInfo.meshPath = "assets/models/Tools/tool_destroyer.ply";

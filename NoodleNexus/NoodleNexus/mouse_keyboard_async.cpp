@@ -113,7 +113,7 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
         scene->isFlyCamera = true;
     }
     if (screen_quad!=nullptr)
-    if (glfwGetKey(window, GLFW_KEY_T) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
     {
 
         if (screen_quad->mesh->zoomPower >= 1.f)
@@ -127,7 +127,7 @@ void handleKeyboardAsync(GLFWwindow* window ,Object* screen_quad, Scene* scene)
         if (screen_quad->mesh->zoomPower <= 0.f)
             screen_quad->mesh->zoomPower = 0.f;
         else
-            screen_quad->mesh->zoomPower -= scene->deltaTime;
+            screen_quad->mesh->zoomPower -= scene->deltaTime*2;
     }
 
 

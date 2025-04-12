@@ -20,7 +20,7 @@ public:
 
         // Available actions
         availableActions.push_back(new MoveToPlayerAction());
-        availableActions.push_back(new DashAtPlayerAction());
+        
         mazeMovection = new MoveToControlPointAction();
         availableActions.push_back(mazeMovection);
         playerDetectionRange = 5.0f + static_cast<float>(rand()) /
