@@ -102,6 +102,8 @@
 #include "aPlayerCore.h"
 
 // FMOD
+#include "AudioManager.hpp"
+
 #include <fmod.hpp>
 #include <fmod_errors.h>
 #include "aTurretDestroyer.h"
@@ -138,58 +140,95 @@ std::string lastSavedData;
 //----------------------------------------------------------------*
 // FMOD Implementation
 //----------------------------------------------------------------*
+//static audio::AudioManager g_AudioManager;
+//
+//// Helper functions for audio
+//bool initAudioSystem() {
+//    if (!g_AudioManager.Initialize()) {
+//        std::cerr << "Failed to initialize audio system!" << std::endl;
+//        return false;
+//    }
+//    return true;
+//}
+//
+//void loadGameSounds() {
+//    // Load your game sounds (example paths)
+//    g_AudioManager.LoadSound("assets/sounds/mainMenu.mp3", true);
+//    //g_AudioManager.LoadSound3D("assets/sounds/explosion.wav", false);
+//    //g_AudioManager.LoadSound("assets/sounds/background.mp3", true);
+//}
+//
+//void cleanupAudio() {
+//    g_AudioManager.Shutdown();
+//}
 
-FMOD::System* fmodSystem = nullptr;
-FMOD::Sound* backgroundMusic = nullptr;
-FMOD::Channel* musicChannel = nullptr;
 
-void initFMOD() {
-    FMOD_RESULT result;
 
-    // Create FMOD system
-    result = FMOD::System_Create(&fmodSystem);  // Use fmodSystem here
-    if (result != FMOD_OK) {
-        std::cerr << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
-        exit(-1);
-    }
 
-    // Initialize FMOD system
-    result = fmodSystem->init(512, FMOD_INIT_NORMAL, nullptr);  // Use fmodSystem here
-    if (result != FMOD_OK) {
-        std::cerr << "FMOD init error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
-        exit(-1);
-    }
-}
 
-void loadAndPlayBackgroundMusic(const char* filepath) {
-    FMOD_RESULT result;
 
-    // Load sound (looping music)
-    result = fmodSystem->createSound(filepath, FMOD_LOOP_NORMAL | FMOD_2D, nullptr, &backgroundMusic);
-    if (result != FMOD_OK) {
-        std::cerr << "Failed to load background music: " << FMOD_ErrorString(result) << std::endl;
-        exit(-1);
-    }
 
-    // Play the sound
-    result = fmodSystem->playSound(backgroundMusic, nullptr, false, &musicChannel);
-    if (result != FMOD_OK) {
-        std::cerr << "Failed to play background music: " << FMOD_ErrorString(result) << std::endl;
-        exit(-1);
-    }
-}
 
-void updateFMOD() {
-    if (fmodSystem) {
-        fmodSystem->update();
-    }
-}
 
-void cleanupFMOD() {
-    if (backgroundMusic) backgroundMusic->release();
-    if (fmodSystem) fmodSystem->close();
-    if (fmodSystem) fmodSystem->release();
-}
+
+
+
+
+
+
+
+
+//FMOD::System* fmodSystem = nullptr;
+//FMOD::Sound* backgroundMusic = nullptr;
+//FMOD::Channel* musicChannel = nullptr;
+//
+//void initFMOD() {
+//    FMOD_RESULT result;
+//
+//    // Create FMOD system
+//    result = FMOD::System_Create(&fmodSystem);  // Use fmodSystem here
+//    if (result != FMOD_OK) {
+//        std::cerr << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
+//        exit(-1);
+//    }
+//
+//    // Initialize FMOD system
+//    result = fmodSystem->init(512, FMOD_INIT_NORMAL, nullptr);  // Use fmodSystem here
+//    if (result != FMOD_OK) {
+//        std::cerr << "FMOD init error! (" << result << ") " << FMOD_ErrorString(result) << std::endl;
+//        exit(-1);
+//    }
+//}
+//
+//void loadAndPlayBackgroundMusic(const char* filepath) {
+//    FMOD_RESULT result;
+//
+//    // Load sound (looping music)
+//    result = fmodSystem->createSound(filepath, FMOD_LOOP_NORMAL | FMOD_2D, nullptr, &backgroundMusic);
+//    if (result != FMOD_OK) {
+//        std::cerr << "Failed to load background music: " << FMOD_ErrorString(result) << std::endl;
+//        exit(-1);
+//    }
+//
+//    // Play the sound
+//    result = fmodSystem->playSound(backgroundMusic, nullptr, false, &musicChannel);
+//    if (result != FMOD_OK) {
+//        std::cerr << "Failed to play background music: " << FMOD_ErrorString(result) << std::endl;
+//        exit(-1);
+//    }
+//}
+//
+//void updateFMOD() {
+//    if (fmodSystem) {
+//        fmodSystem->update();
+//    }
+//}
+//
+//void cleanupFMOD() {
+//    if (backgroundMusic) backgroundMusic->release();
+//    if (fmodSystem) fmodSystem->close();
+//    if (fmodSystem) fmodSystem->release();
+//}
 
 //----------------------------------------------------------------*
 // End Of FMOD
@@ -2542,8 +2581,10 @@ int main(void)
     scene->Start();
     secutityRoomScene->Start();
 
-    initFMOD();
-    loadAndPlayBackgroundMusic("assets/sounds/mainMenu.mp3");
+    audio::AudioManager::Instance().Initialize();
+    audio::AudioManager::Instance().Load2DSound("MainGame", "assets/sounds/mainMenu.mp3", true);
+    audio::AudioManager::Instance().Play2DSound("MainGame", 0.5f);
+
  
 
     //  Turn on the blend operation
@@ -2589,8 +2630,24 @@ int main(void)
 
         scene->Update();
         secutityRoomScene->Update();
-        updateFMOD();
-        
+
+
+        // In your main game loop:
+        glm::vec3 camPos = scene->fCamera->getEyeLocation();
+        glm::vec3 camForward = glm::vec3(1,0,1);
+        glm::vec3 camUp = glm::vec3(0, 1, 0);
+
+        FMOD_VECTOR position = { camPos.x, camPos.y, camPos.z };
+        FMOD_VECTOR velocity = { 0, 0, 0 };
+        FMOD_VECTOR forward = { camForward.x, camForward.y, camForward.z };
+        FMOD_VECTOR up = { camUp.x, camUp.y, camUp.z };
+
+        audio::AudioManager::Instance().SetListenerAttributes(camPos,
+            glm::vec3(0.0f),
+            camForward,
+            glm::vec3(0.0f, 1.0f, 0.0f));
+
+
 
         //scene->sceneObjects[0]->mesh->positionXYZ = scene->fCamera->getEyeLocation();
         //scene->sceneObjects[0]->mesh->rotationEulerXYZ = scene->fCamera->getCameraData()->rotation;
@@ -2702,7 +2759,9 @@ int main(void)
 //      ------------------------------------------ 
     delete ::g_pFlyCamera;
 
-    cleanupFMOD();
+    //cleanupAudio();
+    audio::AudioManager::Instance().Shutdown();
+
     glfwDestroyWindow(window);
 
     glfwTerminate();

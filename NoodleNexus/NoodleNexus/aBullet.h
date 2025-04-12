@@ -4,6 +4,7 @@
 #include "LabAttackFactory.h"
 #include "aProjectileMovement.hpp"
 #include "aParticleEmitter .h"
+#include "AudioManager.hpp"
 
 class aBullet : public Action {
 private:
@@ -42,6 +43,7 @@ public:
         if (pos.y < factory->maze->floorHeight)
         {
             DestroyBullet();
+
             return;
         }
             
@@ -56,6 +58,8 @@ public:
         {
 
             DestroyBullet();
+
+
             return;
         }
 
@@ -71,6 +75,8 @@ public:
             particles->object->RemoveParent();
             particles->spawnActive = false;
             particles->destroyOnNoParticles = true;
+            audio::AudioManager::Instance().Load2DSound("BulletImpact", "assets/sounds/flaunch.wav");
+            audio::AudioManager::Instance().Play2DSound("BulletImpact");
         }
 
         object->Destroy();

@@ -102,6 +102,12 @@
     <Filter Include="Header Files\Player">
       <UniqueIdentifier>{5a6e5396-47f9-411c-9a2c-eb75f1a4b4c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{fe4b7849-2310-41ae-89b5-a69d2d7c6772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\AudioHeaders">
+      <UniqueIdentifier>{7c434481-e1ca-41b1-b654-ad884b019682}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="theMain.cpp">
@@ -325,6 +331,12 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioUtils.cpp">
+      <Filter>Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,6 +657,12 @@
     </ClInclude>
     <ClInclude Include="aTurretDestroyer.h">
       <Filter>OpenTD</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.hpp">
+      <Filter>Audio\AudioHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioUtils.hpp">
+      <Filter>Audio\AudioHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

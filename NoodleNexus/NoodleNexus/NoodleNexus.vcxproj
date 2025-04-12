@@ -158,6 +158,7 @@
     <ClCompile Include="aScreenTextureSwitch.h" />
     <ClCompile Include="aTextureWiggler.h" />
     <ClCompile Include="aTurretPart.h" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="aWavesEffect.h" />
     <ClCompile Include="aWheelEnemyHead.h" />
     <ClCompile Include="Basic_Shader_Manager\cShader.cpp" />
@@ -216,6 +217,7 @@
     <ClCompile Include="sharedThings.cpp" />
     <ClCompile Include="ShootAtPlayerAction.cpp" />
     <ClCompile Include="sMesh.cpp" />
+    <ClCompile Include="AudioUtils.cpp" />
     <ClCompile Include="theMain.cpp" />
     <ClCompile Include="Turret.cpp" />
   </ItemGroup>
@@ -254,6 +256,8 @@
     <ClInclude Include="aTurretNeck.h" />
     <ClInclude Include="aTurretNeckRotate.hpp" />
     <ClInclude Include="aTurretPlacer.h" />
+    <ClInclude Include="AudioManager.hpp" />
+    <ClInclude Include="AudioUtils.hpp" />
     <ClInclude Include="Basic_Shader_Manager\cShaderManager.h" />
     <ClInclude Include="BruteEnemy.h" />
     <ClInclude Include="C24BitBMPpixel.h" />
