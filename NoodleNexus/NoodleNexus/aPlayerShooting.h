@@ -31,7 +31,7 @@ public:
         timeSinceLastShot += object->scene->deltaTime;
 
         // Check for left mouse button press.
-        if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+        if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
             // Only spawn a bullet if the fire rate delay has elapsed.
             if (timeSinceLastShot >= fireRate && factory) {
                 // Get the player's current position.

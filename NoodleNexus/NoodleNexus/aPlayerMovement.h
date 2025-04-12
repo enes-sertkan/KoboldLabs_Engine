@@ -132,7 +132,12 @@ public:
 	}
 
 	void Update() override {
-		if (object->scene->isFlyCamera) return;
+		if (object->scene->isFlyCamera)
+
+		{
+			verticalVelocity = 0;
+			return;
+		}
 
 
 		// Handle stamina regeneration/drain

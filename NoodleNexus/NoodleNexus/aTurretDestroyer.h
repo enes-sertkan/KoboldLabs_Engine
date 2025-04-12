@@ -32,7 +32,7 @@ public:
                     closestTurret = turret;
                 }
             }
-            if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) != GLFW_PRESS)
+            if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_LEFT) != GLFW_PRESS)
                 targetTurret = closestTurret;
 
 
@@ -42,7 +42,7 @@ public:
                 particles->emitterTargetPos = targetTurret->neck->headConnection->GetWorldPosition();
              
 
-             if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) {
+             if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
                  particles->SetAllActiveToReturning();
                  targetTurret->Destroy();
                  targetTurret = nullptr;
