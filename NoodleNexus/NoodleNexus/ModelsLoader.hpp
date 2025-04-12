@@ -193,11 +193,11 @@ void CreateModelFiles(KLFileManager* fileManager)
     fileManager->WriteModelFile(&modelInfo, "EnemyWheeelHead.txt", "XYZNUVRGBA");
 
 
-        modelInfo.modelName = "ToolDestroyer";
+    modelInfo.modelName = "ToolDestroyer";
     modelInfo.meshPath = "assets/models/Tools/tool_destroyer.ply";
     fileManager->WriteModelFile(&modelInfo, "ToolDestroyer.txt", "XYZNUVRGBA");
 
-        modelInfo.modelName = "Bullet";
+    modelInfo.modelName = "Bullet";
     modelInfo.meshPath = "assets/models/bullet.ply";
     fileManager->WriteModelFile(&modelInfo, "Bullet.txt", "XYZNUVRGBA");
 
@@ -211,5 +211,28 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Enemy_Shooter/Enemy_shooter_wheel.ply";
     fileManager->WriteModelFile(&modelInfo, "EnemyShooterWheel.txt", "XYZNUVRGBA");
 
+
+    modelInfo.modelName = "BigTowersCastle_e_10";
+    modelInfo.meshPath = "assets/models/CastleModels/BigTowersCastle_e_10.ply";
+    fileManager->WriteModelFile(&modelInfo, "BigTowersCastle_e_10.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "MainCastle_e_9";
+    modelInfo.meshPath = "assets/models/CastleModels/MainCastle_e_9.ply";
+    fileManager->WriteModelFile(&modelInfo, "MainCastle_e_9.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "SmallTowersCastle_e_11";
+    modelInfo.meshPath = "assets/models/CastleModels/SmallTowersCastle_e_11.ply";
+    fileManager->WriteModelFile(&modelInfo, "SmallTowersCastle_e_11.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "TowersCastle_e_06";
+    modelInfo.meshPath = "assets/models/CastleModels/TowersCastle_e_06.ply";
+    fileManager->WriteModelFile(&modelInfo, "TowersCastle_e_06.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "WallsCastle_e_05";
+    modelInfo.meshPath = "assets/models/CastleModels/WallsCastle_e_05.ply";
+    fileManager->WriteModelFile(&modelInfo, "WallsCastle_e_05.txt", "XYZNUVRGBA");
+
+    modelInfo.modelName = "Tree1";
+    modelInfo.meshPath = "assets/models/Trees/tree1.ply";
+    fileManager->WriteModelFile(&modelInfo, "Tree1.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Tree2";
+    modelInfo.meshPath = "assets/models/Trees/tree2.ply";
+    fileManager->WriteModelFile(&modelInfo, "Tree2.txt", "XYZNUVRGBA");
 
 }

@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> MainCastle_e_9
+<filePath> assets/models/CastleModels/MainCastle_e_9.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>
