@@ -65,6 +65,8 @@ public:
 
                     toolInfo.visual->AddChild(connectionEmiiter);
                     connectionEmiiter->mesh->positionXYZ = glm::vec3(0);
+                    connectionEmiiter->mesh->positionXYZ.y = 0.12f;
+           
      
                     connectionEmiiter->mesh->isParticleEmitter = true;
                     connectionEmiiter->mesh->metal = 0.1;
@@ -82,6 +84,8 @@ public:
                    particleEmmitter->spawnRate = 10.f;
                    particleEmmitter->spawnActive = false;
                    particleEmmitter->destroyOnNoParticles = false;
+                   particleEmmitter->sizeStart = 0.065f;
+              //     particleEmmitter->sizeEnd = 0.1f;
                 //   particleEmmitter->destroyOnNoParticles = true;
           /*      smokeEmiiter->mesh->transperency = 0.99f;
                 particleEmmitter->particlesToSpawn = 5.f;
@@ -90,8 +94,7 @@ public:
                 particleEmmitter->colorEnd = glm::vec4(0.6, 0.6, 0.6, 0);
                 particleEmmitter->colorStart = glm::vec4(1, 0.647, 0.2, 1.f);
                 particleEmmitter->velocityRange = glm::vec2(0.2f, 1.f);
-                particleEmmitter->sizeStart = 0.05f;
-                particleEmmitter->sizeEnd = 0.4f;
+         
                 particleEmmitter->lifeTimeRange = glm::vec2(0.7, 1.5f);*/
 
 

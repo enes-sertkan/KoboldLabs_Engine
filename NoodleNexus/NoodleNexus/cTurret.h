@@ -28,6 +28,7 @@ public:
 	sTurretCofig* GetConfig() const;
 
     void Destroy() {
+        SpawnEffect();
         // Remove from factory list
         auto it = std::find(factory->turrets.begin(), factory->turrets.end(), this);
         if (it != factory->turrets.end()) {

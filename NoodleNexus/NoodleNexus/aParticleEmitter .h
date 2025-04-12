@@ -48,7 +48,6 @@ public:
     }
 
 
-
     // In aParticleEmitter, add rotation speed range parameters:
     glm::vec3 minRotationSpeed = glm::vec3(-200.0f, -200.0f, -200.0f);
     glm::vec3 maxRotationSpeed = glm::vec3(200.0f, 200.0f, 200.0f);
@@ -128,6 +127,8 @@ public:
                 if (lifeRatio < 0) { particles->at(i).active = false; }
                 particles->at(i).color = glm::mix(colorEnd, colorStart, lifeRatio);
                 particles->at(i).size = glm::mix(sizeEnd, sizeStart, lifeRatio);
+
+
 
             }
             if (counter <= 0 && !spawnActive && destroyOnNoParticles)

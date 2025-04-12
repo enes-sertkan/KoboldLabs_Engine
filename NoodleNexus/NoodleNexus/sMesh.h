@@ -30,6 +30,7 @@ struct Particle {
 	glm::vec3 targetPos = glm::vec3(0.0f);
 
 	bool active = false;
+	bool returning = false;
 };
 
 struct GPUParticle{
