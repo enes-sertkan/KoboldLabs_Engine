@@ -1,0 +1,7 @@
+<KoboldLabs>
+<ModelFile>
+<name> Tree2
+<filePath> assets/models/Trees/tree2.ply
+<fileType> XYZNUVRGBA
+</ModelFile>
+</KoboldLabs>

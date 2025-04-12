@@ -40,6 +40,13 @@ EnemyShooterBody.txt
 EnemyShooterWheel.txt
 EnemyShooterHead.txt
 Bullet.txt
+BigTowersCastle_e_10.txt
+MainCastle_e_9.txt
+SmallTowersCastle_e_11.txt
+TowersCastle_e_06.txt
+WallsCastle_e_05.txt
+Tree1.txt
+Tree2.txt
 ToolDestroyer.txt
 <--ObjectLoad>
 <Scene-->
@@ -57,405 +64,87 @@ ToolDestroyer.txt
 <--Object>
 
 <Object-->
-<Name-> Comp
-<Model-> Comp
+<Name-> BigTowersCastle_e_10
+<Model-> BigTowersCastle_e_10
 <Tags->
 <StaticCollision-> false
-<Position-> 24 3 1.5
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.02108e-38 0
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Comp
-<Model-> Comp
+<Name-> MainCastle_e_9
+<Model-> MainCastle_e_9
 <Tags->
 <StaticCollision-> false
-<Position-> 27 3 1.5
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Comp
-<Model-> Comp
+<Name-> SmallTowersCastle_e_11
+<Model-> SmallTowersCastle_e_11
 <Tags->
 <StaticCollision-> false
-<Position-> 78.15 3 14.55
-<Rotation-> 0 -90 0
-<Scale-> 1 4.3558e-41 9.15816e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Screen
-<Model-> Screen
-<Tags->
-<StaticCollision-> false
-<Position-> 24 3 1.5
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.02108e-38 0
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Screen
-<Model-> Screen
+<Name-> TowersCastle_e_06
+<Model-> TowersCastle_e_06
 <Tags->
 <StaticCollision-> false
-<Position-> 27 3 1.5
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 9.15816e+08
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Screen
-<Model-> Screen
+<Name-> WallsCastle_e_05
+<Model-> WallsCastle_e_05
 <Tags->
 <StaticCollision-> false
-<Position-> 78.15 3 14.55
-<Rotation-> 0 -90 0
-<Scale-> 1 0 0
+<Position-> 0 0 0
+<Rotation-> 0 0 0
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
 <--Object>
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
+<Name-> Tree1
+<Model-> Tree1
 <Tags->
 <StaticCollision-> false
-<Position-> 29 5 67
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.15816e+08
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
 <--Object>
 
 <Object-->
-<Name-> Cube
-<Model-> Cube
+<Name-> Tree2
+<Model-> Tree2
 <Tags->
 <StaticCollision-> false
-<Position-> 63 6 67
+<Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
+<Scale-> 1 1 1
 <Visibility-> true
 <Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Cube
-<Model-> Cube
-<Tags->
-<StaticCollision-> false
-<Position-> 50 6 11
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Reactor
-<Model-> Reactor
-<Tags->
-<StaticCollision-> false
-<Position-> 48 3 3
-<Rotation-> 0 0 0
-<Scale-> 0.71 1.69557e-43 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Reactor
-<Model-> Reactor
-<Tags->
-<StaticCollision-> false
-<Position-> 45 3 58
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Reactor
-<Model-> Reactor
-<Tags->
-<StaticCollision-> false
-<Position-> 42 3 57
-<Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Tube
-<Model-> Tube
-<Tags->
-<StaticCollision-> false
-<Position-> 32 3 10
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Tube
-<Model-> Tube
-<Tags->
-<StaticCollision-> false
-<Position-> 39 3 72
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 9.15816e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Tube
-<Model-> Tube
-<Tags->
-<StaticCollision-> false
-<Position-> 40 3 68
-<Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 9.15816e+08
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 32 3 10
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 39 3 72
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeGlass
-<Model-> TubeGlass
-<Tags->
-<StaticCollision-> false
-<Position-> 7.1854e+22 3.39372e+27 1.10927e+27
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeBroken
-<Model-> TubeBroken
-<Tags->
-<StaticCollision-> false
-<Position-> 38 3 69
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeBroken
-<Model-> TubeBroken
-<Tags->
-<StaticCollision-> false
-<Position-> 43 3 71
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> TubeBroken
-<Model-> TubeBroken
-<Tags->
-<StaticCollision-> false
-<Position-> 39 3 1
-<Rotation-> 0 0 0
-<Scale-> 1 0 0
-<Visibility-> true
-<Shading-> true
-<Color-> 0 0 0
-<--Object>
-
-<Object-->
-<Name-> Shard
-<Model-> Shard
-<Tags->
-<StaticCollision-> false
-<Position-> 38 3 69
-<Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Shards
-<Model-> Shards
-<Tags->
-<StaticCollision-> false
-<Position-> 43 3 71
-<Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Shards
-<Model-> Shards
-<Tags->
-<StaticCollision-> false
-<Position-> 39 3 1
-<Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Table
-<Model-> Table
-<Tags->
-<StaticCollision-> false
-<Position-> 38 3 11
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Table
-<Model-> Table
-<Tags->
-<StaticCollision-> false
-<Position-> 39 3 68
-<Rotation-> 0 0 0
-<Scale-> 1 1.11123e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Table
-<Model-> Table
-<Tags->
-<StaticCollision-> false
-<Position-> 41 3 8
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Light
-<Model-> Light
-<Tags->
-<StaticCollision-> false
-<Position-> 23 8 1.5
-<Rotation-> 0 0 0
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Light
-<Model-> Light
-<Tags->
-<StaticCollision-> false
-<Position-> 26 8 1.5
-<Rotation-> 0 0 0
-<Scale-> 1 4.3558e-41 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Light
-<Model-> Light
-<Tags->
-<StaticCollision-> false
-<Position-> 46 8 72
-<Rotation-> 0 -95 -1
-<Scale-> 1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> CHILD
-<Model-> Sphere
-<Tags->
-<StaticCollision-> false
-<Position-> 10 2 0
-<Rotation-> 0 0 0
-<Scale-> 0.1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<--Object>
-
-<Object-->
-<Name-> Rope
-<Model-> Rope
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 40 6 7
-<Rotation-> 0 0 0
-<Scale-> 0.1 1.1151e-38 0
-<Visibility-> true
-<Shading-> true
-<Color-> 1 1 1
-<--Object>
-
-<Object-->
-<Name-> Sphere
-<Model-> Sphere
-<Tags-> <StaticCollision-> false
-<StaticCollision-> false
-<Position-> 0 5 6
-<Rotation-> 0 0 0
-<Scale-> 0.2 4.3558e-41 0
-<Visibility-> true
-<Shading-> false
-<Color-> 0.3 0.6 0.4
 <--Object>
 
 <Object-->

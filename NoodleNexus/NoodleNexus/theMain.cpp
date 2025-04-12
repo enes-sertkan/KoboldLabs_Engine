@@ -1805,8 +1805,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     playerTurPlacer->factory = LAFactory;
     player->isTemporary = true;
 
-    player->AddChild(scene->sceneObjects[31]);
-    scene->sceneObjects[31]->name = "CHILD";
+    //player->AddChild(scene->sceneObjects[31]);
+    //scene->sceneObjects[31]->name = "CHILD";
    
     glm::vec3 turretPos = player->mesh->positionXYZ;
     turretPos.y -= 1;
@@ -1853,7 +1853,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* softObject = scene->sceneObjects[31];
+    /*Object* softObject = scene->sceneObjects[31];*/
     //softObject->name = "ENEMY";
 
     BruteEnemy* bEnem2 = new BruteEnemy();
@@ -1861,21 +1861,21 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     bEnem2->factory = LAFactory;
     //scene->AddActionToObj(bEnem2, softObject);
 
-    softObject->mesh->metal = 0.8f;
-    softObject->mesh->smoothness = 0.7f;
-    softBody->acceleration.y = -16;
-    softObject->mesh->drawBothFaces = true;
-    softBody->constIterations = 15;
-    softBody->sbCollision->collisionMult = 2.f;
-    softBody->tighness = 2.f;
+    /*softObject->mesh->metal = 0.8f;
+    softObject->mesh->smoothness = 0.7f;*/
+    //softBody->acceleration.y = -16;
+    ///*softObject->mesh->drawBothFaces = true;*/
+    //softBody->constIterations = 15;
+    //softBody->sbCollision->collisionMult = 2.f;
+    //softBody->tighness = 2.f;
     //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . .
-    softBody->SetMazeToSBCollision(mazeGenerator);
+    /*softBody->SetMazeToSBCollision(mazeGenerator);
     softBody->useVolume = true;
     softBody->easyControl = true;
     softBody->inCylynder = false;
     scene->AddActionToObj(softBody, softObject);
-    mazeGenerator->mainSlime = softBody;
+    mazeGenerator->mainSlime = softBody;*/
 
     mazeGenerator->generateMaze();
     mazeSecurity->generateMaze();
@@ -1887,20 +1887,20 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
    // ropeBody->acceleration.x = 40;
   //  ropeBody->SetMazeToSBCollision(mazeGenerator);
 
-    Object* ropeObject = scene->sceneObjects[32];
-    ropeObject->mesh->drawBothFaces = true;
-    ropeObject->mesh->bOverrideObjectColour = true;
-    ropeObject->mesh->bDoNotLight = false;
-    ropeObject->mesh->objectColourRGBA = glm::vec4(1);
-    //error
-    ropeBody->isLockOnY = true;
-    ropeBody->zLockPos = -0.3f;
-    ropeBody->checkGreaterZLock = false;
-    ropeBody->AddSoftBodyToCollisions(softBody);
-   scene->AddActionToObj(ropeBody, ropeObject);
+   // Object* ropeObject = scene->sceneObjects[32];
+   // ropeObject->mesh->drawBothFaces = true;
+   // ropeObject->mesh->bOverrideObjectColour = true;
+   // ropeObject->mesh->bDoNotLight = false;
+   // ropeObject->mesh->objectColourRGBA = glm::vec4(1);
+   // //error
+   // ropeBody->isLockOnY = true;
+   // ropeBody->zLockPos = -0.3f;
+   // ropeBody->checkGreaterZLock = false;
+   // ropeBody->AddSoftBodyToCollisions(softBody);
+   //scene->AddActionToObj(ropeBody, ropeObject);
 
-    ConnSoftToObj* connector = new ConnSoftToObj();
-    connector->softbody = ropeBody;
+   // ConnSoftToObj* connector = new ConnSoftToObj();
+   // connector->softbody = ropeBody;
 
    // scene->AddActionToObj(connector, scene->sceneObjects[33]);
 
@@ -1915,51 +1915,51 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
  //   scene->AddActionToObj(softBodyAction, softObject);
 
 
-    Object* cameraObj2 = scene->sceneObjects[7];
-    //Object* cameraObj3 = scene->sceneObjects[8];
-    //Object* cameraObj4 = scene->sceneObjects[9];
-    ////Object* cameraObj5 = scene->sceneObjects[23];
+   // Object* cameraObj2 = scene->sceneObjects[7];
+   // //Object* cameraObj3 = scene->sceneObjects[8];
+   // //Object* cameraObj4 = scene->sceneObjects[9];
+   // ////Object* cameraObj5 = scene->sceneObjects[23];
 
-    CameraToTexture* textureCamera1 = new CameraToTexture();
-    CameraToTexture* textureCamera2 = new CameraToTexture();
-    CameraToTexture* textureCamera3 = new CameraToTexture();
+   // CameraToTexture* textureCamera1 = new CameraToTexture();
+   // CameraToTexture* textureCamera2 = new CameraToTexture();
+   // CameraToTexture* textureCamera3 = new CameraToTexture();
 
-    textureCamera1->drawistance = 50.f;
-    textureCamera2->drawistance = 100.f;
-    textureCamera3->drawistance = 500.f;
-    textureCamera1->textureName = "securityCamera";
-    textureCamera2->textureName = "camera1";
-    textureCamera3->textureName = "securityCamera2";
-
-
-    securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
-    securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
-    scene->AddActionToObj(textureCamera2, cameraObj2);
-
-    //MIRROR
-    aMirrorReflection* mirrorReflection = new aMirrorReflection();
-    mirrorReflection->mirrorCenter = puddle->mesh->positionXYZ;
-    mirrorReflection->cameraController = textureCamera2;
-    mirrorReflection->fovAdjustmentFactor = 20.f;
-    mirrorReflection->mirrorObject = puddle;
-    mirrorReflection->cameraHeight = 0.f;
-   //scene->AddActionToObj(mirrorReflection, cameraObj2);
+   // textureCamera1->drawistance = 50.f;
+   // textureCamera2->drawistance = 100.f;
+   // textureCamera3->drawistance = 500.f;
+   // textureCamera1->textureName = "securityCamera";
+   // textureCamera2->textureName = "camera1";
+   // textureCamera3->textureName = "securityCamera2";
 
 
+   // securityRoomScene->AddActionToObj(textureCamera1, securutyCamera);
+   // securityRoomScene->AddActionToObj(textureCamera3, securutyCamera2);
+   // scene->AddActionToObj(textureCamera2, cameraObj2);
 
-    ////FRONT SCREEN 1
-    ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
+   // //MIRROR
+   // aMirrorReflection* mirrorReflection = new aMirrorReflection();
+   // mirrorReflection->mirrorCenter = puddle->mesh->positionXYZ;
+   // mirrorReflection->cameraController = textureCamera2;
+   // mirrorReflection->fovAdjustmentFactor = 20.f;
+   // mirrorReflection->mirrorObject = puddle;
+   // mirrorReflection->cameraHeight = 0.f;
+   ////scene->AddActionToObj(mirrorReflection, cameraObj2);
 
-    screenSwitcher->AddTexture("camera1");
-    screenSwitcher->AddTexture("securityCamera");
-    screenSwitcher->AddTexture("securityCamera2");
-    screenSwitcher->AddTextureLayer2("cam_top.bmp");
-    screenSwitcher->AddTextureLayer2("cam_top2.bmp");
-    screenSwitcher->AddTextureLayer2("cam_top3.bmp");
 
-    scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
 
-    scene->sceneObjects[4]->mesh->chromaticPower = 0.05;
+   // ////FRONT SCREEN 1
+   // ScreenTextureSwitch* screenSwitcher = new ScreenTextureSwitch();
+
+   // screenSwitcher->AddTexture("camera1");
+   // screenSwitcher->AddTexture("securityCamera");
+   // screenSwitcher->AddTexture("securityCamera2");
+   // screenSwitcher->AddTextureLayer2("cam_top.bmp");
+   // screenSwitcher->AddTextureLayer2("cam_top2.bmp");
+   // screenSwitcher->AddTextureLayer2("cam_top3.bmp");
+
+   // scene->AddActionToObj(screenSwitcher, scene->sceneObjects[4]);
+
+   // scene->sceneObjects[4]->mesh->chromaticPower = 0.05;
 
 
 
@@ -1973,25 +1973,25 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
  
 
-   scene->sceneObjects[5]->mesh->textures[0] = "tv_glitch.bmp";
-   scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
-   scene->sceneObjects[5]->mesh->textureSpeed.x = 10;
-   scene->sceneObjects[5]->mesh->textures[1] = "screen_broken.bmp";
-   scene->sceneObjects[5]->mesh->blendRatio[1] = 0.75f;
-   scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
+  // scene->sceneObjects[5]->mesh->textures[0] = "tv_glitch.bmp";
+  // scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
+  // scene->sceneObjects[5]->mesh->textureSpeed.x = 10;
+  // scene->sceneObjects[5]->mesh->textures[1] = "screen_broken.bmp";
+  // scene->sceneObjects[5]->mesh->blendRatio[1] = 0.75f;
+  // scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
-    scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
-    scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
-    
-     scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
-    scene->sceneObjects[6]->mesh->blendRatio[1] = 0.75f;
-    scene->sceneObjects[6]->mesh->bOverrideObjectColour = false; 
+  //  scene->sceneObjects[6]->mesh->textures[0] = "main_camera";
+  //  scene->sceneObjects[6]->mesh->blendRatio[0] = 1.f;
+  //  
+  //   scene->sceneObjects[6]->mesh->textures[1] = "screen_broken.bmp";
+  //  scene->sceneObjects[6]->mesh->blendRatio[1] = 0.75f;
+  //  scene->sceneObjects[6]->mesh->bOverrideObjectColour = false; 
 
-  //  puddle->isActive = false;
+  ////  puddle->isActive = false;
 
-     puddle->mesh->textures[1] = "camera1";
-     puddle->mesh->blendRatio[1] = 1.0f;
-     puddle->mesh->bOverrideObjectColour = false;
+  //   puddle->mesh->textures[1] = "camera1";
+  //   puddle->mesh->blendRatio[1] = 1.0f;
+  //   puddle->mesh->bOverrideObjectColour = false;
 
     // scene->sceneObjects[5]->mesh->textures[0] = "securityCamera";
     //scene->sceneObjects[5]->mesh->blendRatio[0] = 1.f;
@@ -2047,55 +2047,70 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         //scene->sceneObjects[0]->mesh->transperency = 1;
         //scene->sceneObjects[0]->mesh->textureFillType[0] = 1;
 
-        scene->sceneObjects[1]->mesh->textures[0] = "Computer_3_AlbedoTransparency.bmp";
-        scene->sceneObjects[1]->mesh->textures[1] = "rust.bmp";
+        scene->sceneObjects[1]->mesh->textures[0] = "CastleTextures/castle_element_10_BaseColor.bmp";
+        scene->sceneObjects[1]->mesh->NMTexture = "CastleTextures/castle_element_10_NormalGL.bmp";
+        //scene->sceneObjects[1]->mesh->textures[2] = "CastleTextures/castle_element_10_Metallic.bmp";
+        //scene->sceneObjects[1]->mesh->textures[3] = "CastleTextures/castle_element_10_Smoothness.bmp";
+        scene->sceneObjects[1]->mesh->STTexture = "CastleTextures/castle_element_10_ST.bmp";
         scene->sceneObjects[1]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[1]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[1]->mesh->blendRatio[2] = 1;
+        //scene->sceneObjects[1]->mesh->blendRatio[3] = 1;
+        //scene->sceneObjects[1]->mesh->blendRatio[4] = 1;
         scene->sceneObjects[1]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[1]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[2]->mesh->textures[0] = "Computer_3_AlbedoTransparency.bmp";
-        scene->sceneObjects[2]->mesh->textures[1] = "metalScratch.bmp";
+        scene->sceneObjects[2]->mesh->textures[0] = "CastleTextures/castle_element_09_BaseColor.bmp";
+        scene->sceneObjects[2]->mesh->NMTexture = "CastleTextures/castle_element_09_NormalGL.bmp";
+        //scene->sceneObjects[2]->mesh->textures[2] = "CastleTextures/castle_element_09_Roughness.bmp";
+        scene->sceneObjects[2]->mesh->STTexture = "CastleTextures/castle_element_09_Smoothness.bmp";
+        scene->sceneObjects[2]->mesh->useMetalTexture = false;
         scene->sceneObjects[2]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[2]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[2]->mesh->textureFillType[1] = 1;
+        scene->sceneObjects[2]->mesh->blendRatio[2] = 1;
+        //scene->sceneObjects[2]->mesh->blendRatio[3] = 1;
+        scene->sceneObjects[2]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[2]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[3]->mesh->textures[0] = "Computer_3_AlbedoTransparency.bmp";
-        scene->sceneObjects[3]->mesh->textures[1] = "rust.bmp";
+        scene->sceneObjects[3]->mesh->textures[0] = "CastleTextures/castle_element_11_BaseColor.bmp";
+        scene->sceneObjects[3]->mesh->NMTexture = "CastleTextures/castle_element_11_NormalGL.bmp";
+        //scene->sceneObjects[3]->mesh->textures[2] = "CastleTextures/castle_element_11_Smoothness.bmp";
+        scene->sceneObjects[3]->mesh->STTexture = "CastleTextures/castle_element_11_ST.bmp";
         scene->sceneObjects[3]->mesh->blendRatio[0] = 1;
         scene->sceneObjects[3]->mesh->blendRatio[1] = 1;
-        scene->sceneObjects[3]->mesh->textureFillType[1] = 1;
+        scene->sceneObjects[3]->mesh->blendRatio[2] = 1;
+        //scene->sceneObjects[3]->mesh->blendRatio[3] = 1;
+        scene->sceneObjects[3]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[3]->mesh->bOverrideObjectColour = false;
 
-        //scene->sceneObjects[4]->mesh->textures[0] = "Turret3/Turret3_Base.bmp";
-        //scene->sceneObjects[4]->mesh->textures[1] = "Turret3/Turret3_Normal.bmp";
-        //scene->sceneObjects[4]->mesh->textures[2] = "Turret3/Turret3_AmbOcc.bmp";
-        //scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
-        //scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
-        //scene->sceneObjects[4]->mesh->blendRatio[2] = 1;
-        //scene->sceneObjects[4]->mesh->textureFillType[1] = 1;
-        //scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
+        scene->sceneObjects[4]->mesh->textures[0] = "CastleTextures/castle_element_06_BaseColor.bmp";
+        scene->sceneObjects[4]->mesh->NMTexture = "CastleTextures/castle_element_06_NormalGL.bmp";
+        scene->sceneObjects[4]->mesh->STTexture = "CastleTextures/castle_element_06_ST.bmp";
+        scene->sceneObjects[4]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[4]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[4]->mesh->blendRatio[2] = 1;
+        scene->sceneObjects[4]->mesh->textureFillType[0] = 1;
+        scene->sceneObjects[4]->mesh->bOverrideObjectColour = false;
 
-
-      /*  scene->sceneObjects[5]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[5]->mesh->textures[0] = "CastleTextures/castle_element_05_BaseColor.bmp";
+        scene->sceneObjects[5]->mesh->NMTexture = "CastleTextures/castle_element_05_NormalGL.bmp";
         scene->sceneObjects[5]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[5]->mesh->blendRatio[1] = 1;
         scene->sceneObjects[5]->mesh->textureFillType[0] = 1;
         scene->sceneObjects[5]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[6]->mesh->textures[0] = "uv_mapper.bmp";
+        scene->sceneObjects[6]->mesh->textures[0] = "TreesTxtr/tree1_base.bmp";
         scene->sceneObjects[6]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;*/
+        scene->sceneObjects[6]->mesh->textureFillType[0] = 1;
+        scene->sceneObjects[6]->mesh->bOverrideObjectColour = false;
 
-        //// Front Screen 1
-        //scene->sceneObjects[7]->mesh->textures[0] = "gibberish.bmp";
-        //scene->sceneObjects[7]->mesh->blendRatio[0] = 9;
-        //scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[7]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[7]->mesh->stencilTexture = "WorldMap.bmp";
-        //scene->sceneObjects[7]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[7]->mesh->textureSpeed.x = 0.1f;
+        scene->sceneObjects[7]->mesh->textures[0] = "TreesTxtr/tree2_Base.bmp";
+        scene->sceneObjects[7]->mesh->AOtexture = "TreesTxtr/tree2_AO.bmp";
+        scene->sceneObjects[7]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[7]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[7]->mesh->textureFillType[0] = 1;
+        scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
+
 
         //// Front Window
         //scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
@@ -2117,156 +2132,156 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         ////scene->sceneObjects[9]->mesh->stencilTextureID = 61;
         ////scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
  // Left Screen
-        scene->sceneObjects[10]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
-        scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
-        //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
-        //scene->sceneObjects[10]->mesh->stencilTextureID = 61;
-        //scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
+    //    scene->sceneObjects[10]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[10]->mesh->blendRatio[0] = 9;
+    //    scene->sceneObjects[10]->mesh->bOverrideObjectColour = false;
+    //    //scene->sceneObjects[10]->mesh->bIsStencilTexture = true;
+    //    //scene->sceneObjects[10]->mesh->stencilTexture = "binaries.bmp";
+    //    //scene->sceneObjects[10]->mesh->stencilTextureID = 61;
+    //    //scene->sceneObjects[10]->mesh->textureSpeed.x = 0.1f;
 
-        // Left Window
-        scene->sceneObjects[11]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
-        scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
-        scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
-        scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
-        scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
+    //    // Left Window
+    //    scene->sceneObjects[11]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[11]->mesh->textures[0] = "fingerprint.bmp";
+    //    scene->sceneObjects[11]->mesh->blendRatio[0] = 3;
+    //    scene->sceneObjects[11]->mesh->blendRatio[1] = 3;
+    //    scene->sceneObjects[11]->mesh->textureFillType[1] = 1;
+    //    scene->sceneObjects[11]->mesh->bOverrideObjectColour = false;
 
 
-        glm::vec3 tubeFix = glm::vec3(-2.4f, 2.5f, 1.9f);
+    //    glm::vec3 tubeFix = glm::vec3(-2.4f, 2.5f, 1.9f);
  
-        scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[12]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[12]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[12]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[12]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[12]->mesh->AOtexture = "Frame_Tube_AO.bmp";
 
-        scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
-       // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[12]->mesh->positionXYZ+tubeFix * scene->sceneObjects[12]->mesh->uniformScale);
-
-
-
-        // Right Window
-        scene->sceneObjects[13]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
-        scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
-        scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[12]->mesh->blendRatio[0] = 9;
+    //    scene->sceneObjects[12]->mesh->bOverrideObjectColour = false;
+    //   // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[12]->mesh->positionXYZ+tubeFix * scene->sceneObjects[12]->mesh->uniformScale);
 
 
-        // Right Screen
-        scene->sceneObjects[14]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[14]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[14]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
-        scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
-       // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[14]->mesh->positionXYZ + tubeFix * scene->sceneObjects[14]->mesh->uniformScale);
 
-        //Room
-
-        scene->sceneObjects[15]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[15]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[15]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
-    //    SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[15]->mesh->positionXYZ + tubeFix * scene->sceneObjects[15]->mesh->uniformScale);
+    //    // Right Window
+    //    scene->sceneObjects[13]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[13]->mesh->textures[0] = "rust.bmp";
+    //    scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
+    //    scene->sceneObjects[13]->mesh->blendRatio[0] = 1;
+    //    scene->sceneObjects[13]->mesh->textureFillType[1] = 1;
+    //    scene->sceneObjects[13]->mesh->bOverrideObjectColour = false;
 
 
-        scene->sceneObjects[16]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[16]->mesh->transperency = 0.2;
+    //    // Right Screen
+    //    scene->sceneObjects[14]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[14]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[14]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[14]->mesh->blendRatio[0] = 9;
+    //    scene->sceneObjects[14]->mesh->bOverrideObjectColour = false;
+    //   // SpawnEffectInTudeOnPos(scene, scene->sceneObjects[14]->mesh->positionXYZ + tubeFix * scene->sceneObjects[14]->mesh->uniformScale);
 
-        scene->sceneObjects[17]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[17]->mesh->transperency = 0.2;
+    //    //Room
 
-        scene->sceneObjects[18]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[18]->mesh->transperency = 0.2;
-
-        scene->sceneObjects[19]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[19]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[19]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
-
-        //SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[19]->mesh->positionXYZ);
-
-        scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[20]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[20]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
-        SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[20]->mesh->positionXYZ + tubeFix * scene->sceneObjects[20]->mesh->uniformScale);
+    //    scene->sceneObjects[15]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[15]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[15]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[15]->mesh->blendRatio[0] = 1;
+    //    scene->sceneObjects[15]->mesh->bOverrideObjectColour = false;
+    ////    SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[15]->mesh->positionXYZ + tubeFix * scene->sceneObjects[15]->mesh->uniformScale);
 
 
-        scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[21]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
-        scene->sceneObjects[21]->mesh->AOtexture = "Frame_Tube_AO.bmp";
-        scene->sceneObjects[21]->mesh->blendRatio[0] = 1;
-        scene->sceneObjects[21]->mesh->bOverrideObjectColour = true;
-        SpawnEffectInTudeOnPos(scene, scene->sceneObjects[21]->mesh->positionXYZ + tubeFix * scene->sceneObjects[21]->mesh->uniformScale);
+    //    scene->sceneObjects[16]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[16]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[16]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[16]->mesh->transperency = 0.2;
+
+    //    scene->sceneObjects[17]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[17]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[17]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[17]->mesh->transperency = 0.2;
+
+    //    scene->sceneObjects[18]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[18]->mesh->blendRatio[0] = 1;
+    //    scene->sceneObjects[18]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[18]->mesh->transperency = 0.2;
+
+    //    scene->sceneObjects[19]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[19]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[19]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[19]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[19]->mesh->bOverrideObjectColour = false;
+
+    //    //SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[19]->mesh->positionXYZ);
+
+    //    scene->sceneObjects[20]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[20]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[20]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[20]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[20]->mesh->bOverrideObjectColour = false;
+    //    SpawnSlimeInTudeOnPos(scene, scene->sceneObjects[20]->mesh->positionXYZ + tubeFix * scene->sceneObjects[20]->mesh->uniformScale);
 
 
-        scene->sceneObjects[22]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[22]->mesh->transperency = 0.2;
+    //    scene->sceneObjects[21]->mesh->textures[0] = "Frame_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[21]->mesh->STTexture = "Frame_Tube_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[21]->mesh->AOtexture = "Frame_Tube_AO.bmp";
+    //    scene->sceneObjects[21]->mesh->blendRatio[0] = 1;
+    //    scene->sceneObjects[21]->mesh->bOverrideObjectColour = true;
+    //    SpawnEffectInTudeOnPos(scene, scene->sceneObjects[21]->mesh->positionXYZ + tubeFix * scene->sceneObjects[21]->mesh->uniformScale);
 
-        scene->sceneObjects[23]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[23]->mesh->transperency = 0.2;
 
-        scene->sceneObjects[24]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
-        scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
-        scene->sceneObjects[24]->mesh->transperency = 0.2;
+    //    scene->sceneObjects[22]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[22]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[22]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[22]->mesh->transperency = 0.2;
 
-        scene->sceneObjects[25]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
-        scene->sceneObjects[25]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
-        scene->sceneObjects[25]->mesh->AOtexture= "Operating_Table_AO.bmp";
-        scene->sceneObjects[25]->mesh->NMTexture= "Operating_Table_Normal.bmp";
-      //  scene->sceneObjects[25]->mesh->textureSpeed.x = 1.f;
+    //    scene->sceneObjects[23]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[23]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[23]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[23]->mesh->transperency = 0.2;
 
-        scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[24]->mesh->textures[0] = "Glass_Tube_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[24]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[24]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[24]->mesh->transperency = 0.2;
 
-        scene->sceneObjects[26]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
-        scene->sceneObjects[26]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
-        scene->sceneObjects[26]->mesh->AOtexture = "Operating_Table_AO.bmp";
-        scene->sceneObjects[26]->mesh->NMTexture = "Operating_Table_Normal.bmp";
-       // scene->sceneObjects[26]->mesh->textureSpeed.x = 1.f;
-        scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[25]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[25]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[25]->mesh->AOtexture= "Operating_Table_AO.bmp";
+    //    scene->sceneObjects[25]->mesh->NMTexture= "Operating_Table_Normal.bmp";
+    //  //  scene->sceneObjects[25]->mesh->textureSpeed.x = 1.f;
 
-        scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
-        scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
-        scene->sceneObjects[27]->mesh->AOtexture = "Operating_Table_AO.bmp";
-        scene->sceneObjects[27]->mesh->NMTexture = "Operating_Table_Normal.bmp";
-      //  scene->sceneObjects[27]->mesh->textureSpeed.x = 1.f;
-        scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[25]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[25]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[28]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
-        scene->sceneObjects[28]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[28]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[26]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[26]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[26]->mesh->AOtexture = "Operating_Table_AO.bmp";
+    //    scene->sceneObjects[26]->mesh->NMTexture = "Operating_Table_Normal.bmp";
+    //   // scene->sceneObjects[26]->mesh->textureSpeed.x = 1.f;
+    //    scene->sceneObjects[26]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[26]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[29]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
-        scene->sceneObjects[29]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[29]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[27]->mesh->textures[0] = "Operating_Table_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[27]->mesh->STTexture = "Operating_Table_MetallicSmoothness.bmp";
+    //    scene->sceneObjects[27]->mesh->AOtexture = "Operating_Table_AO.bmp";
+    //    scene->sceneObjects[27]->mesh->NMTexture = "Operating_Table_Normal.bmp";
+    //  //  scene->sceneObjects[27]->mesh->textureSpeed.x = 1.f;
+    //    scene->sceneObjects[27]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[27]->mesh->bOverrideObjectColour = false;
 
-        scene->sceneObjects[30]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
-        scene->sceneObjects[30]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[30]->mesh->bOverrideObjectColour = false;
-        
-        scene->sceneObjects[31]->mesh->textures[0] = "slime.bmp";
-        scene->sceneObjects[31]->mesh->blendRatio[0] = 2;
-        scene->sceneObjects[31]->mesh->bOverrideObjectColour = false;
+    //    scene->sceneObjects[28]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[28]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[28]->mesh->bOverrideObjectColour = false;
+
+    //    scene->sceneObjects[29]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[29]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[29]->mesh->bOverrideObjectColour = false;
+
+    //    scene->sceneObjects[30]->mesh->textures[0] = "Lockdown_Light_AlbedoTransparency.bmp";
+    //    scene->sceneObjects[30]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[30]->mesh->bOverrideObjectColour = false;
+    //    
+    //    scene->sceneObjects[31]->mesh->textures[0] = "slime.bmp";
+    //    scene->sceneObjects[31]->mesh->blendRatio[0] = 2;
+    //    scene->sceneObjects[31]->mesh->bOverrideObjectColour = false;
     }
 
 
@@ -2485,6 +2500,29 @@ int main(void)
     scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_albedo.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_AO.bmp");
     scene->textureManager->Create2DTextureFromBMPFile("ToolDestroyer/ToolDestroyer_ST.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_05_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_05_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_06_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_06_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_06_ST.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_09_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_09_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_09_Roughness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_09_Smoothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_10_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_10_Metallic.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_10_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_10_Smoothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_10_ST.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_11_BaseColor.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_11_NormalGL.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_11_Smoothness.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("CastleTextures/castle_element_11_ST.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("TreesTxtr/tree1_base.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("TreesTxtr/tree2_AO.bmp");
+    scene->textureManager->Create2DTextureFromBMPFile("TreesTxtr/tree2_Base.bmp");
+
+
  
 
 
