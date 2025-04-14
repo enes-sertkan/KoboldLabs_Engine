@@ -780,6 +780,18 @@ void cVAOManager::CalculateTangents(sModelDrawInfo& drawInfo)
 			continue;
 		}
 
+		vertices[i0].tx = 0;
+		vertices[i0].ty = 0;
+		vertices[i0].tz = 0;
+
+		vertices[i1].tx = 0;
+		vertices[i1].ty = 0;
+		vertices[i1].tz = 0;
+
+		vertices[i2].tx = 0;
+		vertices[i2].ty = 0;
+		vertices[i2].tz = 0;
+
 		glm::vec3 v0(vertices[i0].x, vertices[i0].y, vertices[i0].z);
 		glm::vec3 v1(vertices[i1].x, vertices[i1].y, vertices[i1].z);
 		glm::vec3 v2(vertices[i2].x, vertices[i2].y, vertices[i2].z);

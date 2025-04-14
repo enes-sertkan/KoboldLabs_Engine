@@ -623,6 +623,12 @@ void DrawMeshWithCamera(sMesh* pCurMesh, GLuint program, cVAOManager* vaoManager
 
     }
 
+        int eyelocation = glGetUniformLocation(program, "eyeLocation");
+        glUniform4f(eyelocation,
+            camera->scene->fCamera->getEyeLocation().x,
+            camera->scene->fCamera->getEyeLocation().y,
+            camera->scene->fCamera->getEyeLocation().z,0);
+
 
     if (pCurMesh->drawBothFaces)
     {
