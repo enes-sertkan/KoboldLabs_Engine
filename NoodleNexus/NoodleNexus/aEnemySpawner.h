@@ -47,8 +47,8 @@ public:
     }
 
     virtual void Start() override {
-        ConfigureType1(0, 0.25);
-        ConfigureType2(1, 0.5);
+        ConfigureType1(0, 0.125);
+        ConfigureType2(1, 0.25);
 
 
         type1Config.currentAmount = type1Config.baseAmount;

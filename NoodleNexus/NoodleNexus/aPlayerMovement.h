@@ -151,12 +151,13 @@ public:
 		GroundCheck();
 
 		// Update camera position first
-		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
+		
 
 		//object->mesh->rotationEulerXYZ = object->scene->fCamera->getCameraData()->rotation;
 		object->mesh->rotationEulerXYZ.y = -object->scene->fCamera->getCameraData()->rotation.y;
 		//object->mesh->rotationEulerXYZ.z = -object->mesh->rotationEulerXYZ.x;  
 		//object->mesh->rotationEulerXYZ.x = -object->mesh->rotationEulerXYZ.z;
+		object->scene->fCamera->setEyeLocation(object->mesh->positionXYZ);
 	}
 
 

@@ -236,4 +236,11 @@ void CreateModelFiles(KLFileManager* fileManager)
     modelInfo.meshPath = "assets/models/Trees/tree2.ply";
     fileManager->WriteModelFile(&modelInfo, "Tree2.txt", "XYZNUVRGBA");
 
+    modelInfo.modelName = "Tree1All";
+    modelInfo.meshPath = "assets/models/Trees/tree1All.ply";
+    fileManager->WriteModelFile(&modelInfo, "Tree1All.txt", "XYZNUVRGBA");
+    modelInfo.modelName = "Tree2All";
+    modelInfo.meshPath = "assets/models/Trees/tree2All.ply";
+    fileManager->WriteModelFile(&modelInfo, "Tree2All.txt", "XYZNUVRGBA");
+
 }

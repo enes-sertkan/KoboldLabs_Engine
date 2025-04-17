@@ -47,6 +47,8 @@ TowersCastle_e_06.txt
 WallsCastle_e_05.txt
 Tree1.txt
 Tree2.txt
+Tree1All.txt
+Tree2All.txt
 ToolDestroyer.txt
 <--ObjectLoad>
 <Scene-->
@@ -58,7 +60,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 4166 -1 15648
 <Rotation-> 0 0 -0.00905826
-<Scale-> 1 0 9.15816e+08
+<Scale-> 1 9.95711e-39 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -70,7 +72,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 1.10204e-38 1.62551e-43
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -82,7 +84,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -94,7 +96,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -106,7 +108,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 1.1151e-38 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -117,8 +119,8 @@ ToolDestroyer.txt
 <Tags->
 <StaticCollision-> false
 <Position-> 0 0 0
-<Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Rotation-> 0 -1 0
+<Scale-> 1 7.30076e-43 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -130,7 +132,7 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 4.3558e-41 0
 <Visibility-> true
 <Shading-> true
 <--Object>
@@ -142,9 +144,46 @@ ToolDestroyer.txt
 <StaticCollision-> false
 <Position-> 0 0 0
 <Rotation-> 0 0 0
-<Scale-> 1 1 1
+<Scale-> 1 1.11123e-38 0
 <Visibility-> true
 <Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tree1All
+<Model-> Tree1All
+<Tags->
+<StaticCollision-> false
+<Position-> 58.15 0 0
+<Rotation-> 0 53.5 0
+<Scale-> 2.2 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> Tree2All
+<Model-> Tree2All
+<Tags->
+<StaticCollision-> false
+<Position-> -27.5 4.4 0.05
+<Rotation-> 0 -172 -3.5
+<Scale-> 0.755 1.1151e-38 0
+<Visibility-> true
+<Shading-> true
+<--Object>
+
+<Object-->
+<Name-> SLIME
+<Model-> Sphere
+<Tags-> <StaticCollision-> false
+<StaticCollision-> false
+<Position-> 7.5 5 6
+<Rotation-> 0 0 0
+<Scale-> 0.35 1.11123e-38 0
+<Visibility-> true
+<Shading-> true
+<Color-> 0.3 0.6 0.4
 <--Object>
 
 <Object-->
@@ -160,6 +199,126 @@ ToolDestroyer.txt
 <Color-> 0 0 0
 <--Object>
 
+<Object-->
+<Name-> Particles
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 16 3 0
+<Rotation-> 0 0 0
+<Scale-> 1 3.80483e-39 1.4013e-44
+<Visibility-> true
+<Shading-> true
+<Color-> 0 1 0
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Tools/tool_destroyer.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 90 0
+<Scale-> 0.1 7.30076e-43 0.00280457
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> 
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 0 90 0
+<Scale-> 0.1 7.30076e-43 0.00280278
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Tools/tool_destroyer.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0.1
+<Rotation-> 0 90 0
+<Scale-> 0.025 7.30076e-43 0.00280391
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> SMOKE PARTICLES
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> -21.8 -4.4 -7.6
+<Rotation-> 153.5 30 159.5
+<Scale-> 0.25 7.30076e-43 0.00280436
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> SMOKE PARTICLES
+<Model-> assets/models/Cube_xyz_n_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 146.266 -27.2226 -163.013
+<Scale-> 1 1.11508e-38 0
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> SMOKE PARTICLES
+<Model-> assets/models/Cube_xyz_n_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 50.1839 18.3454 6.35071
+<Rotation-> 0 0 0
+<Scale-> 0.5 4.03308e-41 0
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Cube_xyz_n_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 50.1126 18.602 5.90405
+<Rotation-> 0 0 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> SMOKE PARTICLES
+<Model-> assets/models/Sphere_radius_1_xyz_N_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 0 0 0
+<Rotation-> 1.81956 -25.0783 -0.771443
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<--Object>
+
+<Object-->
+<Name-> 
+<Model-> assets/models/Cube_xyz_n_uv.ply
+<Tags->
+<StaticCollision-> false
+<Position-> 14.168 3.22153 10.7553
+<Rotation-> 0 0 0
+<Scale-> 1 1.1151e-38 0
+<Visibility-> true
+<Shading-> false
+<--Object>
 
 <Light-->
 <Position-> 25 7 4.7 1

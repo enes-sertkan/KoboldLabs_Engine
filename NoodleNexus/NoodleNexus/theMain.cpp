@@ -1720,7 +1720,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     LAFactory->Start();
     LAFactory->maze = mazeGenerator;
     mazeGenerator->factory = LAFactory;
-    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, -0.115f, 0.f), 1.42, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
+    screen_quad = sceneCam->GenerateMeshObjectsFromObject("assets/models/screen_quad.ply", glm::vec3(0.f, -0.075f, 0.f), 1.42, glm::vec3(0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), false, sceneCam->sceneObjects);
     screen_quad->mesh->textures[0] = "main_camera";
     //screen_quad->mesh->chromaticPower = 0.1;
     screen_quad->mesh->blendRatio[0] = 1.f;
@@ -1758,8 +1758,8 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
 
-    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+    Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),7.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.21f,30.f),7.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
    
  LAFactory->grass = puddle;
     puddle->name = "GRASS";
@@ -1846,36 +1846,37 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
     securityRoomScene->lightManager->CreateNewLight(glm::vec4(7.f, 0.5f, 0.f, 0.f), glm::vec4(1), glm::vec3(0.0002541, 2.19389e-06, 3.40282e+36), glm::vec4(0), glm::vec3(0), 1);
    
-
     SoftBody* softBody = new SoftBody();
 
 
 
 
 
-    /*Object* softObject = scene->sceneObjects[31];*/
-    //softObject->name = "ENEMY";
+    Object* softObject = scene->sceneObjects[10];
+    softObject->name = "SLIME";
 
     BruteEnemy* bEnem2 = new BruteEnemy();
     bEnem2->maze = mazeGenerator;
     bEnem2->factory = LAFactory;
-    //scene->AddActionToObj(bEnem2, softObject);
-
-    /*softObject->mesh->metal = 0.8f;
-    softObject->mesh->smoothness = 0.7f;*/
-    //softBody->acceleration.y = -16;
-    ///*softObject->mesh->drawBothFaces = true;*/
-    //softBody->constIterations = 15;
-    //softBody->sbCollision->collisionMult = 2.f;
-    //softBody->tighness = 2.f;
+  //  scene->AddActionToObj(bEnem2, softObject);
+    //softObject->mesh->bOverrideObjectColour = false;
+    softObject->mesh->bDoNotLight = false;
+    //softObject->mesh->objectColourRGBA
+    softObject->mesh->metal = 0.8f;
+    softObject->mesh->smoothness = 0.7f;
+    softBody->acceleration.y = -16;
+    softObject->mesh->drawBothFaces = true;
+    softBody->constIterations = 15;
+    softBody->sbCollision->collisionMult = 2.f;
+    softBody->tighness = 2.f;
     //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
     // . . . . . . . . .
-    /*softBody->SetMazeToSBCollision(mazeGenerator);
+    softBody->SetMazeToSBCollision(mazeGenerator);
     softBody->useVolume = true;
     softBody->easyControl = true;
     softBody->inCylynder = false;
     scene->AddActionToObj(softBody, softObject);
-    mazeGenerator->mainSlime = softBody;*/
+    mazeGenerator->mainSlime = softBody;
 
     mazeGenerator->generateMaze();
     mazeSecurity->generateMaze();
@@ -2112,25 +2113,18 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
         scene->sceneObjects[7]->mesh->bOverrideObjectColour = false;
 
 
-        //// Front Window
-        //scene->sceneObjects[8]->mesh->textures[0] = "uv_mapper.bmp";
-        //scene->sceneObjects[8]->mesh->textures[0] = "metalScratch.bmp";
-        //scene->sceneObjects[8]->mesh->textures[0] = "fingerprint.bmp";
-        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[8]->mesh->blendRatio[0] = 3;
-        //scene->sceneObjects[8]->mesh->textureFillType[1] = 1;
-        //scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
-        //scene->sceneObjects[8]->mesh->transperency = 0.4;
+        // Front Window
+        scene->sceneObjects[8]->mesh->textures[0] = "TreesTxtr/tree1_base.bmp";
+        scene->sceneObjects[8]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[8]->mesh->textureFillType[0] = 1;
+        scene->sceneObjects[8]->mesh->bOverrideObjectColour = false;
 
-        //// Front Screen 2
-        //scene->sceneObjects[9]->mesh->textures[0] = "gibberish.bmp";
-        //scene->sceneObjects[9]->mesh->blendRatio[0] = 9;
-        //scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
-        ////scene->sceneObjects[9]->mesh->bIsStencilTexture = true;
-        ////scene->sceneObjects[9]->mesh->stencilTexture = "binaries.bmp";
-        ////scene->sceneObjects[9]->mesh->stencilTextureID = 61;
-        ////scene->sceneObjects[9]->mesh->textureSpeed.x = 0.1f;
+        scene->sceneObjects[9]->mesh->textures[0] = "TreesTxtr/tree2_Base.bmp";
+        scene->sceneObjects[9]->mesh->AOtexture = "TreesTxtr/tree2_AO.bmp";
+        scene->sceneObjects[9]->mesh->blendRatio[0] = 1;
+        scene->sceneObjects[9]->mesh->blendRatio[1] = 1;
+        scene->sceneObjects[9]->mesh->textureFillType[0] = 1;
+        scene->sceneObjects[9]->mesh->bOverrideObjectColour = false;
  // Left Screen
     //    scene->sceneObjects[10]->mesh->textures[0] = "Reactor_AlbedoTransparency.bmp";
     //    scene->sceneObjects[10]->mesh->blendRatio[0] = 9;

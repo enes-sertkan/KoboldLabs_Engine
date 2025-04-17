@@ -69,7 +69,7 @@ public:
 
                 std::unordered_set<glm::vec2, vec2Hash> pathSet(path.begin(), path.end());
 
-                for (int y = 0; y < rows; ++y) {
+               /* for (int y = 0; y < rows; ++y) {
                     for (int x = 0; x < cols; ++x) {
                         glm::vec2 pos(x, y);
                         if (pos == startPos) {
@@ -90,7 +90,7 @@ public:
                     }
                     std::cout << '\n';
                 }
-                std::cout << std::endl;
+                std::cout << std::endl;*/
 
                 // Cleanup
                 for (auto& pair : allNodes) delete pair.second;

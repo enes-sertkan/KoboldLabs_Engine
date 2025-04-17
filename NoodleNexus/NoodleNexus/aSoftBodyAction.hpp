@@ -45,7 +45,7 @@ public:
     }
 
     void Start() override {
-        return;
+      //  return;
         softBody = new cSoftBodyVerlet();
         originalMeshName = object->mesh->modelFileName;
         sModelDrawInfo drawInfo;
@@ -97,7 +97,7 @@ public:
 
     
     void Update() override {
-        return;
+      //  return;
         // Update any other soft body logic here, e.g. Verlet integration,
         // constraint satisfaction, collisions, etc.
         UpdateSoftBody(object->scene->deltaTime);

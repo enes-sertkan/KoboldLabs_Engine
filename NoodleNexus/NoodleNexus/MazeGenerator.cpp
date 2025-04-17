@@ -381,7 +381,7 @@ bool MazeGenerator::IsFloor(int x, int y)
 {
     if (x < 0 || y < 0 || x >= maze.size() || y >= maze[0].size())
         return true;
-    return maze[x][y] != 'S' && maze[x][y] != ',';
+    return maze[x][y] != 'S';
 }
 
 glm::vec3 MazeGenerator::GridToWorld(int x, int y)  {

@@ -35,17 +35,18 @@ public:
 	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
 
-        const float TILE_SIZE = 1.0f * 4.0f;
-        particlePos.x += TILE_SIZE / 2.7f;
-        particlePos.z += TILE_SIZE / 1.6f;
+        const float TILE_SIZE = mazeGenerator->TILE_SIZE;
 
         glm::vec3 correction(0.0f);
 
         // Horizontal collision check with maze walls.
         if (mazeGenerator)
         {
+            glm::vec3 sadFix = particlePos;
+            //sadFix.x += mazeGenerator->TILE_SIZE * 0.45;
+            //sadFix.z += mazeGenerator->TILE_SIZE * 0.6;
             // Convert the world position to grid coordinates.
-            glm::vec2 gridPos = mazeGenerator->WorldToGrid(particlePos);
+            glm::vec2 gridPos = mazeGenerator->WorldToGrid(sadFix);
             int gridX = gridPos.x;
             int gridY = gridPos.y;
 

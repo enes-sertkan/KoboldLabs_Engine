@@ -84,7 +84,7 @@ private:
             currentCooldown = keyCooldown;
         }
 
-        if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS && !object->scene->isFlyCamera) {
+        if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS && object->scene->isFlyCamera) {
             PlaceTurret();
             currentCooldown = keyCooldown;
         }
