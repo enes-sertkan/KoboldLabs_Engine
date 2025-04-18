@@ -2381,16 +2381,16 @@ int main(void)
     Scene* cameraScene = new Scene();
     Scene* secutityRoomScene = new Scene();
     secutityRoomScene->lightManager = new cLightManager();
-    //scene->depthProgram = depthProgram;
 
-    scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera, scene->depthProgram);
+    scene->Prepare(scene->vaoManager, program, physicsMan, window, g_pFlyCamera);
+  //  scene->depthProgram = depthProgram;
 
     cFBO_RGB_depth* depthFBO = new cFBO_RGB_depth();
     std::string error;
     if (!depthFBO->init(1920, 1080, error, "DepthTexture", scene->textureManager)) {
         std::cerr << "FBO Error: " << error << std::endl;
     }
-   // scene->depthFBO = depthFBO;
+    scene->depthFBO = depthFBO;
     scene->particleProgram = particleProgram;
 
 

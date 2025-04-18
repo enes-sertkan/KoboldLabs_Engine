@@ -664,9 +664,6 @@
     <ClInclude Include="AudioUtils.hpp">
       <Filter>Audio\AudioHeaders</Filter>
     </ClInclude>
-    <ClInclude Include="aTargetedParticleEmitter .h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shaders\fragment01.glsl">

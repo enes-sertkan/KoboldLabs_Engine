@@ -113,7 +113,8 @@ public:
 	void Start();
 	void Update();
 
-	void Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera, GLuint deapthProgram);
+	void Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera);
+
 	
 	void AddActionToObj(Action* action, Object* object);
 

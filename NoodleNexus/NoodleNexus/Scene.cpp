@@ -135,7 +135,7 @@ void Scene::DrawMesh(sMesh* pCurMesh, GLuint program)
     if (vaoManager->FindDrawInfoByModelName(pCurMesh->modelFileName, meshToDrawInfo))
     {
         // Found the model
-        glBindVertexArray(meshToDrawInfo.VAO_ID[0]); 		// enable VAO(and everything else)
+        glBindVertexArray(meshToDrawInfo.VAO_ID); 		// enable VAO(and everything else)
         //https://registry.khronos.org/OpenGL-Refpages/gl4/html/glDrawElements.xhtml
         glDrawElements(GL_TRIANGLES,
             meshToDrawInfo.numberOfIndices,
@@ -213,22 +213,7 @@ sModelDrawInfo LoadDrawInfo(cVAOManager* meshManager, sModelDrawInfo drawInfo, G
     meshManager->LoadModelIntoVAO(drawInfo.meshPath,
         drawInfo, program);
 
-    //meshManager->LoadModelIntoVAO(drawInfo.meshPath,
-    //    drawInfo, program);
     std::cout <<"Draw Info for '"<< drawInfo.meshPath << "' - Loaded" << std::endl << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
-
-    return drawInfo;
-}
-
-
-sModelDrawInfo CopyDrawInfo(cVAOManager* meshManager, sModelDrawInfo drawInfo, GLuint program)
-{
-    meshManager->CopyModelIntoVAO(drawInfo,
-        program);
-
-    //meshManager->LoadModelIntoVAO(drawInfo.meshPath,
-    //    drawInfo, program);
-    std::cout << "Draw Info for '" << drawInfo.meshPath << "' - COPIED" << std::endl << drawInfo.numberOfVertices << " vertices loaded" << std::endl;
 
     return drawInfo;
 }
@@ -245,7 +230,7 @@ sMesh* CreateMeshObjects(std::vector<sMesh*>& meshes, sMesh* mesh)
 
 
 
-void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera, GLuint deapthProgram)
+void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* physMan, GLFWwindow* newWindow, cBasicFlyCamera* newFlyCamera)
 {
 
     physicsManager = physMan;
@@ -264,12 +249,6 @@ void Scene::Prepare(cVAOManager* meshManager, GLuint program, PhysicsManager* ph
     {
         LoadDrawInfo(meshManager, info, program);
     }
-
-    for (auto info  : meshManager->m_map_ModelName_to_VAOID)
-    {
-        CopyDrawInfo(meshManager, info.second , depthProgram);
-    }
-
 
 
     for (Object* object : sceneObjects)

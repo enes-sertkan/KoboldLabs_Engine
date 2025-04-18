@@ -31,12 +31,12 @@ bool cVAOManager::CloneMeshToDynamicVAO(
 
 
 	// Copy the CLONED mesh to the VAO
-	glGenVertexArrays(1, &(cloneMeshDrawInfo.VAO_ID[0]));
-	glBindVertexArray(cloneMeshDrawInfo.VAO_ID[0]);
+	glGenVertexArrays(1, &(cloneMeshDrawInfo.VAO_ID));
+	glBindVertexArray(cloneMeshDrawInfo.VAO_ID);
 
-	glGenBuffers(1, &(cloneMeshDrawInfo.VertexBufferID[0]));
+	glGenBuffers(1, &(cloneMeshDrawInfo.VertexBufferID));
 
-	glBindBuffer(GL_ARRAY_BUFFER, cloneMeshDrawInfo.VertexBufferID[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, cloneMeshDrawInfo.VertexBufferID);
 	glBufferData(GL_ARRAY_BUFFER,
 		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * cloneMeshDrawInfo.numberOfVertices,
 		(GLvoid*)cloneMeshDrawInfo.pVertices,
@@ -44,9 +44,9 @@ bool cVAOManager::CloneMeshToDynamicVAO(
 		GL_DYNAMIC_DRAW);			// <-- KEY CHANGE (GL_STATIC_DRAW)
 	// ************************************************
 
-	glGenBuffers(1, &(cloneMeshDrawInfo.IndexBufferID[0]));
+	glGenBuffers(1, &(cloneMeshDrawInfo.IndexBufferID));
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cloneMeshDrawInfo.IndexBufferID[0]);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, cloneMeshDrawInfo.IndexBufferID);
 
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER,			// Type: Index element array
 		sizeof(unsigned int) * cloneMeshDrawInfo.numberOfIndices,
@@ -119,10 +119,10 @@ bool cVAOManager::UpdateDynamicMesh(
 
 
 	// Bind the VAO first to ensure attribute pointers are correct
-	glBindVertexArray(updatedDrawInfo.VAO_ID[0]);
+	glBindVertexArray(updatedDrawInfo.VAO_ID);
 
 	// Bind the vertex buffer
-	glBindBuffer(GL_ARRAY_BUFFER, updatedDrawInfo.VertexBufferID[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, updatedDrawInfo.VertexBufferID);
 
 	// Update ENTIRE buffer including positions, normals, and other attributes
 	glBufferSubData(GL_ARRAY_BUFFER,
@@ -138,7 +138,7 @@ bool cVAOManager::UpdateDynamicMesh(
 	// We are UPDATING the information on an EXISTING buffer, not creating a new one
 	// https://registry.khronos.org/OpenGL-Refpages/gl4/html/glBufferSubData.xhtml
 
-	glBindBuffer(GL_ARRAY_BUFFER, updatedDrawInfo.VertexBufferID[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, updatedDrawInfo.VertexBufferID);
 
 	// ************************************************
 	// 
