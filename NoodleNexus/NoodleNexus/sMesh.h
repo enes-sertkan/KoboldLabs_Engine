@@ -13,6 +13,10 @@
 #include "UVWave.h"
 #include "sSTData.h"
 #include <vector>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 
 struct Particle {
 	glm::vec3 position;

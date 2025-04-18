@@ -1,0 +1,1982 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Assimp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\CApi\CInterfaceIOWrapper.cpp">
+      <Filter>CApi</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Compression.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\BaseImporter.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\BaseProcess.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\PostStepRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\ImporterRegistry.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\DefaultIOStream.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\IOSystem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\DefaultIOSystem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\ZipArchiveIOSystem.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Importer.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\SGSpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\VertexTriangleAdjacency.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\SpatialSort.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\SceneCombiner.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\ScenePreprocessor.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\SkeletonMeshBuilder.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\StandardShapes.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\TargetAnimation.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\RemoveComments.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Subdivision.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\scene.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Bitmap.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Version.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\CreateAnimMesh.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\simd.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\material.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\AssertHandler.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Exceptional.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Base64.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Geometry\GeometryUtils.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\DefaultLogger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Exporter.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\CApi\AssimpCExport.cpp">
+      <Filter>Exporter</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\CalcTangentsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ComputeUVMappingProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ConvertToLHProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\EmbedTexturesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindDegenerates.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindInstancesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindInvalidDataProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FixNormalsStep.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\DropFaceNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenFaceNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenVertexNormalsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\PretransformVertices.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ImproveCacheLocality.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\JoinVerticesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\LimitBoneWeightsProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\RemoveRedundantMaterials.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\RemoveVCProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SortByPTypeProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SplitLargeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\TextureTransform.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\TriangulateProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ValidateDataStructure.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\OptimizeGraph.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\OptimizeMeshes.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\DeboneProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ProcessHelper.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\MakeVerboseFormat.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ScaleProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ArmaturePopulate.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenBoundingBoxesProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SplitByBoneCountProcess.cpp">
+      <Filter>PostProcessing</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Material\MaterialSystem.cpp">
+      <Filter>MaterialSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STEPParser\STEPFileReader.cpp">
+      <Filter>STEPParser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STEPParser\STEPFileEncoding.cpp">
+      <Filter>STEPParser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter.cpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter_Geometry.cpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter_Material.cpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter_Postprocess.cpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSConverter.cpp">
+      <Filter>AssetLib\3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSLoader.cpp">
+      <Filter>AssetLib\3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AC\ACLoader.cpp">
+      <Filter>AssetLib\AC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\ASE\ASELoader.cpp">
+      <Filter>AssetLib\ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\ASE\ASEParser.cpp">
+      <Filter>AssetLib\ASE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinLoader.cpp">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\B3D\B3DImporter.cpp">
+      <Filter>AssetLib\B3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\BVH\BVHLoader.cpp">
+      <Filter>AssetLib\BVH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaHelper.cpp">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaLoader.cpp">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaParser.cpp">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\DXF\DXFLoader.cpp">
+      <Filter>AssetLib\DXF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\CSM\CSMLoader.cpp">
+      <Filter>AssetLib\CSM</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\HMP\HMPLoader.cpp">
+      <Filter>AssetLib\HMP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRMeshLoader.cpp">
+      <Filter>AssetLib\IRRMESH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRShared.cpp">
+      <Filter>AssetLib\IRRMESH</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IQM\IQMImporter.cpp">
+      <Filter>AssetLib\IQM</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRLoader.cpp">
+      <Filter>AssetLib\IRR</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOAnimation.cpp">
+      <Filter>AssetLib\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOBLoader.cpp">
+      <Filter>AssetLib\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOLoader.cpp">
+      <Filter>AssetLib\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOMaterial.cpp">
+      <Filter>AssetLib\LWO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWS\LWSLoader.cpp">
+      <Filter>AssetLib\LWS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DImporter.cpp">
+      <Filter>AssetLib\M3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DWrapper.cpp">
+      <Filter>AssetLib\M3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD2\MD2Loader.cpp">
+      <Filter>AssetLib\MD2</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD3\MD3Loader.cpp">
+      <Filter>AssetLib\MD3</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD5\MD5Loader.cpp">
+      <Filter>AssetLib\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD5\MD5Parser.cpp">
+      <Filter>AssetLib\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDC\MDCLoader.cpp">
+      <Filter>AssetLib\MDC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\MDLLoader.cpp">
+      <Filter>AssetLib\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\MDLMaterialLoader.cpp">
+      <Filter>AssetLib\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1MDLLoader.cpp">
+      <Filter>AssetLib\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\UniqueNameGenerator.cpp">
+      <Filter>AssetLib\MDL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\NFF\NFFLoader.cpp">
+      <Filter>AssetLib\NFF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\NDO\NDOLoader.cpp">
+      <Filter>AssetLib\NDO</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OFF\OFFLoader.cpp">
+      <Filter>AssetLib\OFF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileImporter.cpp">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileMtlImporter.cpp">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileParser.cpp">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreImporter.cpp">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreStructs.cpp">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreBinarySerializer.cpp">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreXmlSerializer.cpp">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreMaterial.cpp">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OpenGEX\OpenGEXImporter.cpp">
+      <Filter>AssetLib\OPENGEX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyLoader.cpp">
+      <Filter>AssetLib\PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyParser.cpp">
+      <Filter>AssetLib\PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MS3D\MS3DLoader.cpp">
+      <Filter>AssetLib\MS3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\COB\COBLoader.cpp">
+      <Filter>AssetLib\COB</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderLoader.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderDNA.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderScene.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderModifier.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderBMesh.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderTessellator.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderCustomData.cpp">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCLoader.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCReaderGen1_2x3.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCReaderGen2_2x3.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCUtil.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCGeometry.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCMaterial.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCProfile.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCCurve.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCBoolean.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCOpenings.cpp">
+      <Filter>AssetLib\IFC</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\XGL\XGLLoader.cpp">
+      <Filter>AssetLib\XGL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXImporter.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXParser.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXTokenizer.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXConverter.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXUtil.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXDocument.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXProperties.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXMeshGeometry.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXMaterial.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXModel.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXAnimation.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXNodeAttribute.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXDeformer.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXBinaryTokenizer.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXDocumentUtil.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3D\Q3DLoader.cpp">
+      <Filter>AssetLib\Q3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3BSP\Q3BSPFileParser.cpp">
+      <Filter>AssetLib\Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3BSP\Q3BSPFileImporter.cpp">
+      <Filter>AssetLib\Q3BSP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Raw\RawLoader.cpp">
+      <Filter>AssetLib\RAW</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\SIB\SIBImporter.cpp">
+      <Filter>AssetLib\SIB</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\SMD\SMDLoader.cpp">
+      <Filter>AssetLib\SMD</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STL\STLLoader.cpp">
+      <Filter>AssetLib\STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Terragen\TerragenLoader.cpp">
+      <Filter>AssetLib\TERRAGEN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Unreal\UnrealLoader.cpp">
+      <Filter>AssetLib\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileImporter.cpp">
+      <Filter>AssetLib\X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileParser.cpp">
+      <Filter>AssetLib\X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Geometry2D.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Geometry3D.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Group.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Light.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Metadata.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Networking.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Postprocess.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Rendering.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Shape.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Texturing.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DGeoHelper.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DXmlHelper.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFCommon.cpp">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFImporter.cpp">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Importer.cpp">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\XmlSerializer.cpp">
+      <Filter>AssetLib\3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFImporter.cpp">
+      <Filter>AssetLib\3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFOpcPackage.cpp">
+      <Filter>AssetLib\3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDImporter.cpp">
+      <Filter>AssetLib\MMD</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDPmxParser.cpp">
+      <Filter>AssetLib\MMD</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjExporter.cpp">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OpenGEX\OpenGEXExporter.cpp">
+      <Filter>AssetLib\OPENGEX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyExporter.cpp">
+      <Filter>AssetLib\PLY</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSExporter.cpp">
+      <Filter>AssetLib\3DS</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinExporter.cpp">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinFileWriter.cpp">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assxml\AssxmlExporter.cpp">
+      <Filter>AssetLib\ASSXML</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assxml\AssxmlFileWriter.cpp">
+      <Filter>AssetLib\ASSXML</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DExporter.cpp">
+      <Filter>AssetLib\M3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaExporter.cpp">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExporter.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExportNode.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExportProperty.cpp">
+      <Filter>AssetLib\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STL\STLExporter.cpp">
+      <Filter>AssetLib\STL</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileExporter.cpp">
+      <Filter>AssetLib\X</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DExporter.cpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFExporter.cpp">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Exporter.cpp">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFExporter.cpp">
+      <Filter>AssetLib\3MF</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Pbrt\PbrtExporter.cpp">
+      <Filter>AssetLib\PBRT</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assjson\cencode.c">
+      <Filter>AssetLib\ASSJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assjson\json_exporter.cpp">
+      <Filter>AssetLib\ASSJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assjson\mesh_splitter.cpp">
+      <Filter>AssetLib\ASSJSON</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Step\StepExporter.cpp">
+      <Filter>AssetLib\STEP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\unzip\ioapi.c">
+      <Filter>Contrib\unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\unzip\unzip.c">
+      <Filter>Contrib\unzip</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\common\shapes.cc">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.cc">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\cdt.cc">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\sweep.cc">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.cc">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\clipper\clipper.cpp">
+      <Filter>Contrib\Clipper</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\OpenDDLParser.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\DDLNode.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\OpenDDLCommon.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\OpenDDLExport.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\Value.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\code\OpenDDLStream.cpp">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcArithmeticCodec.cpp">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.cpp">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.cpp">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTools.cpp">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleFans.cpp">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\zip\src\zip.c">
+      <Filter>ziplib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\CApi\CInterfaceIOWrapper.h">
+      <Filter>CApi</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\StbCommon.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Compression.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\BaseProcess.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Importer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\ScenePrivate.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\DefaultProgressHandler.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\PolyTools.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Maybe.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\IFF.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\VertexTriangleAdjacency.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\ScenePreprocessor.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\StackAllocator.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\StackAllocator.inl">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\TargetAnimation.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\simd.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Geometry\GeometryUtils.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\DefaultLogger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\LogStream.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Logger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\NullLogger.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\Win32DebugLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\FileLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Common\StdOStreamLogStream.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\BlobIOSystem.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\CalcTangentsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ComputeUVMappingProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ConvertToLHProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\EmbedTexturesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindDegenerates.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindInstancesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FindInvalidDataProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\FixNormalsStep.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\DropFaceNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenFaceNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenVertexNormalsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\PretransformVertices.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ImproveCacheLocality.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\JoinVerticesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\LimitBoneWeightsProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\RemoveRedundantMaterials.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\RemoveVCProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SortByPTypeProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SplitLargeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\TextureTransform.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\TriangulateProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ValidateDataStructure.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\OptimizeGraph.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\OptimizeMeshes.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\DeboneProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ProcessHelper.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\MakeVerboseFormat.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ScaleProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\ArmaturePopulate.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\GenBoundingBoxesProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\PostProcessing\SplitByBoneCountProcess.h">
+      <Filter>PostProcessing</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Material\MaterialSystem.h">
+      <Filter>MaterialSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STEPParser\STEPFileReader.h">
+      <Filter>STEPParser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STEPParser\STEPFileEncoding.h">
+      <Filter>STEPParser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter.hpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AMF\AMFImporter_Node.hpp">
+      <Filter>AssetLib\AMF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSHelper.h">
+      <Filter>AssetLib\3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSLoader.h">
+      <Filter>AssetLib\3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\AC\ACLoader.h">
+      <Filter>AssetLib\AC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\ASE\ASELoader.h">
+      <Filter>AssetLib\ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\ASE\ASEParser.h">
+      <Filter>AssetLib\ASE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinLoader.h">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\B3D\B3DImporter.h">
+      <Filter>AssetLib\B3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\BVH\BVHLoader.h">
+      <Filter>AssetLib\BVH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaHelper.h">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaLoader.h">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaParser.h">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\DXF\DXFLoader.h">
+      <Filter>AssetLib\DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\DXF\DXFHelper.h">
+      <Filter>AssetLib\DXF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\CSM\CSMLoader.h">
+      <Filter>AssetLib\CSM</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\HMP\HMPFileData.h">
+      <Filter>AssetLib\HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\HMP\HMPLoader.h">
+      <Filter>AssetLib\HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\HMP\HalfLifeFileData.h">
+      <Filter>AssetLib\HMP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRMeshLoader.h">
+      <Filter>AssetLib\IRRMESH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRShared.h">
+      <Filter>AssetLib\IRRMESH</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IQM\iqm.h">
+      <Filter>AssetLib\IQM</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IQM\IQMImporter.h">
+      <Filter>AssetLib\IQM</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Irr\IRRLoader.h">
+      <Filter>AssetLib\IRR</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOAnimation.h">
+      <Filter>AssetLib\LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOFileData.h">
+      <Filter>AssetLib\LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWO\LWOLoader.h">
+      <Filter>AssetLib\LWO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\LWS\LWSLoader.h">
+      <Filter>AssetLib\LWS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DMaterials.h">
+      <Filter>AssetLib\M3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DImporter.h">
+      <Filter>AssetLib\M3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DWrapper.h">
+      <Filter>AssetLib\M3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\m3d.h">
+      <Filter>AssetLib\M3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD2\MD2FileData.h">
+      <Filter>AssetLib\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD2\MD2Loader.h">
+      <Filter>AssetLib\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD2\MD2NormalTable.h">
+      <Filter>AssetLib\MD2</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD3\MD3FileData.h">
+      <Filter>AssetLib\MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD3\MD3Loader.h">
+      <Filter>AssetLib\MD3</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD5\MD5Loader.h">
+      <Filter>AssetLib\MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MD5\MD5Parser.h">
+      <Filter>AssetLib\MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDC\MDCFileData.h">
+      <Filter>AssetLib\MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDC\MDCLoader.h">
+      <Filter>AssetLib\MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDC\MDCNormalTable.h">
+      <Filter>AssetLib\MDC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\MDLDefaultColorMap.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\MDLFileData.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\MDLLoader.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HalfLifeMDLBaseHeader.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1FileData.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1MDLLoader.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1ImportDefinitions.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1ImportSettings.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\HL1MeshTrivert.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\LogFunctions.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MDL\HalfLife\UniqueNameGenerator.h">
+      <Filter>AssetLib\MDL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\NFF\NFFLoader.h">
+      <Filter>AssetLib\NFF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\NDO\NDOLoader.h">
+      <Filter>AssetLib\NDO</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OFF\OFFLoader.h">
+      <Filter>AssetLib\OFF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileData.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileImporter.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileMtlImporter.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjFileParser.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjTools.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreImporter.h">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreStructs.h">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreParsingUtils.h">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreBinarySerializer.h">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ogre\OgreXmlSerializer.h">
+      <Filter>AssetLib\OGRE</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OpenGEX\OpenGEXImporter.h">
+      <Filter>AssetLib\OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OpenGEX\OpenGEXStructs.h">
+      <Filter>AssetLib\OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyLoader.h">
+      <Filter>AssetLib\PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyParser.h">
+      <Filter>AssetLib\PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MS3D\MS3DLoader.h">
+      <Filter>AssetLib\MS3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\COB\COBLoader.h">
+      <Filter>AssetLib\COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\COB\COBScene.h">
+      <Filter>AssetLib\COB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderLoader.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderDNA.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderDNA.inl">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderScene.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderSceneGen.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderIntermediate.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderModifier.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderBMesh.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderTessellator.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Blender\BlenderCustomData.h">
+      <Filter>AssetLib\BLEND</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCLoader.h">
+      <Filter>AssetLib\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCReaderGen_2x3.h">
+      <Filter>AssetLib\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\IFC\IFCUtil.h">
+      <Filter>AssetLib\IFC</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\XGL\XGLLoader.h">
+      <Filter>AssetLib\XGL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXCompileConfig.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXImporter.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXParser.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXTokenizer.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXImportSettings.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXConverter.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXUtil.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXDocument.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXProperties.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXMeshGeometry.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXCommon.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3D\Q3DLoader.h">
+      <Filter>AssetLib\Q3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3BSP\Q3BSPFileData.h">
+      <Filter>AssetLib\Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3BSP\Q3BSPFileParser.h">
+      <Filter>AssetLib\Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Q3BSP\Q3BSPFileImporter.h">
+      <Filter>AssetLib\Q3BSP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Raw\RawLoader.h">
+      <Filter>AssetLib\RAW</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\SIB\SIBImporter.h">
+      <Filter>AssetLib\SIB</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\SMD\SMDLoader.h">
+      <Filter>AssetLib\SMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STL\STLLoader.h">
+      <Filter>AssetLib\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Terragen\TerragenLoader.h">
+      <Filter>AssetLib\TERRAGEN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Unreal\UnrealLoader.h">
+      <Filter>AssetLib\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileHelper.h">
+      <Filter>AssetLib\X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileImporter.h">
+      <Filter>AssetLib\X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileParser.h">
+      <Filter>AssetLib\X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter.hpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Macro.hpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DImporter_Node.hpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DGeoHelper.h">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DXmlHelper.h">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFCommon.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFAsset.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFAsset.inl">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFAssetWriter.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFAssetWriter.inl">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFImporter.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Asset.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Asset.inl">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2AssetWriter.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2AssetWriter.inl">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Importer.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\3MFTypes.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\XmlSerializer.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFImporter.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFOpcPackage.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\3MFXmlTags.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDCpp14.h">
+      <Filter>AssetLib\MMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDImporter.h">
+      <Filter>AssetLib\MMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDPmdParser.h">
+      <Filter>AssetLib\MMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDPmxParser.h">
+      <Filter>AssetLib\MMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\MMD\MMDVmdParser.h">
+      <Filter>AssetLib\MMD</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Obj\ObjExporter.h">
+      <Filter>AssetLib\OBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\OpenGEX\OpenGEXExporter.h">
+      <Filter>AssetLib\OPENGEX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Ply\PlyExporter.h">
+      <Filter>AssetLib\PLY</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3DS\3DSExporter.h">
+      <Filter>AssetLib\3DS</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinExporter.h">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assbin\AssbinFileWriter.h">
+      <Filter>AssetLib\ASSBIN</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assxml\AssxmlExporter.h">
+      <Filter>AssetLib\ASSXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assxml\AssxmlFileWriter.h">
+      <Filter>AssetLib\ASSXML</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\M3D\M3DExporter.h">
+      <Filter>AssetLib\M3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Collada\ColladaExporter.h">
+      <Filter>AssetLib\COLLADA</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExporter.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExportNode.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\FBX\FBXExportProperty.h">
+      <Filter>AssetLib\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\STL\STLExporter.h">
+      <Filter>AssetLib\STL</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X\XFileExporter.h">
+      <Filter>AssetLib\X</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\X3D\X3DExporter.hpp">
+      <Filter>AssetLib\X3D</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF\glTFExporter.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\glTF2\glTF2Exporter.h">
+      <Filter>AssetLib\GLTF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\3MF\D3MFExporter.h">
+      <Filter>AssetLib\3MF</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\Pbrt\PbrtExporter.h">
+      <Filter>AssetLib\PBRT</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assjson\cencode.h">
+      <Filter>AssetLib\ASSJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Assjson\mesh_splitter.h">
+      <Filter>AssetLib\ASSJSON</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\AssetLib\Step\StepExporter.h">
+      <Filter>AssetLib\STEP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\unzip\crypt.h">
+      <Filter>Contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\unzip\ioapi.h">
+      <Filter>Contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\unzip\unzip.h">
+      <Filter>Contrib\unzip</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\common\shapes.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\common\utils.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\advancing_front.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\cdt.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\sweep.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\poly2tri\poly2tri\sweep\sweep_context.h">
+      <Filter>Contrib\Poly2Tri</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\clipper\clipper.hpp">
+      <Filter>Contrib\Clipper</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParser.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\OpenDDLParserUtils.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\OpenDDLCommon.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\OpenDDLExport.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\OpenDDLStream.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\DDLNode.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\openddlparser\include\openddlparser\Value.h">
+      <Filter>Contrib\openddl_parser</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcAdjacencyInfo.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcArithmeticCodec.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcBinaryStream.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcCommon.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDVEncodeParams.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDynamicVectorDecoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDynamicVectorEncoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcDynamicVector.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcFIFO.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcIndexedFaceSet.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcSC3DMCDecoder.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcSC3DMCEncodeParams.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcSC3DMCEncoder.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTimer.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleFans.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleListDecoder.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcTriangleListEncoder.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcVector.h">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\Open3DGC\o3dgcVector.inl">
+      <Filter>Contrib\open3dgc</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\zip\src\miniz.h">
+      <Filter>ziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\zip\src\zip.h">
+      <Filter>ziplib</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\pugixml\src\pugiconfig.hpp">
+      <Filter>Contrib\Pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\pugixml\src\pugixml.hpp">
+      <Filter>Contrib\Pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\contrib\stb\stb_image.h">
+      <Filter>Contrib\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\anim.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\aabb.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ai_assert.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\camera.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\color4.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\color4.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\build\include\assimp\config.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ColladaMetaData.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\commonMetaData.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\defs.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\cfileio.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\light.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\material.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\material.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\matrix3x3.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\matrix3x3.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\matrix4x4.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\matrix4x4.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\mesh.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ObjMaterial.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\pbrmaterial.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\GltfMaterial.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\postprocess.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\quaternion.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\quaternion.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\scene.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\metadata.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\texture.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\types.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\vector2.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\vector2.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\vector3.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\vector3.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\version.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\cimport.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\AssertHandler.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\importerdesc.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Importer.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ProgressHandler.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\IOStream.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\IOSystem.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\cexport.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Exporter.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\DefaultIOStream.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\DefaultIOSystem.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ZipArchiveIOSystem.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SceneCombiner.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\fast_atof.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\qnan.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\BaseImporter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Hash.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\MemoryIOWrapper.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ParsingUtils.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\StreamReader.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\StreamWriter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\StringComparison.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\StringUtils.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SGSpatialSort.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\GenericProperty.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SpatialSort.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SkeletonMeshBuilder.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SmallVector.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SmoothingGroups.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\SmoothingGroups.inl">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\StandardShapes.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\RemoveComments.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Subdivision.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Vertex.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\LineSplitter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\TinyFormatter.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Profiler.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\LogAux.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Bitmap.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\XMLTools.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\IOStreamBuffer.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\CreateAnimMesh.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\XmlParser.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\MathFunctions.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Exceptional.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\ByteSwapper.h">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Base64.hpp">
+      <Filter>include\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Compiler\pushpack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Compiler\poppack1.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\include\assimp\Compiler\pstdint.h">
+      <Filter>Compiler</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="D:\Fork\KoboldLabs_Engine\NoodleNexus\NoodleNexus\assimp\code\res\assimp.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AssetLib">
+      <UniqueIdentifier>{37F46B7D-1F25-3D8F-A118-9851BDAB7465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\3D">
+      <UniqueIdentifier>{56EA278E-6F85-335E-8518-FDBF20A57A0B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\3DS">
+      <UniqueIdentifier>{8D857982-7BB6-3E5A-9861-51672C6B777E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\3MF">
+      <UniqueIdentifier>{EE6B4EFE-B966-3113-A613-E0C2E5ACBCF5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\AC">
+      <UniqueIdentifier>{594311B8-FBBB-3A27-A7AB-3FE228F00028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\AMF">
+      <UniqueIdentifier>{5D98AA87-7FE5-3F3A-9A9E-C0A49C1D624D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\ASE">
+      <UniqueIdentifier>{513C9C5B-BFE4-3CDB-8D6F-202B09C41312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\ASSBIN">
+      <UniqueIdentifier>{4AFFA22E-C9C8-3B32-896F-010B2BED8549}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\ASSJSON">
+      <UniqueIdentifier>{BC5125B8-CE02-34F2-86FD-49B8D570011E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\ASSXML">
+      <UniqueIdentifier>{CA1EFC06-0375-37D2-BBED-93A42CE49CB0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\B3D">
+      <UniqueIdentifier>{AD22698C-2333-3D11-8F00-A3512A17F476}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\BLEND">
+      <UniqueIdentifier>{8C3F058E-D5C9-3FB0-B9B3-FCB7BED63188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\BVH">
+      <UniqueIdentifier>{D7AF36C0-23C2-3C75-A928-EFFA9D14D9B7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\COB">
+      <UniqueIdentifier>{C6895BD3-0AF0-3D98-9B86-67AD02D552DC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\COLLADA">
+      <UniqueIdentifier>{7F11BE2A-D204-3655-ABDF-07802870DC9A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\CSM">
+      <UniqueIdentifier>{76AFAE73-3ACB-3B2C-ADE3-520C533315A4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\DXF">
+      <UniqueIdentifier>{24D91930-D69B-3BD2-A7A9-3A138F9C2063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\FBX">
+      <UniqueIdentifier>{C4BE0EDA-26DD-3EEE-BC82-D0DE6A52BC94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\GLTF">
+      <UniqueIdentifier>{0547C5ED-BDAB-3ECA-B969-6A4FA986EF88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\HMP">
+      <UniqueIdentifier>{30EFBF4F-CF37-3A47-8497-08D0227E2EE1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\IFC">
+      <UniqueIdentifier>{F487E1D7-0A71-34CB-AC77-E1A3EABAE8C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\IQM">
+      <UniqueIdentifier>{E83D7CCB-B214-3972-BB47-3A99CA61DB3A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\IRR">
+      <UniqueIdentifier>{E95EE938-263A-3505-8866-8E71876F5CC8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\IRRMESH">
+      <UniqueIdentifier>{81C3D7F8-DFA1-3E1F-8C4C-0C11E7850E2E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\LWO">
+      <UniqueIdentifier>{42D0A415-A66B-3DA1-8CD8-6090CF7D5D14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\LWS">
+      <UniqueIdentifier>{97642BCC-57F6-31D9-A00B-3687C60DF12A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\M3D">
+      <UniqueIdentifier>{CA9A50FB-EC8F-3850-ABCB-F29769912591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MD2">
+      <UniqueIdentifier>{AC35DB7F-AEED-30C4-9407-2C1A0BFEEC2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MD3">
+      <UniqueIdentifier>{8244E551-CE77-371E-B889-B94A7A1B8E6E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MD5">
+      <UniqueIdentifier>{DE2BE038-DD5A-3053-8AB9-EEE7ADB37839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MDC">
+      <UniqueIdentifier>{36772BCD-0686-315A-983D-78A6CBA2AFD7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MDL">
+      <UniqueIdentifier>{9454991E-04D5-3E37-9779-47EFBAB7386D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MMD">
+      <UniqueIdentifier>{24772222-5D92-3441-A88A-25967A38DA41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\MS3D">
+      <UniqueIdentifier>{745A1B41-ABA0-33C6-A0A5-8D3BDA25B89B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\NDO">
+      <UniqueIdentifier>{7A41FE35-50CB-3D4F-9F21-4B9DD148F1FD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\NFF">
+      <UniqueIdentifier>{49F1D894-1636-352A-BE1E-83C0540B1976}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\OBJ">
+      <UniqueIdentifier>{22215CCF-8F79-3AA8-8D2C-52877EC84DC7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\OFF">
+      <UniqueIdentifier>{BCC34BB1-3616-3B97-ABB4-52311ECCAC17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\OGRE">
+      <UniqueIdentifier>{79F75A64-2623-3C7C-9E88-0EA7A50E3A86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\OPENGEX">
+      <UniqueIdentifier>{DFC4EAF6-D9B6-3C8E-8BA2-5C4F72A9D525}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\PBRT">
+      <UniqueIdentifier>{F7B0B96D-A8A2-3EB8-B752-89022EE12EF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\PLY">
+      <UniqueIdentifier>{6F23181C-9679-397F-A8D2-17EDFDB070EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\Q3BSP">
+      <UniqueIdentifier>{7AA976EF-9917-3C84-AE60-188F24E191CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\Q3D">
+      <UniqueIdentifier>{B107553C-0B9D-341F-887A-ACC784486381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\RAW">
+      <UniqueIdentifier>{8F4EB0CC-98B0-31BD-BD8F-8E1573CB179A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\SIB">
+      <UniqueIdentifier>{E53D4B9E-D6F7-3D9C-A6C3-DC6AB12D70D3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\SMD">
+      <UniqueIdentifier>{3A143CC4-8897-36AD-8F41-4A78F79FEEEF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\STEP">
+      <UniqueIdentifier>{D23CDDFC-F0DC-3456-B330-0E1AC4C440BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\STL">
+      <UniqueIdentifier>{E740DA67-886F-398C-B109-2C5C7ACA2DAB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\TERRAGEN">
+      <UniqueIdentifier>{178B1C04-3674-32C4-A166-D7A139D29375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\X">
+      <UniqueIdentifier>{121C4B3E-6AE8-3EA2-A731-255E098474FB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\X3D">
+      <UniqueIdentifier>{B8E0CBCB-1E9E-386E-8E85-670BA36CA499}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AssetLib\XGL">
+      <UniqueIdentifier>{7AC255F3-9555-3FC3-B9F7-532287990BE8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CApi">
+      <UniqueIdentifier>{ACBFC8F1-6D3B-3AA0-97B0-07C6B25F153F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{39DA8E41-E510-3B1F-8D52-0BED3E5DFD91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Compiler">
+      <UniqueIdentifier>{886E02CD-E1A9-3487-A6E0-229B649F7B18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib">
+      <UniqueIdentifier>{1C4FC46E-C3D0-3431-B6EB-508FC6290F17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\Clipper">
+      <UniqueIdentifier>{B1AE15C3-1D10-3404-BCD7-67B72231E7A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\Poly2Tri">
+      <UniqueIdentifier>{9D4B7AFC-CD66-3450-A90F-3BCA543122B5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\Pugixml">
+      <UniqueIdentifier>{889DA840-390D-3337-98A4-A02A40A16F04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\open3dgc">
+      <UniqueIdentifier>{469B8F5C-005C-3F66-B270-844B39672BCF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\openddl_parser">
+      <UniqueIdentifier>{5429FCBC-A84B-32FF-9A73-7286AC809EF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\stb">
+      <UniqueIdentifier>{54C6B44A-28E9-3BB8-9473-43D347D42482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contrib\unzip">
+      <UniqueIdentifier>{B1104909-645F-30EA-B62A-C5212067A596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Exporter">
+      <UniqueIdentifier>{B5D6CC26-016D-3721-8989-F52E66B0E955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{36BA90A1-46CF-3EA7-9B59-962F4C4C1514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{37F2C2CF-39C6-3037-ADDB-CB10B92B5278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MaterialSystem">
+      <UniqueIdentifier>{DF70E553-289E-34F1-9497-457A04EB38A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PostProcessing">
+      <UniqueIdentifier>{353468E4-CCD8-3EB1-8AA3-B89F3D6359F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STEPParser">
+      <UniqueIdentifier>{A13B1745-E337-3B0D-88FB-CF492CB04C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{F16E0F8F-8A69-3328-968C-59226129F4A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{81C52B82-980F-3CC4-AFD3-553C3E0435BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\assimp">
+      <UniqueIdentifier>{5227B365-CC3B-3B60-8B9D-01B3611891F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ziplib">
+      <UniqueIdentifier>{FC49DA3C-DC60-3CC3-A7A4-6EB225E337E4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

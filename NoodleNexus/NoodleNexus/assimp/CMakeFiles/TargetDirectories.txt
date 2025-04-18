@@ -1,0 +1,13 @@
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/CMakeFiles/uninstall.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/CMakeFiles/UpdateAssimpLibsDebugSymbolsAndDLLs.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/CMakeFiles/INSTALL.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/CMakeFiles/ALL_BUILD.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/CMakeFiles/ZERO_CHECK.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/contrib/zlib/CMakeFiles/zlibstatic.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/contrib/zlib/CMakeFiles/INSTALL.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/contrib/zlib/CMakeFiles/ALL_BUILD.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/code/CMakeFiles/assimp.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/code/CMakeFiles/INSTALL.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/test/CMakeFiles/unit.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/test/CMakeFiles/INSTALL.dir
+D:/Fork/KoboldLabs_Engine/NoodleNexus/NoodleNexus/assimp/build/test/headercheck/CMakeFiles/INSTALL.dir

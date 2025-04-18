@@ -1,4 +1,4 @@
-#ifndef _cVAOManager_HG_
+﻿#ifndef _cVAOManager_HG_
 #define _cVAOManager_HG_
 
 // Will load the models and place them 
@@ -28,6 +28,8 @@ struct sVertex_SHADER_FORMAT_xyz_rgb_N_UV
 	float u, v;
 
 	float tx, ty, tz; // in vec3 vTangent;
+	glm::ivec4 boneIDs = { -1, -1, -1, -1 };  
+	glm::vec4 weights = { 0.0f, 0.0f, 0.0f, 0.0f };  
 };
 
 struct sModelDrawInfo
