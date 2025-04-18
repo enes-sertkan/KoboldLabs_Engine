@@ -140,7 +140,7 @@ public:
         sModelDrawInfo meshInfo;
         if (object->scene->vaoManager->FindDrawInfoByModelName(object->mesh->modelFileName, meshInfo))
         {
-            glBindVertexArray(meshInfo.VAO_ID); // Bind existing VAO
+            glBindVertexArray(meshInfo.VAO_ID[0]); // Bind existing VAO
 
             // Enable and configure the instance attribute
             glEnableVertexAttribArray(2); // Use a free location (e.g., 2)

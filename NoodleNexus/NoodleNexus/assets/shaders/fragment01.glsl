@@ -21,6 +21,7 @@ uniform bool isParticleEmitter;  // True if rendering particles
 
 uniform sampler2D depthTexture;  
 uniform bool bDepth;  
+uniform bool bDepthPrepass;  
 
 
 // === Uniforms for Object & Lighting ===
@@ -255,20 +256,16 @@ vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughnes
 
 // === Main Fragment Shader Function ===
 void main() {
-
-if (bDepth)
+if (bDepthPrepass)
 {
-vec2 screenUV = gl_FragCoord.xy / vec2(textureSize(depthTexture, 0));
-    float storedDepth = texture(depthTexture, screenUV).r;
-       finalPixelColour = vec4(vec3(storedDepth), 1.0); 
-    if (gl_FragCoord.z > storedDepth + 0.001) {
-        discard;  // Occluded fragment!
-    }
+return;
+}
+
+
+
+
  
 
-    return;
-
- }
     if (isParticleEmitter) {
 
         

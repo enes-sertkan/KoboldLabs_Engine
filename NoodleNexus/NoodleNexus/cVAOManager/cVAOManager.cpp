@@ -14,13 +14,19 @@
 
 sModelDrawInfo::sModelDrawInfo()
 {
-	this->VAO_ID = 0;
+	this->VAO_ID[0] = 0;
+	this->VAO_ID[1] = 0;
+	this->VAO_ID[2] = 0;
 
-	this->VertexBufferID = 0;
+	this->VertexBufferID[0] = 0;
+	this->VertexBufferID[1] = 0;
+	this->VertexBufferID[2] = 0;
 	this->VertexBuffer_Start_Index = 0;
 	this->numberOfVertices = 0;
 
-	this->IndexBufferID = 0;
+	this->IndexBufferID[0] = 0;
+	this->IndexBufferID[1] = 0;
+	this->IndexBufferID[2] = 0;
 	this->IndexBuffer_Start_Index = 0;
 	this->numberOfIndices = 0;
 	this->numberOfTriangles = 0;
@@ -585,20 +591,20 @@ bool cVAOManager::LoadModelIntoVAO(
 	CalculateTangents(drawInfo);
 
 	// Create a VAO (Vertex Array Object)
-	glGenVertexArrays(1, &(drawInfo.VAO_ID));
-	glBindVertexArray(drawInfo.VAO_ID);
+	glGenVertexArrays(1, &(drawInfo.VAO_ID[0]));
+	glBindVertexArray(drawInfo.VAO_ID[0]);
 
 	// Vertex buffer
-	glGenBuffers(1, &(drawInfo.VertexBufferID));
-	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.VertexBufferID);
+	glGenBuffers(1, &(drawInfo.VertexBufferID[0]));
+	glBindBuffer(GL_ARRAY_BUFFER, drawInfo.VertexBufferID[0]);
 	glBufferData(GL_ARRAY_BUFFER,
 		sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV) * drawInfo.numberOfVertices,
 		(GLvoid*)drawInfo.pVertices,
 		GL_STATIC_DRAW);
 
 	// Index buffer
-	glGenBuffers(1, &(drawInfo.IndexBufferID));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, drawInfo.IndexBufferID);
+	glGenBuffers(1, &(drawInfo.IndexBufferID[0]));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, drawInfo.IndexBufferID[0]);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER,
 		sizeof(unsigned int) * drawInfo.numberOfIndices,
 		(GLvoid*)drawInfo.pIndices,
@@ -666,6 +672,94 @@ bool cVAOManager::LoadModelIntoVAO(
 	return true;
 
 }
+
+bool cVAOManager::CopyModelIntoVAO(
+	sModelDrawInfo& drawInfo,
+	unsigned int shaderProgramID)
+
+{
+	sModelDrawInfo meshToDrawInfo;
+	if (FindDrawInfoByModelName(drawInfo.modelName, meshToDrawInfo))
+	{
+		
+
+		sModelDrawInfo* meshToDrawInfo = &this->m_map_ModelName_to_VAOID[drawInfo.modelName];
+
+		// Create a VAO (Vertex Array Object)
+		glGenVertexArrays(1, &(drawInfo.VAO_ID[1]));
+		glBindVertexArray(drawInfo.VAO_ID[1]);
+
+		// Vertex buffer
+		glBindBuffer(GL_ARRAY_BUFFER, meshToDrawInfo->VertexBufferID[1]);
+
+		// Index buffer
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshToDrawInfo->IndexBufferID[1]);
+
+		// Get attribute locations from shader
+		GLint vpos_location = glGetAttribLocation(shaderProgramID, "vPos");
+		GLint vcol_location = glGetAttribLocation(shaderProgramID, "vCol");
+		GLint vnorm_location = glGetAttribLocation(shaderProgramID, "vNormal");
+		GLint vUV_location = glGetAttribLocation(shaderProgramID, "vUV");
+		GLint vtangent_location = glGetAttribLocation(shaderProgramID, "vTangent"); // Add this line for the tangent
+
+		// Set the vertex attributes for the shader
+		glEnableVertexAttribArray(vpos_location);
+		glVertexAttribPointer(vpos_location,
+			3,           // vPos
+			GL_FLOAT, GL_FALSE,
+			sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+			(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, x));
+
+		glEnableVertexAttribArray(vcol_location);
+		glVertexAttribPointer(vcol_location,
+			3,           // vCol
+			GL_FLOAT, GL_FALSE,
+			sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+			(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, r));
+
+		glEnableVertexAttribArray(vnorm_location);
+		glVertexAttribPointer(vnorm_location,
+			3,           // vNormal
+			GL_FLOAT, GL_FALSE,
+			sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+			(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, nx));
+
+		glEnableVertexAttribArray(vUV_location);
+		glVertexAttribPointer(vUV_location,
+			2,           // vUV
+			GL_FLOAT, GL_FALSE,
+			sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+			(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, u));
+
+		// Set the tangent attribute
+		glEnableVertexAttribArray(vtangent_location);
+		glVertexAttribPointer(vtangent_location,
+			3,           // vTangent
+			GL_FLOAT, GL_FALSE,
+			sizeof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV),
+			(void*)offsetof(sVertex_SHADER_FORMAT_xyz_rgb_N_UV, tx)); // Tangent offset
+
+		// Unbind VAO and buffers
+		glBindVertexArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+		// Disable vertex attributes
+		glDisableVertexAttribArray(vpos_location);
+		glDisableVertexAttribArray(vcol_location);
+		glDisableVertexAttribArray(vnorm_location);
+		glDisableVertexAttribArray(vUV_location);
+		glDisableVertexAttribArray(vtangent_location); // Disable tangent attribute
+
+
+		drawInfo = this->m_map_ModelName_to_VAOID[drawInfo.modelName];
+		// Store the draw information into the map
+		//this->m_map_ModelName_to_VAOID[drawInfo.meshPath] = drawInfo;
+	}
+	return true;
+
+}
+
 
 
 // We don't want to return an int, likely

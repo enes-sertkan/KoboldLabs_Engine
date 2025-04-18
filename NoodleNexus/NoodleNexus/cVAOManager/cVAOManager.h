@@ -26,25 +26,26 @@ struct sVertex_SHADER_FORMAT_xyz_rgb_N_UV
 	float r, g, b, a;		// in vec3 vCol;
 	float nx, ny, nz;	// in vec3 vNormal;
 	float u, v;
-
 	float tx, ty, tz; // in vec3 vTangent;
 };
 
 struct sModelDrawInfo
 {
+	
+
 	sModelDrawInfo(); 
 
 	std::string meshPath; //path to mesh
 	std::string modelName;
 	std::string fileType;
 
-	unsigned int VAO_ID;
+	unsigned int VAO_ID[20];
 
-	unsigned int VertexBufferID;
+	unsigned int VertexBufferID[20];
 	unsigned int VertexBuffer_Start_Index;
 	unsigned int numberOfVertices;
 
-	unsigned int IndexBufferID;
+	unsigned int IndexBufferID[20];
 	unsigned int IndexBuffer_Start_Index;
 	unsigned int numberOfIndices;
 	unsigned int numberOfTriangles;
@@ -56,7 +57,7 @@ struct sModelDrawInfo
 	unsigned int* pIndices;
 	// 
 	glm::vec3 maxXYZ, minXYZ, extenXYZ, centreXYZ;
-	void calculateExtents(void);
+	void calculateExtents(void); 
 };
 
 
@@ -67,6 +68,10 @@ public:
 	bool LoadModelIntoVAO(std::string fileName, 
 						  sModelDrawInfo &drawInfo, 
 						  unsigned int shaderProgramID);
+
+	bool CopyModelIntoVAO(
+		sModelDrawInfo& drawInfo,
+		unsigned int shaderProgramID);
 
 	// This is used for the soft body (or anything else, like water)
 	// Takes a mesh and copies it to another VAO, but the vertex array is DYNAMIC
@@ -101,14 +106,14 @@ public:
 	// New method to calculate tangents for each vertex
 	void CalculateTangents(sModelDrawInfo& drawInfo);
 
+	std::map< std::string /*model name*/,
+		sModelDrawInfo /* info needed to draw*/ >
+		m_map_ModelName_to_VAOID;
 
 private:
 
 
 
-	std::map< std::string /*model name*/,
-		      sModelDrawInfo /* info needed to draw*/ >
-		m_map_ModelName_to_VAOID;
 
 };
 
