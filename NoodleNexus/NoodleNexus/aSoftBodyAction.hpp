@@ -7,12 +7,15 @@
 #include "cSoftBodyCollisions.h"
 #include "MazeGenerator.hpp"
 #include "cVAOManager/cVAOManager.h"	// for: sModelDrawInfo	
+#include <thread>
 class Object;
 typedef sVertex_SHADER_FORMAT_xyz_rgb_N_UV sVertex;
 class SoftBody : public Action {
 private:
    
 public:
+    std::atomic<bool> m_KeepThreadAlive{ true };
+    std::thread m_PhysicsThread;
     bool easyControl = false;
     cSoftBodyVerlet* softBody = nullptr;
     std::string originalMeshName;
@@ -45,7 +48,7 @@ public:
     }
 
     void Start() override {
-        return;
+        
         softBody = new cSoftBodyVerlet();
         originalMeshName = object->mesh->modelFileName;
         sModelDrawInfo drawInfo;
@@ -97,7 +100,7 @@ public:
 
     
     void Update() override {
-        return;
+   
         // Update any other soft body logic here, e.g. Verlet integration,
         // constraint satisfaction, collisions, etc.
         UpdateSoftBody(object->scene->deltaTime);

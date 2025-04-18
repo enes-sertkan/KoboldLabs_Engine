@@ -5,6 +5,9 @@
 #include <glm/vec3.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+
+#include <thread>
+#include <mutex>
 class SoftBody;
 struct Cylinder
 {
@@ -23,6 +26,7 @@ struct Cylinder
 class SoftBodyCollision
 {
 public:
+    std::mutex m_CollisionMutex;
     Cylinder* cylinder=nullptr;
     float particleAffectionRange = 1.0f;
     float collisionMult = 1.f;
@@ -35,7 +39,7 @@ public:
 	glm::vec3 ProcessMazeCollision(glm::vec3 particlePos)
 	{
 
-        const float TILE_SIZE = 1.0f * 4.0f;
+        const float TILE_SIZE = mazeGenerator->TILE_SIZE;
         particlePos.x += TILE_SIZE / 2.7f;
         particlePos.z += TILE_SIZE / 1.6f;
 

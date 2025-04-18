@@ -1761,6 +1761,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
    
+
  LAFactory->grass = puddle;
     puddle->name = "GRASS";
     underpuddle->name = "UNDERGRASS";
@@ -1824,6 +1825,24 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(turretDestroyer, player);
 
 
+    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(22, 5, 9), 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    SoftBody* slimeBody = new SoftBody();
+
+    slime->isTemporary = true;
+    slime->mesh->metal = 0.1f;
+    slime->mesh->smoothness = 0.1f;
+    slimeBody->acceleration.y = -16;
+    slime->mesh->drawBothFaces = true;
+    slimeBody->constIterations = 2;
+    //slimeBody->sbCollision->collisionMult = 2.f;
+    slimeBody->tighness = 2.f;
+    slimeBody->SetMazeToSBCollision(mazeGenerator);
+    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+    // . . . . . . . . 
+    slimeBody->useVolume = true;
+    slimeBody->easyControl = true;
+
+    scene->AddActionToObj(slimeBody, slime);
     waveEffect->player = player;
     mazeGenerator->player = player;
     //scene->AddActionToObj(playerShooting, player);
