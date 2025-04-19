@@ -14,6 +14,10 @@ class SoftBody : public Action {
 private:
    
 public:
+
+    cSoftBodyVerlet* m_PhysicsCopy; // Secondary buffer
+    std::mutex m_PhysicsMutex;
+    bool m_PhysicsUpdated = false;
     std::atomic<bool> m_KeepThreadAlive{ true };
     std::thread m_PhysicsThread;
     bool easyControl = false;
@@ -42,14 +46,40 @@ public:
     bool randPressed = false;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
+    void CopyPhysicsState(cSoftBodyVerlet* src, cSoftBodyVerlet* dest) {
+        // Copy particles
+        for (size_t i = 0; i < src->vec_pParticles.size(); ++i) {
+            dest->vec_pParticles[i]->position = src->vec_pParticles[i]->position;
+            dest->vec_pParticles[i]->old_position = src->vec_pParticles[i]->old_position;
+            // Copy other particle properties if needed
+        }
+
+        // Copy constraints
+        for (size_t i = 0; i < src->vec_pConstraints.size(); ++i) {
+            *dest->vec_pConstraints[i] = *src->vec_pConstraints[i];
+        }
+
+        // Copy other necessary state
+        dest->m_geometricCentrePoint = src->m_geometricCentrePoint;
+        dest->yToJump = src->yToJump;
+        dest->acceleration = src->acceleration;
+        dest->tightnessFactor = src->tightnessFactor;
+        dest->useVolume = src->useVolume;
+    }
+
+    void SwapPhysicsState() {
+        std::lock_guard<std::mutex> lock(m_PhysicsMutex);
+        CopyPhysicsState(m_PhysicsCopy, softBody);  // Copy from physics buffer to main buffer
+    }
     void SetMazeToSBCollision(MazeGenerator* mazeGenerator)
     {
         sbCollision->mazeGenerator = mazeGenerator;
     }
 
     void Start() override {
-        
+    
         softBody = new cSoftBodyVerlet();
+    
         originalMeshName = object->mesh->modelFileName;
         sModelDrawInfo drawInfo;
         object->scene->vaoManager->FindDrawInfoByModelName(originalMeshName, drawInfo);
@@ -91,6 +121,8 @@ public:
             sbCollision->cylinder->cylinderRadius = cykinderRadious;
             sbCollision->cylinder->cylinderHeight = 2.5f;
         }
+        m_PhysicsCopy = new cSoftBodyVerlet(*softBody);
+        m_PhysicsThread = std::thread(&SoftBody::PhysicsUpdateLoop, this);
     }
 
     void MoveTopPart()
@@ -98,13 +130,49 @@ public:
 
     }
 
-    
+    void PhysicsUpdateLoop() {
+        auto prevTime = std::chrono::high_resolution_clock::now();
+
+        while (m_KeepThreadAlive) {
+            // Calculate delta time properly
+            auto now = std::chrono::high_resolution_clock::now();
+            double deltaTime = std::chrono::duration<double>(now - prevTime).count();
+            prevTime = now;
+
+            // Cap delta time to prevent instability
+            deltaTime = 0.1f;
+
+            {
+                std::lock_guard<std::mutex> lock(m_PhysicsMutex);
+                UpdateSoftBody(deltaTime);  // Work on m_PhysicsCopy
+                m_PhysicsUpdated = true;
+            }
+
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        }
+    }
+
     void Update() override {
+        bool should_swap = false;
+        {
+            std::lock_guard<std::mutex> lock(m_PhysicsMutex);
+            should_swap = m_PhysicsUpdated;
+            m_PhysicsUpdated = false;
+        }
+
+        if (should_swap) {
+            SwapPhysicsState();  // This now copies data instead of swapping pointers
+        }
+
+
+        // Normal rendering using softBody pointer
+        UpdateSoftBodyMeshes(object->scene->programs[0]);
    
         // Update any other soft body logic here, e.g. Verlet integration,
         // constraint satisfaction, collisions, etc.
-        UpdateSoftBody(object->scene->deltaTime);
-        UpdateSoftBodyMeshes(object->scene->programs[0]);
+      //  UpdateSoftBody(object->scene->deltaTime);
+
+      
 
         DebugDrawNormals();
 
@@ -157,18 +225,18 @@ public:
 
 
     void UpdateSoftBody(double deltaTime) {
-      
+   //     std::lock_guard<std::mutex> lock(m_PhysicsMutex);
 
           //  if (softBody!=nullptr) return;
 
             // Apply Verlet integration steps
-            softBody->VerletUpdate(deltaTime);
-            softBody->SatisfyConstraints();
+        m_PhysicsCopy->VerletUpdate(deltaTime);
+        m_PhysicsCopy->SatisfyConstraints();
   
             if (inCylynder)
-                softBody->ApplyCylinderCollision(deltaTime, sbCollision, object->mesh->uniformScale, object->mesh->positionXYZ);
+                m_PhysicsCopy->ApplyCylinderCollision(deltaTime, sbCollision, object->mesh->uniformScale, object->mesh->positionXYZ);
             else
-            softBody->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale,inCylynder);
+                m_PhysicsCopy->ApplyCollision(deltaTime, sbCollision, object->mesh->positionXYZ, object->mesh->uniformScale,inCylynder);
          
 
    
@@ -231,7 +299,7 @@ public:
         cSoftBodyVerlet::sParticle* topmostParticle = nullptr;
         float maxY = -FLT_MAX;  // Initialize to a very low value to find the maximum
 
-        for (cSoftBodyVerlet::sParticle* particle : softBody->vec_pParticles)
+        for (cSoftBodyVerlet::sParticle* particle : m_PhysicsCopy->vec_pParticles)
         {
             if (particle->position.y > maxY)
             {
@@ -243,11 +311,11 @@ public:
         if (topmostParticle)
         {
             // Calculate the distance from the center to the topmost particle
-            glm::vec3 center = softBody->getGeometricCentrePoint();
+            glm::vec3 center = m_PhysicsCopy->getGeometricCentrePoint();
             float distanceToTopmost = glm::length(topmostParticle->position - center);
 
             // Apply force to all particles based on their distance to the topmost particle
-            for (cSoftBodyVerlet::sParticle* particle : softBody->vec_pParticles)
+            for (cSoftBodyVerlet::sParticle* particle : m_PhysicsCopy->vec_pParticles)
             {
                 // Calculate the distance from this particle to the center
                 float distanceToParticle = glm::length(particle->position - center);
