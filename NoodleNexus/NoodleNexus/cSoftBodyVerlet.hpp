@@ -13,6 +13,29 @@ class SoftBodyCollision;
 class cSoftBodyVerlet
 {
 public:
+	void CreateBendingConstraints()
+	{
+		// Create constraints between adjacent faces
+		for (unsigned int i = 0; i < m_ModelVertexInfo.numberOfIndices; i += 3)
+		{
+			unsigned int a = m_ModelVertexInfo.pIndices[i];
+			unsigned int b = m_ModelVertexInfo.pIndices[i + 1];
+			unsigned int c = m_ModelVertexInfo.pIndices[i + 2];
+
+			// Find adjacent triangles
+			// (Implementation depends on your mesh structure)
+			// For each adjacent triangle, create angular constraints
+			sConstraint* bendConstraint = new sConstraint();
+			bendConstraint->pParticleA = vec_pParticles[a];
+			bendConstraint->pParticleB = vec_pParticles[c];
+			bendConstraint->restLength = calcDistanceBetween(bendConstraint->pParticleA,
+				bendConstraint->pParticleB)*2;
+			
+			vec_pConstraints.push_back(bendConstraint);
+		}
+	}
+	void SetInitialVelocity(const glm::vec3& velocity);
+
 	glm::vec3 m_geometricCentrePoint = glm::vec3(0);
 	float yToJump = -7;
 	cSoftBodyVerlet();

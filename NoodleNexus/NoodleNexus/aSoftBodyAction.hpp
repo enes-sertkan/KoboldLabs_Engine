@@ -42,7 +42,7 @@ public:
     bool inCylynder = false;
     float cykinderRadious = 0.4f;
 
-
+    glm::vec3 initialVelocity = glm::vec3(0.0f);
     bool randPressed = false;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
 
@@ -112,7 +112,7 @@ public:
         softBody->tightnessFactor = tighness;
         softBody->yToJump = yToJump;
       
-
+        softBody->SetInitialVelocity(initialVelocity);
         if (inCylynder)
         {
             sbCollision->cylinder = new Cylinder();

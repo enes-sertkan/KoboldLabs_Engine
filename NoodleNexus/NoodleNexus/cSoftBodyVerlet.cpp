@@ -9,65 +9,18 @@ cSoftBodyVerlet::cSoftBodyVerlet()
 {
 
 }
-//cSoftBodyVerlet::cSoftBodyVerlet(const cSoftBodyVerlet& other) {
-//	// 1. Copy basic members
-//	this->m_geometricCentrePoint = other.m_geometricCentrePoint;
-//	this->yToJump = other.yToJump;
-//	this->acceleration = other.acceleration;
-//	this->tightnessFactor = other.tightnessFactor;
-//	this->matching_VAO_MeshName = other.matching_VAO_MeshName;
-//	this->volume = other.volume;
-//	this->useVolume = other.useVolume;
-//
-//	// 2. Deep copy particles
-//	for (sParticle* pOtherParticle : other.vec_pParticles) {
-//		sParticle* pNewParticle = new sParticle();
-//		*pNewParticle = *pOtherParticle;  // Copy all particle data
-//		this->vec_pParticles.push_back(pNewParticle);
-//	}
-//
-//	// 3. Deep copy constraints (with remapped particle pointers)
-//	for (sConstraint* pOtherConstraint : other.vec_pConstraints) {
-//		sConstraint* pNewConstraint = new sConstraint();
-//
-//		// Copy simple members
-//		pNewConstraint->restLength = pOtherConstraint->restLength;
-//		pNewConstraint->maxIterations = pOtherConstraint->maxIterations;
-//		pNewConstraint->bIsActive = pOtherConstraint->bIsActive;
-//		pNewConstraint->breakingDistance = pOtherConstraint->breakingDistance;
-//		pNewConstraint->bIsBreakable = pOtherConstraint->bIsBreakable;
-//		pNewConstraint->bIsLocked = pOtherConstraint->bIsLocked;
-//
-//		// Remap particle pointers to OUR particles
-//		size_t indexA = std::distance(other.vec_pParticles.begin(),
-//			std::find(other.vec_pParticles.begin(),
-//				other.vec_pParticles.end(),
-//				pOtherConstraint->pParticleA));
-//		size_t indexB = std::distance(other.vec_pParticles.begin(),
-//			std::find(other.vec_pParticles.begin(),
-//				other.vec_pParticles.end(),
-//				pOtherConstraint->pParticleB));
-//
-//		pNewConstraint->pParticleA = this->vec_pParticles[indexA];
-//		pNewConstraint->pParticleB = this->vec_pParticles[indexB];
-//
-//		this->vec_pConstraints.push_back(pNewConstraint);
-//	}
-//
-//	// 4. Copy model vertex info
-//	this->m_ModelVertexInfo = other.m_ModelVertexInfo;
-//
-//	// Important: Update vertex pointers to OUR particles
-//	for (size_t i = 0; i < this->vec_pParticles.size(); ++i) {
-//		this->vec_pParticles[i]->pModelVertex = &this->m_ModelVertexInfo.pVertices[i];
-//	}
-//}
 cSoftBodyVerlet::~cSoftBodyVerlet()
 {
 
 }
 
-
+void cSoftBodyVerlet::SetInitialVelocity(const glm::vec3& velocity) {
+	for (sParticle* particle : vec_pParticles) {
+		// Verlet integration stores velocity implicitly in position differences
+		// To set initial velocity, we need to adjust old_position
+		particle->old_position = particle->position - velocity * 0.016f; // Assuming 60Hz timestep
+	}
+}
 void cSoftBodyVerlet::CreateConstraintsBetweenCloseVertices(float maxDistance)
 {
 	size_t numParticles = vec_pParticles.size();
@@ -384,7 +337,7 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*5;
+	volume = GetVolume()*3;
 }
 
 
