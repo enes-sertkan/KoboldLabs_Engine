@@ -149,20 +149,21 @@ public:
             }
 
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            bool should_swap = false;
+            {
+                std::lock_guard<std::mutex> lock(m_PhysicsMutex);
+                should_swap = m_PhysicsUpdated;
+                m_PhysicsUpdated = false;
+            }
+
+            if (should_swap) {
+                SwapPhysicsState();  // This now copies data instead of swapping pointers
+            }
         }
     }
 
     void Update() override {
-        bool should_swap = false;
-        {
-            std::lock_guard<std::mutex> lock(m_PhysicsMutex);
-            should_swap = m_PhysicsUpdated;
-            m_PhysicsUpdated = false;
-        }
 
-        if (should_swap) {
-            SwapPhysicsState();  // This now copies data instead of swapping pointers
-        }
 
 
         // Normal rendering using softBody pointer
@@ -174,7 +175,7 @@ public:
 
       
 
-        DebugDrawNormals();
+      //  DebugDrawNormals();
 
         if (!easyControl) return;
         // Check each arrow key independently:

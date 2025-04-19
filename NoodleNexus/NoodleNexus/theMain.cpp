@@ -1707,6 +1707,29 @@ void SpawnSlimeInTudeOnPos(Scene* scene, glm::vec3 pos)
     scene->AddActionToObj(slimeBody, slime);
 }
 
+void SpawnSlime(Scene* scene, glm::vec3 pos, MazeGenerator* maze)
+{
+
+    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    SoftBody* slimeBody = new SoftBody();
+
+    slime->isTemporary = true;
+    slime->mesh->metal = 0.1f;
+    slime->mesh->smoothness = 0.1f;
+    slimeBody->acceleration.y = -16;
+    slime->mesh->drawBothFaces = true;
+    slimeBody->constIterations = 2;
+    //slimeBody->sbCollision->collisionMult = 2.f;
+    slimeBody->tighness = 2.f;
+    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+    // . . . . . . . . 
+    slimeBody->useVolume = true;
+    slimeBody->easyControl = true;
+   // slimeBody->inCylynder = true;
+    slimeBody->SetMazeToSBCollision(maze);
+    scene->AddActionToObj(slimeBody, slime);
+}
+
 
 Object* screen_quad = nullptr;
 
@@ -1824,25 +1847,27 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(playerCore, player);
     scene->AddActionToObj(turretDestroyer, player);
 
+    SpawnSlime(scene, glm::vec3(22, 5, 9), mazeGenerator);
+    SpawnSlime(scene, glm::vec3(18, 5, 7), mazeGenerator);
+    SpawnSlime(scene, glm::vec3(24, 5, 12), mazeGenerator);
+    //Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(22, 5, 9), 0.35, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
+    //SoftBody* slimeBody = new SoftBody();
 
-    Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(22, 5, 9), 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-    SoftBody* slimeBody = new SoftBody();
+    //slime->isTemporary = true;
+    //slime->mesh->metal = 0.1f;
+    //slime->mesh->smoothness = 0.1f;
+    //slimeBody->acceleration.y = -16;
+    //slime->mesh->drawBothFaces = true;
+    //slimeBody->constIterations = 2;
+    ////slimeBody->sbCollision->collisionMult = 2.f;
+    //slimeBody->tighness = 2.f;
+    //slimeBody->SetMazeToSBCollision(mazeGenerator);
+    ////softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
+    //// . . . . . . . . 
+    //slimeBody->useVolume = true;
+    //slimeBody->easyControl = true;
 
-    slime->isTemporary = true;
-    slime->mesh->metal = 0.1f;
-    slime->mesh->smoothness = 0.1f;
-    slimeBody->acceleration.y = -16;
-    slime->mesh->drawBothFaces = true;
-    slimeBody->constIterations = 2;
-    //slimeBody->sbCollision->collisionMult = 2.f;
-    slimeBody->tighness = 2.f;
-    slimeBody->SetMazeToSBCollision(mazeGenerator);
-    //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
-    // . . . . . . . . 
-    slimeBody->useVolume = true;
-    slimeBody->easyControl = true;
-
-    scene->AddActionToObj(slimeBody, slime);
+    //scene->AddActionToObj(slimeBody, slime);
     waveEffect->player = player;
     mazeGenerator->player = player;
     //scene->AddActionToObj(playerShooting, player);
