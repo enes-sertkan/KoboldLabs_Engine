@@ -319,6 +319,7 @@
     <ClInclude Include="SceneEditor.h" />
     <ClInclude Include="sharedThings.h" />
     <ClInclude Include="ShootAtPlayerAction.h" />
+    <ClInclude Include="SlimeController.h" />
     <ClInclude Include="sMesh.h" />
     <ClInclude Include="GLCommon.h" />
     <ClInclude Include="PlyFileLoaders.h" />

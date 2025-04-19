@@ -187,7 +187,7 @@ void main() {
         vec2 seed = finalVert.xy + vec2(time);
         float noise = rand(seed);
         float shakeAmount = noise * 10.0 - 5.0;
-        finalVert += vec3(shakeAmount * shakePower);
+       
         
         // Compute world position.
         fvertexWorldLocation = matModel * vec4(finalVert, 1.0);
@@ -205,7 +205,10 @@ void main() {
         vec3 transformedBitangent = normalize(cross(transformedNormal, transformedTangent));
         fTangent = transformedTangent;
         fBitangent = transformedBitangent;
-        
+
+
+
+         finalVert += shakeAmount * shakePower*fvertexNormal.xyz;
         // Shell extrusion if enabled.
         if (bShellTexturing) {
             finalVert = finalVert + extrudeShellLayer(fvertexWorldLocation.xyz, transformedNormal, shellLayer, float(shellCount), shellLength, time, 0.01, 0.03, verticalTightening, verticalExponent, 4.0);

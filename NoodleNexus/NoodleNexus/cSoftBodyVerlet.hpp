@@ -13,6 +13,13 @@ class SoftBodyCollision;
 class cSoftBodyVerlet
 {
 public:
+
+	std::vector<glm::vec3> m_InitialPositions;  // Add this line
+	std::vector<glm::vec3> m_InitialOldPositions;  // Add this line
+
+
+	void ResetToInitialState();
+	void MoveAllParticles(const glm::vec3& delta);
 	void CreateBendingConstraints()
 	{
 		// Create constraints between adjacent faces
@@ -58,6 +65,15 @@ public:
 			this->vec_pParticles.push_back(pNewParticle);
 		}
 
+		for (size_t i = 0; i < other.m_InitialPositions.size(); ++i) {
+			this->m_InitialPositions.push_back(other.m_InitialPositions[i]);
+		}
+
+
+		for (size_t i = 0; i < other.m_InitialOldPositions.size(); ++i) {
+			this->m_InitialOldPositions.push_back(other.m_InitialOldPositions[i]);
+		}
+
 		// 3. Deep copy constraints (with remapped particle pointers)
 		for (sConstraint* pOtherConstraint : other.vec_pConstraints) {
 			sConstraint* pNewConstraint = new sConstraint();
@@ -93,6 +109,8 @@ public:
 		for (size_t i = 0; i < this->vec_pParticles.size(); ++i) {
 			this->vec_pParticles[i]->pModelVertex = &this->m_ModelVertexInfo.pVertices[i];
 		}
+
+	
 	}
 	void UpdateGeometricCentrePoint(void);
 	// This is for loading the original model

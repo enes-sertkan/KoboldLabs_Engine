@@ -826,8 +826,8 @@ void DrawParticlesWithCamera(Object* object, sMesh* pCurMesh, GLuint program,
     // Special effects (suck/shake)
     glUniform1f(glGetUniformLocation(program, "suckPower"),
         (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds") ? 25.0f : 0.0f);
-    glUniform1f(glGetUniformLocation(program, "shakePower"),
-        (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds") ? 0.005f : 0.0f);
+    glUniform1f(glGetUniformLocation(program, "shakePower"), pCurMesh->shakePower);
+
 
     // Wave data
     for (int i = 0; i < 10; i++) {
@@ -1211,10 +1211,7 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
 
 
 
-    if (pCurMesh->uniqueFriendlyName == "trees" || pCurMesh->uniqueFriendlyName == "Clouds")
-        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.005f);
-    else
-        glUniform1f(glGetUniformLocation(program, "shakePower"), 0.f);
+    glUniform1f(glGetUniformLocation(program, "shakePower"), pCurMesh->shakePower);
 
 
     for (int i = 0; i < 10; i++) {

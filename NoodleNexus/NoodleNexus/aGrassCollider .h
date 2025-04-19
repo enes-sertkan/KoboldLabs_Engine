@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include "Scene.hpp"
 #include <GLFW/glfw3.h>
+#include "aSoftBodyAction.hpp"
 
 class Object;
 
@@ -17,6 +18,8 @@ public:
     float deactivationDistance = 18.0f; // Distance to deactivate
     float colliderRadius = 0.8f;       // Collider dimensions
     float colliderBlendRadius = 1.2f;
+    
+    SoftBody* softBody = nullptr;
 
     virtual void Start() override {
         colliderID = -1;
@@ -54,7 +57,10 @@ public:
 
         // Update collider position if active
         if (isColliderActive) {
-            grass->mesh->UpdateColliderPosition(colliderID, object->mesh->positionXYZ);
+           if( softBody)
+            grass->mesh->UpdateColliderPosition(colliderID, object->mesh->positionXYZ+softBody->softBody->getGeometricCentrePoint()*softBody->object->GetWorldScale());
+           else
+           grass->mesh->UpdateColliderPosition(colliderID, object->mesh->positionXYZ);
         }
     }
 

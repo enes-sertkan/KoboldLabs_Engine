@@ -5,15 +5,18 @@
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include <GLFW/glfw3.h>
-
+#include "SlimeController.h"
 
 class aPlayerShooting : public Action {
 public:
+    // Pool settings
+     const int MAX_POOL_SIZE = 5;  // Change this value as needed
+     std::vector<SoftBody*> slimePool;
     // Public pointer to the object factory (assign externally)
     LabAttackFactory* factory = nullptr;
 
     // Fire rate in seconds (time between shots)
-    float fireRate = 0.1f;
+    float fireRate = 0.8f;
     // Timer tracking time since last shot
     float timeSinceLastShot=0.f;
 
@@ -77,28 +80,87 @@ public:
 
     void SpawnSlime(Scene* scene, glm::vec3 pos, MazeGenerator* maze, glm::vec3 velocity)
     {
+        SoftBody* slimeBody = nullptr;
+        Object* slimeObj = nullptr;
 
-        Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", pos, 0.2, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-        SoftBody* slimeBody = new SoftBody();
+        // Generate random size between 0.15 and 0.5
+        float randomScale = 0.15f + static_cast<float>(rand()) / RAND_MAX * (0.3f - 0.15f);
 
-        slime->isTemporary = true;
-        slime->mesh->metal = 0.1f;
-        slime->mesh->smoothness = 0.1f;
-        slimeBody->acceleration.y = -16;
-        slime->mesh->drawBothFaces = true;
-        slimeBody->constIterations = 2;
-        //slimeBody->sbCollision->collisionMult = 2.f;
-        slimeBody->tighness = 2.f;
-        //softObject->mesh->NMTexture = "Wall_Simple_Normal.bmp";
-        // . . . . . . . . 
-        slimeBody->useVolume = true;
-        slimeBody->easyControl = true;
-        // slimeBody->inCylynder = true;
-        slimeBody->SetMazeToSBCollision(maze);
-        slimeBody->initialVelocity = velocity;
-        scene->AddActionToObj(slimeBody, slime);
+        // Generate random color (RGB between 0.3 and 1.0 for brightness)
+        glm::vec4 randomColor = glm::vec4(
+            0.5f + static_cast<float>(rand()) / RAND_MAX * 0.5f,
+            0.5f + static_cast<float>(rand()) / RAND_MAX * 0.5f,
+            0.5f + static_cast<float>(rand()) / RAND_MAX * 0.5f,
+            1.0f
+        );
 
-        slimeBody->Start();
+        // Try to reuse oldest slime if pool is full
+        if (slimePool.size() >= MAX_POOL_SIZE) {
+            auto oldest = std::min_element(slimePool.begin(), slimePool.end(),
+                [](const SoftBody* a, const SoftBody* b) {
+                    return a->lastUsedTime < b->lastUsedTime;
+                });
+
+            slimeBody = *oldest;
+            slimeObj = slimeBody->object;
+
+            slimeBody->Reset();
+            slimeBody->MoveTo(pos);
+            slimeBody->initialVelocity = velocity;
+
+            // Update appearance for reuse
+            slimeObj->mesh->uniformScale = randomScale;
+            slimeObj->mesh->objectColourRGBA = randomColor;
+        }
+        else {
+            slimeObj = scene->GenerateMeshObjectsFromObject(
+                "assets/models/Sphere_radius_1_xyz_N_uv.ply",
+                pos, randomScale, glm::vec3(0.f),
+                true, randomColor,
+                true, scene->sceneObjects
+            );
+
+            slimeBody = new SoftBody();
+            slimeBody->acceleration.y = -16;
+            slimeBody->constIterations = 2;
+            slimeBody->tighness = 2.f;
+            slimeBody->useVolume = true;
+            slimeBody->easyControl = true;
+            slimeBody->SetMazeToSBCollision(maze);
+            slimeBody->initialVelocity = velocity;
+
+            scene->AddActionToObj(slimeBody, slimeObj);
+            slimeBody->Start();
+
+            SlimeController* slimeController = new SlimeController();
+            slimeController->factory = factory;
+            slimeController->softBody = slimeBody;
+
+            scene->AddActionToObj(slimeController, slimeObj);
+
+            if (factory->grass != nullptr)
+            {
+                aGrassCollider* grassCollider = new aGrassCollider();
+                grassCollider->SetGrass(factory->grass);
+                grassCollider->colliderRadius = 1.4f*randomScale/0.3f;
+                grassCollider->colliderBlendRadius = 1.5f;
+                grassCollider->softBody = slimeBody;
+                scene->AddActionToObj(grassCollider, slimeObj);
+            }
+
+            slimePool.push_back(slimeBody);
+        }
+
+        slimeObj->mesh->positionXYZ = pos;
+        slimeObj->isTemporary = true;
+        slimeObj->mesh->metal = 0.8f;
+        slimeObj->mesh->smoothness = 0.9f;
+        slimeObj->mesh->drawBothFaces = true;
+
+       
+
+        slimeBody->lastUsedTime = glfwGetTime();
     }
+
 
 };

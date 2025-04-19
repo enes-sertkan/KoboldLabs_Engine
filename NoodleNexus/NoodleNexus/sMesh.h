@@ -96,7 +96,7 @@ struct sMesh
 
 	glm::vec2 textureSpeed = glm::vec2(0.0);
 	float time = 0;
-
+	float shakePower = 0;
 	// unique ID is read only
 	// TODO: change so we do not use from mesh
 	unsigned int getUniqueID(void);

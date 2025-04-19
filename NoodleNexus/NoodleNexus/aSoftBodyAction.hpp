@@ -45,7 +45,7 @@ public:
     glm::vec3 initialVelocity = glm::vec3(0.0f);
     bool randPressed = false;
     SoftBodyCollision* sbCollision = new SoftBodyCollision();
-
+    double lastUsedTime = 0.0;
     void CopyPhysicsState(cSoftBodyVerlet* src, cSoftBodyVerlet* dest) {
         // Copy particles
         for (size_t i = 0; i < src->vec_pParticles.size(); ++i) {
@@ -54,6 +54,15 @@ public:
             // Copy other particle properties if needed
         }
 
+
+        for (size_t i = 0; i < dest->m_InitialPositions.size(); ++i) {
+            dest->m_InitialPositions[i] = src->m_InitialPositions[i];
+        }
+
+
+        for (size_t i = 0; i < dest->m_InitialOldPositions.size(); ++i) {
+            dest->m_InitialOldPositions[i] = src->m_InitialOldPositions[i];
+        }
         // Copy constraints
         for (size_t i = 0; i < src->vec_pConstraints.size(); ++i) {
             *dest->vec_pConstraints[i] = *src->vec_pConstraints[i];
@@ -111,7 +120,7 @@ public:
         softBody->CalculateBaseVolume();
         softBody->tightnessFactor = tighness;
         softBody->yToJump = yToJump;
-      
+       
         softBody->SetInitialVelocity(initialVelocity);
         if (inCylynder)
         {
@@ -123,6 +132,35 @@ public:
         }
         m_PhysicsCopy = new cSoftBodyVerlet(*softBody);
         m_PhysicsThread = std::thread(&SoftBody::PhysicsUpdateLoop, this);
+    }
+
+
+    void Reset() {
+        softBody->ResetToInitialState();
+        if (m_PhysicsCopy) {
+            m_PhysicsCopy->ResetToInitialState();
+            m_PhysicsCopy->SetInitialVelocity(initialVelocity);
+        }
+    }
+
+    // Move entire softbody while maintaining physics state
+    void MoveTo(const glm::vec3& newWorldPosition) {
+        glm::vec3 currentWorldPos = object->mesh->positionXYZ +
+            softBody->getGeometricCentrePoint() *
+            object->mesh->uniformScale;
+        glm::vec3 delta = (newWorldPosition - currentWorldPos) /
+            object->mesh->uniformScale;
+
+        // Move both active and physics copy buffers
+        softBody->MoveAllParticles(delta);
+        if (m_PhysicsCopy) {
+            m_PhysicsCopy->MoveAllParticles(delta);
+        }
+
+        // Update object's position to match new location
+        object->mesh->positionXYZ = newWorldPosition -
+            softBody->getGeometricCentrePoint() *
+            object->mesh->uniformScale;
     }
 
     void MoveTopPart()

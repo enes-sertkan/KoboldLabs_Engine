@@ -166,7 +166,35 @@ bool cSoftBodyVerlet::CreateSoftBody(sModelDrawInfo ModelInfo, glm::mat4 matInit
 		this->vec_pConstraints.push_back(pEdge3);
 	}//for ( unsigned int index
 
+
+	m_InitialPositions.clear();
+	m_InitialOldPositions.clear();
+	for (sParticle* particle : vec_pParticles) {
+		m_InitialPositions.push_back(particle->position);
+		m_InitialOldPositions.push_back(particle->old_position);
+	}
+
 	return true;
+}
+
+
+
+void cSoftBodyVerlet::ResetToInitialState()
+{
+	for (size_t i = 0; i < vec_pParticles.size(); i++) {
+		vec_pParticles[i]->position = m_InitialPositions[i];
+		vec_pParticles[i]->old_position = m_InitialOldPositions[i];
+	}
+	UpdateGeometricCentrePoint();
+}
+
+void cSoftBodyVerlet::MoveAllParticles(const glm::vec3& delta)
+{
+	for (sParticle* particle : vec_pParticles) {
+		particle->position += delta;
+		particle->old_position += delta;
+	}
+	UpdateGeometricCentrePoint();
 }
 
 void cSoftBodyVerlet::UpdateGeometricCentrePoint(void)

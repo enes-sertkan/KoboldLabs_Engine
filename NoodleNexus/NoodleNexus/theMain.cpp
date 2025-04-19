@@ -580,6 +580,7 @@ void ObjectPropertiesExample(SceneEditor* sceneEditor)
         {
             ImGui::DragFloat("Zoom Power", &selectedObject->mesh->zoomPower, 0.01f, 0.0f, 5.0f);
             ImGui::DragFloat("Chromatic Power", &selectedObject->mesh->chromaticPower, 0.01f, 0.0f, 2.0f);
+            ImGui::DragFloat("Shake Power", &selectedObject->mesh->shakePower, 0.01f, 0.0f, 100.0f);
             ImGui::Checkbox("Draw Both Faces", &selectedObject->mesh->drawBothFaces);
         }
     }
@@ -1782,7 +1783,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
 
 
     Object* puddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.2f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), false, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
-    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.25f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
+    Object* underpuddle = scene->GenerateMeshObjectsFromObject("assets/models/plene_1x1.ply", glm::vec3(50.f,3.1f,30.f),10.f, glm::vec3(0.f, 0.f, 0.f), true , glm::vec4(0.001f, 0.01f, 0.001f, 1.f), false, scene->sceneObjects);
    
 
  LAFactory->grass = puddle;
