@@ -365,7 +365,7 @@ void cSoftBodyVerlet::LockParticlesOnZ(float yPos, bool lower)
 void cSoftBodyVerlet::CalculateBaseVolume()
 {
 	// Store the base "volume" as the average radius at the start
-	volume = GetVolume()*3;
+	volume = GetVolume()*2.2;
 }
 
 

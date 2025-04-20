@@ -1848,9 +1848,6 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     scene->AddActionToObj(playerCore, player);
     scene->AddActionToObj(turretDestroyer, player);
 
-    SpawnSlime(scene, glm::vec3(22, 5, 9), mazeGenerator);
-    SpawnSlime(scene, glm::vec3(18, 5, 7), mazeGenerator);
-    SpawnSlime(scene, glm::vec3(24, 5, 12), mazeGenerator);
     //Object* slime = scene->GenerateMeshObjectsFromObject("assets/models/Sphere_radius_1_xyz_N_uv.ply", glm::vec3(22, 5, 9), 0.35, glm::vec3(0.f, 0.f, 0.f), true, glm::vec4(0.f, 1.f, 0.f, 1.f), true, scene->sceneObjects);
     //SoftBody* slimeBody = new SoftBody();
 
