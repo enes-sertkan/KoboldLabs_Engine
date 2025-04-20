@@ -15,8 +15,10 @@ public:
     std::vector<SlimeController*> slimeControllers;
 
     LabAttackFactory* factory = nullptr;
-    float fireRate = 0.8f;
+    float fireRate = 0.15f;
+    float spawnRate = 0.8f;
     float timeSinceLastShot = 0.0f;
+    float timeSinceLastSpawn = 0.0f;
 
     virtual void Start() override {
         timeSinceLastShot = fireRate;
@@ -24,8 +26,35 @@ public:
 
     virtual void Update() override {
         timeSinceLastShot += object->scene->deltaTime;
+        timeSinceLastSpawn += object->scene->deltaTime;
         if (glfwGetMouseButton(object->scene->window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
             if (timeSinceLastShot >= fireRate && factory) {
+                glm::vec3 playerPos = object->mesh->positionXYZ;
+                playerPos.y += 4.0f;
+                glm::vec2 eyeRot = object->scene->fCamera->getEyeRotation();
+                float yaw = glm::radians(eyeRot.y) - glm::radians(90.0f);
+                float pitch = glm::radians(eyeRot.x);
+
+                glm::vec3 shootDir(
+                    sin(yaw) * cos(pitch),
+                    -sin(pitch),
+                    cos(yaw) * cos(pitch)
+                );
+                shootDir = glm::normalize(shootDir);
+
+                glm::vec3 bulletSpeed = shootDir * 40.0f;
+                glm::vec3 spawnPos = playerPos + shootDir * 1.0f;
+                spawnPos.y -= 4.5f;
+
+
+             
+                factory->SpawnPlayerBullet(spawnPos, bulletSpeed);
+                timeSinceLastShot = 0.0f;
+            }
+        }      
+        
+        if (glfwGetKey(object->scene->window, GLFW_KEY_F) == GLFW_PRESS) {
+            if (timeSinceLastSpawn >= spawnRate && factory) {
                 glm::vec3 playerPos = object->mesh->positionXYZ;
                 playerPos.y += 4.0f;
                 glm::vec2 eyeRot = object->scene->fCamera->getEyeRotation();
@@ -43,8 +72,10 @@ public:
                 glm::vec3 spawnPos = playerPos + shootDir * 1.0f;
                 spawnPos.y -= 4.5f;
 
+
+             
                 SpawnSlime(object->scene, spawnPos, factory->maze, bulletSpeed);
-                timeSinceLastShot = 0.0f;
+                timeSinceLastSpawn = 0.0f;
             }
         }
     }
@@ -114,7 +145,7 @@ public:
             if (factory->grass) {
                 aGrassCollider* grassColl = new aGrassCollider();
                 grassColl->SetGrass(factory->grass);
-                grassColl->colliderRadius = 1.4f * randomScale / 0.3f;
+                grassColl->colliderRadius = 1.4f;
                 grassColl->colliderBlendRadius = 1.5f;
                 grassColl->softBody = slimeBody;
                 scene->AddActionToObj(grassColl, slimeObj);

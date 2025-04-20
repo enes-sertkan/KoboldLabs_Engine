@@ -40,7 +40,7 @@ public:
     float jumpForceMagnitude = 3.0f;  // force strength
     float jumpMinDistance = 5.0f;   // min distance to enemy to consider jump
     float jumpMaxDistance = 10.0f;  // max distance to enemy
-    float jumpChance = 0.9f;   // 10% chance
+    float jumpChance = 0.45f;   // 10% chance
 
     // Damage parameters
     float damageRadius = 2.0f;
