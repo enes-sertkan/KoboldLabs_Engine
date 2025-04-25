@@ -1007,6 +1007,12 @@ void DrawMeshWithCamera(Object* curObject, sMesh* pCurMesh, GLuint program, cVAO
     GLint chromaticPower_UL = glGetUniformLocation(program, "chromaticPower");
     glUniform1f(chromaticPower_UL, pCurMesh->chromaticPower);
 
+    GLint bloomPower_UL = glGetUniformLocation(program, "bloomPower");
+    glUniform1f(bloomPower_UL, pCurMesh->bloomPower);
+
+    GLint sceneTexture_UL = glGetUniformLocation(program, "u_sceneTexture");
+    glUniform1f(sceneTexture_UL, pCurMesh->u_sceneTexture);
+
     GLint bNightMode = glGetUniformLocation(program, "bNightMode");
     if (camera->nightMode)
     {

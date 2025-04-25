@@ -1725,6 +1725,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     //screen_quad->mesh->chromaticPower = 0.1;
     screen_quad->mesh->blendRatio[0] = 1.f;
     screen_quad->mesh->chromaticPower = 0.0007f;
+    screen_quad->mesh->u_sceneTexture = 0.7f;
   //  obj->mesh->textures[1] = "screen_broken.bmp";
   //  obj->mesh->blendRatio[1] = 0.2f;
     MainCamera* mainCamera = new MainCamera(); 
@@ -1864,6 +1865,7 @@ void AddActions(Scene* scene, Scene* sceneCam, Scene* securityRoomScene,  GLuint
     //softObject->mesh->objectColourRGBA
     softObject->mesh->metal = 0.8f;
     softObject->mesh->smoothness = 0.7f;
+    softObject->mesh->bloomPower = 1.0f;
     softBody->acceleration.y = -16;
     softObject->mesh->drawBothFaces = true;
     softBody->constIterations = 15;

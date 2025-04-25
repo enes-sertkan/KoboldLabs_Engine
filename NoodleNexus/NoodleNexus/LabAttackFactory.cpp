@@ -454,6 +454,7 @@ void LabAttackFactory::Start()
     bodyObj->mesh->NMTexture = "Turret/Turret_Normal.bmp";
     bodyObj->mesh->AOtexture = "Turret/Turret_Occlusion.bmp";
     bodyObj->mesh->STTexture = "Turret/Turret_ST.bmp";
+    //bodyObj->mesh->bloomPower = 1.0f;
     standardBody->ID = STANDARTBODY;
     standardBody->object = bodyObj;
     standardBody->action = new aTurretBody();
@@ -476,7 +477,7 @@ void LabAttackFactory::Start()
     tribodyObj->mesh->NMTexture = "Turret2/Turret2_normal.bmp";
     tribodyObj->mesh->AOtexture = "Turret2/Turret2_AO.bmp";
     tribodyObj->mesh->STTexture = "Turret2/Turret2_MS.bmp";
-
+    //tribodyObj->mesh->bloomPower = 1.0f;
     tripleBody->ID = TRIPLEBODY;
     tripleBody->object = tribodyObj;
     tripleBody->action = new aTurretBody();
@@ -499,6 +500,7 @@ void LabAttackFactory::Start()
     rocketbodyObj->mesh->blendRatio[0] = 1;
     rocketbodyObj->mesh->NMTexture = "Turret3/Turret3_Normal.bmp";
     rocketbodyObj->mesh->AOtexture = "Turret3/Turret3_AmbOcc.bmp";
+    //rocketbodyObj->mesh->bloomPower = 1.0f;
     //rocketObj->mesh->STTexture = "Turret3/Turret3_ST.bmp";
     rocketBody->ID = ROCKETBODY;
     rocketBody->object = rocketbodyObj;

@@ -119,6 +119,72 @@ uniform float speedY;     // UV speed Y
 uniform float zoomPower;  // Zoom effect on texture
 uniform float chromaticPower; // Chromatic Abberation effect on textures
 
+// Bright pass filter with smooth transition
+vec3 brightPass(vec3 color, float threshold, float softness) {
+    float brightness = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    float influence = smoothstep(threshold, threshold + softness, brightness);
+    return color * influence;
+}
+
+// Better Gaussian blur using separable filters
+vec3 blurPass(sampler2D tex, vec2 uv, vec2 direction, float radius) {
+    vec3 color = vec3(0.0);
+    vec2 texel = 1.0 / textureSize(tex, 0);
+    
+    // Optimized 9-tap Gaussian kernel
+    float weights[5] = float[](0.227027, 0.1945946, 0.1216216, 0.054054, 0.016216);
+    float offsets[5] = float[](0.0, 1.3846153846, 3.2307692308, 5.0769230769, 7.0);
+    
+    color += texture(tex, uv).rgb * weights[0];
+    for(int i = 1; i < 5; ++i) {
+        float coef = radius * 0.75;  // Radius control
+        vec2 off = direction * texel * offsets[i] * coef;
+        color += texture(tex, uv + off).rgb * weights[i];
+        color += texture(tex, uv - off).rgb * weights[i];
+    }
+    return color;
+}
+
+vec3 applyBloom(
+    vec2 uv,
+    vec2 resolution,
+    float bloomThreshold,
+    float bloomSoftness,
+    float bloomPower,
+    float bloomRadius,
+    vec3 originalColor  // Add this parameter
+) {
+    // Aspect ratio correction
+    float aspect = resolution.x / resolution.y;
+    vec2 aspectCorrection = vec2(1.0, aspect);
+    
+    // Bright pass extraction
+    vec3 brightColor = brightPass(originalColor, bloomThreshold, bloomSoftness);
+    
+    // Create two blur passes with different radii
+    float baseRadius = bloomRadius * 0.8;
+    float detailRadius = bloomRadius * 0.3;
+    
+    // Horizontal blur
+    vec3 blur1 = blurPass(texture00, uv, vec2(1.0, 0.0) * aspectCorrection, baseRadius);
+    // Vertical blur
+    vec3 blur2 = blurPass(texture00, uv, vec2(0.0, 1.0) * aspectCorrection, baseRadius);
+    
+    // Detail blur (small radius)
+    vec3 detailBlur = blurPass(texture00, uv, vec2(1.0, 1.0) * aspectCorrection, detailRadius);
+    
+    // Combine blur passes with weighting
+    vec3 bloom = (blur1 + blur2) * 0.4 + detailBlur * 0.2;
+    
+    // Energy conservation and power adjustment
+    bloom = bloom * bloomPower / (1.0 + bloom);
+    
+    // The crucial fix: Subtract the bright pass from original before adding bloom
+    vec3 sceneWithoutBloom = originalColor - brightColor * 0.9; // Adjust 0.9 as needed
+    return sceneWithoutBloom + bloom;
+}
+
+
 // === Wave Uniforms ===
 uniform sWave waves[10];
 // Hash function (UV-based)
@@ -253,6 +319,14 @@ vec3 getSkyboxReflection(vec3 normal, vec3 worldPos, vec3 eyePos, float roughnes
     return mix(vec3(0.0), skyReflection, fresnelFactor * reflectionStrength);
 }
 
+
+
+
+
+
+
+
+
 // === Main Fragment Shader Function ===
 void main() {
 
@@ -369,8 +443,10 @@ for (int i = 0; i < 10; i++) {
        // finalNormal = normalize(finalNormal);
     }
 }
+
+
     
-   
+
 
     // --- Section 2: Stencil & Skybox Handling ---
     if (bUseStencilTexture) {
@@ -411,6 +487,8 @@ for (int i = 0; i < 10; i++) {
         layeredColor = compositeOver(layeredColor, tex2);
         layeredColor = compositeOver(layeredColor, tex3);
         vertexColour = layeredColor;
+
+
     }
     
     // --- Section 4: Lighting and PBR Calculation ---
@@ -488,6 +566,34 @@ for (int i = 0; i < 10; i++) {
 
     if (finalPixelColour.a==1)
     finalPixelColour.a = objectColour.a;
+
+// --- Stylized Bloom Post-Processing ---
+vec2 resolution = vec2(1920, 1080); // Should match your actual viewport size
+vec2 uv = gl_FragCoord.xy / resolution;
+
+// Bloom parameters (these could be uniforms)
+float threshold = 0.65;  // Where bloom starts (0.5-1.0)
+float softness = 0.4;    // How wide the fade is (0.1-0.5)
+float power = 1.2;       // Strength of glow (0.5-2.0)
+float radius = 8.0;      // Blur radius in pixels (2.0-15.0)
+
+// Get original color
+vec3 originalColor = texture(texture00, uv).rgb;
+
+// Apply bloom (using the fixed version from previous answer)
+vec3 bloomedColor = applyBloom(
+    uv,
+    resolution,
+    threshold,
+    softness,
+    power,
+    radius,
+    originalColor
+);
+
+// Final composition (DON'T add bloom twice!)
+//finalPixelColour = vec4(bloomedColor, 1.0);
+
     return;
 }
 ///PBR

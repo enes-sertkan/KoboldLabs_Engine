@@ -128,6 +128,8 @@ struct sMesh
 
 	float zoomPower = 0;
 	float chromaticPower = 0;
+	float bloomPower = 0;
+	float u_sceneTexture = 0;
 
 	bool drawBothFaces = false;
 	std::string getState(void);
